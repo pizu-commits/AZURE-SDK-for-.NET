@@ -20,6 +20,7 @@ namespace Azure.Communication.Pipeline
         private readonly string? authority;
 
         public HMACAuthenticationPolicy(AzureKeyCredential keyCredential, string? authority = null)
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         {
             _keyCredential = keyCredential;
             this.authority = authority;
