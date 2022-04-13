@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>This is the Batch client library for developing .NET applications with rich experience.</Description>
     <AssemblyTitle>Azure SDK Code Generation Batch for Azure Data Plane</AssemblyTitle>
@@ -19,6 +19,12 @@
   <ItemGroup>
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Core.Experimental" />
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\hpc\azure-sdk-for-net\sdk\batch\Azure.Data.Batch\src\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\hpc\azure-sdk-for-net\sdk\batch\Azure.Data.Batch\src\.editorconfig" />
   </ItemGroup>
 
 </Project>

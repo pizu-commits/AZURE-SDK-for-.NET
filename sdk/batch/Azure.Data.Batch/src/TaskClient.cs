@@ -22,6 +22,11 @@ namespace Azure.Data.Batch
             return await HandleGetAsync(jobId, taskId, GetTaskAsync, Task.DeserializeTask).ConfigureAwait(false);
         }
 
+        public virtual Pageable<Task> ListTasks(string jobId)
+        {
+            return HandleList(jobId, GetTasks, Task.DeserializeTask);
+        }
+
         private static Response<Task> GetResponse(Response response)
         {
             JsonDocument json = JsonDocument.Parse(response.Content);

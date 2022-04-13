@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Azure.Core;
@@ -40,6 +41,22 @@ namespace Azure.Data.Batch
         {
             Response response = await operation(parentId, id, null, null, null, null, null, null, null, null).ConfigureAwait(false);
             return HandleResponse(response, deserialize);
+        }
+
+        protected internal Pageable<T> HandleList<T>(string parentId, Func<string, string, string, string, int?, int?, Guid?, bool?, DateTimeOffset?, RequestContext, Pageable<BinaryData>> operation, Func<JsonElement, T> deserialize)
+        {
+            Pageable<BinaryData> data = operation(parentId, null, null, null, null, null, null, null, null, null);
+            return PageableHelpers.Select(data, response =>
+            {
+                JsonElement root = JsonDocument.Parse(response.Content).RootElement;
+                List<T> items = new List<T>();
+                foreach (JsonElement item in root.GetProperty("value").EnumerateArray())
+                {
+                    items.Add(deserialize(item));
+                }
+
+                return items;
+            });
         }
 
         private Response<T> HandleResponse<T>(Response response) where T : BaseHeaders, new()
