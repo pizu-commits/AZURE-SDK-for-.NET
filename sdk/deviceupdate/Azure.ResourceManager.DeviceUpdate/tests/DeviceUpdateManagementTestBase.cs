@@ -10,6 +10,7 @@ using Azure.ResourceManager.Resources.Models;
 using Azure.ResourceManager.DeviceUpdate.Models;
 using Azure.ResourceManager.DeviceUpdate.Tests.Helper;
 using NUnit.Framework;
+using Azure.Core;
 
 namespace Azure.ResourceManager.DeviceUpdate.Tests
 {
@@ -18,12 +19,12 @@ namespace Azure.ResourceManager.DeviceUpdate.Tests
         protected ArmClient Client { get; private set; }
 
         protected DeviceUpdateManagementTestBase(bool isAsync, RecordedTestMode mode)
-        : base(isAsync, mode, useLegacyTransport: true)
+        : base(isAsync, mode)
         {
         }
 
         protected DeviceUpdateManagementTestBase(bool isAsync)
-            : base(isAsync, useLegacyTransport: true)
+            : base(isAsync)
         {
         }
 
@@ -33,26 +34,26 @@ namespace Azure.ResourceManager.DeviceUpdate.Tests
             Client = GetArmClient();
         }
 
-        protected async Task<ResourceGroup> CreateResourceGroup(Subscription subscription, string rgNamePrefix)
+        protected async Task<ResourceGroupResource> CreateResourceGroup(SubscriptionResource subscription, string rgNamePrefix)
         {
             string rgName = Recording.GenerateAssetName(rgNamePrefix);
-            ResourceGroupData input = new ResourceGroupData(Location.WestUS);
-            var lro = await subscription.GetResourceGroups().CreateOrUpdateAsync(rgName, input);
+            ResourceGroupData input = new ResourceGroupData(AzureLocation.WestUS);
+            var lro = await subscription.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, rgName, input);
             return lro.Value;
         }
 
-        protected async Task<DeviceUpdateAccount> CreateAccount(ResourceGroup rg, string accountName)
+        protected async Task<DeviceUpdateAccountResource> CreateAccount(ResourceGroupResource rg, string accountName)
         {
             DeviceUpdateAccountData input = ResourceDataHelper.CreateAccountData();
-            var lro = await rg.GetDeviceUpdateAccounts().CreateOrUpdateAsync(accountName, input);
+            var lro = await rg.GetDeviceUpdateAccounts().CreateOrUpdateAsync(WaitUntil.Completed, accountName, input);
             return lro.Value;
         }
 
-        protected async Task<DeviceUpdateInstance> CreateInstance(DeviceUpdateAccount account, string instanceName)
+        protected async Task<DeviceUpdateInstanceResource> CreateInstance(DeviceUpdateAccountResource account, string instanceName)
         {
             DeviceUpdateInstanceData input = ResourceDataHelper.CreateInstanceData();
             input.IotHubs.Add(new IotHubSettings("/subscriptions/db1ab6f0-4769-4b27-930e-01e2ef9c123c/resourceGroups/DeviceUpdateResourceGroup/providers/Microsoft.Devices/IotHubs/orange-aducpsdktestaccount-iothub"));
-            var lro = await account.GetDeviceUpdateInstances().CreateOrUpdateAsync(instanceName, input);
+            var lro = await account.GetDeviceUpdateInstances().CreateOrUpdateAsync(WaitUntil.Completed, instanceName, input);
             return lro.Value;
         }
     }

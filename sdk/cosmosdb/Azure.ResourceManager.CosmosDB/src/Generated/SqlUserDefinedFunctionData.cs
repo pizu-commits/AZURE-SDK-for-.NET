@@ -6,30 +6,30 @@
 #nullable disable
 
 using System.Collections.Generic;
-using Azure.ResourceManager;
+using Azure.Core;
 using Azure.ResourceManager.CosmosDB.Models;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.CosmosDB
 {
     /// <summary> A class representing the SqlUserDefinedFunction data model. </summary>
-    public partial class SqlUserDefinedFunctionData : TrackedResource
+    public partial class SqlUserDefinedFunctionData : TrackedResourceData
     {
         /// <summary> Initializes a new instance of SqlUserDefinedFunctionData. </summary>
         /// <param name="location"> The location. </param>
-        public SqlUserDefinedFunctionData(Location location) : base(location)
+        public SqlUserDefinedFunctionData(AzureLocation location) : base(location)
         {
         }
 
         /// <summary> Initializes a new instance of SqlUserDefinedFunctionData. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
-        /// <param name="type"> The type. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
         /// <param name="resource"></param>
-        internal SqlUserDefinedFunctionData(ResourceIdentifier id, string name, ResourceType type, IDictionary<string, string> tags, Location location, SqlUserDefinedFunctionPropertiesResource resource) : base(id, name, type, tags, location)
+        internal SqlUserDefinedFunctionData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, SqlUserDefinedFunctionPropertiesResource resource) : base(id, name, resourceType, systemData, tags, location)
         {
             Resource = resource;
         }

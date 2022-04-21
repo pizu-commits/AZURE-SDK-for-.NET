@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.Graph.Rbac;
 using Azure.ResourceManager.KeyVault.Models;
@@ -23,9 +24,9 @@ namespace Azure.ResourceManager.KeyVault.Tests
 
         public string ObjectId { get; set; }
         //Could not use TestEnvironment.Location since Location is got dynamically
-        public string Location { get; set; }
+        public AzureLocation Location { get; set; }
 
-        public Subscription Subscription { get; private set; }
+        public SubscriptionResource Subscription { get; private set; }
         public AccessPolicyEntry AccessPolicy { get; internal set; }
         public string ResGroupName { get; internal set; }
         public Dictionary<string, string> Tags { get; internal set; }
@@ -37,15 +38,21 @@ namespace Azure.ResourceManager.KeyVault.Tests
         public VaultCollection VaultCollection { get; set; }
         public DeletedVaultCollection DeletedVaultCollection { get; set; }
         public ManagedHsmCollection ManagedHsmCollection { get; set; }
-        public ResourceGroup ResourceGroup { get; set; }
+        public ResourceGroupResource ResourceGroupResource { get; set; }
 
         protected VaultOperationsTestsBase(bool isAsync)
-            : base(isAsync, useLegacyTransport: true)
+            : base(isAsync)
+        {
+        }
+
+        protected VaultOperationsTestsBase(bool isAsync, RecordedTestMode mode)
+            : base(isAsync, mode)//, true)
         {
         }
 
         protected async Task Initialize()
         {
+            Location = Azure.Core.AzureLocation.CanadaCentral;
             Client = GetArmClient();
             Subscription = await Client.GetDefaultSubscriptionAsync();
             DeletedVaultCollection = Subscription.GetDeletedVaults();
@@ -65,37 +72,36 @@ namespace Azure.ResourceManager.KeyVault.Tests
                     break;
                 }
             }
-            Location = "North Central US";
 
-            ResGroupName = Recording.GenerateAssetName("sdktestrg");
-            var rgResponse = await Subscription.GetResourceGroups().CreateOrUpdateAsync(ResGroupName, new ResourceGroupData(Location)).ConfigureAwait(false);
-            ResourceGroup = rgResponse.Value;
+            ResGroupName = Recording.GenerateAssetName("sdktestrg-kv-");
+            var rgResponse = await Subscription.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, ResGroupName, new ResourceGroupData(Location)).ConfigureAwait(false);
+            ResourceGroupResource = rgResponse.Value;
 
-            VaultCollection = ResourceGroup.GetVaults();
-            VaultName = Recording.GenerateAssetName("sdktestvault");
+            VaultCollection = ResourceGroupResource.GetVaults();
+            VaultName = Recording.GenerateAssetName("sdktest-vault-");
             TenantIdGuid = new Guid(TestEnvironment.TenantId);
             Tags = new Dictionary<string, string> { { "tag1", "value1" }, { "tag2", "value2" }, { "tag3", "value3" } };
 
-            var permissions = new Permissions
+            var permissions = new AccessPermissions
             {
-                Keys = { new KeyPermissions("all") },
-                Secrets = { new SecretPermissions("all") },
-                Certificates = { new CertificatePermissions("all") },
-                Storage = { new StoragePermissions("all") },
+                Keys = { new KeyPermission("all") },
+                Secrets = { new SecretPermission("all") },
+                Certificates = { new CertificatePermission("all") },
+                Storage = { new StoragePermission("all") },
             };
             AccessPolicy = new AccessPolicyEntry(TenantIdGuid, ObjectId, permissions);
 
-            VaultProperties = new VaultProperties(TenantIdGuid, new Sku(SkuFamily.A, SkuName.Standard));
+            VaultProperties = new VaultProperties(TenantIdGuid, new KeyVaultSku(KeyVaultSkuFamily.A, KeyVaultSkuName.Standard));
 
             VaultProperties.EnabledForDeployment = true;
             VaultProperties.EnabledForDiskEncryption = true;
             VaultProperties.EnabledForTemplateDeployment = true;
             VaultProperties.EnableSoftDelete = true;
-            VaultProperties.VaultUri = "";
+            VaultProperties.VaultUri = new Uri("http://vaulturi.com");
             VaultProperties.NetworkAcls = new NetworkRuleSet() {
                 Bypass = "AzureServices",
                 DefaultAction = "Allow",
-                IpRules =
+                IPRules =
                 {
                     new IPRule("1.2.3.4/32"),
                     new IPRule("1.0.0.0/25")
@@ -103,7 +109,7 @@ namespace Azure.ResourceManager.KeyVault.Tests
             };
             VaultProperties.AccessPolicies.Add(AccessPolicy);
 
-            ManagedHsmCollection = ResourceGroup.GetManagedHsms();
+            ManagedHsmCollection = ResourceGroupResource.GetManagedHsms();
             ManagedHsmProperties = new ManagedHsmProperties();
             ManagedHsmProperties.InitialAdminObjectIds.Add(ObjectId);
             ManagedHsmProperties.CreateMode = CreateMode.Default;

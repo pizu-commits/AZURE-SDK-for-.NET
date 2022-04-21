@@ -6,30 +6,30 @@
 #nullable disable
 
 using System.Collections.Generic;
-using Azure.ResourceManager;
+using Azure.Core;
 using Azure.ResourceManager.CosmosDB.Models;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.CosmosDB
 {
     /// <summary> A class representing the ThroughputSettings data model. </summary>
-    public partial class ThroughputSettingsData : TrackedResource
+    public partial class ThroughputSettingsData : TrackedResourceData
     {
         /// <summary> Initializes a new instance of ThroughputSettingsData. </summary>
         /// <param name="location"> The location. </param>
-        public ThroughputSettingsData(Location location) : base(location)
+        public ThroughputSettingsData(AzureLocation location) : base(location)
         {
         }
 
         /// <summary> Initializes a new instance of ThroughputSettingsData. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
-        /// <param name="type"> The type. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
         /// <param name="resource"></param>
-        internal ThroughputSettingsData(ResourceIdentifier id, string name, ResourceType type, IDictionary<string, string> tags, Location location, ThroughputSettingsPropertiesResource resource) : base(id, name, type, tags, location)
+        internal ThroughputSettingsData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, ThroughputSettingsPropertiesResource resource) : base(id, name, resourceType, systemData, tags, location)
         {
             Resource = resource;
         }

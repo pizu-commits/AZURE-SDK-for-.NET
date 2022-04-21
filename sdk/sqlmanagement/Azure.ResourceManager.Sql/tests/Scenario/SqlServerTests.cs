@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Resources.Models;
@@ -11,7 +12,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 {
     public class SqlServerTests : SqlManagementClientBase
     {
-        private ResourceGroup _resourceGroup;
+        private ResourceGroupResource _resourceGroup;
         private ResourceIdentifier _resourceGroupIdentifier;
 
         public SqlServerTests(bool isAsync)
@@ -22,8 +23,8 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         [OneTimeSetUp]
         public async Task GlobalSetUp()
         {
-            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(Location.WestUS2));
-            ResourceGroup rg = rgLro.Value;
+            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(AzureLocation.WestUS2));
+            ResourceGroupResource rg = rgLro.Value;
             _resourceGroupIdentifier = rg.Id;
             await StopSessionRecordingAsync();
         }
@@ -32,7 +33,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         public async Task TestSetUp()
         {
             var client = GetArmClient();
-            _resourceGroup = await client.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await client.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
         }
 
         [TearDown]
@@ -41,18 +42,18 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             var SqlServerList = await _resourceGroup.GetSqlServers().GetAllAsync().ToEnumerableAsync();
             foreach (var item in SqlServerList)
             {
-                await item.DeleteAsync();
+                await item.DeleteAsync(WaitUntil.Completed);
             }
         }
 
-        private async Task<SqlServer> CreateOrUpdateSqlServer(string sqlServerName)
+        private async Task<SqlServerResource> CreateOrUpdateSqlServer(string sqlServerName)
         {
-            SqlServerData data = new SqlServerData(Location.WestUS2)
+            SqlServerData data = new SqlServerData(AzureLocation.WestUS2)
             {
                 AdministratorLogin = "Admin-" + sqlServerName,
                 AdministratorLoginPassword = CreateGeneralPassword(),
             };
-            var SqlServer = await _resourceGroup.GetSqlServers().CreateOrUpdateAsync(sqlServerName, data);
+            var SqlServer = await _resourceGroup.GetSqlServers().CreateOrUpdateAsync(WaitUntil.Completed, sqlServerName, data);
             return SqlServer.Value;
         }
 
@@ -62,7 +63,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         {
             string sqlServerName = Recording.GenerateAssetName("sqlserver-");
             await CreateOrUpdateSqlServer(sqlServerName);
-            Assert.AreEqual(true, _resourceGroup.GetSqlServers().CheckIfExists(sqlServerName).Value);
+            Assert.AreEqual(true, (await _resourceGroup.GetSqlServers().ExistsAsync(sqlServerName)).Value);
         }
 
         [Test]
@@ -107,7 +108,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             var SqlServerList = await _resourceGroup.GetSqlServers().GetAllAsync().ToEnumerableAsync();
             Assert.AreEqual(1, SqlServerList.Count);
 
-            await SqlServerList[0].DeleteAsync();
+            await SqlServerList[0].DeleteAsync(WaitUntil.Completed);
             SqlServerList = await _resourceGroup.GetSqlServers().GetAllAsync().ToEnumerableAsync();
             Assert.AreEqual(0, SqlServerList.Count);
         }

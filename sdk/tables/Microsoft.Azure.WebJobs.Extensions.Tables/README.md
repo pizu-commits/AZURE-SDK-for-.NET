@@ -6,10 +6,10 @@ This extension provides functionality for accessing Azure Tables in Azure Functi
 
 ### Install the package
 
-Install the Storage Blobs extension with [NuGet][nuget]:
+Install the Tables extension with [NuGet][nuget]:
 
 ```dotnetcli
-dotnet add package Microsoft.Azure.WebJobs.Extensions.Tables --prerelease
+dotnet add package Microsoft.Azure.WebJobs.Extensions.Tables
 ```
 
 ### Prerequisites
@@ -97,7 +97,7 @@ Please follow the [input binding tutorial](https://docs.microsoft.com/azure/azur
 
 Tables extensions provides only bindings. Bindings by themselves can't trigger a function. It can only read or write entries to the table.
 
-In the following example we use [HTTP trigger][https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp] to invoke the function.
+In the following example we use [HTTP trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) to invoke the function.
 
 ### Binding to a single entity
 
@@ -165,7 +165,7 @@ public class OutputSingle
         [HttpTrigger(AuthorizationLevel.Anonymous, "GET")] HttpRequest request,
         [Table("MyTable")] out TableEntity entity)
     {
-        entity = new TableEntity("<PartitionKey>", "<PartitionKey>")
+        entity = new TableEntity("<PartitionKey>", "<RowKey>")
         {
             ["Text"] = "Hello"
         };
@@ -265,7 +265,7 @@ public class BindTableClient
         [HttpTrigger(AuthorizationLevel.Anonymous, "POST")] HttpRequest request,
         [Table("MyTable")] TableClient client)
     {
-        await client.AddEntityAsync(new TableEntity("<PartitionKey>", "<PartitionKey>")
+        await client.AddEntityAsync(new TableEntity("<PartitionKey>", "<RowKey>")
         {
             ["Text"] = request.GetEncodedPathAndQuery()
         });

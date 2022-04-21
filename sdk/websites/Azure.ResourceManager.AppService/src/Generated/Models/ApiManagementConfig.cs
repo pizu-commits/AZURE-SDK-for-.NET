@@ -8,7 +8,7 @@
 namespace Azure.ResourceManager.AppService.Models
 {
     /// <summary> Azure API management (APIM) configuration linked to the app. </summary>
-    public partial class ApiManagementConfig
+    internal partial class ApiManagementConfig
     {
         /// <summary> Initializes a new instance of ApiManagementConfig. </summary>
         public ApiManagementConfig()
@@ -17,16 +17,12 @@ namespace Azure.ResourceManager.AppService.Models
 
         /// <summary> Initializes a new instance of ApiManagementConfig. </summary>
         /// <param name="id"> APIM-Api Identifier. </param>
-        /// <param name="apiconfig111"> this is a fake. </param>
-        internal ApiManagementConfig(string id, string apiconfig111)
+        internal ApiManagementConfig(string id)
         {
             Id = id;
-            Apiconfig111 = apiconfig111;
         }
 
         /// <summary> APIM-Api Identifier. </summary>
         public string Id { get; set; }
-        /// <summary> this is a fake. </summary>
-        public string Apiconfig111 { get; set; }
     }
 }

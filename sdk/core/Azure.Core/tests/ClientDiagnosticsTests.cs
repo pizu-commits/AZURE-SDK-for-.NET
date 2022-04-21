@@ -102,8 +102,8 @@ namespace Azure.Core.Tests
 
             DiagnosticScope scope = clientDiagnostics.CreateScope("ActivityName");
 
-            scope.AddLink("00-6e76af18746bae4eadc3581338bbe8b1-2899ebfdbdce904b-00");
-            scope.AddLink("00-6e76af18746bae4eadc3581338bbe8b2-2899ebfdbdce904b-00");
+            scope.AddLink("00-6e76af18746bae4eadc3581338bbe8b1-2899ebfdbdce904b-00", "foo=bar");
+            scope.AddLink("00-6e76af18746bae4eadc3581338bbe8b2-2899ebfdbdce904b-00", null);
             scope.Start();
 
             (string Key, object Value, DiagnosticListener) startEvent = testListener.Events.Dequeue();
@@ -131,9 +131,11 @@ namespace Azure.Core.Tests
 
             Assert.AreEqual(ActivityIdFormat.W3C, linkedActivity1.IdFormat);
             Assert.AreEqual("00-6e76af18746bae4eadc3581338bbe8b1-2899ebfdbdce904b-00", linkedActivity1.ParentId);
+            Assert.AreEqual("foo=bar", linkedActivity1.TraceStateString);
 
             Assert.AreEqual(ActivityIdFormat.W3C, linkedActivity2.IdFormat);
             Assert.AreEqual("00-6e76af18746bae4eadc3581338bbe8b2-2899ebfdbdce904b-00", linkedActivity2.ParentId);
+            Assert.Null(linkedActivity2.TraceStateString);
 
             Assert.AreEqual(0, testListener.Events.Count);
         }
@@ -152,7 +154,7 @@ namespace Azure.Core.Tests
                 {"key2", "value2"}
             };
 
-            scope.AddLink("id", expectedTags);
+            scope.AddLink("id", null, expectedTags);
             scope.Start();
 
             (string Key, object Value, DiagnosticListener) startEvent = testListener.Events.Dequeue();
@@ -240,6 +242,114 @@ namespace Azure.Core.Tests
             _ = new DiagnosticScopeFactory("Azure.Clients.2",  "Microsoft.Azure.Core.Cool.Tests", true);
 
             Assert.AreEqual(2, testListener.Sources.Count);
+        }
+
+        [TestCase(DiagnosticScope.ActivityKind.Internal)]
+        [TestCase(DiagnosticScope.ActivityKind.Server)]
+        [TestCase(DiagnosticScope.ActivityKind.Client)]
+        [TestCase(DiagnosticScope.ActivityKind.Producer)]
+        [TestCase(DiagnosticScope.ActivityKind.Consumer)]
+        [NonParallelizable]
+        public void NestedClientActivitiesNotSuppressed(int kind)
+        {
+            using var testListener = new TestDiagnosticListener("Azure.Clients");
+            DiagnosticScopeFactory clientDiagnostics = new DiagnosticScopeFactory("Azure.Clients", "Microsoft.Azure.Core.Cool.Tests", true, false);
+
+            using DiagnosticScope scope = clientDiagnostics.CreateScope("ClientName.ActivityName", (DiagnosticScope.ActivityKind)kind);
+            scope.Start();
+
+            DiagnosticScope nestedScope = clientDiagnostics.CreateScope("ClientName.NestedActivityName", (DiagnosticScope.ActivityKind)kind);
+            nestedScope.Start();
+            Assert.IsTrue(nestedScope.IsEnabled);
+            Assert.AreEqual("ClientName.NestedActivityName", Activity.Current.OperationName);
+            nestedScope.Dispose();
+            Assert.AreEqual("ClientName.ActivityName", Activity.Current.OperationName);
+        }
+
+        [Test]
+        [NonParallelizable]
+        public void NestedActivitiesNoSuppressionSameSourceServerClient()
+        {
+            using var testListener = new TestDiagnosticListener("Azure.Clients");
+
+            DiagnosticScopeFactory clientDiagnostics = new DiagnosticScopeFactory("Azure.Clients", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            DiagnosticScope scope = clientDiagnostics.CreateScope("ClientName.ActivityName", DiagnosticScope.ActivityKind.Server);
+            Assert.IsTrue(scope.IsEnabled);
+            scope.Start();
+            Assert.AreEqual("ClientName.ActivityName", Activity.Current.OperationName);
+
+            DiagnosticScope nestedScope = clientDiagnostics.CreateScope("ClientName.NestedActivityName");
+            Assert.IsTrue(nestedScope.IsEnabled);
+            nestedScope.Start();
+
+            Activity nestedActivity = Activity.Current;
+            Assert.AreEqual("ClientName.NestedActivityName", nestedActivity.OperationName);
+
+            nestedScope.Dispose();
+            Assert.AreEqual(Activity.Current, nestedActivity.Parent);
+
+            Assert.AreEqual("ClientName.ActivityName", Activity.Current.OperationName);
+            scope.Dispose();
+        }
+
+        [Test]
+        [NonParallelizable]
+        public void NestedActivitiesNoSuppressionDifferentSourcesServerClient()
+        {
+            using var testListener = new TestDiagnosticListener("Azure.Clients");
+            DiagnosticScopeFactory clientDiagnostics = new DiagnosticScopeFactory("Azure.Clients", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            ;
+            DiagnosticScope scope = clientDiagnostics.CreateScope("ClientName.ActivityName", DiagnosticScope.ActivityKind.Server);
+            scope.Start();
+
+            using var activityListener2 = new TestDiagnosticListener("Azure.Clients2");
+            DiagnosticScopeFactory clientDiagnostics2 = new DiagnosticScopeFactory("Azure.Clients2", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            DiagnosticScope nestedScope = clientDiagnostics2.CreateScope("ClientName.NestedActivityName");
+            nestedScope.Start();
+            Assert.IsTrue(nestedScope.IsEnabled);
+            Assert.AreEqual("ClientName.NestedActivityName", Activity.Current.OperationName);
+            nestedScope.Dispose();
+
+            Assert.AreEqual("ClientName.ActivityName", Activity.Current.OperationName);
+            scope.Dispose();
+        }
+
+        [Test]
+        [NonParallelizable]
+        public void NestedActivitiesNoSuppressionOuterDisabled()
+        {
+            DiagnosticScopeFactory clientDiagnostics = new DiagnosticScopeFactory("Azure.Clients", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            DiagnosticScope scope = clientDiagnostics.CreateScope("ClientName.ActivityName");
+            scope.Start();
+
+            using var activityListener2 = new TestDiagnosticListener("Azure.Clients2");
+            DiagnosticScopeFactory clientDiagnostics2 = new DiagnosticScopeFactory("Azure.Clients2", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            DiagnosticScope nestedScope = clientDiagnostics2.CreateScope("ClientName.NestedActivityName");
+            nestedScope.Start();
+            Assert.IsTrue(nestedScope.IsEnabled);
+            Assert.AreEqual("ClientName.NestedActivityName", Activity.Current.OperationName);
+            nestedScope.Dispose();
+
+            Assert.IsNull(Activity.Current);
+        }
+
+        [Test]
+        [NonParallelizable]
+        public void SequentialActivitiesNoSuppression()
+        {
+            using var activityListener2 = new TestDiagnosticListener("Azure.Clients");
+            DiagnosticScopeFactory clientDiagnostics = new DiagnosticScopeFactory("Azure.Clients", "Microsoft.Azure.Core.Cool.Tests", true, false);
+            DiagnosticScope scope = clientDiagnostics.CreateScope("ClientName.ActivityName");
+            scope.Start();
+            scope.Dispose();
+
+            DiagnosticScope nextScope = clientDiagnostics.CreateScope("ClientName.ActivityName");
+            nextScope.Start();
+            Assert.IsTrue(nextScope.IsEnabled);
+            Assert.AreEqual("ClientName.ActivityName", Activity.Current.OperationName);
+            nextScope.Dispose();
+
+            Assert.IsNull(Activity.Current);
         }
     }
 }

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.CosmosDB.Models;
 using Azure.ResourceManager.Resources;
@@ -21,7 +22,7 @@ namespace Azure.ResourceManager.CosmosDB.Tests
         protected const int DefaultMaxThroughput = 4000;
 
         protected ResourceIdentifier _resourceGroupIdentifier;
-        protected ResourceGroup _resourceGroup;
+        protected ResourceGroupResource _resourceGroup;
         protected string _databaseAccountName;
         protected DatabaseAccountCollection DatabaseAccountCollection { get => _resourceGroup.GetDatabaseAccounts(); }
         public string SubscriptionId { get; set; }
@@ -30,8 +31,8 @@ namespace Azure.ResourceManager.CosmosDB.Tests
         [OneTimeSetUp]
         protected async Task CommonGlobalSetup()
         {
-            var rgLro = await (await GlobalClient.GetDefaultSubscriptionAsync()).GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName($"dbaccount-"),
-                new ResourceGroupData(Resources.Models.Location.WestUS2));
+            var rgLro = await (await GlobalClient.GetDefaultSubscriptionAsync()).GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Started, SessionRecording.GenerateAssetName($"dbaccount-"),
+                new ResourceGroupData(AzureLocation.WestUS2));
             _resourceGroupIdentifier = rgLro.Value.Id;
         }
 
@@ -41,28 +42,32 @@ namespace Azure.ResourceManager.CosmosDB.Tests
             ArmClient = GetArmClient();
         }
 
-        protected CosmosDBManagementClientBase(bool isAsync)
-            : base(isAsync)
+        protected CosmosDBManagementClientBase(bool isAsync, RecordedTestMode? mode = default)
+            : base(isAsync, mode)
         {
-            Sanitizer = new CosmosDBManagementRecordedTestSanitizer();
+            JsonPathSanitizers.Add("$..primaryMasterKey");
+            JsonPathSanitizers.Add("$..primaryReadonlyMasterKey");
+            JsonPathSanitizers.Add("$..secondaryMasterKey");
+            JsonPathSanitizers.Add("$..secondaryReadonlyMasterKey");
         }
-        protected async Task<DatabaseAccount> CreateDatabaseAccount(string name, DatabaseAccountKind kind)
+
+        protected async Task<DatabaseAccountResource> CreateDatabaseAccount(string name, DatabaseAccountKind kind)
         {
             return await CreateDatabaseAccount(name, kind, null);
         }
 
-        protected async Task<DatabaseAccount> CreateDatabaseAccount(string name, DatabaseAccountKind kind, DatabaseAccountCapability capability)
+        protected async Task<DatabaseAccountResource> CreateDatabaseAccount(string name, DatabaseAccountKind kind, DatabaseAccountCapability capability)
         {
             var locations = new List<DatabaseAccountLocation>()
             {
-                new DatabaseAccountLocation(id: null, locationName: Resources.Models.Location.WestUS, documentEndpoint: null, provisioningState: null, failoverPriority: null, isZoneRedundant: false)
+                new DatabaseAccountLocation(id: null, locationName: AzureLocation.WestUS, documentEndpoint: null, provisioningState: null, failoverPriority: null, isZoneRedundant: false)
             };
 
-            var createParameters = new DatabaseAccountCreateUpdateOptions(Resources.Models.Location.WestUS2, locations)
+            var createParameters = new DatabaseAccountCreateOrUpdateContent(AzureLocation.WestUS2, locations)
             {
                 Kind = kind,
                 ConsistencyPolicy = new ConsistencyPolicy(DefaultConsistencyLevel.BoundedStaleness, MaxStalenessPrefix, MaxIntervalInSeconds),
-                IpRules = { new IpAddressOrRange("23.43.230.120") },
+                IPRules = { new IPAddressOrRange("23.43.230.120") },
                 IsVirtualNetworkFilterEnabled = true,
                 EnableAutomaticFailover = false,
                 ConnectorOffer = ConnectorOffer.Small,
@@ -75,11 +80,11 @@ namespace Azure.ResourceManager.CosmosDB.Tests
             createParameters.Tags.Add("key1", "value1");
             createParameters.Tags.Add("key2", "value2");
             _databaseAccountName = name;
-            var accountLro = await DatabaseAccountCollection.CreateOrUpdateAsync(_databaseAccountName, createParameters);
+            var accountLro = await DatabaseAccountCollection.CreateOrUpdateAsync(WaitUntil.Completed, _databaseAccountName, createParameters);
             return accountLro.Value;
         }
 
-        protected static CreateUpdateOptions BuildDatabaseCreateUpdateOptions(int testThroughput1, AutoscaleSettings autoscale)
+        internal static CreateUpdateOptions BuildDatabaseCreateUpdateOptions(int testThroughput1, AutoscaleSettings autoscale)
         {
             return new CreateUpdateOptions
             {

@@ -3,6 +3,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Resources.Models;
@@ -12,7 +13,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 {
     public class ManagedDatabaseTests : SqlManagementClientBase
     {
-        private ResourceGroup _resourceGroup;
+        private ResourceGroupResource _resourceGroup;
         private ResourceIdentifier _resourceGroupIdentifier;
 
         public ManagedDatabaseTests(bool isAsync)
@@ -23,8 +24,8 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         [OneTimeSetUp]
         public async Task GlobalSetUp()
         {
-            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(Location.WestUS2));
-            ResourceGroup rg = rgLro.Value;
+            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(AzureLocation.WestUS2));
+            ResourceGroupResource rg = rgLro.Value;
             _resourceGroupIdentifier = rg.Id;
             await StopSessionRecordingAsync();
         }
@@ -33,7 +34,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         public async Task TestSetUp()
         {
             var client = GetArmClient();
-            _resourceGroup = await client.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await client.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
         }
 
         [Test]
@@ -45,20 +46,20 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             string networkSecurityGroupName = Recording.GenerateAssetName("network-security-group-");
             string routeTableName = Recording.GenerateAssetName("route-table-");
             string vnetName = Recording.GenerateAssetName("vnet-");
-            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, Location.WestUS2, _resourceGroup);
+            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, AzureLocation.WestUS2, _resourceGroup);
 
             string databaseName = Recording.GenerateAssetName("mi-database-");
             var collection = managedInstance.GetManagedDatabases();
 
             // 1.CreateOrUpdata
-            ManagedDatabaseData data = new ManagedDatabaseData(Location.WestUS2) { };
-            var database = await collection.CreateOrUpdateAsync(databaseName, data);
+            ManagedDatabaseData data = new ManagedDatabaseData(AzureLocation.WestUS2) { };
+            var database = await collection.CreateOrUpdateAsync(WaitUntil.Completed, databaseName, data);
             Assert.IsNotNull(database.Value.Data);
             Assert.AreEqual(databaseName, database.Value.Data.Name);
 
             // 2.CheckIfExist
-            Assert.IsTrue(collection.CheckIfExists(databaseName));
-            Assert.IsFalse(collection.CheckIfExists(databaseName + "0"));
+            Assert.IsTrue(await collection.ExistsAsync(databaseName));
+            Assert.IsFalse(await collection.ExistsAsync(databaseName + "0"));
 
             // 3.Get
             var getDatabase = await collection.GetAsync(databaseName);
@@ -73,7 +74,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 
             // 5.Delete
             var deleteDatabase = await collection.GetAsync(databaseName);
-            await deleteDatabase.Value.DeleteAsync();
+            await deleteDatabase.Value.DeleteAsync(WaitUntil.Completed);
             list = await collection.GetAllAsync().ToEnumerableAsync();
             Assert.IsEmpty(list);
         }

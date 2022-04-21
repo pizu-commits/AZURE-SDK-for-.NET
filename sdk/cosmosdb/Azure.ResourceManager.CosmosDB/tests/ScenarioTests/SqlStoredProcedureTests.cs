@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.CosmosDB.Models;
 using NUnit.Framework;
@@ -10,22 +11,22 @@ namespace Azure.ResourceManager.CosmosDB.Tests
 {
     public class SqlStoredProcedureTests : CosmosDBManagementClientBase
     {
-        private DatabaseAccount _databaseAccount;
-        private SqlDatabase _sqlDatabase;
+        private DatabaseAccountResource _databaseAccount;
+        private SqlDatabaseResource _sqlDatabase;
         private ResourceIdentifier _sqlContainerId;
-        private SqlContainer _sqlContainer;
+        private SqlContainerResource _sqlContainer;
         private string _storedProcedureName;
 
         public SqlStoredProcedureTests(bool isAsync) : base(isAsync)
         {
         }
 
-        protected SqlStoredProcedureCollection SqlStoredProcedureCollection { get => _sqlContainer.GetSqlStoredProcedures(); }
+        protected SqlStoredProcedureCollection SqlStoredProcedureCollection => _sqlContainer.GetSqlStoredProcedures();
 
         [OneTimeSetUp]
         public async Task GlobalSetup()
         {
-            _resourceGroup = await GlobalClient.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await GlobalClient.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
 
             _databaseAccount = await CreateDatabaseAccount(SessionRecording.GenerateAssetName("dbaccount-"), DatabaseAccountKind.GlobalDocumentDB);
 
@@ -39,24 +40,26 @@ namespace Azure.ResourceManager.CosmosDB.Tests
         [OneTimeTearDown]
         public void GlobalTeardown()
         {
-            _sqlContainer.Delete();
-            _sqlDatabase.Delete();
-            _databaseAccount.Delete();
+            _sqlContainer.Delete(WaitUntil.Completed);
+            _sqlDatabase.Delete(WaitUntil.Completed);
+            _databaseAccount.Delete(WaitUntil.Completed);
         }
 
         [SetUp]
         public async Task SetUp()
         {
-            _sqlContainer = await ArmClient.GetSqlContainer(_sqlContainerId).GetAsync();
+            _sqlContainer = await ArmClient.GetSqlContainerResource(_sqlContainerId).GetAsync();
         }
 
         [TearDown]
         public async Task TearDown()
         {
-            SqlStoredProcedure storedProcedure = await SqlStoredProcedureCollection.GetIfExistsAsync(_storedProcedureName);
-            if (storedProcedure != null)
+            if (await SqlStoredProcedureCollection.ExistsAsync(_storedProcedureName))
             {
-                await storedProcedure.DeleteAsync();
+                var id = SqlStoredProcedureCollection.Id;
+                id = SqlStoredProcedureResource.CreateResourceIdentifier(id.SubscriptionId, id.ResourceGroupName, id.Parent.Parent.Name, id.Parent.Name, id.Name, _storedProcedureName);
+                SqlStoredProcedureResource storedProcedure = this.ArmClient.GetSqlStoredProcedureResource(id);
+                await storedProcedure.DeleteAsync(WaitUntil.Completed);
             }
         }
 
@@ -69,22 +72,24 @@ namespace Azure.ResourceManager.CosmosDB.Tests
             // Seems bug in swagger definition
             //Assert.AreEqual(TestThroughput1, container.Data.Options.Throughput);
 
-            bool ifExists = await SqlStoredProcedureCollection.CheckIfExistsAsync(_storedProcedureName);
+            bool ifExists = await SqlStoredProcedureCollection.ExistsAsync(_storedProcedureName);
             Assert.True(ifExists);
 
             // NOT WORKING API
             //ThroughputSettingsData throughtput = await container.GetMongoDBCollectionThroughputAsync();
-            SqlStoredProcedure storedProcedure2 = await SqlStoredProcedureCollection.GetAsync(_storedProcedureName);
+            SqlStoredProcedureResource storedProcedure2 = await SqlStoredProcedureCollection.GetAsync(_storedProcedureName);
             Assert.AreEqual(_storedProcedureName, storedProcedure2.Data.Resource.Id);
             //Assert.AreEqual(TestThroughput1, container2.Data.Options.Throughput);
 
             VerifySqlStoredProcedures(storedProcedure, storedProcedure2);
 
-            SqlStoredProcedureCreateUpdateOptions updateOptions = new SqlStoredProcedureCreateUpdateOptions(storedProcedure.Id, _storedProcedureName, storedProcedure.Data.Type,
-                new Dictionary<string, string>(),// TODO: use original tags see defect: https://github.com/Azure/autorest.csharp/issues/1590
-                Resources.Models.Location.WestUS, storedProcedure.Data.Resource, new CreateUpdateOptions { Throughput = TestThroughput2 });
+            // TODO: use original tags see defect: https://github.com/Azure/autorest.csharp/issues/1590
+            var updateOptions = new SqlStoredProcedureCreateOrUpdateContent(AzureLocation.WestUS, storedProcedure.Data.Resource)
+            {
+                Options = new CreateUpdateOptions { Throughput = TestThroughput2 }
+            };
 
-            storedProcedure = await (await SqlStoredProcedureCollection.CreateOrUpdateAsync(_storedProcedureName, updateOptions)).WaitForCompletionAsync();
+            storedProcedure = (await SqlStoredProcedureCollection.CreateOrUpdateAsync(WaitUntil.Completed, _storedProcedureName, updateOptions)).Value;
             Assert.AreEqual(_storedProcedureName, storedProcedure.Data.Resource.Id);
             storedProcedure2 = await SqlStoredProcedureCollection.GetAsync(_storedProcedureName);
             VerifySqlStoredProcedures(storedProcedure, storedProcedure2);
@@ -108,17 +113,17 @@ namespace Azure.ResourceManager.CosmosDB.Tests
         public async Task SqlStoredProcedureDelete()
         {
             var storedProcedure = await CreateSqlStoredProcedure(null);
-            await storedProcedure.DeleteAsync();
+            await storedProcedure.DeleteAsync(WaitUntil.Completed);
 
-            storedProcedure = await SqlStoredProcedureCollection.GetIfExistsAsync(_storedProcedureName);
-            Assert.Null(storedProcedure);
+            bool exists = await SqlStoredProcedureCollection.ExistsAsync(_storedProcedureName);
+            Assert.IsFalse(exists);
         }
 
-        protected async Task<SqlStoredProcedure> CreateSqlStoredProcedure(AutoscaleSettings autoscale)
+        internal async Task<SqlStoredProcedureResource> CreateSqlStoredProcedure(AutoscaleSettings autoscale)
         {
             _storedProcedureName = Recording.GenerateAssetName("sql-stored-procedure-");
-            SqlStoredProcedureCreateUpdateOptions sqlDatabaseCreateUpdateOptions = new SqlStoredProcedureCreateUpdateOptions(Resources.Models.Location.WestUS,
-                new SqlStoredProcedureResource(_storedProcedureName)
+            SqlStoredProcedureCreateOrUpdateContent sqlDatabaseCreateUpdateOptions = new SqlStoredProcedureCreateOrUpdateContent(AzureLocation.WestUS,
+                new Models.SqlStoredProcedureResource(_storedProcedureName)
                 {
                     Body = @"function () {
     var updatetext = getContext();
@@ -129,11 +134,11 @@ namespace Azure.ResourceManager.CosmosDB.Tests
             {
                 Options = BuildDatabaseCreateUpdateOptions(TestThroughput1, autoscale),
             };
-            var sqlContainerLro = await SqlStoredProcedureCollection.CreateOrUpdateAsync(_storedProcedureName, sqlDatabaseCreateUpdateOptions);
+            var sqlContainerLro = await SqlStoredProcedureCollection.CreateOrUpdateAsync(WaitUntil.Completed, _storedProcedureName, sqlDatabaseCreateUpdateOptions);
             return sqlContainerLro.Value;
         }
 
-        private void VerifySqlStoredProcedures(SqlStoredProcedure expectedValue, SqlStoredProcedure actualValue)
+        private void VerifySqlStoredProcedures(SqlStoredProcedureResource expectedValue, SqlStoredProcedureResource actualValue)
         {
             Assert.AreEqual(expectedValue.Id, actualValue.Id);
             Assert.AreEqual(expectedValue.Data.Name, actualValue.Data.Name);

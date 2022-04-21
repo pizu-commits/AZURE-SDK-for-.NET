@@ -277,6 +277,21 @@ namespace Microsoft.Azure.Management.Compute
         public virtual ISharedGalleryImageVersionsOperations SharedGalleryImageVersions { get; private set; }
 
         /// <summary>
+        /// Gets the ICommunityGalleriesOperations.
+        /// </summary>
+        public virtual ICommunityGalleriesOperations CommunityGalleries { get; private set; }
+
+        /// <summary>
+        /// Gets the ICommunityGalleryImagesOperations.
+        /// </summary>
+        public virtual ICommunityGalleryImagesOperations CommunityGalleryImages { get; private set; }
+
+        /// <summary>
+        /// Gets the ICommunityGalleryImageVersionsOperations.
+        /// </summary>
+        public virtual ICommunityGalleryImageVersionsOperations CommunityGalleryImageVersions { get; private set; }
+
+        /// <summary>
         /// Gets the ICloudServiceRoleInstancesOperations.
         /// </summary>
         public virtual ICloudServiceRoleInstancesOperations CloudServiceRoleInstances { get; private set; }
@@ -300,6 +315,26 @@ namespace Microsoft.Azure.Management.Compute
         /// Gets the ICloudServiceOperatingSystemsOperations.
         /// </summary>
         public virtual ICloudServiceOperatingSystemsOperations CloudServiceOperatingSystems { get; private set; }
+
+        /// <summary>
+        /// Gets the IDiagnosticOperations.
+        /// </summary>
+        public virtual IDiagnosticOperations DiagnosticOperations { get; private set; }
+
+        /// <summary>
+        /// Gets the IDiskInspectionOperations.
+        /// </summary>
+        public virtual IDiskInspectionOperations DiskInspection { get; private set; }
+
+        /// <summary>
+        /// Gets the IDiagnosticsOperations.
+        /// </summary>
+        public virtual IDiagnosticsOperations Diagnostics { get; private set; }
+
+        /// <summary>
+        /// Gets the IDiskInspectionStorageConfigurationOperations.
+        /// </summary>
+        public virtual IDiskInspectionStorageConfigurationOperations DiskInspectionStorageConfiguration { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the ComputeManagementClient class.
@@ -583,11 +618,18 @@ namespace Microsoft.Azure.Management.Compute
             SharedGalleries = new SharedGalleriesOperations(this);
             SharedGalleryImages = new SharedGalleryImagesOperations(this);
             SharedGalleryImageVersions = new SharedGalleryImageVersionsOperations(this);
+            CommunityGalleries = new CommunityGalleriesOperations(this);
+            CommunityGalleryImages = new CommunityGalleryImagesOperations(this);
+            CommunityGalleryImageVersions = new CommunityGalleryImageVersionsOperations(this);
             CloudServiceRoleInstances = new CloudServiceRoleInstancesOperations(this);
             CloudServiceRoles = new CloudServiceRolesOperations(this);
             CloudServices = new CloudServicesOperations(this);
             CloudServicesUpdateDomain = new CloudServicesUpdateDomainOperations(this);
             CloudServiceOperatingSystems = new CloudServiceOperatingSystemsOperations(this);
+            DiagnosticOperations = new DiagnosticOperations(this);
+            DiskInspection = new DiskInspectionOperations(this);
+            Diagnostics = new DiagnosticsOperations(this);
+            DiskInspectionStorageConfiguration = new DiskInspectionStorageConfigurationOperations(this);
             BaseUri = new System.Uri("https://management.azure.com");
             AcceptLanguage = "en-US";
             LongRunningOperationRetryTimeout = 30;

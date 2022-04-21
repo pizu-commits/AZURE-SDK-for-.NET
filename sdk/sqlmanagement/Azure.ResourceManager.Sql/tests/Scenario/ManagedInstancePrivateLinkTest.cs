@@ -3,6 +3,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Resources.Models;
@@ -12,7 +13,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 {
     public class ManagedInstancePrivateLinkTest : SqlManagementClientBase
     {
-        private ResourceGroup _resourceGroup;
+        private ResourceGroupResource _resourceGroup;
         private ResourceIdentifier _resourceGroupIdentifier;
         public ManagedInstancePrivateLinkTest(bool isAsync)
             : base(isAsync)
@@ -22,8 +23,8 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         [OneTimeSetUp]
         public async Task GlobalSetUp()
         {
-            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(Location.WestUS2));
-            ResourceGroup rg = rgLro.Value;
+            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(AzureLocation.WestUS2));
+            ResourceGroupResource rg = rgLro.Value;
             _resourceGroupIdentifier = rg.Id;
             await StopSessionRecordingAsync();
         }
@@ -32,7 +33,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         public async Task TestSetUp()
         {
             var client = GetArmClient();
-            _resourceGroup = await client.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await client.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             string networkSecurityGroupName = Recording.GenerateAssetName("network-security-group-");
             string routeTableName = Recording.GenerateAssetName("route-table-");
             string vnetName = Recording.GenerateAssetName("vnet-");
-            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, Location.WestUS2, _resourceGroup);
+            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, AzureLocation.WestUS2, _resourceGroup);
             Assert.IsNotNull(managedInstance.Data);
 
             var collection = managedInstance.GetManagedInstancePrivateLinks();
@@ -55,17 +56,15 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             string privateLinkName = list.FirstOrDefault().Data.Name;
 
             // 2.CheckIfExist
-            Assert.IsTrue(collection.CheckIfExists(privateLinkName));
+            Assert.IsTrue(await collection.ExistsAsync(privateLinkName));
 
             // 3.Get
             var getPrivateLink = await collection.GetAsync(privateLinkName);
             Assert.AreEqual(privateLinkName.ToString(), getPrivateLink.Value.Data.Name);
-            Assert.AreEqual("Microsoft.Sql/managedInstances/privateLinkResources", getPrivateLink.Value.Data.Type.ToString());
+            Assert.AreEqual("Microsoft.Sql/managedInstances/privateLinkResources", getPrivateLink.Value.Data.ResourceType.ToString());
 
             // 4.GetIfExist
-            var GetIfExistPrivateLink = await collection.GetIfExistsAsync(privateLinkName);
-            Assert.AreEqual(privateLinkName.ToString(), GetIfExistPrivateLink.Value.Data.Name);
-            Assert.AreEqual("Microsoft.Sql/managedInstances/privateLinkResources", GetIfExistPrivateLink.Value.Data.Type.ToString());
+            Assert.IsTrue(await collection.ExistsAsync(privateLinkName));
         }
     }
 }

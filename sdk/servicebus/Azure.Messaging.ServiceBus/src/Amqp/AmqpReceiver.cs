@@ -317,7 +317,7 @@ namespace Azure.Messaging.ServiceBus.Amqp
             {
                 if (!_receiveLink.TryGetOpenedObject(out link))
                 {
-                    link = await _receiveLink.GetOrCreateAsync(UseMinimum(_connectionScope.SessionTimeout, timeout))
+                    link = await _receiveLink.GetOrCreateAsync(UseMinimum(_connectionScope.SessionTimeout, timeout), cancellationToken)
                         .ConfigureAwait(false);
                 }
 
@@ -926,7 +926,8 @@ namespace Azure.Messaging.ServiceBus.Amqp
 
             RequestResponseAmqpLink link = await _managementLink.GetOrCreateAsync(
                 UseMinimum(_connectionScope.SessionTimeout,
-                timeout.CalculateRemaining(stopWatch.GetElapsedTime())))
+                timeout.CalculateRemaining(stopWatch.GetElapsedTime())),
+                cancellationToken)
                 .ConfigureAwait(false);
             cancellationToken.ThrowIfCancellationRequested<TaskCanceledException>();
 
@@ -1033,6 +1034,10 @@ namespace Azure.Messaging.ServiceBus.Amqp
             {
                 DateTime[] lockedUntilUtcTimes = amqpResponseMessage.GetValue<DateTime[]>(ManagementConstants.Properties.Expirations);
                 lockedUntil = lockedUntilUtcTimes[0];
+                if (_requestResponseLockedMessages.Contains(lockToken))
+                {
+                    _requestResponseLockedMessages.AddOrUpdate(lockToken, lockedUntil);
+                }
             }
             else
             {
@@ -1072,11 +1077,10 @@ namespace Azure.Messaging.ServiceBus.Amqp
             // Create an AmqpRequest Message to renew  lock
             var amqpRequestMessage = AmqpRequestMessage.CreateRequest(ManagementConstants.Operations.RenewSessionLockOperation, timeout, null);
 
-            if (!_receiveLink.TryGetOpenedObject(out ReceivingAmqpLink receiveLink))
+            if (_receiveLink.TryGetOpenedObject(out ReceivingAmqpLink receiveLink))
             {
-                receiveLink = await _receiveLink.GetOrCreateAsync(UseMinimum(_connectionScope.SessionTimeout, timeout)).ConfigureAwait(false);
+                amqpRequestMessage.AmqpMessage.ApplicationProperties.Map[ManagementConstants.Request.AssociatedLinkName] = receiveLink.Name;
             }
-            amqpRequestMessage.AmqpMessage.ApplicationProperties.Map[ManagementConstants.Request.AssociatedLinkName] = receiveLink.Name;
 
             amqpRequestMessage.Map[ManagementConstants.Properties.SessionId] = SessionId;
 
@@ -1366,8 +1370,8 @@ namespace Azure.Messaging.ServiceBus.Amqp
         public override async Task OpenLinkAsync(CancellationToken cancellationToken)
         {
             _ = await _retryPolicy.RunOperation(
-                static async (receiveLink, timeout, _) =>
-                    await receiveLink.GetOrCreateAsync(timeout).ConfigureAwait(false),
+                static async (receiveLink, timeout, token) =>
+                    await receiveLink.GetOrCreateAsync(timeout, token).ConfigureAwait(false),
                 _receiveLink,
                 _connectionScope,
                 cancellationToken).ConfigureAwait(false);

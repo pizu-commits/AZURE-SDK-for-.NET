@@ -272,6 +272,21 @@ namespace Microsoft.Azure.Management.Compute
         ISharedGalleryImageVersionsOperations SharedGalleryImageVersions { get; }
 
         /// <summary>
+        /// Gets the ICommunityGalleriesOperations.
+        /// </summary>
+        ICommunityGalleriesOperations CommunityGalleries { get; }
+
+        /// <summary>
+        /// Gets the ICommunityGalleryImagesOperations.
+        /// </summary>
+        ICommunityGalleryImagesOperations CommunityGalleryImages { get; }
+
+        /// <summary>
+        /// Gets the ICommunityGalleryImageVersionsOperations.
+        /// </summary>
+        ICommunityGalleryImageVersionsOperations CommunityGalleryImageVersions { get; }
+
+        /// <summary>
         /// Gets the ICloudServiceRoleInstancesOperations.
         /// </summary>
         ICloudServiceRoleInstancesOperations CloudServiceRoleInstances { get; }
@@ -295,6 +310,26 @@ namespace Microsoft.Azure.Management.Compute
         /// Gets the ICloudServiceOperatingSystemsOperations.
         /// </summary>
         ICloudServiceOperatingSystemsOperations CloudServiceOperatingSystems { get; }
+
+        /// <summary>
+        /// Gets the IDiagnosticOperations.
+        /// </summary>
+        IDiagnosticOperations DiagnosticOperations { get; }
+
+        /// <summary>
+        /// Gets the IDiskInspectionOperations.
+        /// </summary>
+        IDiskInspectionOperations DiskInspection { get; }
+
+        /// <summary>
+        /// Gets the IDiagnosticsOperations.
+        /// </summary>
+        IDiagnosticsOperations Diagnostics { get; }
+
+        /// <summary>
+        /// Gets the IDiskInspectionStorageConfigurationOperations.
+        /// </summary>
+        IDiskInspectionStorageConfigurationOperations DiskInspectionStorageConfiguration { get; }
 
     }
 }

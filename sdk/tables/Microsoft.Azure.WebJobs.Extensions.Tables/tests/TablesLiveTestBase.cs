@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -30,7 +31,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
         protected const string TableNameExpression = "%Table%";
         protected const string PartitionKey = "PK";
         protected const string RowKey = "RK";
-        private readonly Random _random = new();
         protected string TableName;
         protected TableServiceClient ServiceClient;
         protected TableClient TableClient;
@@ -41,8 +41,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
         {
             UseCosmos = useCosmos;
             _createTable = createTable;
-            // https://github.com/Azure/azure-sdk-tools/issues/2448
-            Sanitizer.BodyRegexSanitizers.Add(new BodyRegexSanitizer("(batch|changeset)_[\\w\\d-]+", "multipart_boundary"));
         }
 
         public override async Task StartTestRecordingAsync()
@@ -50,16 +48,24 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
             await base.StartTestRecordingAsync();
 
             TableName = GetRandomTableName();
-
             ServiceClient = InstrumentClient(
-                new TableServiceClient(
-                    UseCosmos ? TestEnvironment.CosmosConnectionString : TestEnvironment.StorageConnectionString,
-                    InstrumentClientOptions(new TableClientOptions())));
+            new TableServiceClient(
+                UseCosmos ? TestEnvironment.CosmosConnectionString : TestEnvironment.StorageConnectionString,
+                InstrumentClientOptions(new TableClientOptions())));
 
             TableClient = ServiceClient.GetTableClient(TableName);
             if (_createTable)
             {
                 await TableClient.CreateAsync();
+            }
+        }
+
+        protected async Task ClearTableAsync()
+        {
+            var entities = TableClient.QueryAsync<TableEntity>();
+            await foreach (var entity in entities)
+            {
+                await TableClient.DeleteEntityAsync(entity.PartitionKey, entity.RowKey);
             }
         }
 
@@ -88,17 +94,22 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
 
         protected async Task<T> CallAsync<T>(string methodName = null, object arguments = null, Action<HostBuilder> configure = null)
         {
-            var instance = Activator.CreateInstance<T>();
-            var (host, jobHost) = CreateHost(typeof(T), configure, instance);
+            return (T)await CallAsync(typeof(T), methodName, arguments, configure);
+        }
+
+        protected async Task<object> CallAsync(Type funcType, string methodName = null, object arguments = null, Action<HostBuilder> configure = null)
+        {
+            var instance = Activator.CreateInstance(funcType);
+            var (host, jobHost) = CreateHost(funcType, configure, instance);
 
             MethodInfo methodInfo;
             if (methodName != null)
             {
-                methodInfo = typeof(T).GetMethod(methodName);
+                methodInfo = funcType.GetMethod(methodName);
             }
             else
             {
-                methodInfo = typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+                methodInfo = funcType.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
                     .Single(mi => !mi.IsSpecialName);
             }
 
@@ -122,7 +133,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
                     }
                 }
 
-                builder.AddAzureTables();
+                builder.AddTables();
             }, programType);
 
             (configure ?? DefaultConfigure).Invoke(hostBuilder);
@@ -184,6 +195,33 @@ namespace Microsoft.Azure.WebJobs.Extensions.Tables.Tests
             {
                 return _recording.InstrumentClientOptions(base.CreateClientOptions(configuration));
             }
+
+            public override TableServiceClient Get(string name)
+            {
+                var serviceClient = base.Get(name);
+                return new InstrumentedTableServiceClient(serviceClient, _recording.Recording);
+            }
+        }
+
+        private class InstrumentedTableServiceClient : TableServiceClient
+        {
+            private readonly TableServiceClient _client;
+            private readonly TestRecording _recording;
+
+            public InstrumentedTableServiceClient(TableServiceClient serviceClient, TestRecording recording)
+            {
+                _client = serviceClient;
+                _recording = recording;
+            }
+
+            public override TableClient GetTableClient(string tableName)
+            {
+                var client = _client.GetTableClient(tableName);
+                client.SetBatchGuids(_recording.Random.NewGuid(), _recording.Random.NewGuid());
+                return client;
+            }
+
+            public override string AccountName => _client.AccountName;
         }
     }
 }

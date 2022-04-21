@@ -9,22 +9,23 @@ using Azure.ResourceManager.TestFramework;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 using Azure.ResourceManager.ServiceBus.Models;
+using Azure.Core;
 
 namespace Azure.ResourceManager.ServiceBus.Tests.Helpers
 {
     public class ServiceBusTestBase: ManagementRecordedTestBase<ServiceBusManagementTestEnvironment>
     {
-        public static Location DefaultLocation => Location.EastUS2;
+        public static AzureLocation DefaultLocation => AzureLocation.EastUS2;
         internal const string DefaultNamespaceAuthorizationRule = "RootManageSharedAccessKey";
-        protected Subscription DefaultSubscription;
+        protected SubscriptionResource DefaultSubscription;
         protected ArmClient Client { get; private set; }
-        protected ServiceBusTestBase(bool isAsync) : base(isAsync, useLegacyTransport: true)
+
+        protected ServiceBusTestBase(bool isAsync, RecordedTestMode? mode = default) : base(isAsync, mode)
         {
-            Sanitizer = new ServiceBusRecordedTestSanitizer();
-        }
-        protected ServiceBusTestBase(bool isAsync, RecordedTestMode mode) : base(isAsync, mode, useLegacyTransport: true)
-        {
-            Sanitizer = new ServiceBusRecordedTestSanitizer();
+            // Lazy sanitize fields in the request and response bodies
+            JsonPathSanitizers.Add("$..aliasPrimaryConnectionString");
+            JsonPathSanitizers.Add("$..aliasSecondaryConnectionString");
+            JsonPathSanitizers.Add("$..keyName");
         }
 
         [SetUp]
@@ -33,10 +34,11 @@ namespace Azure.ResourceManager.ServiceBus.Tests.Helpers
             Client = GetArmClient();
             DefaultSubscription = await Client.GetDefaultSubscriptionAsync();
         }
-        public async Task<ResourceGroup> CreateResourceGroupAsync()
+        public async Task<ResourceGroupResource> CreateResourceGroupAsync()
         {
             string resourceGroupName = Recording.GenerateAssetName("testservicebusRG-");
-            ResourceGroupCreateOrUpdateOperation operation = await DefaultSubscription.GetResourceGroups().CreateOrUpdateAsync(
+            ArmOperation<ResourceGroupResource> operation = await DefaultSubscription.GetResourceGroups().CreateOrUpdateAsync(
+                WaitUntil.Completed,
                 resourceGroupName,
                 new ResourceGroupData(DefaultLocation)
                 {
@@ -54,7 +56,7 @@ namespace Azure.ResourceManager.ServiceBus.Tests.Helpers
             for (int i = 0; i < 10; i++)
             {
                 namespaceName = Recording.GenerateAssetName(prefix);
-                CheckNameAvailabilityResult res = await DefaultSubscription.CheckNameAvailabilityNamespaceAsync(new CheckNameAvailability(namespaceName));
+                CheckNameAvailabilityResult res = await DefaultSubscription.CheckServiceBusNameAvailabilityAsync(new CheckNameAvailability(namespaceName));
                 if (res.NameAvailable == true)
                 {
                     return namespaceName;
@@ -63,19 +65,19 @@ namespace Azure.ResourceManager.ServiceBus.Tests.Helpers
             return namespaceName;
         }
 
-        public static void VerifyNamespaceProperties(ServiceBusNamespace sBNamespace, bool useDefaults)
+        public static void VerifyNamespaceProperties(ServiceBusNamespaceResource sBNamespace, bool useDefaults)
         {
             Assert.NotNull(sBNamespace);
             Assert.NotNull(sBNamespace.Id);
             Assert.NotNull(sBNamespace.Id.Name);
             Assert.NotNull(sBNamespace.Data);
             Assert.NotNull(sBNamespace.Data.Location);
-            Assert.NotNull(sBNamespace.Data.CreatedAt);
+            Assert.NotNull(sBNamespace.Data.CreatedOn);
             Assert.NotNull(sBNamespace.Data.Sku);
             if (useDefaults)
             {
                 Assert.AreEqual(DefaultLocation, sBNamespace.Data.Location);
-                Assert.AreEqual(SkuTier.Standard, sBNamespace.Data.Sku.Tier);
+                Assert.AreEqual(ServiceBusSkuTier.Standard, sBNamespace.Data.Sku.Tier);
             }
         }
 

@@ -4,6 +4,7 @@
 #region Snippet:Manage_ConfigurationStores_Namespaces
 using System;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Identity;
 using Azure.ResourceManager.AppConfiguration;
 using Azure.ResourceManager.AppConfiguration.Models;
@@ -16,7 +17,7 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
 {
     public class Sample1_ManagingConfigurationStores
     {
-        private ResourceGroup resourceGroup;
+        private ResourceGroupResource resourceGroup;
 
         [Test]
         [Ignore("Only verifying that the sample builds")]
@@ -24,11 +25,11 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
         {
             #region Snippet:Managing_ConfigurationStores_CreateAConfigurationStore
             string configurationStoreName = ("myApp");
-            ConfigurationStoreData configurationStoreData = new ConfigurationStoreData("westus", new Models.Sku("Standard"))
+            ConfigurationStoreData configurationStoreData = new ConfigurationStoreData("westus", new AppConfigurationSku("Standard"))
             {
                 PublicNetworkAccess = PublicNetworkAccess.Disabled
             };
-            ConfigurationStore configurationStore = await (await resourceGroup.GetConfigurationStores().CreateOrUpdateAsync(configurationStoreName, configurationStoreData)).WaitForCompletionAsync();
+            ConfigurationStoreResource configurationStore = (await resourceGroup.GetConfigurationStores().CreateOrUpdateAsync(WaitUntil.Completed, configurationStoreName, configurationStoreData)).Value;
 
             #endregion
         }
@@ -38,9 +39,9 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
         public async Task List()
         {
             #region Snippet:Managing_ConfigurationStores_ListAllConfigurationStores
-            AsyncPageable<ConfigurationStore> configurationStores = resourceGroup.GetConfigurationStores().GetAllAsync();
+            AsyncPageable<ConfigurationStoreResource> configurationStores = resourceGroup.GetConfigurationStores().GetAllAsync();
 
-            await foreach (ConfigurationStore item in configurationStores)
+            await foreach (ConfigurationStoreResource item in configurationStores)
             {
                 Console.WriteLine(item.Data.Name);
             }
@@ -52,28 +53,8 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
         public async Task Get()
         {
             #region Snippet:Managing_ConfigurationStores_GetAConfigurationStore
-            ConfigurationStore configurationStore = await resourceGroup.GetConfigurationStores().GetAsync("myApp");
+            ConfigurationStoreResource configurationStore = await resourceGroup.GetConfigurationStores().GetAsync("myApp");
             Console.WriteLine(configurationStore.Data.Name);
-            #endregion
-        }
-
-        [Test]
-        [Ignore("Only verifying that the sample builds")]
-        public async Task GetIfExists()
-        {
-            #region Snippet:Managing_ConfigurationStores_GetAConfigurationStoreIfExists
-            ConfigurationStoreCollection configurationStoreCollection = resourceGroup.GetConfigurationStores();
-
-            ConfigurationStore configurationStore = await configurationStoreCollection.GetIfExistsAsync("foo");
-            if (configurationStore != null)
-            {
-                Console.WriteLine(configurationStore.Data.Name);
-            }
-
-            if (await configurationStoreCollection.CheckIfExistsAsync("myApp"))
-            {
-                Console.WriteLine("ConfigurationStore 'myApp' exists.");
-            }
             #endregion
         }
 
@@ -84,8 +65,8 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
             #region Snippet:Managing_ConfigurationStores_DeleteAConfigurationStore
             ConfigurationStoreCollection configurationStoreCollection = resourceGroup.GetConfigurationStores();
 
-            ConfigurationStore configStore = await configurationStoreCollection.GetAsync("myApp");
-            await (await configStore.DeleteAsync()).WaitForCompletionResponseAsync();
+            ConfigurationStoreResource configStore = await configurationStoreCollection.GetAsync("myApp");
+            await configStore.DeleteAsync(WaitUntil.Completed);
             #endregion
         }
 
@@ -94,15 +75,15 @@ namespace Azure.ResourceManager.AppConfiguration.Tests.Samples
         {
             #region Snippet:Readme_DefaultSubscription
             ArmClient armClient = new ArmClient(new DefaultAzureCredential());
-            Subscription subscription = armClient.GetDefaultSubscriptionAsync().Result;
+            SubscriptionResource subscription = armClient.GetDefaultSubscriptionAsync().Result;
             #endregion
 
             #region Snippet:Readme_GetResourceGroupCollection
             ResourceGroupCollection rgCollection = subscription.GetResourceGroups();
             // With the Collection, we can create a new resource group with an specific name
             string rgName = "myRgName";
-            Location location = Location.WestUS2;
-            ResourceGroup resourceGroup = await rgCollection.CreateOrUpdate(rgName, new ResourceGroupData(location)).WaitForCompletionAsync();
+            AzureLocation location = AzureLocation.WestUS2;
+            ResourceGroupResource resourceGroup = (await rgCollection.CreateOrUpdateAsync(WaitUntil.Completed, rgName, new ResourceGroupData(location))).Value;
             #endregion
 
             this.resourceGroup = resourceGroup;

@@ -3,6 +3,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Resources.Models;
@@ -13,7 +14,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 {
     public class ManagedServerSecurityAlertPolicyTests : SqlManagementClientBase
     {
-        private ResourceGroup _resourceGroup;
+        private ResourceGroupResource _resourceGroup;
         private ResourceIdentifier _resourceGroupIdentifier;
         public ManagedServerSecurityAlertPolicyTests(bool isAsync)
             : base(isAsync)
@@ -23,8 +24,8 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         [OneTimeSetUp]
         public async Task GlobalSetUp()
         {
-            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(Location.WestUS2));
-            ResourceGroup rg = rgLro.Value;
+            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(AzureLocation.WestUS2));
+            ResourceGroupResource rg = rgLro.Value;
             _resourceGroupIdentifier = rg.Id;
             await StopSessionRecordingAsync();
         }
@@ -33,7 +34,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         public async Task TestSetUp()
         {
             var client = GetArmClient();
-            _resourceGroup = await client.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await client.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
         }
 
         [Test]
@@ -45,7 +46,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             string networkSecurityGroupName = Recording.GenerateAssetName("network-security-group-");
             string routeTableName = Recording.GenerateAssetName("route-table-");
             string vnetName = Recording.GenerateAssetName("vnet-");
-            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, Location.WestUS2, _resourceGroup);
+            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, AzureLocation.WestUS2, _resourceGroup);
             Assert.IsNotNull(managedInstance.Data);
 
             string securityAlertPoliciesName = "Default";
@@ -60,13 +61,13 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
                 EmailAccountAdmins = false,
                 RetentionDays = 0,
             };
-            var securityAlertPolicie = await collection.CreateOrUpdateAsync(securityAlertPoliciesName, data);
+            var securityAlertPolicie = await collection.CreateOrUpdateAsync(WaitUntil.Completed, securityAlertPoliciesName, data);
             Assert.IsNotNull(securityAlertPolicie.Value.Data);
             Assert.AreEqual(securityAlertPoliciesName, securityAlertPolicie.Value.Data.Name);
             Assert.AreEqual("Enabled", securityAlertPolicie.Value.Data.State.ToString());
 
             // 2.CheckIfExist
-            Assert.IsTrue(collection.CheckIfExists(securityAlertPoliciesName));
+            Assert.IsTrue(await collection.ExistsAsync(securityAlertPoliciesName));
 
             // 3.Get
             var getsecurityAlertPolicie = await collection.GetAsync(securityAlertPoliciesName);

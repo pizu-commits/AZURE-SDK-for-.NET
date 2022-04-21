@@ -27,7 +27,6 @@
     "*.sln",
     "*.user",
     ".vscode/cspell.json",
-
     // These services are opted out of public API surface spell checking.
     // Spelling issues must be addressed before adding these back in.
     "sdk/agrifood/*/api/*.cs",
@@ -52,12 +51,13 @@
     "azsdk",
     "blazor",
     "contoso",
+    "cref",
     "deduplication",
     "deserializable",
     "deserializes",
     "diagnoser",
-    "dotnetcli",
     "dont",
+    "dotnetcli",
     "dtmf",
     "epsg",
     "expando",
@@ -65,6 +65,7 @@
     "finalizers",
     "illumos",
     "ints",
+    "kubernetes",
     "lucene",
     "mgmt",
     "nunit",
@@ -72,22 +73,24 @@
     "otel",
     "overridden",
     "parallelization",
+    "personalizer",
     "pkcs",
     "pstn",
     "pwsh",
     "referer",
     "renormalize",
     "retriable",
+    "signup",
+    "skus",
     "structs",
     "uints",
+    "unencrypted",
     "unformattable",
     "unhold",
     "uninstrumented",
-    "westus",
-    "xunit",
     "vnet",
-    "unencrypted",
-    "personalizer"
+    "westus",
+    "xunit"
   ],
   "overrides": [
     {
@@ -95,10 +98,24 @@
       "words": ["warnaserror"]
     },
     {
+      "filename": "**/sdk/azurestackhci/**/*.cs",
+      "words": [
+        "cref",
+        "imds",
+        "IMDS"
+      ]
+    },
+    {
+      "filename": "**/sdk/cdn/**/*.cs",
+      "words": [
+        "Orqel",
+        "Wafrankingsresponse"
+      ]
+    },
+    {
       "filename": "**/sdk/compute/**/*.cs",
       "words": [
         "reimage",
-        "skus",
         "vmss",
         "unattend",
         "ssdlrs",
@@ -108,26 +125,44 @@
         "vhds",
         "swappable",
         "ssdzrs",
-        "dscp"
+        "dscp",
+        "vmguest"
       ]
     },
     {
       "filename": "**/sdk/cognitivelanguage/**/*",
       "words": [
         "apim",
-        "nigiri"
+        "nigiri",
+        "qnas",
+        "petabit",
+        "Picometer"
       ]
     },
     {
-      "filename": "**/sdk/connectedvmware/**/*",
+      "filename": "**/sdk/connectedvmwarevsphere/**/*",
       "words": [
+        "Cpus",
         "Ctlr",
         "Lsilogic",
         "Lsilogicsas",
         "Pcnet",
         "Pmem",
         "Pvscsi",
-        "Sesparse"
+        "Sesparse",
+        "VCenter",
+        "VMware",
+        "vSphere"
+      ]
+    },
+    {
+      "filename": "**/sdk/desktopvirtualization/**/*.cs",
+      "words": [
+        "adfs",
+        "fslogix",
+        "msix",
+        "sso",
+        "unhide"
       ]
     },
     {
@@ -152,13 +187,13 @@
         "Eaptls",
         "Fqdns",
         "Gcmaes",
+        "Generatevirtualwanvpnserverconfigurationvpnprofile",
         "Ipconfiguration",
         "Mbps",
         "Nics",
         "Owasp",
         "Pfsmm",
         "Snat",
-        "Skus",
         "Sstp",
         "TLSDHEDSS",
         "TLSDHERSA",
@@ -175,18 +210,14 @@
       "filename": "**/sdk/keyvault/**/*.cs",
       "words": [
         "deletesas",
+        "echsm",
         "getsas",
         "listsas",
         "oaep",
+        "rsahsm",
         "setsas",
         "mhsm",
         "mhsmip"
-      ]
-    },
-    {
-      "filename": "**/sdk/webpubsub/**/*.cs",
-      "words": [
-        "skus"
       ]
     },
     {
@@ -196,14 +227,14 @@
     {
       "filename": "**/sdk/sqlmanagement/**/*.cs",
       "words": [
-        "Droppeded",
         "CIAS",
-        "Vcores",
-        "Unrestorable",
-        "Stdev",
+        "Droppeded",
+        "Nchar",
         "Ntext",
         "Nvarchar",
-        "Stdev"
+        "Stdev",
+        "Unrestorable",
+        "Vcores"
       ]
     },
     {
@@ -242,8 +273,13 @@
         "Ragrs",
         "Ragzrs",
         "Rehydrated",
-        "Skus",
         "Undelete"
+      ]
+    },
+    {
+      "filename": "**/sdk/storagepool/**/*.cs",
+      "words": [
+        "Iscsi"
       ]
     },
     {
@@ -270,6 +306,7 @@
         "sybase",
         "sybase",
         "teradata",
+        "updation",
         "usql",
         "vertica",
         "xero"
@@ -296,7 +333,6 @@
       "filename": "**/sdk/websites/**/*.cs",
       "words": [
         "Ipssl",
-        "Skus",
         "Kube",
         "Metadatas",
         "Unparked",

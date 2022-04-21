@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Azure.Core;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Resources.Models;
@@ -12,7 +13,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
 {
     public class ManagedInstanceAzureADOnlyAuthenticationTests : SqlManagementClientBase
     {
-        private ResourceGroup _resourceGroup;
+        private ResourceGroupResource _resourceGroup;
         private ResourceIdentifier _resourceGroupIdentifier;
         public ManagedInstanceAzureADOnlyAuthenticationTests(bool isAsync)
             : base(isAsync)
@@ -22,8 +23,8 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         [OneTimeSetUp]
         public async Task GlobalSetUp()
         {
-            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(Location.WestUS2));
-            ResourceGroup rg = rgLro.Value;
+            var rgLro = await GlobalClient.GetDefaultSubscriptionAsync().Result.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed, SessionRecording.GenerateAssetName("Sql-RG-"), new ResourceGroupData(AzureLocation.WestUS2));
+            ResourceGroupResource rg = rgLro.Value;
             _resourceGroupIdentifier = rg.Id;
             await StopSessionRecordingAsync();
         }
@@ -32,7 +33,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
         public async Task TestSetUp()
         {
             var client = GetArmClient();
-            _resourceGroup = await client.GetResourceGroup(_resourceGroupIdentifier).GetAsync();
+            _resourceGroup = await client.GetResourceGroupResource(_resourceGroupIdentifier).GetAsync();
         }
 
         [Test]
@@ -45,7 +46,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             string networkSecurityGroupName = Recording.GenerateAssetName("network-security-group-");
             string routeTableName = Recording.GenerateAssetName("route-table-");
             string vnetName = Recording.GenerateAssetName("vnet-");
-            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, Location.WestUS2, _resourceGroup);
+            var managedInstance = await CreateDefaultManagedInstance(managedInstanceName, networkSecurityGroupName, routeTableName, vnetName, AzureLocation.WestUS2, _resourceGroup);
             Assert.IsNotNull(managedInstance.Data);
 
             string adoAuthName = AuthenticationName.Default.ToString();
@@ -56,10 +57,10 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             {
                 AzureADOnlyAuthentication = true,
             };
-            var adoAuth = await collection.CreateOrUpdateAsync(AuthenticationName.Default, data);
+            var adoAuth = await collection.CreateOrUpdateAsync(WaitUntil.Completed, AuthenticationName.Default, data);
 
             // 2.CheckIfExist
-            Assert.IsTrue(collection.CheckIfExists(adoAuthName));
+            Assert.IsTrue(collection.Exists(adoAuthName));
 
             // 3.Get
             var getadoAuth = await collection.GetAsync(adoAuthName);
@@ -70,8 +71,7 @@ namespace Azure.ResourceManager.Sql.Tests.Scenario
             Assert.IsNotEmpty(list);
 
             // 5.GetIfExist
-            var getIfExistADOAuth = await collection.GetIfExistsAsync(adoAuthName);
-            Assert.IsNotNull(getIfExistADOAuth.Value.Data);
+            Assert.IsTrue(await collection.ExistsAsync(adoAuthName));
         }
     }
 }
