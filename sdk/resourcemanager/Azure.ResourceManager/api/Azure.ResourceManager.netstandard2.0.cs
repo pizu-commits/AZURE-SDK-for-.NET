@@ -414,6 +414,32 @@ namespace Azure.ResourceManager.Models
         public static bool operator !=(Azure.ResourceManager.Models.ManagedServiceIdentityType left, Azure.ResourceManager.Models.ManagedServiceIdentityType right) { throw null; }
         public override string ToString() { throw null; }
     }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct PrivateEndpointServiceConnectionStatus : System.IEquatable<Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public PrivateEndpointServiceConnectionStatus(string value) { throw null; }
+        public static Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus Approved { get { throw null; } }
+        public static Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus Pending { get { throw null; } }
+        public static Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus Rejected { get { throw null; } }
+        public bool Equals(Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus left, Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus right) { throw null; }
+        public static implicit operator Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus (string value) { throw null; }
+        public static bool operator !=(Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus left, Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    public partial class PrivateLinkServiceConnectionState
+    {
+        public PrivateLinkServiceConnectionState() { }
+        public string ActionsRequired { get { throw null; } set { } }
+        public string Description { get { throw null; } set { } }
+        public Azure.ResourceManager.Models.PrivateEndpointServiceConnectionStatus? Status { get { throw null; } set { } }
+    }
     public abstract partial class ResourceData
     {
         protected ResourceData() { }

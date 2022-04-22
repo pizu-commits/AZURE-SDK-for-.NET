@@ -13,21 +13,22 @@ head-as-boolean: false
 mgmt-debug:
   show-request-path: true
 batch:
-  - tag: package-common-type-2022-04
+  - tag: package-common-type-2022-05
   - tag: package-resources-2022-04
   - tag: package-management-2022-04
 ```
 
-### Tag: package-common-type-2022-04
+### Tag: package-common-type-2022-05
 
-These settings apply only when `--tag=package-common-type-2022-04` is specified on the command line.
+These settings apply only when `--tag=package-common-type-2022-05` is specified on the command line.
 
-``` yaml $(tag) == 'package-common-type-2022-04'
+``` yaml $(tag) == 'package-common-type-2022-05'
 output-folder: $(this-folder)/Common/Generated
 namespace: Azure.ResourceManager
 input-file:
   - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/be8b6e1fc69e7c2700847d6a9c344c0e204294ce/specification/common-types/resource-management/v3/types.json
   - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/be8b6e1fc69e7c2700847d6a9c344c0e204294ce/specification/common-types/resource-management/v4/managedidentity.json
+  - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/568e394c3634d052ddec89f685b4afb5ab21aaec/specification/common-types/resource-management/v4/privatelinks.json
 
 rename-rules:
   CPU: Cpu
@@ -65,6 +66,14 @@ directive:
   - remove-model: "ErrorResponse"
   - remove-model: "ErrorDetail"
   - remove-model: "ErrorAdditionalInfo"
+# we only generate elementary structs for private endpoint
+  - remove-model: "PrivateEndpoint"
+  - remove-model: "PrivateEndpointConnection"
+  - remove-model: "PrivateEndpointConnectionProperties"
+  - remove-model: "PrivateLinkResource"
+  - remove-model: "PrivateLinkResourceProperties"
+  - remove-model: "PrivateEndpointConnectionListResult"
+  - remove-model: "PrivateLinkResourceListResult"
   - from: types.json
     where: $.definitions['Resource']
     transform: >
@@ -102,6 +111,19 @@ directive:
   - from: managedidentity.json
     where: $.definitions.SystemAssignedServiceIdentity.properties.type
     transform: $["x-ms-client-name"] = "SystemAssignedServiceIdentityType"
+  - from: privatelinks.json
+    where: $.definitions.*
+    transform: >
+      $["x-ms-mgmt-propertyReferenceType"] = true;
+      $["x-namespace"] = "Azure.ResourceManager.Models";
+      $["x-accessibility"] = "public";
+      $["x-csharp-formats"] = "json";
+      $["x-csharp-usage"] = "model,input,output";
+  - from: privatelinks.json
+    where: $.definitions.*.properties[?(@.enum)]
+    transform: >
+      $["x-namespace"] = "Azure.ResourceManager.Models";
+      $["x-accessibility"] = "public";
 ```
 
 ### Tag: package-resources-2022-04
