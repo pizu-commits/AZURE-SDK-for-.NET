@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Core.TestFramework", "..\core\Azure.Core.TestFramework\src\Azure.Core.TestFramework.csproj", "{3CC93F1F-AF2A-4CB3-A7FF-5205836C1311}"
 EndProject
@@ -47,6 +47,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.ShortCodes", "Azure.Communication.ShortCodes\src\Azure.Communication.ShortCodes.csproj", "{F7C16A81-CCB6-4F86-8815-3CE8B6321258}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.ShortCodes.Tests", "Azure.Communication.ShortCodes\tests\Azure.Communication.ShortCodes.Tests.csproj", "{A3D05FF9-848B-483E-A34E-49C50E73F675}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.Rooms", "Azure.Communication.Rooms\src\Azure.Communication.Rooms.csproj", "{3E6530F1-9BB4-4B5B-B41A-F221FF1C80C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.Rooms.Tests", "Azure.Communication.Rooms\tests\Azure.Communication.Rooms.Tests.csproj", "{13BB25E1-13C3-4097-82E1-3955AFBA2F83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +134,14 @@ Global
 		{A3D05FF9-848B-483E-A34E-49C50E73F675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3D05FF9-848B-483E-A34E-49C50E73F675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3D05FF9-848B-483E-A34E-49C50E73F675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E6530F1-9BB4-4B5B-B41A-F221FF1C80C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E6530F1-9BB4-4B5B-B41A-F221FF1C80C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E6530F1-9BB4-4B5B-B41A-F221FF1C80C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E6530F1-9BB4-4B5B-B41A-F221FF1C80C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BB25E1-13C3-4097-82E1-3955AFBA2F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BB25E1-13C3-4097-82E1-3955AFBA2F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BB25E1-13C3-4097-82E1-3955AFBA2F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BB25E1-13C3-4097-82E1-3955AFBA2F83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

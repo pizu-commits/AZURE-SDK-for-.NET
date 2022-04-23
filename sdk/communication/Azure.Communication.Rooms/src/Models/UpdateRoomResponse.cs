@@ -5,8 +5,8 @@ using Azure.Core;
 
 namespace Azure.Communication.Rooms.Models
 {
-    [CodeGenModel("UpdateRoomRequest")]
-    internal partial class UpdateRoomRequest
+    [CodeGenModel("UpdateRoomResponse")]
+    internal partial class UpdateRoomResponse
     {
     }
 }

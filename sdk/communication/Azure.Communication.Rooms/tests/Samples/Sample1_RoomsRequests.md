@@ -20,8 +20,8 @@ using Azure.Communication.Rooms
 To create a new  ACS room, call the `CreateRoom` or `CreateRoomAsync` function from the RoomsClient. The returned value is `RoomResult` objects that contains the status and associated error codes in case of a failure.
 
 ```C# Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomAsync
-CreateRoomRequest createRoomRequest = new CreateRoomRequest();
-Response<CommunicationRoom> createRoomResponse = await roomsClient.CreateRoomAsync(createRoomRequest);
+RoomRequest request = new RoomRequest();
+Response<CommunicationRoom> createRoomResponse = await roomsClient.CreateRoomAsync(request);
 CommunicationRoom createCommunicationRoom = createRoomResponse.Value;
 ```
 
@@ -53,4 +53,36 @@ To delete an existing ACS room, call the `DeleteRoom` or `DeleteRoomAsync` funct
 ```C# Snippet:Azure_Communication_Rooms_Tests_Samples_DeleteRoomAsync
 Response deleteRoomResponse = await roomsClient.DeleteRoomAsync(
     createdRoomId: "existing room Id which is created already
+```
+
+## Add Participants to an existing room
+
+To add participants to an existing ACS room, call the `AddParticipants` or `AddParticipantsAsync` function from the RoomsClient. The returned value is `RoomResult` objects that contains the status and associated error codes in case of a failure.
+
+```C# Snippet:Azure_Communication_Rooms_Tests_Samples_AddParticipants
+var communicationUser1 = "8:acs:067a8658-0bae-44f3-b157-194921040238_be3a83c1-f5d9-49ee-a427-0e9b917c063e";
+var communicationUser2 = "8:acs:067a8658-0bae-44f3-b157-194921040238_be3a83c6-f5d9-79ee-a427-0e9b917c063e";
+var communicationUser3 = "8:acs:067a8658-0bae-44f3-b157-194921040238_be3a83c6-f5d9-80ee-a427-0e9b917c063e";
+
+List<string> toAddCommunicationUsers = new List<string>();
+toAddCommunicationUsers.Add(communicationUser1);
+toAddCommunicationUsers.Add(communicationUser2);
+toAddCommunicationUsers.Add(communicationUser3);
+
+Response<CommunicationRoom> addParticipantResponse = await roomsClient.AddParticipantsAsync(createdRoomId, toAddCommunicationUsers);
+CommunicationRoom addedParticipantsRoom = addParticipantResponse.Value;
+```
+
+
+## Remove participants to  an existing room
+
+To remove participants from an existing ACS room, call the `RemoveParticipants` or `RemoveParticipantsAsync` function from the RoomsClient. The returned value is `RoomResult` objects that contains the status and associated error codes in case of a failure.
+
+```C# Snippet:Azure_Communication_Rooms_Tests_Samples_RemoveParticipants
+List<string> toRemoveCommunicationUsers = new List<string>();
+toRemoveCommunicationUsers.Add(communicationUser1);
+toRemoveCommunicationUsers.Add(communicationUser2);
+
+Response<CommunicationRoom> removeParticipantResponse = await roomsClient.AddParticipantsAsync(createdRoomId, toRemoveCommunicationUsers);
+CommunicationRoom removedParticipantsRoom = removeParticipantResponse.Value;
 ```

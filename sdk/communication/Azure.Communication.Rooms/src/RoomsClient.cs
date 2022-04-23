@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace Azure.Communication.Rooms
             : this(
                 ConnectionString.Parse(Argument.CheckNotNullOrEmpty(connectionString, nameof(connectionString))),
                 new RoomsClientOptions())
-        {}
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomsClient"/> class.
@@ -42,7 +43,7 @@ namespace Azure.Communication.Rooms
             : this(
                 ConnectionString.Parse(Argument.CheckNotNullOrEmpty(connectionString, nameof(connectionString))),
                 options ?? new RoomsClientOptions())
-        {}
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomsClient"/> class.
@@ -105,17 +106,19 @@ namespace Azure.Communication.Rooms
         /// <summary>
         /// Creates a new room asynchronously.
         /// </summary>
-        /// <param name="createRoomRequest"></param>
+        /// <param name="validFrom"></param>
+        /// <param name="participants"></param>
+        /// <param name="validUntil"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-        public virtual async Task<Response<CommunicationRoom>> CreateRoomAsync(CreateRoomRequest createRoomRequest, CancellationToken cancellationToken = default)
+        public virtual async Task<Response<CommunicationRoom>> CreateRoomAsync(IEnumerable<RoomParticipant> participants = default, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default, CancellationToken cancellationToken = default)
         {
             using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(CreateRoom)}");
             scope.Start();
             try
             {
                 Response<CreateRoomResponse> createRoomResponse =
-                    await RoomsServiceClient.CreateRoomAsync(createRoomRequest, cancellationToken).ConfigureAwait(false);
+                    await RoomsServiceClient.CreateRoomAsync(_createRoomRequest(participants, validFrom, validUntil), cancellationToken).ConfigureAwait(false);
                 return Response.FromValue(new CommunicationRoom(createRoomResponse), createRoomResponse.GetRawResponse());
             }
             catch (Exception ex)
@@ -128,16 +131,18 @@ namespace Azure.Communication.Rooms
         /// <summary>
         /// Creates a new room.
         /// </summary>
-        /// <param name="createRoomRequest"></param>
+        /// <param name="validFrom"></param>
+        /// <param name="participants"></param>
+        /// <param name="validUntil"></param>
         /// <param name="cancellationToken"></param>
-        public virtual Response<CommunicationRoom> CreateRoom(CreateRoomRequest createRoomRequest, CancellationToken cancellationToken = default)
+        public virtual Response<CommunicationRoom> CreateRoom(IEnumerable<RoomParticipant> participants = default, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default, CancellationToken cancellationToken = default)
         {
             using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(CreateRoom)}");
             scope.Start();
             try
             {
                 Response<CreateRoomResponse> createRoomResponse =
-                     RoomsServiceClient.CreateRoom(createRoomRequest, cancellationToken);
+                     RoomsServiceClient.CreateRoom(_createRoomRequest(participants, validFrom, validUntil), cancellationToken);
                 return Response.FromValue(new CommunicationRoom(createRoomResponse), createRoomResponse.GetRawResponse());
             }
             catch (Exception ex)
@@ -151,17 +156,18 @@ namespace Azure.Communication.Rooms
         /// Updates a room asynchronously.
         /// </summary>
         /// <param name="roomId"></param>
-        /// <param name="updateRoomRequest"></param>
+        /// <param name="validFrom"></param>
+        /// <param name="validUntil"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-        public virtual async Task<Response<CommunicationRoom>> UpdateRoomAsync(string roomId, UpdateRoomRequest updateRoomRequest, CancellationToken cancellationToken = default)
+        public virtual async Task<Response<CommunicationRoom>> UpdateRoomAsync(string roomId, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default, CancellationToken cancellationToken = default)
         {
             using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(UpdateRoom)}");
             scope.Start();
             try
             {
                 Response<UpdateRoomResponse> updateRoomResponse =
-                    await RoomsServiceClient.UpdateRoomAsync(roomId, updateRoomRequest, cancellationToken).ConfigureAwait(false);
+                    await RoomsServiceClient.UpdateRoomAsync(roomId, _updateRoomRequest(default, validFrom, validUntil), cancellationToken).ConfigureAwait(false);
                 return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
             }
             catch (Exception ex)
@@ -175,17 +181,18 @@ namespace Azure.Communication.Rooms
         /// Updates a room.
         /// </summary>
         /// <param name="roomId"></param>
-        /// <param name="updateRoomRequest"></param>
+        /// <param name="validFrom"></param>
+        /// <param name="validUntil"></param>
         /// <param name="cancellationToken"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="roomId"/> is null. </exception>
-        public virtual Response<CommunicationRoom> UpdateRoom(string roomId, UpdateRoomRequest updateRoomRequest, CancellationToken cancellationToken = default)
+        public virtual Response<CommunicationRoom> UpdateRoom(string roomId, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default, CancellationToken cancellationToken = default)
         {
             using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(UpdateRoom)}");
             scope.Start();
             try
             {
                 Response<UpdateRoomResponse> updateRoomResponse =
-                    RoomsServiceClient.UpdateRoom(roomId, updateRoomRequest, cancellationToken);
+                    RoomsServiceClient.UpdateRoom(roomId, _updateRoomRequest(default, validFrom, validUntil), cancellationToken);
                 return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
             }
             catch (Exception ex)
@@ -281,6 +288,232 @@ namespace Azure.Communication.Rooms
                 scope.Failed(ex);
                 throw;
             }
+        }
+
+        #region Participants Operations
+        /// <summary>
+        /// Add room participants.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="participants"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual Response<CommunicationRoom> AddParticipants(string roomId, IEnumerable<RoomParticipant> participants, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(AddParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var participant in participants)
+                {
+                    request.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    RoomsServiceClient.UpdateRoom(roomId, request, cancellationToken);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Add room participants async.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="participants"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task<Response<CommunicationRoom>> AddParticipantsAsync(string roomId, IEnumerable<RoomParticipant> participants, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(AddParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var participant in participants)
+                {
+                    request.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    await RoomsServiceClient.UpdateRoomAsync(roomId, request, cancellationToken).ConfigureAwait(false);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update room participants.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="participants"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual Response<CommunicationRoom> UpdateParticipants(string roomId, IEnumerable<RoomParticipant> participants, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(UpdateParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var participant in participants)
+                {
+                    request.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    RoomsServiceClient.UpdateRoom(roomId, request, cancellationToken);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update room participants async.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="participants"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task<Response<CommunicationRoom>> UpdateParticipantsAsync(string roomId, IEnumerable<RoomParticipant> participants, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(UpdateParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var participant in participants)
+                {
+                    request.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    await RoomsServiceClient.UpdateRoomAsync(roomId, request, cancellationToken).ConfigureAwait(false);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete room participants.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="communicationUsers"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual Response<CommunicationRoom> RemoveParticipants(string roomId, IEnumerable<string> communicationUsers, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(RemoveParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var communicationUser in communicationUsers)
+                {
+                    request.Participants.Add(communicationUser, null);
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    RoomsServiceClient.UpdateRoom(roomId, request, cancellationToken);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete room participants async.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="communicationUsers"></param>
+        /// <param name="cancellationToken"></param>
+        public virtual async Task<Response<CommunicationRoom>> RemoveParticipantsAsync(string roomId, IEnumerable<string> communicationUsers, CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(RoomsClient)}.{nameof(RemoveParticipants)}");
+            scope.Start();
+            try
+            {
+                UpdateRoomRequest request = new UpdateRoomRequest();
+                foreach (var communicationUser in communicationUsers)
+                {
+                    request.Participants.Add(communicationUser, null);
+                }
+
+                Response<UpdateRoomResponse> updateRoomResponse =
+                    await RoomsServiceClient.UpdateRoomAsync(roomId, request, cancellationToken).ConfigureAwait(false);
+                return Response.FromValue(new CommunicationRoom(updateRoomResponse), updateRoomResponse.GetRawResponse());
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+        #endregion
+
+        private static CreateRoomRequest _createRoomRequest(IEnumerable<RoomParticipant> participants = default, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default)
+        {
+            CreateRoomRequest createRoomRequest = new CreateRoomRequest();
+
+            if (validFrom != null && validFrom != default)
+            {
+                createRoomRequest.ValidFrom = validFrom;
+            }
+
+            if (validUntil != null && validUntil != default)
+            {
+                createRoomRequest.ValidUntil = validUntil;
+            }
+
+            if (participants != null)
+            {
+                foreach (var participant in participants)
+                {
+                    createRoomRequest.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+            }
+
+            return createRoomRequest;
+        }
+
+        private static UpdateRoomRequest _updateRoomRequest(IEnumerable<RoomParticipant> participants = default, DateTimeOffset? validFrom = default, DateTimeOffset? validUntil = default)
+        {
+            UpdateRoomRequest updateRoomRequest = new UpdateRoomRequest();
+
+            if (validFrom != null && validFrom != default)
+            {
+                updateRoomRequest.ValidFrom = validFrom;
+            }
+
+            if (validUntil != null && validUntil != default)
+            {
+                updateRoomRequest.ValidUntil = validUntil;
+            }
+
+            if (participants != null && participants != default)
+            {
+                foreach (var participant in participants)
+                {
+                    updateRoomRequest.Participants.Add(participant.Identifier, participant.ToRoomParticipantInternal());
+                }
+            }
+
+            return updateRoomRequest;
         }
     }
 }

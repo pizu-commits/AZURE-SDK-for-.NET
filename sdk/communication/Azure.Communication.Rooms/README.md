@@ -9,7 +9,7 @@ This package contains a C# SDK for the Rooms Service of Azure Communication Serv
 Install the Azure Communication Rooms client library for .NET with [NuGet][nuget]:
 
 ```PowerShell
-dotnet add package Azure.Communication.Rooms --version 1.0.0-beta.1
+dotnet add package Azure.Communication.Rooms --version 1.0.1-alpha.1
 ``` 
 
 ### Prerequisites
@@ -36,15 +36,6 @@ var connectionString = "<connection_string>"; // Find your Communication Service
 RoomsClient client = new RoomsClient(connectionString);
 ```
 
-Alternatively, Rooms clients can also be authenticated using a valid token credential. With this option,
-`AZURE_CLIENT_SECRET`, `AZURE_CLIENT_ID` and `AZURE_TENANT_ID` environment variables need to be set up for authentication. 
-
-```C# Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClientWithToken
-string endpoint = "<endpoint_url>";
-TokenCredential tokenCredential = new DefaultAzureCredential();
-RoomsClient client = new RoomsClient(new Uri(endpoint), tokenCredential);
-```
-
 ## Examples
 
 The following sections provide several code snippets covering some of the most common tasks, which is available at Sample1_RoomsRequesets.md
@@ -55,8 +46,8 @@ A `RequestFailedException` is thrown as a service response for any unsuccessful 
 ```C# Snippet:Azure_Communication_RoomsClient_Tests_Troubleshooting
 try
 {
-    CreateRoomRequest createRoomRequest = new CreateRoomRequest();
-    Response<CommunicationRoom> createRoomResponse = await roomsClient.CreateRoomAsync(createRoomRequest);
+    RoomRequest request = new RoomRequest();
+    Response<CommunicationRoom> createRoomResponse = await roomsClient.CreateRoomAsync(request);
     CommunicationRoom createRoomResult = createRoomResponse.Value;
 }
 catch (RequestFailedException ex)

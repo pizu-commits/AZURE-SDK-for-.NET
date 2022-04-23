@@ -7,18 +7,22 @@ using System.Text.Json.Serialization;
 using Azure.Core;
 using Azure.Core.Pipeline;
 using Azure.Core.TestFramework;
-using Azure.Identity;
+using Azure.Communication.Identity;
+using System.Threading.Tasks;
+using static Azure.Communication.Rooms.RoomsClientOptions;
 
 namespace Azure.Communication.Rooms.Tests
 {
     public class RoomsClientLiveTestBase : RecordedTestBase<RoomsClientTestEnvironment>
     {
         public RoomsClientLiveTestBase(bool isAsync) : base(isAsync)
-            => Sanitizer = new RoomsClientRecordedTestSanitizer();
-        protected RoomsClient CreateInstrumentedRoomsClient()
+        {
+            SanitizedHeaders.Add("x-ms-content-sha256");
+        }
+        protected RoomsClient CreateInstrumentedRoomsClient(ServiceVersion version)
         {
             var connectionString = TestEnvironment.LiveTestDynamicConnectionString;
-            RoomsClient client = new RoomsClient(connectionString, CreateRoomsClientOptionsWithCorrelationVectorLogs());
+            RoomsClient client = new RoomsClient(connectionString, CreateRoomsClientOptionsWithCorrelationVectorLogs(version));
 
             #region Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClient
             //@@var connectionString = "<connection_string>"; // Find your Communication Services resource in the Azure portal
@@ -28,30 +32,20 @@ namespace Azure.Communication.Rooms.Tests
             return InstrumentClient(client);
         }
 
-        // TODO: Add Live Tests covering tokenCredential case when supported
-        public RoomsClient CreateRoomsClientWithToken()
+        /// <summary>
+        /// Creates a <see cref="CommunicationIdentityClient" /> with the connectionstring via environment
+        /// variables and instruments it to make use of the Azure Core Test Framework functionalities.
+        /// </summary>
+        /// <returns>The instrumented <see cref="CommunicationIdentityClient" />.</returns>
+        protected CommunicationIdentityClient CreateInstrumentedCommunicationIdentityClient()
+            => InstrumentClient(
+                new CommunicationIdentityClient(
+                    TestEnvironment.LiveTestDynamicConnectionString,
+                    InstrumentClientOptions(new CommunicationIdentityClientOptions(CommunicationIdentityClientOptions.ServiceVersion.V2021_03_07))));
+
+        private RoomsClientOptions CreateRoomsClientOptionsWithCorrelationVectorLogs(ServiceVersion version)
         {
-            Uri endpoint = TestEnvironment.LiveTestDynamicEndpoint;
-            TokenCredential tokenCredential;
-            if (Mode == RecordedTestMode.Playback)
-            {
-                tokenCredential = new MockCredential();
-            }
-            else
-            {
-                #region Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClientWithToken
-                //@@ string endpoint = "<endpoint_url>";
-                //@@ TokenCredential tokenCredential = new DefaultAzureCredential();
-                /*@@*/tokenCredential = new DefaultAzureCredential();
-                //@@ RoomsClient client = new RoomsClient(new Uri(endpoint), tokenCredential);
-                #endregion Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClientWithToken
-            }
-            RoomsClient client = new RoomsClient(endpoint, tokenCredential, CreateRoomsClientOptionsWithCorrelationVectorLogs());
-            return InstrumentClient(client);
-        }
-        private RoomsClientOptions CreateRoomsClientOptionsWithCorrelationVectorLogs()
-        {
-            RoomsClientOptions roomsClientOptions = new RoomsClientOptions();
+            RoomsClientOptions roomsClientOptions = new RoomsClientOptions(version);
             roomsClientOptions.Diagnostics.LoggedHeaderNames.Add("MS-CV");
             return InstrumentClientOptions(roomsClientOptions);
         }
