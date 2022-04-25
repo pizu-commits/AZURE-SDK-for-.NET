@@ -21,7 +21,7 @@ namespace Azure.Communication.Rooms.Tests
         }
         protected RoomsClient CreateInstrumentedRoomsClient(ServiceVersion version)
         {
-            var connectionString = TestEnvironment.LiveTestStaticConnectionString;
+            var connectionString = TestEnvironment.LiveTestDynamicConnectionString;
             RoomsClient client = new RoomsClient(connectionString, CreateRoomsClientOptionsWithCorrelationVectorLogs(version));
 
             #region Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClient
