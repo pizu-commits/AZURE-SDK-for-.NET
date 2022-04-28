@@ -21,7 +21,7 @@ namespace Azure.Communication.Rooms.Tests
         }
         protected RoomsClient CreateInstrumentedRoomsClient(ServiceVersion version)
         {
-            var connectionString = TestEnvironment.LiveTestDynamicConnectionString;
+            var connectionString = TestEnvironment.LiveTestStaticConnectionString;
             RoomsClient client = new RoomsClient(connectionString, CreateRoomsClientOptionsWithCorrelationVectorLogs(version));
 
             #region Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClient
@@ -40,7 +40,7 @@ namespace Azure.Communication.Rooms.Tests
         protected CommunicationIdentityClient CreateInstrumentedCommunicationIdentityClient()
             => InstrumentClient(
                 new CommunicationIdentityClient(
-                    TestEnvironment.LiveTestDynamicConnectionString,
+                    TestEnvironment.LiveTestStaticConnectionString,
                     InstrumentClientOptions(new CommunicationIdentityClientOptions(CommunicationIdentityClientOptions.ServiceVersion.V2021_03_07))));
 
         private RoomsClientOptions CreateRoomsClientOptionsWithCorrelationVectorLogs(ServiceVersion version)
