@@ -162,33 +162,49 @@ namespace Azure.AI.TextAnalytics
 
         #region Recognize Entities
 
-        internal static List<CategorizedEntity> ConvertToCategorizedEntityList(List<Entity> entities)
-            => entities.Select((entity) => new CategorizedEntity(entity)).ToList();
+        internal static List<CategorizedEntity> ConvertToCategorizedEntityList(IList<Entity> entities)
+        {
+            var entityList = new List<CategorizedEntity>(entities.Count);
 
+            foreach (var entity in entities)
+            {
+                entityList.Add(new CategorizedEntity(entity));
+            }
+
+            return entityList;
+        }
+
+        // CHANGED: added overload for New Swagger
         internal static CategorizedEntityCollection ConvertToCategorizedEntityCollection(EntitiesResultDocumentsItem documentEntities)
         {
-            return new CategorizedEntityCollection(ConvertToCategorizedEntityList(documentEntities.Entities.ToList()), ConvertToWarnings(documentEntities.Warnings));
+            List<TextAnalyticsWarning> warnings = new List<TextAnalyticsWarning>();
+            foreach (var warning in documentEntities.Warnings)
+            {
+                warnings.Add(new TextAnalyticsWarning(warning));
+            }
+            return new CategorizedEntityCollection(ConvertToCategorizedEntityList(documentEntities.Entities), warnings);
         }
 
         internal static RecognizeEntitiesResultCollection ConvertToRecognizeEntitiesResultCollection(EntitiesResult results, IDictionary<string, int> idToIndexMap)
         {
-            var recognizeEntities = new List<RecognizeEntitiesResult>(results.Errors.Count);
+            //var recognizeEntities = new List<RecognizeEntitiesResult>(results.Errors.Count);
 
-            //Read errors
-            foreach (DocumentError error in results.Errors)
-            {
-                recognizeEntities.Add(new RecognizeEntitiesResult(error.Id, ConvertToError(error.Error)));
-            }
+            ////Read errors
+            //foreach (DocumentError error in results.Errors)
+            //{
+            //    recognizeEntities.Add(new RecognizeEntitiesResult(error.Id, ConvertToError(error.Error)));
+            //}
 
-            //Read document entities
-            foreach (var docEntities in results.Documents)
-            {
-                recognizeEntities.Add(new RecognizeEntitiesResult(docEntities.Id, docEntities.Statistics ?? default, ConvertToCategorizedEntityCollection(docEntities)));
-            }
+            ////Read document entities
+            //foreach (DocumentEntities docEntities in results.Documents)
+            //{
+            //    recognizeEntities.Add(new RecognizeEntitiesResult(docEntities.Id, docEntities.Statistics ?? default, ConvertToCategorizedEntityCollection(docEntities)));
+            //}
 
-            recognizeEntities = SortHeterogeneousCollection(recognizeEntities, idToIndexMap);
+            //recognizeEntities = SortHeterogeneousCollection(recognizeEntities, idToIndexMap);
 
-            return new RecognizeEntitiesResultCollection(recognizeEntities, results.Statistics, results.ModelVersion);
+            //return new RecognizeEntitiesResultCollection(recognizeEntities, results.Statistics, results.ModelVersion);
+            throw new NotImplementedException();
         }
 
         #endregion
