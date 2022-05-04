@@ -47,6 +47,11 @@ namespace Azure.Communication.CallingServer
                 }
                 writer.WriteEndArray();
             }
+            if (Optional.IsDefined(CallLocator))
+            {
+                writer.WritePropertyName("callLocator");
+                writer.WriteObjectValue(CallLocator);
+            }
             writer.WriteEndObject();
         }
     }
