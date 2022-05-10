@@ -388,8 +388,10 @@ namespace Azure.Core.Pipeline
                             new X509Certificate2(certificate),
                             x509Chain,
                             sslPolicyErrors));
-            
-                request.
+                foreach (var cred in options.ClientCertificates)
+                {
+                    request.ClientCertificates.Add(cred.ClientCertificate);
+                }
             }
         }
     }
