@@ -186,7 +186,6 @@ namespace Azure.Security.ConfidentialLedger
 
         internal static HttpPipelineTransportOptions GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options)
         {
-            var instanceName = ledgerUri.Host.AsSpan().Slice(0, ledgerUri.Host.IndexOf('.'));
             var identityClient = new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.confidential-ledger.core.azure.com"), options);
 
             // Get the ledger's  TLS certificate for our ledger.
