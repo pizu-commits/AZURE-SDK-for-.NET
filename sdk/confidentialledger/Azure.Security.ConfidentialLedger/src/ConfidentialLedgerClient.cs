@@ -44,6 +44,36 @@ namespace Azure.Security.ConfidentialLedger
             _apiVersion = actualOptions.Version;
         }
 
+         /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
+        /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
+        /// <param name="certificateCredential"> A credential used to authenticate to an Azure Service. </param>
+        /// <param name="options"> The options for configuring the client. </param>
+        public ConfidentialLedgerClient(Uri ledgerUri, CertificateCredential certificateCredential, ConfidentialLedgerClientOptions options = null)
+        {
+            if (ledgerUri == null)
+            {
+                throw new ArgumentNullException(nameof(ledgerUri));
+            }
+            if (certificateCredential == null)
+            {
+                throw new ArgumentNullException(nameof(certificateCredential));
+            }
+
+            var actualOptions = options ?? new ConfidentialLedgerClientOptions();
+            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions);
+            transportOptions.ClientCertificates.Add(certificateCredential);
+            ClientDiagnostics = new ClientDiagnostics(actualOptions);
+            _tokenCredential = null;
+            _pipeline = HttpPipelineBuilder.Build(
+                actualOptions,
+                Array.Empty<HttpPipelinePolicy>(),
+                Array.Empty<HttpPipelinePolicy>(),
+                transportOptions,
+                new ResponseClassifier());
+            _ledgerUri = ledgerUri;
+            _apiVersion = actualOptions.Version;
+        }
+
         /// <summary> Posts a new entry to the ledger. A sub-ledger id may optionally be specified. </summary>
         /// <remarks>
         /// Schema for <c>Request Body</c>:
@@ -156,7 +186,8 @@ namespace Azure.Security.ConfidentialLedger
 
         internal static HttpPipelineTransportOptions GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options)
         {
-            var identityClient = new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.accledger.azure.com"), options);
+            var instanceName = ledgerUri.Host.AsSpan().Slice(0, ledgerUri.Host.IndexOf('.'));
+            var identityClient = new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.confidential-ledger.core.azure.com"), options);
 
             // Get the ledger's  TLS certificate for our ledger.
             var ledgerId = ledgerUri.Host.Substring(0, ledgerUri.Host.IndexOf('.'));

@@ -388,6 +388,8 @@ namespace Azure.Core.Pipeline
                             new X509Certificate2(certificate),
                             x509Chain,
                             sslPolicyErrors));
+            
+                request.
             }
         }
     }

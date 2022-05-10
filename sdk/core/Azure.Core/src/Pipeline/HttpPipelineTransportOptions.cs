@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Azure.Core.Pipeline
 {
@@ -11,8 +12,22 @@ namespace Azure.Core.Pipeline
     public class HttpPipelineTransportOptions
     {
         /// <summary>
+        ///
+        /// </summary>
+        public HttpPipelineTransportOptions()
+        {
+            ClientCertificates = new List<CertificateCredential>();
+        }
+
+        /// <summary>
         /// A delegate that validates the certificate presented by the server.
         /// </summary>
         public Func<ServerCertificateCustomValidationArgs, bool>? ServerCertificateCustomValidationCallback { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <value></value>
+        public IList<CertificateCredential> ClientCertificates {get;}
     }
 }

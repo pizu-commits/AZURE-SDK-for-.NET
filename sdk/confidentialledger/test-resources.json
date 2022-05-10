@@ -25,7 +25,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "eastus2euap",
+      "defaultValue": "southcentralus",
       "metadata": {
         "description": "The location of the resource. By default, this is the same as the resource group."
       }
@@ -36,13 +36,19 @@
       "type": "Microsoft.ConfidentialLedger/ledgers",
       "apiVersion": "2020-12-01-preview",
       "name": "[parameters('baseName')]",
-      "location": "EASTUS",
+      "location": "[parameters('location')]",
       "properties": {
         "ledgerType": "Public",
         "aadBasedSecurityPrincipals": [
           {
             "principalId": "[parameters('testApplicationOid')]",
             "ledgerRoleName": "Administrator"
+          }
+        ],
+        "certBasedSecurityPrincipals": [
+          {
+              "cert": "-----BEGIN CERTIFICATE-----\nMIIDJjCCAg6gAwIBAgIQLUZ9FWAQPLdPSWVns5KseDANBgkqhkiG9w0BAQsFADAT\nMREwDwYDVQQDDAhDaHJpc3NDTDAeFw0yMjA0MjAxODMwNDBaFw0yMzA0MjAxODUw\nNDBaMBMxETAPBgNVBAMMCENocmlzc0NMMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A\nMIIBCgKCAQEAvdegtAjM4RQTSkSuSOkBak8iMhmlyBql0P6fv+20Y2txEC3cMQcx\n03eAjL8OTVWRTeTszFPKmJ8kw61mTSSdTpWdj5xFqsjL9aGGRWlCypdywDHQjKq1\nApO/H/BTIxDB6q/uNEue68WDCdk2S5kSGX5pEVL7qLNhppBFu6h34S4/Bkr6HVxF\n79k+/PAaWJONJj/OR1b65LWu7RVgW1/rIYotdh8LXPNFG8+6fkP8tJkVsdiqvvie\newdNzn2tAZq5BuZXATH8X0+y3o/yhevCPoCqQShwyFqF6LxmbIf4fbBcnkHR6JOu\nZg8Ywls7l9JU1DOl6asf5byU3+lYA69YNQIDAQABo3YwdDAOBgNVHQ8BAf8EBAMC\nAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMBMGA1UdEQQMMAqCCENo\ncmlzc0NMMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFNsp+S8Ra32UHUgZxomm\nKaE1jN8+MA0GCSqGSIb3DQEBCwUAA4IBAQAVsSGcu2KE9Jq7uPevwr3PrJNQzIZV\nxhr2/FqK5ofFr30JZWtBWq/gA0ZYFWDpAuPcfA5TURl1ud4wC0pvrDRYmekXOnvH\nxkFHmqu+FT+gU5ZWejNvtPAlOrJmSUmNjg1lNnfLaX+RwKl0roebxVEfiGxpmGyD\nXTBHT1OEEoWsIuHQugTs239kK+zEhiG3742X8W44iSHKStbxID7SeE1Qb9UAfIId\n7XhH6ABx2tlzNbGSzx/bTy9mf24uqw5f3jMQ1HEzNlq+gCyBYhcZokb1pb37BH79\nrIDFRMkUm+qcSRpEB80IetweO7z6Efl6tde8BSDwXQ80cYxKPZmOSkQA\n-----END CERTIFICATE-----",
+              "ledgerRoleName": "Administrator"
           }
         ]
       }
