@@ -320,6 +320,13 @@ namespace Azure.ResourceManager.AppService.Tests.Helpers
             var data = new AppServiceDomainData(location)
             {
                 Location = location,
+                ManagedHostNames =
+                {
+                    new HostName()
+                    {
+                        CustomHostNameDnsRecordType = CustomHostNameDnsRecordType.CName,
+                    }
+                },
             };
             return data;
         }
