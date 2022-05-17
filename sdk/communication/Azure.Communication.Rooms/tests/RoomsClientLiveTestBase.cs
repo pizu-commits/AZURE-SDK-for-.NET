@@ -15,6 +15,9 @@ namespace Azure.Communication.Rooms.Tests
 {
     public class RoomsClientLiveTestBase : RecordedTestBase<RoomsClientTestEnvironment>
     {
+        protected const string NON_EXISTING_ROOM_ID = "1234567";
+        protected static DateTimeOffset VALID_FROM = new DateTimeOffset(2022, 06, 01, 00, 00, 00, new TimeSpan(0, 0, 0));
+        protected static DateTimeOffset VALID_UNTIL = VALID_FROM.AddDays(30);
         public RoomsClientLiveTestBase(bool isAsync) : base(isAsync)
         {
             SanitizedHeaders.Add("x-ms-content-sha256");
