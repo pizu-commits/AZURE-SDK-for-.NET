@@ -22,9 +22,9 @@ namespace Azure.Data.Batch
             return await HandleGetAsync(jobId, taskId, GetTaskAsync, Task.DeserializeTask).ConfigureAwait(false);
         }
 
-        public virtual Pageable<Task> ListTasks(string jobId)
+        public virtual Pageable<Task> ListTasks(string jobId, string filter = null, string select = null, string expand = null, int? maxResults = null, int? timeout = null, Guid? clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? ocpDate = null, RequestContext context = null)
         {
-            return HandleList(jobId, GetTasks, Task.DeserializeTask);
+            return HandleList(jobId, GetTasks, Task.DeserializeTask, filter, select, expand, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDate, context);
         }
 
         private static Response<Task> GetResponse(Response response)

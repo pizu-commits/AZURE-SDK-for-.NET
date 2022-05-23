@@ -43,9 +43,9 @@ namespace Azure.Data.Batch
             return HandleResponse(response, deserialize);
         }
 
-        protected internal Pageable<T> HandleList<T>(string parentId, Func<string, string, string, string, int?, int?, Guid?, bool?, DateTimeOffset?, RequestContext, Pageable<BinaryData>> operation, Func<JsonElement, T> deserialize)
+        protected internal Pageable<T> HandleList<T>(string parentId, Func<string, string, string, string, int?, int?, Guid?, bool?, DateTimeOffset?, RequestContext, Pageable<BinaryData>> operation, Func<JsonElement, T> deserialize, string filter = null, string select = null, string expand = null, int? maxResults = null, int? timeout = null, Guid? clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? ocpDate = null, RequestContext context = null)
         {
-            Pageable<BinaryData> data = operation(parentId, null, null, null, null, null, null, null, null, null);
+            Pageable<BinaryData> data = operation(parentId, filter, select, expand, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDate, context);
             return PageableHelpers.Select(data, response =>
             {
                 JsonElement root = JsonDocument.Parse(response.Content).RootElement;
@@ -61,8 +61,7 @@ namespace Azure.Data.Batch
 
         private Response<T> HandleResponse<T>(Response response) where T : BaseHeaders, new()
         {
-            T headers = new();
-            headers.Response = response;
+            T headers = new() { Response = response };
             return Response.FromValue(headers, response);
         }
 
