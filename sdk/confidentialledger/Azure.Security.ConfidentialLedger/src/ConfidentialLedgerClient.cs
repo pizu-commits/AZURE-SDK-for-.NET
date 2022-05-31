@@ -44,7 +44,36 @@ namespace Azure.Security.ConfidentialLedger
             _apiVersion = actualOptions.Version;
         }
 
-         /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
+        /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
+        /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
+        /// <param name="certificate"> A certificate used to authenticate to the Service. </param>
+        /// <param name="options"> The options for configuring the client. </param>
+        public ConfidentialLedgerClient(Uri ledgerUri, X509Certificate2 certificate, ConfidentialLedgerClientOptions options = null)
+        {
+            if (ledgerUri == null)
+            {
+                throw new ArgumentNullException(nameof(ledgerUri));
+            }
+            if (certificate == null)
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
+
+            var actualOptions = options ?? new ConfidentialLedgerClientOptions();
+            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions);
+            transportOptions.ClientCertificates.Add(new CertificateCredential(certificate));
+            ClientDiagnostics = new ClientDiagnostics(actualOptions);
+            _pipeline = HttpPipelineBuilder.Build(
+                actualOptions,
+                Array.Empty<HttpPipelinePolicy>(),
+                Array.Empty<HttpPipelinePolicy>(),
+                transportOptions,
+                new ResponseClassifier());
+            _ledgerUri = ledgerUri;
+            _apiVersion = actualOptions.Version;
+        }
+
+        /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
         /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
         /// <param name="certificateCredential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
@@ -214,7 +243,8 @@ namespace Azure.Security.ConfidentialLedger
             bool CertValidationCheck(X509Certificate2 cert)
             {
                 bool isChainValid = certificateChain.Build(cert);
-                if (!isChainValid) return false;
+                if (!isChainValid)
+                    return false;
 
                 var isCertSignedByTheTlsCert = certificateChain.ChainElements.Cast<X509ChainElement>()
                     .Any(x => x.Certificate.Thumbprint == ledgerTlsCert.Thumbprint);

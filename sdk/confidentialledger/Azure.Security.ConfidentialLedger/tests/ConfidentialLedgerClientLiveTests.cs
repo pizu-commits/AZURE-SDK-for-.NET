@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Core;
@@ -18,13 +19,12 @@ namespace Azure.Security.ConfidentialLedger.Tests
     public class ConfidentialLedgerClientLiveTests : RecordedTestBase<ConfidentialLedgerEnvironment>
     {
         private TokenCredential Credential;
-        private ConfidentialLedgerClientOptions Options;
+        private readonly ConfidentialLedgerClientOptions _options = new ConfidentialLedgerClientOptions();
         private ConfidentialLedgerClient Client;
         private ConfidentialLedgerIdentityServiceClient IdentityClient;
-        private string transactionId;
         private HashSet<string> TestsNotRequiringLedgerEntry = new() { "GetEnclaveQuotes", "GetConsortiumMembers", "GetConstitution" };
 
-        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync)
+        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync, RecordedTestMode.Record)
         {
             // https://github.com/Azure/autorest.csharp/issues/1214
             TestDiagnostics = false;
@@ -39,29 +39,21 @@ namespace Azure.Security.ConfidentialLedger.Tests
             {
                 return true;
             };
-            Options = new ConfidentialLedgerClientOptions { Transport = new HttpClientTransport(httpHandler) };
-            if (TestEnvironment.Mode == RecordedTestMode.Playback)
-            {
-                Options.OperationPollingInterval = TimeSpan.Zero;
-            }
+            // Options = new ConfidentialLedgerClientOptions { Transport = new HttpClientTransport(httpHandler) };
+            // if (TestEnvironment.Mode == RecordedTestMode.Playback)
+            // {
+                // Options.OperationPollingInterval = TimeSpan.Zero;
+            // }
             Client = InstrumentClient(
                 new ConfidentialLedgerClient(
                     TestEnvironment.ConfidentialLedgerUrl,
                     Credential,
-                    InstrumentClientOptions(Options)));
+                    InstrumentClientOptions(_options)));
 
             IdentityClient = InstrumentClient(
                 new ConfidentialLedgerIdentityServiceClient(
                     TestEnvironment.ConfidentialLedgerIdentityUrl,
-                    InstrumentClientOptions(Options)));
-
-            if (!TestsNotRequiringLedgerEntry.Contains(TestContext.CurrentContext.Test.MethodName))
-            {
-                var operation = Client.PostLedgerEntryAsync(RequestContent.Create(new { contents = Recording.GenerateAssetName("test") }), waitForCompletion: true)
-                    .GetAwaiter()
-                    .GetResult();
-                transactionId = operation.Id;
-            }
+                    InstrumentClientOptions(_options)));
         }
 
         public async Task GetUser(string objId)
@@ -73,6 +65,21 @@ namespace Azure.Security.ConfidentialLedger.Tests
             Assert.That(stringResult, Does.Contain(objId));
         }
 
+#if NET6_0_OR_GREATER
+        [RecordedTest]
+        public async Task AuthWithClientCert()
+        {
+            var cert = X509Certificate2.CreateFromPem(TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
+            var certClient = InstrumentClient(new ConfidentialLedgerClient(
+                TestEnvironment.ConfidentialLedgerUrl,
+                cert, InstrumentClientOptions(_options)));
+            var result = await certClient.GetConstitutionAsync(new());
+            var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
+
+            Assert.AreEqual((int)HttpStatusCode.OK, result.Status);
+            Assert.That(stringResult, Does.Contain("digest"));
+        }
+#endif
         [RecordedTest]
         public async Task GetLedgerEntries()
         {

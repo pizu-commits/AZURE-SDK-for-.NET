@@ -86,6 +86,6 @@
     "CONFIDENTIALLEDGER_CLIENT_PEM_PK": {
       "type": "string",
       "value": "[parameters('ConfidentialLedgerPrincipalPEMPK')]"
-    },
+    }
   }
 }
