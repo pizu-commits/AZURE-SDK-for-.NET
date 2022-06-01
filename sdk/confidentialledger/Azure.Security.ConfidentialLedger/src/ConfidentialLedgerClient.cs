@@ -6,7 +6,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
@@ -19,80 +18,35 @@ namespace Azure.Security.ConfidentialLedger
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
         public ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential, ConfidentialLedgerClientOptions options)
-        {
-            if (ledgerUri == null)
-            {
-                throw new ArgumentNullException(nameof(ledgerUri));
-            }
-            if (credential == null)
-            {
-                throw new ArgumentNullException(nameof(credential));
-            }
-
-            var actualOptions = options ?? new ConfidentialLedgerClientOptions();
-            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions);
-            ClientDiagnostics = new ClientDiagnostics(actualOptions, true);
-            _tokenCredential = credential;
-            var authPolicy = new BearerTokenAuthenticationPolicy(_tokenCredential, AuthorizationScopes);
-            _pipeline = HttpPipelineBuilder.Build(
-                actualOptions,
-                Array.Empty<HttpPipelinePolicy>(),
-                new HttpPipelinePolicy[] { authPolicy },
-                transportOptions,
-                new ResponseClassifier());
-            _ledgerUri = ledgerUri;
-            _apiVersion = actualOptions.Version;
-        }
-
-        /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
-        /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
-        /// <param name="certificate"> A certificate used to authenticate to the Service. </param>
-        /// <param name="options"> The options for configuring the client. </param>
-        public ConfidentialLedgerClient(Uri ledgerUri, X509Certificate2 certificate, ConfidentialLedgerClientOptions options = null)
-        {
-            if (ledgerUri == null)
-            {
-                throw new ArgumentNullException(nameof(ledgerUri));
-            }
-            if (certificate == null)
-            {
-                throw new ArgumentNullException(nameof(certificate));
-            }
-
-            var actualOptions = options ?? new ConfidentialLedgerClientOptions();
-            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions);
-            transportOptions.ClientCertificates.Add(new CertificateCredential(certificate));
-            ClientDiagnostics = new ClientDiagnostics(actualOptions);
-            _pipeline = HttpPipelineBuilder.Build(
-                actualOptions,
-                Array.Empty<HttpPipelinePolicy>(),
-                Array.Empty<HttpPipelinePolicy>(),
-                transportOptions,
-                new ResponseClassifier());
-            _ledgerUri = ledgerUri;
-            _apiVersion = actualOptions.Version;
-        }
+            : this(ledgerUri, credential: credential, options: options, identityServiceClient: default)
+        { }
 
         /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
         /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
         /// <param name="certificateCredential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
         public ConfidentialLedgerClient(Uri ledgerUri, CertificateCredential certificateCredential, ConfidentialLedgerClientOptions options = null)
+            : this(ledgerUri, certificateCredential: certificateCredential, options: options, identityServiceClient: null)
+        { }
+
+        internal ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential = null, CertificateCredential certificateCredential = null, ConfidentialLedgerClientOptions options = null, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
         {
             if (ledgerUri == null)
             {
                 throw new ArgumentNullException(nameof(ledgerUri));
             }
-            if (certificateCredential == null)
+            if (certificateCredential == null && credential == null)
             {
-                throw new ArgumentNullException(nameof(certificateCredential));
+                if (certificateCredential == null)
+                    throw new ArgumentNullException(nameof(certificateCredential));
+                if (credential == null)
+                    throw new ArgumentNullException(nameof(credential));
             }
-
             var actualOptions = options ?? new ConfidentialLedgerClientOptions();
-            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions);
+            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions, identityServiceClient).GetAwaiter().GetResult();
             transportOptions.ClientCertificates.Add(certificateCredential);
             ClientDiagnostics = new ClientDiagnostics(actualOptions);
-            _tokenCredential = null;
+            _tokenCredential = credential;
             _pipeline = HttpPipelineBuilder.Build(
                 actualOptions,
                 Array.Empty<HttpPipelinePolicy>(),
@@ -213,13 +167,14 @@ namespace Azure.Security.ConfidentialLedger
             return operation;
         }
 
-        internal static HttpPipelineTransportOptions GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options)
+        internal static async Task<HttpPipelineTransportOptions> GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
         {
-            var identityClient = new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.confidential-ledger.core.azure.com"), options);
+            var identityClient = identityServiceClient ??
+                new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.confidential-ledger.core.azure.com"), options);
 
             // Get the ledger's  TLS certificate for our ledger.
             var ledgerId = ledgerUri.Host.Substring(0, ledgerUri.Host.IndexOf('.'));
-            Response response = identityClient.GetLedgerIdentity(ledgerId, new());
+            Response response = await identityClient.GetLedgerIdentityAsync(ledgerId, new()).ConfigureAwait(false);
 
             // extract the ECC PEM value from the response.
             var eccPem = JsonDocument.Parse(response.Content)
@@ -228,8 +183,7 @@ namespace Azure.Security.ConfidentialLedger
                 .GetString();
 
             // construct an X509Certificate2 with the ECC PEM value.
-            var span = new ReadOnlySpan<char>(eccPem.ToCharArray());
-            var ledgerTlsCert = PemReader.LoadCertificate(span, null, PemReader.KeyType.Auto, true);
+            var ledgerTlsCert = GetCertFromPEM(eccPem);
 
             X509Chain certificateChain = new();
             certificateChain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
@@ -252,6 +206,12 @@ namespace Azure.Security.ConfidentialLedger
             }
 
             return new HttpPipelineTransportOptions { ServerCertificateCustomValidationCallback = args => CertValidationCheck(args.Certificate) };
+        }
+
+        private static X509Certificate2 GetCertFromPEM(string eccPem)
+        {
+            var span = new ReadOnlySpan<char>(eccPem.ToCharArray());
+            return PemReader.LoadCertificate(span, null, PemReader.KeyType.Auto, true);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
         private ConfidentialLedgerIdentityServiceClient IdentityClient;
         private HashSet<string> TestsNotRequiringLedgerEntry = new() { "GetEnclaveQuotes", "GetConsortiumMembers", "GetConstitution" };
 
-        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync, RecordedTestMode.Record)
+        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync, RecordedTestMode.Live)
         {
             // https://github.com/Azure/autorest.csharp/issues/1214
             TestDiagnostics = false;
@@ -34,26 +34,18 @@ namespace Azure.Security.ConfidentialLedger.Tests
         public void Setup()
         {
             Credential = TestEnvironment.Credential;
-            var httpHandler = new HttpClientHandler();
-            httpHandler.ServerCertificateCustomValidationCallback = (_, _, _, _) =>
-            {
-                return true;
-            };
-            // Options = new ConfidentialLedgerClientOptions { Transport = new HttpClientTransport(httpHandler) };
-            // if (TestEnvironment.Mode == RecordedTestMode.Playback)
-            // {
-                // Options.OperationPollingInterval = TimeSpan.Zero;
-            // }
-            Client = InstrumentClient(
-                new ConfidentialLedgerClient(
-                    TestEnvironment.ConfidentialLedgerUrl,
-                    Credential,
-                    InstrumentClientOptions(_options)));
-
             IdentityClient = InstrumentClient(
                 new ConfidentialLedgerIdentityServiceClient(
                     TestEnvironment.ConfidentialLedgerIdentityUrl,
                     InstrumentClientOptions(_options)));
+
+            Client = InstrumentClient(
+                new ConfidentialLedgerClient(
+                    TestEnvironment.ConfidentialLedgerUrl,
+                    Credential,
+                    certificateCredential: null,
+                    options: InstrumentClientOptions(_options),
+                    IdentityClient));
         }
 
         public async Task GetUser(string objId)
@@ -72,7 +64,8 @@ namespace Azure.Security.ConfidentialLedger.Tests
             var cert = X509Certificate2.CreateFromPem(TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
             var certClient = InstrumentClient(new ConfidentialLedgerClient(
                 TestEnvironment.ConfidentialLedgerUrl,
-                cert, InstrumentClientOptions(_options)));
+                new CertificateCredential(cert),
+                InstrumentClientOptions(_options)));
             var result = await certClient.GetConstitutionAsync(new());
             var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
 
