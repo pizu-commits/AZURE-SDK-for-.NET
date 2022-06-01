@@ -44,13 +44,18 @@ namespace Azure.Security.ConfidentialLedger
             }
             var actualOptions = options ?? new ConfidentialLedgerClientOptions();
             var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions, identityServiceClient).GetAwaiter().GetResult();
-            transportOptions.ClientCertificates.Add(certificateCredential);
+            if (certificateCredential != null)
+            {
+                transportOptions.ClientCertificates.Add(certificateCredential);
+            }
             ClientDiagnostics = new ClientDiagnostics(actualOptions);
             _tokenCredential = credential;
             _pipeline = HttpPipelineBuilder.Build(
                 actualOptions,
                 Array.Empty<HttpPipelinePolicy>(),
-                Array.Empty<HttpPipelinePolicy>(),
+                _tokenCredential == null ?
+                    Array.Empty<HttpPipelinePolicy>() :
+                    new HttpPipelinePolicy[] {new BearerTokenAuthenticationPolicy(_tokenCredential, AuthorizationScopes)},
                 transportOptions,
                 new ResponseClassifier());
             _ledgerUri = ledgerUri;

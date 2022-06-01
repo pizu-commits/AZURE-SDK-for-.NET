@@ -5,17 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Core;
-using Azure.Core.Pipeline;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 
 namespace Azure.Security.ConfidentialLedger.Tests
 {
+    [LiveOnly]
     public class ConfidentialLedgerClientLiveTests : RecordedTestBase<ConfidentialLedgerEnvironment>
     {
         private TokenCredential Credential;
@@ -24,7 +23,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
         private ConfidentialLedgerIdentityServiceClient IdentityClient;
         private HashSet<string> TestsNotRequiringLedgerEntry = new() { "GetEnclaveQuotes", "GetConsortiumMembers", "GetConstitution" };
 
-        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync, RecordedTestMode.Live)
+        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync)
         {
             // https://github.com/Azure/autorest.csharp/issues/1214
             TestDiagnostics = false;
@@ -61,11 +60,14 @@ namespace Azure.Security.ConfidentialLedger.Tests
         [RecordedTest]
         public async Task AuthWithClientCert()
         {
-            var cert = X509Certificate2.CreateFromPem(TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
+            var _cert = X509Certificate2.CreateFromPem(TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
+            _cert = new X509Certificate2(_cert.Export(X509ContentType.Pfx));
             var certClient = InstrumentClient(new ConfidentialLedgerClient(
                 TestEnvironment.ConfidentialLedgerUrl,
-                new CertificateCredential(cert),
-                InstrumentClientOptions(_options)));
+                credential: null,
+                certificateCredential: new CertificateCredential(_cert),
+                options: InstrumentClientOptions(_options),
+                IdentityClient));
             var result = await certClient.GetConstitutionAsync(new());
             var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
 
@@ -175,6 +177,10 @@ namespace Azure.Security.ConfidentialLedger.Tests
         [RecordedTest]
         public async Task GetCurrentLedgerEntry()
         {
+            await Client.PostLedgerEntryAsync(
+               RequestContent.Create(new { contents = Recording.GenerateAssetName("test") }),
+               waitForCompletion: true);
+
             var result = await Client.GetCurrentLedgerEntryAsync();
             var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
 
