@@ -21,7 +21,7 @@ parameters:
 # Set this to false to do a full checkout for private repositories with the azure pipelines service connection
 - name: SparseCheckout
   type: boolean
-  default: true
+  default: false
 - name: SparseCheckoutPaths
   type: object
   default: []
