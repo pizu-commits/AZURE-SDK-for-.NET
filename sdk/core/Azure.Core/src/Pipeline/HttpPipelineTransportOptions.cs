@@ -12,7 +12,7 @@ namespace Azure.Core.Pipeline
     public class HttpPipelineTransportOptions
     {
         /// <summary>
-        ///
+        /// Initializes an instance of <see cref="HttpPipelineTransportOptions"/>.
         /// </summary>
         public HttpPipelineTransportOptions()
         {
@@ -25,7 +25,7 @@ namespace Azure.Core.Pipeline
         public Func<ServerCertificateCustomValidationArgs, bool>? ServerCertificateCustomValidationCallback { get; set; }
 
         /// <summary>
-        ///
+        /// The client certificate collection that will be configured for the transport.
         /// </summary>
         /// <value></value>
         public IList<ClientCertificate> ClientCertificates {get;}
