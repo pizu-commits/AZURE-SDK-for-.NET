@@ -43,10 +43,10 @@ namespace Azure
         public string Signature { get { throw null; } }
         public void Update(string signature) { }
     }
-    public partial class CertificateCredential
+    public partial class ClientCertificate
     {
-        public CertificateCredential(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
-        public System.Security.Cryptography.X509Certificates.X509Certificate2 ClientCertificate { get { throw null; } }
+        public ClientCertificate(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 Certificate { get { throw null; } }
     }
     [System.FlagsAttribute]
     public enum ErrorOptions
@@ -964,7 +964,7 @@ namespace Azure.Core.Pipeline
     public partial class HttpPipelineTransportOptions
     {
         public HttpPipelineTransportOptions() { }
-        public System.Collections.Generic.IList<Azure.CertificateCredential> ClientCertificates { get { throw null; } }
+        public System.Collections.Generic.IList<Azure.ClientCertificate> ClientCertificates { get { throw null; } }
         public System.Func<Azure.Core.Pipeline.ServerCertificateCustomValidationArgs, bool>? ServerCertificateCustomValidationCallback { get { throw null; } set { } }
     }
     public partial class ServerCertificateCustomValidationArgs
