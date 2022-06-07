@@ -23,30 +23,30 @@ namespace Azure.Security.ConfidentialLedger
 
         /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
         /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
-        /// <param name="certificateCredential"> A credential used to authenticate to an Azure Service. </param>
+        /// <param name="clientCertificate"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
-        public ConfidentialLedgerClient(Uri ledgerUri, CertificateCredential certificateCredential, ConfidentialLedgerClientOptions options = null)
-            : this(ledgerUri, certificateCredential: certificateCredential, options: options, identityServiceClient: null)
+        public ConfidentialLedgerClient(Uri ledgerUri, ClientCertificate clientCertificate, ConfidentialLedgerClientOptions options = null)
+            : this(ledgerUri, clientCertificate: clientCertificate, options: options, identityServiceClient: null)
         { }
 
-        internal ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential = null, CertificateCredential certificateCredential = null, ConfidentialLedgerClientOptions options = null, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
+        internal ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential = null, ClientCertificate clientCertificate = null, ConfidentialLedgerClientOptions options = null, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
         {
             if (ledgerUri == null)
             {
                 throw new ArgumentNullException(nameof(ledgerUri));
             }
-            if (certificateCredential == null && credential == null)
+            if (clientCertificate == null && credential == null)
             {
-                if (certificateCredential == null)
-                    throw new ArgumentNullException(nameof(certificateCredential));
+                if (clientCertificate == null)
+                    throw new ArgumentNullException(nameof(clientCertificate));
                 if (credential == null)
                     throw new ArgumentNullException(nameof(credential));
             }
             var actualOptions = options ?? new ConfidentialLedgerClientOptions();
             var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions, identityServiceClient).GetAwaiter().GetResult();
-            if (certificateCredential != null)
+            if (clientCertificate != null)
             {
-                transportOptions.ClientCertificates.Add(certificateCredential);
+                transportOptions.ClientCertificates.Add(clientCertificate);
             }
             ClientDiagnostics = new ClientDiagnostics(actualOptions);
             _tokenCredential = credential;

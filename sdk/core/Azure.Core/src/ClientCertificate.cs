@@ -9,22 +9,22 @@ namespace Azure
     /// <summary>
     ///
     /// </summary>
-    public class CertificateCredential
+    public class ClientCertificate
     {
         /// <summary>
         ///
         /// </summary>
         /// <value></value>
-        public X509Certificate2 ClientCertificate { get; }
+        public X509Certificate2 Certificate { get; }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="certificate"></param>
-        public CertificateCredential(X509Certificate2 certificate)
+        public ClientCertificate(X509Certificate2 certificate)
         {
             Argument.AssertNotNull(certificate, nameof(certificate));
-            ClientCertificate = certificate;
+            Certificate = certificate;
         }
     }
 }

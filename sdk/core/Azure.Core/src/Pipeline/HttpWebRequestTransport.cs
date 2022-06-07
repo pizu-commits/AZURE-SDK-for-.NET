@@ -392,7 +392,7 @@ namespace Azure.Core.Pipeline
             // Set ClientCertificates
             foreach (var cred in options.ClientCertificates)
             {
-                request.ClientCertificates.Add(cred.ClientCertificate);
+                request.ClientCertificates.Add(cred.Certificate);
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
                 new ConfidentialLedgerClient(
                     TestEnvironment.ConfidentialLedgerUrl,
                     Credential,
-                    certificateCredential: null,
+                    clientCertificate: null,
                     options: InstrumentClientOptions(_options),
                     IdentityClient));
         }
@@ -65,7 +65,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
             var certClient = InstrumentClient(new ConfidentialLedgerClient(
                 TestEnvironment.ConfidentialLedgerUrl,
                 credential: null,
-                certificateCredential: new CertificateCredential(_cert),
+                clientCertificate: new ClientCertificate(_cert),
                 options: InstrumentClientOptions(_options),
                 IdentityClient));
             var result = await certClient.GetConstitutionAsync(new());

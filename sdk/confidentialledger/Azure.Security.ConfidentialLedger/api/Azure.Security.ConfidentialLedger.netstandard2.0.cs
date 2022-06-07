@@ -3,6 +3,7 @@ namespace Azure.Security.ConfidentialLedger
     public partial class ConfidentialLedgerClient
     {
         protected ConfidentialLedgerClient() { }
+        public ConfidentialLedgerClient(System.Uri ledgerUri, Azure.ClientCertificate clientCertificate, Azure.Security.ConfidentialLedger.ConfidentialLedgerClientOptions options = null) { }
         public ConfidentialLedgerClient(System.Uri ledgerUri, Azure.Core.TokenCredential credential) { }
         public ConfidentialLedgerClient(System.Uri ledgerUri, Azure.Core.TokenCredential credential, Azure.Security.ConfidentialLedger.ConfidentialLedgerClientOptions options) { }
         public virtual Azure.Core.Pipeline.HttpPipeline Pipeline { get { throw null; } }

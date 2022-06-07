@@ -16,7 +16,7 @@ namespace Azure.Core.Pipeline
         /// </summary>
         public HttpPipelineTransportOptions()
         {
-            ClientCertificates = new List<CertificateCredential>();
+            ClientCertificates = new List<ClientCertificate>();
         }
 
         /// <summary>
@@ -28,6 +28,6 @@ namespace Azure.Core.Pipeline
         ///
         /// </summary>
         /// <value></value>
-        public IList<CertificateCredential> ClientCertificates {get;}
+        public IList<ClientCertificate> ClientCertificates {get;}
     }
 }

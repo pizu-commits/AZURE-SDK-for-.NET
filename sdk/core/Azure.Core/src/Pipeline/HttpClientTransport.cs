@@ -574,7 +574,7 @@ namespace Azure.Core.Pipeline
             {
                httpHandler.SslOptions ??= new System.Net.Security.SslClientAuthenticationOptions();
                httpHandler.SslOptions.ClientCertificates ??= new X509CertificateCollection();
-               httpHandler.SslOptions.ClientCertificates!.Add(cred.ClientCertificate);
+               httpHandler.SslOptions.ClientCertificates!.Add(cred.Certificate);
             }
 #pragma warning restore CA1416 // 'X509Certificate2' is unsupported on 'browser'
             return httpHandler;
@@ -600,7 +600,7 @@ namespace Azure.Core.Pipeline
             // Set ClientCertificates
             foreach (var cred in options.ClientCertificates)
             {
-               httpHandler.ClientCertificates.Add(cred.ClientCertificate);
+               httpHandler.ClientCertificates.Add(cred.Certificate);
             }
             return httpHandler;
         }
