@@ -4,8 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Azure.Communication.Chat.Models;
+using Azure.Communication.Chat.TrouterStubs;
 using Azure.Communication.Pipeline;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -22,6 +26,7 @@ namespace Azure.Communication.Chat
         private readonly Uri _endpointUrl;
         private readonly CommunicationTokenCredential _communicationTokenCredential;
         private readonly ChatClientOptions _chatClientOptions;
+        private TrouterListener _trouterListener;
 
         /// <summary> Initializes a new instance of <see cref="ChatClient"/>.</summary>
         /// <param name="endpoint">The uri for the Azure Communication Services Chat.</param>
@@ -234,6 +239,65 @@ namespace Azure.Communication.Chat
                 scope.Failed(ex);
                 throw;
             }
+        }
+
+        #endregion
+
+        #region Chat Notifications
+
+        /// <summary>
+        /// Event raised when a new chat message is received.
+        /// </summary>
+        public event EventHandler<ChatMessageReceivedEvent> ChatMessageReceived;
+
+        /// <summary>
+        /// Start receiving realtime notifications.
+        /// Call this function before subscribing to any event.
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Task<Response> StartRealtimeNotificationsAsync(CancellationToken cancellationToken = default)
+        {
+            _trouterListener = new TrouterListener();
+            _trouterListener.TrouterRequestReceived += OnTrouterRequestReceived;
+
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Start receiving realtime notifications.
+        /// Call this function before subscribing to any event.
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Task<Response> StartRealtimeNotifications(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Stop receiving realtime notifications.
+        /// This function would unsubscribe to all events.
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Task<Response> StopRealtimeNotificationsAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Stop receiving realtime notifications.
+        /// This function would unsubscribe to all events.
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Task<Response> StopRealtimeNotifications(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnTrouterRequestReceived(object sender, TrouterRequest args)
+        {
+            var e = JsonSerializer.Deserialize<ChatMessageReceivedEvent>(args.Body);
+
+            ChatMessageReceived?.Invoke(this, e);
         }
 
         #endregion
