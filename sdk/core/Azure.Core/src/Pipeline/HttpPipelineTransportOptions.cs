@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Azure.Core.Pipeline
 {
@@ -16,7 +17,7 @@ namespace Azure.Core.Pipeline
         /// </summary>
         public HttpPipelineTransportOptions()
         {
-            ClientCertificates = new List<ClientCertificate>();
+            ClientCertificates = new List<X509Certificate2>();
         }
 
         /// <summary>
@@ -28,6 +29,6 @@ namespace Azure.Core.Pipeline
         /// The client certificate collection that will be configured for the transport.
         /// </summary>
         /// <value></value>
-        public IList<ClientCertificate> ClientCertificates {get;}
+        public IList<X509Certificate2> ClientCertificates {get;}
     }
 }

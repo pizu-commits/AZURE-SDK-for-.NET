@@ -23,13 +23,13 @@ namespace Azure.Security.ConfidentialLedger
 
         /// <summary> Initializes a new instance of ConfidentialLedgerClient. </summary>
         /// <param name="ledgerUri"> The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. </param>
-        /// <param name="clientCertificate"> A credential used to authenticate to an Azure Service. </param>
+        /// <param name="clientCertificate"> A <see cref="X509Certificate2"/> used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
-        public ConfidentialLedgerClient(Uri ledgerUri, ClientCertificate clientCertificate, ConfidentialLedgerClientOptions options = null)
+        public ConfidentialLedgerClient(Uri ledgerUri, X509Certificate2 clientCertificate, ConfidentialLedgerClientOptions options = null)
             : this(ledgerUri, clientCertificate: clientCertificate, options: options, identityServiceClient: null)
         { }
 
-        internal ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential = null, ClientCertificate clientCertificate = null, ConfidentialLedgerClientOptions options = null, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
+        internal ConfidentialLedgerClient(Uri ledgerUri, TokenCredential credential = null, X509Certificate2 clientCertificate = null, ConfidentialLedgerClientOptions options = null, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
         {
             if (ledgerUri == null)
             {

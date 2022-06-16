@@ -390,9 +390,9 @@ namespace Azure.Core.Pipeline
                             sslPolicyErrors));
             }
             // Set ClientCertificates
-            foreach (var cred in options.ClientCertificates)
+            foreach (var cert in options.ClientCertificates)
             {
-                request.ClientCertificates.Add(cred.Certificate);
+                request.ClientCertificates.Add(cert);
             }
         }
     }

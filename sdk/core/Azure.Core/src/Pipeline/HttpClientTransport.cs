@@ -570,11 +570,11 @@ namespace Azure.Core.Pipeline
                             sslPolicyErrors));
             }
             // Set ClientCertificates
-             foreach (var cred in options.ClientCertificates)
+             foreach (var cert in options.ClientCertificates)
             {
                httpHandler.SslOptions ??= new System.Net.Security.SslClientAuthenticationOptions();
                httpHandler.SslOptions.ClientCertificates ??= new X509CertificateCollection();
-               httpHandler.SslOptions.ClientCertificates!.Add(cred.Certificate);
+               httpHandler.SslOptions.ClientCertificates!.Add(cert);
             }
 #pragma warning restore CA1416 // 'X509Certificate2' is unsupported on 'browser'
             return httpHandler;
@@ -598,9 +598,9 @@ namespace Azure.Core.Pipeline
                 };
             }
             // Set ClientCertificates
-            foreach (var cred in options.ClientCertificates)
+            foreach (var cert in options.ClientCertificates)
             {
-               httpHandler.ClientCertificates.Add(cred.Certificate);
+               httpHandler.ClientCertificates.Add(cert);
             }
             return httpHandler;
         }

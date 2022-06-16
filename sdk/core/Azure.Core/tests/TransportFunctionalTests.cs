@@ -1098,7 +1098,7 @@ namespace Azure.Core.Tests
                 options.ServerCertificateCustomValidationCallback = args => true;
                 if (setClientCertificate)
                 {
-                    options.ClientCertificates.Add(new ClientCertificate(clientCert));
+                    options.ClientCertificates.Add(clientCert);
                 }
                 var transport = GetTransport(true, options);
                 Request request = transport.CreateRequest();

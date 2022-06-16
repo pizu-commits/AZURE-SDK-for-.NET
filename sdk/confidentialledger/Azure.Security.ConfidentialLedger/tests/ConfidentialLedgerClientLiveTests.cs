@@ -23,7 +23,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
         private ConfidentialLedgerIdentityServiceClient IdentityClient;
         private HashSet<string> TestsNotRequiringLedgerEntry = new() { "GetEnclaveQuotes", "GetConsortiumMembers", "GetConstitution" };
 
-        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync)
+        public ConfidentialLedgerClientLiveTests(bool isAsync) : base(isAsync, RecordedTestMode.Live)
         {
             // https://github.com/Azure/autorest.csharp/issues/1214
             TestDiagnostics = false;
@@ -65,7 +65,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
             var certClient = InstrumentClient(new ConfidentialLedgerClient(
                 TestEnvironment.ConfidentialLedgerUrl,
                 credential: null,
-                clientCertificate: new ClientCertificate(_cert),
+                clientCertificate: _cert,
                 options: InstrumentClientOptions(_options),
                 IdentityClient));
             var result = await certClient.GetConstitutionAsync(new());
