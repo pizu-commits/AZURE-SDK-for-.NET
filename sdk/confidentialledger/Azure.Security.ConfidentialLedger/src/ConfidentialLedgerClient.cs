@@ -43,7 +43,7 @@ namespace Azure.Security.ConfidentialLedger
                     throw new ArgumentNullException(nameof(credential));
             }
             var actualOptions = options ?? new ConfidentialLedgerClientOptions();
-            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions, identityServiceClient).GetAwaiter().GetResult();
+            var transportOptions = GetIdentityServerTlsCertAndTrust(ledgerUri, actualOptions, identityServiceClient);
             if (clientCertificate != null)
             {
                 transportOptions.ClientCertificates.Add(clientCertificate);
@@ -62,50 +62,32 @@ namespace Azure.Security.ConfidentialLedger
             _apiVersion = actualOptions.Version;
         }
 
-        /// <summary> Posts a new entry to the ledger. A sub-ledger id may optionally be specified. </summary>
-        /// <remarks>
+        /// <summary> Posts a new entry to the ledger. A collection id may optionally be specified. </summary>
+         /// <remarks>
         /// Schema for <c>Request Body</c>:
-        /// <list type="table">
-        ///   <listheader>
-        ///     <term>Name</term>
-        ///     <term>Type</term>
-        ///     <term>Required</term>
-        ///     <term>Description</term>
-        ///   </listheader>
-        ///   <item>
-        ///     <term>contents</term>
-        ///     <term>string</term>
-        ///     <term>Yes</term>
-        ///     <term> Contents of the ledger entry. </term>
-        ///   </item>
-        ///   <item>
-        ///     <term>subLedgerId</term>
-        ///     <term>string</term>
-        ///     <term></term>
-        ///     <term> Identifier for sub-ledgers. </term>
-        ///   </item>
-        ///   <item>
-        ///     <term>transactionId</term>
-        ///     <term>string</term>
-        ///     <term></term>
-        ///     <term> A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. </term>
-        ///   </item>
-        /// </list>
+        /// <code>{
+        ///   contents: string (required),
+        ///   collectionId: {
+        ///     collectionId: string (required)
+        ///   },
+        ///   transactionId: string
+        /// }
+        /// </code>
         /// </remarks>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="subLedgerId"> The sub-ledger id. </param>
+        /// <param name="collectionId"> The collection id. </param>
         /// <param name="waitForCompletion"> If <c>true</c>, the <see cref="PostLedgerEntryOperation"/> will not be returned until the ledger entry is committed.
         /// If <c>false</c>,<see cref="Operation.WaitForCompletionResponse(System.Threading.CancellationToken)"/> must be called to ensure the operation has completed.</param>
         /// <param name="context"> The request context. </param>
 #pragma warning disable AZC0002
         public virtual PostLedgerEntryOperation PostLedgerEntry(
             RequestContent content,
-            string subLedgerId = null,
+            string collectionId = null,
             bool waitForCompletion = true,
             RequestContext context = null)
 #pragma warning restore AZC0002
         {
-            var response = PostLedgerEntry(content, subLedgerId, context);
+            var response = PostLedgerEntry(content, collectionId, context);
             response.Headers.TryGetValue(ConfidentialLedgerConstants.TransactionIdHeaderName, out string transactionId);
 
             var operation = new PostLedgerEntryOperation(this, transactionId);
@@ -116,38 +98,20 @@ namespace Azure.Security.ConfidentialLedger
             return operation;
         }
 
-        /// <summary> Posts a new entry to the ledger. A sub-ledger id may optionally be specified. </summary>
+        /// <summary> Posts a new entry to the ledger. A collection id may optionally be specified. </summary>
         /// <remarks>
         /// Schema for <c>Request Body</c>:
-        /// <list type="table">
-        ///   <listheader>
-        ///     <term>Name</term>
-        ///     <term>Type</term>
-        ///     <term>Required</term>
-        ///     <term>Description</term>
-        ///   </listheader>
-        ///   <item>
-        ///     <term>contents</term>
-        ///     <term>string</term>
-        ///     <term>Yes</term>
-        ///     <term> Contents of the ledger entry. </term>
-        ///   </item>
-        ///   <item>
-        ///     <term>subLedgerId</term>
-        ///     <term>string</term>
-        ///     <term></term>
-        ///     <term> Identifier for sub-ledgers. </term>
-        ///   </item>
-        ///   <item>
-        ///     <term>transactionId</term>
-        ///     <term>string</term>
-        ///     <term></term>
-        ///     <term> A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. </term>
-        ///   </item>
-        /// </list>
+        /// <code>{
+        ///   contents: string (required),
+        ///   collectionId: {
+        ///     collectionId: string (required)
+        ///   },
+        ///   transactionId: string
+        /// }
+        /// </code>
         /// </remarks>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="subLedgerId"> The sub-ledger id. </param>
+        /// <param name="collectionId"> The collection id. </param>
         /// <param name="waitForCompletion"> If <c>true</c>, the <see cref="PostLedgerEntryOperation"/>
         /// will automatically poll for status until the ledger entry is committed before it is returned.
         /// If <c>false</c>,<see cref="Operation.WaitForCompletionResponseAsync(System.Threading.CancellationToken)"/>
@@ -156,12 +120,12 @@ namespace Azure.Security.ConfidentialLedger
 #pragma warning disable AZC0002
         public virtual async Task<PostLedgerEntryOperation> PostLedgerEntryAsync(
             RequestContent content,
-            string subLedgerId = null,
+            string collectionId = null,
             bool waitForCompletion = true,
             RequestContext context = null)
 #pragma warning restore AZC0002
         {
-            var response = await PostLedgerEntryAsync(content, subLedgerId, context).ConfigureAwait(false);
+            var response = await PostLedgerEntryAsync(content, collectionId, context).ConfigureAwait(false);
             response.Headers.TryGetValue(ConfidentialLedgerConstants.TransactionIdHeaderName, out string transactionId);
 
             var operation = new PostLedgerEntryOperation(this, transactionId);
@@ -172,14 +136,14 @@ namespace Azure.Security.ConfidentialLedger
             return operation;
         }
 
-        internal static async Task<HttpPipelineTransportOptions> GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
+        internal static HttpPipelineTransportOptions GetIdentityServerTlsCertAndTrust(Uri ledgerUri, ConfidentialLedgerClientOptions options, ConfidentialLedgerIdentityServiceClient identityServiceClient = null)
         {
             var identityClient = identityServiceClient ??
                 new ConfidentialLedgerIdentityServiceClient(new Uri("https://identity.confidential-ledger.core.azure.com"), options);
 
             // Get the ledger's  TLS certificate for our ledger.
             var ledgerId = ledgerUri.Host.Substring(0, ledgerUri.Host.IndexOf('.'));
-            Response response = await identityClient.GetLedgerIdentityAsync(ledgerId, new()).ConfigureAwait(false);
+            Response response = identityClient.GetLedgerIdentity(ledgerId, new());
 
             // extract the ECC PEM value from the response.
             var eccPem = JsonDocument.Parse(response.Content)

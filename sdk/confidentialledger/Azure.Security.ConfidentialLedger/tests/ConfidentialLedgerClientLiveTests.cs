@@ -14,7 +14,7 @@ using NUnit.Framework;
 
 namespace Azure.Security.ConfidentialLedger.Tests
 {
-    [LiveOnly]
+    // [LiveOnly]
     public class ConfidentialLedgerClientLiveTests : RecordedTestBase<ConfidentialLedgerEnvironment>
     {
         private TokenCredential Credential;
@@ -38,13 +38,14 @@ namespace Azure.Security.ConfidentialLedger.Tests
                     TestEnvironment.ConfidentialLedgerIdentityUrl,
                     InstrumentClientOptions(_options)));
 
+            _options.Diagnostics.IsLoggingContentEnabled = true;
+
             Client = InstrumentClient(
                 new ConfidentialLedgerClient(
                     TestEnvironment.ConfidentialLedgerUrl,
                     Credential,
                     clientCertificate: null,
-                    options: InstrumentClientOptions(_options),
-                    IdentityClient));
+                    options: InstrumentClientOptions(_options)));
         }
 
         public async Task GetUser(string objId)
@@ -66,8 +67,7 @@ namespace Azure.Security.ConfidentialLedger.Tests
                 TestEnvironment.ConfidentialLedgerUrl,
                 credential: null,
                 clientCertificate: _cert,
-                options: InstrumentClientOptions(_options),
-                IdentityClient));
+                options: InstrumentClientOptions(_options)));
             var result = await certClient.GetConstitutionAsync(new());
             var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
 
