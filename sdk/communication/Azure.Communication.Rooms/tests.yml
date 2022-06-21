@@ -13,6 +13,6 @@ extends:
           - $(sub-config-communication-services-cloud-test-resources-net)
       Int:
         SubscriptionConfigurations:
-          - $(communication-livetest-rooms-int)
+          - $(sub-config-communication-int-test-resources-common)
           - $(sub-config-communication-int-test-resources-net)
     Clouds: Public,Int

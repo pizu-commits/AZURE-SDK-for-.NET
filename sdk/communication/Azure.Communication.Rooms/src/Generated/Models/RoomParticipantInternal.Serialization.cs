@@ -8,13 +8,15 @@
 using System.Text.Json;
 using Azure.Core;
 
-namespace Azure.Communication.Rooms.Models
+namespace Azure.Communication.Rooms
 {
     internal partial class RoomParticipantInternal : IUtf8JsonSerializable
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            writer.WritePropertyName("communicationIdentifier");
+            writer.WriteObjectValue(CommunicationIdentifier);
             if (Optional.IsDefined(Role))
             {
                 writer.WritePropertyName("role");
@@ -25,16 +27,22 @@ namespace Azure.Communication.Rooms.Models
 
         internal static RoomParticipantInternal DeserializeRoomParticipantInternal(JsonElement element)
         {
+            CommunicationIdentifierModel communicationIdentifier = default;
             Optional<string> role = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("communicationIdentifier"))
+                {
+                    communicationIdentifier = CommunicationIdentifierModel.DeserializeCommunicationIdentifierModel(property.Value);
+                    continue;
+                }
                 if (property.NameEquals("role"))
                 {
                     role = property.Value.GetString();
                     continue;
                 }
             }
-            return new RoomParticipantInternal(role.Value);
+            return new RoomParticipantInternal(communicationIdentifier, role.Value);
         }
     }
 }

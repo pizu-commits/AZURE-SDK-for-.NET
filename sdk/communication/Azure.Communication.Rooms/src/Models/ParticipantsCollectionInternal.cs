@@ -5,8 +5,8 @@ using Azure.Core;
 
 namespace Azure.Communication.Rooms
 {
-    [CodeGenModel("RoomParticipant")]
-    internal partial class RoomParticipantInternal
+    [CodeGenModel("ParticipantsCollection")]
+    internal partial class ParticipantsCollectionInternal
     {
     }
 }

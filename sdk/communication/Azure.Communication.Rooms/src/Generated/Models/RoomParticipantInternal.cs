@@ -5,23 +5,37 @@
 
 #nullable disable
 
-namespace Azure.Communication.Rooms.Models
+using System;
+
+namespace Azure.Communication.Rooms
 {
     /// <summary> A participant of the room. </summary>
     internal partial class RoomParticipantInternal
     {
         /// <summary> Initializes a new instance of RoomParticipantInternal. </summary>
-        public RoomParticipantInternal()
+        /// <param name="communicationIdentifier"> Identifies a participant in Azure Communication services. A participant is, for example, an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="communicationIdentifier"/> is null. </exception>
+        public RoomParticipantInternal(CommunicationIdentifierModel communicationIdentifier)
         {
+            if (communicationIdentifier == null)
+            {
+                throw new ArgumentNullException(nameof(communicationIdentifier));
+            }
+
+            CommunicationIdentifier = communicationIdentifier;
         }
 
         /// <summary> Initializes a new instance of RoomParticipantInternal. </summary>
+        /// <param name="communicationIdentifier"> Identifies a participant in Azure Communication services. A participant is, for example, an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set. </param>
         /// <param name="role"> Role Name. </param>
-        internal RoomParticipantInternal(string role)
+        internal RoomParticipantInternal(CommunicationIdentifierModel communicationIdentifier, string role)
         {
+            CommunicationIdentifier = communicationIdentifier;
             Role = role;
         }
 
+        /// <summary> Identifies a participant in Azure Communication services. A participant is, for example, an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set. </summary>
+        public CommunicationIdentifierModel CommunicationIdentifier { get; set; }
         /// <summary> Role Name. </summary>
         public string Role { get; set; }
     }

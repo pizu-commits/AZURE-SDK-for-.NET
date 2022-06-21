@@ -15,9 +15,6 @@ namespace Azure.Communication.Rooms.Tests
 {
     public class RoomsClientLiveTestBase : RecordedTestBase<RoomsClientTestEnvironment>
     {
-        protected const string NON_EXISTING_ROOM_ID = "1234567";
-        protected static DateTimeOffset VALID_FROM = new DateTimeOffset(2022, 06, 01, 00, 00, 00, new TimeSpan(0, 0, 0));
-        protected static DateTimeOffset VALID_UNTIL = VALID_FROM.AddDays(30);
         public RoomsClientLiveTestBase(bool isAsync) : base(isAsync)
         {
             SanitizedHeaders.Add("x-ms-content-sha256");
@@ -26,7 +23,7 @@ namespace Azure.Communication.Rooms.Tests
         }
         protected RoomsClient CreateInstrumentedRoomsClient(ServiceVersion version)
         {
-            var connectionString = TestEnvironment.LiveTestStaticConnectionString;
+            var connectionString = TestEnvironment.LiveTestDynamicConnectionString;
             RoomsClient client = new RoomsClient(connectionString, CreateRoomsClientOptionsWithCorrelationVectorLogs(version));
 
             #region Snippet:Azure_Communication_Rooms_Tests_Samples_CreateRoomsClient
@@ -45,7 +42,7 @@ namespace Azure.Communication.Rooms.Tests
         protected CommunicationIdentityClient CreateInstrumentedCommunicationIdentityClient()
             => InstrumentClient(
                 new CommunicationIdentityClient(
-                    TestEnvironment.LiveTestStaticConnectionString,
+                    TestEnvironment.LiveTestDynamicConnectionString,
                     InstrumentClientOptions(new CommunicationIdentityClientOptions(CommunicationIdentityClientOptions.ServiceVersion.V2021_03_07))));
 
         private RoomsClientOptions CreateRoomsClientOptionsWithCorrelationVectorLogs(ServiceVersion version)
