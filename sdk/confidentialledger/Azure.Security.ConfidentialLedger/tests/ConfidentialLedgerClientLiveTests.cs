@@ -38,8 +38,6 @@ namespace Azure.Security.ConfidentialLedger.Tests
                     TestEnvironment.ConfidentialLedgerIdentityUrl,
                     InstrumentClientOptions(_options)));
 
-            _options.Diagnostics.IsLoggingContentEnabled = true;
-
             Client = InstrumentClient(
                 new ConfidentialLedgerClient(
                     TestEnvironment.ConfidentialLedgerUrl,
