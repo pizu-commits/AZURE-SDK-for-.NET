@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Core;
@@ -14,7 +16,6 @@ using NUnit.Framework;
 
 namespace Azure.Security.ConfidentialLedger.Tests
 {
-    [LiveOnly]
     public class ConfidentialLedgerClientLiveTests : RecordedTestBase<ConfidentialLedgerEnvironment>
     {
         private TokenCredential Credential;
@@ -55,10 +56,46 @@ namespace Azure.Security.ConfidentialLedger.Tests
             Assert.That(stringResult, Does.Contain(objId));
         }
 
+        public async Task PostRecordingIdTransport(string recordingId, string ledgerId, string pemValue, string pemKey)
+        {
+            try
+            {
+                var url = "http://localhost:5000/Admin/SetRecordingOptions";
+                HttpClient client = new HttpClient();
+
+                var upstreamRequest = new HttpRequestMessage();
+                upstreamRequest.RequestUri = new Uri(url);
+                upstreamRequest.Method = HttpMethod.Post;
+                upstreamRequest.Headers.Add("x-recording-id", recordingId);
+
+                var json = string.Format("{{ \"Transport\": {{\"LedgerId\": \"{0}\", \"Certificates\": [ {{ \"PemValue\": \"{1}\", \"PemKey\": \"{2}\" }} ]}}}}", ledgerId, pemValue.Replace(Environment.NewLine, ""), pemKey.Replace(Environment.NewLine, ""));
+                byte[] byteArray = Encoding.UTF8.GetBytes(json);
+                upstreamRequest.Content = new StringContent(json,
+                                                    Encoding.UTF8,
+                                                    "application/json");
+
+                var result = await client.SendAsync(upstreamRequest);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception("We didn't successfully post certificate info.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
 #if NET6_0_OR_GREATER
         [RecordedTest]
         public async Task AuthWithClientCert()
         {
+            // these next 3 lines are a workaround that should be baked into an attribute or the test class.
+            var ledgerUri = TestEnvironment.ConfidentialLedgerUrl;
+            var ledgerId = ledgerUri.Host.Substring(0, ledgerUri.Host.IndexOf('.'));
+
             var _cert = X509Certificate2.CreateFromPem(TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
             _cert = new X509Certificate2(_cert.Export(X509ContentType.Pfx));
             var certClient = InstrumentClient(new ConfidentialLedgerClient(
@@ -66,6 +103,8 @@ namespace Azure.Security.ConfidentialLedger.Tests
                 credential: null,
                 clientCertificate: _cert,
                 options: InstrumentClientOptions(_options)));
+            await PostRecordingIdTransport(this.Recording.RecordingId, ledgerId, TestEnvironment.ClientPEM, TestEnvironment.ClientPEMPk);
+
             var result = await certClient.GetConstitutionAsync(new());
             var stringResult = new StreamReader(result.ContentStream).ReadToEnd();
 
