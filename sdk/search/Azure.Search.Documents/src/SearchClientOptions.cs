@@ -25,7 +25,7 @@ namespace Azure.Search.Documents
         /// </summary>
         public enum ServiceVersion
         {
-            #pragma warning disable CA1707 // Identifiers should not contain underscores
+#pragma warning disable CA1707 // Identifiers should not contain underscores
             /// <summary>
             /// The 2020_06_30 version of the Azure Cognitive Search service.
             /// </summary>
@@ -35,7 +35,7 @@ namespace Azure.Search.Documents
             /// The 2021_04_30_Preview version of the Azure Cognitive Search service.
             /// </summary>
             V2021_04_30_Preview = 2,
-            #pragma warning restore CA1707
+#pragma warning restore CA1707
         }
 
         /// <summary>
@@ -65,6 +65,11 @@ namespace Azure.Search.Documents
         /// will be used if no value is provided.
         /// </summary>
         public ObjectSerializer Serializer { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the token Scope.
+        /// </summary>
+        public string AuthenticationScope { get; set; } = "https://search.azure.com/.default";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchClientOptions"/>
@@ -122,7 +127,7 @@ namespace Azure.Search.Documents
             Debug.Assert(credential != null);
             return HttpPipelineBuilder.Build(
                 options: this,
-                perCallPolicies: new[] { new BearerTokenAuthenticationPolicy(credential, Constants.CredentialScopeName) },
+                perCallPolicies: new[] { new BearerTokenAuthenticationPolicy(credential, AuthenticationScope) },
                 perRetryPolicies: Array.Empty<HttpPipelinePolicy>(),
                 responseClassifier: null);
         }
