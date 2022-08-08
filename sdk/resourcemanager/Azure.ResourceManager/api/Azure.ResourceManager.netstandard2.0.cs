@@ -83,6 +83,8 @@ namespace Azure.ResourceManager
     public abstract partial class ArmOperation<T> : Azure.Operation<T>
     {
         protected ArmOperation() { }
+        public virtual T GetCurrentStatus(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.ValueTask<T> GetCurrentStatusAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
     }
     public abstract partial class ArmResource
     {
