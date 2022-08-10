@@ -5,87 +5,64 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Transactions;
 using Azure.Data.Batch.Models;
 
 namespace Azure.Data.Batch
 {
     public class TaskManager
     {
-        private JobClient jobClient;
+        private const int maxTaskCount = 100;
+
         private TaskClient taskClient;
         private string jobId;
-        private Queue<Task> pendingTasks = new Queue<Task>();
-        private List<Task> activeTasks = new List<Task>();
-        private List<Task> completedTasks = new List<Task>();
-        private int maxParrelelTasks;
+        private Queue<Task> pendingTasks;
+        private List<TaskSubmitter> activeSubmitters = new List<TaskSubmitter>();
+        private int maxSubmitters;
 
-        public TaskManager(JobClient jobClient, TaskClient taskClient, string jobId, IEnumerable<Task> tasks, int maxParrelelTasks = 0)
+        public TaskManager(TaskClient taskClient, string jobId, IEnumerable<Task> tasks, int maxParralelSubmitters = 1)
         {
-            this.jobClient = jobClient;
             this.taskClient = taskClient;
             this.jobId = jobId;
-            this.maxParrelelTasks = maxParrelelTasks;
-
-            foreach (var task in tasks)
-            {
-                pendingTasks.Enqueue(task);
-            }
+            this.maxSubmitters = maxParralelSubmitters;
+            this.pendingTasks = new Queue<Task>(tasks);
         }
 
-        public async System.Threading.Tasks.Task Start()
+        public void Start()
         {
-            StartTasks();
+            AddSubmitters();
 
             while (IsFinished() == false)
             {
-                await System.Threading.Tasks.Task.Delay(5000).ConfigureAwait(false);
-
-                UpdateTasks();
-                StartTasks();
+                //await System.Threading.Tasks.Task.Delay(5000).ConfigureAwait(false);
+                AddSubmitters();
             }
-
-            return;
         }
 
-        private void UpdateTasks()
+        private void AddSubmitters()
         {
-            var tasks = taskClient.ListTasks(jobId);
-
-            foreach (Task task in tasks)
+            while (pendingTasks.Count > 0 && activeSubmitters.Where(s => s.IsFinished() == false).Count() < maxSubmitters)
             {
-                Task activeTask = activeTasks.FirstOrDefault(t => t.Id == task.Id);
-
-                if (activeTask != null && task.State == TaskState.Completed)
-                {
-                    CompleteTask(activeTask);
-                }
+                AddSubmitter();
             }
         }
 
-        private void StartTasks()
+        private void AddSubmitter()
         {
-            while (pendingTasks.Count > 0 && (maxParrelelTasks == 0 || activeTasks.Count < maxParrelelTasks))
+            List<Task> tasksToAdd = new List<Task>();
+            Console.WriteLine("New submitter");
+            while (tasksToAdd.Count < maxTaskCount && pendingTasks.Count > 0)
             {
                 Task task = pendingTasks.Dequeue();
-                StartTask(task);
+                tasksToAdd.Add(task);
+                //Console.WriteLine($"Adding task {task.Id}");
             }
-        }
-
-        private void StartTask(Task task)
-        {
-            activeTasks.Add(task);
-            taskClient.AddTask(jobId, task);
-        }
-
-        private void CompleteTask(Task task)
-        {
-            completedTasks.Add(task);
-            activeTasks.Remove(task);
+            activeSubmitters.Add(new TaskSubmitter(taskClient, jobId, tasksToAdd));
         }
 
         private bool IsFinished()
         {
-            return pendingTasks.Count == 0 && activeTasks.Count == 0;
+            return pendingTasks.Count == 0 && activeSubmitters.Any(s => s.IsFinished() == false);
         }
     }
 }
