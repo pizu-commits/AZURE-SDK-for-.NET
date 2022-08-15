@@ -34,7 +34,6 @@ namespace Azure.Data.Batch
 
             while (IsFinished() == false)
             {
-                //await System.Threading.Tasks.Task.Delay(5000).ConfigureAwait(false);
                 AddSubmitters();
             }
         }
