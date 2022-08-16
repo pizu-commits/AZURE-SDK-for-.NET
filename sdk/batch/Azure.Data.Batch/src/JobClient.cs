@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Azure.Core;
@@ -67,6 +68,11 @@ namespace Azure.Data.Batch
         public virtual async System.Threading.Tasks.Task<Response<JobHeaders>> DeleteJobAsync(string jobId)
         {
             return await HandleDeleteAsync<JobHeaders>(jobId, DeleteAsync).ConfigureAwait(false);
+        }
+
+        public virtual Pageable<Job> ListJobs()
+        {
+            return HandleList(GetJobs, Job.DeserializeJob);
         }
     }
 }

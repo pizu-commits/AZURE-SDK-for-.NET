@@ -43,6 +43,22 @@ namespace Azure.Data.Batch
             return HandleResponse(response, deserialize);
         }
 
+        protected internal Pageable<T> HandleList<T>(Func<string, string, string, int?, int?, Guid?, bool?, DateTimeOffset?, RequestContext, Pageable<BinaryData>> operation, Func<JsonElement, T> deserialize, string filter = null, string select = null, string expand = null, int? maxResults = null, int? timeout = null, Guid? clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? ocpDate = null, RequestContext context = null)
+        {
+            Pageable<BinaryData> data = operation(filter, select, expand, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDate, context);
+            return PageableHelpers.Select(data, response =>
+            {
+                JsonElement root = JsonDocument.Parse(response.Content).RootElement;
+                List<T> items = new List<T>();
+                foreach (JsonElement item in root.GetProperty("value").EnumerateArray())
+                {
+                    items.Add(deserialize(item));
+                }
+
+                return items;
+            });
+        }
+
         protected internal Pageable<T> HandleList<T>(string parentId, Func<string, string, string, string, int?, int?, Guid?, bool?, DateTimeOffset?, RequestContext, Pageable<BinaryData>> operation, Func<JsonElement, T> deserialize, string filter = null, string select = null, string expand = null, int? maxResults = null, int? timeout = null, Guid? clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? ocpDate = null, RequestContext context = null)
         {
             Pageable<BinaryData> data = operation(parentId, filter, select, expand, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDate, context);
