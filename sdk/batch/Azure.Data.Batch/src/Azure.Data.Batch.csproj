@@ -19,6 +19,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Core.Experimental" />
+    <PackageReference Include="Azure.Storage.Blobs" />
   </ItemGroup>
   <ItemGroup>
     <EditorConfigFiles Remove="E:\hpc\azure-sdk-for-net\sdk\batch\Azure.Data.Batch\src\.editorconfig" />
