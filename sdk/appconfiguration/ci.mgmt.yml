@@ -4,10 +4,12 @@ trigger: none none none none none none none none none none none none none none n
 
 pr: none none none none none none none none none none none none none none none none none none none none none none none none none none
 
+# These comments should stay.
+
 extends:
   template: /eng/pipelines/templates/stages/archetype-sdk-client.yml
   parameters:
-    ServiceDirectory: search
+    ServiceDirectory: appconfiguration
     Artifacts:
-    - name: Azure.ResourceManager.Search
-      safeName: AzureResourceManagerSearch
+    - name: Azure.ResourceManager.AppConfiguration
+      safeName: AzureResourceManagerAppConfiguration

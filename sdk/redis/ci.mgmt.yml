@@ -7,7 +7,7 @@ pr: none none none none none none none none none none none none none none none n
 extends:
   template: /eng/pipelines/templates/stages/archetype-sdk-client.yml
   parameters:
-    ServiceDirectory: search
+    ServiceDirectory: redis
     Artifacts:
-    - name: Azure.ResourceManager.Search
-      safeName: AzureResourceManagerSearch
+    - name: Azure.ResourceManager.Redis
+      safeName: AzureResourceManagerRedis

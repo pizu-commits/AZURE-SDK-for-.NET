@@ -89,6 +89,11 @@ try {
         Invoke-Block {
             & dotnet msbuild $PSScriptRoot/../service.proj /restore /t:GenerateTests /p:SDKType=$SDKType /p:ServiceDirectory=$ServiceDirectory
         }
+
+        Write-Host "Re-generating ci.mgmt.yml"
+        Invoke-Block {
+            & $PSScriptRoot/Update-Mgmt-CI.ps1
+        }
     }
 
     Write-Host "Re-generating snippets"
