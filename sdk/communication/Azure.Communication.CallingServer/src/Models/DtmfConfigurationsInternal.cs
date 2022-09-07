@@ -10,6 +10,6 @@ namespace Azure.Communication.CallingServer
     internal partial class DtmfConfigurationsInternal
     {
         [CodeGenMember("StopTones")]
-        public IList<Tone> StopTones { get; set; }
+        public IList<StopTones> StopTones { get; set; }
     }
 }

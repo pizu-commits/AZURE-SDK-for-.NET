@@ -11,12 +11,12 @@ using Azure.Core;
 namespace Azure.Communication.CallingServer
 {
     /// <summary> Options for DTMF recognition. </summary>
-    public partial class DtmfOptions
+    public partial class DtmfConfiguration
     {
-        /// <summary> Initializes a new instance of DtmfOptions. </summary>
-        public DtmfOptions()
+        /// <summary> Initializes a new instance of DtmfConfiguration. </summary>
+        public DtmfConfiguration()
         {
-            StopTones = new ChangeTrackingList<Tone>();
+            StopTones = new ChangeTrackingList<StopTones>();
         }
 
         /// <summary> Time to wait between DTMF inputs to stop recognizing. </summary>
@@ -24,6 +24,6 @@ namespace Azure.Communication.CallingServer
         /// <summary> Maximum number of DTMFs to be collected. </summary>
         public int? MaxTonesToCollect { get; set; }
         /// <summary> List of tones that will stop recognizing. </summary>
-        public IList<Tone> StopTones { get; }
+        public IList<StopTones> StopTones { get; }
     }
 }

@@ -10,15 +10,15 @@ using Azure.Core;
 
 namespace Azure.Communication.CallingServer
 {
-    internal partial class RecognizeOptionsInternal : IUtf8JsonSerializable
+    internal partial class RecognizeConfigurationInternal : IUtf8JsonSerializable
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
-            if (Optional.IsDefined(InterruptPrompt))
+            if (Optional.IsDefined(InterruptPromptAndStartRecognition))
             {
-                writer.WritePropertyName("interruptPrompt");
-                writer.WriteBooleanValue(InterruptPrompt.Value);
+                writer.WritePropertyName("interruptPromptAndStartRecognition");
+                writer.WriteBooleanValue(InterruptPromptAndStartRecognition.Value);
             }
             if (Optional.IsDefined(InitialSilenceTimeoutInSeconds))
             {
@@ -27,10 +27,10 @@ namespace Azure.Communication.CallingServer
             }
             writer.WritePropertyName("targetParticipant");
             writer.WriteObjectValue(TargetParticipant);
-            if (Optional.IsDefined(DtmfOptions))
+            if (Optional.IsDefined(DtmfConfiguration))
             {
-                writer.WritePropertyName("dtmfOptions");
-                writer.WriteObjectValue(DtmfOptions);
+                writer.WritePropertyName("dtmfConfiguration");
+                writer.WriteObjectValue(DtmfConfiguration);
             }
             writer.WriteEndObject();
         }

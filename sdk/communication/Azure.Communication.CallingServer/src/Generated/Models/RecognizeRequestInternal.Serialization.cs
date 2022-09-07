@@ -22,13 +22,13 @@ namespace Azure.Communication.CallingServer
                 writer.WritePropertyName("playPrompt");
                 writer.WriteObjectValue(PlayPrompt);
             }
-            if (Optional.IsDefined(InterruptCallMediaOperation))
+            if (Optional.IsDefined(StopCurrentOperations))
             {
-                writer.WritePropertyName("interruptCallMediaOperation");
-                writer.WriteBooleanValue(InterruptCallMediaOperation.Value);
+                writer.WritePropertyName("stopCurrentOperations");
+                writer.WriteBooleanValue(StopCurrentOperations.Value);
             }
-            writer.WritePropertyName("recognizeOptions");
-            writer.WriteObjectValue(RecognizeOptions);
+            writer.WritePropertyName("recognizeConfiguration");
+            writer.WriteObjectValue(RecognizeConfiguration);
             if (Optional.IsDefined(OperationContext))
             {
                 writer.WritePropertyName("operationContext");

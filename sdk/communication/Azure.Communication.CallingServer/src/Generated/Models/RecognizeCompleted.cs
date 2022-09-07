@@ -17,11 +17,8 @@ namespace Azure.Communication.CallingServer
 
         /// <summary> Initializes a new instance of RecognizeCompleted. </summary>
         /// <param name="operationContext"></param>
-        /// <param name="resultInformation"> Result information defines the code, subcodes and message. </param>
-        /// <param name="recognitionType">
-        /// Determines the sub-type pf the recognize operation.
-        /// In case of cancel operaion the this field is not set and is returned empty
-        /// </param>
+        /// <param name="resultInformation"></param>
+        /// <param name="recognitionType"> Determines the sub-type pf the recognize operation. </param>
         /// <param name="collectTonesResult"> Defines the result for RecognitionType = Dtmf. </param>
         /// <param name="version"> Used to determine the version of the event. </param>
         /// <param name="callConnectionId"> Call connection ID. </param>
@@ -43,7 +40,7 @@ namespace Azure.Communication.CallingServer
 
         /// <summary> Gets the operation context. </summary>
         public string OperationContext { get; }
-        /// <summary> Result information defines the code, subcodes and message. </summary>
+        /// <summary> Gets the result information. </summary>
         public ResultInformation ResultInformation { get; }
         /// <summary> Defines the result for RecognitionType = Dtmf. </summary>
         public CollectTonesResult CollectTonesResult { get; }

@@ -10,14 +10,14 @@ using System.ComponentModel;
 
 namespace Azure.Communication.CallingServer
 {
-    /// <summary> The Tone. </summary>
-    public readonly partial struct Tone : IEquatable<Tone>
+    /// <summary> The StopTones. </summary>
+    public readonly partial struct StopTones : IEquatable<StopTones>
     {
         private readonly string _value;
 
-        /// <summary> Initializes a new instance of <see cref="Tone"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="StopTones"/>. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
-        public Tone(string value)
+        public StopTones(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
@@ -40,49 +40,49 @@ namespace Azure.Communication.CallingServer
         private const string AsteriskValue = "asterisk";
 
         /// <summary> zero. </summary>
-        public static Tone Zero { get; } = new Tone(ZeroValue);
+        public static StopTones Zero { get; } = new StopTones(ZeroValue);
         /// <summary> one. </summary>
-        public static Tone One { get; } = new Tone(OneValue);
+        public static StopTones One { get; } = new StopTones(OneValue);
         /// <summary> two. </summary>
-        public static Tone Two { get; } = new Tone(TwoValue);
+        public static StopTones Two { get; } = new StopTones(TwoValue);
         /// <summary> three. </summary>
-        public static Tone Three { get; } = new Tone(ThreeValue);
+        public static StopTones Three { get; } = new StopTones(ThreeValue);
         /// <summary> four. </summary>
-        public static Tone Four { get; } = new Tone(FourValue);
+        public static StopTones Four { get; } = new StopTones(FourValue);
         /// <summary> five. </summary>
-        public static Tone Five { get; } = new Tone(FiveValue);
+        public static StopTones Five { get; } = new StopTones(FiveValue);
         /// <summary> six. </summary>
-        public static Tone Six { get; } = new Tone(SixValue);
+        public static StopTones Six { get; } = new StopTones(SixValue);
         /// <summary> seven. </summary>
-        public static Tone Seven { get; } = new Tone(SevenValue);
+        public static StopTones Seven { get; } = new StopTones(SevenValue);
         /// <summary> eight. </summary>
-        public static Tone Eight { get; } = new Tone(EightValue);
+        public static StopTones Eight { get; } = new StopTones(EightValue);
         /// <summary> nine. </summary>
-        public static Tone Nine { get; } = new Tone(NineValue);
+        public static StopTones Nine { get; } = new StopTones(NineValue);
         /// <summary> a. </summary>
-        public static Tone A { get; } = new Tone(AValue);
+        public static StopTones A { get; } = new StopTones(AValue);
         /// <summary> b. </summary>
-        public static Tone B { get; } = new Tone(BValue);
+        public static StopTones B { get; } = new StopTones(BValue);
         /// <summary> c. </summary>
-        public static Tone C { get; } = new Tone(CValue);
+        public static StopTones C { get; } = new StopTones(CValue);
         /// <summary> d. </summary>
-        public static Tone D { get; } = new Tone(DValue);
+        public static StopTones D { get; } = new StopTones(DValue);
         /// <summary> pound. </summary>
-        public static Tone Pound { get; } = new Tone(PoundValue);
+        public static StopTones Pound { get; } = new StopTones(PoundValue);
         /// <summary> asterisk. </summary>
-        public static Tone Asterisk { get; } = new Tone(AsteriskValue);
-        /// <summary> Determines if two <see cref="Tone"/> values are the same. </summary>
-        public static bool operator ==(Tone left, Tone right) => left.Equals(right);
-        /// <summary> Determines if two <see cref="Tone"/> values are not the same. </summary>
-        public static bool operator !=(Tone left, Tone right) => !left.Equals(right);
-        /// <summary> Converts a string to a <see cref="Tone"/>. </summary>
-        public static implicit operator Tone(string value) => new Tone(value);
+        public static StopTones Asterisk { get; } = new StopTones(AsteriskValue);
+        /// <summary> Determines if two <see cref="StopTones"/> values are the same. </summary>
+        public static bool operator ==(StopTones left, StopTones right) => left.Equals(right);
+        /// <summary> Determines if two <see cref="StopTones"/> values are not the same. </summary>
+        public static bool operator !=(StopTones left, StopTones right) => !left.Equals(right);
+        /// <summary> Converts a string to a <see cref="StopTones"/>. </summary>
+        public static implicit operator StopTones(string value) => new StopTones(value);
 
         /// <inheritdoc />
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => obj is Tone other && Equals(other);
+        public override bool Equals(object obj) => obj is StopTones other && Equals(other);
         /// <inheritdoc />
-        public bool Equals(Tone other) => string.Equals(_value, other._value, StringComparison.InvariantCultureIgnoreCase);
+        public bool Equals(StopTones other) => string.Equals(_value, other._value, StringComparison.InvariantCultureIgnoreCase);
 
         /// <inheritdoc />
         [EditorBrowsable(EditorBrowsableState.Never)]
