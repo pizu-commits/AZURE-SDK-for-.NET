@@ -35,7 +35,6 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
         private readonly Lazy<SessionMessageProcessor> _sessionMessageProcessor;
         private readonly Lazy<ServiceBusScaleMonitor> _scaleMonitor;
         private readonly ConcurrencyUpdateManager _concurrencyUpdateManager;
-        private readonly IDynamicTargetValueProvider _dynamicTargetValueProvider;
 
         // internal for testing
         internal volatile bool Disposed;
@@ -62,8 +61,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
             ILoggerFactory loggerFactory,
             bool singleDispatch,
             ServiceBusClientFactory clientFactory,
-            ConcurrencyManager concurrencyManager,
-            IDynamicTargetValueProvider dynamicTargetValueProvider)
+            ConcurrencyManager concurrencyManager)
         {
             _entityPath = entityPath;
             _isSessionsEnabled = isSessionsEnabled;
@@ -107,8 +105,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
                     loggerFactory,
                     clientFactory,
                     concurrencyManager,
-                    _serviceBusOptions,
-                    _dynamicTargetValueProvider
+                    _serviceBusOptions
                     ));
 
             _scopeFactory = new Lazy<EntityScopeFactory>(
@@ -124,8 +121,6 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 
             _details = new Lazy<string>(() => $"namespace='{_client.Value?.FullyQualifiedNamespace}', enityPath='{_entityPath}', singleDispatch='{_singleDispatch}', " +
                 $"isSessionsEnabled='{_isSessionsEnabled}', functionId='{_functionId}'");
-
-            _dynamicTargetValueProvider = dynamicTargetValueProvider;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
