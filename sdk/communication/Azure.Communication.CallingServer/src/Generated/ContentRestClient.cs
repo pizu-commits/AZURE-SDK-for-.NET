@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -255,6 +256,8 @@ namespace Azure.Communication.CallingServer
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
+            request.Headers.Add("Repeatability-Request-ID", "7f73f079-9f86-4ef9-825f-e0a6e0224e60");
+            request.Headers.Add("Repeatability-First-Sent", DateTime.UtcNow.ToString("ddd, dd MMM yyy HH:mm:ss 'GMT'"));
             var content = new Utf8JsonRequestContent();
             content.JsonWriter.WriteObjectValue(startCallRecording);
             request.Content = content;

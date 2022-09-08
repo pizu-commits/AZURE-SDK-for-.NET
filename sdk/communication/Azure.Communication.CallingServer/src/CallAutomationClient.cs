@@ -31,12 +31,12 @@ namespace Azure.Communication.CallingServer
         /// <param name="connectionString">Connection string acquired from the Azure Communication Services resource.</param>
         /// <param name="hackedTarget"></param>
 #pragma warning disable AZC0007 // DO provide a minimal constructor that takes only the parameters required to connect to the service.
-        public CallingServerClient(string connectionString, string hackedTarget = null)
+        public CallAutomationClient(string connectionString, string hackedTarget = null)
 #pragma warning restore AZC0007 // DO provide a minimal constructor that takes only the parameters required to connect to the service.
             : this(
-                  CallingServerClient.HackConnectionString(connectionString, hackedTarget),
-                  new CallingServerClientOptions(),
-                  CallingServerClient.GetAuthority(connectionString, hackedTarget))
+                  CallAutomationClient.HackConnectionString(connectionString, hackedTarget),
+                  new CallAutomationClientOptions(),
+                  CallAutomationClient.GetAuthority(connectionString, hackedTarget))
         { }
 
         /// <summary> Initializes a new instance of <see cref="CallAutomationClient"/>.</summary>
@@ -44,12 +44,12 @@ namespace Azure.Communication.CallingServer
         /// <param name="options">Client option exposing <see cref="ClientOptions.Diagnostics"/>, <see cref="ClientOptions.Retry"/>, <see cref="ClientOptions.Transport"/>, etc.</param>
         /// <param name="hackedTarget"></param>
 #pragma warning disable AZC0007 // DO provide a minimal constructor that takes only the parameters required to connect to the service.
-        public CallingServerClient(string connectionString, CallingServerClientOptions options, string hackedTarget = null)
+        public CallAutomationClient(string connectionString, CallAutomationClientOptions options, string hackedTarget = null)
 #pragma warning restore AZC0007 // DO provide a minimal constructor that takes only the parameters required to connect to the service.
             : this(
-                  CallingServerClient.HackConnectionString(connectionString, hackedTarget),
+                  CallAutomationClient.HackConnectionString(connectionString, hackedTarget),
                   Argument.CheckNotNull(options, nameof(options)),
-                  CallingServerClient.GetAuthority(connectionString, hackedTarget))
+                  CallAutomationClient.GetAuthority(connectionString, hackedTarget))
         { }
 
         /// <summary> Initializes a new instance of <see cref="CallAutomationClient"/>.</summary>
@@ -77,7 +77,7 @@ namespace Azure.Communication.CallingServer
 
         #region private constructors
 
-        private CallingServerClient(ConnectionString connectionString, CallingServerClientOptions options, string hackedTarget = null)
+        private CallAutomationClient(ConnectionString connectionString, CallAutomationClientOptions options, string hackedTarget = null)
             : this(connectionString.GetRequired("endpoint"), options.BuildHttpPipeline(connectionString, hackedTarget), options)
         { }
 
