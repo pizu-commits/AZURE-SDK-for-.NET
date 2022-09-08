@@ -36,7 +36,6 @@ trigger:
     - sdk/containerregistry/Azure.ResourceManager.ContainerRegistry
     - sdk/containerservice/Azure.ResourceManager.ContainerService
     - sdk/cosmosdb/Azure.ResourceManager.CosmosDB
-    - sdk/dashboard/Azure.ResourceManager.Dashboard
     - sdk/databox/Azure.ResourceManager.DataBox
     - sdk/databoxedge/Azure.ResourceManager.DataBoxEdge
     - sdk/datafactory/Azure.ResourceManager.DataFactory
@@ -53,7 +52,6 @@ trigger:
     - sdk/elasticsan/Azure.ResourceManager.ElasticSan
     - sdk/eventgrid/Azure.ResourceManager.EventGrid
     - sdk/eventhub/Azure.ResourceManager.EventHubs
-    - sdk/extendedlocation/Azure.ResourceManager.ExtendedLocation
     - sdk/extendedlocation/Azure.ResourceManager.ExtendedLocations
     - sdk/fluidrelay/Azure.ResourceManager.FluidRelay
     - sdk/frontdoor/Azure.ResourceManager.FrontDoor
@@ -70,7 +68,6 @@ trigger:
     - sdk/labservices/Azure.ResourceManager.LabServices
     - sdk/logic/Azure.ResourceManager.Logic
     - sdk/machinelearningservices/Azure.ResourceManager.MachineLearning
-    - sdk/machinelearningservices/Azure.ResourceManager.MachineLearningServices
     - sdk/managedserviceidentity/Azure.ResourceManager.ManagedServiceIdentities
     - sdk/managedservices/Azure.ResourceManager.ManagedServices
     - sdk/maps/Azure.ResourceManager.Maps
@@ -156,7 +153,6 @@ pr:
     - sdk/containerregistry/Azure.ResourceManager.ContainerRegistry
     - sdk/containerservice/Azure.ResourceManager.ContainerService
     - sdk/cosmosdb/Azure.ResourceManager.CosmosDB
-    - sdk/dashboard/Azure.ResourceManager.Dashboard
     - sdk/databox/Azure.ResourceManager.DataBox
     - sdk/databoxedge/Azure.ResourceManager.DataBoxEdge
     - sdk/datafactory/Azure.ResourceManager.DataFactory
@@ -173,7 +169,6 @@ pr:
     - sdk/elasticsan/Azure.ResourceManager.ElasticSan
     - sdk/eventgrid/Azure.ResourceManager.EventGrid
     - sdk/eventhub/Azure.ResourceManager.EventHubs
-    - sdk/extendedlocation/Azure.ResourceManager.ExtendedLocation
     - sdk/extendedlocation/Azure.ResourceManager.ExtendedLocations
     - sdk/fluidrelay/Azure.ResourceManager.FluidRelay
     - sdk/frontdoor/Azure.ResourceManager.FrontDoor
@@ -190,7 +185,6 @@ pr:
     - sdk/labservices/Azure.ResourceManager.LabServices
     - sdk/logic/Azure.ResourceManager.Logic
     - sdk/machinelearningservices/Azure.ResourceManager.MachineLearning
-    - sdk/machinelearningservices/Azure.ResourceManager.MachineLearningServices
     - sdk/managedserviceidentity/Azure.ResourceManager.ManagedServiceIdentities
     - sdk/managedservices/Azure.ResourceManager.ManagedServices
     - sdk/maps/Azure.ResourceManager.Maps
