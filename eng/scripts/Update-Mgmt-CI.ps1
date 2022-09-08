@@ -16,7 +16,8 @@ function Update-CIFile() {
             Continue
         }
         if($line.StartsWith("trigger:") -or $line.StartsWith("pr:")) {
-            $newLines.Add("$line none") | Out-Null
+            $prefix = $line.Substring(0, $line.IndexOf(":") + 1)
+            $newLines.Add("$prefix none") | Out-Null
             $shouldRemove = $true
             Continue
         }
