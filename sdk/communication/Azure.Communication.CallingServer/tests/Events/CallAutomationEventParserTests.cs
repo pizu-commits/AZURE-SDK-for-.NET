@@ -8,7 +8,7 @@ using Azure.Messaging;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallingServer.Tests.Events
+namespace Azure.Communication.CallAutomation.Tests.Events
 {
     public class CallAutomationEventParserTests
     {

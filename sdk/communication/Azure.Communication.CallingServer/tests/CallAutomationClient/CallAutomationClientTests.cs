@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     public class CallAutomationClientTests : CallAutomationTestBase
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Azure.Communication.CallingServer.Tests
+namespace Azure.Communication.CallAutomation.Tests
 {
     public class CallConnectionTests : CallAutomationTestBase
     {
