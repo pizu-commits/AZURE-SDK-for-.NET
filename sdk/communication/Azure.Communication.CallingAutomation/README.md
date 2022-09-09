@@ -9,7 +9,7 @@ This package contains a C# SDK for Azure Communication Call Automation.
 Install the Azure Communication CallAutomation client library for .NET with [NuGet][nuget]:
 
 ```dotnetcli
-dotnet add package Azure.Communication.CallingServer --prerelease
+dotnet add package Azure.Communication.CallAutomation --prerelease
 ``` 
 
 ### Prerequisites
@@ -24,7 +24,7 @@ To create a new Communication Service, you can use the [Azure Portal][communicat
 ```C#
 using System;
 using System.Collections.Generic;
-using Azure.Communication.CallingServer;
+using Azure.Communication.CallAutomation;
 ```
 
 ### Authenticate the client
@@ -74,7 +74,7 @@ Your app will receive mid-connection call back events via the callbackEndpoint y
         {
             if (events != null)
             {
-                // Helper function to parse CloudEvent to a CallingServer event.
+                // Helper function to parse CloudEvent to a CallAutomation event.
                 CallAutomationEventBase callBackEvent = EventParser.Parse(events.FirstOrDefault());
             
                 switch (callBackEvent)

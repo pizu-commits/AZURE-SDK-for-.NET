@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal class ContentDownloadLiveTests : CallAutomationClientLiveTestsBase
     {
@@ -17,9 +17,9 @@ namespace Azure.Communication.CallingServer
         [Test]
         public async Task DownloadMetadata()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
@@ -35,9 +35,9 @@ namespace Azure.Communication.CallingServer
         [Test]
         public async Task DownloadMetadata_404()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
@@ -67,9 +67,9 @@ namespace Azure.Communication.CallingServer
         [Test]
         public async Task DownloadMetadataRange()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
@@ -88,9 +88,9 @@ namespace Azure.Communication.CallingServer
         /// and the SDK should be able to make the new request with no error.
         public async Task DownloadMetadataWithRedirection()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();

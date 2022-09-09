@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal class DeleteRecordingLiveTests : CallAutomationClientLiveTestsBase
     {
@@ -15,9 +15,9 @@ namespace Azure.Communication.CallingServer
         [Test]
         public async Task DeleteRecording()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
@@ -32,9 +32,9 @@ namespace Azure.Communication.CallingServer
         [Test]
         public async Task DeleteRecording404()
         {
-            if (SkipCallingServerInteractionLiveTests)
+            if (SkipCallAutomationInteractionLiveTests)
             {
-                Assert.Ignore("Skip callingserver interaction live tests flag is on");
+                Assert.Ignore("Skip callautomation interaction live tests flag is on");
             }
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();

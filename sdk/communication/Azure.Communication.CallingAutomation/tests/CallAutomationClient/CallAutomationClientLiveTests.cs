@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal class CallAutomationClientLiveTests : CallAutomationClientLiveTestsBase
     {
@@ -24,8 +24,8 @@ namespace Azure.Communication.CallingServer
              * 4. hang up the call.
              * 5. once call is hung up, verify that call connection cannot be found.
             */
-            if (SkipCallingServerInteractionLiveTests)
-                Assert.Ignore("Skip callingserver interaction live tests flag is on.");
+            if (SkipCallAutomationInteractionLiveTests)
+                Assert.Ignore("Skip callautomation interaction live tests flag is on.");
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
             bool wasConnected = false;
@@ -75,8 +75,8 @@ namespace Azure.Communication.CallingServer
              * 5. once call is hung up, verify that call connection cannot be found.
             */
 
-            if (SkipCallingServerInteractionLiveTests)
-                Assert.Ignore("Skip callingserver interaction live tests flag is on.");
+            if (SkipCallAutomationInteractionLiveTests)
+                Assert.Ignore("Skip callautomation interaction live tests flag is on.");
 
             CallAutomationClient client = CreateInstrumentedCallAutomationClientWithConnectionString();
             bool wasConnected = false;
