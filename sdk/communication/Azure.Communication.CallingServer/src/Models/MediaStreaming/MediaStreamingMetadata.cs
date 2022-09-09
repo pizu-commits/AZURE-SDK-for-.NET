@@ -3,7 +3,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Azure.Communication.CallAutomation.Models.Streaming
+namespace Azure.Communication.CallingServer.Models.Streaming
 {
     /// <summary>
     /// Streaming metadata

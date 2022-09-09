@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The locator used for joining or taking action on a call. </summary>
     internal partial class CallLocatorInternal

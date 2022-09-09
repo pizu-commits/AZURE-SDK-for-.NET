@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary>
     /// The answer call operation options.

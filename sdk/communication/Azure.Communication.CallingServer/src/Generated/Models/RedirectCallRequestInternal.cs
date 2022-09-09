@@ -8,7 +8,7 @@
 using System;
 using Azure.Communication;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The request payload for redirecting the call. </summary>
     internal partial class RedirectCallRequestInternal

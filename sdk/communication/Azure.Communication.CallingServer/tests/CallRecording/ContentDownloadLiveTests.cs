@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     internal class ContentDownloadLiveTests : CallAutomationClientLiveTestsBase
     {

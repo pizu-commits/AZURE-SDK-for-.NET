@@ -31,6 +31,8 @@ extends:
       safeName: AzureCommunicationJobRouter
     - name: Azure.Communication.CallingServer
       safeName: AzureCommunicationCallingServer
+    - name: Azure.Communication.CallAutomation
+      safeName: AzureCommunicationCallAutomation
     - name: Azure.Communication.Chat
       safeName: AzureCommunicationChat
     - name: Azure.Communication.Common

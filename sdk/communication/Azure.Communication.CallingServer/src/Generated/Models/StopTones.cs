@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The StopTones. </summary>
     public readonly partial struct StopTones : IEquatable<StopTones>

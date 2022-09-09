@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     internal static class Constants
     {

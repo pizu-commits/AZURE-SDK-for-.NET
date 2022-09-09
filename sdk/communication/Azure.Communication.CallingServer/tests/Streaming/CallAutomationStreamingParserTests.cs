@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 using System.Text.Json;
-using Azure.Communication.CallAutomation.Models.Streaming;
+using Azure.Communication.CallingServer.Models.Streaming;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallAutomation.Tests.Streaming
+namespace Azure.Communication.CallingServer.Tests.Streaming
 {
     internal class CallAutomationStreamingParserTests
     {

@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> Determines the type of the recognition. </summary>
     public readonly partial struct RecognizeInputType : IEquatable<RecognizeInputType>

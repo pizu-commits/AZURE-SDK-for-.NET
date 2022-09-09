@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The CallTransferFailedEvent. </summary>
     public partial class CallTransferFailed

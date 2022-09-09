@@ -7,7 +7,7 @@
 
 using Azure.Communication;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> Channel affinity for a participant. </summary>
     internal partial class ChannelAffinityInternal

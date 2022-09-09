@@ -5,14 +5,14 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> Model factory for read-only models. </summary>
     public static partial class CallAutomationModelFactory
     {
         /// <summary> Initializes a new instance of TransferCallToParticipantResult. </summary>
         /// <param name="operationContext"> The operation context provided by client. </param>
-        /// <returns> A new <see cref="CallAutomation.TransferCallToParticipantResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallingServer.TransferCallToParticipantResult"/> instance for mocking. </returns>
         public static TransferCallToParticipantResult TransferCallToParticipantResult(string operationContext = null)
         {
             return new TransferCallToParticipantResult(operationContext);
@@ -20,7 +20,7 @@ namespace Azure.Communication.CallAutomation
 
         /// <summary> Initializes a new instance of RemoveParticipantsResult. </summary>
         /// <param name="operationContext"> The operation context provided by client. </param>
-        /// <returns> A new <see cref="CallAutomation.RemoveParticipantsResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallingServer.RemoveParticipantsResult"/> instance for mocking. </returns>
         public static RemoveParticipantsResult RemoveParticipantsResult(string operationContext = null)
         {
             return new RemoveParticipantsResult(operationContext);
@@ -29,7 +29,7 @@ namespace Azure.Communication.CallAutomation
         /// <summary> Initializes a new instance of RecordingStateResult. </summary>
         /// <param name="recordingId"></param>
         /// <param name="recordingState"></param>
-        /// <returns> A new <see cref="CallAutomation.RecordingStateResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallingServer.RecordingStateResult"/> instance for mocking. </returns>
         public static RecordingStateResult RecordingStateResult(string recordingId = null, RecordingState? recordingState = null)
         {
             return new RecordingStateResult(recordingId, recordingState);
@@ -39,7 +39,7 @@ namespace Azure.Communication.CallAutomation
         /// <param name="code"></param>
         /// <param name="subCode"></param>
         /// <param name="message"></param>
-        /// <returns> A new <see cref="CallAutomation.ResultInformation"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallingServer.ResultInformation"/> instance for mocking. </returns>
         public static ResultInformation ResultInformation(int? code = null, int? subCode = null, string message = null)
         {
             return new ResultInformation(code, subCode, message);

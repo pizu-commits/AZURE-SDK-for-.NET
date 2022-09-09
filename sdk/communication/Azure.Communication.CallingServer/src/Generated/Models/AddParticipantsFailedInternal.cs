@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Azure.Communication;
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The AddParticipantsFailedEvent. </summary>
     internal partial class AddParticipantsFailedInternal

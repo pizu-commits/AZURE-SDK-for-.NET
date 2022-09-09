@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     [CodeGenModel("AcsCallParticipant")]
     internal partial class AcsCallParticipantInternal

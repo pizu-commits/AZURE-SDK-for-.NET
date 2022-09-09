@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     [CodeGenModel("PlayOptions")]
     internal partial class PlayOptionsInternal

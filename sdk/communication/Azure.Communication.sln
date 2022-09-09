@@ -64,6 +64,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.JobRout
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.JobRouter.Tests", "Azure.Communication.JobRouter\tests\Azure.Communication.JobRouter.Tests.csproj", "{960543FA-55FE-4475-833B-DDDD4AC0AB2E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Communication.CallAutomation", "Azure.Communication.CallAutomation\src\Azure.Communication.CallAutomation.csproj", "{D81BCFE8-BA68-4008-8535-A87DFDE493B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -178,6 +180,10 @@ Global
 		{960543FA-55FE-4475-833B-DDDD4AC0AB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960543FA-55FE-4475-833B-DDDD4AC0AB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960543FA-55FE-4475-833B-DDDD4AC0AB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D81BCFE8-BA68-4008-8535-A87DFDE493B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81BCFE8-BA68-4008-8535-A87DFDE493B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81BCFE8-BA68-4008-8535-A87DFDE493B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81BCFE8-BA68-4008-8535-A87DFDE493B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

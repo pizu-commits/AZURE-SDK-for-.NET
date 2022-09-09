@@ -4,7 +4,7 @@
 using System;
 using Azure.Messaging;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary>
     /// Helper class for parsing Acs call back events.

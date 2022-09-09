@@ -5,7 +5,7 @@ using System;
 using System.Net;
 using Azure.Communication.Tests;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     internal class CallAutomationClientTestEnvironment : CommunicationTestEnvironment
     {

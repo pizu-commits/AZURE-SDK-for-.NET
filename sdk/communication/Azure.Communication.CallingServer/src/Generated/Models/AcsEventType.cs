@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The AcsEventType. </summary>
     internal readonly partial struct AcsEventType : IEquatable<AcsEventType>

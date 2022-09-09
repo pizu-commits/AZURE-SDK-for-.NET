@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The request payload for answering the call. </summary>
     internal partial class AnswerCallRequestInternal

@@ -8,7 +8,7 @@
 using System.Text.Json;
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     internal partial class RemoveParticipantsRequestInternal : IUtf8JsonSerializable
     {

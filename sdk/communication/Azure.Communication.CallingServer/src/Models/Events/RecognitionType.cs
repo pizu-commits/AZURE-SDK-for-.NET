@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     [CodeGenModel("RecognitionType", Usage = new string[] { "output" }, Formats = new string[] { "json" })]
     public partial struct RecognitionType

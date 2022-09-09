@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The format type of call recording. </summary>
     public readonly partial struct RecordingFormat : IEquatable<RecordingFormat>

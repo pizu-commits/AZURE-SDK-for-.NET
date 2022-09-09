@@ -4,7 +4,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary>
     /// <see cref="ContentTransferOptions"/> is used to provide options for parallel transfers.

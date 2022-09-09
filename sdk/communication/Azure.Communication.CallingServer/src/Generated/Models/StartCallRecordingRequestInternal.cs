@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The request payload start for call recording operation with call locator. </summary>
     internal partial class StartCallRecordingRequestInternal

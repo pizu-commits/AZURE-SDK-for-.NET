@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     internal class CallAutomationClientLiveTests : CallAutomationClientLiveTestsBase
     {

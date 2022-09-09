@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The RemoveParticipantsResponse. </summary>
     public partial class RemoveParticipantsResult

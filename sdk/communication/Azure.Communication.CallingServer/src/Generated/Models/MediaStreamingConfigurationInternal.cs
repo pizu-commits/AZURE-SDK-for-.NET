@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary> The MediaStreamingConfiguration. </summary>
     internal partial class MediaStreamingConfigurationInternal

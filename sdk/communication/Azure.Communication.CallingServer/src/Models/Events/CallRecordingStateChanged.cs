@@ -3,10 +3,10 @@
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Azure.Communication.CallAutomation.Converters;
+using Azure.Communication.CallingServer.Converters;
 using Azure.Core;
 
-namespace Azure.Communication.CallAutomation
+namespace Azure.Communication.CallingServer
 {
     /// <summary>
     /// The Call Recording state changed event
