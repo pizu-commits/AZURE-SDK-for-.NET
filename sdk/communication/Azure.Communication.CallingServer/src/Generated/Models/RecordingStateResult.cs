@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The RecordingStateResponse. </summary>
     public partial class RecordingStateResult

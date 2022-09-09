@@ -3,7 +3,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The Streaming Format model.

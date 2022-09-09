@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     [CodeGenModel("ChannelAffinity")]
     internal partial class ChannelAffinityInternal

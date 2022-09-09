@@ -11,7 +11,7 @@ using System.Linq;
 using Azure.Core.Pipeline;
 using Azure.Core.TestFramework;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     public class ContentDownloadTests : CallAutomationTestBase
     {

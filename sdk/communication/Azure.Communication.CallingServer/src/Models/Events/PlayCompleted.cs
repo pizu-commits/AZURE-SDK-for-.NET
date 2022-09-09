@@ -4,7 +4,7 @@
 using System.Text.Json;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The play completed event.

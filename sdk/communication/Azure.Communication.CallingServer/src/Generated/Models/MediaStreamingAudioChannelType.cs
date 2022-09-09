@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Audio channel type to stream, eg. unmixed audio, mixed audio. </summary>
     public readonly partial struct MediaStreamingAudioChannelType : IEquatable<MediaStreamingAudioChannelType>

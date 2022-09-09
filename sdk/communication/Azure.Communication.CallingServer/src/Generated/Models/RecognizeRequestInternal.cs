@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The RecognizeRequest. </summary>
     internal partial class RecognizeRequestInternal

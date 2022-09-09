@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     [CodeGenModel("DtmfConfigurations")]
     internal partial class DtmfConfigurationsInternal

@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Type of CommunicationIdentifierModel. </summary>
     internal readonly partial struct CommunicationIdentifierModelKindInternal : IEquatable<CommunicationIdentifierModelKindInternal>

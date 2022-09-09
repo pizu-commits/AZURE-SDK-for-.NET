@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The FileSource. </summary>
     internal partial class FileSourceInternal

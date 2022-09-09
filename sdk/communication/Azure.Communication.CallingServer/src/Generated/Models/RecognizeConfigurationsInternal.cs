@@ -7,7 +7,7 @@
 
 using Azure.Communication;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The RecognizeConfigurations. </summary>
     internal partial class RecognizeConfigurationsInternal

@@ -4,7 +4,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace Azure.Communication.CallingServer.Models.Streaming
+namespace Azure.Communication.CallAutomation.Models.Streaming
 {
     /// <summary>
     /// Streaming audio.

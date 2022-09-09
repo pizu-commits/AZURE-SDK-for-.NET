@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The request payload for rejecting the call. </summary>
     internal partial class RejectCallRequestInternal

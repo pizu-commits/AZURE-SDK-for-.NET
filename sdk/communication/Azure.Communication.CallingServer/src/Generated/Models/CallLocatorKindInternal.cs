@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The call locator kind. </summary>
     internal readonly partial struct CallLocatorKindInternal : IEquatable<CallLocatorKindInternal>

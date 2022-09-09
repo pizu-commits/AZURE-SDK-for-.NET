@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The RecognizeFailed. </summary>
     public partial class RecognizeFailed

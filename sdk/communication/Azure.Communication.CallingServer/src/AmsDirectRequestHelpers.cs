@@ -4,7 +4,7 @@
 using System;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal static class AmsDirectRequestHelpers
     {

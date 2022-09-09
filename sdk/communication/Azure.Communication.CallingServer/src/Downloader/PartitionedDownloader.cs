@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal class PartitionedDownloader
     {

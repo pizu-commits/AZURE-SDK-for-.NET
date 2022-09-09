@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Azure.Communication;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The PlayRequest. </summary>
     internal partial class PlayRequestInternal

@@ -3,10 +3,10 @@
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Azure.Communication.CallingServer.Converters;
+using Azure.Communication.CallAutomation.Converters;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The play completed event.

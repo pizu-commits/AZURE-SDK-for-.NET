@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// Options for the Start Recording operation.

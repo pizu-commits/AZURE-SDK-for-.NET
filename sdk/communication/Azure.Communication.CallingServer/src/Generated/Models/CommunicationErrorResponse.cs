@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The Communication Services error response. </summary>
     internal partial class CommunicationErrorResponse

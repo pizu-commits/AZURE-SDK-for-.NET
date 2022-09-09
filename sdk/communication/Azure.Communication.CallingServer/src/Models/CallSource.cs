@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The CallSource. </summary>
     public class CallSource

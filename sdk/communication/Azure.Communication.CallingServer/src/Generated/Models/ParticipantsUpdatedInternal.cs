@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Azure.Communication;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The ParticipantsUpdatedEvent. </summary>
     internal partial class ParticipantsUpdatedInternal

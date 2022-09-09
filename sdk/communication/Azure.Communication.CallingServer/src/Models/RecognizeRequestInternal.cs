@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     [CodeGenModel("RecognizeRequest")]
     internal partial class RecognizeRequestInternal

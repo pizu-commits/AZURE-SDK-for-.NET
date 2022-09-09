@@ -5,7 +5,7 @@
 
 #nullable disable
 
-using Azure.Communication.CallingServer;
+using Azure.Communication.CallAutomation;
 
 namespace Azure.Communication
 {

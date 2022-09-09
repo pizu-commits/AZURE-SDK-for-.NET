@@ -10,7 +10,7 @@ using Azure.Core;
 using Azure.Core.Pipeline;
 using Azure.Communication.Pipeline;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The Azure Communication Services Call Automation client.

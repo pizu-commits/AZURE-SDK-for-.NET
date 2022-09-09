@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     internal class DeleteRecordingLiveTests : CallAutomationClientLiveTestsBase
     {

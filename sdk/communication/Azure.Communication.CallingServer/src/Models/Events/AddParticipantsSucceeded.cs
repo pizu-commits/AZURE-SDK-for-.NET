@@ -6,7 +6,7 @@ using Azure.Core;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The add participants succeeded event.

@@ -8,7 +8,7 @@
 using System.Collections.Generic;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The CommunicationError. </summary>
     internal partial class CommunicationError

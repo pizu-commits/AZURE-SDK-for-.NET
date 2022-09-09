@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Model factory for read-only models. </summary>
     [CodeGenModel("ServerCallingModelFactory")]
@@ -15,7 +15,7 @@ namespace Azure.Communication.CallingServer
         /// <summary> Initializes a new instance of AddParticipantsResult. </summary>
         /// <param name="participants"> Participants of the call. </param>
         /// <param name="operationContext"> The operation context provided by client. </param>
-        /// <returns> A new <see cref="CallingServer.AddParticipantsResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallAutomation.AddParticipantsResult"/> instance for mocking. </returns>
         public static AddParticipantsResult AddParticipantsResult(IEnumerable<CallParticipant> participants = default, string operationContext = default)
         {
             return new AddParticipantsResult(participants == null ? new List<CallParticipant>() : participants.ToList(), operationContext);
@@ -24,7 +24,7 @@ namespace Azure.Communication.CallingServer
         /// <summary> Initializes a new instance of AnswerCallResult. </summary>
         /// <param name="callConnection"> CallConnection Client. </param>
         /// <param name="callConnectionProperties"> Properties of the call. </param>
-        /// <returns> A new <see cref="CallingServer.AnswerCallResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallAutomation.AnswerCallResult"/> instance for mocking. </returns>
         public static AnswerCallResult AnswerCallResult(CallConnection callConnection = default, CallConnectionProperties callConnectionProperties = default)
         {
             return new AnswerCallResult(callConnection, callConnectionProperties);
@@ -39,7 +39,7 @@ namespace Azure.Communication.CallingServer
         /// <param name="subject">The subject.</param>
         /// <param name="callbackEndpoint">The callback URI.</param>
         /// <param name="mediaSubscriptionId">The subscriptionId for Media Streaming.</param>
-        /// <returns> A new <see cref="CallingServer.CallConnectionProperties"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallAutomation.CallConnectionProperties"/> instance for mocking. </returns>
         public static CallConnectionProperties CallConnectionProperties(string callConnectionId = default, string serverCallId = default, CallSource callSource = default, IEnumerable<CommunicationIdentifier> targets = default, CallConnectionState callConnectionState = default, string subject = default, Uri callbackEndpoint = default, string mediaSubscriptionId = default)
         {
             return new CallConnectionProperties(callConnectionId, serverCallId, callSource, targets, callConnectionState, subject, callbackEndpoint, mediaSubscriptionId);
@@ -48,7 +48,7 @@ namespace Azure.Communication.CallingServer
         /// <summary> Initializes a new instance of CallParticipant. </summary>
         /// <param name="identifier"> The communication identifier. </param>
         /// <param name="isMuted"> Is participant muted. </param>
-        /// <returns> A new <see cref="CallingServer.CallParticipant"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallAutomation.CallParticipant"/> instance for mocking. </returns>
         public static CallParticipant CallParticipant(CommunicationIdentifier identifier = default, bool isMuted = default)
         {
             return new CallParticipant(identifier, isMuted);
@@ -57,7 +57,7 @@ namespace Azure.Communication.CallingServer
         /// <summary> Initializes a new instance of CallParticipant. </summary>
         /// <param name="callConnection">The instance of callConnection.</param>
         /// <param name="callConnectionProperties">The properties of the call.</param>
-        /// <returns> A new <see cref="CallingServer.CreateCallResult"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="CallAutomation.CreateCallResult"/> instance for mocking. </returns>
         public static CreateCallResult CreateCallResult(CallConnection callConnection = default, CallConnectionProperties callConnectionProperties = default)
         {
             return new CreateCallResult(callConnection, callConnectionProperties);

@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     [CodeGenModel("PlayRequest")]
     internal partial class PlayRequestInternal

@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Defines the type of the play source. </summary>
     internal readonly partial struct PlaySourceTypeInternal : IEquatable<PlaySourceTypeInternal>

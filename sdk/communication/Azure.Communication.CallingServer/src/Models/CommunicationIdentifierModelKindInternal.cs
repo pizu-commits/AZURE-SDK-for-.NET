@@ -3,7 +3,7 @@
 
 using Azure.Core;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     [CodeGenModel("CommunicationIdentifierModelKind")]
     internal readonly partial struct CommunicationIdentifierModelKindInternal

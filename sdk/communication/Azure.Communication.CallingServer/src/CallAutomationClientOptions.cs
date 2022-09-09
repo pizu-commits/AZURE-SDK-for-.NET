@@ -6,7 +6,7 @@ using System.Net.Http;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The latest version of the Call Automation.

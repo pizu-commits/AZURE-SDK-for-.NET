@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Determines the sub-type pf the recognize operation. </summary>
     public readonly partial struct RecognitionType : IEquatable<RecognitionType>

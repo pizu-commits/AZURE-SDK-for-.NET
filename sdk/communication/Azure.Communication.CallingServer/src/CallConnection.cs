@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure.Core.Pipeline;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary>
     /// The Azure Communication Services Call Connection Client.

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Azure.Communication;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The CreateCallRequest. </summary>
     internal partial class CreateCallRequestInternal

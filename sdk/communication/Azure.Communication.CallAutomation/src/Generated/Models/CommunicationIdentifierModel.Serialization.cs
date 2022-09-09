@@ -6,7 +6,7 @@
 #nullable disable
 
 using System.Text.Json;
-using Azure.Communication.CallingServer;
+using Azure.Communication.CallAutomation;
 using Azure.Core;
 
 namespace Azure.Communication

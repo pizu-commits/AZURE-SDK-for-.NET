@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> Content type to stream, eg. audio, audio/video. </summary>
     public readonly partial struct MediaStreamingContentType : IEquatable<MediaStreamingContentType>

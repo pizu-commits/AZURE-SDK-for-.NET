@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Azure.Communication.CallingServer
+namespace Azure.Communication.CallAutomation
 {
     /// <summary> The type of tranport to be used for media streaming, eg. Websocket. </summary>
     public readonly partial struct MediaStreamingTransportType : IEquatable<MediaStreamingTransportType>
