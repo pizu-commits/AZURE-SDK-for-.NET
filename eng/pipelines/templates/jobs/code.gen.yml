@@ -30,7 +30,7 @@ jobs:
     displayName: "Code Generation"
     dependsOn: ${{ parameters.DependsOn }}
     timeoutInMinutes: ${{ parameters.TestTimeoutInMinutes }}
-    condition: and(succeededOrFailed(), ne(variables['Skip.CodeGen'], true), ne(${{ parameters.Matrix }}, '{}'), ne(${{ parameters.ProjectListOverrideFilePropertyName }}, ''))
+    condition: and(succeededOrFailed(), ne(variables['Skip.CodeGen'], true), ne(${{ parameters.Matrix }}, '{}'), ne('${{ parameters.ProjectListOverrideFilePropertyName }}', ''))
     strategy:
       matrix: $[ ${{ parameters.Matrix }} ]
     pool:
@@ -52,7 +52,7 @@ jobs:
           artifact: DependencyTestProjectReferences
           patterns: "**/$(${{ parameters.ProjectListOverrideFilePropertyName }})"
           path: $(Build.SourcesDirectory)
-        
+
       - template: /eng/pipelines/templates/steps/install-dotnet.yml    
         parameters:
           EnableNuGetCache: false
