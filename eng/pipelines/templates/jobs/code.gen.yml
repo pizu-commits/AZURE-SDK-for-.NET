@@ -62,7 +62,7 @@ jobs:
             /p:ProjectListOverrideFile=$(${{ parameters.ProjectListOverrideFilePropertyName }})
         displayName: "Validate code generation"
       - pwsh: |
-          Write-Host "Checking if any diff generated from code generation "
+          Write-Host "Checking if any diff changes generated from code generation..."
           # prevent warning related to EOL differences which triggers an exception for some reason
           & git -c core.safecrlf=false diff --ignore-space-at-eol --exit-code
           if ($LastExitCode -ne 0) {
