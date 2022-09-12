@@ -68,6 +68,7 @@ stages:
     - template: /eng/pipelines/templates/jobs/ci.yml
       parameters:
         SDKType: ${{ parameters.SDKType }}
+        # Use ServiceToTest parameter for core/resourceManager pipelines to run CodeCheck.ps1 (except "Regenerate clients") on all dependency packages.
         ServiceToTest: ${{ coalesce(parameters.ServiceToTest, parameters.ServiceDirectory) }}
         ServiceDirectory: ${{ parameters.ServiceDirectory }}
         Artifacts: ${{ parameters.Artifacts }}

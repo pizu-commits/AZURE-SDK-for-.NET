@@ -198,7 +198,8 @@ jobs:
         inputs:
           filePath: "eng/scripts/CodeChecks.ps1"
           arguments: >
-           -ServiceDirectory ${{ parameters.ServiceToTest }}
+           -ServiceDirectory ${{ parameters.ServiceDirectory }}
+           -ServiceToTest ${{ parameters.ServiceToTest }}
            -SDKType ${{ parameters.SDKType }}
            -SpellCheckPublicApiSurface
           pwsh: true
@@ -218,6 +219,43 @@ jobs:
         displayName: Build snippets
         condition: and(succeeded(), eq(${{ parameters.BuildSnippets }}, true))
       - template: /eng/common/pipelines/templates/steps/eng-common-workflow-enforcer.yml
+  - ${{ if ne(parameters.TestDependsOnDependency, 'not-specified') }}:
+    - template: /eng/common/pipelines/templates/jobs/archetype-sdk-tests-generate.yml
+      parameters:
+        GenerateJobName: generate_code_generation_matrix 
+        JobTemplatePath: /eng/pipelines/templates/jobs/code.gen.yml
+        MatrixConfigs:
+        - Name: NET_ci_codegen
+          Path: eng/pipelines/templates/stages/code-gen-matrix.json
+          Selection: sparse
+          GenerateVMJobs: true
+        MatrixFilters: ${{ parameters.MatrixFilters }}
+        MatrixReplace: ${{ parameters.MatrixReplace }}
+        CloudConfig:
+          Cloud: public
+        SparseCheckoutPaths: 
+          - "/*"
+          - "!/sdk/*/**/SessionRecords"
+        PreGenerationSteps: 
+        - template: /eng/pipelines/templates/steps/dependency.tests.yml
+          parameters:
+            TestDependsOnDependency: ${{ parameters.TestDependsOnDependency }}
+            # The value for ProjectListOverrideFilePropertyName should be the same as AdditionalParameters ProjectListOverrideFilePropertyName below
+            ProjectListOverrideFilePropertyName: 'CodeGenerationProjectListFile'
+            ProjectFilesOutputFolder: $(Build.ArtifactStagingDirectory)
+            ExcludeTargetTestProjects: true
+            ServiceDirectory: ${{ parameters.ServiceDirectory }}
+            MatrixConfigsFile: eng/pipelines/templates/stages/code-gen-matrix.json
+            IncludeSrc: true
+            IncludeTests: false
+            OutputProjectFilePath: "$(Build.ArtifactStagingDirectory)/codegen.txt"
+        AdditionalParameters:
+          SDKType: ${{ parameters.SDKType }}
+          ServiceDirectory: ${{ parameters.ServiceDirectory }}
+          TestSetupSteps: ${{ parameters.TestSetupSteps }}
+          TestTimeoutInMinutes: ${{ parameters.TestTimeoutInMinutes }}
+          # The value for ProjectListOverrideFilePropertyName should be the same as dependency.tests.yml parameter ProjectListOverrideFilePropertyName
+          ProjectListOverrideFilePropertyName: 'CodeGenerationProjectListFile' 
 
   - job: Compliance
     pool:
