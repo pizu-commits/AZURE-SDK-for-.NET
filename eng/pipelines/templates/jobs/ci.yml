@@ -229,10 +229,6 @@ jobs:
           Path: eng/pipelines/templates/stages/code-gen-matrix.json
           Selection: sparse
           GenerateVMJobs: true
-        MatrixFilters: ${{ parameters.MatrixFilters }}
-        MatrixReplace: ${{ parameters.MatrixReplace }}
-        CloudConfig:
-          Cloud: public
         SparseCheckoutPaths: 
           - "/*"
           - "!/sdk/*/**/SessionRecords"

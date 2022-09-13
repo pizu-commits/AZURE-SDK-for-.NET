@@ -2,9 +2,6 @@ parameters:
 - name: SDKType
   type: string
   default: all
-- name: TestSetupSteps
-  type: stepList
-  default: []
 - name: TestTimeoutInMinutes
   type: number
 - name: Matrix
@@ -15,9 +12,6 @@ parameters:
 - name: UsePlatformContainer
   type: boolean
   default: false
-- name: CloudConfig
-  type: object
-  default: {}
 - name: ProjectListOverrideFilePropertyName
   type: string
   default: ''
