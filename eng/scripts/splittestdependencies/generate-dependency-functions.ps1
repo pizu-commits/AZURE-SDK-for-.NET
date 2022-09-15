@@ -35,7 +35,7 @@ function Write-Test-Dependency-Group-To-Files($ProjectFileConfigName, $ProjectGr
   $numOfGroups = $ProjectGroups.Count
   $allOutputFiles = @()
   for ($i = 0; $i -lt $numOfGroups; $i++) {
-    $projectFilePath = "$($ProjectFileConfigName)_Project_$i.props"
+    $projectFilePath = "${ProjectFileConfigName}_Project_$i.props"
     $null = New-Item -Path "$MatrixOutputFolder/$projectFilePath" -ItemType "file" -Force
     # Retain the structure without ProjectReference.
     $templateXml=[xml]'<Project></Project>'  
