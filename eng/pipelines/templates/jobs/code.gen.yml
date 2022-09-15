@@ -57,9 +57,15 @@ jobs:
         parameters:
           EnableNuGetCache: false
       - pwsh: |
+          Write-Host "Re-generating clients"
           dotnet build /t:GenerateCode ./eng/service.proj `
             /p:SDKType=${{ parameters.SDKType }} `
             /p:ProjectListOverrideFile=$(${{ parameters.ProjectListOverrideFilePropertyName }})
+          
+          Write-Host "Re-generating tests"
+          dotnet build /t:GenerateTests ./eng/service.proj `
+            /p:SDKType=$SDKType `
+            /p:ProjectListOverrideFile=$(${{ parameters.ProjectListOverrideFilePropertyName }})`
         displayName: "Validate code generation"
       - pwsh: |
           Write-Host "Checking if any diff changes generated from code generation..."

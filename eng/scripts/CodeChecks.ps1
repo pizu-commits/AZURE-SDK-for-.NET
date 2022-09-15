@@ -6,9 +6,6 @@ param (
     [string] $ServiceDirectory,
 
     [Parameter()]
-    [string] $ServiceToTest,
-
-    [Parameter()]
     [string] $ProjectDirectory,
 
     [Parameter()]
@@ -66,7 +63,7 @@ try {
         }
 
         Write-Host "`nChecking that solutions are up to date"
-        Join-Path "$PSScriptRoot/../../sdk" $ServiceToTest  `
+        Join-Path "$PSScriptRoot/../../sdk" $ServiceDirectory  `
             | Resolve-Path `
             | % { Get-ChildItem $_ -Filter "Azure.*.sln" -Recurse } `
             | % {
@@ -90,22 +87,22 @@ try {
 
         Write-Host "Re-generating tests"
         Invoke-Block {
-            & dotnet msbuild $PSScriptRoot/../service.proj /restore /t:GenerateTests /p:SDKType=$SDKType /p:ServiceDirectory=$ServiceToTest
+            & dotnet msbuild $PSScriptRoot/../service.proj /restore /t:GenerateTests /p:SDKType=$SDKType /p:ServiceDirectory=$ServiceDirectory
         }
     }
 
     Write-Host "Re-generating snippets"
     Invoke-Block {
-        & $PSScriptRoot\Update-Snippets.ps1 -ServiceDirectory $ServiceToTest
+        & $PSScriptRoot\Update-Snippets.ps1 -ServiceDirectory $ServiceDirectory
     }
 
     Write-Host "Re-generating listings"
     Invoke-Block {
-        & $PSScriptRoot\Export-API.ps1 -ServiceDirectory $ServiceToTest -SDKType $SDKType -SpellCheckPublicApiSurface:$SpellCheckPublicApiSurface
+        & $PSScriptRoot\Export-API.ps1 -ServiceDirectory $ServiceDirectory -SDKType $SDKType -SpellCheckPublicApiSurface:$SpellCheckPublicApiSurface
     }
 
     Write-Host "Validating installation instructions"
-    Join-Path "$PSScriptRoot/../../sdk" $ServiceToTest  `
+    Join-Path "$PSScriptRoot/../../sdk" $ServiceDirectory  `
         | Resolve-Path `
         | % { Get-ChildItem $_ -Filter "README.md" -Recurse } `
         | % {
