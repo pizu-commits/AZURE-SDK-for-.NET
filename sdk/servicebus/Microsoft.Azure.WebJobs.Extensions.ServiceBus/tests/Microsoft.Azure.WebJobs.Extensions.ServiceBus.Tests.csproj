@@ -32,4 +32,9 @@
   <ItemGroup Condition="'$(IsTargetingNetFx)' == 'true'">
     <Reference Include="System.Transactions" />
   </ItemGroup>
-</Project>  
+
+  <ItemGroup>
+    <PackageReference  Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.34-11969" />
+  </ItemGroup>
+
+</Project>

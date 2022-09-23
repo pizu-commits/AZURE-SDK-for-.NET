@@ -11,6 +11,7 @@ using Azure.Core.Pipeline;
 using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Diagnostics;
 using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Config;
+using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners;
 using Microsoft.Azure.WebJobs.Host.Executors;
 using Microsoft.Azure.WebJobs.Host.Listeners;
 using Microsoft.Azure.WebJobs.Host.Scale;
@@ -18,7 +19,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 {
-    internal sealed class ServiceBusListener : IListener, IScaleMonitorProvider
+    internal sealed class ServiceBusListener : IListener, IScaleMonitorProvider, ITargetScalerProvider
     {
         private readonly ITriggeredFunctionExecutor _triggerExecutor;
         private readonly string _entityPath;
@@ -34,7 +35,9 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
         private readonly Lazy<ServiceBusClient> _client;
         private readonly Lazy<SessionMessageProcessor> _sessionMessageProcessor;
         private readonly Lazy<ServiceBusScaleMonitor> _scaleMonitor;
+        private readonly Lazy<ServiceBusTargetScaler> _targetScaler;
         private readonly ConcurrencyUpdateManager _concurrencyUpdateManager;
+        private readonly ServiceBusMetricsReceiver _serviceBusMetricsReceiver;
 
         // internal for testing
         internal volatile bool Disposed;
@@ -95,15 +98,27 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
                     return messagingProvider.CreateSessionMessageProcessor(_client.Value,_entityPath, sessionProcessorOptions);
                 });
 
+            _serviceBusMetricsReceiver = new ServiceBusMetricsReceiver(connection, _entityPath, entityType, _batchReceiver, clientFactory, loggerFactory);
+
             _scaleMonitor = new Lazy<ServiceBusScaleMonitor>(
                 () => new ServiceBusScaleMonitor(
                     functionId,
-                    entityType,
                     _entityPath,
-                    connection,
-                    _batchReceiver,
-                    loggerFactory,
-                    clientFactory));
+                    _serviceBusMetricsReceiver,
+                    loggerFactory
+                    ));
+
+            if (singleDispatch)
+            {
+                _targetScaler = new Lazy<ServiceBusTargetScaler>(
+                    () => new ServiceBusTargetScaler(
+                        functionId,
+                        _entityPath,
+                        _serviceBusMetricsReceiver,
+                        options,
+                        _isSessionsEnabled
+                        ));
+            }
 
             _scopeFactory = new Lazy<EntityScopeFactory>(
                 () => new EntityScopeFactory(_batchReceiver.Value.EntityPath, _batchReceiver.Value.FullyQualifiedNamespace));
@@ -534,6 +549,11 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
         public IScaleMonitor GetMonitor()
         {
             return _scaleMonitor.Value;
+        }
+
+        public ITargetScaler GetTargetScaler()
+        {
+            return _targetScaler != null ? _targetScaler.Value : null;
         }
 
         /// <summary>

@@ -432,6 +432,29 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
                                                        "and instead will be abandoned. (Listener started = True, Listener disposed = True") && x.Level == LogLevel.Warning));
         }
 
+        [Test]
+        public void CreateListener_TargetScalerIsNull_MultipleDispatch()
+        {
+            ServiceBusOptions config = new ServiceBusOptions();
+
+            ServiceBusListener listener = new ServiceBusListener(
+                _functionId,
+                ServiceBusEntityType.Queue,
+                _entityPath,
+                false,
+                config.AutoCompleteMessages,
+                _mockExecutor.Object,
+                config,
+                "connection",
+                _mockMessagingProvider.Object,
+                _loggerFactory,
+                false,
+                _mockClientFactory.Object,
+                _concurrencyManager);
+
+            Assert.IsNull((listener as ITargetScalerProvider).GetTargetScaler());
+        }
+
         private Task ExceptionReceivedHandler(ProcessErrorEventArgs eventArgs)
         {
             return Task.CompletedTask;

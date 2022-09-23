@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
 using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Config;
+using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners;
 using Microsoft.Azure.WebJobs.Host.Executors;
 using Microsoft.Azure.WebJobs.Host.Scale;
 using Microsoft.Azure.WebJobs.Host.TestCommon;
@@ -122,7 +123,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
             var message = ServiceBusModelFactory.ServiceBusReceivedMessage(enqueuedTime: utcNow);
 
             // Test base case
-            var metrics = ServiceBusScaleMonitor.CreateTriggerMetrics(null, 0, 0, 0, false);
+            var metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(null, 0, 0, 0, false);
 
             Assert.AreEqual(0, metrics.PartitionCount);
             Assert.AreEqual(0, metrics.MessageCount);
@@ -130,7 +131,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
             Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
 
             // Test messages on main queue
-            metrics = ServiceBusScaleMonitor.CreateTriggerMetrics(message, 10, 0, 0, false);
+            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(message, 10, 0, 0, false);
 
             Assert.AreEqual(0, metrics.PartitionCount);
             Assert.AreEqual(10, metrics.MessageCount);
@@ -138,7 +139,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
             Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
 
             // Test listening on dead letter queue
-            metrics = ServiceBusScaleMonitor.CreateTriggerMetrics(message, 10, 100, 0, true);
+            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(message, 10, 100, 0, true);
 
             Assert.AreEqual(0, metrics.PartitionCount);
             Assert.AreEqual(100, metrics.MessageCount);
@@ -146,7 +147,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
             Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
 
             // Test partitions
-            metrics = ServiceBusScaleMonitor.CreateTriggerMetrics(null, 0, 0, 16, false);
+            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(null, 0, 0, 16, false);
 
             Assert.AreEqual(16, metrics.PartitionCount);
             Assert.AreEqual(0, metrics.MessageCount);
