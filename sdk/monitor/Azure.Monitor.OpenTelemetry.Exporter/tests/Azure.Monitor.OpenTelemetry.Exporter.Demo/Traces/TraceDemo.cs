@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Azure.Identity;
 using Azure.Monitor.OpenTelemetry.Exporter.Tracing.Customization;
 using OpenTelemetry;
 using OpenTelemetry.Extensions.AzureMonitor;
@@ -29,6 +30,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Demo.Traces
             };
 
             var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
+            var credential = new DefaultAzureCredential();
 
             this.tracerProvider = Sdk.CreateTracerProviderBuilder()
                             .SetResourceBuilder(resourceBuilder)
@@ -36,7 +38,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Demo.Traces
                             .AddProcessor(new ActivityFilteringProcessor())
                             .AddProcessor(new ActivityEnrichingProcessor())
                             .SetSampler(new ApplicationInsightsSampler(1.0F))
-                            .AddAzureMonitorTraceExporter(o => o.ConnectionString = connectionString)
+                            .AddAzureMonitorTraceExporter(o => o.ConnectionString = connectionString, credential)
                             .Build();
         }
 

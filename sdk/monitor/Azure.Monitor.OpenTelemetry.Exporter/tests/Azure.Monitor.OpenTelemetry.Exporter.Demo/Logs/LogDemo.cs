@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using Azure.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Azure.Monitor.OpenTelemetry.Exporter.Demo.Logs
@@ -12,11 +13,13 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Demo.Logs
 
         public LogDemo(string connectionString)
         {
+            var credential = new DefaultAzureCredential();
+
             this.loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddOpenTelemetry(options =>
                 {
-                    options.AddAzureMonitorLogExporter(o => o.ConnectionString = connectionString);
+                    options.AddAzureMonitorLogExporter(o => o.ConnectionString = connectionString, credential);
                 });
             });
         }

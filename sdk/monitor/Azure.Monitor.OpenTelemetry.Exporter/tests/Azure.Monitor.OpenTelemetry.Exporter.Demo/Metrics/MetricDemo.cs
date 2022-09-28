@@ -3,6 +3,7 @@
 
 using System;
 using System.Diagnostics.Metrics;
+using Azure.Identity;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 
@@ -17,9 +18,10 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Demo.Metrics
 
         public MetricDemo(string connectionString)
         {
+            var credential = new DefaultAzureCredential();
             this.meterProvider = Sdk.CreateMeterProviderBuilder()
                                 .AddMeter(meterName)
-                                .AddAzureMonitorMetricExporter(o => o.ConnectionString = connectionString)
+                                .AddAzureMonitorMetricExporter(o => o.ConnectionString = connectionString, credential)
                                 .Build();
         }
 

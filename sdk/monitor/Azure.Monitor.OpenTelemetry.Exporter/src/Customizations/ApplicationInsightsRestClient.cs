@@ -80,7 +80,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
             uri.AppendRaw(_host, false);
-            uri.AppendRaw("/v2", false);
+            uri.AppendRaw("/v2.1", false);
             uri.AppendPath("/track", false);
             request.Uri = uri;
             request.Headers.Add("Content-Type", "application/json");
@@ -103,7 +103,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
             uri.AppendRaw(_host, false);
-            uri.AppendRaw("/v2", false);
+            uri.AppendRaw("/v2.1", false);
             uri.AppendPath("/track", false);
             request.Uri = uri;
             request.Headers.Add("Content-Type", "application/json");
