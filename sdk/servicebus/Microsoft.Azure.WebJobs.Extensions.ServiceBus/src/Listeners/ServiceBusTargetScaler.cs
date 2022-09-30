@@ -38,10 +38,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             _functionId = functionId;
             _serviceBusMetricsProvider = new ServiceBusMetricsProvider(entityPath, entityType, receiver, administrationClient, loggerFactory);
             _entityPath = entityPath;
-            _targetScalerDescriptor = new TargetScalerDescriptor(functionId)
-            {
-                ConfigurationKeyName = "servicebusqueue_targetbasedscale"
-            };
+            _targetScalerDescriptor = new TargetScalerDescriptor(functionId);
             _logger = loggerFactory.CreateLogger<ServiceBusTargetScaler>();
             _options = options;
             _isSessionsEnabled = isSessionsEnabled;
