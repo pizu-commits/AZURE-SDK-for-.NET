@@ -116,46 +116,6 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.UnitTests.Listeners
         }
 
         [Test]
-        public void GetMetrics_ReturnsExpectedResult()
-        {
-            var utcNow = DateTimeOffset.UtcNow.Subtract(TimeSpan.FromSeconds(10));
-
-            var message = ServiceBusModelFactory.ServiceBusReceivedMessage(enqueuedTime: utcNow);
-
-            // Test base case
-            var metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(null, 0, 0, 0, false);
-
-            Assert.AreEqual(0, metrics.PartitionCount);
-            Assert.AreEqual(0, metrics.MessageCount);
-            Assert.AreEqual(TimeSpan.FromSeconds(0), metrics.QueueTime);
-            Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
-
-            // Test messages on main queue
-            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(message, 10, 0, 0, false);
-
-            Assert.AreEqual(0, metrics.PartitionCount);
-            Assert.AreEqual(10, metrics.MessageCount);
-            Assert.That(metrics.QueueTime, Is.GreaterThanOrEqualTo(TimeSpan.FromSeconds(10)));
-            Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
-
-            // Test listening on dead letter queue
-            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(message, 10, 100, 0, true);
-
-            Assert.AreEqual(0, metrics.PartitionCount);
-            Assert.AreEqual(100, metrics.MessageCount);
-            Assert.That(metrics.QueueTime, Is.GreaterThanOrEqualTo(TimeSpan.FromSeconds(10)));
-            Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
-
-            // Test partitions
-            metrics = ServiceBusMetricsReceiver.CreateTriggerMetrics(null, 0, 0, 16, false);
-
-            Assert.AreEqual(16, metrics.PartitionCount);
-            Assert.AreEqual(0, metrics.MessageCount);
-            Assert.AreEqual(TimeSpan.FromSeconds(0), metrics.QueueTime);
-            Assert.AreNotEqual(default(DateTime), metrics.Timestamp);
-        }
-
-        [Test]
         public async Task GetMetrics_IgnoresScheduledMessages()
         {
             var scheduledMessage = ServiceBusModelFactory.ServiceBusReceivedMessage(serviceBusMessageState: ServiceBusMessageState.Scheduled);

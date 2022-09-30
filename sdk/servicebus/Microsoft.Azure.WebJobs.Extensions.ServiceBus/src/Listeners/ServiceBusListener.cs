@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure.Core.Pipeline;
 using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
 using Azure.Messaging.ServiceBus.Diagnostics;
 using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Config;
 using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners;
@@ -36,8 +37,8 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
         private readonly Lazy<SessionMessageProcessor> _sessionMessageProcessor;
         private readonly Lazy<ServiceBusScaleMonitor> _scaleMonitor;
         private readonly Lazy<ServiceBusTargetScaler> _targetScaler;
+        private readonly Lazy<ServiceBusAdministrationClient> _administrationClient;
         private readonly ConcurrencyUpdateManager _concurrencyUpdateManager;
-        private readonly ServiceBusMetricsReceiver _serviceBusMetricsReceiver;
 
         // internal for testing
         internal volatile bool Disposed;
@@ -98,13 +99,19 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
                     return messagingProvider.CreateSessionMessageProcessor(_client.Value,_entityPath, sessionProcessorOptions);
                 });
 
-            _serviceBusMetricsReceiver = new ServiceBusMetricsReceiver(connection, _entityPath, entityType, _batchReceiver, clientFactory, loggerFactory);
+            _administrationClient = new Lazy<ServiceBusAdministrationClient>(
+                () =>
+                {
+                    return clientFactory.CreateAdministrationClient(connection);
+                });
 
             _scaleMonitor = new Lazy<ServiceBusScaleMonitor>(
                 () => new ServiceBusScaleMonitor(
                     functionId,
                     _entityPath,
-                    _serviceBusMetricsReceiver,
+                    entityType,
+                    _batchReceiver,
+                    _administrationClient,
                     loggerFactory
                     ));
 
@@ -114,9 +121,12 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
                     () => new ServiceBusTargetScaler(
                         functionId,
                         _entityPath,
-                        _serviceBusMetricsReceiver,
+                        entityType,
+                        _batchReceiver,
+                        _administrationClient,
                         options,
-                        _isSessionsEnabled
+                        _isSessionsEnabled,
+                        loggerFactory
                         ));
             }
 

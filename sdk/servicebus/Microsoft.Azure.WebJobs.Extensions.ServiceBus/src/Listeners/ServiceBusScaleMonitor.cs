@@ -15,19 +15,26 @@ using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners;
 
 namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 {
-    internal class ServiceBusScaleMonitor : IScaleMonitor<ServiceBusTriggerMetrics>
+    public class ServiceBusScaleMonitor : IScaleMonitor<ServiceBusTriggerMetrics>
     {
         private readonly string _functionId;
         private readonly string _entityPath;
         private readonly ScaleMonitorDescriptor _scaleMonitorDescriptor;
         private readonly ILogger<ServiceBusScaleMonitor> _logger;
-        private readonly ServiceBusMetricsReceiver _serviceBusMetricsReceiver;
+        private readonly ServiceBusMetricsProvider _serviceBusMetricsProvider;
 
-        public ServiceBusScaleMonitor(string functionId, string entityPath, ServiceBusMetricsReceiver serviceBusMetricsReceiver, ILoggerFactory loggerFactory)
+        public ServiceBusScaleMonitor(
+            string functionId,
+            string entityPath,
+            ServiceBusEntityType entityType,
+            Lazy<ServiceBusReceiver> receiver,
+            Lazy<ServiceBusAdministrationClient> administrationClient,
+            ILoggerFactory loggerFactory
+            )
         {
             _functionId = functionId;
             _entityPath = entityPath;
-            _serviceBusMetricsReceiver = serviceBusMetricsReceiver;
+            _serviceBusMetricsProvider = new ServiceBusMetricsProvider(entityPath, entityType, receiver, administrationClient, loggerFactory);
             _scaleMonitorDescriptor = new ScaleMonitorDescriptor($"{_functionId}-ServiceBusTrigger-{_entityPath}".ToLower(CultureInfo.InvariantCulture));
             _logger = loggerFactory.CreateLogger<ServiceBusScaleMonitor>();
         }
@@ -47,7 +54,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 
         public async Task<ServiceBusTriggerMetrics> GetMetricsAsync()
         {
-            return await _serviceBusMetricsReceiver.GetMetricsAsync().ConfigureAwait(false);
+            return await _serviceBusMetricsProvider.GetMetricsAsync().ConfigureAwait(false);
         }
 
         ScaleStatus IScaleMonitor.GetScaleStatus(ScaleStatusContext context)

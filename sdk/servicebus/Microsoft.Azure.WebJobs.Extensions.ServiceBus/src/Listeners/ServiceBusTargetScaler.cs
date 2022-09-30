@@ -1,43 +1,61 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
+using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Config;
 using Microsoft.Azure.WebJobs.Host.Scale;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Azure.WebJobs.ServiceBus.Listeners;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 {
-    internal class ServiceBusTargetScaler : ITargetScaler
+    public class ServiceBusTargetScaler : ITargetScaler
     {
         private readonly string _functionId;
-        private readonly string _entityPath;
-        private readonly ServiceBusMetricsReceiver _serviceBusMetricsReceiver;
+        private readonly ServiceBusMetricsProvider _serviceBusMetricsProvider;
         private readonly ServiceBusOptions _options;
         private readonly bool _isSessionsEnabled;
         private readonly TargetScalerDescriptor _targetScalerDescriptor;
+        private readonly string _entityPath;
+        private readonly ILogger _logger;
 
-        public ServiceBusTargetScaler(string functionId, string entityPath, ServiceBusMetricsReceiver serviceBusMetricsReceiver, ServiceBusOptions options, bool isSessionsEnabled)
+        public ServiceBusTargetScaler(
+            string functionId,
+            string entityPath,
+            ServiceBusEntityType entityType,
+            Lazy<ServiceBusReceiver> receiver,
+            Lazy<ServiceBusAdministrationClient> administrationClient,
+            ServiceBusOptions options,
+            bool isSessionsEnabled,
+            ILoggerFactory loggerFactory
+            )
         {
             _functionId = functionId;
+            _serviceBusMetricsProvider = new ServiceBusMetricsProvider(entityPath, entityType, receiver, administrationClient, loggerFactory);
             _entityPath = entityPath;
-            _serviceBusMetricsReceiver = serviceBusMetricsReceiver;
+            _targetScalerDescriptor = new TargetScalerDescriptor(functionId)
+            {
+                ConfigurationKeyName = "servicebusqueue_targetbasedscale"
+            };
+            _logger = loggerFactory.CreateLogger<ServiceBusTargetScaler>();
             _options = options;
             _isSessionsEnabled = isSessionsEnabled;
-            _targetScalerDescriptor = new TargetScalerDescriptor($"{_functionId}-ServiceBusTrigger-{_entityPath}".ToLower(CultureInfo.InvariantCulture), functionId);
         }
 
         public TargetScalerDescriptor TargetScalerDescriptor => _targetScalerDescriptor;
 
-        public async Task<TargetScalerResult> GetScaleResultAsync(TargetScaleStatusContext context)
+        public async Task<TargetScalerResult> GetScaleResultAsync(TargetScalerContext context)
         {
-            ServiceBusTriggerMetrics metrics = await _serviceBusMetricsReceiver.GetMetricsAsync().ConfigureAwait(false);
-            return GetScaleResultInternal(context, metrics);
+            ServiceBusTriggerMetrics metrics = await _serviceBusMetricsProvider.GetMetricsAsync(true).ConfigureAwait(false);
+            return GetScaleResultInternal(context, metrics.MessageCount);
         }
 
-        internal TargetScalerResult GetScaleResultInternal(TargetScaleStatusContext context, ServiceBusTriggerMetrics metrics)
+        internal TargetScalerResult GetScaleResultInternal(TargetScalerContext context, long messageCount)
         {
             int concurrency;
             if (!context.InstanceConcurrency.HasValue)
@@ -56,9 +74,12 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
                 concurrency = context.InstanceConcurrency.Value;
             }
 
+            int targetWorkerCount = (int)Math.Ceiling(messageCount / (decimal)concurrency);
+            _logger.LogInformation($"'Target worker count for function '{_functionId}' is '{targetWorkerCount}' (EntityPath='{_entityPath}', MessageCount ='{messageCount}', Concurrecny='{concurrency}').");
+
             return new TargetScalerResult
             {
-                WorkerCountDifference = (int)Math.Ceiling((metrics.MessageCount - context.WorkerCount * concurrency) / (decimal)concurrency)
+                TargetWorkerCount = targetWorkerCount
             };
         }
     }

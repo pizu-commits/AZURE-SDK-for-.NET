@@ -12,7 +12,7 @@ using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Config;
 
 namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 {
-    internal class ServiceBusMetricsReceiver
+    internal class ServiceBusMetricsProvider
     {
         private const string DeadLetterQueuePath = @"/$DeadLetterQueue";
 
@@ -25,25 +25,23 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 
         private DateTime _nextWarningTime;
 
-        public ServiceBusMetricsReceiver(
-            string connection,
+        public ServiceBusMetricsProvider(
             string entityPath,
             ServiceBusEntityType serviceBusEntityType,
             Lazy<ServiceBusReceiver> receiver,
-            ServiceBusClientFactory clientFactory,
+            Lazy<ServiceBusAdministrationClient> administrationClient,
             ILoggerFactory loggerFactory)
         {
             _serviceBusEntityType = serviceBusEntityType;
             _receiver = receiver;
-             _receiver = receiver;
             _entityPath = entityPath;
             _isListeningOnDeadLetterQueue = entityPath.EndsWith(DeadLetterQueuePath, StringComparison.OrdinalIgnoreCase);
-            _administrationClient = new Lazy<ServiceBusAdministrationClient>(() => clientFactory.CreateAdministrationClient(connection));
-            _logger = loggerFactory.CreateLogger<ServiceBusMetricsReceiver>();
+            _administrationClient = administrationClient;
+            _logger = loggerFactory.CreateLogger<ServiceBusMetricsProvider>();
             _nextWarningTime = DateTime.UtcNow;
         }
 
-        public async Task<ServiceBusTriggerMetrics> GetMetricsAsync()
+        public async Task<ServiceBusTriggerMetrics> GetMetricsAsync(bool skipPartitionCount = false)
         {
             ServiceBusReceivedMessage activeMessage = null;
             string entityName = _serviceBusEntityType == ServiceBusEntityType.Queue ? "queue" : "topic";
@@ -82,11 +80,11 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 
                 if (_serviceBusEntityType == ServiceBusEntityType.Queue)
                 {
-                    return await GetQueueMetricsAsync(activeMessage).ConfigureAwait(false);
+                    return await GetQueueMetricsAsync(activeMessage, skipPartitionCount).ConfigureAwait(false);
                 }
                 else
                 {
-                    return await GetTopicMetricsAsync(activeMessage).ConfigureAwait(false);
+                    return await GetTopicMetricsAsync(activeMessage, skipPartitionCount).ConfigureAwait(false);
                 }
             }
             catch (ServiceBusException ex)
@@ -116,7 +114,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             return message.State == ServiceBusMessageState.Active;
         }
 
-        private async Task<ServiceBusTriggerMetrics> GetQueueMetricsAsync(ServiceBusReceivedMessage message)
+        private async Task<ServiceBusTriggerMetrics> GetQueueMetricsAsync(ServiceBusReceivedMessage message, bool skipPartitionCount = false)
         {
             QueueRuntimeProperties queueRuntimeProperties;
             QueueProperties queueProperties;
@@ -127,15 +125,18 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             activeMessageCount = queueRuntimeProperties.ActiveMessageCount;
             deadLetterCount = queueRuntimeProperties.DeadLetterMessageCount;
 
-            // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
-            // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
-            queueProperties = await _administrationClient.Value.GetQueueAsync(_entityPath).ConfigureAwait(false);
-            partitionCount = queueProperties.EnablePartitioning ? 16 : 0;
+            if (!skipPartitionCount)
+            {
+                // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
+                // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
+                queueProperties = await _administrationClient.Value.GetQueueAsync(_entityPath).ConfigureAwait(false);
+                partitionCount = queueProperties.EnablePartitioning ? 16 : 0;
+            }
 
             return CreateTriggerMetrics(message, activeMessageCount, deadLetterCount, partitionCount, _isListeningOnDeadLetterQueue);
         }
 
-        private async Task<ServiceBusTriggerMetrics> GetTopicMetricsAsync(ServiceBusReceivedMessage message)
+        private async Task<ServiceBusTriggerMetrics> GetTopicMetricsAsync(ServiceBusReceivedMessage message, bool getMessageCountOnly = false)
         {
             TopicProperties topicProperties;
             SubscriptionRuntimeProperties subscriptionProperties;
@@ -148,11 +149,13 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             subscriptionProperties = await _administrationClient.Value.GetSubscriptionRuntimePropertiesAsync(topicPath, subscriptionPath).ConfigureAwait(false);
             activeMessageCount = subscriptionProperties.ActiveMessageCount;
             deadLetterCount = subscriptionProperties.DeadLetterMessageCount;
-
-            // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
-            // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
-            topicProperties = await _administrationClient.Value.GetTopicAsync(topicPath).ConfigureAwait(false);
-            partitionCount = topicProperties.EnablePartitioning ? 16 : 0;
+            if (!getMessageCountOnly)
+            {
+                // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
+                // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
+                topicProperties = await _administrationClient.Value.GetTopicAsync(topicPath).ConfigureAwait(false);
+                partitionCount = topicProperties.EnablePartitioning ? 16 : 0;
+            }
 
             return CreateTriggerMetrics(message, activeMessageCount, deadLetterCount, partitionCount, _isListeningOnDeadLetterQueue);
         }
