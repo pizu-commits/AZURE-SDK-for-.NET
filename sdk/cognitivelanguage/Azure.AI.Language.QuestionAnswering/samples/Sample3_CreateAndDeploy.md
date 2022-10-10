@@ -5,8 +5,8 @@ This sample demonstrates how to create and deploy Question Answering projects. T
 To create, deploy, or perform any other authoring actions for Question Answering projects, you need to first create a `QuestionAnsweringAuthoringClient` using an endpoint and API key. These can be stored in an environment variable, configuration setting, or any way that works for your application.
 
 ```C# Snippet:QuestionAnsweringAuthoringClient_Create
-Uri endpoint = new Uri("{LanguageEndpoint}");
-AzureKeyCredential credential = new AzureKeyCredential("{ApiKey}");
+Uri endpoint = new Uri("https://myaccount.cognitiveservices.azure.com/");
+AzureKeyCredential credential = new AzureKeyCredential("{api-key}");
 
 QuestionAnsweringAuthoringClient client = new QuestionAnsweringAuthoringClient(endpoint, credential);
 ```
@@ -74,6 +74,7 @@ Operation<Pageable<BinaryData>> updateSourcesOperation = client.UpdateSources(Wa
 
 // Knowledge Sources can be retrieved as follows
 Pageable<BinaryData> sources = updateSourcesOperation.Value;
+
 Console.WriteLine("Sources: ");
 foreach (BinaryData source in sources)
 {
@@ -86,6 +87,7 @@ foreach (BinaryData source in sources)
 ```C# Snippet:QuestionAnsweringAuthoringClient_DeployProject
 // Set deployment name and start operation
 string newDeploymentName = "{DeploymentName}";
+
 Operation<BinaryData> deploymentOperation = client.DeployProject(WaitUntil.Completed, newProjectName, newDeploymentName);
 
 // Deployments can be retrieved as follows
@@ -167,6 +169,7 @@ await foreach (BinaryData source in sources)
 ```C# Snippet:QuestionAnsweringAuthoringClient_DeployProjectAsync
 // Set deployment name and start operation
 string newDeploymentName = "{DeploymentName}";
+
 Operation<BinaryData> deploymentOperation = await client.DeployProjectAsync(WaitUntil.Completed, newProjectName, newDeploymentName);
 
 // Deployments can be retrieved as follows
