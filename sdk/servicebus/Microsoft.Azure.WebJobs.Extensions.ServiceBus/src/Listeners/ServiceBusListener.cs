@@ -115,20 +115,18 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
                     loggerFactory
                     ));
 
-            if (singleDispatch)
-            {
-                _targetScaler = new Lazy<ServiceBusTargetScaler>(
-                    () => new ServiceBusTargetScaler(
-                        functionId,
-                        _entityPath,
-                        entityType,
-                        _batchReceiver,
-                        _administrationClient,
-                        options,
-                        _isSessionsEnabled,
-                        loggerFactory
-                        ));
-            }
+            _targetScaler = new Lazy<ServiceBusTargetScaler>(
+                () => new ServiceBusTargetScaler(
+                    functionId,
+                    _entityPath,
+                    entityType,
+                    _batchReceiver,
+                    _administrationClient,
+                    options,
+                    _isSessionsEnabled,
+                    _singleDispatch,
+                    loggerFactory
+                    ));
 
             _scopeFactory = new Lazy<EntityScopeFactory>(
                 () => new EntityScopeFactory(_batchReceiver.Value.EntityPath, _batchReceiver.Value.FullyQualifiedNamespace));

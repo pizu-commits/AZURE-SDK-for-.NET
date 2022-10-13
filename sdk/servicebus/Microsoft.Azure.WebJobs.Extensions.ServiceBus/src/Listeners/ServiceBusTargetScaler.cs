@@ -20,6 +20,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
         private readonly ServiceBusMetricsProvider _serviceBusMetricsProvider;
         private readonly ServiceBusOptions _options;
         private readonly bool _isSessionsEnabled;
+        private readonly bool _singleDispatch;
         private readonly TargetScalerDescriptor _targetScalerDescriptor;
         private readonly string _entityPath;
         private readonly ILogger _logger;
@@ -32,6 +33,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             Lazy<ServiceBusAdministrationClient> administrationClient,
             ServiceBusOptions options,
             bool isSessionsEnabled,
+            bool singleDispatch,
             ILoggerFactory loggerFactory
             )
         {
@@ -41,6 +43,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             _targetScalerDescriptor = new TargetScalerDescriptor(functionId);
             _logger = loggerFactory.CreateLogger<ServiceBusTargetScaler>();
             _options = options;
+            _singleDispatch = singleDispatch;
             _isSessionsEnabled = isSessionsEnabled;
         }
 
@@ -48,22 +51,30 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 
         public async Task<TargetScalerResult> GetScaleResultAsync(TargetScalerContext context)
         {
-            ServiceBusTriggerMetrics metrics = await _serviceBusMetricsProvider.GetMetricsAsync(true).ConfigureAwait(false);
-            return GetScaleResultInternal(context, metrics.MessageCount);
+            long activeMessageCount = await _serviceBusMetricsProvider.GetMessageCount().ConfigureAwait(false);
+            return GetScaleResultInternal(context, activeMessageCount);
         }
 
         internal TargetScalerResult GetScaleResultInternal(TargetScalerContext context, long messageCount)
         {
             int concurrency;
+
             if (!context.InstanceConcurrency.HasValue)
             {
-                if (_isSessionsEnabled)
+                if (!_singleDispatch)
                 {
-                    concurrency = _options.MaxConcurrentSessions;
+                    concurrency = _options.MaxMessageBatchSize;
                 }
                 else
                 {
-                    concurrency = _options.MaxConcurrentCalls;
+                    if (_isSessionsEnabled)
+                    {
+                        concurrency = _options.MaxConcurrentSessions;
+                    }
+                    else
+                    {
+                        concurrency = _options.MaxConcurrentCalls;
+                    }
                 }
             }
             else
@@ -72,7 +83,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             }
 
             int targetWorkerCount = (int)Math.Ceiling(messageCount / (decimal)concurrency);
-            _logger.LogInformation($"'Target worker count for function '{_functionId}' is '{targetWorkerCount}' (EntityPath='{_entityPath}', MessageCount ='{messageCount}', Concurrecny='{concurrency}').");
+            _logger.LogInformation($"'Target worker count for function '{_functionId}' is '{targetWorkerCount}' (EntityPath='{_entityPath}', MessageCount ='{messageCount}', Concurrency='{concurrency}').");
 
             return new TargetScalerResult
             {

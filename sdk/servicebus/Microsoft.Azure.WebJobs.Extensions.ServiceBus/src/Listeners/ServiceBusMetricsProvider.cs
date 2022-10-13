@@ -41,7 +41,43 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             _nextWarningTime = DateTime.UtcNow;
         }
 
-        public async Task<ServiceBusTriggerMetrics> GetMetricsAsync(bool skipPartitionCount = false)
+        public async Task<long> GetMessageCount()
+        {
+            long activeMessageCount = 0, deadLetterCount = 0;
+            string entityName = _serviceBusEntityType == ServiceBusEntityType.Queue ? "queue" : "topic";
+            try
+            {
+                if (_serviceBusEntityType == ServiceBusEntityType.Queue)
+                {
+                    QueueRuntimeProperties queueRuntimeProperties = await _administrationClient.Value.GetQueueRuntimePropertiesAsync(_entityPath).ConfigureAwait(false);
+                    activeMessageCount = queueRuntimeProperties.ActiveMessageCount;
+                    deadLetterCount = queueRuntimeProperties.DeadLetterMessageCount;
+                }
+                else
+                {
+                    ServiceBusEntityPathHelper.ParseTopicAndSubscription(_entityPath, out string topicPath, out string subscriptionPath);
+
+                    SubscriptionRuntimeProperties subscriptionProperties = await _administrationClient.Value.GetSubscriptionRuntimePropertiesAsync(topicPath, subscriptionPath).ConfigureAwait(false);
+                    activeMessageCount = subscriptionProperties.ActiveMessageCount;
+                    deadLetterCount = subscriptionProperties.DeadLetterMessageCount;
+                }
+            }
+            catch (UnauthorizedAccessException) // When manage claim is not used on Service Bus connection string
+            {
+                _logger.LogWarning($"Connection string does not have Manage claim for {entityName} '{_entityPath}'. Failed to get {entityName} description to " +
+                    $"derive {entityName} length metrics. Target base scale won't work due impossibility to get active message count.");
+            }
+
+            long totalNewMessageCount = 0;
+            if ((!_isListeningOnDeadLetterQueue && activeMessageCount > 0) || (_isListeningOnDeadLetterQueue && deadLetterCount > 0))
+            {
+                totalNewMessageCount = _isListeningOnDeadLetterQueue ? deadLetterCount : activeMessageCount;
+            }
+
+            return totalNewMessageCount;
+        }
+
+        public async Task<ServiceBusTriggerMetrics> GetMetricsAsync()
         {
             ServiceBusReceivedMessage activeMessage = null;
             string entityName = _serviceBusEntityType == ServiceBusEntityType.Queue ? "queue" : "topic";
@@ -80,11 +116,11 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 
                 if (_serviceBusEntityType == ServiceBusEntityType.Queue)
                 {
-                    return await GetQueueMetricsAsync(activeMessage, skipPartitionCount).ConfigureAwait(false);
+                    return await GetQueueMetricsAsync(activeMessage).ConfigureAwait(false);
                 }
                 else
                 {
-                    return await GetTopicMetricsAsync(activeMessage, skipPartitionCount).ConfigureAwait(false);
+                    return await GetTopicMetricsAsync(activeMessage).ConfigureAwait(false);
                 }
             }
             catch (ServiceBusException ex)
@@ -114,7 +150,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             return message.State == ServiceBusMessageState.Active;
         }
 
-        private async Task<ServiceBusTriggerMetrics> GetQueueMetricsAsync(ServiceBusReceivedMessage message, bool skipPartitionCount = false)
+        private async Task<ServiceBusTriggerMetrics> GetQueueMetricsAsync(ServiceBusReceivedMessage message)
         {
             QueueRuntimeProperties queueRuntimeProperties;
             QueueProperties queueProperties;
@@ -125,18 +161,15 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             activeMessageCount = queueRuntimeProperties.ActiveMessageCount;
             deadLetterCount = queueRuntimeProperties.DeadLetterMessageCount;
 
-            if (!skipPartitionCount)
-            {
-                // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
-                // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
-                queueProperties = await _administrationClient.Value.GetQueueAsync(_entityPath).ConfigureAwait(false);
-                partitionCount = queueProperties.EnablePartitioning ? 16 : 0;
-            }
+            // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
+            // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
+            queueProperties = await _administrationClient.Value.GetQueueAsync(_entityPath).ConfigureAwait(false);
+            partitionCount = queueProperties.EnablePartitioning ? 16 : 0;
 
             return CreateTriggerMetrics(message, activeMessageCount, deadLetterCount, partitionCount, _isListeningOnDeadLetterQueue);
         }
 
-        private async Task<ServiceBusTriggerMetrics> GetTopicMetricsAsync(ServiceBusReceivedMessage message, bool getMessageCountOnly = false)
+        private async Task<ServiceBusTriggerMetrics> GetTopicMetricsAsync(ServiceBusReceivedMessage message)
         {
             TopicProperties topicProperties;
             SubscriptionRuntimeProperties subscriptionProperties;
@@ -149,13 +182,11 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             subscriptionProperties = await _administrationClient.Value.GetSubscriptionRuntimePropertiesAsync(topicPath, subscriptionPath).ConfigureAwait(false);
             activeMessageCount = subscriptionProperties.ActiveMessageCount;
             deadLetterCount = subscriptionProperties.DeadLetterMessageCount;
-            if (!getMessageCountOnly)
-            {
-                // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
-                // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
-                topicProperties = await _administrationClient.Value.GetTopicAsync(topicPath).ConfigureAwait(false);
-                partitionCount = topicProperties.EnablePartitioning ? 16 : 0;
-            }
+
+            // If partitioning is turned on, then Service Bus automatically partitions queues into 16 partitions
+            // See more information here: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning#standard
+            topicProperties = await _administrationClient.Value.GetTopicAsync(topicPath).ConfigureAwait(false);
+            partitionCount = topicProperties.EnablePartitioning ? 16 : 0;
 
             return CreateTriggerMetrics(message, activeMessageCount, deadLetterCount, partitionCount, _isListeningOnDeadLetterQueue);
         }
