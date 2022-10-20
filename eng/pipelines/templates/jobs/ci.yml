@@ -64,8 +64,6 @@ jobs:
         displayName: "Tag scheduled builds"
         condition: and(eq(variables['Build.SourceBranchName'],variables['DefaultBranch']),eq(variables['Build.Reason'],'Schedule'))
       - template: /eng/common/pipelines/templates/steps/daily-dev-build-variable.yml
-        parameters:
-          ServiceDirectory: ${{ parameters.ServiceDirectory }}
       - pwsh: |
           $skipDevBuildNumber = "false"
           # For .NET builds the only case we want to not have dev build numbers on our packages is when it is manually queued and
@@ -97,7 +95,7 @@ jobs:
           arguments: >
             -ServiceDirectory ${{parameters.ServiceDirectory}}
             -OutDirectory $(Build.ArtifactStagingDirectory)/PackageInfo
-            -AddDevVersion
+            -AddDevVersion:$$(SetDevVersion)
           pwsh: true
           workingDirectory: $(Pipeline.Workspace)
         displayName: Update package properties with dev version

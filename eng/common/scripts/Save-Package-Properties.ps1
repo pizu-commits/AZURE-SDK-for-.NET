@@ -49,7 +49,7 @@ function SetOutput($outputPath, $incomingPackageSpec) {
   {
     $outputObject = $incomingPackageSpec
   }
-  
+
 
   if ($addDevVersion)
   {
