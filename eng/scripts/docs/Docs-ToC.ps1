@@ -24,29 +24,28 @@ function Get-NamepspacesFromDll($dllPath) {
 
 function DownloadNugetPackage($package, $version, $destination) {
     # $PackageSourceOverride is a global variable provided in
-    # Update-DocsMsPackages.ps1. Its value can set a "customSource" property.
+    # Update-DocsMsToc.ps1. Its value can set a "customSource" property.
     # If it is empty then the property is not overridden.
-    $customPackageSource = $env:PACKAGESOURCEOVERRIDE
+    $customPackageSource = Get-Variable -Name 'PackageSourceOverride' -ValueOnly -ErrorAction 'Ignore'
     $defaultDownloadUri = "https://www.nuget.org/api/v2/package/$package/$version"
     try {
-        if ($customPackageSource){
-            $publicFeedsUrl = "https://pkgs.dev.azure.com/azure-sdk/public/_apis/packaging/feeds/azure-sdk-for-net/nuget/packages/$package/versions/$version/content?api-version=6.0-preview.1"
+        if ($customPackageSource) {
             # Download package from devop public feeds
-            Write-Host "Download from public feeds: $publicFeedsUrl"
+            Write-Host "Download from public feeds: $customPackageSource"
             # Invoke the download link and store it into destination
             nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         }
         else {
             Write-Host "Download from nuget: $defaultDownloadUri"
             # Invoke the download link and store it into destination
-            nuget install -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
+            nuget install $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination # -Source $defaultDownloadUri 
         }
     }
     catch {
         Write-Error $_ -ErrorAction Continue
         Write-Host "Failed to download. Try again using default uri: $defaultDownloadUri"
         # Add fallback logic
-        nuget install -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
+        nuget install $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
     }
 }
 
@@ -125,7 +124,7 @@ function GetPackageReadmeName($packageMetadata) {
     return $packageLevelReadmeName
   }
   
-function Get-dotnet-DocsMsTocData($packageMetadata, $docRepoLocation) {
+function Get-dotnet-DocsMsTocData($packageMetadata, $docRepoLocation, $PackageSourceOverride) {
     $packageLevelReadmeName = GetPackageReadmeName -packageMetadata $packageMetadata
     $packageTocHeader = $packageMetadata.Package
     if ($packageMetadata.DisplayName) {
