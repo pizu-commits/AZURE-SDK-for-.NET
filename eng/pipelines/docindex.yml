@@ -27,6 +27,7 @@ jobs:
           Repositories:
             - Name: $(DocRepoOwner)/$(DocRepoName)
               WorkingDirectory: $(DocRepoLocation)
+      # Install the tool for toc step to use
       - task: NuGetToolInstaller@1
       # Call update docs ci script to onboard packages
       - template: /eng/common/pipelines/templates/steps/set-default-branch.yml
@@ -94,6 +95,7 @@ jobs:
             -DocRepoLocation $(DocRepoLocation)
             -OutputLocation $(DocRepoLocation)/docs-ref-toc/reference-unified.yml
             -ReadmeFolderRoot "api/overview/azure"
+            -PackageSourceOverride $(PackageSourceOverride)
         displayName: Generate ToC for Daily Branches
 
       - template: /eng/common/pipelines/templates/steps/git-push-changes.yml

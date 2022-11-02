@@ -34,19 +34,19 @@ function DownloadNugetPackage($package, $version, $destination) {
             # Download package from devop public feeds
             Write-Host "Download from public feeds: $publicFeedsUrl"
             # Invoke the download link and store it into destination
-            Invoke-WebRequest $publicFeedsUrl -OutFile $destination
+            nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         }
         else {
             Write-Host "Download from nuget: $defaultDownloadUri"
             # Invoke the download link and store it into destination
-            Invoke-WebRequest $defaultDownloadUri -OutFile $destination
+            nuget install -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         }
     }
     catch {
         Write-Error $_ -ErrorAction Continue
         Write-Host "Failed to download. Try again using default uri: $defaultDownloadUri"
         # Add fallback logic
-        Invoke-WebRequest $defaultDownloadUri -OutFile $destination
+        nuget install -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
     }
 }
 
