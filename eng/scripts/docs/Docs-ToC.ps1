@@ -54,7 +54,7 @@ function Fetch-NamespacesFromNupkg ($package, $version) {
     if (!(Test-Path $tempLocation)) {
         New-Item -ItemType Directory -Path $tempLocation -Force | Out-Null
     }
-    Write-Host "Downloading nupkg packge to $nupkgFilePath ...."
+    Write-Host "Downloading nupkg packge to $tempLocation ...."
     DownloadNugetPackage -package $package -version $version -destination $tempLocation | Out-Null
     Write-Host "Searching ddl file..."
     $dllFile = @()
@@ -62,10 +62,10 @@ function Fetch-NamespacesFromNupkg ($package, $version) {
         $dllFile = @(Get-ChildItem "$tempLocation/$package.$version/lib/netstandard2.0/*" -Filter '*.dll' -Recurse)
     }
     if (!$dllFile -or ($dllFile.Count -gt 1)) {
-        Write-Warning "Can't find any dll file from $nupkgFilePath with target netstandard2.0."
+        Write-Warning "Can't find any dll file from $tempLocation/$package.$version with target netstandard2.0."
         $dllFiles = Get-ChildItem "$tempLocation/$package.$version/lib/*" -Filter '*.dll' -Recurse
         if (!$dllFiles) {
-            Write-Error "Can't find any dll file from $nupkgFilePath." -ErrorAction Continue
+            Write-Error "Can't find any dll file from $tempLocation/$package.$version." -ErrorAction Continue
             return @()
         }
         $dllFile = $dllFiles[0]
