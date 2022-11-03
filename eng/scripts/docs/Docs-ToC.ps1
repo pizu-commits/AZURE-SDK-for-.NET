@@ -28,52 +28,42 @@ function DownloadNugetPackage($package, $version, $destination) {
     # If it is empty then the property is not overridden.
     $customPackageSource = Get-Variable -Name 'PackageSourceOverride' -ValueOnly -ErrorAction 'Ignore'
     $defaultDownloadUri = "https://www.nuget.org/api/v2/package/$package/$version"
-    try {
-        if ($customPackageSource) {
-            # Download package from devop public feeds
-            Write-Host "Download from public feeds: $customPackageSource"
-            # Invoke the download link and store it into destination
+    if ($customPackageSource) {
+        # Download package from devop public feeds
+        Write-Host "Download from public feeds: $customPackageSource"
+        # Invoke the download link and store it into destination
+        try {
             nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         }
-        else {
-            Write-Host "Download from nuget: $defaultDownloadUri"
-            # Invoke the download link and store it into destination
-            nuget install $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination # -Source $defaultDownloadUri 
+        catch {
+            Write-Error $_ -ErrorAction Continue
+            Write-Host "Failed to download from public feeds. Try again using default uri: $defaultDownloadUri"
+            # Add fallback logic
+            nuget install  -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         }
     }
-    catch {
-        Write-Error $_ -ErrorAction Continue
-        Write-Host "Failed to download. Try again using default uri: $defaultDownloadUri"
-        # Add fallback logic
-        nuget install $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
+    else {
+        Write-Host "Download from nuget: $defaultDownloadUri"
+        # Invoke the download link and store it into destination
+        nuget install  -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
     }
 }
 
 function Fetch-NamespacesFromNupkg ($package, $version) {
-    $tempLocation = (Join-Path ([System.IO.Path]::GetTempPath()) "extractNupkg/$package-$version")
+    $tempLocation = (Join-Path ([System.IO.Path]::GetTempPath()) "extractNupkg")
     if (!(Test-Path $tempLocation)) {
         New-Item -ItemType Directory -Path $tempLocation -Force | Out-Null
     }
-    $nupkgFilePath = "$tempLocation/$package-$version.nupkg"
     Write-Host "Downloading nupkg packge to $nupkgFilePath ...."
-    DownloadNugetPackage -package $package -version $version -destination $nupkgFilePath
-    if (!(Test-Path $nupkgFilePath)) {
-        return @()
-    }
-    Write-Host "Unzipping nupkg..."
-    # Extracting nupkg to ddl
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($nupkgFilePath, $tempLocation)
-    # .NET core includes multiple target framework. We currently have the same namespaces for different framework. 
-    # Will use whatever the first dll file.
+    DownloadNugetPackage -package $package -version $version -destination $tempLocation | Out-Null
     Write-Host "Searching ddl file..."
     $dllFile = @()
-    if (Test-Path $tempLocation/lib/netstandard2.0/){
-        $dllFile = @(Get-ChildItem "$tempLocation/lib/netstandard2.0/*" -Filter '*.dll' -Recurse)
+    if (Test-Path "$tempLocation/$package.$version/lib/netstandard2.0/"){
+        $dllFile = @(Get-ChildItem "$tempLocation/$package.$version/lib/netstandard2.0/*" -Filter '*.dll' -Recurse)
     }
     if (!$dllFile -or ($dllFile.Count -gt 1)) {
         Write-Warning "Can't find any dll file from $nupkgFilePath with target netstandard2.0."
-        $dllFiles = Get-ChildItem "$tempLocation/lib/*" -Filter '*.dll' -Recurse
+        $dllFiles = Get-ChildItem "$tempLocation/$package.$version/lib/*" -Filter '*.dll' -Recurse
         if (!$dllFiles) {
             Write-Error "Can't find any dll file from $nupkgFilePath." -ErrorAction Continue
             return @()
