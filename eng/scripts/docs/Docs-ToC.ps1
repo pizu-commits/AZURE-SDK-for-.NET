@@ -32,10 +32,8 @@ function DownloadNugetPackage($package, $version, $destination) {
         # Download package from devop public feeds
         Write-Host "Download from public feeds: $customPackageSource"
         # Invoke the download link and store it into destination
-        try {
-            nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
-        }
-        catch {
+        nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
+        if ($LASTEXITCODE -ne 0) {
             Write-Error $_ -ErrorAction Continue
             Write-Host "Failed to download from public feeds. Try again using default uri: $defaultDownloadUri"
             # Add fallback logic
@@ -56,6 +54,10 @@ function Fetch-NamespacesFromNupkg ($package, $version) {
     }
     Write-Host "Downloading nupkg packge to $tempLocation ...."
     DownloadNugetPackage -package $package -version $version -destination $tempLocation | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Did not download the package correctly. Skipping..."
+        return @()
+    }
     Write-Host "Searching ddl file..."
     $dllFile = @()
     if (Test-Path "$tempLocation/$package.$version/lib/netstandard2.0/"){
