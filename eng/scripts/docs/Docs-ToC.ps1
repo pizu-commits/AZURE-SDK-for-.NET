@@ -34,7 +34,6 @@ function DownloadNugetPackage($package, $version, $destination) {
         # Invoke the download link and store it into destination
         nuget install -Source $customPackageSource $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
         if ($LASTEXITCODE -ne 0) {
-            Write-Error $_ -ErrorAction Continue
             Write-Host "Failed to download from public feeds. Try again using default uri: $defaultDownloadUri"
             # Add fallback logic
             nuget install  -Source $defaultDownloadUri $package -Version $version -DirectDownload -DependencyVersion Ignore -OutputDirectory $destination
