@@ -27,7 +27,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Tests.Listeners
         [TestCase(100, true, true, null, 4)]
         [TestCase(100, false, true, 19, 6)]
         [TestCase(100, false, false, null, 3)]
-        public void ServiceBusTargetScaler_Returns_Expected(int messageCount, bool isSessionEnabled, bool signleDispatch, int? concurrecny,int expected)
+        public void ServiceBusTargetScaler_Returns_Expected(int messageCount, bool isSessionEnabled, bool singleDispatch, int? concurrency,int expected)
         {
             ServiceBusOptions options = new ServiceBusOptions
             {
@@ -38,7 +38,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Tests.Listeners
 
             TargetScalerContext context = new TargetScalerContext
             {
-                InstanceConcurrency = concurrecny
+                InstanceConcurrency = concurrency
             };
 
             _loggerFactory = new LoggerFactory();
@@ -53,7 +53,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Tests.Listeners
                 null,
                 options,
                 isSessionEnabled,
-                signleDispatch,
+                singleDispatch,
                 _loggerFactory
                 );
             TargetScalerResult result = targetScaler.GetScaleResultInternal(context, messageCount);

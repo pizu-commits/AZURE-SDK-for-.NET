@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference  Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.34-11969" />
+    <PackageReference  Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.35" />
   </ItemGroup>
 
 </Project>

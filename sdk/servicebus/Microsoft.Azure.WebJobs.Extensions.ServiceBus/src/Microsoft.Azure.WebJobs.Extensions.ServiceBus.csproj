@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Azure.Messaging.ServiceBus\src\Azure.Messaging.ServiceBus.csproj" />
+    <PackageReference  Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.35" />
   </ItemGroup>
 
 </Project>

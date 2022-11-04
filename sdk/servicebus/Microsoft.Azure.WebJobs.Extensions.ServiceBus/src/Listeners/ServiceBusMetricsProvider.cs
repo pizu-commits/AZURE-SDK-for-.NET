@@ -64,8 +64,11 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             }
             catch (UnauthorizedAccessException) // When manage claim is not used on Service Bus connection string
             {
-                _logger.LogWarning($"Connection string does not have Manage claim for {entityName} '{_entityPath}'. Failed to get {entityName} description to " +
-                    $"derive {entityName} length metrics. Target base scale won't work due impossibility to get active message count.");
+                string message = $"Connection string does not have Manage claim for {entityName} '{_entityPath}'. Failed to get {entityName} description to " +
+                    $"derive {entityName} length metrics. Target base scale won't work due impossibility to get active message count.";
+
+                // rethrow NotSupportedException to handle by function host
+                throw new NotSupportedException(message);
             }
 
             long totalNewMessageCount = 0;

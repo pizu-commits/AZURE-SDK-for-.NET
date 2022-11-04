@@ -82,6 +82,11 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
                 concurrency = context.InstanceConcurrency.Value;
             }
 
+            if (concurrency < 1)
+            {
+                throw new ArgumentOutOfRangeException($"Unexpected concurrency='{concurrency}' - the value must be > 0.");
+            }
+
             int targetWorkerCount = (int)Math.Ceiling(messageCount / (decimal)concurrency);
             _logger.LogInformation($"'Target worker count for function '{_functionId}' is '{targetWorkerCount}' (EntityPath='{_entityPath}', MessageCount ='{messageCount}', Concurrency='{concurrency}').");
 

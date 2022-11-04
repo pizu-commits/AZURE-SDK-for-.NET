@@ -561,7 +561,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 
         public ITargetScaler GetTargetScaler()
         {
-            return _targetScaler != null ? _targetScaler.Value : null;
+            return _targetScaler.Value;
         }
 
         /// <summary>
