@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 {
-    public class ServiceBusTargetScaler : ITargetScaler
+    internal class ServiceBusTargetScaler : ITargetScaler
     {
         private readonly string _functionId;
         private readonly ServiceBusMetricsProvider _serviceBusMetricsProvider;

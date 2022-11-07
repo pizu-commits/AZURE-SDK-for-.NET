@@ -15,7 +15,7 @@ using Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners;
 
 namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
 {
-    public class ServiceBusScaleMonitor : IScaleMonitor<ServiceBusTriggerMetrics>
+    internal class ServiceBusScaleMonitor : IScaleMonitor<ServiceBusTriggerMetrics>
     {
         private readonly string _functionId;
         private readonly string _entityPath;
@@ -35,7 +35,7 @@ namespace Microsoft.Azure.WebJobs.ServiceBus.Listeners
             _functionId = functionId;
             _entityPath = entityPath;
             _serviceBusMetricsProvider = new ServiceBusMetricsProvider(entityPath, entityType, receiver, administrationClient, loggerFactory);
-            _scaleMonitorDescriptor = new ScaleMonitorDescriptor($"{_functionId}-ServiceBusTrigger-{_entityPath}".ToLower(CultureInfo.InvariantCulture));
+            _scaleMonitorDescriptor = new ScaleMonitorDescriptor($"{_functionId}-ServiceBusTrigger-{_entityPath}".ToLower(CultureInfo.InvariantCulture), functionId);
             _logger = loggerFactory.CreateLogger<ServiceBusScaleMonitor>();
         }
 
