@@ -51,8 +51,15 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
 
         public async Task<TargetScalerResult> GetScaleResultAsync(TargetScalerContext context)
         {
-            long activeMessageCount = await _serviceBusMetricsProvider.GetMessageCount().ConfigureAwait(false);
-            return GetScaleResultInternal(context, activeMessageCount);
+            try
+            {
+                long activeMessageCount = await _serviceBusMetricsProvider.GetMessageCount().ConfigureAwait(false);
+                return GetScaleResultInternal(context, activeMessageCount);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new NotSupportedException("Target scaler is not supported.", ex);
+            }
         }
 
         internal TargetScalerResult GetScaleResultInternal(TargetScalerContext context, long messageCount)
