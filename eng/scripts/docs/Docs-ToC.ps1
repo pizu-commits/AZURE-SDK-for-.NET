@@ -105,6 +105,33 @@ function Get-dotnet-OnboardedDocsMsPackages($DocRepoLocation) {
     return $onboardedPackages
 }
 
+function Get-dotnet-OnboardedDocsMsPackagesForMoniker ($DocRepoLocation, $moniker) {
+    $onboardingSpec = ""
+    if ("preview" -eq $moniker) {
+        $onboardingSpec = Get-Content "$DocRepoLocation/bundlepackages/azure-dotnet-preview.csv"
+    }
+    elseif("latest" -eq $moniker) {
+        $onboardingSpec = Get-Content "$DocRepoLocation/bundlepackages/azure-dotnet.csv"
+    }
+    $onboardedPackages = @{}
+    foreach ($spec in $onboardingSpec) {
+        $packageInfo = $spec -split ","
+        if (!$packageInfo -or ($packageInfo.Count -lt 2)) {
+            LogError "Please check the package info in csv file $file. Please have at least one package and follow the format {name index, package name, version(optional)}"
+            return $null
+        }
+        $packageName = $packageInfo[1].Trim() -replace "\[.*\](.*)", '$1'
+        $jsonFile = "$DocRepoLocation/metadata/$moniker/$packageName.json"
+        if (Test-Path $jsonFile) {
+            $onboardedPackages["$packageName"] = ConvertFrom-Json (Get-Content $jsonFile -Raw)
+        }
+        else {
+            $onboardedPackages["$packageName"] = $null
+        }
+    }
+    return $onboardedPackages
+}
+
 function GetPackageReadmeName($packageMetadata) {
     # Fallback to get package-level readme name if metadata file info does not exist
     $packageLevelReadmeName = $packageMetadata.Package.ToLower().Replace('azure.', '')
