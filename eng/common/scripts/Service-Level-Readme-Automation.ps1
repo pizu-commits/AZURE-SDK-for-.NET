@@ -74,31 +74,20 @@ foreach($moniker in $monikers) {
     -DocRepoLocation $DocRepoLocation -moniker $moniker
   $csvMetadata = @()
   foreach($metadataEntry in $fullMetadata) {
-    Write-Host "1"
     if ($metadataEntry.Package -and $metadataEntry.Hide -ne 'true') {
-      Write-Host "2"
       $pkgKey = GetPackageKey $metadataEntry
-      Write-Host "4: $pkgKey"
       if($onboardedPackages.ContainsKey($pkgKey)) {
-        Write-Host "9"
         if ($onboardedPackages[$pkgKey] -and $onboardedPackages[$pkgKey].DirectoryPath) {
-          Write-Host "6"
           if (!($metadataEntry.PSObject.Members.Name -contains "DirectoryPath")) {
-            Write-Host "8"
             Add-Member -InputObject $metadataEntry `
               -MemberType NoteProperty `
               -Name DirectoryPath `
               -Value $onboardedPackages[$pkgKey].DirectoryPath
           }
         }
-        Write-Host "7"
         $csvMetadata += $metadataEntry
       }
-      
-      Write-Host "5"
     }
-    
-    Write-Host "3"
   }
 
   $packagesForService = @{}

@@ -25,6 +25,7 @@ jobs:
             - bundlepackages/
             - metadata/
             - docs-ref-toc/
+            - api/overview/azure
           Repositories:
             - Name: $(DocRepoOwner)/$(DocRepoName)
               WorkingDirectory: $(DocRepoLocation)
@@ -50,6 +51,7 @@ jobs:
             -TenantId '$(opensource-aad-tenant-id)'
             -ClientId '$(opensource-aad-app-id)'
             -ClientSecret '$(opensource-aad-secret)'
+            -ReadmeFolderRoot 'api/overview/azure'
         displayName: Generate Service Level Readme for main branch
         # condition: and(succeeded(), or(eq(variables['Build.Reason'], 'Schedule'), eq(variables['Force.MainUpdate'], 'true')))
       # - task: Powershell@2
