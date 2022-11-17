@@ -123,7 +123,11 @@ function Get-dotnet-OnboardedDocsMsPackagesForMoniker ($DocRepoLocation, $monike
         $packageName = $packageInfo[1].Trim() -replace "\[.*\](.*)", '$1'
         $jsonFile = "$DocRepoLocation/metadata/$moniker/$packageName.json"
         if (Test-Path $jsonFile) {
-            $onboardedPackages["$packageName"] = ConvertFrom-Json (Get-Content $jsonFile -Raw)
+            $packageInfoJson = ConvertFrom-Json (Get-Content $jsonFile -Raw)
+            if (!$packageInfoJson.DirectoryPath) {
+                $packageInfoJson.DirectoryPath = ""
+            }
+            $onboardedPackages["$packageName"] = $packageInfoJson
         }
         else {
             $onboardedPackages["$packageName"] = $null
