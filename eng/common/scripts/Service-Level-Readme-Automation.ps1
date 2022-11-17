@@ -78,6 +78,7 @@ foreach($moniker in $monikers) {
       $pkgKey = GetPackageKey $metadataEntry
       if($onboardedPackages.ContainsKey($pkgKey)) {
         Write-Warning $onboardedPackages[$pkgKey]
+        Write-Warning $metadataEntry
         if ($onboardedPackages[$pkgKey] -and $onboardedPackages[$pkgKey].DirectoryPath) {
           if (!($metadataEntry.PSObject.Members.Name -contains "DirectoryPath")) {
             Add-Member -InputObject $metadataEntry `
@@ -90,6 +91,7 @@ foreach($moniker in $monikers) {
       }
     }
   }
+
   $packagesForService = @{}
   $allPackages = GetPackageLookup $csvMetadata
   foreach ($metadataKey in $allPackages.Keys) {
