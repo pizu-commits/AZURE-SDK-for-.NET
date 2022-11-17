@@ -78,10 +78,9 @@ foreach($moniker in $monikers) {
     if ($metadataEntry.Package -and $metadataEntry.Hide -ne 'true') {
       Write-Host "2"
       $pkgKey = GetPackageKey $metadataEntry
-      Write-Host "4"
+      Write-Host "4: $pkgKey"
       if($onboardedPackages.ContainsKey($pkgKey)) {
-        Write-Warning $onboardedPackages[$pkgKey]
-        Write-Warning $metadataEntry
+        Write-Host "9"
         if ($onboardedPackages[$pkgKey] -and $onboardedPackages[$pkgKey].DirectoryPath) {
           Write-Host "6"
           if (!($metadataEntry.PSObject.Members.Name -contains "DirectoryPath")) {
