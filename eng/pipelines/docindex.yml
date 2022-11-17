@@ -14,6 +14,7 @@ jobs:
       # Checkout the eng folder from the SDK repo
       - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
         parameters:
+          SkipCheckoutNone: true
           Paths: 
             - .github/
 
