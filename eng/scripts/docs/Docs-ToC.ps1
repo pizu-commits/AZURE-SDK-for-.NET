@@ -125,7 +125,7 @@ function Get-dotnet-OnboardedDocsMsPackagesForMoniker ($DocRepoLocation, $monike
         if (Test-Path $jsonFile) {
             $packageInfoJson = ConvertFrom-Json (Get-Content $jsonFile -Raw)
             if (!$packageInfoJson.DirectoryPath) {
-                $packageInfoJson.DirectoryPath = ""
+                $packageInfoJson | Add-Member -Name "DirectoryPath" -value "" -MemberType NoteProperty
             }
             $onboardedPackages["$packageName"] = $packageInfoJson
         }
