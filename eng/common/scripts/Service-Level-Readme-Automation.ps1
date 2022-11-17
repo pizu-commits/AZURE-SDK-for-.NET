@@ -77,6 +77,7 @@ foreach($moniker in $monikers) {
     if ($metadataEntry.Package -and $metadataEntry.Hide -ne 'true') {
       $pkgKey = GetPackageKey $metadataEntry
       if($onboardedPackages.ContainsKey($pkgKey)) {
+        Write-Warning $onboardedPackages[$pkgKey]
         if ($onboardedPackages[$pkgKey] -and $onboardedPackages[$pkgKey].DirectoryPath) {
           if (!($metadataEntry.PSObject.Members.Name -contains "DirectoryPath")) {
             Add-Member -InputObject $metadataEntry `
