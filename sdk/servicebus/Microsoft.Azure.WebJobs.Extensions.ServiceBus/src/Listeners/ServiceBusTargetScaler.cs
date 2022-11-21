@@ -53,7 +53,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
         {
             try
             {
-                long activeMessageCount = await _serviceBusMetricsProvider.GetMessageCount().ConfigureAwait(false);
+                long activeMessageCount = await _serviceBusMetricsProvider.GetMessageCountAsync().ConfigureAwait(false);
                 return GetScaleResultInternal(context, activeMessageCount);
             }
             catch (UnauthorizedAccessException ex)

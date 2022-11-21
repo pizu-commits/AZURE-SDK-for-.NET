@@ -41,7 +41,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
             _nextWarningTime = DateTime.UtcNow;
         }
 
-        public async Task<long> GetMessageCount()
+        public async Task<long> GetMessageCountAsync()
         {
             long activeMessageCount = 0, deadLetterCount = 0;
             string entityName = _serviceBusEntityType == ServiceBusEntityType.Queue ? "queue" : "topic";
