@@ -62,10 +62,19 @@ namespace Microsoft.Azure.WebJobs.Extensions.ServiceBus.Listeners
                     deadLetterCount = subscriptionProperties.DeadLetterMessageCount;
                 }
             }
-            catch (UnauthorizedAccessException ex) // When manage claim is not used on Service Bus connection string
+            catch (ServiceBusException ex)
+            when (ex.Reason == ServiceBusFailureReason.MessagingEntityNotFound)
+            {
+                _logger.LogWarning($"ServiceBus {entityName} '{_entityPath}' was not found.");
+            }
+            catch (UnauthorizedAccessException ex)
             {
                 _logger.LogWarning($"Connection string does not have 'Manage Claim' for {entityName} '{_entityPath}'.Unable to determine active message count.", ex);
                 throw ex;
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning($"Error querying for Service Bus {entityName} scale status: {e.Message}");
             }
 
             long totalNewMessageCount = 0;
