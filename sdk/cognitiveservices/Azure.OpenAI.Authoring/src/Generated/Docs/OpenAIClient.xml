@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doc>
   <members>
-    <member name="GetOpenAIClientsAsync(RequestContext)">
+    <member name="GetDeploymentsAsync(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientsAsync and parse the result.
+This sample shows how to call GetDeploymentsAsync and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientsAsync();
+Response response = await client.GetDeploymentsAsync();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("owner").ToString());
@@ -34,12 +34,12 @@ Schema for <c>DeploymentList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-      createdAt: number, # Required.
-      updatedAt: number, # Required.
+      created_at: number, # Required.
+      updated_at: number, # Required.
       id: string, # Required.
       model: string, # Required.
       owner: string, # Optional.
-      scaleSettings: {
+      scale_settings: {
       }, # Required.
     }
   ], # Optional.
@@ -48,22 +48,22 @@ Schema for <c>DeploymentList</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClients(RequestContext)">
+    <member name="GetDeployments(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClients and parse the result.
+This sample shows how to call GetDeployments and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClients();
+Response response = client.GetDeployments();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("owner").ToString());
@@ -81,12 +81,12 @@ Schema for <c>DeploymentList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-      createdAt: number, # Required.
-      updatedAt: number, # Required.
+      created_at: number, # Required.
+      updated_at: number, # Required.
       id: string, # Required.
       model: string, # Required.
       owner: string, # Optional.
-      scaleSettings: {
+      scale_settings: {
       }, # Required.
     }
   ], # Optional.
@@ -95,9 +95,9 @@ Schema for <c>DeploymentList</c>:
 
 </remarks>
     </member>
-    <member name="CreateAsync(RequestContent,RequestContext)">
+    <member name="CreateDeploymentAsync(RequestContent,RequestContext)">
 <example>
-This sample shows how to call CreateAsync with required request content and parse the result.
+This sample shows how to call CreateDeploymentAsync with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -105,16 +105,16 @@ var client = new OpenAIClient(endpoint, credential);
 
 var data = new {
     model = "<model>",
-    scaleSettings = new {},
+    scale_settings = new {},
 };
 
-Response response = await client.CreateAsync(RequestContent.Create(data));
+Response response = await client.CreateDeploymentAsync(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -129,12 +129,12 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
@@ -145,21 +145,21 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="Create(RequestContent,RequestContext)">
+    <member name="CreateDeployment(RequestContent,RequestContext)">
 <example>
-This sample shows how to call Create with required request content and parse the result.
+This sample shows how to call CreateDeployment with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -167,16 +167,16 @@ var client = new OpenAIClient(endpoint, credential);
 
 var data = new {
     model = "<model>",
-    scaleSettings = new {},
+    scale_settings = new {},
 };
 
-Response response = client.Create(RequestContent.Create(data));
+Response response = client.CreateDeployment(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -191,12 +191,12 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
@@ -207,33 +207,33 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientAsync(String,RequestContext)">
+    <member name="GetDeploymentAsync(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientAsync with required parameters and parse the result.
+This sample shows how to call GetDeploymentAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientAsync("<deploymentId>");
+Response response = await client.GetDeploymentAsync("<deploymentId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -248,33 +248,33 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="GetOpenAIClient(String,RequestContext)">
+    <member name="GetDeployment(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClient with required parameters and parse the result.
+This sample shows how to call GetDeployment with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClient("<deploymentId>");
+Response response = client.GetDeployment("<deploymentId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -289,21 +289,21 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="UpdateAsync(String,RequestContent,RequestContext)">
+    <member name="UpdateDeploymentAsync(String,RequestContent,RequestContext)">
 <example>
-This sample shows how to call UpdateAsync with required parameters and request content and parse the result.
+This sample shows how to call UpdateDeploymentAsync with required parameters and request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -311,16 +311,16 @@ var client = new OpenAIClient(endpoint, credential);
 
 var data = new {
     model = "<model>",
-    scaleSettings = new {},
+    scale_settings = new {},
 };
 
-Response response = await client.UpdateAsync("<deploymentId>", RequestContent.Create(data));
+Response response = await client.UpdateDeploymentAsync("<deploymentId>", RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -335,12 +335,12 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
@@ -351,21 +351,21 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="Update(String,RequestContent,RequestContext)">
+    <member name="UpdateDeployment(String,RequestContent,RequestContext)">
 <example>
-This sample shows how to call Update with required parameters and request content and parse the result.
+This sample shows how to call UpdateDeployment with required parameters and request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -373,16 +373,16 @@ var client = new OpenAIClient(endpoint, credential);
 
 var data = new {
     model = "<model>",
-    scaleSettings = new {},
+    scale_settings = new {},
 };
 
-Response response = client.Update("<deploymentId>", RequestContent.Create(data));
+Response response = client.UpdateDeployment("<deploymentId>", RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("owner").ToString());
@@ -397,12 +397,12 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
@@ -413,60 +413,60 @@ Schema for <c>Deployment</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Required.
-  createdAt: number, # Required.
-  updatedAt: number, # Required.
+  created_at: number, # Required.
+  updated_at: number, # Required.
   id: string, # Required.
   model: string, # Required.
   owner: string, # Optional.
-  scaleSettings: {
+  scale_settings: {
   }, # Required.
 }
 </code>
 
 </remarks>
     </member>
-    <member name="DeleteAsync(String,RequestContext)">
+    <member name="DeleteDeploymentAsync(String,RequestContext)">
 <example>
-This sample shows how to call DeleteAsync with required parameters.
+This sample shows how to call DeleteDeploymentAsync with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.DeleteAsync("<deploymentId>");
+Response response = await client.DeleteDeploymentAsync("<deploymentId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
     </member>
-    <member name="Delete(String,RequestContext)">
+    <member name="DeleteDeployment(String,RequestContext)">
 <example>
-This sample shows how to call Delete with required parameters.
+This sample shows how to call DeleteDeployment with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.Delete("<deploymentId>");
+Response response = client.DeleteDeployment("<deploymentId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
     </member>
-    <member name="GetOpenAIClientsAsync(RequestContext)">
+    <member name="GetFilesAsync(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientsAsync and parse the result.
+This sample shows how to call GetFilesAsync and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientsAsync();
+Response response = await client.GetFilesAsync();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("purpose").ToString());
@@ -492,8 +492,8 @@ Schema for <c>FileList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -505,22 +505,22 @@ Schema for <c>FileList</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClients(RequestContext)">
+    <member name="GetFiles(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClients and parse the result.
+This sample shows how to call GetFiles and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClients();
+Response response = client.GetFiles();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("purpose").ToString());
@@ -546,8 +546,8 @@ Schema for <c>FileList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -559,9 +559,9 @@ Schema for <c>FileList</c>:
 
 </remarks>
     </member>
-    <member name="UploadAsync(RequestContent,RequestContext)">
+    <member name="UploadFileAsync(RequestContent,RequestContext)">
 <example>
-This sample shows how to call UploadAsync with required request content and parse the result.
+This sample shows how to call UploadFileAsync with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -572,13 +572,13 @@ var data = new {
     filename = "<filename>",
 };
 
-Response response = await client.UploadAsync(RequestContent.Create(data));
+Response response = await client.UploadFileAsync(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -594,8 +594,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -609,8 +609,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -620,9 +620,9 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="Upload(RequestContent,RequestContext)">
+    <member name="UploadFile(RequestContent,RequestContext)">
 <example>
-This sample shows how to call Upload with required request content and parse the result.
+This sample shows how to call UploadFile with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -633,13 +633,13 @@ var data = new {
     filename = "<filename>",
 };
 
-Response response = client.Upload(RequestContent.Create(data));
+Response response = client.UploadFile(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -655,8 +655,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -670,8 +670,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -681,21 +681,21 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientAsync(String,RequestContext)">
+    <member name="GetFileAsync(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientAsync with required parameters and parse the result.
+This sample shows how to call GetFileAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientAsync("<fileId>");
+Response response = await client.GetFileAsync("<fileId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -711,8 +711,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -722,21 +722,21 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClient(String,RequestContext)">
+    <member name="GetFile(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClient with required parameters and parse the result.
+This sample shows how to call GetFile with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClient("<fileId>");
+Response response = client.GetFile("<fileId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -752,8 +752,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -763,28 +763,28 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="DeleteAsync(String,RequestContext)">
+    <member name="DeleteFileAsync(String,RequestContext)">
 <example>
-This sample shows how to call DeleteAsync with required parameters.
+This sample shows how to call DeleteFileAsync with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.DeleteAsync("<fileId>");
+Response response = await client.DeleteFileAsync("<fileId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
     </member>
-    <member name="Delete(String,RequestContext)">
+    <member name="DeleteFile(String,RequestContext)">
 <example>
-This sample shows how to call Delete with required parameters.
+This sample shows how to call DeleteFile with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.Delete("<fileId>");
+Response response = client.DeleteFile("<fileId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
@@ -847,9 +847,9 @@ Schema for <c>FileContent</c>:
 
 </remarks>
     </member>
-    <member name="ImportAsync(RequestContent,RequestContext)">
+    <member name="ImportFileAsync(RequestContent,RequestContext)">
 <example>
-This sample shows how to call ImportAsync with required request content and parse the result.
+This sample shows how to call ImportFileAsync with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -861,13 +861,13 @@ var data = new {
     content_url = "<content_url>",
 };
 
-Response response = await client.ImportAsync(RequestContent.Create(data));
+Response response = await client.ImportFileAsync(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -893,8 +893,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -904,9 +904,9 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="Import(RequestContent,RequestContext)">
+    <member name="ImportFile(RequestContent,RequestContext)">
 <example>
-This sample shows how to call Import with required request content and parse the result.
+This sample shows how to call ImportFile with required request content and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -918,13 +918,13 @@ var data = new {
     content_url = "<content_url>",
 };
 
-Response response = client.Import(RequestContent.Create(data));
+Response response = client.ImportFile(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("purpose").ToString());
@@ -950,8 +950,8 @@ Schema for <c>File</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   bytes: number, # Optional.
   purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -961,51 +961,51 @@ Schema for <c>File</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientsAsync(RequestContext)">
+    <member name="GetFineTunesAsync(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientsAsync and parse the result.
+This sample shows how to call GetFineTunesAsync and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientsAsync();
+Response response = await client.GetFineTunesAsync();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("organisation_id").ToString());
@@ -1038,8 +1038,8 @@ Schema for <c>FineTuneList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       model: string, # Required.
       fine_tuned_model: string, # Optional.
@@ -1066,51 +1066,51 @@ Schema for <c>FineTuneList</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClients(RequestContext)">
+    <member name="GetFineTunes(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClients and parse the result.
+This sample shows how to call GetFineTunes and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClients();
+Response response = client.GetFineTunes();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("organisation_id").ToString());
@@ -1143,8 +1143,8 @@ Schema for <c>FineTuneList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       model: string, # Required.
       fine_tuned_model: string, # Optional.
@@ -1171,9 +1171,9 @@ Schema for <c>FineTuneList</c>:
 
 </remarks>
     </member>
-    <member name="CreateAsync(RequestContent,RequestContext)">
+    <member name="CreateFineTuneAsync(RequestContent,RequestContext)">
 <example>
-This sample shows how to call CreateAsync with required request content, and how to parse the result.
+This sample shows how to call CreateFineTuneAsync with required request content, and how to parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -1184,7 +1184,7 @@ var data = new {
     training_file = "<training_file>",
 };
 
-Response response = await client.CreateAsync(RequestContent.Create(data));
+Response response = await client.CreateFineTuneAsync(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("id").ToString());
@@ -1193,7 +1193,7 @@ Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToSt
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 ]]></code>
-This sample shows how to call CreateAsync with all request content, and how to parse the result.
+This sample shows how to call CreateFineTuneAsync with all request content, and how to parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -1217,42 +1217,42 @@ var data = new {
     },
 };
 
-Response response = await client.CreateAsync(RequestContent.Create(data));
+Response response = await client.CreateFineTuneAsync(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1296,8 +1296,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1305,8 +1305,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -1333,9 +1333,9 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="Create(RequestContent,RequestContext)">
+    <member name="CreateFineTune(RequestContent,RequestContext)">
 <example>
-This sample shows how to call Create with required request content, and how to parse the result.
+This sample shows how to call CreateFineTune with required request content, and how to parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -1346,7 +1346,7 @@ var data = new {
     training_file = "<training_file>",
 };
 
-Response response = client.Create(RequestContent.Create(data));
+Response response = client.CreateFineTune(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("id").ToString());
@@ -1355,7 +1355,7 @@ Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToSt
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 ]]></code>
-This sample shows how to call Create with all request content, and how to parse the result.
+This sample shows how to call CreateFineTune with all request content, and how to parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
@@ -1379,42 +1379,42 @@ var data = new {
     },
 };
 
-Response response = client.Create(RequestContent.Create(data));
+Response response = client.CreateFineTune(RequestContent.Create(data));
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1458,8 +1458,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1467,8 +1467,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -1495,50 +1495,50 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientAsync(String,RequestContext)">
+    <member name="GetFineTuneAsync(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientAsync with required parameters and parse the result.
+This sample shows how to call GetFineTuneAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientAsync("<fineTuneId>");
+Response response = await client.GetFineTuneAsync("<fineTuneId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1562,8 +1562,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1571,8 +1571,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -1599,50 +1599,50 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClient(String,RequestContext)">
+    <member name="GetFineTune(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClient with required parameters and parse the result.
+This sample shows how to call GetFineTune with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClient("<fineTuneId>");
+Response response = client.GetFineTune("<fineTuneId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1666,8 +1666,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1675,8 +1675,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -1703,46 +1703,46 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="DeleteAsync(String,RequestContext)">
+    <member name="DeleteFineTuneAsync(String,RequestContext)">
 <example>
-This sample shows how to call DeleteAsync with required parameters.
+This sample shows how to call DeleteFineTuneAsync with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.DeleteAsync("<fineTuneId>");
+Response response = await client.DeleteFineTuneAsync("<fineTuneId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
     </member>
-    <member name="Delete(String,RequestContext)">
+    <member name="DeleteFineTune(String,RequestContext)">
 <example>
-This sample shows how to call Delete with required parameters.
+This sample shows how to call DeleteFineTune with required parameters.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.Delete("<fineTuneId>");
+Response response = client.DeleteFineTune("<fineTuneId>");
 Console.WriteLine(response.Status);
 ]]></code>
 </example>
     </member>
-    <member name="EventsAsync(String,Boolean,RequestContext)">
+    <member name="GetFineTuneEventsAsync(String,Boolean,RequestContext)">
 <example>
-This sample shows how to call EventsAsync with required parameters and parse the result.
+This sample shows how to call GetFineTuneEventsAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.EventsAsync("<fineTuneId>", true);
+Response response = await client.GetFineTuneEventsAsync("<fineTuneId>", true);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("message").ToString());
 ]]></code>
@@ -1758,7 +1758,7 @@ Schema for <c>EventList</c>:
   data: [
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
-      createdAt: number, # Optional.
+      created_at: number, # Optional.
       level: &quot;info&quot; | &quot;warning&quot; | &quot;error&quot;, # Optional.
       message: string, # Optional.
     }
@@ -1768,20 +1768,20 @@ Schema for <c>EventList</c>:
 
 </remarks>
     </member>
-    <member name="Events(String,Boolean,RequestContext)">
+    <member name="GetFineTuneEvents(String,Boolean,RequestContext)">
 <example>
-This sample shows how to call Events with required parameters and parse the result.
+This sample shows how to call GetFineTuneEvents with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.Events("<fineTuneId>", true);
+Response response = client.GetFineTuneEvents("<fineTuneId>", true);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("message").ToString());
 ]]></code>
@@ -1797,7 +1797,7 @@ Schema for <c>EventList</c>:
   data: [
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
-      createdAt: number, # Optional.
+      created_at: number, # Optional.
       level: &quot;info&quot; | &quot;warning&quot; | &quot;error&quot;, # Optional.
       message: string, # Optional.
     }
@@ -1807,50 +1807,50 @@ Schema for <c>EventList</c>:
 
 </remarks>
     </member>
-    <member name="CancelAsync(String,RequestContext)">
+    <member name="CancelFineTuneAsync(String,RequestContext)">
 <example>
-This sample shows how to call CancelAsync with required parameters and parse the result.
+This sample shows how to call CancelFineTuneAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.CancelAsync("<fineTuneId>");
+Response response = await client.CancelFineTuneAsync("<fineTuneId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1874,8 +1874,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1883,8 +1883,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -1911,50 +1911,50 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="Cancel(String,RequestContext)">
+    <member name="CancelFineTune(String,RequestContext)">
 <example>
-This sample shows how to call Cancel with required parameters and parse the result.
+This sample shows how to call CancelFineTune with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.Cancel("<fineTuneId>");
+Response response = client.CancelFineTune("<fineTuneId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
 Console.WriteLine(result.GetProperty("fine_tuned_model").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("training_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("validation_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("bytes").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("purpose").ToString());
 Console.WriteLine(result.GetProperty("result_files")[0].GetProperty("filename").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("object").ToString());
-Console.WriteLine(result.GetProperty("events")[0].GetProperty("createdAt").ToString());
+Console.WriteLine(result.GetProperty("events")[0].GetProperty("created_at").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("level").ToString());
 Console.WriteLine(result.GetProperty("events")[0].GetProperty("message").ToString());
 Console.WriteLine(result.GetProperty("organisation_id").ToString());
@@ -1978,8 +1978,8 @@ Schema for <c>FineTune</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Required.
   fine_tuned_model: string, # Optional.
@@ -1987,8 +1987,8 @@ Schema for <c>FineTune</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       bytes: number, # Optional.
       purpose: &quot;fine-tune&quot; | &quot;fine-tune-results&quot;, # Required.
@@ -2015,31 +2015,31 @@ Schema for <c>FineTune</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientsAsync(RequestContext)">
+    <member name="GetModelsAsync(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientsAsync and parse the result.
+This sample shows how to call GetModelsAsync and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientsAsync();
+Response response = await client.GetModelsAsync();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("fineTuneId").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("fineTune").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("fine_tune").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("fine_tune").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("inference").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("completion").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("embeddings").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("scaleTypes")[0].ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("fineTuneEndDate").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("scale_types")[0].ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("fine_tune_end_date").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("inference").ToString());
 ]]></code>
 </example>
@@ -2055,20 +2055,20 @@ Schema for <c>ModelList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       model: string, # Optional.
-      fineTuneId: string, # Optional.
+      fine_tune: string, # Optional.
       capabilities: {
-        fineTune: boolean, # Optional.
+        fine_tune: boolean, # Optional.
         inference: boolean, # Optional.
         completion: boolean, # Optional.
         embeddings: boolean, # Optional.
-        scaleTypes: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
+        scale_types: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
       }, # Optional.
       deprecation: {
-        fineTuneEndDate: number, # Optional.
+        fine_tune_end_date: number, # Optional.
         inference: number, # Optional.
       }, # Optional.
     }
@@ -2078,31 +2078,31 @@ Schema for <c>ModelList</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClients(RequestContext)">
+    <member name="GetModels(RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClients and parse the result.
+This sample shows how to call GetModels and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClients();
+Response response = client.GetModels();
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("model").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("fineTuneId").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("fineTune").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("fine_tune").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("fine_tune").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("inference").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("completion").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("embeddings").ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("scaleTypes")[0].ToString());
-Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("fineTuneEndDate").ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("capabilities").GetProperty("scale_types")[0].ToString());
+Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("fine_tune_end_date").ToString());
 Console.WriteLine(result.GetProperty("data")[0].GetProperty("deprecation").GetProperty("inference").ToString());
 ]]></code>
 </example>
@@ -2118,20 +2118,20 @@ Schema for <c>ModelList</c>:
     {
       object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
       status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-      createdAt: number, # Optional.
-      updatedAt: number, # Optional.
+      created_at: number, # Optional.
+      updated_at: number, # Optional.
       id: string, # Required.
       model: string, # Optional.
-      fineTuneId: string, # Optional.
+      fine_tune: string, # Optional.
       capabilities: {
-        fineTune: boolean, # Optional.
+        fine_tune: boolean, # Optional.
         inference: boolean, # Optional.
         completion: boolean, # Optional.
         embeddings: boolean, # Optional.
-        scaleTypes: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
+        scale_types: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
       }, # Optional.
       deprecation: {
-        fineTuneEndDate: number, # Optional.
+        fine_tune_end_date: number, # Optional.
         inference: number, # Optional.
       }, # Optional.
     }
@@ -2141,30 +2141,30 @@ Schema for <c>ModelList</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClientAsync(String,RequestContext)">
+    <member name="GetModelAsync(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClientAsync with required parameters and parse the result.
+This sample shows how to call GetModelAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = await client.GetOpenAIClientAsync("<modelId>");
+Response response = await client.GetModelAsync("<modelId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
-Console.WriteLine(result.GetProperty("fineTuneId").ToString());
-Console.WriteLine(result.GetProperty("capabilities").GetProperty("fineTune").ToString());
+Console.WriteLine(result.GetProperty("fine_tune").ToString());
+Console.WriteLine(result.GetProperty("capabilities").GetProperty("fine_tune").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("inference").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("completion").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("embeddings").ToString());
-Console.WriteLine(result.GetProperty("capabilities").GetProperty("scaleTypes")[0].ToString());
-Console.WriteLine(result.GetProperty("deprecation").GetProperty("fineTuneEndDate").ToString());
+Console.WriteLine(result.GetProperty("capabilities").GetProperty("scale_types")[0].ToString());
+Console.WriteLine(result.GetProperty("deprecation").GetProperty("fine_tune_end_date").ToString());
 Console.WriteLine(result.GetProperty("deprecation").GetProperty("inference").ToString());
 ]]></code>
 </example>
@@ -2177,20 +2177,20 @@ Schema for <c>Model</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Optional.
-  fineTuneId: string, # Optional.
+  fine_tune: string, # Optional.
   capabilities: {
-    fineTune: boolean, # Optional.
+    fine_tune: boolean, # Optional.
     inference: boolean, # Optional.
     completion: boolean, # Optional.
     embeddings: boolean, # Optional.
-    scaleTypes: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
+    scale_types: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
   }, # Optional.
   deprecation: {
-    fineTuneEndDate: number, # Optional.
+    fine_tune_end_date: number, # Optional.
     inference: number, # Optional.
   }, # Optional.
 }
@@ -2198,30 +2198,30 @@ Schema for <c>Model</c>:
 
 </remarks>
     </member>
-    <member name="GetOpenAIClient(String,RequestContext)">
+    <member name="GetModel(String,RequestContext)">
 <example>
-This sample shows how to call GetOpenAIClient with required parameters and parse the result.
+This sample shows how to call GetModel with required parameters and parse the result.
 <code><![CDATA[
 var credential = new AzureKeyCredential("<key>");
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new OpenAIClient(endpoint, credential);
 
-Response response = client.GetOpenAIClient("<modelId>");
+Response response = client.GetModel("<modelId>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("object").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("createdAt").ToString());
-Console.WriteLine(result.GetProperty("updatedAt").ToString());
+Console.WriteLine(result.GetProperty("created_at").ToString());
+Console.WriteLine(result.GetProperty("updated_at").ToString());
 Console.WriteLine(result.GetProperty("id").ToString());
 Console.WriteLine(result.GetProperty("model").ToString());
-Console.WriteLine(result.GetProperty("fineTuneId").ToString());
-Console.WriteLine(result.GetProperty("capabilities").GetProperty("fineTune").ToString());
+Console.WriteLine(result.GetProperty("fine_tune").ToString());
+Console.WriteLine(result.GetProperty("capabilities").GetProperty("fine_tune").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("inference").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("completion").ToString());
 Console.WriteLine(result.GetProperty("capabilities").GetProperty("embeddings").ToString());
-Console.WriteLine(result.GetProperty("capabilities").GetProperty("scaleTypes")[0].ToString());
-Console.WriteLine(result.GetProperty("deprecation").GetProperty("fineTuneEndDate").ToString());
+Console.WriteLine(result.GetProperty("capabilities").GetProperty("scale_types")[0].ToString());
+Console.WriteLine(result.GetProperty("deprecation").GetProperty("fine_tune_end_date").ToString());
 Console.WriteLine(result.GetProperty("deprecation").GetProperty("inference").ToString());
 ]]></code>
 </example>
@@ -2234,20 +2234,20 @@ Schema for <c>Model</c>:
 <code>{
   object: &quot;list&quot; | &quot;fine-tune&quot; | &quot;file&quot; | &quot;fine-tune-event&quot; | &quot;model&quot; | &quot;deployment&quot;, # Optional.
   status: &quot;notRunning&quot; | &quot;running&quot; | &quot;succeeded&quot; | &quot;canceled&quot; | &quot;failed&quot; | &quot;deleted&quot;, # Optional.
-  createdAt: number, # Optional.
-  updatedAt: number, # Optional.
+  created_at: number, # Optional.
+  updated_at: number, # Optional.
   id: string, # Required.
   model: string, # Optional.
-  fineTuneId: string, # Optional.
+  fine_tune: string, # Optional.
   capabilities: {
-    fineTune: boolean, # Optional.
+    fine_tune: boolean, # Optional.
     inference: boolean, # Optional.
     completion: boolean, # Optional.
     embeddings: boolean, # Optional.
-    scaleTypes: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
+    scale_types: [&quot;manual&quot; | &quot;standard&quot;], # Optional.
   }, # Optional.
   deprecation: {
-    fineTuneEndDate: number, # Optional.
+    fine_tune_end_date: number, # Optional.
     inference: number, # Optional.
   }, # Optional.
 }

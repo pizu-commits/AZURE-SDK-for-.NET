@@ -11,7 +11,7 @@ using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
-namespace Azure.OpenAI.Authoring
+namespace Azure.OpenAI
 {
     // Data plane generated client. The OpenAI service client.
     /// <summary> The OpenAI service client. </summary>
@@ -104,14 +104,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientsAsync(RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientsAsync(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetDeploymentsAsync(RequestContext)']/*" />
+        public virtual async Task<Response> GetDeploymentsAsync(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetDeployments");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetDeploymentsRequest(context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -125,14 +125,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClients(RequestContext)']/*" />
-        public virtual Response GetOpenAIClients(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetDeployments(RequestContext)']/*" />
+        public virtual Response GetDeployments(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetDeployments");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetDeploymentsRequest(context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -151,16 +151,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateAsync(RequestContent,RequestContext)']/*" />
-        public virtual async Task<Response> CreateAsync(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateDeploymentAsync(RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> CreateDeploymentAsync(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Create");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CreateDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateRequest(content, context);
+                using HttpMessage message = CreateCreateDeploymentRequest(content, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -179,16 +179,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Create(RequestContent,RequestContext)']/*" />
-        public virtual Response Create(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateDeployment(RequestContent,RequestContext)']/*" />
+        public virtual Response CreateDeployment(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Create");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CreateDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateRequest(content, context);
+                using HttpMessage message = CreateCreateDeploymentRequest(content, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -198,23 +198,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Gets details for a single deployment specified by the given deploymentId. </summary>
+        /// <summary> Gets details for a single deployment specified by the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientAsync(string deploymentId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetDeploymentAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> GetDeploymentAsync(string deploymentId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(deploymentId, context);
+                using HttpMessage message = CreateGetDeploymentRequest(deploymentId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -224,23 +224,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Gets details for a single deployment specified by the given deploymentId. </summary>
+        /// <summary> Gets details for a single deployment specified by the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClient(String,RequestContext)']/*" />
-        public virtual Response GetOpenAIClient(string deploymentId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetDeployment(String,RequestContext)']/*" />
+        public virtual Response GetDeployment(string deploymentId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(deploymentId, context);
+                using HttpMessage message = CreateGetDeploymentRequest(deploymentId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -250,7 +250,7 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Updates the mutable details of the deployment with the given deploymentId. </summary>
+        /// <summary> Updates the mutable details of the deployment with the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="content"> The content to send as the body of the request. Details of the request body schema are in the Remarks section below. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -258,17 +258,17 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UpdateAsync(String,RequestContent,RequestContext)']/*" />
-        public virtual async Task<Response> UpdateAsync(string deploymentId, RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UpdateDeploymentAsync(String,RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> UpdateDeploymentAsync(string deploymentId, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Update");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.UpdateDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateUpdateRequest(deploymentId, content, context);
+                using HttpMessage message = CreateUpdateDeploymentRequest(deploymentId, content, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -278,7 +278,7 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Updates the mutable details of the deployment with the given deploymentId. </summary>
+        /// <summary> Updates the mutable details of the deployment with the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="content"> The content to send as the body of the request. Details of the request body schema are in the Remarks section below. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -286,17 +286,17 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Update(String,RequestContent,RequestContext)']/*" />
-        public virtual Response Update(string deploymentId, RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UpdateDeployment(String,RequestContent,RequestContext)']/*" />
+        public virtual Response UpdateDeployment(string deploymentId, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Update");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.UpdateDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateUpdateRequest(deploymentId, content, context);
+                using HttpMessage message = CreateUpdateDeploymentRequest(deploymentId, content, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -306,23 +306,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Deletes the deployment specified by the given deploymentId. </summary>
+        /// <summary> Deletes the deployment specified by the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> DeleteAsync(string deploymentId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteDeploymentAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> DeleteDeploymentAsync(string deploymentId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(deploymentId, context);
+                using HttpMessage message = CreateDeleteDeploymentRequest(deploymentId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -332,23 +332,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Deletes the deployment specified by the given deploymentId. </summary>
+        /// <summary> Deletes the deployment specified by the given deployment_id. </summary>
         /// <param name="deploymentId"> The identifier of the deployment. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Delete(String,RequestContext)']/*" />
-        public virtual Response Delete(string deploymentId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteDeployment(String,RequestContext)']/*" />
+        public virtual Response DeleteDeployment(string deploymentId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteDeployment");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(deploymentId, context);
+                using HttpMessage message = CreateDeleteDeploymentRequest(deploymentId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -368,14 +368,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientsAsync(RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientsAsync(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFilesAsync(RequestContext)']/*" />
+        public virtual async Task<Response> GetFilesAsync(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFiles");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetFilesRequest(context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -395,14 +395,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClients(RequestContext)']/*" />
-        public virtual Response GetOpenAIClients(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFiles(RequestContext)']/*" />
+        public virtual Response GetFiles(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFiles");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetFilesRequest(context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -421,16 +421,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UploadAsync(RequestContent,RequestContext)']/*" />
-        public virtual async Task<Response> UploadAsync(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UploadFileAsync(RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> UploadFileAsync(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Upload");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.UploadFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateUploadRequest(content, context);
+                using HttpMessage message = CreateUploadFileRequest(content, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -449,16 +449,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Upload(RequestContent,RequestContext)']/*" />
-        public virtual Response Upload(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='UploadFile(RequestContent,RequestContext)']/*" />
+        public virtual Response UploadFile(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Upload");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.UploadFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateUploadRequest(content, context);
+                using HttpMessage message = CreateUploadFileRequest(content, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -469,7 +469,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Gets details for a single file specified by the given fileId including status,
+        /// Gets details for a single file specified by the given file_id including status,
         /// size, purpose, etc.
         /// </summary>
         /// <param name="fileId"> The identity of this item. </param>
@@ -478,16 +478,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientAsync(string fileId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFileAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> GetFileAsync(string fileId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fileId, nameof(fileId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(fileId, context);
+                using HttpMessage message = CreateGetFileRequest(fileId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -498,7 +498,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Gets details for a single file specified by the given fileId including status,
+        /// Gets details for a single file specified by the given file_id including status,
         /// size, purpose, etc.
         /// </summary>
         /// <param name="fileId"> The identity of this item. </param>
@@ -507,16 +507,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClient(String,RequestContext)']/*" />
-        public virtual Response GetOpenAIClient(string fileId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFile(String,RequestContext)']/*" />
+        public virtual Response GetFile(string fileId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fileId, nameof(fileId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(fileId, context);
+                using HttpMessage message = CreateGetFileRequest(fileId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -527,7 +527,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Deletes the file with the given fileId.
+        /// Deletes the file with the given file_id.
         /// Deletion is also allowed if a file
         /// was used, e.g., as training file in a fine-tune job.
         /// </summary>
@@ -537,16 +537,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> DeleteAsync(string fileId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteFileAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> DeleteFileAsync(string fileId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fileId, nameof(fileId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(fileId, context);
+                using HttpMessage message = CreateDeleteFileRequest(fileId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -557,7 +557,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Deletes the file with the given fileId.
+        /// Deletes the file with the given file_id.
         /// Deletion is also allowed if a file
         /// was used, e.g., as training file in a fine-tune job.
         /// </summary>
@@ -567,16 +567,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Delete(String,RequestContext)']/*" />
-        public virtual Response Delete(string fileId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteFile(String,RequestContext)']/*" />
+        public virtual Response DeleteFile(string fileId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fileId, nameof(fileId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(fileId, context);
+                using HttpMessage message = CreateDeleteFileRequest(fileId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -587,7 +587,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Gets the content of the file specified by the given fileId.
+        /// Gets the content of the file specified by the given file_id.
         /// Files can be user
         /// uploaded content or generated by the service like result metrics of a fine-tune
         /// job.
@@ -618,7 +618,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// Gets the content of the file specified by the given fileId.
+        /// Gets the content of the file specified by the given file_id.
         /// Files can be user
         /// uploaded content or generated by the service like result metrics of a fine-tune
         /// job.
@@ -657,16 +657,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='ImportAsync(RequestContent,RequestContext)']/*" />
-        public virtual async Task<Response> ImportAsync(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='ImportFileAsync(RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> ImportFileAsync(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Import");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.ImportFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateImportRequest(content, context);
+                using HttpMessage message = CreateImportFileRequest(content, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -685,16 +685,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Import(RequestContent,RequestContext)']/*" />
-        public virtual Response Import(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='ImportFile(RequestContent,RequestContext)']/*" />
+        public virtual Response ImportFile(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Import");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.ImportFile");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateImportRequest(content, context);
+                using HttpMessage message = CreateImportFileRequest(content, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -714,14 +714,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientsAsync(RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientsAsync(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTunesAsync(RequestContext)']/*" />
+        public virtual async Task<Response> GetFineTunesAsync(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTunes");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetFineTunesRequest(context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -741,14 +741,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClients(RequestContext)']/*" />
-        public virtual Response GetOpenAIClients(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTunes(RequestContext)']/*" />
+        public virtual Response GetFineTunes(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTunes");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetFineTunesRequest(context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -771,16 +771,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateAsync(RequestContent,RequestContext)']/*" />
-        public virtual async Task<Response> CreateAsync(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateFineTuneAsync(RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> CreateFineTuneAsync(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Create");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CreateFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateRequest(content, context);
+                using HttpMessage message = CreateCreateFineTuneRequest(content, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -803,16 +803,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Create(RequestContent,RequestContext)']/*" />
-        public virtual Response Create(RequestContent content, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CreateFineTune(RequestContent,RequestContext)']/*" />
+        public virtual Response CreateFineTune(RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Create");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CreateFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateRequest(content, context);
+                using HttpMessage message = CreateCreateFineTuneRequest(content, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -824,7 +824,7 @@ namespace Azure.OpenAI.Authoring
 
         /// <summary>
         /// Gets details for a single fine-tune job specified by the given
-        /// fineTuneId.
+        /// fine_tune_id.
         /// The details contain the base model, training and validation
         /// files, hyper parameters, time stamps, status and events.
         /// Events are created
@@ -837,16 +837,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientAsync(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTuneAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> GetFineTuneAsync(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(fineTuneId, context);
+                using HttpMessage message = CreateGetFineTuneRequest(fineTuneId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -858,7 +858,7 @@ namespace Azure.OpenAI.Authoring
 
         /// <summary>
         /// Gets details for a single fine-tune job specified by the given
-        /// fineTuneId.
+        /// fine_tune_id.
         /// The details contain the base model, training and validation
         /// files, hyper parameters, time stamps, status and events.
         /// Events are created
@@ -871,16 +871,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClient(String,RequestContext)']/*" />
-        public virtual Response GetOpenAIClient(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTune(String,RequestContext)']/*" />
+        public virtual Response GetFineTune(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(fineTuneId, context);
+                using HttpMessage message = CreateGetFineTuneRequest(fineTuneId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -890,23 +890,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Deletes the fine-tune job specified by the given fineTuneId. </summary>
+        /// <summary> Deletes the fine-tune job specified by the given fine_tune_id. </summary>
         /// <param name="fineTuneId"> The identity of this item. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fineTuneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> DeleteAsync(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteFineTuneAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> DeleteFineTuneAsync(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(fineTuneId, context);
+                using HttpMessage message = CreateDeleteFineTuneRequest(fineTuneId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -916,23 +916,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Deletes the fine-tune job specified by the given fineTuneId. </summary>
+        /// <summary> Deletes the fine-tune job specified by the given fine_tune_id. </summary>
         /// <param name="fineTuneId"> The identity of this item. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fineTuneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Delete(String,RequestContext)']/*" />
-        public virtual Response Delete(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='DeleteFineTune(String,RequestContext)']/*" />
+        public virtual Response DeleteFineTune(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Delete");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.DeleteFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteRequest(fineTuneId, context);
+                using HttpMessage message = CreateDeleteFineTuneRequest(fineTuneId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -943,7 +943,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// List events for the fine-tune job specified by the given fineTuneId.
+        /// List events for the fine-tune job specified by the given fine_tune_id.
         /// Events are created when the job status changes, e.g. running or
         /// complete, and when results are uploaded.
         /// </summary>
@@ -959,16 +959,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='EventsAsync(String,Boolean,RequestContext)']/*" />
-        public virtual async Task<Response> EventsAsync(string fineTuneId, bool stream, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTuneEventsAsync(String,Boolean,RequestContext)']/*" />
+        public virtual async Task<Response> GetFineTuneEventsAsync(string fineTuneId, bool stream, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Events");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTuneEvents");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateEventsRequest(fineTuneId, stream, context);
+                using HttpMessage message = CreateGetFineTuneEventsRequest(fineTuneId, stream, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -979,7 +979,7 @@ namespace Azure.OpenAI.Authoring
         }
 
         /// <summary>
-        /// List events for the fine-tune job specified by the given fineTuneId.
+        /// List events for the fine-tune job specified by the given fine_tune_id.
         /// Events are created when the job status changes, e.g. running or
         /// complete, and when results are uploaded.
         /// </summary>
@@ -995,16 +995,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Events(String,Boolean,RequestContext)']/*" />
-        public virtual Response Events(string fineTuneId, bool stream, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetFineTuneEvents(String,Boolean,RequestContext)']/*" />
+        public virtual Response GetFineTuneEvents(string fineTuneId, bool stream, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Events");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetFineTuneEvents");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateEventsRequest(fineTuneId, stream, context);
+                using HttpMessage message = CreateGetFineTuneEventsRequest(fineTuneId, stream, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -1014,23 +1014,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Cancels the processing of the fine-tune job specified by the given fineTuneId. </summary>
+        /// <summary> Cancels the processing of the fine-tune job specified by the given fine_tune_id. </summary>
         /// <param name="fineTuneId"> The identity of this item. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fineTuneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CancelAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> CancelAsync(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CancelFineTuneAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> CancelFineTuneAsync(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Cancel");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CancelFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCancelRequest(fineTuneId, context);
+                using HttpMessage message = CreateCancelFineTuneRequest(fineTuneId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -1040,23 +1040,23 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        /// <summary> Cancels the processing of the fine-tune job specified by the given fineTuneId. </summary>
+        /// <summary> Cancels the processing of the fine-tune job specified by the given fine_tune_id. </summary>
         /// <param name="fineTuneId"> The identity of this item. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fineTuneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fineTuneId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='Cancel(String,RequestContext)']/*" />
-        public virtual Response Cancel(string fineTuneId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='CancelFineTune(String,RequestContext)']/*" />
+        public virtual Response CancelFineTune(string fineTuneId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(fineTuneId, nameof(fineTuneId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.Cancel");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.CancelFineTune");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCancelRequest(fineTuneId, context);
+                using HttpMessage message = CreateCancelFineTuneRequest(fineTuneId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -1075,14 +1075,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientsAsync(RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientsAsync(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetModelsAsync(RequestContext)']/*" />
+        public virtual async Task<Response> GetModelsAsync(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetModels");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetModelsRequest(context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -1101,14 +1101,14 @@ namespace Azure.OpenAI.Authoring
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClients(RequestContext)']/*" />
-        public virtual Response GetOpenAIClients(RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetModels(RequestContext)']/*" />
+        public virtual Response GetModels(RequestContext context = null)
         {
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClients");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetModels");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientsRequest(context);
+                using HttpMessage message = CreateGetModelsRequest(context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -1125,16 +1125,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClientAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetOpenAIClientAsync(string modelId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetModelAsync(String,RequestContext)']/*" />
+        public virtual async Task<Response> GetModelAsync(string modelId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(modelId, nameof(modelId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetModel");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(modelId, context);
+                using HttpMessage message = CreateGetModelRequest(modelId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -1151,16 +1151,16 @@ namespace Azure.OpenAI.Authoring
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetOpenAIClient(String,RequestContext)']/*" />
-        public virtual Response GetOpenAIClient(string modelId, RequestContext context = null)
+        /// <include file="Docs/OpenAIClient.xml" path="doc/members/member[@name='GetModel(String,RequestContext)']/*" />
+        public virtual Response GetModel(string modelId, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(modelId, nameof(modelId));
 
-            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetOpenAIClient");
+            using var scope = ClientDiagnostics.CreateScope("OpenAIClient.GetModel");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetOpenAIClientRequest(modelId, context);
+                using HttpMessage message = CreateGetModelRequest(modelId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -1170,7 +1170,7 @@ namespace Azure.OpenAI.Authoring
             }
         }
 
-        internal HttpMessage CreateGetOpenAIClientsRequest(RequestContext context)
+        internal HttpMessage CreateGetDeploymentsRequest(RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1185,7 +1185,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateCreateRequest(RequestContent content, RequestContext context)
+        internal HttpMessage CreateCreateDeploymentRequest(RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
@@ -1202,7 +1202,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientRequest(string deploymentId, RequestContext context)
+        internal HttpMessage CreateGetDeploymentRequest(string deploymentId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1218,7 +1218,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateUpdateRequest(string deploymentId, RequestContent content, RequestContext context)
+        internal HttpMessage CreateUpdateDeploymentRequest(string deploymentId, RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200201);
             var request = message.Request;
@@ -1236,7 +1236,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateDeleteRequest(string deploymentId, RequestContext context)
+        internal HttpMessage CreateDeleteDeploymentRequest(string deploymentId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier204);
             var request = message.Request;
@@ -1252,7 +1252,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientsRequest(RequestContext context)
+        internal HttpMessage CreateGetFilesRequest(RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1267,7 +1267,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateUploadRequest(RequestContent content, RequestContext context)
+        internal HttpMessage CreateUploadFileRequest(RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
@@ -1284,7 +1284,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientRequest(string fileId, RequestContext context)
+        internal HttpMessage CreateGetFileRequest(string fileId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1300,7 +1300,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateDeleteRequest(string fileId, RequestContext context)
+        internal HttpMessage CreateDeleteFileRequest(string fileId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier204);
             var request = message.Request;
@@ -1333,7 +1333,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateImportRequest(RequestContent content, RequestContext context)
+        internal HttpMessage CreateImportFileRequest(RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
@@ -1350,7 +1350,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientsRequest(RequestContext context)
+        internal HttpMessage CreateGetFineTunesRequest(RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1365,7 +1365,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateCreateRequest(RequestContent content, RequestContext context)
+        internal HttpMessage CreateCreateFineTuneRequest(RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
@@ -1382,7 +1382,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientRequest(string fineTuneId, RequestContext context)
+        internal HttpMessage CreateGetFineTuneRequest(string fineTuneId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1398,7 +1398,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateDeleteRequest(string fineTuneId, RequestContext context)
+        internal HttpMessage CreateDeleteFineTuneRequest(string fineTuneId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier204);
             var request = message.Request;
@@ -1414,7 +1414,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateEventsRequest(string fineTuneId, bool stream, RequestContext context)
+        internal HttpMessage CreateGetFineTuneEventsRequest(string fineTuneId, bool stream, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1424,7 +1424,7 @@ namespace Azure.OpenAI.Authoring
             uri.AppendRaw("/openai", false);
             uri.AppendPath("/fine-tunes/", false);
             uri.AppendPath(fineTuneId, true);
-            uri.AppendPath("/events", false);
+            uri.AppendPath("/listFineTuneEvents", false);
             uri.AppendQuery("stream", stream, true);
             uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
@@ -1432,7 +1432,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateCancelRequest(string fineTuneId, RequestContext context)
+        internal HttpMessage CreateCancelFineTuneRequest(string fineTuneId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1449,7 +1449,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientsRequest(RequestContext context)
+        internal HttpMessage CreateGetModelsRequest(RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1464,7 +1464,7 @@ namespace Azure.OpenAI.Authoring
             return message;
         }
 
-        internal HttpMessage CreateGetOpenAIClientRequest(string modelId, RequestContext context)
+        internal HttpMessage CreateGetModelRequest(string modelId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
