@@ -11,7 +11,7 @@ using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
-namespace Azure.OpenAI
+namespace Azure.OpenAI.Inference
 {
     // Data plane generated client. The OpenAI service client.
     /// <summary> The OpenAI service client. </summary>

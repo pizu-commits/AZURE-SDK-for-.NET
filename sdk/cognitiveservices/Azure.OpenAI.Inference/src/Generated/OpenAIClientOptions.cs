@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace Azure.OpenAI
+namespace Azure.OpenAI.Inference
 {
     /// <summary> Client options for OpenAIClient. </summary>
     public partial class OpenAIClientOptions : ClientOptions
