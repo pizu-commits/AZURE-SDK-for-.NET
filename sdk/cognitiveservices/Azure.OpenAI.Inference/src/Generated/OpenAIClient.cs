@@ -6,10 +6,12 @@
 #nullable disable
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
+using Azure.OpenAI.Inference.Models;
 
 namespace Azure.OpenAI.Inference
 {
@@ -102,6 +104,38 @@ namespace Azure.OpenAI.Inference
 
         /// <summary> Create a completion from a chosen model. </summary>
         /// <param name="deploymentId"> deployment id of the model which was deployed. </param>
+        /// <param name="body"> expected schema for the body of the completion post request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> or <paramref name="body"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
+        public virtual async Task<Response<CompletionsCreateResponse>> CompletionsCreateAsync(string deploymentId, CompletionsCreateBody body, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            Argument.AssertNotNull(body, nameof(body));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await CompletionsCreateAsync(deploymentId, body.ToRequestContent(), context).ConfigureAwait(false);
+            return Response.FromValue(CompletionsCreateResponse.FromResponse(response), response);
+        }
+
+        /// <summary> Create a completion from a chosen model. </summary>
+        /// <param name="deploymentId"> deployment id of the model which was deployed. </param>
+        /// <param name="body"> expected schema for the body of the completion post request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> or <paramref name="body"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
+        public virtual Response<CompletionsCreateResponse> CompletionsCreate(string deploymentId, CompletionsCreateBody body, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            Argument.AssertNotNull(body, nameof(body));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = CompletionsCreate(deploymentId, body.ToRequestContent(), context);
+            return Response.FromValue(CompletionsCreateResponse.FromResponse(response), response);
+        }
+
+        /// <summary> Create a completion from a chosen model. </summary>
+        /// <param name="deploymentId"> deployment id of the model which was deployed. </param>
         /// <param name="content"> The content to send as the body of the request. Details of the request body schema are in the Remarks section below. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> or <paramref name="content"/> is null. </exception>
@@ -154,6 +188,38 @@ namespace Azure.OpenAI.Inference
                 scope.Failed(e);
                 throw;
             }
+        }
+
+        /// <summary> Return the embeddings for a given prompt. </summary>
+        /// <param name="deploymentId"> deployment id of the model which was deployed. </param>
+        /// <param name="body"> expected schema for the body of the embedding post request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> or <paramref name="body"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
+        public virtual async Task<Azure.Response<Models.object>> EmbeddingsCreateAsync(string deploymentId, EmbeddingsCreateBody body, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            Argument.AssertNotNull(body, nameof(body));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await EmbeddingsCreateAsync(deploymentId, body.ToRequestContent(), context).ConfigureAwait(false);
+            return Response.FromValue(Models.object.FromResponse(response), response);
+        }
+
+        /// <summary> Return the embeddings for a given prompt. </summary>
+        /// <param name="deploymentId"> deployment id of the model which was deployed. </param>
+        /// <param name="body"> expected schema for the body of the embedding post request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentId"/> or <paramref name="body"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentId"/> is an empty string, and was expected to be non-empty. </exception>
+        public virtual Azure.Response<Models.object> EmbeddingsCreate(string deploymentId, EmbeddingsCreateBody body, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            Argument.AssertNotNull(body, nameof(body));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = EmbeddingsCreate(deploymentId, body.ToRequestContent(), context);
+            return Response.FromValue(Models.object.FromResponse(response), response);
         }
 
         /// <summary> Return the embeddings for a given prompt. </summary>
@@ -248,6 +314,17 @@ namespace Azure.OpenAI.Inference
             request.Headers.Add("Content-Type", "application/json");
             request.Content = content;
             return message;
+        }
+
+        private static RequestContext DefaultRequestContext = new RequestContext();
+        internal static RequestContext FromCancellationToken(CancellationToken cancellationToken = default)
+        {
+            if (!cancellationToken.CanBeCanceled)
+            {
+                return DefaultRequestContext;
+            }
+
+            return new RequestContext() { CancellationToken = cancellationToken };
         }
 
         private static ResponseClassifier _responseClassifier200;
