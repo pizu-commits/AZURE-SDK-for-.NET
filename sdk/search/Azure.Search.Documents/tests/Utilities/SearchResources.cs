@@ -208,10 +208,10 @@ namespace Azure.Search.Documents.Tests
         /// recordings, instrumentation, etc.
         /// </param>
         /// <returns>A new TestResources context.</returns>
-        public static async Task<SearchResources> CreateWithHotelsIndexAsync(SearchTestBase fixture, bool isSample = false)
+        public static async Task<SearchResources> CreateWithHotelsIndexAsync(SearchTestBase fixture, bool isSample = false, string testName = null)
         {
             var resources = new SearchResources(fixture);
-            await resources.CreateSearchServiceIndexAndDocumentsAsync(isSample);
+            await resources.CreateSearchServiceIndexAndDocumentsAsync(isSample, testName);
             return resources;
         }
 
@@ -268,9 +268,9 @@ namespace Azure.Search.Documents.Tests
         /// recordings, instrumentation, etc.
         /// </param>
         /// <returns>The shared TestResources context.</returns>
-        public static async Task<SearchResources> GetSharedHotelsIndexAsync(SearchTestBase fixture, bool isSample = false)
+        public static async Task<SearchResources> GetSharedHotelsIndexAsync(SearchTestBase fixture, bool isSample = false, string testName = null)
         {
-            await SharedSearchResources.EnsureInitialized(async () => await CreateWithHotelsIndexAsync(fixture, isSample));
+            await SharedSearchResources.EnsureInitialized(async () => await CreateWithHotelsIndexAsync(fixture, isSample, testName));
 
             // Clone it for the current fixture (note that setting these values
             // will create the recording ServiceName/IndexName/etc. variables)
@@ -384,9 +384,9 @@ namespace Azure.Search.Documents.Tests
         /// </param>
         /// <returns>This TestResources context.</returns>
         private async Task<SearchResources> CreateSearchServiceAndIndexAsync(
-            bool isSample, Func<string, SearchIndex> getIndex = null)
+            bool isSample, Func<string, SearchIndex> getIndex = null, string testName = null)
         {
-           // getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
+            // getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
 
             if (getIndex == null)
             {
@@ -394,16 +394,34 @@ namespace Azure.Search.Documents.Tests
                 {
                     getIndex = SearchResourcesSample.GetHotelIndex;
                     Console.WriteLine("Creating sample hotel index");
+                    if (testName != null)
+                    {
+                        var list = string.Format("Here's the list: ({0}).", string.Join(", ", getIndex("test").Fields));
+                        Assert.True(false, $"Asserting -- Creating sample hotel index -- {testName} -- {list}");
+                    }
                 }
                 else
                 {
                     getIndex = GetHotelIndex;
                     Console.WriteLine("Creating test hotel index");
+                    if (testName != null)
+                    {
+                        var list = string.Format("Here's the list: ({0}).", string.Join(", ", getIndex("test").Fields));
+                        Assert.True(false, $"Asserting -- Creating test hotel index -- {testName} -- {list}");
+                    }
+                }
+            }
+            else
+            {
+                if (testName != null)
+                {
+                    var list = string.Format("Here's the list: ({0}).", string.Join(", ", getIndex("test").Fields));
+                    Assert.True(false, $"Asserting -- get index is not null -- {testName} -- {list}");
                 }
             }
             // Create the index
-            //if (TestFixture.Mode != RecordedTestMode.Playback)
-            //{
+            if (TestFixture.Mode != RecordedTestMode.Playback)
+            {
                 // Generate a random Index Name
                 IndexName = Random.GetName(8);
 
@@ -414,7 +432,7 @@ namespace Azure.Search.Documents.Tests
 
                 // Give the index time to stabilize before running tests.
                 await WaitForIndexCreationAsync();
-           // }
+            }
 
             return this;
         }
@@ -424,29 +442,33 @@ namespace Azure.Search.Documents.Tests
         /// test documents.
         /// </summary>
         /// <returns>This TestResources context.</returns>
-        private async Task<SearchResources> CreateSearchServiceIndexAndDocumentsAsync(bool isSample)
+        private async Task<SearchResources> CreateSearchServiceIndexAndDocumentsAsync(bool isSample, string testName = null)
         {
             // Create the Search Service and Index first
-            await CreateSearchServiceAndIndexAsync(isSample);
+            await CreateSearchServiceAndIndexAsync(isSample, null, testName);
 
             // Upload the documents
-            //if (TestFixture.Mode != RecordedTestMode.Playback)
-            //{
+            if (TestFixture.Mode != RecordedTestMode.Playback)
+            {
                 SearchClient client = new SearchClient(Endpoint, IndexName, new AzureKeyCredential(PrimaryApiKey));
 
                 if (isSample)
                 {
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(SearchResourcesSample.TestDocumentsForSample));
                     Console.WriteLine("Uploading sample data");
+                    if (testName != null)
+                        Assert.True(false, $"Asserting -- Uploading sample data -- {testName}");
                 }
                 else
                 {
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(TestDocuments));
                     Console.WriteLine("Uploading Test data");
-            }
+                    if (testName != null)
+                        Assert.True(false, $"Asserting -- Uploading Test data -- {testName}");
+                }
 
                 await WaitForIndexingAsync();
-           // }
+            }
 
             return this;
         }

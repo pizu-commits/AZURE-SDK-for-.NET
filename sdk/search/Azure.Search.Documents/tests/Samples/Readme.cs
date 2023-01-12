@@ -164,7 +164,7 @@ namespace Azure.Search.Documents.Tests.Samples
         [SyncOnly]
         public async Task Options()
         {
-            await using SearchResources resources = await SearchResources.GetSharedHotelsIndexAsync(this, true);
+            await using SearchResources resources = await SearchResources.GetSharedHotelsIndexAsync(this, true, "Options test");
             SearchClient client = resources.GetQueryClient();
 
             #region Snippet:Azure_Search_Tests_Samples_Readme_Options
