@@ -164,8 +164,11 @@ namespace Azure.Search.Documents.Tests.Samples
         [SyncOnly]
         public async Task Options()
         {
+            Console.WriteLine($"Inside Options -- Options test");
             await using SearchResources resources = await SearchResources.GetSharedHotelsIndexAsync(this, true, "Options test");
             SearchClient client = resources.GetQueryClient();
+
+            Console.WriteLine($"After hotel index creation -- Options test");
 
             #region Snippet:Azure_Search_Tests_Samples_Readme_Options
             int stars = 4;

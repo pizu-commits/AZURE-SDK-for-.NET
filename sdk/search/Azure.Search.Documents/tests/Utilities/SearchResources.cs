@@ -270,6 +270,8 @@ namespace Azure.Search.Documents.Tests
         /// <returns>The shared TestResources context.</returns>
         public static async Task<SearchResources> GetSharedHotelsIndexAsync(SearchTestBase fixture, bool isSample = false, string testName = null)
         {
+            if (testName != null)
+                Assert.True(false, $"Asserting -- Inside GetSharedHotelsIndexAsync -- {testName}");
             await SharedSearchResources.EnsureInitialized(async () => await CreateWithHotelsIndexAsync(fixture, isSample, testName));
 
             // Clone it for the current fixture (note that setting these values
@@ -386,6 +388,8 @@ namespace Azure.Search.Documents.Tests
         private async Task<SearchResources> CreateSearchServiceAndIndexAsync(
             bool isSample, Func<string, SearchIndex> getIndex = null, string testName = null)
         {
+            if (testName != null)
+                Assert.True(false, $"Asserting -- Inside CreateSearchServiceAndIndexAsync -- {testName}");
             // getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
 
             if (getIndex == null)
