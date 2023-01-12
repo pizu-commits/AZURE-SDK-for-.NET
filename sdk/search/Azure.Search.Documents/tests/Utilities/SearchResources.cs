@@ -393,15 +393,17 @@ namespace Azure.Search.Documents.Tests
                 if (isSample)
                 {
                     getIndex = SearchResourcesSample.GetHotelIndex;
+                    Console.WriteLine("Creating sample hotel index");
                 }
                 else
                 {
                     getIndex = GetHotelIndex;
+                    Console.WriteLine("Creating test hotel index");
                 }
             }
             // Create the index
-            if (TestFixture.Mode != RecordedTestMode.Playback)
-            {
+            //if (TestFixture.Mode != RecordedTestMode.Playback)
+            //{
                 // Generate a random Index Name
                 IndexName = Random.GetName(8);
 
@@ -412,7 +414,7 @@ namespace Azure.Search.Documents.Tests
 
                 // Give the index time to stabilize before running tests.
                 await WaitForIndexCreationAsync();
-            }
+           // }
 
             return this;
         }
@@ -428,21 +430,23 @@ namespace Azure.Search.Documents.Tests
             await CreateSearchServiceAndIndexAsync(isSample);
 
             // Upload the documents
-            if (TestFixture.Mode != RecordedTestMode.Playback)
-            {
+            //if (TestFixture.Mode != RecordedTestMode.Playback)
+            //{
                 SearchClient client = new SearchClient(Endpoint, IndexName, new AzureKeyCredential(PrimaryApiKey));
 
                 if (isSample)
                 {
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(SearchResourcesSample.TestDocumentsForSample));
+                    Console.WriteLine("Uploading sample data");
                 }
                 else
                 {
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(TestDocuments));
-                }
+                    Console.WriteLine("Uploading Test data");
+            }
 
                 await WaitForIndexingAsync();
-            }
+           // }
 
             return this;
         }
