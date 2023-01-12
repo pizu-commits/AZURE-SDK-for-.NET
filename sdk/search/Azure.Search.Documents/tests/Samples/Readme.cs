@@ -14,6 +14,7 @@ using Azure;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
 using Azure.Core.GeoJson;
+using NUnit.Framework.Internal;
 #endregion Snippet:Azure_Search_Tests_Samples_Readme_Namespace
 
 namespace Azure.Search.Documents.Tests.Samples
@@ -168,7 +169,7 @@ namespace Azure.Search.Documents.Tests.Samples
             await using SearchResources resources = await SearchResources.GetSharedHotelsIndexAsync(this, true, "Options test");
             SearchClient client = resources.GetQueryClient();
 
-            Console.WriteLine($"After hotel index creation -- Options test");
+            Console.WriteLine($"After hotel index creation -- Options test -- {resources.TestFixture.Mode.ToString()}");
 
             #region Snippet:Azure_Search_Tests_Samples_Readme_Options
             int stars = 4;

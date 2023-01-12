@@ -210,6 +210,8 @@ namespace Azure.Search.Documents.Tests
         /// <returns>A new TestResources context.</returns>
         public static async Task<SearchResources> CreateWithHotelsIndexAsync(SearchTestBase fixture, bool isSample = false, string testName = null)
         {
+            if (testName != null)
+                Console.WriteLine($"Inside CreateWithHotelsIndexAsync -- Options test -- isSample -- {isSample}");
             var resources = new SearchResources(fixture);
             await resources.CreateSearchServiceIndexAndDocumentsAsync(isSample, testName);
             return resources;
@@ -271,9 +273,11 @@ namespace Azure.Search.Documents.Tests
         public static async Task<SearchResources> GetSharedHotelsIndexAsync(SearchTestBase fixture, bool isSample = false, string testName = null)
         {
             if (testName != null)
-                Assert.True(false, $"Asserting -- Inside GetSharedHotelsIndexAsync -- {testName}");
+                Console.WriteLine($"Inside GetSharedHotelsIndexAsync -- Options test -- isSample -- {isSample}");
             await SharedSearchResources.EnsureInitialized(async () => await CreateWithHotelsIndexAsync(fixture, isSample, testName));
 
+            if (testName != null)
+                Console.WriteLine($"After index creation GetSharedHotelsIndexAsync -- Options test -- isSample -- {isSample}");
             // Clone it for the current fixture (note that setting these values
             // will create the recording ServiceName/IndexName/etc. variables)
             return new SearchResources(fixture)
@@ -283,12 +287,12 @@ namespace Azure.Search.Documents.Tests
         }
         #endregion Create Test Resources
 
-        #region Get Clients
-        /// <summary>
-        /// Get a <see cref="SearchIndexClient"/> to use for testing.
-        /// </summary>
-        /// <param name="options">Optional client options.</param>
-        /// <returns>A <see cref="SearchIndexClient"/> instance.</returns>
+                #region Get Clients
+                /// <summary>
+                /// Get a <see cref="SearchIndexClient"/> to use for testing.
+                /// </summary>
+                /// <param name="options">Optional client options.</param>
+                /// <returns>A <see cref="SearchIndexClient"/> instance.</returns>
         public SearchIndexClient GetIndexClient(SearchClientOptions options = null) =>
             TestFixture.InstrumentClient(
                 new SearchIndexClient(
@@ -389,7 +393,7 @@ namespace Azure.Search.Documents.Tests
             bool isSample, Func<string, SearchIndex> getIndex = null, string testName = null)
         {
             if (testName != null)
-                Assert.True(false, $"Asserting -- Inside CreateSearchServiceAndIndexAsync -- {testName}");
+                Console.WriteLine($"Inside CreateSearchServiceAndIndexAsync -- Options test  -- isSample -- {isSample}");
             // getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
 
             if (getIndex == null)
@@ -436,6 +440,8 @@ namespace Azure.Search.Documents.Tests
 
                 // Give the index time to stabilize before running tests.
                 await WaitForIndexCreationAsync();
+                if (testName != null)
+                    Assert.True(false, $"Asserting -- WaitForIndexCreationAsync -- {testName} -- is sample -- {isSample} -- {TestFixture.Mode.ToString()}");
             }
 
             return this;
@@ -448,6 +454,8 @@ namespace Azure.Search.Documents.Tests
         /// <returns>This TestResources context.</returns>
         private async Task<SearchResources> CreateSearchServiceIndexAndDocumentsAsync(bool isSample, string testName = null)
         {
+            if (testName != null)
+                Assert.True(false, $"Inside CreateSearchServiceIndexAndDocumentsAsync -- Options test -- isSample -- {isSample} -- {TestFixture.Mode.ToString()}");
             // Create the Search Service and Index first
             await CreateSearchServiceAndIndexAsync(isSample, null, testName);
 
@@ -461,17 +469,19 @@ namespace Azure.Search.Documents.Tests
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(SearchResourcesSample.TestDocumentsForSample));
                     Console.WriteLine("Uploading sample data");
                     if (testName != null)
-                        Assert.True(false, $"Asserting -- Uploading sample data -- {testName}");
+                        Assert.True(false, $"Asserting -- Uploading sample data -- {testName} -- is sample -- {isSample} -- {TestFixture.Mode.ToString()}");
                 }
                 else
                 {
                     await client.IndexDocumentsAsync(IndexDocumentsBatch.Upload(TestDocuments));
                     Console.WriteLine("Uploading Test data");
                     if (testName != null)
-                        Assert.True(false, $"Asserting -- Uploading Test data -- {testName}");
+                        Assert.True(false, $"Asserting -- Uploading Test data -- {testName} -- is sample -- {isSample} -- {TestFixture.Mode.ToString()}");
                 }
 
                 await WaitForIndexingAsync();
+                if (testName != null)
+                    Assert.True(false, $"Asserting -- WaitForIndexingAsync -- {testName} -- is sample -- {isSample} -- {TestFixture.Mode.ToString()}");
             }
 
             return this;
