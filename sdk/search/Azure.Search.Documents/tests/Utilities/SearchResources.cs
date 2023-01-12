@@ -386,8 +386,19 @@ namespace Azure.Search.Documents.Tests
         private async Task<SearchResources> CreateSearchServiceAndIndexAsync(
             bool isSample, Func<string, SearchIndex> getIndex = null)
         {
-            getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
+           // getIndex ??= isSample ? SearchResourcesSample.GetHotelIndex : GetHotelIndex;
 
+            if (getIndex == null)
+            {
+                if (isSample)
+                {
+                    getIndex = SearchResourcesSample.GetHotelIndex;
+                }
+                else
+                {
+                    getIndex = GetHotelIndex;
+                }
+            }
             // Create the index
             if (TestFixture.Mode != RecordedTestMode.Playback)
             {
@@ -411,7 +422,7 @@ namespace Azure.Search.Documents.Tests
         /// test documents.
         /// </summary>
         /// <returns>This TestResources context.</returns>
-        private async Task<SearchResources> CreateSearchServiceIndexAndDocumentsAsync(bool isSample = false)
+        private async Task<SearchResources> CreateSearchServiceIndexAndDocumentsAsync(bool isSample)
         {
             // Create the Search Service and Index first
             await CreateSearchServiceAndIndexAsync(isSample);
