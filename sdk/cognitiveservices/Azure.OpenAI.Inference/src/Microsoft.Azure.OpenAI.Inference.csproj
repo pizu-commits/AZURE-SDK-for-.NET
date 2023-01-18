@@ -4,12 +4,16 @@
     <AssemblyTitle>Microsoft Azure OpenAI Inference</AssemblyTitle>
     <TargetFrameworks>$(RequiredTargetFrameworks)</TargetFrameworks>
     <DocumentationFile>.\Docs\OpenAIClient.xml</DocumentationFile>
-    <IsClientLibrary>true</IsClientLibrary>
     <PackageTags>$(PackageTags);$(CommonTags);$(AzureApiTag);</PackageTags>
+    <IncludeOperationsSharedSource>true</IncludeOperationsSharedSource>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Core" />
+    <PackageReference Include="Azure.Core" Version="1.26.0"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(AzureCoreSharedSources)AzureKeyCredential.cs" LinkBase="Shared" />
   </ItemGroup>
 
 </Project>
