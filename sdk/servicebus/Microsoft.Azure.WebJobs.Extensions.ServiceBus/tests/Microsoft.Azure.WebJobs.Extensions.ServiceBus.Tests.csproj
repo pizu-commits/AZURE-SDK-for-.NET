@@ -33,8 +33,4 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference  Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.35-11986" />
-  </ItemGroup>
-
 </Project>
