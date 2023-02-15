@@ -33,7 +33,7 @@ namespace Azure.Core.TestFramework
 
         private readonly int? _proxyPortHttp;
         private readonly int? _proxyPortHttps;
-        private readonly Process _testProxyProcess;
+        // private readonly Process _testProxyProcess;
         internal TestProxyRestClient Client { get; }
         private readonly StringBuilder _errorBuffer = new();
         private static readonly object _lock = new();
@@ -60,85 +60,87 @@ namespace Azure.Core.TestFramework
 
         private TestProxy(string proxyPath, bool debugMode = false)
         {
-            ProcessStartInfo testProxyProcessInfo = new ProcessStartInfo(
-                s_dotNetExe,
-                $"{proxyPath} --storage-location=\"{TestEnvironment.RepositoryRoot}\"")
-            {
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                EnvironmentVariables =
-                {
-                    ["ASPNETCORE_URLS"] = $"http://{IpAddress}:0;https://{IpAddress}:0",
-                    ["Logging__LogLevel__Default"] = "Error",
-                    ["Logging__LogLevel__Microsoft.Hosting.Lifetime"] = "Information",
-                    ["ASPNETCORE_Kestrel__Certificates__Default__Path"] = TestEnvironment.DevCertPath,
-                    ["ASPNETCORE_Kestrel__Certificates__Default__Password"] = TestEnvironment.DevCertPassword
-                }
-            };
+            //ProcessStartInfo testProxyProcessInfo = new ProcessStartInfo(
+            //    s_dotNetExe,
+            //    $"{proxyPath} --storage-location=\"{TestEnvironment.RepositoryRoot}\"")
+            //{
+            //    UseShellExecute = false,
+            //    RedirectStandardOutput = true,
+            //    RedirectStandardError = true,
+            //    EnvironmentVariables =
+            //    {
+            //        ["ASPNETCORE_URLS"] = $"http://{IpAddress}:0;https://{IpAddress}:0",
+            //        ["Logging__LogLevel__Default"] = "Error",
+            //        ["Logging__LogLevel__Microsoft.Hosting.Lifetime"] = "Information",
+            //        ["ASPNETCORE_Kestrel__Certificates__Default__Path"] = TestEnvironment.DevCertPath,
+            //        ["ASPNETCORE_Kestrel__Certificates__Default__Password"] = TestEnvironment.DevCertPassword
+            //    }
+            //};
 
-            _testProxyProcess = Process.Start(testProxyProcessInfo);
+            //_testProxyProcess = Process.Start(testProxyProcessInfo);
 
-            ProcessTracker.Add(_testProxyProcess);
-            _ = Task.Run(
-                () =>
-                {
-                    while (!_testProxyProcess.HasExited && !_testProxyProcess.StandardError.EndOfStream)
-                    {
-                        var error = _testProxyProcess.StandardError.ReadLine();
-                        // output to console in case another error in the test causes the exception to not be propagated
-                        TestContext.Progress.WriteLine(error);
-                        _errorBuffer.AppendLine(error);
-                    }
-                });
-            if (debugMode)
-            {
-                _proxyPortHttp = 5000;
-                _proxyPortHttps = 5001;
-            }
-            else
-            {
-                int lines = 0;
-                while ((_proxyPortHttp == null || _proxyPortHttps == null) && lines++ < 50)
-                {
-                    string outputLine = _testProxyProcess.StandardOutput.ReadLine();
-                    // useful for debugging
-                    TestContext.Progress.WriteLine(outputLine);
+            //ProcessTracker.Add(_testProxyProcess);
+            //_ = Task.Run(
+            //    () =>
+            //    {
+            //        while (!_testProxyProcess.HasExited && !_testProxyProcess.StandardError.EndOfStream)
+            //        {
+            //            var error = _testProxyProcess.StandardError.ReadLine();
+            //            // output to console in case another error in the test causes the exception to not be propagated
+            //            TestContext.Progress.WriteLine(error);
+            //            _errorBuffer.AppendLine(error);
+            //        }
+            //    });
+            //if (debugMode)
+            //{
+            //    _proxyPortHttp = 5000;
+            //    _proxyPortHttps = 5001;
+            //}
+            //else
+            //{
+            //    int lines = 0;
+            //    while ((_proxyPortHttp == null || _proxyPortHttps == null) && lines++ < 50)
+            //    {
+            //        string outputLine = _testProxyProcess.StandardOutput.ReadLine();
+            //        // useful for debugging
+            //        TestContext.Progress.WriteLine(outputLine);
 
-                    if (ProxyPortHttp == null && TryParsePort(outputLine, "http", out _proxyPortHttp))
-                    {
-                        continue;
-                    }
+            //        if (ProxyPortHttp == null && TryParsePort(outputLine, "http", out _proxyPortHttp))
+            //        {
+            //            continue;
+            //        }
 
-                    if (_proxyPortHttps == null && TryParsePort(outputLine, "https", out _proxyPortHttps))
-                    {
-                        continue;
-                    }
-                }
-            }
+            //        if (_proxyPortHttps == null && TryParsePort(outputLine, "https", out _proxyPortHttps))
+            //        {
+            //            continue;
+            //        }
+            //    }
+            //}
+            _proxyPortHttp = 5000;
+            _proxyPortHttps = 5001;
 
-            if (_proxyPortHttp == null || _proxyPortHttps == null)
-            {
-                CheckForErrors();
-                // if no errors, fallback to this exception
-                throw new InvalidOperationException("Failed to start the test proxy. One or both of the ports was not populated." + Environment.NewLine +
-                                                    $"http: {_proxyPortHttp}" + Environment.NewLine +
-                                                    $"https: {_proxyPortHttps}");
-            }
+            //if (_proxyPortHttp == null || _proxyPortHttps == null)
+            //{
+            //    CheckForErrors();
+            //    // if no errors, fallback to this exception
+            //    throw new InvalidOperationException("Failed to start the test proxy. One or both of the ports was not populated." + Environment.NewLine +
+            //                                        $"http: {_proxyPortHttp}" + Environment.NewLine +
+            //                                        $"https: {_proxyPortHttps}");
+            //}
 
             var options = new TestProxyClientOptions();
             Client = new TestProxyRestClient(new ClientDiagnostics(options), HttpPipelineBuilder.Build(options), new Uri($"http://{IpAddress}:{_proxyPortHttp}"));
 
             // For some reason draining the standard output stream is necessary to keep the test-proxy process healthy. Otherwise requests
             // start timing out. This only seems to happen when not specifying a port.
-            _ = Task.Run(
-                () =>
-                {
-                    while (!_testProxyProcess.HasExited && !_testProxyProcess.StandardOutput.EndOfStream)
-                    {
-                        _testProxyProcess.StandardOutput.ReadLine();
-                    }
-                });
+            //_ = Task.Run(
+            //    () =>
+            //    {
+            //        while (!_testProxyProcess.HasExited && !_testProxyProcess.StandardOutput.EndOfStream)
+            //        {
+            //            _testProxyProcess.StandardOutput.ReadLine();
+            //        }
+            //    });
         }
 
         /// <summary>
@@ -167,7 +169,7 @@ namespace Azure.Core.TestFramework
 
                     AppDomain.CurrentDomain.DomainUnload += (_, _) =>
                     {
-                        shared._testProxyProcess?.Kill();
+                        // shared._testProxyProcess?.Kill();
                     };
 
                     _shared = shared;

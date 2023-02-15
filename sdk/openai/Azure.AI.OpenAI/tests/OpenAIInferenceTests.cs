@@ -125,12 +125,10 @@ namespace Azure.AI.OpenAI.Tests
             });
             /**
              * This adjustment now causes this test to fail with:
-             * 
              * [13:48:56] fail: Microsoft.AspNetCore.Server.Kestrel[13]
              * Connection id "0HMOFJPH6LP0E", Request id "0HMOFJPH6LP0E:00000002": An unhandled exception was thrown by the application.
              * System.InvalidOperationException: Response Content-Length mismatch: too few bytes written (3945 of 39458).
              */
-
             OpenAIClient client = GetClient();
             CompletionsOptions requestOptions = new CompletionsOptions()
             {
