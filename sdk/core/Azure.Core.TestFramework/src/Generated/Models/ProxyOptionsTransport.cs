@@ -25,5 +25,7 @@ namespace Azure.Core.TestFramework.Models
         public string TLSValidationCert { get; set; }
         /// <summary> Gets the certificates. </summary>
         public IList<ProxyOptionsTransportCertificatesItem> Certificates { get; }
+
+        public int PlaybackResponseTime { get; set; }
     }
 }

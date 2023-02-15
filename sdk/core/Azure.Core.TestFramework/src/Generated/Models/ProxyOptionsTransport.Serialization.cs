@@ -35,6 +35,11 @@ namespace Azure.Core.TestFramework.Models
                 }
                 writer.WriteEndArray();
             }
+            if (Optional.IsDefined(PlaybackResponseTime))
+            {
+                writer.WritePropertyName("PlaybackResponseTime"u8);
+                writer.WriteNumberValue(PlaybackResponseTime);
+            }
             writer.WriteEndObject();
         }
     }

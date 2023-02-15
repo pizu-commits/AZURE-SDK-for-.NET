@@ -394,7 +394,7 @@ namespace Azure.Core.TestFramework
 
         protected async Task SetProxyOptionsAsync(ProxyOptions options)
         {
-            if (Mode == RecordedTestMode.Record && options != null)
+            if ((Mode == RecordedTestMode.Record || Mode == RecordedTestMode.Playback) && options != null)
             {
                 await _proxy.Client.SetRecordingTransportOptionsAsync(Recording.RecordingId, options).ConfigureAwait(false);
             }
