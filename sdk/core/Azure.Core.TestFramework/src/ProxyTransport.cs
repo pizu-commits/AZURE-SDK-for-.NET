@@ -179,6 +179,7 @@ namespace Azure.Core.TestFramework
             };
             request.Headers.SetValue("x-recording-upstream-base-uri", baseUri.ToString());
 
+            request.Uri.Scheme = "http";
             request.Uri.Host = _proxyHost;
             request.Uri.Port = request.Uri.Scheme == "https" ? _proxy.ProxyPortHttps.Value : _proxy.ProxyPortHttp.Value;
 
