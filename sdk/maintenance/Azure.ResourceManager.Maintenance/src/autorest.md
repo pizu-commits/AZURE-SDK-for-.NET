@@ -10,8 +10,8 @@ csharp: true
 library-name: Maintenance
 namespace: Azure.ResourceManager.Maintenance
 # default tag is a preview version
-require: https://github.com/Azure/azure-rest-api-specs/blob/7d5d1db0c45d6fe0934c97b6a6f9bb34112d42d1/specification/maintenance/resource-manager/readme.md
-tag: package-2021-05
+require: C:\Users\fenzhou\Develop\azure-rest-api-specs\specification\maintenance\resource-manager\readme.md
+tag: package-2023-04
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 skip-csproj: true
@@ -29,7 +29,7 @@ rename-mapping:
   ApplyUpdate: MaintenanceApplyUpdate
   Update: MaintenanceUpdate
   ImpactType: MaintenanceImpactType
-  ConfigurationAssignment: MaintenanceConfigurationAssignmentData
+  ConfigurationAssignment: MaintenanceConfigurationAssignment
   ApplyUpdate.properties.resourceId: -|arm-id
   ConfigurationAssignment.properties.resourceId: -|arm-id
   Update.properties.resourceId: -|arm-id
@@ -54,13 +54,19 @@ override-operation-name:
 
 request-path-is-non-resource:
   - /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceParentType}/{resourceParentName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/applyUpdates/{applyUpdateName}
+  # - /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceParentType}/{resourceParentName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}
 
 request-path-to-resource-name:
   /subscriptions/{subscriptionId}/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/{resourceName}: MaintenancePublicConfiguration
   /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/applyUpdates/{applyUpdateName}: MaintenanceApplyUpdate
+  /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceParentType}/{resourceParentName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}: MaintenanceNestedResourceConfigurationAssignment
+  /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}: MaintenanceResourceConfigurationAssignment
+  /subscriptions/{subscriptionId}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}: MaintenanceSubscriptionConfigurationAssignment
+  /subscriptions/{subscriptionId}/providers/resourcegroups/{resourceGroupName}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}: MaintenanceResourceGroupConfigurationAssignment
 
 list-exception:
   - /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceName}/providers/Microsoft.Maintenance/applyUpdates/{applyUpdateName}
+  - /subscriptions/{subscriptionId}/providers/resourcegroups/{resourceGroupName}/providers/Microsoft.Maintenance/configurationAssignments/{configurationAssignmentName}
 
 rename-rules:
   CPU: Cpu
