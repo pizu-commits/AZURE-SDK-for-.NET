@@ -10,6 +10,7 @@ using Azure.Core;
 using Azure.Core.Pipeline;
 using Azure.Monitor.OpenTelemetry.Exporter.Internals.ConnectionString;
 using Azure.Monitor.OpenTelemetry.Exporter.Internals.PersistentStorage;
+using Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat;
 using Azure.Monitor.OpenTelemetry.Exporter.Models;
 
 using OpenTelemetry;
@@ -26,6 +27,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
         private readonly ApplicationInsightsRestClient _applicationInsightsRestClient;
         internal PersistentBlobProvider? _fileBlobProvider;
         private readonly ConnectionVars _connectionVars;
+        private readonly StatsbeatProvider? _statsbeat;
 
         public AzureMonitorTransmitter(AzureMonitorExporterOptions options, TokenCredential? credential = null)
         {
@@ -42,25 +44,29 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
 
             _fileBlobProvider = InitializeOfflineStorage(options);
 
-            // TODO: uncomment following line for enablement.
-            // InitializeStatsbeat(_connectionVars);
+            _statsbeat = InitializeStatsbeat(_connectionVars);
         }
 
-        private static void InitializeStatsbeat(ConnectionVars connectionVars)
+        private static StatsbeatProvider? InitializeStatsbeat(ConnectionVars connectionVars)
         {
             try
             {
                 // Do not initialize statsbeat for statsbeat.
-                if (connectionVars != null && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Statsbeat_ConnectionString_EU).InstrumentationKey && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Statsbeat_ConnectionString_NonEU).InstrumentationKey)
+                if (connectionVars != null
+                    && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_EU).InstrumentationKey
+                    && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_NonEU).InstrumentationKey)
                 {
-                    // TODO: Implement IDisposable for transmitter and dispose statsbeat.
-                    _ = new Statsbeat(connectionVars);
+                    // TODO: uncomment following line for enablement.
+                    //return new Statsbeat(connectionVars);
+                    return null;
                 }
             }
             catch (Exception ex)
             {
                 AzureMonitorExporterEventSource.Log.WriteWarning($"ErrorInitializingStatsBeatfor:{connectionVars.InstrumentationKey}", ex);
             }
+
+            return null;
         }
 
         public string InstrumentationKey => _connectionVars.InstrumentationKey;

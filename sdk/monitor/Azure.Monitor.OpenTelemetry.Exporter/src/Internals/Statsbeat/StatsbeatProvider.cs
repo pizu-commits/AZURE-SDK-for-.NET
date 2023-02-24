@@ -13,14 +13,10 @@ using Azure.Monitor.OpenTelemetry.Exporter.Internals.ConnectionString;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 
-namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
+namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat
 {
-    internal sealed class Statsbeat : IDisposable
+    internal sealed class StatsbeatProvider : IDisposable
     {
-        internal const string Statsbeat_ConnectionString_NonEU = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://NonEU.in.applicationinsights.azure.com/";
-
-        internal const string Statsbeat_ConnectionString_EU = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://EU.in.applicationinsights.azure.com/";
-
         private const string AMS_Url = "http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json";
 
         internal const int AttachStatsbeatInterval = 86400000;
@@ -45,59 +41,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
 
         internal static Regex s_endpoint_pattern => new("^https?://(?:www\\.)?([^/.-]+)");
 
-        internal static readonly HashSet<string> s_EU_Endpoints = new()
-        {
-            "francecentral",
-            "francesouth",
-            "northeurope",
-            "norwayeast",
-            "norwaywest",
-            "swedencentral",
-            "switzerlandnorth",
-            "switzerlandwest",
-            "uksouth",
-            "ukwest",
-            "westeurope",
-        };
-
-        internal static readonly HashSet<string> s_non_EU_Endpoints = new()
-        {
-            "australiacentral",
-            "australiacentral2",
-            "australiaeast",
-            "australiasoutheast",
-            "brazilsouth",
-            "brazilsoutheast",
-            "canadacentral",
-            "canadaeast",
-            "centralindia",
-            "centralus",
-            "chinaeast2",
-            "chinaeast3",
-            "chinanorth3",
-            "eastasia",
-            "eastus",
-            "eastus2",
-            "japaneast",
-            "japanwest",
-            "jioindiacentral",
-            "jioindiawest",
-            "koreacentral",
-            "koreasouth",
-            "northcentralus",
-            "qatarcentral",
-            "southafricanorth",
-            "southcentralus",
-            "southeastasia",
-            "southindia",
-            "uaecentral",
-            "uaenorth",
-            "westus",
-            "westus2",
-            "westus3",
-        };
-
-        internal Statsbeat(ConnectionVars connectionStringVars)
+        internal StatsbeatProvider(ConnectionVars connectionStringVars)
         {
             _statsbeat_ConnectionString = GetStatsbeatConnectionString(connectionStringVars?.IngestionEndpoint);
 
@@ -151,13 +95,13 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
             if (patternMatch.Success)
             {
                 var endpoint = patternMatch.Groups[1].Value;
-                if (s_EU_Endpoints.Contains(endpoint))
+                if (Constants.s_EU_Endpoints.Contains(endpoint))
                 {
-                    statsbeatConnectionString = Statsbeat_ConnectionString_EU;
+                    statsbeatConnectionString = Constants.Statsbeat_ConnectionString_EU;
                 }
-                else if (s_non_EU_Endpoints.Contains(endpoint))
+                else if (Constants.s_non_EU_Endpoints.Contains(endpoint))
                 {
-                    statsbeatConnectionString = Statsbeat_ConnectionString_NonEU;
+                    statsbeatConnectionString = Constants.Statsbeat_ConnectionString_NonEU;
                 }
             }
 

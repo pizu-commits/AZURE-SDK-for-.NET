@@ -4,6 +4,7 @@
 using System;
 using Azure.Monitor.OpenTelemetry.Exporter.Internals;
 using Azure.Monitor.OpenTelemetry.Exporter.Internals.ConnectionString;
+using Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat;
 using Xunit;
 
 namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
@@ -26,9 +27,9 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
         {
             var customer_ConnectionString = $"InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{euEndpoint}.in.applicationinsights.azure.com/";
             var connectionStringVars = ConnectionStringParser.GetValues(customer_ConnectionString);
-            var statsBeatInstance = new Statsbeat(connectionStringVars);
+            var statsBeatInstance = new StatsbeatProvider(connectionStringVars);
 
-            Assert.Equal(Statsbeat.Statsbeat_ConnectionString_EU, statsBeatInstance._statsbeat_ConnectionString);
+            Assert.Equal(Internals.Statsbeat.Constants.Statsbeat_ConnectionString_EU, statsBeatInstance._statsbeat_ConnectionString);
         }
 
         [Theory]
@@ -69,9 +70,9 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
         {
             var customer_ConnectionString = $"InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{nonEUEndpoint}.in.applicationinsights.azure.com/";
             var connectionStringVars = ConnectionStringParser.GetValues(customer_ConnectionString);
-            var statsBeatInstance = new Statsbeat(connectionStringVars);
+            var statsBeatInstance = new StatsbeatProvider(connectionStringVars);
 
-            Assert.Equal(Statsbeat.Statsbeat_ConnectionString_NonEU, statsBeatInstance._statsbeat_ConnectionString);
+            Assert.Equal(Internals.Statsbeat.Constants.Statsbeat_ConnectionString_NonEU, statsBeatInstance._statsbeat_ConnectionString);
         }
 
         [Fact]
@@ -80,7 +81,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
             var customer_ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://foo.in.applicationinsights.azure.com/";
 
             var connectionStringVars = ConnectionStringParser.GetValues(customer_ConnectionString);
-            Assert.Throws<InvalidOperationException>(() => new Statsbeat(connectionStringVars));
+            Assert.Throws<InvalidOperationException>(() => new StatsbeatProvider(connectionStringVars));
         }
     }
 }
