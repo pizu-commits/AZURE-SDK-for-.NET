@@ -44,26 +44,29 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
 
             _fileBlobProvider = InitializeOfflineStorage(options);
 
-            _statsbeat = InitializeStatsbeat(_connectionVars);
+            _statsbeat = InitializeStatsbeat(options, _connectionVars);
         }
 
-        private static StatsbeatProvider? InitializeStatsbeat(ConnectionVars connectionVars)
+        private static StatsbeatProvider? InitializeStatsbeat(AzureMonitorExporterOptions options, ConnectionVars connectionVars)
         {
-            try
+            if (options.EnableStatsbeat)
             {
-                // Do not initialize statsbeat for statsbeat.
-                if (connectionVars != null
-                    && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_EU).InstrumentationKey
-                    && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_NonEU).InstrumentationKey)
+                try
                 {
-                    // TODO: uncomment following line for enablement.
-                    //return new Statsbeat(connectionVars);
-                    return null;
+                    // Do not initialize statsbeat for statsbeat.
+                    if (connectionVars != null
+                        && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_EU).InstrumentationKey
+                        && connectionVars.InstrumentationKey != ConnectionStringParser.GetValues(Statsbeat.Constants.Statsbeat_ConnectionString_NonEU).InstrumentationKey)
+                    {
+                        // TODO: uncomment following line for enablement.
+                        //return new Statsbeat(connectionVars);
+                        return null;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                AzureMonitorExporterEventSource.Log.WriteWarning($"ErrorInitializingStatsBeatfor:{connectionVars.InstrumentationKey}", ex);
+                catch (Exception ex)
+                {
+                    AzureMonitorExporterEventSource.Log.WriteWarning($"ErrorInitializingStatsBeatfor:{connectionVars.InstrumentationKey}", ex);
+                }
             }
 
             return null;
