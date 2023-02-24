@@ -64,5 +64,15 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat
             "westus2",
             "westus3",
         };
+
+        /// <summary>
+        /// <see href="https://learn.microsoft.com/azure/virtual-machines/instance-metadata-service"/>.
+        /// </summary>
+        internal const string AMS_Url = "http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json";
+
+        /// <summary>
+        /// 24 hrs == 86400000 milliseconds.
+        /// </summary>
+        internal const int AttachStatsbeatInterval = 86400000;
     }
 }

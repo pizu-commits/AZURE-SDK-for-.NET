@@ -17,23 +17,19 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat
 {
     internal sealed class StatsbeatProvider : IDisposable
     {
-        private const string AMS_Url = "http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json";
-
-        internal const int AttachStatsbeatInterval = 86400000;
-
         private static readonly Meter s_myMeter = new("AttachStatsbeatMeter", "1.0");
-
-        internal string? _statsbeat_ConnectionString;
-
-        private string? _resourceProviderId;
-
-        private string? _resourceProvider;
 
         private static string? s_runtimeVersion => SdkVersionUtils.GetVersion(typeof(object));
 
         private static string? s_sdkVersion => SdkVersionUtils.GetVersion(typeof(AzureMonitorTraceExporter));
 
         private static string s_operatingSystem = GetOS();
+
+        internal string? _statsbeat_ConnectionString;
+
+        private string? _resourceProviderId;
+
+        private string? _resourceProvider;
 
         private readonly string? _customer_Ikey;
 
@@ -68,7 +64,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat
 
             _attachStatsbeatMeterProvider = Sdk.CreateMeterProviderBuilder()
                 .AddMeter("AttachStatsbeatMeter")
-                .AddReader(new PeriodicExportingMetricReader(new AzureMonitorMetricExporter(exporterOptions), AttachStatsbeatInterval)
+                .AddReader(new PeriodicExportingMetricReader(new AzureMonitorMetricExporter(exporterOptions), Constants.AttachStatsbeatInterval)
                 { TemporalityPreference = MetricReaderTemporalityPreference.Delta })
                 .Build();
         }
@@ -145,7 +141,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.Statsbeat
                 using (var httpClient = new HttpClient())
                 {
                     httpClient.DefaultRequestHeaders.Add("Metadata", "True");
-                    var responseString = httpClient.GetStringAsync(AMS_Url);
+                    var responseString = httpClient.GetStringAsync(Constants.AMS_Url);
                     var vmMetadata = JsonSerializer.Deserialize<VmMetadataResponse>(responseString.Result);
 
                     return vmMetadata;
