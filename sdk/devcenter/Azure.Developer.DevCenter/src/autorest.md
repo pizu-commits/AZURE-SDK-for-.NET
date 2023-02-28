@@ -16,6 +16,12 @@ security: AADToken
 security-scopes: https://devcenter.azure.com/.default
 
 directive:
+  # Move project name to method level parameters
+  - from: swagger-document
+    where: $.parameters["ProjectNameParameter"]
+    transform: >-
+      $["x-ms-parameter-location"] = "method"
+
   # Ensure we use Uri rather than string in .NET
   - from: swagger-document
     where: "$.parameters.EndpointParameter"

@@ -21,7 +21,6 @@ namespace Azure.Developer.DevCenter
         private readonly TokenCredential _tokenCredential;
         private readonly HttpPipeline _pipeline;
         private readonly Uri _endpoint;
-        private readonly string _projectName;
         private readonly string _apiVersion;
 
         /// <summary> The ClientDiagnostics is used to provide tracing support for the client library. </summary>
@@ -37,25 +36,20 @@ namespace Azure.Developer.DevCenter
 
         /// <summary> Initializes a new instance of EnvironmentsClient. </summary>
         /// <param name="endpoint"> The DevCenter-specific URI to operate on. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="projectName"/> or <paramref name="credential"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
-        public EnvironmentsClient(Uri endpoint, string projectName, TokenCredential credential) : this(endpoint, projectName, credential, new DevCenterClientOptions())
+        /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
+        public EnvironmentsClient(Uri endpoint, TokenCredential credential) : this(endpoint, credential, new DevCenterClientOptions())
         {
         }
 
         /// <summary> Initializes a new instance of EnvironmentsClient. </summary>
         /// <param name="endpoint"> The DevCenter-specific URI to operate on. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="projectName"/> or <paramref name="credential"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
-        public EnvironmentsClient(Uri endpoint, string projectName, TokenCredential credential, DevCenterClientOptions options)
+        /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
+        public EnvironmentsClient(Uri endpoint, TokenCredential credential, DevCenterClientOptions options)
         {
             Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNull(credential, nameof(credential));
             options ??= new DevCenterClientOptions();
 
@@ -63,21 +57,22 @@ namespace Azure.Developer.DevCenter
             _tokenCredential = credential;
             _pipeline = HttpPipelineBuilder.Build(options, Array.Empty<HttpPipelinePolicy>(), new HttpPipelinePolicy[] { new BearerTokenAuthenticationPolicy(_tokenCredential, AuthorizationScopes) }, new ResponseClassifier());
             _endpoint = endpoint;
-            _projectName = projectName;
             _apiVersion = options.Version;
         }
 
         /// <summary> Gets an environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentByUserAsync(String,String,RequestContext)']/*" />
-        public virtual async Task<Response> GetEnvironmentByUserAsync(string environmentName, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentByUserAsync(String,String,String,RequestContext)']/*" />
+        public virtual async Task<Response> GetEnvironmentByUserAsync(string projectName, string environmentName, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
@@ -85,7 +80,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetEnvironmentByUserRequest(environmentName, userId, context);
+                using HttpMessage message = CreateGetEnvironmentByUserRequest(projectName, environmentName, userId, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -96,16 +91,18 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets an environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentByUser(String,String,RequestContext)']/*" />
-        public virtual Response GetEnvironmentByUser(string environmentName, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentByUser(String,String,String,RequestContext)']/*" />
+        public virtual Response GetEnvironmentByUser(string projectName, string environmentName, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
@@ -113,7 +110,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetEnvironmentByUserRequest(environmentName, userId, context);
+                using HttpMessage message = CreateGetEnvironmentByUserRequest(projectName, environmentName, userId, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -124,22 +121,24 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets the specified catalog within the project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetCatalogAsync(string catalogName, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogAsync(String,String,RequestContext)']/*" />
+        public virtual async Task<Response> GetCatalogAsync(string projectName, string catalogName, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
 
             using var scope = ClientDiagnostics.CreateScope("EnvironmentsClient.GetCatalog");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetCatalogRequest(catalogName, context);
+                using HttpMessage message = CreateGetCatalogRequest(projectName, catalogName, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -150,22 +149,24 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets the specified catalog within the project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalog(String,RequestContext)']/*" />
-        public virtual Response GetCatalog(string catalogName, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalog(String,String,RequestContext)']/*" />
+        public virtual Response GetCatalog(string projectName, string catalogName, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
 
             using var scope = ClientDiagnostics.CreateScope("EnvironmentsClient.GetCatalog");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetCatalogRequest(catalogName, context);
+                using HttpMessage message = CreateGetCatalogRequest(projectName, catalogName, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -176,16 +177,18 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Get an environment definition from a catalog. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="definitionName"> The name of the environment definition. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionAsync(String,String,RequestContext)']/*" />
-        public virtual async Task<Response> GetEnvironmentDefinitionAsync(string catalogName, string definitionName, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionAsync(String,String,String,RequestContext)']/*" />
+        public virtual async Task<Response> GetEnvironmentDefinitionAsync(string projectName, string catalogName, string definitionName, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
             Argument.AssertNotNullOrEmpty(definitionName, nameof(definitionName));
 
@@ -193,7 +196,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetEnvironmentDefinitionRequest(catalogName, definitionName, context);
+                using HttpMessage message = CreateGetEnvironmentDefinitionRequest(projectName, catalogName, definitionName, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -204,16 +207,18 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Get an environment definition from a catalog. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="definitionName"> The name of the environment definition. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinition(String,String,RequestContext)']/*" />
-        public virtual Response GetEnvironmentDefinition(string catalogName, string definitionName, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinition(String,String,String,RequestContext)']/*" />
+        public virtual Response GetEnvironmentDefinition(string projectName, string catalogName, string definitionName, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
             Argument.AssertNotNullOrEmpty(definitionName, nameof(definitionName));
 
@@ -221,7 +226,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetEnvironmentDefinitionRequest(catalogName, definitionName, context);
+                using HttpMessage message = CreateGetEnvironmentDefinitionRequest(projectName, catalogName, definitionName, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -232,194 +237,244 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists the environments for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsAsync(Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetEnvironmentsAsync(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsAsync(String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetEnvironmentsAsync(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironments", "value", "nextLink", context);
         }
 
         /// <summary> Lists the environments for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironments(Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetEnvironments(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironments(String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetEnvironments(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironments", "value", "nextLink", context);
         }
 
         /// <summary> Lists the environments for a project and user. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsByUserAsync(String,Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetEnvironmentsByUserAsync(string userId = "me", int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsByUserAsync(String,String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetEnvironmentsByUserAsync(string projectName, string userId = "me", int? maxCount = null, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsByUserRequest(userId, maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsByUserNextPageRequest(nextLink, userId, maxCount, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsByUserRequest(projectName, userId, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsByUserNextPageRequest(nextLink, projectName, userId, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentsByUser", "value", "nextLink", context);
         }
 
         /// <summary> Lists the environments for a project and user. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsByUser(String,Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetEnvironmentsByUser(string userId = "me", int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentsByUser(String,String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetEnvironmentsByUser(string projectName, string userId = "me", int? maxCount = null, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsByUserRequest(userId, maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsByUserNextPageRequest(nextLink, userId, maxCount, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsByUserRequest(projectName, userId, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsByUserNextPageRequest(nextLink, projectName, userId, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentsByUser", "value", "nextLink", context);
         }
 
         /// <summary> Lists all of the catalogs available for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogsByProjectAsync(Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetCatalogsByProjectAsync(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogsByProjectAsync(String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetCatalogsByProjectAsync(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCatalogsByProjectRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCatalogsByProjectNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCatalogsByProjectRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCatalogsByProjectNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetCatalogsByProject", "value", "nextLink", context);
         }
 
         /// <summary> Lists all of the catalogs available for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogsByProject(Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetCatalogsByProject(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetCatalogsByProject(String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetCatalogsByProject(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCatalogsByProjectRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCatalogsByProjectNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCatalogsByProjectRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCatalogsByProjectNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetCatalogsByProject", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment definitions available for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByProjectAsync(Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetEnvironmentDefinitionsByProjectAsync(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByProjectAsync(String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetEnvironmentDefinitionsByProjectAsync(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByProjectRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByProjectNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByProjectRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByProjectNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentDefinitionsByProject", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment definitions available for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByProject(Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetEnvironmentDefinitionsByProject(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByProject(String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetEnvironmentDefinitionsByProject(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByProjectRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByProjectNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByProjectRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByProjectNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentDefinitionsByProject", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment definitions available within a catalog. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByCatalogAsync(String,Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetEnvironmentDefinitionsByCatalogAsync(string catalogName, int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByCatalogAsync(String,String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetEnvironmentDefinitionsByCatalogAsync(string projectName, string catalogName, int? maxCount = null, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByCatalogRequest(catalogName, maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(nextLink, catalogName, maxCount, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByCatalogRequest(projectName, catalogName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(nextLink, projectName, catalogName, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentDefinitionsByCatalog", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment definitions available within a catalog. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="catalogName"> The name of the catalog. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="catalogName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByCatalog(String,Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetEnvironmentDefinitionsByCatalog(string catalogName, int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentDefinitionsByCatalog(String,String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetEnvironmentDefinitionsByCatalog(string projectName, string catalogName, int? maxCount = null, RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(catalogName, nameof(catalogName));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByCatalogRequest(catalogName, maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(nextLink, catalogName, maxCount, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentDefinitionsByCatalogRequest(projectName, catalogName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(nextLink, projectName, catalogName, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentDefinitionsByCatalog", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment types configured for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentTypesAsync(Int32,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetEnvironmentTypesAsync(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentTypesAsync(String,Int32,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetEnvironmentTypesAsync(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentTypesRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentTypesNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentTypesRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentTypesNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentTypes", "value", "nextLink", context);
         }
 
         /// <summary> Lists all environment types configured for a project. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="maxCount"> The maximum number of resources to return from the operation. Example: &apos;top=10&apos;. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentTypes(Int32,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetEnvironmentTypes(int? maxCount = null, RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='GetEnvironmentTypes(String,Int32,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetEnvironmentTypes(string projectName, int? maxCount = null, RequestContext context = null)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentTypesRequest(maxCount, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentTypesNextPageRequest(nextLink, maxCount, context);
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentTypesRequest(projectName, maxCount, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentTypesNextPageRequest(nextLink, projectName, maxCount, context);
             return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "EnvironmentsClient.GetEnvironmentTypes", "value", "nextLink", context);
         }
 
         /// <summary> Creates or updates an environment. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="content"> The content to send as the body of the request. Details of the request body schema are in the Remarks section below. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/>, <paramref name="content"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/>, <paramref name="content"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation{T}"/> from the service that will contain a <see cref="BinaryData"/> object once the asynchronous operation on the service has completed. Details of the body schema for the operation's final value are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='CreateOrReplaceEnvironmentAsync(WaitUntil,String,RequestContent,String,RequestContext)']/*" />
-        public virtual async Task<Operation<BinaryData>> CreateOrReplaceEnvironmentAsync(WaitUntil waitUntil, string environmentName, RequestContent content, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='CreateOrReplaceEnvironmentAsync(WaitUntil,String,String,RequestContent,String,RequestContext)']/*" />
+        public virtual async Task<Operation<BinaryData>> CreateOrReplaceEnvironmentAsync(WaitUntil waitUntil, string projectName, string environmentName, RequestContent content, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNull(content, nameof(content));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
@@ -428,7 +483,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateOrReplaceEnvironmentRequest(environmentName, content, userId, context);
+                using HttpMessage message = CreateCreateOrReplaceEnvironmentRequest(projectName, environmentName, content, userId, context);
                 return await ProtocolOperationHelpers.ProcessMessageAsync(_pipeline, message, ClientDiagnostics, "EnvironmentsClient.CreateOrReplaceEnvironment", OperationFinalStateVia.OriginalUri, context, waitUntil).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -440,17 +495,19 @@ namespace Azure.Developer.DevCenter
 
         /// <summary> Creates or updates an environment. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="content"> The content to send as the body of the request. Details of the request body schema are in the Remarks section below. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/>, <paramref name="content"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/>, <paramref name="content"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation{T}"/> from the service that will contain a <see cref="BinaryData"/> object once the asynchronous operation on the service has completed. Details of the body schema for the operation's final value are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='CreateOrReplaceEnvironment(WaitUntil,String,RequestContent,String,RequestContext)']/*" />
-        public virtual Operation<BinaryData> CreateOrReplaceEnvironment(WaitUntil waitUntil, string environmentName, RequestContent content, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='CreateOrReplaceEnvironment(WaitUntil,String,String,RequestContent,String,RequestContext)']/*" />
+        public virtual Operation<BinaryData> CreateOrReplaceEnvironment(WaitUntil waitUntil, string projectName, string environmentName, RequestContent content, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNull(content, nameof(content));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
@@ -459,7 +516,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCreateOrReplaceEnvironmentRequest(environmentName, content, userId, context);
+                using HttpMessage message = CreateCreateOrReplaceEnvironmentRequest(projectName, environmentName, content, userId, context);
                 return ProtocolOperationHelpers.ProcessMessage(_pipeline, message, ClientDiagnostics, "EnvironmentsClient.CreateOrReplaceEnvironment", OperationFinalStateVia.OriginalUri, context, waitUntil);
             }
             catch (Exception e)
@@ -471,16 +528,18 @@ namespace Azure.Developer.DevCenter
 
         /// <summary> Deletes an environment and all its associated resources. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation{T}"/> from the service that will contain a <see cref="BinaryData"/> object once the asynchronous operation on the service has completed. Details of the body schema for the operation's final value are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='DeleteEnvironmentAsync(WaitUntil,String,String,RequestContext)']/*" />
-        public virtual async Task<Operation<BinaryData>> DeleteEnvironmentAsync(WaitUntil waitUntil, string environmentName, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='DeleteEnvironmentAsync(WaitUntil,String,String,String,RequestContext)']/*" />
+        public virtual async Task<Operation<BinaryData>> DeleteEnvironmentAsync(WaitUntil waitUntil, string projectName, string environmentName, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
@@ -488,7 +547,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteEnvironmentRequest(environmentName, userId, context);
+                using HttpMessage message = CreateDeleteEnvironmentRequest(projectName, environmentName, userId, context);
                 return await ProtocolOperationHelpers.ProcessMessageAsync(_pipeline, message, ClientDiagnostics, "EnvironmentsClient.DeleteEnvironment", OperationFinalStateVia.Location, context, waitUntil).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -500,16 +559,18 @@ namespace Azure.Developer.DevCenter
 
         /// <summary> Deletes an environment and all its associated resources. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
         /// <param name="environmentName"> The name of the environment. </param>
         /// <param name="userId"> The AAD object id of the user. If value is &apos;me&apos;, the identity is taken from the authentication context. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="environmentName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation{T}"/> from the service that will contain a <see cref="BinaryData"/> object once the asynchronous operation on the service has completed. Details of the body schema for the operation's final value are in the Remarks section below. </returns>
-        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='DeleteEnvironment(WaitUntil,String,String,RequestContext)']/*" />
-        public virtual Operation<BinaryData> DeleteEnvironment(WaitUntil waitUntil, string environmentName, string userId = "me", RequestContext context = null)
+        /// <include file="Docs/EnvironmentsClient.xml" path="doc/members/member[@name='DeleteEnvironment(WaitUntil,String,String,String,RequestContext)']/*" />
+        public virtual Operation<BinaryData> DeleteEnvironment(WaitUntil waitUntil, string projectName, string environmentName, string userId = "me", RequestContext context = null)
         {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
             Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
             Argument.AssertNotNullOrEmpty(userId, nameof(userId));
 
@@ -517,7 +578,7 @@ namespace Azure.Developer.DevCenter
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteEnvironmentRequest(environmentName, userId, context);
+                using HttpMessage message = CreateDeleteEnvironmentRequest(projectName, environmentName, userId, context);
                 return ProtocolOperationHelpers.ProcessMessage(_pipeline, message, ClientDiagnostics, "EnvironmentsClient.DeleteEnvironment", OperationFinalStateVia.Location, context, waitUntil);
             }
             catch (Exception e)
@@ -527,7 +588,7 @@ namespace Azure.Developer.DevCenter
             }
         }
 
-        internal HttpMessage CreateGetEnvironmentsRequest(int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentsRequest(string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -535,7 +596,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/environments", false);
             uri.AppendQuery("api-version", _apiVersion, true);
             if (maxCount != null)
@@ -547,7 +608,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentsByUserRequest(string userId, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentsByUserRequest(string projectName, string userId, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -555,7 +616,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/users/", false);
             uri.AppendPath(userId, true);
             uri.AppendPath("/environments", false);
@@ -569,7 +630,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentByUserRequest(string environmentName, string userId, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentByUserRequest(string projectName, string environmentName, string userId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -577,7 +638,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/users/", false);
             uri.AppendPath(userId, true);
             uri.AppendPath("/environments/", false);
@@ -588,7 +649,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateCreateOrReplaceEnvironmentRequest(string environmentName, RequestContent content, string userId, RequestContext context)
+        internal HttpMessage CreateCreateOrReplaceEnvironmentRequest(string projectName, string environmentName, RequestContent content, string userId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
@@ -596,7 +657,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/users/", false);
             uri.AppendPath(userId, true);
             uri.AppendPath("/environments/", false);
@@ -609,7 +670,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateDeleteEnvironmentRequest(string environmentName, string userId, RequestContext context)
+        internal HttpMessage CreateDeleteEnvironmentRequest(string projectName, string environmentName, string userId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier202204);
             var request = message.Request;
@@ -617,7 +678,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/users/", false);
             uri.AppendPath(userId, true);
             uri.AppendPath("/environments/", false);
@@ -628,7 +689,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetCatalogsByProjectRequest(int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetCatalogsByProjectRequest(string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -636,7 +697,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/catalogs", false);
             uri.AppendQuery("api-version", _apiVersion, true);
             if (maxCount != null)
@@ -648,7 +709,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetCatalogRequest(string catalogName, RequestContext context)
+        internal HttpMessage CreateGetCatalogRequest(string projectName, string catalogName, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -656,7 +717,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/catalogs/", false);
             uri.AppendPath(catalogName, true);
             uri.AppendQuery("api-version", _apiVersion, true);
@@ -665,7 +726,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentDefinitionsByProjectRequest(int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentDefinitionsByProjectRequest(string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -673,7 +734,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/environmentDefinitions", false);
             uri.AppendQuery("api-version", _apiVersion, true);
             if (maxCount != null)
@@ -685,7 +746,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentDefinitionsByCatalogRequest(string catalogName, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentDefinitionsByCatalogRequest(string projectName, string catalogName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -693,7 +754,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/catalogs/", false);
             uri.AppendPath(catalogName, true);
             uri.AppendPath("/environmentDefinitions", false);
@@ -707,7 +768,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentDefinitionRequest(string catalogName, string definitionName, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentDefinitionRequest(string projectName, string catalogName, string definitionName, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -715,7 +776,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/catalogs/", false);
             uri.AppendPath(catalogName, true);
             uri.AppendPath("/environmentDefinitions/", false);
@@ -726,7 +787,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentTypesRequest(int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentTypesRequest(string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -734,7 +795,7 @@ namespace Azure.Developer.DevCenter
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/projects/", false);
-            uri.AppendPath(_projectName, true);
+            uri.AppendPath(projectName, true);
             uri.AppendPath("/environmentTypes", false);
             uri.AppendQuery("api-version", _apiVersion, true);
             if (maxCount != null)
@@ -746,7 +807,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentsNextPageRequest(string nextLink, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentsNextPageRequest(string nextLink, string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -759,7 +820,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentsByUserNextPageRequest(string nextLink, string userId, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentsByUserNextPageRequest(string nextLink, string projectName, string userId, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -772,7 +833,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetCatalogsByProjectNextPageRequest(string nextLink, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetCatalogsByProjectNextPageRequest(string nextLink, string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -785,7 +846,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentDefinitionsByProjectNextPageRequest(string nextLink, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentDefinitionsByProjectNextPageRequest(string nextLink, string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -798,7 +859,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(string nextLink, string catalogName, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentDefinitionsByCatalogNextPageRequest(string nextLink, string projectName, string catalogName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -811,7 +872,7 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
-        internal HttpMessage CreateGetEnvironmentTypesNextPageRequest(string nextLink, int? maxCount, RequestContext context)
+        internal HttpMessage CreateGetEnvironmentTypesNextPageRequest(string nextLink, string projectName, int? maxCount, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;

@@ -26,21 +26,19 @@ namespace Microsoft.Extensions.Azure
         /// <summary> Registers a <see cref="DevBoxesClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="endpoint"> The DevCenter-specific URI to operate on. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        public static IAzureClientBuilder<DevBoxesClient, DevCenterClientOptions> AddDevBoxesClient<TBuilder>(this TBuilder builder, Uri endpoint, string projectName)
+        public static IAzureClientBuilder<DevBoxesClient, DevCenterClientOptions> AddDevBoxesClient<TBuilder>(this TBuilder builder, Uri endpoint)
         where TBuilder : IAzureClientFactoryBuilderWithCredential
         {
-            return builder.RegisterClientFactory<DevBoxesClient, DevCenterClientOptions>((options, cred) => new DevBoxesClient(endpoint, projectName, cred, options));
+            return builder.RegisterClientFactory<DevBoxesClient, DevCenterClientOptions>((options, cred) => new DevBoxesClient(endpoint, cred, options));
         }
 
         /// <summary> Registers a <see cref="EnvironmentsClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="endpoint"> The DevCenter-specific URI to operate on. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        public static IAzureClientBuilder<EnvironmentsClient, DevCenterClientOptions> AddEnvironmentsClient<TBuilder>(this TBuilder builder, Uri endpoint, string projectName)
+        public static IAzureClientBuilder<EnvironmentsClient, DevCenterClientOptions> AddEnvironmentsClient<TBuilder>(this TBuilder builder, Uri endpoint)
         where TBuilder : IAzureClientFactoryBuilderWithCredential
         {
-            return builder.RegisterClientFactory<EnvironmentsClient, DevCenterClientOptions>((options, cred) => new EnvironmentsClient(endpoint, projectName, cred, options));
+            return builder.RegisterClientFactory<EnvironmentsClient, DevCenterClientOptions>((options, cred) => new EnvironmentsClient(endpoint, cred, options));
         }
 
         /// <summary> Registers a <see cref="DevCenterClient"/> instance. </summary>
