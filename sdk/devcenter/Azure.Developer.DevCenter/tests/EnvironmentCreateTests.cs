@@ -22,7 +22,6 @@ namespace Azure.Developer.DevCenter.Tests
         private EnvironmentsClient GetEnvironmentsClient() =>
             InstrumentClient(new EnvironmentsClient(
                 TestEnvironment.Endpoint,
-                TestEnvironment.ProjectName,
                 TestEnvironment.Credential,
                 InstrumentClientOptions(new DevCenterClientOptions())));
 
@@ -31,22 +30,22 @@ namespace Azure.Developer.DevCenter.Tests
         public async Task EnvironmentCreationSucceeds()
         {
             EnvironmentsClient environmentsClient = GetEnvironmentsClient();
-            string catalogItemName = null;
+            string environmentDefinitionName = null;
 
-            await foreach (BinaryData catalogItemData in environmentsClient.GetCatalogItemsAsync())
+            await foreach (BinaryData environmentDefinitionData in environmentsClient.GetEnvironmentDefinitionsByProjectAsync(TestEnvironment.ProjectName))
             {
-                JsonElement catalogItem = JsonDocument.Parse(catalogItemData.ToStream()).RootElement;
-                catalogItemName = catalogItem.GetProperty("name").ToString();
+                JsonElement environmentDefinition = JsonDocument.Parse(environmentDefinitionData.ToStream()).RootElement;
+                environmentDefinitionName = environmentDefinition.GetProperty("name").ToString();
             }
 
             var content = new
             {
-                catalogItemName = catalogItemName,
                 catalogName = TestEnvironment.CatalogName,
+                environmentDefinitionName = environmentDefinitionName,
                 environmentType = TestEnvironment.EnvironmentTypeName,
             };
 
-            Operation<BinaryData> environmentCreateOperation = await environmentsClient.CreateOrUpdateEnvironmentAsync(WaitUntil.Completed, "DevTestEnv", RequestContent.Create(content));
+            Operation<BinaryData> environmentCreateOperation = await environmentsClient.CreateOrReplaceEnvironmentAsync(WaitUntil.Completed, TestEnvironment.ProjectName, "DevTestEnv", RequestContent.Create(content));
             BinaryData environmentData = await environmentCreateOperation.WaitForCompletionAsync();
             JsonElement environment = JsonDocument.Parse(environmentData.ToStream()).RootElement;
             Console.WriteLine($"Started provisioning for environment with status {environment.GetProperty("provisioningState")}.");
@@ -55,7 +54,7 @@ namespace Azure.Developer.DevCenter.Tests
             Assert.IsTrue(environment.GetProperty("provisioningState").ToString().Equals("Succeeded", StringComparison.OrdinalIgnoreCase));
 
             // Delete the dev box
-            Operation environmentDeleteOperation = await environmentsClient.DeleteEnvironmentAsync(WaitUntil.Started, "DevTestEnv");
+            Operation environmentDeleteOperation = await environmentsClient.DeleteEnvironmentAsync(WaitUntil.Started,TestEnvironment.ProjectName, "DevTestEnv");
             await environmentDeleteOperation.WaitForCompletionResponseAsync();
             Console.WriteLine($"Completed environment deletion.");
         }
