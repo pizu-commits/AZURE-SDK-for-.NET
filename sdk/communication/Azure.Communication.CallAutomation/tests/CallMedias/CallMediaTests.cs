@@ -18,6 +18,8 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
         };
         private static readonly FileSource _fileSource = new FileSource(new System.Uri("file://path/to/file"));
         private static readonly TextSource _textSource = new TextSource("PlayTTS test text.", "en-US-ElizabethNeural");
+        private static readonly SsmlSource _ssmlSource = new SsmlSource("<speak></speak>");
+
         private static readonly PlayOptions _options = new PlayOptions()
         {
             Loop = false,
@@ -236,6 +238,14 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
                 {
                    callMedia => callMedia.PlayToAllAsync(_textSource, _options)
                 },
+                new Func<CallMedia, Task<Response<PlayResult>>>?[]
+                {
+                   callMedia => callMedia.PlayAsync(_ssmlSource, _target, _options)
+                },
+                new Func<CallMedia, Task<Response<PlayResult>>>?[]
+                {
+                   callMedia => callMedia.PlayToAllAsync(_ssmlSource, _options)
+                },
             };
         }
 
@@ -288,6 +298,14 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
                 new Func<CallMedia, Response<PlayResult>>?[]
                 {
                    callMedia => callMedia.PlayToAll(_textSource, _options)
+                },
+                new Func<CallMedia, Response<PlayResult>>?[]
+                {
+                   callMedia => callMedia.Play(_ssmlSource, _target, _options)
+                },
+                new Func<CallMedia, Response<PlayResult>>?[]
+                {
+                   callMedia => callMedia.PlayToAll(_ssmlSource, _options)
                 },
             };
         }

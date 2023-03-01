@@ -900,6 +900,11 @@ namespace Azure.Communication.CallAutomation
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
     }
+    public partial class SsmlSource : Azure.Communication.CallAutomation.PlaySource
+    {
+        public SsmlSource(string ssmlText) { }
+        public string SsmlText { get { throw null; } }
+    }
     public partial class StartRecognizingEventResult : Azure.Communication.CallAutomation.EventResultBase
     {
         internal StartRecognizingEventResult() { }

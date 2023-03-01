@@ -357,6 +357,13 @@ namespace Azure.Communication.CallAutomation
                 sourceInternal.PlaySourceId = textSource.PlaySourceId;
                 return sourceInternal;
             }
+            else if (playSource != null && playSource is SsmlSource ssmlSource)
+            {
+                sourceInternal = new PlaySourceInternal(PlaySourceTypeInternal.Text);
+                sourceInternal.SsmlSource = new SsmlSourceInternal(ssmlSource.SsmlText);
+                sourceInternal.PlaySourceId = ssmlSource.PlaySourceId;
+                return sourceInternal;
+            }
             else
             { return null; }
         }
