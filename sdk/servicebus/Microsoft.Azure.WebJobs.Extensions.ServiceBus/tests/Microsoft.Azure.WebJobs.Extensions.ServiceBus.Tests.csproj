@@ -32,4 +32,10 @@
   <ItemGroup Condition="'$(IsTargetingNetFx)' == 'true'">
     <Reference Include="System.Transactions" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.WebJobs" VersionOverride="3.0.37-11103" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Host.Storage" VersionOverride="5.0.0-beta.3-11103" />
+  </ItemGroup>
+
 </Project>
