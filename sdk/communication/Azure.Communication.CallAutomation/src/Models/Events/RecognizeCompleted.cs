@@ -21,6 +21,9 @@ namespace Azure.Communication.CallAutomation
         /// <summary> The recognize choice result. </summary>
         private ChoiceResult ChoiceResult { get; }
 
+        /// <summary> The recognize speech result. </summary>
+        private SpeechResult SpeechResult { get; }
+
         /// <summary>
         /// The recognition type.
         /// </summary>
@@ -58,6 +61,10 @@ namespace Azure.Communication.CallAutomation
             {
                 RecognizeResult = ChoiceResult;
             }
+            else if (RecognitionType == CallMediaRecognitionType.Speech || RecognitionType == CallMediaRecognitionType.SpeechOrDtmf)
+            {
+                RecognizeResult = SpeechResult;
+            }
         }
 
         /// <summary> Initializes a new instance of RecognizeCompletedEvent. </summary>
@@ -78,6 +85,11 @@ namespace Azure.Communication.CallAutomation
             {
                 RecognizeResult = internalEvent.ChoiceResult;
                 ChoiceResult = internalEvent.ChoiceResult;
+            }
+            else if (internalEvent.RecognitionType == CallMediaRecognitionType.Speech || RecognitionType == CallMediaRecognitionType.SpeechOrDtmf)
+            {
+                RecognizeResult = internalEvent.SpeechResult;
+                SpeechResult = internalEvent.SpeechResult;
             }
         }
 

@@ -330,6 +330,28 @@ namespace Azure.Communication.CallAutomation
 
                 return request;
             }
+            else if (recognizeOptions is CallMediaRecognizeSpeechOptions recognizeSpeechOptions)
+            {
+                SpeechOptionsInternal speechConfigurations = new SpeechOptionsInternal()
+                {
+                    EndSilenceTimeoutInMs = recognizeSpeechOptions.EndSilenceTimeoutInMs
+                };
+
+                RecognizeOptionsInternal recognizeConfigurationsInternal = new RecognizeOptionsInternal(CommunicationIdentifierSerializer.Serialize(recognizeSpeechOptions.TargetParticipant))
+                {
+                    InterruptPrompt = recognizeSpeechOptions.InterruptPrompt,
+                    InitialSilenceTimeoutInSeconds = (int)recognizeSpeechOptions.InitialSilenceTimeout.TotalSeconds,
+                    SpeechOptions = speechConfigurations
+                };
+
+                RecognizeRequestInternal request = new RecognizeRequestInternal(recognizeSpeechOptions.InputType, recognizeConfigurationsInternal);
+
+                request.PlayPrompt = TranslatePlaySourceToInternal(recognizeSpeechOptions.Prompt);
+                request.InterruptCallMediaOperation = recognizeOptions.InterruptCallMediaOperation;
+                request.OperationContext = recognizeOptions.OperationContext == default ? Guid.NewGuid().ToString() : recognizeOptions.OperationContext;
+
+                return request;
+            }
             else
             {
                 throw new NotSupportedException(recognizeOptions.GetType().Name);

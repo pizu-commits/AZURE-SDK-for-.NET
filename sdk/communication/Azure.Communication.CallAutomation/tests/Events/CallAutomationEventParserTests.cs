@@ -16,6 +16,8 @@ namespace Azure.Communication.CallAutomation.Tests.Events
     {
         private static string DTMF_RESULT_JSON = "{\"recognizeResult\":{},\"collectTonesResult\":{\"tones\":[\"five\", \"six\", \"pound\"]},\"choiceResult\":{\"label\":null,\"recognizedPhrase\":null},\"recognitionType\":\"dtmf\",\"callConnectionId\":\"callConnectionId\",\"serverCallId\":\"serverCallId\",\"correlationId\":\"correlationId\",\"operationContext\":\"operationContext\",\"resultInformation\":{\"code\":200,\"subCode\":8531,\"message\":\"Action completed, max digits received\"}}";
         private static string CHIOCE_RESULT_JSON = "{\"recognizeResult\":{},\"collectTonesResult\":{\"tones\":[]},\"choiceResult\":{\"label\":\"testLabel\",\"recognizedPhrase\":\"testRecognizePhrase\"},\"recognitionType\":\"choices\",\"callConnectionId\":\"callConnectionId\",\"serverCallId\":\"serverCallId\",\"correlationId\":\"correlationId\",\"operationContext\":\"operationContext\",\"resultInformation\":{\"code\":200,\"subCode\":8531,\"message\":\"Action completed, max digits received\"}}";
+        private static string SPEECH_RESULT_JSON = "{\"recognizeResult\":{},\"collectTonesResult\":{\"tones\":[]},\"speechResult\":{\"speech\":\"continuous speech\",\"recognizedPhrase\":\"testRecognizePhrase\"},\"recognitionType\":\"speech\",\"callConnectionId\":\"callConnectionId\",\"serverCallId\":\"serverCallId\",\"correlationId\":\"correlationId\",\"operationContext\":\"operationContext\",\"resultInformation\":{\"code\":200,\"subCode\":8531,\"message\":\"Action completed, max digits received\"}}";
+
         [Test]
         public void EventParserShouldParseEventWithEventDataAndType()
         {
@@ -552,6 +554,30 @@ namespace Azure.Communication.CallAutomation.Tests.Events
                 {
                     Assert.AreEqual("testLabel", choiceRecongizedResult.Label);
                     Assert.AreEqual("testRecognizePhrase", choiceRecongizedResult.RecognizedPhrase);
+                }
+            }
+            else
+            {
+                Assert.Fail("Event parsed wrongfully");
+            }
+        }
+
+        [Test]
+        public void RecognizeCompletedWithSpeechEventParsed_Test()
+        {
+            string jsonEvent = SPEECH_RESULT_JSON;
+
+            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.RecognizeCompleted");
+            if (parsedEvent is RecognizeCompleted recognizeCompleted)
+            {
+                RecognizeResult recognizeResult = recognizeCompleted.RecognizeResult;
+                Assert.AreEqual(recognizeResult is SpeechResult, true);
+                Assert.AreEqual("correlationId", recognizeCompleted.CorrelationId);
+                Assert.AreEqual("serverCallId", recognizeCompleted.ServerCallId);
+                Assert.AreEqual(200, recognizeCompleted.ResultInformation?.Code);
+                if (recognizeResult is SpeechResult speechRecongizedResult)
+                {
+                    Assert.AreEqual("continuous speech", speechRecongizedResult.Speech);
                 }
             }
             else
