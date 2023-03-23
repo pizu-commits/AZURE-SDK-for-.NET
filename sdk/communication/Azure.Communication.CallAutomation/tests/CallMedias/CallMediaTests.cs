@@ -66,6 +66,34 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
             SpeechLanguage = "en-US",
         };
 
+        private static CallMediaRecognizeSpeechOptions _speechRecognizeOptions = new CallMediaRecognizeSpeechOptions(RecognizeInputType.Speech, new CommunicationUserIdentifier("targetUserId"), 500)
+        {
+            InterruptCallMediaOperation = true,
+            InitialSilenceTimeout = TimeSpan.FromSeconds(5),
+            InterruptPrompt = true,
+            OperationContext = "operationContext",
+            Prompt = new TextSource("PlayTTS test text.")
+            {
+                SourceLocale = "en-US",
+                VoiceGender = GenderType.Female,
+                VoiceName = "LULU"
+            },
+        };
+
+        private static CallMediaRecognizeSpeechOptions _speechOrDtmfRecognizeOptions = new CallMediaRecognizeSpeechOptions(RecognizeInputType.SpeechOrDtmf, new CommunicationUserIdentifier("targetUserId"), 500)
+        {
+            InterruptCallMediaOperation = true,
+            InitialSilenceTimeout = TimeSpan.FromSeconds(5),
+            InterruptPrompt = true,
+            OperationContext = "operationContext",
+            Prompt = new TextSource("PlayTTS test text.")
+            {
+                SourceLocale = "en-US",
+                VoiceGender = GenderType.Female,
+                VoiceName = "LULU"
+            },
+        };
+
         private static readonly CallMediaRecognizeOptions _emptyRecognizeOptions = new CallMediaRecognizeDtmfOptions(new CommunicationUserIdentifier("targetUserId"), maxTonesToCollect: 1);
 
         private static CallMedia? _callMedia;
@@ -264,6 +292,14 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
                 },
                 new Func<CallMedia, Task<Response<StartRecognizingResult>>>?[]
                 {
+                   callMedia => callMedia.StartRecognizingAsync(_speechRecognizeOptions)
+                },
+                new Func<CallMedia, Task<Response<StartRecognizingResult>>>?[]
+                {
+                   callMedia => callMedia.StartRecognizingAsync(_speechOrDtmfRecognizeOptions)
+                },
+                new Func<CallMedia, Task<Response<StartRecognizingResult>>>?[]
+                {
                    callMedia => callMedia.StartRecognizingAsync(_emptyRecognizeOptions)
                 }
             };
@@ -314,6 +350,14 @@ namespace Azure.Communication.CallAutomation.Tests.CallMedias
                 new Func<CallMedia, Response<StartRecognizingResult>>?[]
                 {
                    callMedia => callMedia.StartRecognizing(_choiceRecognizeOptions)
+                },
+                new Func<CallMedia, Response<StartRecognizingResult>>?[]
+                {
+                   callMedia => callMedia.StartRecognizing(_speechRecognizeOptions)
+                },
+                new Func<CallMedia, Response<StartRecognizingResult>>?[]
+                {
+                   callMedia => callMedia.StartRecognizing(_speechOrDtmfRecognizeOptions)
                 },
                 new Func<CallMedia, Response<StartRecognizingResult>>?[]
                 {

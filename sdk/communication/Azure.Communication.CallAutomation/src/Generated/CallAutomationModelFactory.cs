@@ -169,6 +169,16 @@ namespace Azure.Communication.CallAutomation
             return new CollectTonesResult(tones?.ToList());
         }
 
+        /// <summary> Initializes a new instance of DtmfResult. </summary>
+        /// <param name="tones"></param>
+        /// <returns> A new <see cref="CallAutomation.DtmfResult"/> instance for mocking. </returns>
+        public static DtmfResult DtmfResult(IEnumerable<DtmfTone> tones = null)
+        {
+            tones ??= new List<DtmfTone>();
+
+            return new DtmfResult(tones?.ToList());
+        }
+
         /// <summary> Initializes a new instance of ChoiceResult. </summary>
         /// <param name="label"> Label is the primary identifier for the choice detected. </param>
         /// <param name="recognizedPhrase">
@@ -179,6 +189,14 @@ namespace Azure.Communication.CallAutomation
         public static ChoiceResult ChoiceResult(string label = null, string recognizedPhrase = null)
         {
             return new ChoiceResult(label, recognizedPhrase);
+        }
+
+        /// <summary> Initializes a new instance of SpeechResult. </summary>
+        /// <param name="speech"> The recognized speech in string. </param>
+        /// <returns> A new <see cref="CallAutomation.SpeechResult"/> instance for mocking. </returns>
+        public static SpeechResult SpeechResult(string speech = null)
+        {
+            return new SpeechResult(speech);
         }
 
         /// <summary> Initializes a new instance of RecognizeFailed. </summary>
