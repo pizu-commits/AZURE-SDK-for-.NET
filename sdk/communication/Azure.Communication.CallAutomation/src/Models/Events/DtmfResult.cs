@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Azure.Communication.CallAutomation.Models;
 using Azure.Core;
 
 namespace Azure.Communication.CallAutomation
@@ -15,6 +16,11 @@ namespace Azure.Communication.CallAutomation
         /// </summary>
         [CodeGenMember("Tones")]
         public IReadOnlyList<DtmfTone> Tones { get; }
+
+        /// <summary>
+        /// The RecognizeResultType of this RecognizeResult.
+        /// </summary>
+        public override RecognizeResultType ResultType => RecognizeResultType.CollectTonesResult;
 
         /// <summary>
         /// Convert the collection of tones to a string like "12345#".
