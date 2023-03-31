@@ -43,14 +43,6 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
         }
 
         [Fact]
-        public void CallingConvertToExceptionDetailsWithNullExceptionThrowsArgumentNullException()
-        {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            Assert.Throws<ArgumentNullException>(() => new TelemetryExceptionDetails(null, "Exception Message", null));
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
-        }
-
-        [Fact]
         public void ParsedStackIsEmptyForExceptionWithoutStack()
         {
             var exception = new ArgumentNullException();

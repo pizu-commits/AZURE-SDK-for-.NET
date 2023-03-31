@@ -16,10 +16,6 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Models
         /// </summary>
         internal TelemetryExceptionDetails(Exception exception, string? message, TelemetryExceptionDetails? parentExceptionDetails)
         {
-            if (exception == null)
-            {
-                throw new ArgumentNullException(nameof(exception));
-            }
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));

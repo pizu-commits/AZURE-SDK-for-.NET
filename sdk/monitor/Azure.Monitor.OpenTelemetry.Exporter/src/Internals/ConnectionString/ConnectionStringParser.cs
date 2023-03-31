@@ -21,15 +21,11 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals.ConnectionString
         /// <exception cref="InvalidOperationException">
         /// Any exceptions that occur while parsing the connection string will be wrapped and re-thrown.
         /// </exception>
-        public static ConnectionVars GetValues(string? connectionString)
+        public static ConnectionVars GetValues(string connectionString)
         {
             try
             {
-                if (connectionString == null)
-                {
-                    throw new ArgumentNullException(nameof(connectionString));
-                }
-                else if (connectionString.Length > Constants.ConnectionStringMaxLength)
+                if (connectionString.Length > Constants.ConnectionStringMaxLength)
                 {
                     throw new ArgumentOutOfRangeException(nameof(connectionString), $"Values greater than {Constants.ConnectionStringMaxLength} characters are not allowed.");
                 }

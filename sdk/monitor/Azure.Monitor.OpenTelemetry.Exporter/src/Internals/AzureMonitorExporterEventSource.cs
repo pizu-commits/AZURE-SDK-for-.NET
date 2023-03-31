@@ -79,7 +79,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Internals
 
             protected override void OnEventSourceCreated(EventSource eventSource)
             {
-                if (eventSource?.Name == EventSourceName)
+                if (eventSource.Name == EventSourceName)
                 {
                     this.eventSources.Add(eventSource);
                     this.EnableEvents(eventSource, EventLevel.Verbose, (EventKeywords)(-1));
