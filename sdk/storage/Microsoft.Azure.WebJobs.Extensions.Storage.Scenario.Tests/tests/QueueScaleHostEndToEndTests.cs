@@ -15,6 +15,7 @@ using Azure.Storage.Queues;
 using Microsoft.Azure.WebJobs.Extensions.Storage.Common.Tests;
 using Microsoft.Azure.WebJobs.Extensions.Storage.ScenarioTests;
 using Microsoft.Azure.WebJobs.Host.Scale;
+using Microsoft.Azure.WebJobs.Host.TestCommon;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -210,40 +211,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.Storage.Scenario.Tests
 
                 return scaledOut;
             });
-        }
-        private Dictionary<string, string> ParseConnectionSrting()
-        {
-            var connStringArray = TestEnvironment.PrimaryStorageAccountConnectionString.Split(';');
-            var dictionary = new Dictionary<string, string>();
-            foreach (var item in connStringArray)
-            {
-                var itemKeyValue = item.Split('=');
-                dictionary.Add(itemKeyValue[0], itemKeyValue[1]);
-            }
-            return dictionary;
-        }
-
-        internal class AzureComponentFactoryWrapper : AzureComponentFactory
-        {
-            private readonly AzureComponentFactory _factory;
-            private readonly TokenCredential _tokenCredential;
-
-            public AzureComponentFactoryWrapper(AzureComponentFactory factory, TokenCredential tokenCredential)
-            {
-                _factory = factory;
-                _tokenCredential = tokenCredential;
-            }
-
-            public override TokenCredential CreateTokenCredential(IConfiguration configuration)
-            {
-                return _tokenCredential != null ? _tokenCredential : _factory.CreateTokenCredential(configuration);
-            }
-
-            public override object CreateClientOptions(Type optionsType, object serviceVersion, IConfiguration configuration)
-                => _factory.CreateClientOptions(optionsType, serviceVersion, configuration);
-
-            public override object CreateClient(Type clientType, IConfiguration configuration, TokenCredential credential, object clientOptions)
-                => _factory.CreateClient(clientType, configuration, credential, clientOptions);
         }
     }
 }
