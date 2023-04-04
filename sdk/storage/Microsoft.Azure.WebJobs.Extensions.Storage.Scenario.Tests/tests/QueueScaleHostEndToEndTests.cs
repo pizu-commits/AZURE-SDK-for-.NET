@@ -222,51 +222,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.Storage.Scenario.Tests
             }
             return dictionary;
         }
-        //internal class TestScaleMetricsRepository : IScaleMetricsRepository
-        //{
-        //    private Dictionary<IScaleMonitor, List<ScaleMetrics>> _cache;
-
-        //    public TestScaleMetricsRepository()
-        //    {
-        //        _cache = new Dictionary<IScaleMonitor, List<ScaleMetrics>>();
-        //    }
-
-        //    public Task WriteMetricsAsync(IDictionary<IScaleMonitor, ScaleMetrics> monitorMetrics)
-        //    {
-        //        foreach (var kvp in monitorMetrics)
-        //        {
-        //            if (_cache.TryGetValue(kvp.Key, out var value))
-        //            {
-        //                value.Add(kvp.Value);
-        //            }
-        //            else
-        //            {
-        //                _cache[kvp.Key] = new List<ScaleMetrics> { kvp.Value };
-        //            }
-        //        }
-
-        //        return Task.CompletedTask;
-        //    }
-
-        //    public Task<IDictionary<IScaleMonitor, IList<ScaleMetrics>>> ReadMetricsAsync(IEnumerable<IScaleMonitor> monitors)
-        //    {
-        //        IDictionary<IScaleMonitor, IList<ScaleMetrics>> result = new Dictionary<IScaleMonitor, IList<ScaleMetrics>>();
-
-        //        foreach (var monitor in monitors)
-        //        {
-        //            if (_cache.TryGetValue(monitor, out var value))
-        //            {
-        //                result.Add(monitor, value);
-        //            }
-        //            else
-        //            {
-        //                result.Add(monitor, new List<ScaleMetrics>());
-        //            }
-        //        }
-
-        //        return Task.FromResult(result);
-        //    }
-        //}
 
         internal class AzureComponentFactoryWrapper : AzureComponentFactory
         {
