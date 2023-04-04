@@ -22,7 +22,6 @@ namespace Azure.Developer.DevCenter.Tests
         private DevBoxesClient GetDevBoxesClient() =>
             InstrumentClient(new DevBoxesClient(
                 TestEnvironment.Endpoint,
-                TestEnvironment.ProjectName,
                 TestEnvironment.Credential,
                 InstrumentClientOptions(new DevCenterClientOptions())));
 
@@ -36,7 +35,7 @@ namespace Azure.Developer.DevCenter.Tests
                 poolName = TestEnvironment.PoolName,
             };
 
-            Operation<BinaryData> devBoxCreateOperation = await devBoxesClient.CreateDevBoxAsync(WaitUntil.Completed, "MyDevBox", RequestContent.Create(content), userId: TestEnvironment.UserId);
+            Operation<BinaryData> devBoxCreateOperation = await devBoxesClient.CreateDevBoxAsync(WaitUntil.Completed, TestEnvironment.ProjectName, "MyDevBox", RequestContent.Create(content), userId: TestEnvironment.UserId);
             BinaryData devBoxData = await devBoxCreateOperation.WaitForCompletionAsync();
             JsonElement devBox = JsonDocument.Parse(devBoxData.ToStream()).RootElement;
             Console.WriteLine($"Completed provisioning for dev box with status {devBox.GetProperty("provisioningState")}.");
@@ -48,12 +47,12 @@ namespace Azure.Developer.DevCenter.Tests
             Assert.IsTrue(devBoxProvisionSucceeded);
 
             // Start the dev box
-            Response remoteConnectionResponse = await devBoxesClient.GetRemoteConnectionAsync("MyDevBox", userId: TestEnvironment.UserId);
+            Response remoteConnectionResponse = await devBoxesClient.GetRemoteConnectionAsync(TestEnvironment.ProjectName, "MyDevBox", userId: TestEnvironment.UserId);
             JsonElement remoteConnectionData = JsonDocument.Parse(remoteConnectionResponse.ContentStream).RootElement;
             Console.WriteLine($"Connect using web URL {remoteConnectionData.GetProperty("webUrl")}.");
 
             // Delete the dev box
-            Operation devBoxDeleteOperation = await devBoxesClient.DeleteDevBoxAsync(WaitUntil.Completed, "MyDevBox", userId: TestEnvironment.UserId);
+            Operation devBoxDeleteOperation = await devBoxesClient.DeleteDevBoxAsync(WaitUntil.Completed, TestEnvironment.ProjectName, "MyDevBox", userId: TestEnvironment.UserId);
             await devBoxDeleteOperation.WaitForCompletionResponseAsync();
             Console.WriteLine($"Completed dev box deletion.");
         }
