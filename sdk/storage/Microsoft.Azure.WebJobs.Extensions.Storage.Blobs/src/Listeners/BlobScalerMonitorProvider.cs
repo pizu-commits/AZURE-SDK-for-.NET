@@ -127,9 +127,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.Storage.Blobs.Listeners
         {
             [JsonProperty]
             public string Connection { get; set; }
-
-            [JsonProperty]
-            public string Path { get; set; }
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.Storage.Queues.Listeners
             _triggerMetadata = triggerMetadata;
             _loggerFactory = serviceProvider.GetService<ILoggerFactory>();
             _queueMetadata = JsonConvert.DeserializeObject<QueueMetadata>(_triggerMetadata.Metadata.ToString());
+            _queueMetadata.ResolveProperties(serviceProvider.GetService<INameResolver>());
             _options = serviceProvider.GetService<IOptions<QueuesOptions>>();
 
             QueueServiceClientProvider queueServiceClientProvider = new QueueServiceClientProvider(
@@ -72,6 +73,14 @@ namespace Microsoft.Azure.WebJobs.Extensions.Storage.Queues.Listeners
 
             [JsonProperty]
             public string QueueName { get; set; }
+
+            public void ResolveProperties(INameResolver resolver)
+            {
+                if (resolver != null)
+                {
+                    QueueName = resolver.ResolveWholeString(QueueName);
+                }
+            }
         }
     }
 }
