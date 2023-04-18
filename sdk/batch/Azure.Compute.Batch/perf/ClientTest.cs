@@ -8,7 +8,7 @@ using Azure.Identity;
 using Azure.Test.Perf;
 using CommandLine;
 
-namespace Azure.Compute.Perf
+namespace Azure.Compute.Batch.Perf
 {
     public class ClientTest : PerfTest<ClientTest.ClientPerfOptions>
     {

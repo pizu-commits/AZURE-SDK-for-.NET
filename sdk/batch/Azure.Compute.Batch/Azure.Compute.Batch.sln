@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Core.TestFramework", "..\..\core\Azure.Core.TestFramework\src\Azure.Core.TestFramework.csproj", "{ECC730C1-4AEA-420C-916A-66B19B79E4DC}"
 EndProject
-Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute", "src\Azure.Compute.Batch.csproj", "{28FF4005-4467-4E36-92E7-DEA27DEB1519}"
+Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute.Batch", "src\Azure.Compute.Batch.csproj", "{28FF4005-4467-4E36-92E7-DEA27DEB1519}"
 EndProject
-#Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute.Perf", "perf\Azure.Compute.Batch.Perf.csproj", "{30C5FF85-655A-49FC-A324-16438130FF3F}"
+#Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute.Batch.Perf", "perf\Azure.Compute.Batch.Perf.csproj", "{30C5FF85-655A-49FC-A324-16438130FF3F}"
 #EndProject
-#Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute.Tests", "tests\Azure.Compute.Batch.Tests.csproj", "{1F1CD1D4-9932-4B73-99D8-C252A67D4B46}"
+#Project("{7CB1BF1B-6A51-40A8-B872-2E1545AB7642}") = "Azure.Compute.Batch.Tests", "tests\Azure.Compute.Batch.Tests.csproj", "{1F1CD1D4-9932-4B73-99D8-C252A67D4B46}"
 #EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,6 +5,8 @@
     <Version>1.0.3-beta.20</Version>
     <PackageTags>Azure Batch</PackageTags>
     <TargetFrameworks>$(RequiredTargetFrameworks)</TargetFrameworks>
+    <GenerateAPIListing>true</GenerateAPIListing>
+    <NoWarn>$(NoWarn);CS1591;AZC0012;AZC0001</NoWarn>
     <IncludeOperationsSharedSource>true</IncludeOperationsSharedSource>
   </PropertyGroup>
 

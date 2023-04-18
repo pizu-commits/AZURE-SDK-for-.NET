@@ -9,7 +9,7 @@ using Azure.Core;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 
-namespace Azure.Compute.Tests.Samples
+namespace Azure.Compute.Batch.Tests.Samples
 {
     public partial class BatchSamples: SamplesBase<ClientTestEnvironment>
     {
