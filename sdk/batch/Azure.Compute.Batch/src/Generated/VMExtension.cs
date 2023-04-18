@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         /// Collection of extension names after which this extension needs to be
         /// provisioned.
         /// </param>
-        internal VMExtension(string name, string publisher, string type, string typeHandlerVersion, bool? autoUpgradeMinorVersion, Batch.object settings, Batch.object protectedSettings, IList<string> provisionAfterExtensions)
+        internal VMExtension(string name, string publisher, string type, string typeHandlerVersion, bool? autoUpgradeMinorVersion, object settings, object protectedSettings, IList<string> provisionAfterExtensions)
         {
             Name = name;
             Publisher = publisher;
@@ -78,12 +78,12 @@ namespace Azure.Compute.Batch
         /// </summary>
         public bool? AutoUpgradeMinorVersion { get; set; }
         /// <summary> JSON formatted public settings for the extension. </summary>
-        public Batch.object Settings { get; set; }
+        public object Settings { get; set; }
         /// <summary>
         /// The extension can contain either protectedSettings or
         /// protectedSettingsFromKeyVault or no protected settings at all. 
         /// </summary>
-        public Batch.object ProtectedSettings { get; set; }
+        public object ProtectedSettings { get; set; }
         /// <summary>
         /// Collection of extension names after which this extension needs to be
         /// provisioned.

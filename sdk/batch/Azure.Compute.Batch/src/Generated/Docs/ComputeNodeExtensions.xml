@@ -61,7 +61,7 @@ available at deployment time. Once deployed, however, the extension will not
 upgrade minor versions unless redeployed, even with this property set to true.
     settings: {
     }, # Optional. JSON formatted public settings for the extension.
-    protectedSettings: object, # Optional. The extension can contain either protectedSettings or
+    protectedSettings: unknown, # Optional. The extension can contain either protectedSettings or
 protectedSettingsFromKeyVault or no protected settings at all. 
     provisionAfterExtensions: [string], # Optional. Collection of extension names after which this extension needs to be
 provisioned.
@@ -136,7 +136,7 @@ available at deployment time. Once deployed, however, the extension will not
 upgrade minor versions unless redeployed, even with this property set to true.
     settings: {
     }, # Optional. JSON formatted public settings for the extension.
-    protectedSettings: object, # Optional. The extension can contain either protectedSettings or
+    protectedSettings: unknown, # Optional. The extension can contain either protectedSettings or
 protectedSettingsFromKeyVault or no protected settings at all. 
     provisionAfterExtensions: [string], # Optional. Collection of extension names after which this extension needs to be
 provisioned.
@@ -214,7 +214,7 @@ available at deployment time. Once deployed, however, the extension will not
 upgrade minor versions unless redeployed, even with this property set to true.
         settings: {
         }, # Optional. JSON formatted public settings for the extension.
-        protectedSettings: object, # Optional. The extension can contain either protectedSettings or
+        protectedSettings: unknown, # Optional. The extension can contain either protectedSettings or
 protectedSettingsFromKeyVault or no protected settings at all. 
         provisionAfterExtensions: [string], # Optional. Collection of extension names after which this extension needs to be
 provisioned.
@@ -295,7 +295,7 @@ available at deployment time. Once deployed, however, the extension will not
 upgrade minor versions unless redeployed, even with this property set to true.
         settings: {
         }, # Optional. JSON formatted public settings for the extension.
-        protectedSettings: object, # Optional. The extension can contain either protectedSettings or
+        protectedSettings: unknown, # Optional. The extension can contain either protectedSettings or
 protectedSettingsFromKeyVault or no protected settings at all. 
         provisionAfterExtensions: [string], # Optional. Collection of extension names after which this extension needs to be
 provisioned.

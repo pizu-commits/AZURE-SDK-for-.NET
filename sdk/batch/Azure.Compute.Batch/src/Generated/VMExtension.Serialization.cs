@@ -74,8 +74,8 @@ namespace Azure.Compute.Batch
             string type = default;
             Optional<string> typeHandlerVersion = default;
             Optional<bool?> autoUpgradeMinorVersion = default;
-            Core.Optional < Batch.object> settings = default;
-            Core.Optional < Batch.object> protectedSettings = default;
+            Optional<object> settings = default;
+            Optional<object> protectedSettings = default;
             Optional<IList<string>> provisionAfterExtensions = default;
             foreach (var property in element.EnumerateObject())
             {
@@ -116,7 +116,7 @@ namespace Azure.Compute.Batch
                         property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
-                    settings = Batch.object.Deserializeobject(property.Value);
+                    settings = property.Value.GetObject();
                     continue;
                 }
                 if (property.NameEquals("protectedSettings"u8))
@@ -126,7 +126,7 @@ namespace Azure.Compute.Batch
                         property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
-                    protectedSettings = Batch.object.Deserializeobject(property.Value);
+                    protectedSettings = property.Value.GetObject();
                     continue;
                 }
                 if (property.NameEquals("provisionAfterExtensions"u8))
