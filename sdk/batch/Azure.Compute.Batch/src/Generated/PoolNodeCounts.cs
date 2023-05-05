@@ -5,14 +5,22 @@
 
 #nullable disable
 
+using System;
+using Azure.Core;
+
 namespace Azure.Compute.Batch
 {
     /// <summary> The number of Compute Nodes in each state for a Pool. </summary>
     public partial class PoolNodeCounts
     {
         /// <summary> Initializes a new instance of PoolNodeCounts. </summary>
-        internal PoolNodeCounts()
+        /// <param name="poolId"> The ID of the Pool. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
+        internal PoolNodeCounts(string poolId)
         {
+            Argument.AssertNotNull(poolId, nameof(poolId));
+
+            PoolId = poolId;
         }
 
         /// <summary> Initializes a new instance of PoolNodeCounts. </summary>

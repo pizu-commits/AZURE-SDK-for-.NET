@@ -5,28 +5,14 @@
 
 #nullable disable
 
-using System;
-using Azure.Core;
-
 namespace Azure.Compute.Batch
 {
     /// <summary> Options for evaluating an automatic scaling formula on a Pool. </summary>
     public partial class BatchPoolEvaluateAutoScaleParameters
     {
         /// <summary> Initializes a new instance of BatchPoolEvaluateAutoScaleParameters. </summary>
-        /// <param name="autoScaleFormula">
-        /// The formula is validated and its results calculated, but it is not applied to
-        /// the Pool. To apply the formula to the Pool, 'Enable automatic scaling on a
-        /// Pool'. For more information about specifying this formula, see Automatically
-        /// scale Compute Nodes in an Azure Batch Pool
-        /// (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling).
-        /// </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="autoScaleFormula"/> is null. </exception>
-        public BatchPoolEvaluateAutoScaleParameters(string autoScaleFormula)
+        public BatchPoolEvaluateAutoScaleParameters()
         {
-            Argument.AssertNotNull(autoScaleFormula, nameof(autoScaleFormula));
-
-            AutoScaleFormula = autoScaleFormula;
         }
 
         /// <summary>
@@ -36,6 +22,6 @@ namespace Azure.Compute.Batch
         /// scale Compute Nodes in an Azure Batch Pool
         /// (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling).
         /// </summary>
-        public string AutoScaleFormula { get; }
+        public string AutoScaleFormula { get; set; }
     }
 }

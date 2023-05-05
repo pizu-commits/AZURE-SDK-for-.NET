@@ -28,7 +28,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<PoolNodeCounts> array = new List<PoolNodeCounts>();

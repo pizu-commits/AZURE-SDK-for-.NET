@@ -26,7 +26,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     imageReference = ImageReference.DeserializeImageReference(property.Value);

@@ -28,12 +28,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of BatchPool. </summary>
-        /// <param name="id">
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores, and cannot contain more than 64 characters. The ID is
-        /// case-preserving and case-insensitive (that is, you may not have two IDs within
-        /// an Account that differ only by case).
-        /// </param>
+        /// <param name="id"> The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
         /// <param name="displayName">
         /// The display name need not be unique and can contain any Unicode characters up
         /// to a maximum length of 1024.
@@ -60,12 +55,7 @@ namespace Azure.Compute.Batch
         /// a VM size for Compute Nodes in an Azure Batch Pool
         /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
         /// </param>
-        /// <param name="cloudServiceConfiguration">
-        /// This property and virtualMachineConfiguration are mutually exclusive and one of
-        /// the properties must be specified. This property cannot be specified if the
-        /// Batch Account was created with its poolAllocationMode property set to
-        /// 'UserSubscription'.
-        /// </param>
+        /// <param name="cloudServiceConfiguration"> This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to 'UserSubscription'. </param>
         /// <param name="virtualMachineConfiguration">
         /// This property and cloudServiceConfiguration are mutually exclusive and one of
         /// the properties must be specified.
@@ -137,11 +127,7 @@ namespace Azure.Compute.Batch
         /// affect Compute Nodes that are already in the Pool until they are rebooted or
         /// reimaged. There is a maximum of 10 Package references on any given Pool.
         /// </param>
-        /// <param name="applicationLicenses">
-        /// The list of application licenses must be a subset of available Batch service
-        /// application licenses. If a license is requested which is not supported, Pool
-        /// creation will fail.
-        /// </param>
+        /// <param name="applicationLicenses"> The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail. </param>
         /// <param name="taskSlotsPerNode">
         /// The default value is 1. The maximum value is the smaller of 4 times the number
         /// of cores of the vmSize of the pool or 256.
@@ -162,7 +148,7 @@ namespace Azure.Compute.Batch
         /// '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
         /// </param>
         /// <param name="targetNodeCommunicationMode"> If omitted, the default value is Default. </param>
-        /// <param name="currentNodeCommunicationMode"> Determines how a pool communicates with the Batch service. </param>
+        /// <param name="currentNodeCommunicationMode"> The current state of the pool communication mode. </param>
         internal BatchPool(string id, string displayName, string url, string eTag, DateTimeOffset? lastModified, DateTimeOffset? creationTime, PoolState? state, DateTimeOffset? stateTransitionTime, AllocationState? allocationState, DateTimeOffset? allocationStateTransitionTime, string vmSize, CloudServiceConfiguration cloudServiceConfiguration, VirtualMachineConfiguration virtualMachineConfiguration, TimeSpan? resizeTimeout, IReadOnlyList<ResizeError> resizeErrors, int? currentDedicatedNodes, int? currentLowPriorityNodes, int? targetDedicatedNodes, int? targetLowPriorityNodes, bool? enableAutoScale, string autoScaleFormula, TimeSpan? autoScaleEvaluationInterval, AutoScaleRun autoScaleRun, bool? enableInterNodeCommunication, NetworkConfiguration networkConfiguration, StartTask startTask, IList<CertificateReference> certificateReferences, IList<ApplicationPackageReference> applicationPackageReferences, IList<string> applicationLicenses, int? taskSlotsPerNode, TaskSchedulingPolicy taskSchedulingPolicy, IList<UserAccount> userAccounts, IList<MetadataItem> metadata, PoolStatistics stats, IList<MountConfiguration> mountConfiguration, BatchPoolIdentity identity, NodeCommunicationMode? targetNodeCommunicationMode, NodeCommunicationMode? currentNodeCommunicationMode)
         {
             Id = id;
@@ -205,12 +191,7 @@ namespace Azure.Compute.Batch
             CurrentNodeCommunicationMode = currentNodeCommunicationMode;
         }
 
-        /// <summary>
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores, and cannot contain more than 64 characters. The ID is
-        /// case-preserving and case-insensitive (that is, you may not have two IDs within
-        /// an Account that differ only by case).
-        /// </summary>
+        /// <summary> The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </summary>
         public string Id { get; set; }
         /// <summary>
         /// The display name need not be unique and can contain any Unicode characters up
@@ -248,12 +229,7 @@ namespace Azure.Compute.Batch
         /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
         /// </summary>
         public string VmSize { get; set; }
-        /// <summary>
-        /// This property and virtualMachineConfiguration are mutually exclusive and one of
-        /// the properties must be specified. This property cannot be specified if the
-        /// Batch Account was created with its poolAllocationMode property set to
-        /// 'UserSubscription'.
-        /// </summary>
+        /// <summary> This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to 'UserSubscription'. </summary>
         public CloudServiceConfiguration CloudServiceConfiguration { get; set; }
         /// <summary>
         /// This property and cloudServiceConfiguration are mutually exclusive and one of
@@ -342,11 +318,7 @@ namespace Azure.Compute.Batch
         /// reimaged. There is a maximum of 10 Package references on any given Pool.
         /// </summary>
         public IList<ApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary>
-        /// The list of application licenses must be a subset of available Batch service
-        /// application licenses. If a license is requested which is not supported, Pool
-        /// creation will fail.
-        /// </summary>
+        /// <summary> The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail. </summary>
         public IList<string> ApplicationLicenses { get; }
         /// <summary>
         /// The default value is 1. The maximum value is the smaller of 4 times the number
@@ -376,7 +348,7 @@ namespace Azure.Compute.Batch
         public BatchPoolIdentity Identity { get; }
         /// <summary> If omitted, the default value is Default. </summary>
         public NodeCommunicationMode? TargetNodeCommunicationMode { get; set; }
-        /// <summary> Determines how a pool communicates with the Batch service. </summary>
+        /// <summary> The current state of the pool communication mode. </summary>
         public NodeCommunicationMode? CurrentNodeCommunicationMode { get; }
     }
 }

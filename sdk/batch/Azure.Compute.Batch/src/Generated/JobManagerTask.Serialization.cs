@@ -179,7 +179,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     containerSettings = TaskContainerSettings.DeserializeTaskContainerSettings(property.Value);
@@ -189,7 +188,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<ResourceFile> array = new List<ResourceFile>();
@@ -204,7 +202,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<OutputFile> array = new List<OutputFile>();
@@ -219,7 +216,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<EnvironmentSetting> array = new List<EnvironmentSetting>();
@@ -234,7 +230,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     constraints = TaskConstraints.DeserializeTaskConstraints(property.Value);
@@ -264,7 +259,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     userIdentity = UserIdentity.DeserializeUserIdentity(property.Value);
@@ -284,7 +278,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<ApplicationPackageReference> array = new List<ApplicationPackageReference>();
@@ -299,7 +292,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     authenticationTokenSettings = AuthenticationTokenSettings.DeserializeAuthenticationTokenSettings(property.Value);

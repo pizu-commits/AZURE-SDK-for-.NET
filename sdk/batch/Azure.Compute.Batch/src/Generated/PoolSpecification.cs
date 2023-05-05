@@ -45,15 +45,7 @@ namespace Azure.Compute.Batch
         /// a VM size for Compute Nodes in an Azure Batch Pool
         /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
         /// </param>
-        /// <param name="cloudServiceConfiguration">
-        /// This property must be specified if the Pool needs to be created with Azure PaaS
-        /// VMs. This property and virtualMachineConfiguration are mutually exclusive and
-        /// one of the properties must be specified. If neither is specified then the Batch
-        /// service returns an error; if you are calling the REST API directly, the HTTP
-        /// status code is 400 (Bad Request). This property cannot be specified if the
-        /// Batch Account was created with its poolAllocationMode property set to
-        /// 'UserSubscription'.
-        /// </param>
+        /// <param name="cloudServiceConfiguration"> This property must be specified if the Pool needs to be created with Azure PaaS VMs. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. If neither is specified then the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to 'UserSubscription'. </param>
         /// <param name="virtualMachineConfiguration">
         /// This property must be specified if the Pool needs to be created with Azure IaaS
         /// VMs. This property and cloudServiceConfiguration are mutually exclusive and one
@@ -138,13 +130,7 @@ namespace Azure.Compute.Batch
         /// affect Compute Nodes that are already in the Pool until they are rebooted or
         /// reimaged. There is a maximum of 10 Package references on any given Pool.
         /// </param>
-        /// <param name="applicationLicenses">
-        /// The list of application licenses must be a subset of available Batch service
-        /// application licenses. If a license is requested which is not supported, Pool
-        /// creation will fail. The permitted licenses available on the Pool are 'maya',
-        /// 'vray', '3dsmax', 'arnold'. An additional charge applies for each application
-        /// license added to the Pool.
-        /// </param>
+        /// <param name="applicationLicenses"> The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail. The permitted licenses available on the Pool are 'maya', 'vray', '3dsmax', 'arnold'. An additional charge applies for each application license added to the Pool. </param>
         /// <param name="userAccounts"> The list of user Accounts to be created on each Compute Node in the Pool. </param>
         /// <param name="metadata">
         /// The Batch service does not assign any meaning to metadata; it is solely for the
@@ -189,15 +175,7 @@ namespace Azure.Compute.Batch
         /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
         /// </summary>
         public string VmSize { get; set; }
-        /// <summary>
-        /// This property must be specified if the Pool needs to be created with Azure PaaS
-        /// VMs. This property and virtualMachineConfiguration are mutually exclusive and
-        /// one of the properties must be specified. If neither is specified then the Batch
-        /// service returns an error; if you are calling the REST API directly, the HTTP
-        /// status code is 400 (Bad Request). This property cannot be specified if the
-        /// Batch Account was created with its poolAllocationMode property set to
-        /// 'UserSubscription'.
-        /// </summary>
+        /// <summary> This property must be specified if the Pool needs to be created with Azure PaaS VMs. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. If neither is specified then the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to 'UserSubscription'. </summary>
         public CloudServiceConfiguration CloudServiceConfiguration { get; set; }
         /// <summary>
         /// This property must be specified if the Pool needs to be created with Azure IaaS
@@ -297,13 +275,7 @@ namespace Azure.Compute.Batch
         /// reimaged. There is a maximum of 10 Package references on any given Pool.
         /// </summary>
         public IList<ApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary>
-        /// The list of application licenses must be a subset of available Batch service
-        /// application licenses. If a license is requested which is not supported, Pool
-        /// creation will fail. The permitted licenses available on the Pool are 'maya',
-        /// 'vray', '3dsmax', 'arnold'. An additional charge applies for each application
-        /// license added to the Pool.
-        /// </summary>
+        /// <summary> The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail. The permitted licenses available on the Pool are 'maya', 'vray', '3dsmax', 'arnold'. An additional charge applies for each application license added to the Pool. </summary>
         public IList<string> ApplicationLicenses { get; }
         /// <summary> The list of user Accounts to be created on each Compute Node in the Pool. </summary>
         public IList<UserAccount> UserAccounts { get; }

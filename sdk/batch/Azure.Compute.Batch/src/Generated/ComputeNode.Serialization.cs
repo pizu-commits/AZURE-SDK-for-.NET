@@ -165,7 +165,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<TaskInformation> array = new List<TaskInformation>();
@@ -180,7 +179,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     startTask = StartTask.DeserializeStartTask(property.Value);
@@ -190,7 +188,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     startTaskInfo = StartTaskInformation.DeserializeStartTaskInformation(property.Value);
@@ -200,7 +197,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<CertificateReference> array = new List<CertificateReference>();
@@ -215,7 +211,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<ComputeNodeError> array = new List<ComputeNodeError>();
@@ -240,7 +235,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     endpointConfiguration = ComputeNodeEndpointConfiguration.DeserializeComputeNodeEndpointConfiguration(property.Value);
@@ -250,7 +244,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     nodeAgentInfo = NodeAgentInformation.DeserializeNodeAgentInformation(property.Value);
@@ -260,7 +253,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     virtualMachineInfo = VirtualMachineInfo.DeserializeVirtualMachineInfo(property.Value);

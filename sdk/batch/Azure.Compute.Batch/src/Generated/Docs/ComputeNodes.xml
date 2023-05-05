@@ -48,10 +48,7 @@ Schema for <c>ComputeNodeUser</c>:
   isAdmin: boolean, # Optional. The default value is false.
   expiryTime: string (date &amp; time), # Optional. If omitted, the default is 1 day from the current time. For Linux Compute
 Nodes, the expiryTime has a precision up to a day.
-  password: string, # Optional. The password is required for Windows Compute Nodes (those created with
-&apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos;
-using a Windows Image reference). For Linux Compute Nodes, the password can
-optionally be specified along with the sshPublicKey property.
+  password: string, # Optional. The password is required for Windows Compute Nodes (those created with &apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos; using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property.
   sshPublicKey: string, # Optional. The public key should be compatible with OpenSSH encoding and should be base 64
 encoded. This property can be specified only for Linux Compute Nodes. If this
 is specified for a Windows Compute Node, then the Batch service rejects the
@@ -109,10 +106,7 @@ Schema for <c>ComputeNodeUser</c>:
   isAdmin: boolean, # Optional. The default value is false.
   expiryTime: string (date &amp; time), # Optional. If omitted, the default is 1 day from the current time. For Linux Compute
 Nodes, the expiryTime has a precision up to a day.
-  password: string, # Optional. The password is required for Windows Compute Nodes (those created with
-&apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos;
-using a Windows Image reference). For Linux Compute Nodes, the password can
-optionally be specified along with the sshPublicKey property.
+  password: string, # Optional. The password is required for Windows Compute Nodes (those created with &apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos; using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property.
   sshPublicKey: string, # Optional. The public key should be compatible with OpenSSH encoding and should be base 64
 encoded. This property can be specified only for Linux Compute Nodes. If this
 is specified for a Windows Compute Node, then the Batch service rejects the
@@ -216,11 +210,7 @@ Request Body:
 
 Schema for <c>NodeUpdateUserParameters</c>:
 <code>{
-  password: string, # Optional. The password is required for Windows Compute Nodes (those created with
-&apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos;
-using a Windows Image reference). For Linux Compute Nodes, the password can
-optionally be specified along with the sshPublicKey property. If omitted, any
-existing password is removed.
+  password: string, # Optional. The password is required for Windows Compute Nodes (those created with &apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos; using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property. If omitted, any existing password is removed.
   expiryTime: string (date &amp; time), # Optional. If omitted, the default is 1 day from the current time. For Linux Compute
 Nodes, the expiryTime has a precision up to a day.
   sshPublicKey: string, # Optional. The public key should be compatible with OpenSSH encoding and should be base 64
@@ -274,11 +264,7 @@ Request Body:
 
 Schema for <c>NodeUpdateUserParameters</c>:
 <code>{
-  password: string, # Optional. The password is required for Windows Compute Nodes (those created with
-&apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos;
-using a Windows Image reference). For Linux Compute Nodes, the password can
-optionally be specified along with the sshPublicKey property. If omitted, any
-existing password is removed.
+  password: string, # Optional. The password is required for Windows Compute Nodes (those created with &apos;cloudServiceConfiguration&apos;, or created with &apos;virtualMachineConfiguration&apos; using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property. If omitted, any existing password is removed.
   expiryTime: string (date &amp; time), # Optional. If omitted, the default is 1 day from the current time. For Linux Compute
 Nodes, the expiryTime has a precision up to a day.
   sshPublicKey: string, # Optional. The public key should be compatible with OpenSSH encoding and should be base 64

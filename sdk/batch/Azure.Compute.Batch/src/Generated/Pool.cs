@@ -53,6 +53,242 @@ namespace Azure.Compute.Batch
             _apiVersion = apiVersion;
         }
 
+        /// <summary>
+        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
+        /// for the specified Account.
+        /// </summary>
+        /// <param name="maxresults">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="starttime">
+        /// The earliest time from which to include metrics. This must be at least two and
+        /// a half hours before the current time. If not specified this defaults to the
+        /// start time of the last aggregation interval currently available.
+        /// </param>
+        /// <param name="endtime">
+        /// The latest time from which to include metrics. This must be at least two hours
+        /// before the current time. If not specified this defaults to the end time of the
+        /// last aggregation interval currently available.
+        /// </param>
+        /// <param name="filter">
+        /// An OData $filter clause. For more information on constructing this filter, see
+        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
+        /// </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <remarks>
+        /// If you do not specify a $filter clause including a poolId, the response
+        /// includes all Pools that existed in the Account in the time range of the
+        /// returned aggregation intervals. If you do not specify a $filter clause
+        /// including a startTime or endTime these filters default to the start and end
+        /// times of the last aggregation interval currently available; that is, only the
+        /// last aggregation interval is returned.
+        /// </remarks>
+        public virtual async Task<Response<PoolListUsageMetricsResult>> GetUsageMetricValuesAsync(int? maxresults = null, string ocpDate = null, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? starttime = null, DateTimeOffset? endtime = null, string filter = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClientDiagnostics.CreateScope("Pool.GetUsageMetricValues");
+            scope.Start();
+            try
+            {
+                RequestContext context = FromCancellationToken(cancellationToken);
+                Response response = await GetUsageMetricsAsync(maxresults, ocpDate, timeOut, clientRequestId, returnClientRequestId, starttime, endtime, filter, context).ConfigureAwait(false);
+                return Response.FromValue(PoolListUsageMetricsResult.FromResponse(response), response);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
+        /// for the specified Account.
+        /// </summary>
+        /// <param name="maxresults">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="starttime">
+        /// The earliest time from which to include metrics. This must be at least two and
+        /// a half hours before the current time. If not specified this defaults to the
+        /// start time of the last aggregation interval currently available.
+        /// </param>
+        /// <param name="endtime">
+        /// The latest time from which to include metrics. This must be at least two hours
+        /// before the current time. If not specified this defaults to the end time of the
+        /// last aggregation interval currently available.
+        /// </param>
+        /// <param name="filter">
+        /// An OData $filter clause. For more information on constructing this filter, see
+        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
+        /// </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <remarks>
+        /// If you do not specify a $filter clause including a poolId, the response
+        /// includes all Pools that existed in the Account in the time range of the
+        /// returned aggregation intervals. If you do not specify a $filter clause
+        /// including a startTime or endTime these filters default to the start and end
+        /// times of the last aggregation interval currently available; that is, only the
+        /// last aggregation interval is returned.
+        /// </remarks>
+        public virtual Response<PoolListUsageMetricsResult> GetUsageMetricValues(int? maxresults = null, string ocpDate = null, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? starttime = null, DateTimeOffset? endtime = null, string filter = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClientDiagnostics.CreateScope("Pool.GetUsageMetricValues");
+            scope.Start();
+            try
+            {
+                RequestContext context = FromCancellationToken(cancellationToken);
+                Response response = GetUsageMetrics(maxresults, ocpDate, timeOut, clientRequestId, returnClientRequestId, starttime, endtime, filter, context);
+                return Response.FromValue(PoolListUsageMetricsResult.FromResponse(response), response);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
+        /// for the specified Account.
+        /// </summary>
+        /// <param name="maxresults">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="starttime">
+        /// The earliest time from which to include metrics. This must be at least two and
+        /// a half hours before the current time. If not specified this defaults to the
+        /// start time of the last aggregation interval currently available.
+        /// </param>
+        /// <param name="endtime">
+        /// The latest time from which to include metrics. This must be at least two hours
+        /// before the current time. If not specified this defaults to the end time of the
+        /// last aggregation interval currently available.
+        /// </param>
+        /// <param name="filter">
+        /// An OData $filter clause. For more information on constructing this filter, see
+        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
+        /// </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
+        /// <include file="Docs/Pool.xml" path="doc/members/member[@name='GetUsageMetricsAsync(Int32,String,Int32,String,Boolean,DateTimeOffset,DateTimeOffset,String,RequestContext)']/*" />
+        public virtual async Task<Response> GetUsageMetricsAsync(int? maxresults = null, string ocpDate = null, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? starttime = null, DateTimeOffset? endtime = null, string filter = null, RequestContext context = null)
+        {
+            using var scope = ClientDiagnostics.CreateScope("Pool.GetUsageMetrics");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetUsageMetricsRequest(maxresults, ocpDate, timeOut, clientRequestId, returnClientRequestId, starttime, endtime, filter, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
+        /// for the specified Account.
+        /// </summary>
+        /// <param name="maxresults">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="starttime">
+        /// The earliest time from which to include metrics. This must be at least two and
+        /// a half hours before the current time. If not specified this defaults to the
+        /// start time of the last aggregation interval currently available.
+        /// </param>
+        /// <param name="endtime">
+        /// The latest time from which to include metrics. This must be at least two hours
+        /// before the current time. If not specified this defaults to the end time of the
+        /// last aggregation interval currently available.
+        /// </param>
+        /// <param name="filter">
+        /// An OData $filter clause. For more information on constructing this filter, see
+        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
+        /// </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
+        /// <include file="Docs/Pool.xml" path="doc/members/member[@name='GetUsageMetrics(Int32,String,Int32,String,Boolean,DateTimeOffset,DateTimeOffset,String,RequestContext)']/*" />
+        public virtual Response GetUsageMetrics(int? maxresults = null, string ocpDate = null, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, DateTimeOffset? starttime = null, DateTimeOffset? endtime = null, string filter = null, RequestContext context = null)
+        {
+            using var scope = ClientDiagnostics.CreateScope("Pool.GetUsageMetrics");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetUsageMetricsRequest(maxresults, ocpDate, timeOut, clientRequestId, returnClientRequestId, starttime, endtime, filter, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
         /// <summary> Gets lifetime summary statistics for all of the Pools in the specified Account. </summary>
         /// <param name="timeOut">
         /// The maximum number of items to return in the response. A maximum of 1000
@@ -1895,79 +2131,7 @@ namespace Azure.Compute.Batch
             }
         }
 
-        /// <summary>
-        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
-        /// for the specified Account.
-        /// </summary>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <remarks>
-        /// If you do not specify a $filter clause including a poolId, the response
-        /// includes all Pools that existed in the Account in the time range of the
-        /// returned aggregation intervals. If you do not specify a $filter clause
-        /// including a startTime or endTime these filters default to the start and end
-        /// times of the last aggregation interval currently available; that is, only the
-        /// last aggregation interval is returned.
-        /// </remarks>
-        public virtual AsyncPageable<PoolUsageMetrics> GetUsageMetricValuesAsync(CancellationToken cancellationToken = default)
-        {
-            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetUsageMetricsRequest(context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetUsageMetricsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, PoolUsageMetrics.DeserializePoolUsageMetrics, ClientDiagnostics, _pipeline, "Pool.GetUsageMetrics", "value", "nextLink", context);
-        }
-
-        /// <summary>
-        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
-        /// for the specified Account.
-        /// </summary>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <remarks>
-        /// If you do not specify a $filter clause including a poolId, the response
-        /// includes all Pools that existed in the Account in the time range of the
-        /// returned aggregation intervals. If you do not specify a $filter clause
-        /// including a startTime or endTime these filters default to the start and end
-        /// times of the last aggregation interval currently available; that is, only the
-        /// last aggregation interval is returned.
-        /// </remarks>
-        public virtual Pageable<PoolUsageMetrics> GetUsageMetricValues(CancellationToken cancellationToken = default)
-        {
-            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetUsageMetricsRequest(context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetUsageMetricsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, PoolUsageMetrics.DeserializePoolUsageMetrics, ClientDiagnostics, _pipeline, "Pool.GetUsageMetrics", "value", "nextLink", context);
-        }
-
-        /// <summary>
-        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
-        /// for the specified Account.
-        /// </summary>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/Pool.xml" path="doc/members/member[@name='GetUsageMetricsAsync(RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetUsageMetricsAsync(RequestContext context = null)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetUsageMetricsRequest(context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetUsageMetricsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Pool.GetUsageMetrics", "value", "nextLink", context);
-        }
-
-        /// <summary>
-        /// Lists the usage metrics, aggregated by Pool across individual time intervals,
-        /// for the specified Account.
-        /// </summary>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/Pool.xml" path="doc/members/member[@name='GetUsageMetrics(RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetUsageMetrics(RequestContext context = null)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetUsageMetricsRequest(context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetUsageMetricsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Pool.GetUsageMetrics", "value", "nextLink", context);
-        }
-
-        internal HttpMessage CreateGetUsageMetricsRequest(RequestContext context)
+        internal HttpMessage CreateGetUsageMetricsRequest(int? maxresults, string ocpDate, int? timeOut, string clientRequestId, bool? returnClientRequestId, DateTimeOffset? starttime, DateTimeOffset? endtime, string filter, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1976,7 +2140,39 @@ namespace Azure.Compute.Batch
             uri.Reset(_endpoint);
             uri.AppendPath("/poolusagemetrics", false);
             uri.AppendQuery("api-version", _apiVersion, true);
+            if (maxresults != null)
+            {
+                uri.AppendQuery("maxresults", maxresults.Value, true);
+            }
+            if (timeOut != null)
+            {
+                uri.AppendQuery("timeOut", timeOut.Value, true);
+            }
+            if (starttime != null)
+            {
+                uri.AppendQuery("starttime", starttime.Value, "O", true);
+            }
+            if (endtime != null)
+            {
+                uri.AppendQuery("endtime", endtime.Value, "O", true);
+            }
+            if (filter != null)
+            {
+                uri.AppendQuery("$filter", filter, true);
+            }
             request.Uri = uri;
+            if (ocpDate != null)
+            {
+                request.Headers.Add("ocp-date", ocpDate);
+            }
+            if (clientRequestId != null)
+            {
+                request.Headers.Add("client-request-id", clientRequestId);
+            }
+            if (returnClientRequestId != null)
+            {
+                request.Headers.Add("return-client-request-id", returnClientRequestId.Value);
+            }
             request.Headers.Add("Accept", "application/json");
             return message;
         }
@@ -2486,19 +2682,6 @@ namespace Azure.Compute.Batch
             }
             request.Headers.Add("content-type", "application/json; odata=minimalmetadata");
             request.Content = content;
-            return message;
-        }
-
-        internal HttpMessage CreateGetUsageMetricsNextPageRequest(string nextLink, RequestContext context)
-        {
-            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
-            var request = message.Request;
-            request.Method = RequestMethod.Get;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendRawNextLink(nextLink, false);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
             return message;
         }
 

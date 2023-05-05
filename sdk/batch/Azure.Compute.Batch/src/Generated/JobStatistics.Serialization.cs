@@ -17,6 +17,8 @@ namespace Azure.Compute.Batch
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            writer.WritePropertyName("url"u8);
+            writer.WriteStringValue(Url);
             writer.WritePropertyName("startTime"u8);
             writer.WriteStringValue(StartTime, "O");
             writer.WritePropertyName("lastUpdateTime"u8);

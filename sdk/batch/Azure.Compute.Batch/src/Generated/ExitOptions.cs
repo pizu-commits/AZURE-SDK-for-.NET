@@ -23,11 +23,7 @@ namespace Azure.Compute.Batch
         /// property value error; if you are calling the REST API directly, the HTTP status
         /// code is 400 (Bad Request).
         /// </param>
-        /// <param name="dependencyAction">
-        /// Possible values are 'satisfy' (allowing dependent tasks to progress) and
-        /// 'block' (dependent tasks continue to wait). Batch does not yet support
-        /// cancellation of dependent tasks.
-        /// </param>
+        /// <param name="dependencyAction"> Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks. </param>
         internal ExitOptions(JobAction? jobAction, DependencyAction? dependencyAction)
         {
             JobAction = jobAction;
@@ -42,11 +38,7 @@ namespace Azure.Compute.Batch
         /// code is 400 (Bad Request).
         /// </summary>
         public JobAction? JobAction { get; set; }
-        /// <summary>
-        /// Possible values are 'satisfy' (allowing dependent tasks to progress) and
-        /// 'block' (dependent tasks continue to wait). Batch does not yet support
-        /// cancellation of dependent tasks.
-        /// </summary>
+        /// <summary> Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks. </summary>
         public DependencyAction? DependencyAction { get; set; }
     }
 }

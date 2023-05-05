@@ -109,7 +109,7 @@ Schema for <c>ApplicationListResult</c>:
 
 </remarks>
     </member>
-    <member name="GetApplicationAsync(String,RequestContext)">
+    <member name="GetApplicationAsync(String,Int32,String,Boolean,String,RequestContext)">
 <example>
 This sample shows how to call GetApplicationAsync with required parameters and parse the result.
 <code><![CDATA[
@@ -118,6 +118,19 @@ var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetApplicationsClient(<2022-10-01.16.0>);
 
 Response response = await client.GetApplicationAsync("<applicationId>");
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("displayName").ToString());
+Console.WriteLine(result.GetProperty("versions")[0].ToString());
+]]></code>
+This sample shows how to call GetApplicationAsync with all parameters, and how to parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetApplicationsClient(<2022-10-01.16.0>);
+
+Response response = await client.GetApplicationAsync("<applicationId>", 1234, "<clientRequestId>", true, "<ocpDate>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("id").ToString());
@@ -146,7 +159,7 @@ Schema for <c>Application</c>:
 
 </remarks>
     </member>
-    <member name="GetApplication(String,RequestContext)">
+    <member name="GetApplication(String,Int32,String,Boolean,String,RequestContext)">
 <example>
 This sample shows how to call GetApplication with required parameters and parse the result.
 <code><![CDATA[
@@ -155,6 +168,19 @@ var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetApplicationsClient(<2022-10-01.16.0>);
 
 Response response = client.GetApplication("<applicationId>");
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("displayName").ToString());
+Console.WriteLine(result.GetProperty("versions")[0].ToString());
+]]></code>
+This sample shows how to call GetApplication with all parameters, and how to parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetApplicationsClient(<2022-10-01.16.0>);
+
+Response response = client.GetApplication("<applicationId>", 1234, "<clientRequestId>", true, "<ocpDate>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
 Console.WriteLine(result.GetProperty("id").ToString());

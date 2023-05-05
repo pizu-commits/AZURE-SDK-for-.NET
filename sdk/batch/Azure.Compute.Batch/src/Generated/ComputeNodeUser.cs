@@ -32,12 +32,7 @@ namespace Azure.Compute.Batch
         /// Nodes, the expiryTime has a precision up to a day.
         /// </summary>
         public DateTimeOffset? ExpiryTime { get; set; }
-        /// <summary>
-        /// The password is required for Windows Compute Nodes (those created with
-        /// 'cloudServiceConfiguration', or created with 'virtualMachineConfiguration'
-        /// using a Windows Image reference). For Linux Compute Nodes, the password can
-        /// optionally be specified along with the sshPublicKey property.
-        /// </summary>
+        /// <summary> The password is required for Windows Compute Nodes (those created with 'cloudServiceConfiguration', or created with 'virtualMachineConfiguration' using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property. </summary>
         public string Password { get; set; }
         /// <summary>
         /// The public key should be compatible with OpenSSH encoding and should be base 64

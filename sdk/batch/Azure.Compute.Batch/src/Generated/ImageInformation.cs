@@ -19,6 +19,7 @@ namespace Azure.Compute.Batch
     public partial class ImageInformation
     {
         /// <summary> Initializes a new instance of ImageInformation. </summary>
+        /// <param name="nodeAgentSKUId"> The ID of the Compute Node agent SKU which the Image supports. </param>
         /// <param name="imageReference">
         /// A reference to an Azure Virtual Machines Marketplace Image or a Shared Image
         /// Gallery Image. To get the list of all Azure Marketplace Image references
@@ -29,11 +30,13 @@ namespace Azure.Compute.Batch
         /// Whether the Azure Batch service actively verifies that the Image is compatible
         /// with the associated Compute Node agent SKU.
         /// </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="imageReference"/> is null. </exception>
-        internal ImageInformation(ImageReference imageReference, OSType osType, VerificationType verificationType)
+        /// <exception cref="ArgumentNullException"> <paramref name="nodeAgentSKUId"/> or <paramref name="imageReference"/> is null. </exception>
+        internal ImageInformation(string nodeAgentSKUId, ImageReference imageReference, OSType osType, VerificationType verificationType)
         {
+            Argument.AssertNotNull(nodeAgentSKUId, nameof(nodeAgentSKUId));
             Argument.AssertNotNull(imageReference, nameof(imageReference));
 
+            NodeAgentSKUId = nodeAgentSKUId;
             ImageReference = imageReference;
             OsType = osType;
             Capabilities = new ChangeTrackingList<string>();

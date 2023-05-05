@@ -68,7 +68,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     identityReference = ComputeNodeIdentityReference.DeserializeComputeNodeIdentityReference(property.Value);
@@ -78,7 +77,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<HttpHeader> array = new List<HttpHeader>();

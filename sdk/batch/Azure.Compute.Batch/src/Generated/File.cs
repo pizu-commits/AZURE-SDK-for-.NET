@@ -191,7 +191,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = await GetFromTaskAsync(jobId, taskId, filePath, timeOut, clientRequestId, returnClientRequestId, ocpDate, ocpRange, requestConditions, context).ConfigureAwait(false);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {
@@ -238,7 +238,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = GetFromTask(jobId, taskId, filePath, timeOut, clientRequestId, returnClientRequestId, ocpDate, ocpRange, requestConditions, context);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {
@@ -585,7 +585,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = await GetFromComputeNodeAsync(poolId, nodeId, filePath, timeOut, clientRequestId, returnClientRequestId, ocpDate, ocpRange, requestConditions, context).ConfigureAwait(false);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {
@@ -632,7 +632,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = GetFromComputeNode(poolId, nodeId, filePath, timeOut, clientRequestId, returnClientRequestId, ocpDate, ocpRange, requestConditions, context);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {

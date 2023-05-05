@@ -184,8 +184,7 @@ Request Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -206,9 +205,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -451,10 +448,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -650,8 +644,7 @@ Request Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -672,9 +665,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -917,10 +908,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -1074,8 +1062,7 @@ Schema for <c>BatchTaskListResult</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Task.
@@ -1096,9 +1083,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
         }, # Optional. Specifies how the Batch service responds to a particular exit condition.
         fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -1306,10 +1291,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
       authenticationTokenSettings: {
-        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
       }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -1466,8 +1448,7 @@ Schema for <c>BatchTaskListResult</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Task.
@@ -1488,9 +1469,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
         }, # Optional. Specifies how the Batch service responds to a particular exit condition.
         fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -1698,10 +1677,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
       authenticationTokenSettings: {
-        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
       }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -1934,8 +1910,7 @@ Schema for <c>BatchTaskCollection</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Task.
@@ -1956,9 +1931,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
         }, # Optional. Specifies how the Batch service responds to a particular exit condition.
         fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -2166,10 +2139,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
       authenticationTokenSettings: {
-        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
       }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -2191,7 +2161,7 @@ Schema for <c>TaskAddCollectionResult</c>:
 <code>{
   value: [
     {
-      status: &quot;Success&quot; | &quot;clienterror&quot; | &quot;servererror&quot;, # Required. The status of the add Task request.
+      status: &quot;success&quot; | &quot;clienterror&quot; | &quot;servererror&quot;, # Required. The status of the add Task request.
       taskId: string, # Required. The ID of the Task for which this is the result.
       eTag: string, # Optional. You can use this to detect whether the Task has changed between requests. In
 particular, you can be pass the ETag with an Update Task request to specify
@@ -2432,8 +2402,7 @@ Schema for <c>BatchTaskCollection</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Task.
@@ -2454,9 +2423,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+          dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
         }, # Optional. Specifies how the Batch service responds to a particular exit condition.
         fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -2664,10 +2631,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
       authenticationTokenSettings: {
-        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+        access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
       }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -2689,7 +2653,7 @@ Schema for <c>TaskAddCollectionResult</c>:
 <code>{
   value: [
     {
-      status: &quot;Success&quot; | &quot;clienterror&quot; | &quot;servererror&quot;, # Required. The status of the add Task request.
+      status: &quot;success&quot; | &quot;clienterror&quot; | &quot;servererror&quot;, # Required. The status of the add Task request.
       taskId: string, # Required. The ID of the Task for which this is the result.
       eTag: string, # Optional. You can use this to detect whether the Task has changed between requests. In
 particular, you can be pass the ETag with an Update Task request to specify
@@ -2909,8 +2873,7 @@ Response Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -2931,9 +2894,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -3176,10 +3137,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -3330,8 +3288,7 @@ Response Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -3352,9 +3309,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -3597,10 +3552,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -3792,8 +3744,7 @@ Request Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -3814,9 +3765,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -4059,10 +4008,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the
@@ -4254,8 +4200,7 @@ Request Body:
 
 Schema for <c>BatchTask</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters.
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Task.
@@ -4276,9 +4221,7 @@ conditions. If the Job&apos;s onTaskFailed property is noaction, then specifying
 this property returns an error and the add Task request fails with an invalid
 property value error; if you are calling the REST API directly, the HTTP status
 code is 400 (Bad Request).
-      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and
-&apos;block&apos; (dependent tasks continue to wait). Batch does not yet support
-cancellation of dependent tasks.
+      dependencyAction: &quot;satisfy&quot; | &quot;block&quot;, # Optional. Possible values are &apos;satisfy&apos; (allowing dependent tasks to progress) and &apos;block&apos; (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
     }, # Optional. Specifies how the Batch service responds to a particular exit condition.
     fileUploadError: ExitOptions, # Optional. If the Task exited with an exit code that was specified via exitCodes or
 exitCodeRanges, and then encountered a file upload error, then the action
@@ -4521,10 +4464,7 @@ Compute Node is used. If a referenced Package cannot be installed, for example
 because the package has been deleted or because download failed, the Task
 fails.
   authenticationTokenSettings: {
-    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service
-operations. Currently the only supported value for the access property is
-&apos;job&apos;, which grants access to all operations related to the Job which contains
-the Task.
+    access: [&quot;job&quot;], # Optional. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is &apos;job&apos;, which grants access to all operations related to the Job which contains the Task.
   }, # Optional. If this property is set, the Batch service provides the Task with an
 authentication token which can be used to authenticate Batch service operations
 without requiring an Account access key. The token is provided via the

@@ -5,23 +5,22 @@
 
 #nullable disable
 
+using System;
+using Azure.Core;
+
 namespace Azure.Compute.Batch
 {
     /// <summary> The remote login settings for a Compute Node. </summary>
     public partial class ComputeNodeGetRemoteLoginSettingsResult
     {
         /// <summary> Initializes a new instance of ComputeNodeGetRemoteLoginSettingsResult. </summary>
-        /// <param name="remoteLoginPort"> The port used for remote login to the Compute Node. </param>
-        internal ComputeNodeGetRemoteLoginSettingsResult(int remoteLoginPort)
-        {
-            RemoteLoginPort = remoteLoginPort;
-        }
-
-        /// <summary> Initializes a new instance of ComputeNodeGetRemoteLoginSettingsResult. </summary>
         /// <param name="remoteLoginIPAddress"> The IP address used for remote login to the Compute Node. </param>
         /// <param name="remoteLoginPort"> The port used for remote login to the Compute Node. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="remoteLoginIPAddress"/> is null. </exception>
         internal ComputeNodeGetRemoteLoginSettingsResult(string remoteLoginIPAddress, int remoteLoginPort)
         {
+            Argument.AssertNotNull(remoteLoginIPAddress, nameof(remoteLoginIPAddress));
+
             RemoteLoginIPAddress = remoteLoginIPAddress;
             RemoteLoginPort = remoteLoginPort;
         }

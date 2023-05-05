@@ -75,7 +75,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     containerInfo = TaskContainerExecutionInformation.DeserializeTaskContainerExecutionInformation(property.Value);
@@ -85,7 +84,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     failureInfo = TaskFailureInformation.DeserializeTaskFailureInformation(property.Value);

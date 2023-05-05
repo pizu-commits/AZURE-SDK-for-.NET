@@ -45,7 +45,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobPreparationTaskExecutionInfo = JobPreparationTaskExecutionInformation.DeserializeJobPreparationTaskExecutionInformation(property.Value);
@@ -55,7 +54,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobReleaseTaskExecutionInfo = JobReleaseTaskExecutionInformation.DeserializeJobReleaseTaskExecutionInformation(property.Value);

@@ -33,7 +33,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     vmExtension = VMExtension.DeserializeVMExtension(property.Value);
@@ -43,7 +42,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     instanceView = VMExtensionInstanceView.DeserializeVMExtensionInstanceView(property.Value);

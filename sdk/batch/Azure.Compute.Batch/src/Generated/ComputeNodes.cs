@@ -301,10 +301,7 @@ namespace Azure.Compute.Batch
             }
         }
 
-        /// <summary>
-        /// Updates the password and expiration time of a user Account on the specified
-        /// Compute Node.
-        /// </summary>
+        /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
         /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
         /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
         /// <param name="userName"> The name of the user Account to update. </param>
@@ -344,10 +341,7 @@ namespace Azure.Compute.Batch
             return response;
         }
 
-        /// <summary>
-        /// Updates the password and expiration time of a user Account on the specified
-        /// Compute Node.
-        /// </summary>
+        /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
         /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
         /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
         /// <param name="userName"> The name of the user Account to update. </param>
@@ -387,10 +381,7 @@ namespace Azure.Compute.Batch
             return response;
         }
 
-        /// <summary>
-        /// Updates the password and expiration time of a user Account on the specified
-        /// Compute Node.
-        /// </summary>
+        /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
         /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
         /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
         /// <param name="userName"> The name of the user Account to update. </param>
@@ -436,10 +427,7 @@ namespace Azure.Compute.Batch
             }
         }
 
-        /// <summary>
-        /// Updates the password and expiration time of a user Account on the specified
-        /// Compute Node.
-        /// </summary>
+        /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
         /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
         /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
         /// <param name="userName"> The name of the user Account to update. </param>
@@ -1419,7 +1407,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = await GetRemoteDesktopAsync(poolId, nodeId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context).ConfigureAwait(false);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {
@@ -1468,7 +1456,7 @@ namespace Azure.Compute.Batch
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
                 Response response = GetRemoteDesktop(poolId, nodeId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context);
-                return Response.FromValue(BinaryData.FromResponse(response), response);
+                return Response.FromValue(response.Content.ToObjectFromJson<BinaryData>(), response);
             }
             catch (Exception e)
             {

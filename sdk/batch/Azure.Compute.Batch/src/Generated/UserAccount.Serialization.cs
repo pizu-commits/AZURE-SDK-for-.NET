@@ -82,7 +82,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     linuxUserConfiguration = LinuxUserConfiguration.DeserializeLinuxUserConfiguration(property.Value);
@@ -92,7 +91,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     windowsUserConfiguration = WindowsUserConfiguration.DeserializeWindowsUserConfiguration(property.Value);

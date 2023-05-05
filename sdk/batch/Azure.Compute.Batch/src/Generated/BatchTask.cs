@@ -35,10 +35,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of BatchTask. </summary>
-        /// <param name="id">
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores, and cannot contain more than 64 characters.
-        /// </param>
+        /// <param name="id"> The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. </param>
         /// <param name="displayName">
         /// The display name need not be unique and can contain any Unicode characters up
         /// to a maximum length of 1024.
@@ -166,10 +163,7 @@ namespace Azure.Compute.Batch
             AuthenticationTokenSettings = authenticationTokenSettings;
         }
 
-        /// <summary>
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores, and cannot contain more than 64 characters.
-        /// </summary>
+        /// <summary> The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. </summary>
         public string Id { get; set; }
         /// <summary>
         /// The display name need not be unique and can contain any Unicode characters up

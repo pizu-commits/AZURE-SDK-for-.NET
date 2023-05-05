@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doc>
   <members>
+    <member name="GetUsageMetricsAsync(Int32,String,Int32,String,Boolean,DateTimeOffset,DateTimeOffset,String,RequestContext)">
+<example>
+This sample shows how to call GetUsageMetricsAsync and parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
+
+Response response = await client.GetUsageMetricsAsync();
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.ToString());
+]]></code>
+This sample shows how to call GetUsageMetricsAsync with all parameters, and how to parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
+
+Response response = await client.GetUsageMetricsAsync(1234, "<ocpDate>", 1234, "<clientRequestId>", true, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "<filter>");
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("poolId").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("vmSize").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("totalCoreHours").ToString());
+Console.WriteLine(result.GetProperty("odata.nextLink").ToString());
+]]></code>
+</example>
+<remarks>
+If you do not specify a $filter clause including a poolId, the response
+includes all Pools that existed in the Account in the time range of the
+returned aggregation intervals. If you do not specify a $filter clause
+including a startTime or endTime these filters default to the start and end
+times of the last aggregation interval currently available; that is, only the
+last aggregation interval is returned.
+
+Below is the JSON schema for the response payload.
+
+Response Body:
+
+Schema for <c>PoolListUsageMetricsResult</c>:
+<code>{
+  value: [
+    {
+      poolId: string, # Required. The ID of the Pool whose metrics are aggregated in this entry.
+      startTime: string (date &amp; time), # Required. The start time of the aggregation interval covered by this entry.
+      endTime: string (date &amp; time), # Required. The end time of the aggregation interval covered by this entry.
+      vmSize: string, # Required. For information about available sizes of virtual machines in Pools, see Choose
+a VM size for Compute Nodes in an Azure Batch Pool
+(https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
+      totalCoreHours: number, # Required. The total core hours used in the Pool during this aggregation interval.
+    }
+  ], # Optional. The Pool usage metrics data.
+  odata.nextLink: string, # Optional. The URL to get the next set of results.
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="GetUsageMetrics(Int32,String,Int32,String,Boolean,DateTimeOffset,DateTimeOffset,String,RequestContext)">
+<example>
+This sample shows how to call GetUsageMetrics and parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
+
+Response response = client.GetUsageMetrics();
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.ToString());
+]]></code>
+This sample shows how to call GetUsageMetrics with all parameters, and how to parse the result.
+<code><![CDATA[
+var credential = new DefaultAzureCredential();
+var endpoint = new Uri("<https://my-service.azure.com>");
+var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
+
+Response response = client.GetUsageMetrics(1234, "<ocpDate>", 1234, "<clientRequestId>", true, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "<filter>");
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("poolId").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("vmSize").ToString());
+Console.WriteLine(result.GetProperty("value")[0].GetProperty("totalCoreHours").ToString());
+Console.WriteLine(result.GetProperty("odata.nextLink").ToString());
+]]></code>
+</example>
+<remarks>
+If you do not specify a $filter clause including a poolId, the response
+includes all Pools that existed in the Account in the time range of the
+returned aggregation intervals. If you do not specify a $filter clause
+including a startTime or endTime these filters default to the start and end
+times of the last aggregation interval currently available; that is, only the
+last aggregation interval is returned.
+
+Below is the JSON schema for the response payload.
+
+Response Body:
+
+Schema for <c>PoolListUsageMetricsResult</c>:
+<code>{
+  value: [
+    {
+      poolId: string, # Required. The ID of the Pool whose metrics are aggregated in this entry.
+      startTime: string (date &amp; time), # Required. The start time of the aggregation interval covered by this entry.
+      endTime: string (date &amp; time), # Required. The end time of the aggregation interval covered by this entry.
+      vmSize: string, # Required. For information about available sizes of virtual machines in Pools, see Choose
+a VM size for Compute Nodes in an Azure Batch Pool
+(https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
+      totalCoreHours: number, # Required. The total core hours used in the Pool during this aggregation interval.
+    }
+  ], # Optional. The Pool usage metrics data.
+  odata.nextLink: string, # Optional. The URL to get the next set of results.
+}
+</code>
+
+</remarks>
+    </member>
     <member name="GetAllLifetimeStatisticsAsync(Int32,String,Boolean,String,RequestContext)">
 <example>
 This sample shows how to call GetAllLifetimeStatisticsAsync and parse the result.
@@ -460,10 +582,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -496,10 +615,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -586,13 +702,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -639,26 +750,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -758,9 +859,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -817,7 +916,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -1094,10 +1193,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -1130,10 +1226,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -1220,13 +1313,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -1273,26 +1361,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -1392,9 +1470,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -1451,7 +1527,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -1650,10 +1726,7 @@ Schema for <c>BatchPoolListResult</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Pool.
@@ -1686,10 +1759,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
         osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-      }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+      }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
       virtualMachineConfiguration: {
         imageReference: {
           publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -1776,13 +1846,8 @@ physically allocated.
 on each node.
         osDisk: {
           ephemeralOSDiskSettings: {
-            placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+            placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
           }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
         }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -1821,26 +1886,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
       networkConfiguration: {
-        subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+        subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
         dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -1940,9 +1995,7 @@ Certificates are placed in that directory.
       applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-      applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+      applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
       taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
       taskSchedulingPolicy: {
@@ -1999,7 +2052,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
       targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-      currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+      currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
     }
   ], # Optional. The list of Pools.
   odata.nextLink: string, # Optional. The URL to get the next set of results.
@@ -2201,10 +2254,7 @@ Schema for <c>BatchPoolListResult</c>:
 <code>{
   value: [
     {
-      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+      id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
       displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
       url: string, # Optional. The URL of the Pool.
@@ -2237,10 +2287,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
         osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-      }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+      }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
       virtualMachineConfiguration: {
         imageReference: {
           publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -2327,13 +2374,8 @@ physically allocated.
 on each node.
         osDisk: {
           ephemeralOSDiskSettings: {
-            placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+            placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
           }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
         }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -2372,26 +2414,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
       networkConfiguration: {
-        subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+        subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
         dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -2491,9 +2523,7 @@ Certificates are placed in that directory.
       applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-      applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+      applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
       taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
       taskSchedulingPolicy: {
@@ -2550,7 +2580,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
       targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-      currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+      currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
     }
   ], # Optional. The list of Pools.
   odata.nextLink: string, # Optional. The URL to get the next set of results.
@@ -2865,10 +2895,7 @@ Response Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -2901,10 +2928,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -2991,13 +3015,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -3044,26 +3063,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -3163,9 +3172,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -3222,7 +3229,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -3418,10 +3425,7 @@ Response Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -3454,10 +3458,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -3544,13 +3545,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -3597,26 +3593,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -3716,9 +3702,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -3775,7 +3759,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -4052,10 +4036,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -4088,10 +4069,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -4178,13 +4156,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -4231,26 +4204,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -4350,9 +4313,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -4409,7 +4370,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -4686,10 +4647,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -4722,10 +4680,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -4812,13 +4767,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -4865,26 +4815,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -4984,9 +4924,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -5043,7 +4981,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -5215,15 +5153,13 @@ request was issued.
     </member>
     <member name="EvaluateAutoScaleAsync(String,RequestContent,Int32,String,Boolean,String,RequestContext)">
 <example>
-This sample shows how to call EvaluateAutoScaleAsync with required parameters and request content, and how to parse the result.
+This sample shows how to call EvaluateAutoScaleAsync with required parameters and parse the result.
 <code><![CDATA[
 var credential = new DefaultAzureCredential();
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
 
-var data = new {
-    autoScaleFormula = "<autoScaleFormula>",
-};
+var data = new {};
 
 Response response = await client.EvaluateAutoScaleAsync("<poolId>", RequestContent.Create(data));
 
@@ -5262,7 +5198,7 @@ Request Body:
 
 Schema for <c>BatchPoolEvaluateAutoScaleParameters</c>:
 <code>{
-  autoScaleFormula: string, # Required. The formula is validated and its results calculated, but it is not applied to
+  autoScaleFormula: string, # Optional. The formula is validated and its results calculated, but it is not applied to
 the Pool. To apply the formula to the Pool, &apos;Enable automatic scaling on a
 Pool&apos;. For more information about specifying this formula, see Automatically
 scale Compute Nodes in an Azure Batch Pool
@@ -5296,15 +5232,13 @@ in a user interface.
     </member>
     <member name="EvaluateAutoScale(String,RequestContent,Int32,String,Boolean,String,RequestContext)">
 <example>
-This sample shows how to call EvaluateAutoScale with required parameters and request content, and how to parse the result.
+This sample shows how to call EvaluateAutoScale with required parameters and parse the result.
 <code><![CDATA[
 var credential = new DefaultAzureCredential();
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
 
-var data = new {
-    autoScaleFormula = "<autoScaleFormula>",
-};
+var data = new {};
 
 Response response = client.EvaluateAutoScale("<poolId>", RequestContent.Create(data));
 
@@ -5343,7 +5277,7 @@ Request Body:
 
 Schema for <c>BatchPoolEvaluateAutoScaleParameters</c>:
 <code>{
-  autoScaleFormula: string, # Required. The formula is validated and its results calculated, but it is not applied to
+  autoScaleFormula: string, # Optional. The formula is validated and its results calculated, but it is not applied to
 the Pool. To apply the formula to the Pool, &apos;Enable automatic scaling on a
 Pool&apos;. For more information about specifying this formula, see Automatically
 scale Compute Nodes in an Azure Batch Pool
@@ -5820,10 +5754,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -5856,10 +5787,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -5946,13 +5874,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -5999,26 +5922,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -6118,9 +6031,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -6177,7 +6088,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -6454,10 +6365,7 @@ Request Body:
 
 Schema for <c>BatchPool</c>:
 <code>{
-  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens
-and underscores, and cannot contain more than 64 characters. The ID is
-case-preserving and case-insensitive (that is, you may not have two IDs within
-an Account that differ only by case).
+  id: string, # Optional. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).
   displayName: string, # Optional. The display name need not be unique and can contain any Unicode characters up
 to a maximum length of 1024.
   url: string, # Optional. The URL of the Pool.
@@ -6490,10 +6398,7 @@ information, see Azure Guest OS Releases
 (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
     osVersion: string, # Optional. The default value is * which specifies the latest operating system version for
 the specified OS family.
-  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of
-the properties must be specified. This property cannot be specified if the
-Batch Account was created with its poolAllocationMode property set to
-&apos;UserSubscription&apos;.
+  }, # Optional. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to &apos;UserSubscription&apos;.
   virtualMachineConfiguration: {
     imageReference: {
       publisher: string, # Optional. For example, Canonical or MicrosoftWindowsServer.
@@ -6580,13 +6485,8 @@ physically allocated.
 on each node.
     osDisk: {
       ephemeralOSDiskSettings: {
-        placement: &quot;cachedisk&quot;, # Optional. This property can be used by user in the request to choose the location e.g.,
-cache disk space for Ephemeral OS disk provisioning. For more information on
-Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size
-requirements for Windows VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-and Linux VMs at
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+        placement: &quot;cachedisk&quot;, # Optional.   This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. 
       }, # Optional. Specifies the ephemeral Disk Settings for the operating system disk used by the
 compute node (VM).
     }, # Optional. Settings for the operating system disk of the compute node (VM).
@@ -6633,26 +6533,16 @@ enableAutoScale is true.
 Specifying this value can reduce the chance of the requested number of Compute
 Nodes to be allocated in the Pool.
   networkConfiguration: {
-    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure
-Batch Account. The specified subnet should have enough free IP addresses to
-accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have
-enough free IP addresses, the Pool will partially allocate Nodes and a resize
-error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the
-&apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
-the specified VNet. The specified subnet must allow communication from the
-Azure Batch service to be able to schedule Tasks on the Nodes. This can be
-verified by checking if the specified VNet has any associated Network Security
-Groups (NSG). If communication to the Nodes in the specified subnet is denied
-by an NSG, then the Batch service will set the state of the Compute Nodes to
-unusable. For Pools created with virtualMachineConfiguration only ARM virtual
-networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools
-created with cloudServiceConfiguration both ARM and classic virtual networks
-are supported. If the specified VNet has any associated Network Security Groups
-(NSG), then a few reserved system ports must be enabled for inbound
-communication. For Pools created with a virtual machine configuration, enable
-ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
-For Pools created with a cloud service configuration, enable ports 10100,
-20100, and 30100. Also enable outbound connections to Azure Storage on port
+    subnetId: string, # Optional. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to
+accommodate the number of Compute Nodes in the Pool. If the subnet doesn&apos;t have enough free IP addresses, the Pool will partially allocate Nodes and a resize
+error will occur. The &apos;MicrosoftAzureBatch&apos; service principal must have the &apos;Classic Virtual Machine Contributor&apos; Role-Based Access Control (RBAC) role for
+the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be
+verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied
+by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual
+networks (&apos;Microsoft.Network/virtualNetworks&apos;) are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks
+are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound
+communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows.
+For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port
 443. For more details see:
 https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
     dynamicVNetAssignmentScope: &quot;none&quot; | &quot;job&quot;, # Optional. The scope of dynamic vnet assignment.
@@ -6752,9 +6642,7 @@ Certificates are placed in that directory.
   applicationPackageReferences: [ApplicationPackageReference], # Optional. Changes to Package references affect all new Nodes joining the Pool, but do not
 affect Compute Nodes that are already in the Pool until they are rebooted or
 reimaged. There is a maximum of 10 Package references on any given Pool.
-  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service
-application licenses. If a license is requested which is not supported, Pool
-creation will fail.
+  applicationLicenses: [string], # Optional. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.
   taskSlotsPerNode: number, # Optional. The default value is 1. The maximum value is the smaller of 4 times the number
 of cores of the vmSize of the pool or 256.
   taskSchedulingPolicy: {
@@ -6811,7 +6699,7 @@ form:
 dictionary key references will be ARM resource ids in the form:
 &apos;/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}&apos;.
   targetNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. If omitted, the default value is Default.
-  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. Determines how a pool communicates with the Batch service.
+  currentNodeCommunicationMode: &quot;default&quot; | &quot;classic&quot; | &quot;simplified&quot;, # Optional. The current state of the pool communication mode.
 }
 </code>
 
@@ -6924,96 +6812,6 @@ Schema for <c>NodeRemoveParameters</c>:
 a value less than 5 minutes, the Batch service returns an error; if you are
 calling the REST API directly, the HTTP status code is 400 (Bad Request).
   nodeDeallocationOption: &quot;requeue&quot; | &quot;terminate&quot; | &quot;taskcompletion&quot; | &quot;retaineddata&quot;, # Optional. The default value is requeue.
-}
-</code>
-
-</remarks>
-    </member>
-    <member name="GetUsageMetricsAsync(RequestContext)">
-<example>
-This sample shows how to call GetUsageMetricsAsync and parse the result.
-<code><![CDATA[
-var credential = new DefaultAzureCredential();
-var endpoint = new Uri("<https://my-service.azure.com>");
-var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
-
-await foreach (var data in client.GetUsageMetricsAsync())
-{
-    JsonElement result = JsonDocument.Parse(data.ToStream()).RootElement;
-    Console.WriteLine(result.GetProperty("poolId").ToString());
-    Console.WriteLine(result.GetProperty("startTime").ToString());
-    Console.WriteLine(result.GetProperty("endTime").ToString());
-    Console.WriteLine(result.GetProperty("vmSize").ToString());
-    Console.WriteLine(result.GetProperty("totalCoreHours").ToString());
-}
-]]></code>
-</example>
-<remarks>
-If you do not specify a $filter clause including a poolId, the response
-includes all Pools that existed in the Account in the time range of the
-returned aggregation intervals. If you do not specify a $filter clause
-including a startTime or endTime these filters default to the start and end
-times of the last aggregation interval currently available; that is, only the
-last aggregation interval is returned.
-
-Below is the JSON schema for one item in the pageable response.
-
-Response Body:
-
-Schema for <c>Array</c>:
-<code>{
-  poolId: string, # Required. The ID of the Pool whose metrics are aggregated in this entry.
-  startTime: string (date &amp; time), # Required. The start time of the aggregation interval covered by this entry.
-  endTime: string (date &amp; time), # Required. The end time of the aggregation interval covered by this entry.
-  vmSize: string, # Required. For information about available sizes of virtual machines in Pools, see Choose
-a VM size for Compute Nodes in an Azure Batch Pool
-(https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
-  totalCoreHours: number, # Required. The total core hours used in the Pool during this aggregation interval.
-}
-</code>
-
-</remarks>
-    </member>
-    <member name="GetUsageMetrics(RequestContext)">
-<example>
-This sample shows how to call GetUsageMetrics and parse the result.
-<code><![CDATA[
-var credential = new DefaultAzureCredential();
-var endpoint = new Uri("<https://my-service.azure.com>");
-var client = new BatchServiceClient(endpoint, credential).GetPoolClient(<2022-10-01.16.0>);
-
-foreach (var data in client.GetUsageMetrics())
-{
-    JsonElement result = JsonDocument.Parse(data.ToStream()).RootElement;
-    Console.WriteLine(result.GetProperty("poolId").ToString());
-    Console.WriteLine(result.GetProperty("startTime").ToString());
-    Console.WriteLine(result.GetProperty("endTime").ToString());
-    Console.WriteLine(result.GetProperty("vmSize").ToString());
-    Console.WriteLine(result.GetProperty("totalCoreHours").ToString());
-}
-]]></code>
-</example>
-<remarks>
-If you do not specify a $filter clause including a poolId, the response
-includes all Pools that existed in the Account in the time range of the
-returned aggregation intervals. If you do not specify a $filter clause
-including a startTime or endTime these filters default to the start and end
-times of the last aggregation interval currently available; that is, only the
-last aggregation interval is returned.
-
-Below is the JSON schema for one item in the pageable response.
-
-Response Body:
-
-Schema for <c>Array</c>:
-<code>{
-  poolId: string, # Required. The ID of the Pool whose metrics are aggregated in this entry.
-  startTime: string (date &amp; time), # Required. The start time of the aggregation interval covered by this entry.
-  endTime: string (date &amp; time), # Required. The end time of the aggregation interval covered by this entry.
-  vmSize: string, # Required. For information about available sizes of virtual machines in Pools, see Choose
-a VM size for Compute Nodes in an Azure Batch Pool
-(https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
-  totalCoreHours: number, # Required. The total core hours used in the Pool during this aggregation interval.
 }
 </code>
 

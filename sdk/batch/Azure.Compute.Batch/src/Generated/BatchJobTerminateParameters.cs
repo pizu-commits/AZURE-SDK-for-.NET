@@ -15,10 +15,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary>
-        /// The text you want to appear as the Job's TerminateReason. The default is
-        /// 'UserTerminate'.
-        /// </summary>
+        /// <summary> The text you want to appear as the Job's TerminateReason. The default is 'UserTerminate'. </summary>
         public string TerminateReason { get; set; }
     }
 }

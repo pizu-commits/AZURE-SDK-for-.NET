@@ -311,7 +311,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     constraints = JobConstraints.DeserializeJobConstraints(property.Value);
@@ -321,7 +320,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobManagerTask = JobManagerTask.DeserializeJobManagerTask(property.Value);
@@ -331,7 +329,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobPreparationTask = JobPreparationTask.DeserializeJobPreparationTask(property.Value);
@@ -341,7 +338,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobReleaseTask = JobReleaseTask.DeserializeJobReleaseTask(property.Value);
@@ -351,7 +347,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<EnvironmentSetting> array = new List<EnvironmentSetting>();
@@ -366,7 +361,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     poolInfo = PoolInformation.DeserializePoolInformation(property.Value);
@@ -396,7 +390,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     networkConfiguration = JobNetworkConfiguration.DeserializeJobNetworkConfiguration(property.Value);
@@ -406,7 +399,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<MetadataItem> array = new List<MetadataItem>();
@@ -421,7 +413,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     executionInfo = JobExecutionInformation.DeserializeJobExecutionInformation(property.Value);
@@ -431,7 +422,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     stats = JobStatistics.DeserializeJobStatistics(property.Value);

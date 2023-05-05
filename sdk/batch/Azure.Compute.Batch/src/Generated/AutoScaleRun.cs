@@ -13,8 +13,10 @@ namespace Azure.Compute.Batch
     public partial class AutoScaleRun
     {
         /// <summary> Initializes a new instance of AutoScaleRun. </summary>
-        public AutoScaleRun()
+        /// <param name="timestamp"> The time at which the autoscale formula was last evaluated. </param>
+        public AutoScaleRun(DateTimeOffset timestamp)
         {
+            Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of AutoScaleRun. </summary>
@@ -32,7 +34,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> The time at which the autoscale formula was last evaluated. </summary>
-        public DateTimeOffset Timestamp { get; }
+        public DateTimeOffset Timestamp { get; set; }
         /// <summary>
         /// Each variable value is returned in the form $variable=value, and variables are
         /// separated by semicolons.

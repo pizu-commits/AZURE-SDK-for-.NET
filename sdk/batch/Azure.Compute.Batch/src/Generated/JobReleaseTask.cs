@@ -53,15 +53,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of JobReleaseTask. </summary>
-        /// <param name="id">
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores and cannot contain more than 64 characters. If you do not
-        /// specify this property, the Batch service assigns a default value of
-        /// 'jobrelease'. No other Task in the Job can have the same ID as the Job Release
-        /// Task. If you try to submit a Task with the same id, the Batch service rejects
-        /// the request with error code TaskIdSameAsJobReleaseTask; if you are calling the
-        /// REST API directly, the HTTP status code is 409 (Conflict).
-        /// </param>
+        /// <param name="id"> The ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters. If you do not specify this property, the Batch service assigns a default value of 'jobrelease'. No other Task in the Job can have the same ID as the Job Release Task. If you try to submit a Task with the same id, the Batch service rejects the request with error code TaskIdSameAsJobReleaseTask; if you are calling the REST API directly, the HTTP status code is 409 (Conflict). </param>
         /// <param name="commandLine">
         /// The command line does not run under a shell, and therefore cannot take
         /// advantage of shell features such as environment variable expansion. If you want
@@ -108,15 +100,7 @@ namespace Azure.Compute.Batch
             UserIdentity = userIdentity;
         }
 
-        /// <summary>
-        /// The ID can contain any combination of alphanumeric characters including hyphens
-        /// and underscores and cannot contain more than 64 characters. If you do not
-        /// specify this property, the Batch service assigns a default value of
-        /// 'jobrelease'. No other Task in the Job can have the same ID as the Job Release
-        /// Task. If you try to submit a Task with the same id, the Batch service rejects
-        /// the request with error code TaskIdSameAsJobReleaseTask; if you are calling the
-        /// REST API directly, the HTTP status code is 409 (Conflict).
-        /// </summary>
+        /// <summary> The ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters. If you do not specify this property, the Batch service assigns a default value of 'jobrelease'. No other Task in the Job can have the same ID as the Job Release Task. If you try to submit a Task with the same id, the Batch service rejects the request with error code TaskIdSameAsJobReleaseTask; if you are calling the REST API directly, the HTTP status code is 409 (Conflict). </summary>
         public string Id { get; set; }
         /// <summary>
         /// The command line does not run under a shell, and therefore cannot take

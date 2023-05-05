@@ -17,6 +17,8 @@ namespace Azure.Compute.Batch
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            writer.WritePropertyName("timestamp"u8);
+            writer.WriteStringValue(Timestamp, "O");
             if (Optional.IsDefined(Results))
             {
                 writer.WritePropertyName("results"u8);
@@ -55,7 +57,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     error = AutoScaleRunError.DeserializeAutoScaleRunError(property.Value);

@@ -14,26 +14,6 @@ namespace Azure.Compute.Batch
     public partial class PoolUsageMetrics
     {
         /// <summary> Initializes a new instance of PoolUsageMetrics. </summary>
-        /// <param name="startTime"> The start time of the aggregation interval covered by this entry. </param>
-        /// <param name="endTime"> The end time of the aggregation interval covered by this entry. </param>
-        /// <param name="vmSize">
-        /// For information about available sizes of virtual machines in Pools, see Choose
-        /// a VM size for Compute Nodes in an Azure Batch Pool
-        /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
-        /// </param>
-        /// <param name="totalCoreHours"> The total core hours used in the Pool during this aggregation interval. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="vmSize"/> is null. </exception>
-        internal PoolUsageMetrics(DateTimeOffset startTime, DateTimeOffset endTime, string vmSize, float totalCoreHours)
-        {
-            Argument.AssertNotNull(vmSize, nameof(vmSize));
-
-            StartTime = startTime;
-            EndTime = endTime;
-            VmSize = vmSize;
-            TotalCoreHours = totalCoreHours;
-        }
-
-        /// <summary> Initializes a new instance of PoolUsageMetrics. </summary>
         /// <param name="poolId"> The ID of the Pool whose metrics are aggregated in this entry. </param>
         /// <param name="startTime"> The start time of the aggregation interval covered by this entry. </param>
         /// <param name="endTime"> The end time of the aggregation interval covered by this entry. </param>
@@ -43,8 +23,12 @@ namespace Azure.Compute.Batch
         /// (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
         /// </param>
         /// <param name="totalCoreHours"> The total core hours used in the Pool during this aggregation interval. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="vmSize"/> is null. </exception>
         internal PoolUsageMetrics(string poolId, DateTimeOffset startTime, DateTimeOffset endTime, string vmSize, float totalCoreHours)
         {
+            Argument.AssertNotNull(poolId, nameof(poolId));
+            Argument.AssertNotNull(vmSize, nameof(vmSize));
+
             PoolId = poolId;
             StartTime = startTime;
             EndTime = endTime;

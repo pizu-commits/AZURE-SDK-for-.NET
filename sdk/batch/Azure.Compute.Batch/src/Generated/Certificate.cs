@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using Azure.Core;
 
 namespace Azure.Compute.Batch
 {
@@ -16,8 +17,13 @@ namespace Azure.Compute.Batch
     public partial class Certificate
     {
         /// <summary> Initializes a new instance of Certificate. </summary>
-        public Certificate()
+        /// <param name="data"> The base64-encoded contents of the Certificate. The maximum size is 10KB. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
+        public Certificate(string data)
         {
+            Argument.AssertNotNull(data, nameof(data));
+
+            Data = data;
         }
 
         /// <summary> Initializes a new instance of Certificate. </summary>

@@ -220,7 +220,21 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> A string that uniquely identifies the application within the Account. </param>
+        /// <param name="applicationId"> The ID of the Application. </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -231,7 +245,7 @@ namespace Azure.Compute.Batch
         /// available to Compute Nodes, use the Azure portal or the Azure Resource Manager
         /// API.
         /// </remarks>
-        public virtual async Task<Response<Application>> GetApplicationValueAsync(string applicationId, CancellationToken cancellationToken = default)
+        public virtual async Task<Response<Application>> GetApplicationValueAsync(string applicationId, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(applicationId, nameof(applicationId));
 
@@ -240,7 +254,7 @@ namespace Azure.Compute.Batch
             try
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
-                Response response = await GetApplicationAsync(applicationId, context).ConfigureAwait(false);
+                Response response = await GetApplicationAsync(applicationId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context).ConfigureAwait(false);
                 return Response.FromValue(Application.FromResponse(response), response);
             }
             catch (Exception e)
@@ -251,7 +265,21 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> A string that uniquely identifies the application within the Account. </param>
+        /// <param name="applicationId"> The ID of the Application. </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -262,7 +290,7 @@ namespace Azure.Compute.Batch
         /// available to Compute Nodes, use the Azure portal or the Azure Resource Manager
         /// API.
         /// </remarks>
-        public virtual Response<Application> GetApplicationValue(string applicationId, CancellationToken cancellationToken = default)
+        public virtual Response<Application> GetApplicationValue(string applicationId, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(applicationId, nameof(applicationId));
 
@@ -271,7 +299,7 @@ namespace Azure.Compute.Batch
             try
             {
                 RequestContext context = FromCancellationToken(cancellationToken);
-                Response response = GetApplication(applicationId, context);
+                Response response = GetApplication(applicationId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context);
                 return Response.FromValue(Application.FromResponse(response), response);
             }
             catch (Exception e)
@@ -282,14 +310,28 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> A string that uniquely identifies the application within the Account. </param>
+        /// <param name="applicationId"> The ID of the Application. </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/Applications.xml" path="doc/members/member[@name='GetApplicationAsync(String,RequestContext)']/*" />
-        public virtual async Task<Response> GetApplicationAsync(string applicationId, RequestContext context = null)
+        /// <include file="Docs/Applications.xml" path="doc/members/member[@name='GetApplicationAsync(String,Int32,String,Boolean,String,RequestContext)']/*" />
+        public virtual async Task<Response> GetApplicationAsync(string applicationId, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(applicationId, nameof(applicationId));
 
@@ -297,7 +339,7 @@ namespace Azure.Compute.Batch
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetApplicationRequest(applicationId, context);
+                using HttpMessage message = CreateGetApplicationRequest(applicationId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -308,14 +350,28 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> A string that uniquely identifies the application within the Account. </param>
+        /// <param name="applicationId"> The ID of the Application. </param>
+        /// <param name="timeOut">
+        /// The maximum number of items to return in the response. A maximum of 1000
+        /// applications can be returned.
+        /// </param>
+        /// <param name="clientRequestId">
+        /// The caller-generated request identity, in the form of a GUID with no decoration
+        /// such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+        /// </param>
+        /// <param name="returnClientRequestId"> Whether the server should return the client-request-id in the response. </param>
+        /// <param name="ocpDate">
+        /// The time the request was issued. Client libraries typically set this to the
+        /// current system clock time; set it explicitly if you are calling the REST API
+        /// directly.
+        /// </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. Details of the response body schema are in the Remarks section below. </returns>
-        /// <include file="Docs/Applications.xml" path="doc/members/member[@name='GetApplication(String,RequestContext)']/*" />
-        public virtual Response GetApplication(string applicationId, RequestContext context = null)
+        /// <include file="Docs/Applications.xml" path="doc/members/member[@name='GetApplication(String,Int32,String,Boolean,String,RequestContext)']/*" />
+        public virtual Response GetApplication(string applicationId, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(applicationId, nameof(applicationId));
 
@@ -323,7 +379,7 @@ namespace Azure.Compute.Batch
             scope.Start();
             try
             {
-                using HttpMessage message = CreateGetApplicationRequest(applicationId, context);
+                using HttpMessage message = CreateGetApplicationRequest(applicationId, timeOut, clientRequestId, returnClientRequestId, ocpDate, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -367,7 +423,7 @@ namespace Azure.Compute.Batch
             return message;
         }
 
-        internal HttpMessage CreateGetApplicationRequest(string applicationId, RequestContext context)
+        internal HttpMessage CreateGetApplicationRequest(string applicationId, int? timeOut, string clientRequestId, bool? returnClientRequestId, string ocpDate, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -377,7 +433,23 @@ namespace Azure.Compute.Batch
             uri.AppendPath("/applications/", false);
             uri.AppendPath(applicationId, true);
             uri.AppendQuery("api-version", _apiVersion, true);
+            if (timeOut != null)
+            {
+                uri.AppendQuery("timeOut", timeOut.Value, true);
+            }
             request.Uri = uri;
+            if (clientRequestId != null)
+            {
+                request.Headers.Add("client-request-id", clientRequestId);
+            }
+            if (returnClientRequestId != null)
+            {
+                request.Headers.Add("return-client-request-id", returnClientRequestId.Value);
+            }
+            if (ocpDate != null)
+            {
+                request.Headers.Add("ocp-date", ocpDate);
+            }
             request.Headers.Add("Accept", "application/json");
             return message;
         }

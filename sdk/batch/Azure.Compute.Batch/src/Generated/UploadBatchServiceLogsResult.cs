@@ -5,26 +5,25 @@
 
 #nullable disable
 
+using System;
+using Azure.Core;
+
 namespace Azure.Compute.Batch
 {
     /// <summary> The result of uploading Batch service log files from a specific Compute Node. </summary>
     public partial class UploadBatchServiceLogsResult
     {
         /// <summary> Initializes a new instance of UploadBatchServiceLogsResult. </summary>
-        /// <param name="numberOfFilesUploaded"> The number of log files which will be uploaded. </param>
-        internal UploadBatchServiceLogsResult(int numberOfFilesUploaded)
-        {
-            NumberOfFilesUploaded = numberOfFilesUploaded;
-        }
-
-        /// <summary> Initializes a new instance of UploadBatchServiceLogsResult. </summary>
         /// <param name="virtualDirectoryName">
         /// The virtual directory name is part of the blob name for each log file uploaded,
         /// and it is built based poolId, nodeId and a unique identifier.
         /// </param>
         /// <param name="numberOfFilesUploaded"> The number of log files which will be uploaded. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualDirectoryName"/> is null. </exception>
         internal UploadBatchServiceLogsResult(string virtualDirectoryName, int numberOfFilesUploaded)
         {
+            Argument.AssertNotNull(virtualDirectoryName, nameof(virtualDirectoryName));
+
             VirtualDirectoryName = virtualDirectoryName;
             NumberOfFilesUploaded = numberOfFilesUploaded;
         }

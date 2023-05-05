@@ -55,7 +55,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     azureBlobFileSystemConfiguration = AzureBlobFileSystemConfiguration.DeserializeAzureBlobFileSystemConfiguration(property.Value);
@@ -65,7 +64,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     nfsMountConfiguration = NFSMountConfiguration.DeserializeNFSMountConfiguration(property.Value);
@@ -75,7 +73,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     cifsMountConfiguration = CifsMountConfiguration.DeserializeCifsMountConfiguration(property.Value);
@@ -85,7 +82,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     azureFileShareConfiguration = AzureFileShareConfiguration.DeserializeAzureFileShareConfiguration(property.Value);

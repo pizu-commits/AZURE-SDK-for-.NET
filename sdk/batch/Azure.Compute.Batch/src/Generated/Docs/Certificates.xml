@@ -3,13 +3,15 @@
   <members>
     <member name="AddAsync(RequestContent,Int32,String,Boolean,String,RequestContext)">
 <example>
-This sample shows how to call AddAsync with required parameters.
+This sample shows how to call AddAsync with required parameters and request content.
 <code><![CDATA[
 var credential = new DefaultAzureCredential();
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetCertificatesClient(<2022-10-01.16.0>);
 
-var data = new {};
+var data = new {
+    data = "<data>",
+};
 
 Response response = await client.AddAsync(RequestContent.Create(data));
 Console.WriteLine(response.Status);
@@ -62,7 +64,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
   }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-  data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+  data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
   certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
   password: string, # Optional. This must be omitted if the Certificate format is cer.
 }
@@ -72,13 +74,15 @@ the Certificate, the list contains only about the first hundred.
     </member>
     <member name="Add(RequestContent,Int32,String,Boolean,String,RequestContext)">
 <example>
-This sample shows how to call Add with required parameters.
+This sample shows how to call Add with required parameters and request content.
 <code><![CDATA[
 var credential = new DefaultAzureCredential();
 var endpoint = new Uri("<https://my-service.azure.com>");
 var client = new BatchServiceClient(endpoint, credential).GetCertificatesClient(<2022-10-01.16.0>);
 
-var data = new {};
+var data = new {
+    data = "<data>",
+};
 
 Response response = client.Add(RequestContent.Create(data));
 Console.WriteLine(response.Status);
@@ -131,7 +135,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
   }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-  data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+  data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
   certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
   password: string, # Optional. This must be omitted if the Certificate format is cer.
 }
@@ -206,7 +210,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
       }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-      data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+      data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
       certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
       password: string, # Optional. This must be omitted if the Certificate format is cer.
     }
@@ -284,7 +288,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
       }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-      data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+      data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
       certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
       password: string, # Optional. This must be omitted if the Certificate format is cer.
     }
@@ -434,7 +438,7 @@ var client = new BatchServiceClient(endpoint, credential).GetCertificatesClient(
 Response response = await client.GetCertificateAsync("<thumbprintAlgorithm>", "<thumbprint>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
-Console.WriteLine(result.ToString());
+Console.WriteLine(result.GetProperty("data").ToString());
 ]]></code>
 This sample shows how to call GetCertificateAsync with all parameters, and how to parse the result.
 <code><![CDATA[
@@ -492,7 +496,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
   }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-  data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+  data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
   certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
   password: string, # Optional. This must be omitted if the Certificate format is cer.
 }
@@ -511,7 +515,7 @@ var client = new BatchServiceClient(endpoint, credential).GetCertificatesClient(
 Response response = client.GetCertificate("<thumbprintAlgorithm>", "<thumbprint>");
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
-Console.WriteLine(result.ToString());
+Console.WriteLine(result.GetProperty("data").ToString());
 ]]></code>
 This sample shows how to call GetCertificate with all parameters, and how to parse the result.
 <code><![CDATA[
@@ -569,7 +573,7 @@ for display in a user interface.
 referencing this Certificate. However, if a large number of resources reference
 the Certificate, the list contains only about the first hundred.
   }, # Optional. This property is set only if the Certificate is in the DeleteFailed state.
-  data: string, # Optional. The base64-encoded contents of the Certificate. The maximum size is 10KB.
+  data: string, # Required. The base64-encoded contents of the Certificate. The maximum size is 10KB.
   certificateFormat: &quot;pfx&quot; | &quot;cer&quot;, # Optional. The format of the Certificate data.
   password: string, # Optional. This must be omitted if the Certificate format is cer.
 }

@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using Azure.Core;
 
 namespace Azure.Compute.Batch
 {
@@ -13,13 +14,18 @@ namespace Azure.Compute.Batch
     public partial class PoolStatistics
     {
         /// <summary> Initializes a new instance of PoolStatistics. </summary>
+        /// <param name="url"> The URL for the statistics. </param>
         /// <param name="startTime"> The start time of the time range covered by the statistics. </param>
         /// <param name="lastUpdateTime">
         /// The time at which the statistics were last updated. All statistics are limited
         /// to the range between startTime and lastUpdateTime.
         /// </param>
-        public PoolStatistics(DateTimeOffset startTime, DateTimeOffset lastUpdateTime)
+        /// <exception cref="ArgumentNullException"> <paramref name="url"/> is null. </exception>
+        public PoolStatistics(string url, DateTimeOffset startTime, DateTimeOffset lastUpdateTime)
         {
+            Argument.AssertNotNull(url, nameof(url));
+
+            Url = url;
             StartTime = startTime;
             LastUpdateTime = lastUpdateTime;
         }
@@ -43,7 +49,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> The URL for the statistics. </summary>
-        public string Url { get; }
+        public string Url { get; set; }
         /// <summary> The start time of the time range covered by the statistics. </summary>
         public DateTimeOffset StartTime { get; set; }
         /// <summary>

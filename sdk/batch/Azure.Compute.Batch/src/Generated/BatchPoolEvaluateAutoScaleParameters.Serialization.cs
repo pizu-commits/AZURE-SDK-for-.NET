@@ -15,8 +15,11 @@ namespace Azure.Compute.Batch
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
-            writer.WritePropertyName("autoScaleFormula"u8);
-            writer.WriteStringValue(AutoScaleFormula);
+            if (Optional.IsDefined(AutoScaleFormula))
+            {
+                writer.WritePropertyName("autoScaleFormula"u8);
+                writer.WriteStringValue(AutoScaleFormula);
+            }
             writer.WriteEndObject();
         }
 

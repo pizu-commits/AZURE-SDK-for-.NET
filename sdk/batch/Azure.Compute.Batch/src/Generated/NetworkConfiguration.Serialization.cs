@@ -77,7 +77,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     endpointConfiguration = PoolEndpointConfiguration.DeserializePoolEndpointConfiguration(property.Value);
@@ -87,7 +86,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     publicIPAddressConfiguration = PublicIPAddressConfiguration.DeserializePublicIPAddressConfiguration(property.Value);

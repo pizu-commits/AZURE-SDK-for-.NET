@@ -17,13 +17,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary>
-        /// The password is required for Windows Compute Nodes (those created with
-        /// 'cloudServiceConfiguration', or created with 'virtualMachineConfiguration'
-        /// using a Windows Image reference). For Linux Compute Nodes, the password can
-        /// optionally be specified along with the sshPublicKey property. If omitted, any
-        /// existing password is removed.
-        /// </summary>
+        /// <summary> The password is required for Windows Compute Nodes (those created with 'cloudServiceConfiguration', or created with 'virtualMachineConfiguration' using a Windows Image reference). For Linux Compute Nodes, the password can optionally be specified along with the sshPublicKey property. If omitted, any existing password is removed. </summary>
         public string Password { get; set; }
         /// <summary>
         /// If omitted, the default is 1 day from the current time. For Linux Compute

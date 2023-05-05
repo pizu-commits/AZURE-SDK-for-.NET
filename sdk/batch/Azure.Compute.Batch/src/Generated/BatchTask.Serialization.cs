@@ -207,7 +207,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     exitConditions = ExitConditions.DeserializeExitConditions(property.Value);
@@ -262,7 +261,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     containerSettings = TaskContainerSettings.DeserializeTaskContainerSettings(property.Value);
@@ -272,7 +270,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<ResourceFile> array = new List<ResourceFile>();
@@ -287,7 +284,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<OutputFile> array = new List<OutputFile>();
@@ -302,7 +298,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<EnvironmentSetting> array = new List<EnvironmentSetting>();
@@ -317,7 +312,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     affinityInfo = AffinityInformation.DeserializeAffinityInformation(property.Value);
@@ -327,7 +321,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     constraints = TaskConstraints.DeserializeTaskConstraints(property.Value);
@@ -347,7 +340,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     userIdentity = UserIdentity.DeserializeUserIdentity(property.Value);
@@ -357,7 +349,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     executionInfo = TaskExecutionInformation.DeserializeTaskExecutionInformation(property.Value);
@@ -367,7 +358,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     nodeInfo = ComputeNodeInformation.DeserializeComputeNodeInformation(property.Value);
@@ -377,7 +367,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     multiInstanceSettings = MultiInstanceSettings.DeserializeMultiInstanceSettings(property.Value);
@@ -387,7 +376,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     stats = TaskStatistics.DeserializeTaskStatistics(property.Value);
@@ -397,7 +385,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     dependsOn = TaskDependencies.DeserializeTaskDependencies(property.Value);
@@ -407,7 +394,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<ApplicationPackageReference> array = new List<ApplicationPackageReference>();
@@ -422,7 +408,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     authenticationTokenSettings = AuthenticationTokenSettings.DeserializeAuthenticationTokenSettings(property.Value);

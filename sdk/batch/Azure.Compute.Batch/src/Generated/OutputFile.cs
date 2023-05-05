@@ -10,11 +10,7 @@ using Azure.Core;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// On every file uploads, Batch service writes two log files to the compute node,
-    /// 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn
-    /// more about a specific failure.
-    /// </summary>
+    /// <summary> On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. </summary>
     public partial class OutputFile
     {
         /// <summary> Initializes a new instance of OutputFile. </summary>

@@ -16,14 +16,17 @@ namespace Azure.Compute.Batch
     public partial class Application
     {
         /// <summary> Initializes a new instance of Application. </summary>
+        /// <param name="id"> A string that uniquely identifies the application within the Account. </param>
         /// <param name="displayName"> The display name for the application. </param>
         /// <param name="versions"> The list of available versions of the application. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="displayName"/> or <paramref name="versions"/> is null. </exception>
-        internal Application(string displayName, IEnumerable<string> versions)
+        /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="displayName"/> or <paramref name="versions"/> is null. </exception>
+        internal Application(string id, string displayName, IEnumerable<string> versions)
         {
+            Argument.AssertNotNull(id, nameof(id));
             Argument.AssertNotNull(displayName, nameof(displayName));
             Argument.AssertNotNull(versions, nameof(versions));
 
+            Id = id;
             DisplayName = displayName;
             Versions = versions.ToList();
         }

@@ -539,7 +539,7 @@ namespace Azure.Compute.Batch
 
         /// <summary> Updates the properties of the specified Job. </summary>
         /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
-        /// <param name="job"> The parameters for the request. </param>
+        /// <param name="jobUpdateParameter"> The parameters for the request. </param>
         /// <param name="timeOut">
         /// The maximum number of items to return in the response. A maximum of 1000
         /// applications can be returned.
@@ -556,26 +556,26 @@ namespace Azure.Compute.Batch
         /// </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="job"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="jobUpdateParameter"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <remarks>
         /// This fully replaces all the updatable properties of the Job. For example, if
         /// the Job has constraints associated with it and if constraints is not specified
         /// with this request, then the Batch service will remove the existing constraints.
         /// </remarks>
-        public virtual async Task<Response> UpdateAsync(string jobId, BatchJob job, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
+        public virtual async Task<Response> UpdateAsync(string jobId, BatchJob jobUpdateParameter, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(job, nameof(job));
+            Argument.AssertNotNull(jobUpdateParameter, nameof(jobUpdateParameter));
 
             RequestContext context = FromCancellationToken(cancellationToken);
-            Response response = await UpdateAsync(jobId, job.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context).ConfigureAwait(false);
+            Response response = await UpdateAsync(jobId, jobUpdateParameter.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context).ConfigureAwait(false);
             return response;
         }
 
         /// <summary> Updates the properties of the specified Job. </summary>
         /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
-        /// <param name="job"> The parameters for the request. </param>
+        /// <param name="jobUpdateParameter"> The parameters for the request. </param>
         /// <param name="timeOut">
         /// The maximum number of items to return in the response. A maximum of 1000
         /// applications can be returned.
@@ -592,20 +592,20 @@ namespace Azure.Compute.Batch
         /// </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="job"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="jobUpdateParameter"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <remarks>
         /// This fully replaces all the updatable properties of the Job. For example, if
         /// the Job has constraints associated with it and if constraints is not specified
         /// with this request, then the Batch service will remove the existing constraints.
         /// </remarks>
-        public virtual Response Update(string jobId, BatchJob job, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
+        public virtual Response Update(string jobId, BatchJob jobUpdateParameter, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(job, nameof(job));
+            Argument.AssertNotNull(jobUpdateParameter, nameof(jobUpdateParameter));
 
             RequestContext context = FromCancellationToken(cancellationToken);
-            Response response = Update(jobId, job.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context);
+            Response response = Update(jobId, jobUpdateParameter.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context);
             return response;
         }
 
@@ -697,7 +697,7 @@ namespace Azure.Compute.Batch
 
         /// <summary> Disables the specified Job, preventing new Tasks from running. </summary>
         /// <param name="jobId"> The ID of the Job to disable. </param>
-        /// <param name="parameters"> The parameters for the request. </param>
+        /// <param name="jobDisableParameter"> The parameters for the request. </param>
         /// <param name="timeOut">
         /// The maximum number of items to return in the response. A maximum of 1000
         /// applications can be returned.
@@ -714,7 +714,7 @@ namespace Azure.Compute.Batch
         /// </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="parameters"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="jobDisableParameter"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <remarks>
         /// The Batch Service immediately moves the Job to the disabling state. Batch then
@@ -726,19 +726,19 @@ namespace Azure.Compute.Batch
         /// disable a Job that is in any state other than active, disabling, or disabled,
         /// the request fails with status code 409.
         /// </remarks>
-        public virtual async Task<Response> DisableAsync(string jobId, BatchJobDisableParameters parameters, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
+        public virtual async Task<Response> DisableAsync(string jobId, BatchJobDisableParameters jobDisableParameter, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(parameters, nameof(parameters));
+            Argument.AssertNotNull(jobDisableParameter, nameof(jobDisableParameter));
 
             RequestContext context = FromCancellationToken(cancellationToken);
-            Response response = await DisableAsync(jobId, parameters.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context).ConfigureAwait(false);
+            Response response = await DisableAsync(jobId, jobDisableParameter.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context).ConfigureAwait(false);
             return response;
         }
 
         /// <summary> Disables the specified Job, preventing new Tasks from running. </summary>
         /// <param name="jobId"> The ID of the Job to disable. </param>
-        /// <param name="parameters"> The parameters for the request. </param>
+        /// <param name="jobDisableParameter"> The parameters for the request. </param>
         /// <param name="timeOut">
         /// The maximum number of items to return in the response. A maximum of 1000
         /// applications can be returned.
@@ -755,7 +755,7 @@ namespace Azure.Compute.Batch
         /// </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="parameters"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="jobDisableParameter"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <remarks>
         /// The Batch Service immediately moves the Job to the disabling state. Batch then
@@ -767,13 +767,13 @@ namespace Azure.Compute.Batch
         /// disable a Job that is in any state other than active, disabling, or disabled,
         /// the request fails with status code 409.
         /// </remarks>
-        public virtual Response Disable(string jobId, BatchJobDisableParameters parameters, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
+        public virtual Response Disable(string jobId, BatchJobDisableParameters jobDisableParameter, int? timeOut = null, string clientRequestId = null, bool? returnClientRequestId = null, string ocpDate = null, RequestConditions requestConditions = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(parameters, nameof(parameters));
+            Argument.AssertNotNull(jobDisableParameter, nameof(jobDisableParameter));
 
             RequestContext context = FromCancellationToken(cancellationToken);
-            Response response = Disable(jobId, parameters.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context);
+            Response response = Disable(jobId, jobDisableParameter.ToRequestContent(), timeOut, clientRequestId, returnClientRequestId, ocpDate, requestConditions, context);
             return response;
         }
 

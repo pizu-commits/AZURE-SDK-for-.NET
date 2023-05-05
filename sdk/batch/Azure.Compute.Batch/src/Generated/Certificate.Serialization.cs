@@ -27,11 +27,8 @@ namespace Azure.Compute.Batch
                 writer.WritePropertyName("thumbprintAlgorithm"u8);
                 writer.WriteStringValue(ThumbprintAlgorithm);
             }
-            if (Optional.IsDefined(Data))
-            {
-                writer.WritePropertyName("data"u8);
-                writer.WriteStringValue(Data);
-            }
+            writer.WritePropertyName("data"u8);
+            writer.WriteStringValue(Data);
             if (Optional.IsDefined(CertificateFormat))
             {
                 if (CertificateFormat != null)
@@ -67,7 +64,7 @@ namespace Azure.Compute.Batch
             Optional<DateTimeOffset?> previousStateTransitionTime = default;
             Optional<string> publicData = default;
             Optional<DeleteCertificateError> deleteCertificateError = default;
-            Optional<string> data = default;
+            string data = default;
             Optional<CertificateFormat?> certificateFormat = default;
             Optional<string> password = default;
             foreach (var property in element.EnumerateObject())
@@ -136,7 +133,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     deleteCertificateError = DeleteCertificateError.DeserializeDeleteCertificateError(property.Value);

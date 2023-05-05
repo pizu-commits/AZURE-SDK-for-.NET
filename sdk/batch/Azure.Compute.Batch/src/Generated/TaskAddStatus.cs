@@ -21,7 +21,7 @@ namespace Azure.Compute.Batch
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        private const string SuccessValue = "Success";
+        private const string SuccessValue = "success";
         private const string ClientErrorValue = "clienterror";
         private const string ServerErrorValue = "servererror";
 

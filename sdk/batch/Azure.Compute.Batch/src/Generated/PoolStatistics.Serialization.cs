@@ -17,6 +17,8 @@ namespace Azure.Compute.Batch
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            writer.WritePropertyName("url"u8);
+            writer.WriteStringValue(Url);
             writer.WritePropertyName("startTime"u8);
             writer.WriteStringValue(StartTime, "O");
             writer.WritePropertyName("lastUpdateTime"u8);
@@ -66,7 +68,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     usageStats = UsageStatistics.DeserializeUsageStatistics(property.Value);
@@ -76,7 +77,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     resourceStats = ResourceStatistics.DeserializeResourceStatistics(property.Value);

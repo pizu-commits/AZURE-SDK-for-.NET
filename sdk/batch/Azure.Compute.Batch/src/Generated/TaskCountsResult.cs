@@ -14,20 +14,14 @@ namespace Azure.Compute.Batch
     public partial class TaskCountsResult
     {
         /// <summary> Initializes a new instance of TaskCountsResult. </summary>
-        /// <param name="taskSlotCounts"> The TaskSlot counts for a Job. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="taskSlotCounts"/> is null. </exception>
-        internal TaskCountsResult(TaskSlotCounts taskSlotCounts)
-        {
-            Argument.AssertNotNull(taskSlotCounts, nameof(taskSlotCounts));
-
-            TaskSlotCounts = taskSlotCounts;
-        }
-
-        /// <summary> Initializes a new instance of TaskCountsResult. </summary>
         /// <param name="taskCounts"> The Task counts for a Job. </param>
         /// <param name="taskSlotCounts"> The TaskSlot counts for a Job. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="taskCounts"/> or <paramref name="taskSlotCounts"/> is null. </exception>
         internal TaskCountsResult(TaskCounts taskCounts, TaskSlotCounts taskSlotCounts)
         {
+            Argument.AssertNotNull(taskCounts, nameof(taskCounts));
+            Argument.AssertNotNull(taskSlotCounts, nameof(taskSlotCounts));
+
             TaskCounts = taskCounts;
             TaskSlotCounts = taskSlotCounts;
         }

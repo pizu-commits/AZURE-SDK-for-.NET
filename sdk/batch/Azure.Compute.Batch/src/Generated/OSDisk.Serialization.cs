@@ -37,7 +37,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     ephemeralOSDiskSettings = DiffDiskSettings.DeserializeDiffDiskSettings(property.Value);

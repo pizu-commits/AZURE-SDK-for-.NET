@@ -158,7 +158,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     schedule = Schedule.DeserializeSchedule(property.Value);
@@ -168,7 +167,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     jobSpecification = JobSpecification.DeserializeJobSpecification(property.Value);
@@ -178,7 +176,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     executionInfo = JobScheduleExecutionInformation.DeserializeJobScheduleExecutionInformation(property.Value);
@@ -188,7 +185,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     List<MetadataItem> array = new List<MetadataItem>();
@@ -203,7 +199,6 @@ namespace Azure.Compute.Batch
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
                     stats = JobScheduleStatistics.DeserializeJobScheduleStatistics(property.Value);

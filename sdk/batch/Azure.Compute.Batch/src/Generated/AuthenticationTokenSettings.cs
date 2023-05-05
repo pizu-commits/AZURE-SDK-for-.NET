@@ -24,23 +24,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of AuthenticationTokenSettings. </summary>
-        /// <param name="access">
-        /// The authentication token grants access to a limited set of Batch service
-        /// operations. Currently the only supported value for the access property is
-        /// 'job', which grants access to all operations related to the Job which contains
-        /// the Task.
-        /// </param>
+        /// <param name="access"> The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. </param>
         internal AuthenticationTokenSettings(IList<AccessScope> access)
         {
             Access = access.ToList();
         }
 
-        /// <summary>
-        /// The authentication token grants access to a limited set of Batch service
-        /// operations. Currently the only supported value for the access property is
-        /// 'job', which grants access to all operations related to the Job which contains
-        /// the Task.
-        /// </summary>
+        /// <summary> The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. </summary>
         public IList<AccessScope> Access { get; }
     }
 }
