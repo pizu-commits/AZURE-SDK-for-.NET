@@ -116,8 +116,9 @@ namespace Azure.Monitor.OpenTelemetry.AspNetCore
                 });
             });
 
+            // COMMENTING OUT WHILE INVESTIGATING TESTS
             // Set the default sampling ratio to 100 % to ensure that all telemetry is captured by default.
-            builder.Services.Configure<ApplicationInsightsSamplerOptions>(options => { options.SamplingRatio = 1.0F; });
+            // builder.Services.Configure<ApplicationInsightsSamplerOptions>(options => { options.SamplingRatio = 1.0F; });
 
             // Add AzureMonitorLogExporter to AzureMonitorOptions
             // once the service provider is available containing the final
