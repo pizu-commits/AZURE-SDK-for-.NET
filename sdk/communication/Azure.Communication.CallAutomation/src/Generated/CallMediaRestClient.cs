@@ -17,7 +17,7 @@ namespace Azure.Communication.CallAutomation
     internal partial class CallMediaRestClient
     {
         private readonly HttpPipeline _pipeline;
-        private readonly string _endpoint;
+        private readonly Uri _endpoint;
         private readonly string _apiVersion;
 
         /// <summary> The ClientDiagnostics is used to provide tracing support for the client library. </summary>
@@ -29,7 +29,7 @@ namespace Azure.Communication.CallAutomation
         /// <param name="endpoint"> The endpoint of the Azure Communication resource. </param>
         /// <param name="apiVersion"> Api Version. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="clientDiagnostics"/>, <paramref name="pipeline"/>, <paramref name="endpoint"/> or <paramref name="apiVersion"/> is null. </exception>
-        public CallMediaRestClient(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, string endpoint, string apiVersion = "2023-01-15-preview")
+        public CallMediaRestClient(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, Uri endpoint, string apiVersion = "2023-01-15-preview")
         {
             ClientDiagnostics = clientDiagnostics ?? throw new ArgumentNullException(nameof(clientDiagnostics));
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
@@ -43,7 +43,7 @@ namespace Azure.Communication.CallAutomation
             var request = message.Request;
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
-            uri.AppendRaw(_endpoint, false);
+            uri.Reset(_endpoint);
             uri.AppendPath("/calling/callConnections/", false);
             uri.AppendPath(callConnectionId, true);
             uri.AppendPath(":play", false);
@@ -80,7 +80,7 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw await ClientDiagnostics.CreateRequestFailedExceptionAsync(message.Response).ConfigureAwait(false);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw ClientDiagnostics.CreateRequestFailedException(message.Response);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
@@ -117,7 +117,7 @@ namespace Azure.Communication.CallAutomation
             var request = message.Request;
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
-            uri.AppendRaw(_endpoint, false);
+            uri.Reset(_endpoint);
             uri.AppendPath("/calling/callConnections/", false);
             uri.AppendPath(callConnectionId, true);
             uri.AppendPath(":cancelAllMediaOperations", false);
@@ -145,7 +145,7 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw await ClientDiagnostics.CreateRequestFailedExceptionAsync(message.Response).ConfigureAwait(false);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
@@ -167,7 +167,7 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw ClientDiagnostics.CreateRequestFailedException(message.Response);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
@@ -177,7 +177,7 @@ namespace Azure.Communication.CallAutomation
             var request = message.Request;
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
-            uri.AppendRaw(_endpoint, false);
+            uri.Reset(_endpoint);
             uri.AppendPath("/calling/callConnections/", false);
             uri.AppendPath(callConnectionId, true);
             uri.AppendPath(":recognize", false);
@@ -214,7 +214,7 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw await ClientDiagnostics.CreateRequestFailedExceptionAsync(message.Response).ConfigureAwait(false);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
@@ -241,181 +241,229 @@ namespace Azure.Communication.CallAutomation
                 case 202:
                     return message.Response;
                 default:
-                    throw ClientDiagnostics.CreateRequestFailedException(message.Response);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
-        internal HttpMessage CreateStartDialogRequest(string callConnectionId, StartDialogRequestInternal startDialogRequest, Guid? repeatabilityRequestID, string repeatabilityFirstSent)
+        internal HttpMessage CreateStartContinuousDtmfRecognitionRequest(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
-            uri.AppendRaw(_endpoint, false);
+            uri.Reset(_endpoint);
             uri.AppendPath("/calling/callConnections/", false);
             uri.AppendPath(callConnectionId, true);
-            uri.AppendPath(":startDialog", false);
+            uri.AppendPath(":startContinuousDtmfRecognition", false);
             uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
-            if (repeatabilityRequestID != null)
-            {
-                request.Headers.Add("Repeatability-Request-ID", repeatabilityRequestID.Value);
-            }
-            if (repeatabilityFirstSent != null)
-            {
-                request.Headers.Add("Repeatability-First-Sent", repeatabilityFirstSent);
-            }
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
             var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(startDialogRequest);
+            content.JsonWriter.WriteObjectValue(continuousDtmfRecognitionRequest);
             request.Content = content;
             return message;
         }
 
-        /// <summary> Start a dialog targeting a particular participant on the call. </summary>
+        /// <summary> Start continuous Dtmf recognition by subscribing to tones. </summary>
         /// <param name="callConnectionId"> The call connection id. </param>
-        /// <param name="startDialogRequest"> The start dialog request. </param>
-        /// <param name="repeatabilityRequestID"> If specified, the client directs that the request is repeatable; that is, that the client can make the request multiple times with the same Repeatability-Request-Id and get back an appropriate response without the server executing the request multiple times. The value of the Repeatability-Request-Id is an opaque string representing a client-generated unique identifier for the request. It is a version 4 (random) UUID. </param>
-        /// <param name="repeatabilityFirstSent"> If Repeatability-Request-ID header is specified, then Repeatability-First-Sent header must also be specified. The value should be the date and time at which the request was first created, expressed using the IMF-fixdate form of HTTP-date. Example: Sun, 06 Nov 1994 08:49:37 GMT. </param>
+        /// <param name="continuousDtmfRecognitionRequest"> The continuous recognize request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="startDialogRequest"/> is null. </exception>
-        /// <remarks> Start a dialog. </remarks>
-        public async Task<Response> StartDialogAsync(string callConnectionId, StartDialogRequestInternal startDialogRequest, Guid? repeatabilityRequestID = null, string repeatabilityFirstSent = null, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="continuousDtmfRecognitionRequest"/> is null. </exception>
+        public async Task<Response> StartContinuousDtmfRecognitionAsync(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest, CancellationToken cancellationToken = default)
         {
             if (callConnectionId == null)
             {
                 throw new ArgumentNullException(nameof(callConnectionId));
             }
-            if (startDialogRequest == null)
+            if (continuousDtmfRecognitionRequest == null)
             {
-                throw new ArgumentNullException(nameof(startDialogRequest));
+                throw new ArgumentNullException(nameof(continuousDtmfRecognitionRequest));
             }
 
-            using var message = CreateStartDialogRequest(callConnectionId, startDialogRequest, repeatabilityRequestID, repeatabilityFirstSent);
+            using var message = CreateStartContinuousDtmfRecognitionRequest(callConnectionId, continuousDtmfRecognitionRequest);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Start continuous Dtmf recognition by subscribing to tones. </summary>
+        /// <param name="callConnectionId"> The call connection id. </param>
+        /// <param name="continuousDtmfRecognitionRequest"> The continuous recognize request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="continuousDtmfRecognitionRequest"/> is null. </exception>
+        public Response StartContinuousDtmfRecognition(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest, CancellationToken cancellationToken = default)
+        {
+            if (callConnectionId == null)
+            {
+                throw new ArgumentNullException(nameof(callConnectionId));
+            }
+            if (continuousDtmfRecognitionRequest == null)
+            {
+                throw new ArgumentNullException(nameof(continuousDtmfRecognitionRequest));
+            }
+
+            using var message = CreateStartContinuousDtmfRecognitionRequest(callConnectionId, continuousDtmfRecognitionRequest);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        internal HttpMessage CreateStopContinuousDtmfRecognitionRequest(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/calling/callConnections/", false);
+            uri.AppendPath(callConnectionId, true);
+            uri.AppendPath(":stopContinuousDtmfRecognition", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
+            var content = new Utf8JsonRequestContent();
+            content.JsonWriter.WriteObjectValue(continuousDtmfRecognitionRequest);
+            request.Content = content;
+            return message;
+        }
+
+        /// <summary> Stop continuous Dtmf recognition by unsubscribing to tones. </summary>
+        /// <param name="callConnectionId"> The call connection id. </param>
+        /// <param name="continuousDtmfRecognitionRequest"> The continuous recognize request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="continuousDtmfRecognitionRequest"/> is null. </exception>
+        public async Task<Response> StopContinuousDtmfRecognitionAsync(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest, CancellationToken cancellationToken = default)
+        {
+            if (callConnectionId == null)
+            {
+                throw new ArgumentNullException(nameof(callConnectionId));
+            }
+            if (continuousDtmfRecognitionRequest == null)
+            {
+                throw new ArgumentNullException(nameof(continuousDtmfRecognitionRequest));
+            }
+
+            using var message = CreateStopContinuousDtmfRecognitionRequest(callConnectionId, continuousDtmfRecognitionRequest);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Stop continuous Dtmf recognition by unsubscribing to tones. </summary>
+        /// <param name="callConnectionId"> The call connection id. </param>
+        /// <param name="continuousDtmfRecognitionRequest"> The continuous recognize request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="continuousDtmfRecognitionRequest"/> is null. </exception>
+        public Response StopContinuousDtmfRecognition(string callConnectionId, ContinuousDtmfRecognitionRequestInternal continuousDtmfRecognitionRequest, CancellationToken cancellationToken = default)
+        {
+            if (callConnectionId == null)
+            {
+                throw new ArgumentNullException(nameof(callConnectionId));
+            }
+            if (continuousDtmfRecognitionRequest == null)
+            {
+                throw new ArgumentNullException(nameof(continuousDtmfRecognitionRequest));
+            }
+
+            using var message = CreateStopContinuousDtmfRecognitionRequest(callConnectionId, continuousDtmfRecognitionRequest);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        internal HttpMessage CreateSendDtmfRequest(string callConnectionId, SendDtmfRequestInternal sendDtmfRequest)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/calling/callConnections/", false);
+            uri.AppendPath(callConnectionId, true);
+            uri.AppendPath(":sendDtmf", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
+            var content = new Utf8JsonRequestContent();
+            content.JsonWriter.WriteObjectValue(sendDtmfRequest);
+            request.Content = content;
+            return message;
+        }
+
+        /// <summary> Send dtmf tones. </summary>
+        /// <param name="callConnectionId"> The call connection id. </param>
+        /// <param name="sendDtmfRequest"> The send dtmf request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="sendDtmfRequest"/> is null. </exception>
+        public async Task<Response> SendDtmfAsync(string callConnectionId, SendDtmfRequestInternal sendDtmfRequest, CancellationToken cancellationToken = default)
+        {
+            if (callConnectionId == null)
+            {
+                throw new ArgumentNullException(nameof(callConnectionId));
+            }
+            if (sendDtmfRequest == null)
+            {
+                throw new ArgumentNullException(nameof(sendDtmfRequest));
+            }
+
+            using var message = CreateSendDtmfRequest(callConnectionId, sendDtmfRequest);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
                 case 202:
                     return message.Response;
                 default:
-                    throw await ClientDiagnostics.CreateRequestFailedExceptionAsync(message.Response).ConfigureAwait(false);
+                    throw new RequestFailedException(message.Response);
             }
         }
 
-        /// <summary> Start a dialog targeting a particular participant on the call. </summary>
+        /// <summary> Send dtmf tones. </summary>
         /// <param name="callConnectionId"> The call connection id. </param>
-        /// <param name="startDialogRequest"> The start dialog request. </param>
-        /// <param name="repeatabilityRequestID"> If specified, the client directs that the request is repeatable; that is, that the client can make the request multiple times with the same Repeatability-Request-Id and get back an appropriate response without the server executing the request multiple times. The value of the Repeatability-Request-Id is an opaque string representing a client-generated unique identifier for the request. It is a version 4 (random) UUID. </param>
-        /// <param name="repeatabilityFirstSent"> If Repeatability-Request-ID header is specified, then Repeatability-First-Sent header must also be specified. The value should be the date and time at which the request was first created, expressed using the IMF-fixdate form of HTTP-date. Example: Sun, 06 Nov 1994 08:49:37 GMT. </param>
+        /// <param name="sendDtmfRequest"> The send dtmf request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="startDialogRequest"/> is null. </exception>
-        /// <remarks> Start a dialog. </remarks>
-        public Response StartDialog(string callConnectionId, StartDialogRequestInternal startDialogRequest, Guid? repeatabilityRequestID = null, string repeatabilityFirstSent = null, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="sendDtmfRequest"/> is null. </exception>
+        public Response SendDtmf(string callConnectionId, SendDtmfRequestInternal sendDtmfRequest, CancellationToken cancellationToken = default)
         {
             if (callConnectionId == null)
             {
                 throw new ArgumentNullException(nameof(callConnectionId));
             }
-            if (startDialogRequest == null)
+            if (sendDtmfRequest == null)
             {
-                throw new ArgumentNullException(nameof(startDialogRequest));
+                throw new ArgumentNullException(nameof(sendDtmfRequest));
             }
 
-            using var message = CreateStartDialogRequest(callConnectionId, startDialogRequest, repeatabilityRequestID, repeatabilityFirstSent);
+            using var message = CreateSendDtmfRequest(callConnectionId, sendDtmfRequest);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
                 case 202:
                     return message.Response;
                 default:
-                    throw ClientDiagnostics.CreateRequestFailedException(message.Response);
-            }
-        }
-
-        internal HttpMessage CreateStopDialogRequest(string callConnectionId, StopDialogRequestInternal stopDialogRequest, Guid? repeatabilityRequestID, string repeatabilityFirstSent)
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Post;
-            var uri = new RawRequestUriBuilder();
-            uri.AppendRaw(_endpoint, false);
-            uri.AppendPath("/calling/callConnections/", false);
-            uri.AppendPath(callConnectionId, true);
-            uri.AppendPath(":stopDialog", false);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            request.Uri = uri;
-            if (repeatabilityRequestID != null)
-            {
-                request.Headers.Add("Repeatability-Request-ID", repeatabilityRequestID.Value);
-            }
-            if (repeatabilityFirstSent != null)
-            {
-                request.Headers.Add("Repeatability-First-Sent", repeatabilityFirstSent);
-            }
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(stopDialogRequest);
-            request.Content = content;
-            return message;
-        }
-
-        /// <summary> Stop a dialog. </summary>
-        /// <param name="callConnectionId"> The call connection id. </param>
-        /// <param name="stopDialogRequest"> The stop dialog request. </param>
-        /// <param name="repeatabilityRequestID"> If specified, the client directs that the request is repeatable; that is, that the client can make the request multiple times with the same Repeatability-Request-Id and get back an appropriate response without the server executing the request multiple times. The value of the Repeatability-Request-Id is an opaque string representing a client-generated unique identifier for the request. It is a version 4 (random) UUID. </param>
-        /// <param name="repeatabilityFirstSent"> If Repeatability-Request-ID header is specified, then Repeatability-First-Sent header must also be specified. The value should be the date and time at which the request was first created, expressed using the IMF-fixdate form of HTTP-date. Example: Sun, 06 Nov 1994 08:49:37 GMT. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="stopDialogRequest"/> is null. </exception>
-        public async Task<Response> StopDialogAsync(string callConnectionId, StopDialogRequestInternal stopDialogRequest, Guid? repeatabilityRequestID = null, string repeatabilityFirstSent = null, CancellationToken cancellationToken = default)
-        {
-            if (callConnectionId == null)
-            {
-                throw new ArgumentNullException(nameof(callConnectionId));
-            }
-            if (stopDialogRequest == null)
-            {
-                throw new ArgumentNullException(nameof(stopDialogRequest));
-            }
-
-            using var message = CreateStopDialogRequest(callConnectionId, stopDialogRequest, repeatabilityRequestID, repeatabilityFirstSent);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 202:
-                    return message.Response;
-                default:
-                    throw await ClientDiagnostics.CreateRequestFailedExceptionAsync(message.Response).ConfigureAwait(false);
-            }
-        }
-
-        /// <summary> Stop a dialog. </summary>
-        /// <param name="callConnectionId"> The call connection id. </param>
-        /// <param name="stopDialogRequest"> The stop dialog request. </param>
-        /// <param name="repeatabilityRequestID"> If specified, the client directs that the request is repeatable; that is, that the client can make the request multiple times with the same Repeatability-Request-Id and get back an appropriate response without the server executing the request multiple times. The value of the Repeatability-Request-Id is an opaque string representing a client-generated unique identifier for the request. It is a version 4 (random) UUID. </param>
-        /// <param name="repeatabilityFirstSent"> If Repeatability-Request-ID header is specified, then Repeatability-First-Sent header must also be specified. The value should be the date and time at which the request was first created, expressed using the IMF-fixdate form of HTTP-date. Example: Sun, 06 Nov 1994 08:49:37 GMT. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="callConnectionId"/> or <paramref name="stopDialogRequest"/> is null. </exception>
-        public Response StopDialog(string callConnectionId, StopDialogRequestInternal stopDialogRequest, Guid? repeatabilityRequestID = null, string repeatabilityFirstSent = null, CancellationToken cancellationToken = default)
-        {
-            if (callConnectionId == null)
-            {
-                throw new ArgumentNullException(nameof(callConnectionId));
-            }
-            if (stopDialogRequest == null)
-            {
-                throw new ArgumentNullException(nameof(stopDialogRequest));
-            }
-
-            using var message = CreateStopDialogRequest(callConnectionId, stopDialogRequest, repeatabilityRequestID, repeatabilityFirstSent);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
-                case 202:
-                    return message.Response;
-                default:
-                    throw ClientDiagnostics.CreateRequestFailedException(message.Response);
+                    throw new RequestFailedException(message.Response);
             }
         }
     }
