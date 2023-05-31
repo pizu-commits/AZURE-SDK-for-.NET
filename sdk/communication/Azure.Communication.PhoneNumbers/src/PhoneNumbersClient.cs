@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Communication.Pipeline;
@@ -92,7 +93,7 @@ namespace Azure.Communication.PhoneNumbers
         /// <param name="apiVersion"> Api Version. </param>
         private PhoneNumbersClient(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, string endpoint, string acceptedLanguage, string apiVersion = "2021-03-07")
         {
-            InternalClient = new InternalPhoneNumbersClient(clientDiagnostics, pipeline, endpoint, apiVersion);
+            InternalClient = new InternalPhoneNumbersClient(clientDiagnostics, pipeline, new Uri(endpoint), apiVersion);
             _clientDiagnostics = clientDiagnostics;
             _pipeline = pipeline;
             _acceptedLanguage = acceptedLanguage;
@@ -532,6 +533,48 @@ namespace Azure.Communication.PhoneNumbers
             try
             {
                 return InternalClient.ListOfferings(twoLetterIsoCountryName, skip: null, maxPageSize: null, phoneNumberType, phoneNumberAssignmentType, acceptLanguage: _acceptedLanguage, cancellationToken);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Search for operator information about specified phone numbers. </summary>
+        /// <param name="phoneNumbers"> The phone numbers to search. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<OperatorInformationResult>> SearchOperatorInformationAsync(IEnumerable<string> phoneNumbers, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(phoneNumbers, nameof(phoneNumbers));
+
+            using var scope = _clientDiagnostics.CreateScope($"{nameof(PhoneNumbersClient)}.{nameof(SearchOperatorInformation)}");
+            scope.Start();
+            try
+            {
+                var response = await InternalClient.OperatorInformationSearchAsync(phoneNumbers, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Search for operator information about specified phone numbers. </summary>
+        /// <param name="phoneNumbers"> The phone numbers to search. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<OperatorInformationResult> SearchOperatorInformation(IEnumerable<string> phoneNumbers, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(phoneNumbers, nameof(phoneNumbers));
+
+            using var scope = _clientDiagnostics.CreateScope($"{nameof(PhoneNumbersClient)}.{nameof(SearchOperatorInformation)}");
+            scope.Start();
+            try
+            {
+                var response = InternalClient.OperatorInformationSearch(phoneNumbers, cancellationToken);
+                return response;
             }
             catch (Exception e)
             {

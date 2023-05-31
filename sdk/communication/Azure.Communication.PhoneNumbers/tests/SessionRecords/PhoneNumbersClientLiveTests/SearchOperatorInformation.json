@@ -1,0 +1,54 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "https://smstestapp.communication.azure.com/operatorInformation/:search?api-version=2023-05-01-preview",
+      "RequestMethod": "POST",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Authorization": "Sanitized",
+        "Content-Length": "30",
+        "Content-Type": "application/json",
+        "traceparent": "00-3dd423d19e612a0231dedc83dd5d156c-5f5f55a2676b310d-00",
+        "User-Agent": "azsdk-net-Communication.PhoneNumbers/1.2.0-alpha.20230530.1 (.NET 7.0.5; Microsoft Windows 10.0.22621)",
+        "x-ms-client-request-id": "10e2db6e49f57232ebbc589b6d30992c",
+        "x-ms-content-sha256": "Sanitized",
+        "x-ms-date": "Tue, 30 May 2023 21:52:53 GMT",
+        "x-ms-return-client-request-id": "true"
+      },
+      "RequestBody": {
+        "phoneNumbers": [
+          "Sanitized"
+        ]
+      },
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2023-05-01-preview",
+        "Content-Length": "159",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Tue, 30 May 2023 21:52:53 GMT",
+        "MS-CV": "qjPdS82e5kKiIeT1hUFFyg.0",
+        "Strict-Transport-Security": "max-age=2592000",
+        "X-Azure-Ref": "0NXB2ZAAAAAAbTRQ334aCSLalE\u002B5X0KfFV1NURURHRTA4MDgAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx",
+        "X-Cache": "CONFIG_NOCACHE",
+        "X-Processing-Time": "1237ms"
+      },
+      "ResponseBody": {
+        "values": [
+          {
+            "phoneNumber": "Sanitized",
+            "numberType": "other",
+            "operatorDetails": {
+              "name": "Multiple Providers",
+              "mobileNetworkCode": null,
+              "mobileCountryCode": null
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "Variables": {
+    "COMMUNICATION_LIVETEST_STATIC_CONNECTION_STRING": "endpoint=https://smstestapp.communication.azure.com/;accesskey=Kg==",
+    "RandomSeed": "1389071926"
+  }
+}
