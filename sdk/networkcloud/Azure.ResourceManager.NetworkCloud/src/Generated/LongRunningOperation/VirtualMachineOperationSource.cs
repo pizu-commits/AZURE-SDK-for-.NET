@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class VirtualMachineOperationSource : IOperationSource<VirtualMachineResource>
+    internal class VirtualMachineOperationSource : IOperationSource<VirtualMachine>
     {
-        private readonly ArmClient _client;
-
-        internal VirtualMachineOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        VirtualMachineResource IOperationSource<VirtualMachineResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        VirtualMachine IOperationSource<VirtualMachine>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = VirtualMachineData.DeserializeVirtualMachineData(document.RootElement);
-            return new VirtualMachineResource(_client, data);
+            return VirtualMachine.DeserializeVirtualMachine(document.RootElement);
         }
 
-        async ValueTask<VirtualMachineResource> IOperationSource<VirtualMachineResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<VirtualMachine> IOperationSource<VirtualMachine>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = VirtualMachineData.DeserializeVirtualMachineData(document.RootElement);
-            return new VirtualMachineResource(_client, data);
+            return VirtualMachine.DeserializeVirtualMachine(document.RootElement);
         }
     }
 }

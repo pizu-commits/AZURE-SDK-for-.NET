@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class ConsoleOperationSource : IOperationSource<ConsoleResource>
+    internal class ConsoleOperationSource : IOperationSource<Console>
     {
-        private readonly ArmClient _client;
-
-        internal ConsoleOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        ConsoleResource IOperationSource<ConsoleResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        Console IOperationSource<Console>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = ConsoleData.DeserializeConsoleData(document.RootElement);
-            return new ConsoleResource(_client, data);
+            return Console.DeserializeConsole(document.RootElement);
         }
 
-        async ValueTask<ConsoleResource> IOperationSource<ConsoleResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<Console> IOperationSource<Console>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = ConsoleData.DeserializeConsoleData(document.RootElement);
-            return new ConsoleResource(_client, data);
+            return Console.DeserializeConsole(document.RootElement);
         }
     }
 }

@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class ClusterMetricsConfigurationOperationSource : IOperationSource<ClusterMetricsConfigurationResource>
+    internal class ClusterMetricsConfigurationOperationSource : IOperationSource<ClusterMetricsConfiguration>
     {
-        private readonly ArmClient _client;
-
-        internal ClusterMetricsConfigurationOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        ClusterMetricsConfigurationResource IOperationSource<ClusterMetricsConfigurationResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        ClusterMetricsConfiguration IOperationSource<ClusterMetricsConfiguration>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = ClusterMetricsConfigurationData.DeserializeClusterMetricsConfigurationData(document.RootElement);
-            return new ClusterMetricsConfigurationResource(_client, data);
+            return ClusterMetricsConfiguration.DeserializeClusterMetricsConfiguration(document.RootElement);
         }
 
-        async ValueTask<ClusterMetricsConfigurationResource> IOperationSource<ClusterMetricsConfigurationResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<ClusterMetricsConfiguration> IOperationSource<ClusterMetricsConfiguration>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = ClusterMetricsConfigurationData.DeserializeClusterMetricsConfigurationData(document.RootElement);
-            return new ClusterMetricsConfigurationResource(_client, data);
+            return ClusterMetricsConfiguration.DeserializeClusterMetricsConfiguration(document.RootElement);
         }
     }
 }

@@ -8,6 +8,8 @@ csharp: true
 library-name: NetworkCloud
 namespace: Azure.ResourceManager.NetworkCloud
 require: https://github.com/Azure/azure-rest-api-specs/blob/d283cd28c6396d18f704da7b2953d0ad2ddc89c6/specification/networkcloud/resource-manager/readme.md
+# working before last PR https://github.com/Azure/azure-rest-api-specs/blob/7a92098c9b3cf46ec9158ae91dc8c5cdf87b6c12/specification/networkcloud/resource-manager/readme.md
+# not working https://github.com/Azure/azure-rest-api-specs/blob/d283cd28c6396d18f704da7b2953d0ad2ddc89c6/specification/networkcloud/resource-manager/readme.md
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 skip-csproj: true
@@ -58,6 +60,11 @@ directive:
     where: $.definitions
     transform:
       $.ClusterAvailableUpgradeVersion.properties.expectedDuration['x-ms-format'] = 'duration';
+  # remove new POST direction as SDK generator doesn't support it
+  - from: networkcloud.json
+    where: $.paths.*.post['x-ms-long-running-operation-options']
+    transform: >
+      delete $['final-state-schema'];
   # The `password` is not required as it return null from service side
   - from: networkcloud.json
     where: $.definitions

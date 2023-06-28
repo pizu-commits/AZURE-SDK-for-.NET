@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class CloudServicesNetworkOperationSource : IOperationSource<CloudServicesNetworkResource>
+    internal class CloudServicesNetworkOperationSource : IOperationSource<CloudServicesNetwork>
     {
-        private readonly ArmClient _client;
-
-        internal CloudServicesNetworkOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        CloudServicesNetworkResource IOperationSource<CloudServicesNetworkResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        CloudServicesNetwork IOperationSource<CloudServicesNetwork>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = CloudServicesNetworkData.DeserializeCloudServicesNetworkData(document.RootElement);
-            return new CloudServicesNetworkResource(_client, data);
+            return CloudServicesNetwork.DeserializeCloudServicesNetwork(document.RootElement);
         }
 
-        async ValueTask<CloudServicesNetworkResource> IOperationSource<CloudServicesNetworkResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<CloudServicesNetwork> IOperationSource<CloudServicesNetwork>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = CloudServicesNetworkData.DeserializeCloudServicesNetworkData(document.RootElement);
-            return new CloudServicesNetworkResource(_client, data);
+            return CloudServicesNetwork.DeserializeCloudServicesNetwork(document.RootElement);
         }
     }
 }

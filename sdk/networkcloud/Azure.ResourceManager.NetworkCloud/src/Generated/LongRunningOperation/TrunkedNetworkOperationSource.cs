@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class TrunkedNetworkOperationSource : IOperationSource<TrunkedNetworkResource>
+    internal class TrunkedNetworkOperationSource : IOperationSource<TrunkedNetwork>
     {
-        private readonly ArmClient _client;
-
-        internal TrunkedNetworkOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        TrunkedNetworkResource IOperationSource<TrunkedNetworkResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        TrunkedNetwork IOperationSource<TrunkedNetwork>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = TrunkedNetworkData.DeserializeTrunkedNetworkData(document.RootElement);
-            return new TrunkedNetworkResource(_client, data);
+            return TrunkedNetwork.DeserializeTrunkedNetwork(document.RootElement);
         }
 
-        async ValueTask<TrunkedNetworkResource> IOperationSource<TrunkedNetworkResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<TrunkedNetwork> IOperationSource<TrunkedNetwork>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = TrunkedNetworkData.DeserializeTrunkedNetworkData(document.RootElement);
-            return new TrunkedNetworkResource(_client, data);
+            return TrunkedNetwork.DeserializeTrunkedNetwork(document.RootElement);
         }
     }
 }

@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class AgentPoolOperationSource : IOperationSource<AgentPoolResource>
+    internal class AgentPoolOperationSource : IOperationSource<AgentPool>
     {
-        private readonly ArmClient _client;
-
-        internal AgentPoolOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        AgentPoolResource IOperationSource<AgentPoolResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        AgentPool IOperationSource<AgentPool>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = AgentPoolData.DeserializeAgentPoolData(document.RootElement);
-            return new AgentPoolResource(_client, data);
+            return AgentPool.DeserializeAgentPool(document.RootElement);
         }
 
-        async ValueTask<AgentPoolResource> IOperationSource<AgentPoolResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<AgentPool> IOperationSource<AgentPool>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = AgentPoolData.DeserializeAgentPoolData(document.RootElement);
-            return new AgentPoolResource(_client, data);
+            return AgentPool.DeserializeAgentPool(document.RootElement);
         }
     }
 }

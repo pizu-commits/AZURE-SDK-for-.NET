@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class KubernetesClusterOperationSource : IOperationSource<KubernetesClusterResource>
+    internal class KubernetesClusterOperationSource : IOperationSource<KubernetesCluster>
     {
-        private readonly ArmClient _client;
-
-        internal KubernetesClusterOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        KubernetesClusterResource IOperationSource<KubernetesClusterResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        KubernetesCluster IOperationSource<KubernetesCluster>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = KubernetesClusterData.DeserializeKubernetesClusterData(document.RootElement);
-            return new KubernetesClusterResource(_client, data);
+            return KubernetesCluster.DeserializeKubernetesCluster(document.RootElement);
         }
 
-        async ValueTask<KubernetesClusterResource> IOperationSource<KubernetesClusterResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<KubernetesCluster> IOperationSource<KubernetesCluster>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = KubernetesClusterData.DeserializeKubernetesClusterData(document.RootElement);
-            return new KubernetesClusterResource(_client, data);
+            return KubernetesCluster.DeserializeKubernetesCluster(document.RootElement);
         }
     }
 }

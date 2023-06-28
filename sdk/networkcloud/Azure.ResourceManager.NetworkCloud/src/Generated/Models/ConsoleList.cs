@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of ConsoleList. </summary>
         internal ConsoleList()
         {
-            Value = new ChangeTrackingList<ConsoleData>();
+            Value = new ChangeTrackingList<Console>();
         }
 
         /// <summary> Initializes a new instance of ConsoleList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of virtual machine consoles. </param>
-        internal ConsoleList(string nextLink, IReadOnlyList<ConsoleData> value)
+        internal ConsoleList(string nextLink, IReadOnlyList<Console> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of virtual machine consoles. </summary>
-        public IReadOnlyList<ConsoleData> Value { get; }
+        public IReadOnlyList<Console> Value { get; }
     }
 }

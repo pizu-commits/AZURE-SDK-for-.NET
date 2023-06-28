@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class VolumeOperationSource : IOperationSource<VolumeResource>
+    internal class VolumeOperationSource : IOperationSource<Volume>
     {
-        private readonly ArmClient _client;
-
-        internal VolumeOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        VolumeResource IOperationSource<VolumeResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        Volume IOperationSource<Volume>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = VolumeData.DeserializeVolumeData(document.RootElement);
-            return new VolumeResource(_client, data);
+            return Volume.DeserializeVolume(document.RootElement);
         }
 
-        async ValueTask<VolumeResource> IOperationSource<VolumeResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<Volume> IOperationSource<Volume>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = VolumeData.DeserializeVolumeData(document.RootElement);
-            return new VolumeResource(_client, data);
+            return Volume.DeserializeVolume(document.RootElement);
         }
     }
 }

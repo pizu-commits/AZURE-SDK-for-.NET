@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class BareMetalMachineOperationSource : IOperationSource<BareMetalMachineResource>
+    internal class BareMetalMachineOperationSource : IOperationSource<BareMetalMachine>
     {
-        private readonly ArmClient _client;
-
-        internal BareMetalMachineOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        BareMetalMachineResource IOperationSource<BareMetalMachineResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        BareMetalMachine IOperationSource<BareMetalMachine>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = BareMetalMachineData.DeserializeBareMetalMachineData(document.RootElement);
-            return new BareMetalMachineResource(_client, data);
+            return BareMetalMachine.DeserializeBareMetalMachine(document.RootElement);
         }
 
-        async ValueTask<BareMetalMachineResource> IOperationSource<BareMetalMachineResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<BareMetalMachine> IOperationSource<BareMetalMachine>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = BareMetalMachineData.DeserializeBareMetalMachineData(document.RootElement);
-            return new BareMetalMachineResource(_client, data);
+            return BareMetalMachine.DeserializeBareMetalMachine(document.RootElement);
         }
     }
 }

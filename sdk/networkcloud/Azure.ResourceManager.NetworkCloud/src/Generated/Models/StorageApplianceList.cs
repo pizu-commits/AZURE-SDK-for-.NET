@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of StorageApplianceList. </summary>
         internal StorageApplianceList()
         {
-            Value = new ChangeTrackingList<StorageApplianceData>();
+            Value = new ChangeTrackingList<StorageAppliance>();
         }
 
         /// <summary> Initializes a new instance of StorageApplianceList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of storage appliances. </param>
-        internal StorageApplianceList(string nextLink, IReadOnlyList<StorageApplianceData> value)
+        internal StorageApplianceList(string nextLink, IReadOnlyList<StorageAppliance> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of storage appliances. </summary>
-        public IReadOnlyList<StorageApplianceData> Value { get; }
+        public IReadOnlyList<StorageAppliance> Value { get; }
     }
 }

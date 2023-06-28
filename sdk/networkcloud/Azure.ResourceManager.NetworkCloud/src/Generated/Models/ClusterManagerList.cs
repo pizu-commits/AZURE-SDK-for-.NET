@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of ClusterManagerList. </summary>
         internal ClusterManagerList()
         {
-            Value = new ChangeTrackingList<ClusterManagerData>();
+            Value = new ChangeTrackingList<ClusterManager>();
         }
 
         /// <summary> Initializes a new instance of ClusterManagerList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of cluster managers. </param>
-        internal ClusterManagerList(string nextLink, IReadOnlyList<ClusterManagerData> value)
+        internal ClusterManagerList(string nextLink, IReadOnlyList<ClusterManager> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of cluster managers. </summary>
-        public IReadOnlyList<ClusterManagerData> Value { get; }
+        public IReadOnlyList<ClusterManager> Value { get; }
     }
 }

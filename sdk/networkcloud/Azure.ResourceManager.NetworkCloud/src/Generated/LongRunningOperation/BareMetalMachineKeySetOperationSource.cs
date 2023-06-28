@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class BareMetalMachineKeySetOperationSource : IOperationSource<BareMetalMachineKeySetResource>
+    internal class BareMetalMachineKeySetOperationSource : IOperationSource<BareMetalMachineKeySet>
     {
-        private readonly ArmClient _client;
-
-        internal BareMetalMachineKeySetOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        BareMetalMachineKeySetResource IOperationSource<BareMetalMachineKeySetResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        BareMetalMachineKeySet IOperationSource<BareMetalMachineKeySet>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = BareMetalMachineKeySetData.DeserializeBareMetalMachineKeySetData(document.RootElement);
-            return new BareMetalMachineKeySetResource(_client, data);
+            return BareMetalMachineKeySet.DeserializeBareMetalMachineKeySet(document.RootElement);
         }
 
-        async ValueTask<BareMetalMachineKeySetResource> IOperationSource<BareMetalMachineKeySetResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<BareMetalMachineKeySet> IOperationSource<BareMetalMachineKeySet>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = BareMetalMachineKeySetData.DeserializeBareMetalMachineKeySetData(document.RootElement);
-            return new BareMetalMachineKeySetResource(_client, data);
+            return BareMetalMachineKeySet.DeserializeBareMetalMachineKeySet(document.RootElement);
         }
     }
 }

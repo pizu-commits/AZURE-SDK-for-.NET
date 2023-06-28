@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
 using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 using Azure.ResourceManager.Resources;
 
 namespace Azure.ResourceManager.NetworkCloud
@@ -49,354 +50,47 @@ namespace Azure.ResourceManager.NetworkCloud
                 return new SubscriptionResourceExtensionClient(client, scope);
             });
         }
-        #region BareMetalMachineResource
-        /// <summary>
-        /// Gets an object representing a <see cref="BareMetalMachineResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="BareMetalMachineResource.CreateResourceIdentifier" /> to create a <see cref="BareMetalMachineResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="BareMetalMachineResource" /> object. </returns>
-        public static BareMetalMachineResource GetBareMetalMachineResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                BareMetalMachineResource.ValidateResourceId(id);
-                return new BareMetalMachineResource(client, id);
-            }
-            );
-        }
-        #endregion
 
-        #region CloudServicesNetworkResource
         /// <summary>
-        /// Gets an object representing a <see cref="CloudServicesNetworkResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CloudServicesNetworkResource.CreateResourceIdentifier" /> to create a <see cref="CloudServicesNetworkResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// Get a list of bare metal machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
         /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CloudServicesNetworkResource" /> object. </returns>
-        public static CloudServicesNetworkResource GetCloudServicesNetworkResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                CloudServicesNetworkResource.ValidateResourceId(id);
-                return new CloudServicesNetworkResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region ClusterManagerResource
-        /// <summary>
-        /// Gets an object representing a <see cref="ClusterManagerResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="ClusterManagerResource.CreateResourceIdentifier" /> to create a <see cref="ClusterManagerResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="ClusterManagerResource" /> object. </returns>
-        public static ClusterManagerResource GetClusterManagerResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                ClusterManagerResource.ValidateResourceId(id);
-                return new ClusterManagerResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region ClusterResource
-        /// <summary>
-        /// Gets an object representing a <see cref="ClusterResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="ClusterResource.CreateResourceIdentifier" /> to create a <see cref="ClusterResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="ClusterResource" /> object. </returns>
-        public static ClusterResource GetClusterResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                ClusterResource.ValidateResourceId(id);
-                return new ClusterResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region KubernetesClusterResource
-        /// <summary>
-        /// Gets an object representing a <see cref="KubernetesClusterResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="KubernetesClusterResource.CreateResourceIdentifier" /> to create a <see cref="KubernetesClusterResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="KubernetesClusterResource" /> object. </returns>
-        public static KubernetesClusterResource GetKubernetesClusterResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                KubernetesClusterResource.ValidateResourceId(id);
-                return new KubernetesClusterResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region L2NetworkResource
-        /// <summary>
-        /// Gets an object representing a <see cref="L2NetworkResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="L2NetworkResource.CreateResourceIdentifier" /> to create a <see cref="L2NetworkResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="L2NetworkResource" /> object. </returns>
-        public static L2NetworkResource GetL2NetworkResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                L2NetworkResource.ValidateResourceId(id);
-                return new L2NetworkResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region L3NetworkResource
-        /// <summary>
-        /// Gets an object representing a <see cref="L3NetworkResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="L3NetworkResource.CreateResourceIdentifier" /> to create a <see cref="L3NetworkResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="L3NetworkResource" /> object. </returns>
-        public static L3NetworkResource GetL3NetworkResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                L3NetworkResource.ValidateResourceId(id);
-                return new L3NetworkResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region RackSkuResource
-        /// <summary>
-        /// Gets an object representing a <see cref="RackSkuResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RackSkuResource.CreateResourceIdentifier" /> to create a <see cref="RackSkuResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="RackSkuResource" /> object. </returns>
-        public static RackSkuResource GetRackSkuResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                RackSkuResource.ValidateResourceId(id);
-                return new RackSkuResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region RackResource
-        /// <summary>
-        /// Gets an object representing a <see cref="RackResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RackResource.CreateResourceIdentifier" /> to create a <see cref="RackResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="RackResource" /> object. </returns>
-        public static RackResource GetRackResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                RackResource.ValidateResourceId(id);
-                return new RackResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region StorageApplianceResource
-        /// <summary>
-        /// Gets an object representing a <see cref="StorageApplianceResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="StorageApplianceResource.CreateResourceIdentifier" /> to create a <see cref="StorageApplianceResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="StorageApplianceResource" /> object. </returns>
-        public static StorageApplianceResource GetStorageApplianceResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                StorageApplianceResource.ValidateResourceId(id);
-                return new StorageApplianceResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region TrunkedNetworkResource
-        /// <summary>
-        /// Gets an object representing a <see cref="TrunkedNetworkResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="TrunkedNetworkResource.CreateResourceIdentifier" /> to create a <see cref="TrunkedNetworkResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="TrunkedNetworkResource" /> object. </returns>
-        public static TrunkedNetworkResource GetTrunkedNetworkResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                TrunkedNetworkResource.ValidateResourceId(id);
-                return new TrunkedNetworkResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region VirtualMachineResource
-        /// <summary>
-        /// Gets an object representing a <see cref="VirtualMachineResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="VirtualMachineResource.CreateResourceIdentifier" /> to create a <see cref="VirtualMachineResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="VirtualMachineResource" /> object. </returns>
-        public static VirtualMachineResource GetVirtualMachineResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                VirtualMachineResource.ValidateResourceId(id);
-                return new VirtualMachineResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region VolumeResource
-        /// <summary>
-        /// Gets an object representing a <see cref="VolumeResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="VolumeResource.CreateResourceIdentifier" /> to create a <see cref="VolumeResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="VolumeResource" /> object. </returns>
-        public static VolumeResource GetVolumeResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                VolumeResource.ValidateResourceId(id);
-                return new VolumeResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region BareMetalMachineKeySetResource
-        /// <summary>
-        /// Gets an object representing a <see cref="BareMetalMachineKeySetResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="BareMetalMachineKeySetResource.CreateResourceIdentifier" /> to create a <see cref="BareMetalMachineKeySetResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="BareMetalMachineKeySetResource" /> object. </returns>
-        public static BareMetalMachineKeySetResource GetBareMetalMachineKeySetResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                BareMetalMachineKeySetResource.ValidateResourceId(id);
-                return new BareMetalMachineKeySetResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region BmcKeySetResource
-        /// <summary>
-        /// Gets an object representing a <see cref="BmcKeySetResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="BmcKeySetResource.CreateResourceIdentifier" /> to create a <see cref="BmcKeySetResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="BmcKeySetResource" /> object. </returns>
-        public static BmcKeySetResource GetBmcKeySetResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                BmcKeySetResource.ValidateResourceId(id);
-                return new BmcKeySetResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region ClusterMetricsConfigurationResource
-        /// <summary>
-        /// Gets an object representing a <see cref="ClusterMetricsConfigurationResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="ClusterMetricsConfigurationResource.CreateResourceIdentifier" /> to create a <see cref="ClusterMetricsConfigurationResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="ClusterMetricsConfigurationResource" /> object. </returns>
-        public static ClusterMetricsConfigurationResource GetClusterMetricsConfigurationResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                ClusterMetricsConfigurationResource.ValidateResourceId(id);
-                return new ClusterMetricsConfigurationResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region AgentPoolResource
-        /// <summary>
-        /// Gets an object representing an <see cref="AgentPoolResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="AgentPoolResource.CreateResourceIdentifier" /> to create an <see cref="AgentPoolResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="AgentPoolResource" /> object. </returns>
-        public static AgentPoolResource GetAgentPoolResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                AgentPoolResource.ValidateResourceId(id);
-                return new AgentPoolResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        #region ConsoleResource
-        /// <summary>
-        /// Gets an object representing a <see cref="ConsoleResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="ConsoleResource.CreateResourceIdentifier" /> to create a <see cref="ConsoleResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="ConsoleResource" /> object. </returns>
-        public static ConsoleResource GetConsoleResource(this ArmClient client, ResourceIdentifier id)
-        {
-            return client.GetResourceClient(() =>
-            {
-                ConsoleResource.ValidateResourceId(id);
-                return new ConsoleResource(client, id);
-            }
-            );
-        }
-        #endregion
-
-        /// <summary> Gets a collection of BareMetalMachineResources in the ResourceGroupResource. </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of BareMetalMachineResources and their operations over a BareMetalMachineResource. </returns>
-        public static BareMetalMachineCollection GetBareMetalMachines(this ResourceGroupResource resourceGroupResource)
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<BareMetalMachine> GetBareMetalMachinesByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachines();
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachinesByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<BareMetalMachine> GetBareMetalMachinesByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachinesByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -417,10 +111,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<BareMetalMachineResource>> GetBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        public static async Task<Response<BareMetalMachine>> GetBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetBareMetalMachines().GetAsync(bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachineAsync(bareMetalMachineName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -441,18 +136,701 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<BareMetalMachineResource> GetBareMetalMachine(this ResourceGroupResource resourceGroupResource, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        public static Response<BareMetalMachine> GetBareMetalMachine(this ResourceGroupResource resourceGroupResource, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetBareMetalMachines().Get(bareMetalMachineName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachine(bareMetalMachineName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of CloudServicesNetworkResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of CloudServicesNetworkResources and their operations over a CloudServicesNetworkResource. </returns>
-        public static CloudServicesNetworkCollection GetCloudServicesNetworks(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation<BareMetalMachine>> UpdateBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePatchContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCloudServicesNetworks();
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation<BareMetalMachine> UpdateBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Cordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Cordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> CordonBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CordonBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Cordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Cordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation CordonBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CordonBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Power off the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> PowerOffBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).PowerOffBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Power off the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation PowerOffBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).PowerOffBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Reimage the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> ReimageBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).ReimageBareMetalMachineAsync(waitUntil, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Reimage the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation ReimageBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).ReimageBareMetalMachine(waitUntil, bareMetalMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Replace the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Replace</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> ReplaceBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).ReplaceBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Replace the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Replace</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation ReplaceBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).ReplaceBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Restart the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> RestartBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartBareMetalMachineAsync(waitUntil, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Restart the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation RestartBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartBareMetalMachine(waitUntil, bareMetalMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunCommand</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> RunCommandBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RunCommandBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunCommand</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation RunCommandBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RunCommandBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunDataExtracts</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> RunDataExtractsBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RunDataExtractsBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunDataExtracts</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation RunDataExtractsBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RunDataExtractsBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> RunReadCommandsBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RunReadCommandsBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation RunReadCommandsBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RunReadCommandsBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Start the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> StartBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).StartBareMetalMachineAsync(waitUntil, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Start the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation StartBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).StartBareMetalMachine(waitUntil, bareMetalMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Uncordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Uncordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> UncordonBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UncordonBareMetalMachineAsync(waitUntil, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Uncordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Uncordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> is null. </exception>
+        public static ArmOperation UncordonBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UncordonBareMetalMachine(waitUntil, bareMetalMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Validate the hardware of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/validateHardware</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ValidateHardware</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> ValidateHardwareBareMetalMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineValidateHardwareContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).ValidateHardwareBareMetalMachineAsync(waitUntil, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Validate the hardware of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/validateHardware</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ValidateHardware</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bareMetalMachineName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation ValidateHardwareBareMetalMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineValidateHardwareContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).ValidateHardwareBareMetalMachine(waitUntil, bareMetalMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<CloudServicesNetwork> GetCloudServicesNetworksByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCloudServicesNetworksByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<CloudServicesNetwork> GetCloudServicesNetworksByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCloudServicesNetworksByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -473,10 +851,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<CloudServicesNetworkResource>> GetCloudServicesNetworkAsync(this ResourceGroupResource resourceGroupResource, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        public static async Task<Response<CloudServicesNetwork>> GetCloudServicesNetworkAsync(this ResourceGroupResource resourceGroupResource, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetCloudServicesNetworks().GetAsync(cloudServicesNetworkName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCloudServicesNetworkAsync(cloudServicesNetworkName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -497,18 +876,215 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<CloudServicesNetworkResource> GetCloudServicesNetwork(this ResourceGroupResource resourceGroupResource, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        public static Response<CloudServicesNetwork> GetCloudServicesNetwork(this ResourceGroupResource resourceGroupResource, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetCloudServicesNetworks().Get(cloudServicesNetworkName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCloudServicesNetwork(cloudServicesNetworkName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of ClusterManagerResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new cloud services network or update the properties of the existing cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of ClusterManagerResources and their operations over a ClusterManagerResource. </returns>
-        public static ClusterManagerCollection GetClusterManagers(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cloudServicesNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> or <paramref name="cloudServicesNetworkParameters"/> is null. </exception>
+        public static async Task<ArmOperation<CloudServicesNetwork>> CreateOrUpdateCloudServicesNetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetwork cloudServicesNetworkParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterManagers();
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            Argument.AssertNotNull(cloudServicesNetworkParameters, nameof(cloudServicesNetworkParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateCloudServicesNetworkAsync(waitUntil, cloudServicesNetworkName, cloudServicesNetworkParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new cloud services network or update the properties of the existing cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cloudServicesNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> or <paramref name="cloudServicesNetworkParameters"/> is null. </exception>
+        public static ArmOperation<CloudServicesNetwork> CreateOrUpdateCloudServicesNetwork(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetwork cloudServicesNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            Argument.AssertNotNull(cloudServicesNetworkParameters, nameof(cloudServicesNetworkParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateCloudServicesNetwork(waitUntil, cloudServicesNetworkName, cloudServicesNetworkParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteCloudServicesNetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteCloudServicesNetworkAsync(waitUntil, cloudServicesNetworkName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public static ArmOperation DeleteCloudServicesNetwork(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteCloudServicesNetwork(waitUntil, cloudServicesNetworkName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public static async Task<ArmOperation<CloudServicesNetwork>> UpdateCloudServicesNetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateCloudServicesNetworkAsync(waitUntil, cloudServicesNetworkName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public static ArmOperation<CloudServicesNetwork> UpdateCloudServicesNetwork(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateCloudServicesNetwork(waitUntil, cloudServicesNetworkName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ClusterManager> GetClusterManagersByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterManagersByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ClusterManager> GetClusterManagersByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterManagersByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -529,10 +1105,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<ClusterManagerResource>> GetClusterManagerAsync(this ResourceGroupResource resourceGroupResource, string clusterManagerName, CancellationToken cancellationToken = default)
+        public static async Task<Response<ClusterManager>> GetClusterManagerAsync(this ResourceGroupResource resourceGroupResource, string clusterManagerName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetClusterManagers().GetAsync(clusterManagerName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterManagerAsync(clusterManagerName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -553,18 +1130,213 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<ClusterManagerResource> GetClusterManager(this ResourceGroupResource resourceGroupResource, string clusterManagerName, CancellationToken cancellationToken = default)
+        public static Response<ClusterManager> GetClusterManager(this ResourceGroupResource resourceGroupResource, string clusterManagerName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetClusterManagers().Get(clusterManagerName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterManager(clusterManagerName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of ClusterResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new cluster manager or update properties of the cluster manager if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of ClusterResources and their operations over a ClusterResource. </returns>
-        public static ClusterCollection GetClusters(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="clusterManagerParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> or <paramref name="clusterManagerParameters"/> is null. </exception>
+        public static async Task<ArmOperation<ClusterManager>> CreateOrUpdateClusterManagerAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterManagerName, ClusterManager clusterManagerParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusters();
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+            Argument.AssertNotNull(clusterManagerParameters, nameof(clusterManagerParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateClusterManagerAsync(waitUntil, clusterManagerName, clusterManagerParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new cluster manager or update properties of the cluster manager if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="clusterManagerParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> or <paramref name="clusterManagerParameters"/> is null. </exception>
+        public static ArmOperation<ClusterManager> CreateOrUpdateClusterManager(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterManagerName, ClusterManager clusterManagerParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+            Argument.AssertNotNull(clusterManagerParameters, nameof(clusterManagerParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateClusterManager(waitUntil, clusterManagerName, clusterManagerParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteClusterManagerAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteClusterManagerAsync(waitUntil, clusterManagerName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
+        public static ArmOperation DeleteClusterManager(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteClusterManager(waitUntil, clusterManagerName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
+        public static async Task<Response<ClusterManager>> UpdateClusterManagerAsync(this ResourceGroupResource resourceGroupResource, string clusterManagerName, ClusterManagerPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateClusterManagerAsync(clusterManagerName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterManagerName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterManagerName"/> is null. </exception>
+        public static Response<ClusterManager> UpdateClusterManager(this ResourceGroupResource resourceGroupResource, string clusterManagerName, ClusterManagerPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterManagerName, nameof(clusterManagerName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateClusterManager(clusterManagerName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Cluster> GetClustersByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClustersByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Cluster> GetClustersByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClustersByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -585,10 +1357,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<ClusterResource>> GetClusterAsync(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        public static async Task<Response<Cluster>> GetClusterAsync(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetClusters().GetAsync(clusterName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetClusterAsync(clusterName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -609,18 +1382,325 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<ClusterResource> GetCluster(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        public static Response<Cluster> GetCluster(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetClusters().Get(clusterName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCluster(clusterName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of KubernetesClusterResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new cluster or update the properties of the cluster if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of KubernetesClusterResources and their operations over a KubernetesClusterResource. </returns>
-        public static KubernetesClusterCollection GetKubernetesClusters(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="clusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="clusterParameters"/> is null. </exception>
+        public static async Task<ArmOperation<Cluster>> CreateOrUpdateClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, Cluster clusterParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetKubernetesClusters();
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNull(clusterParameters, nameof(clusterParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateClusterAsync(waitUntil, clusterName, clusterParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new cluster or update the properties of the cluster if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="clusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="clusterParameters"/> is null. </exception>
+        public static ArmOperation<Cluster> CreateOrUpdateCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, Cluster clusterParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNull(clusterParameters, nameof(clusterParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateCluster(waitUntil, clusterName, clusterParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteClusterAsync(waitUntil, clusterName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static ArmOperation DeleteCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteCluster(waitUntil, clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static async Task<ArmOperation<Cluster>> UpdateClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateClusterAsync(waitUntil, clusterName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static ArmOperation<Cluster> UpdateCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateCluster(waitUntil, clusterName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Deploy the cluster to the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Deploy</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static async Task<ArmOperation> DeployClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterDeployContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeployClusterAsync(waitUntil, clusterName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Deploy the cluster to the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Deploy</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        public static ArmOperation DeployCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterDeployContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeployCluster(waitUntil, clusterName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update the version of the provided cluster to one of the available supported versions.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_UpdateVersion</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> UpdateVersionClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterUpdateVersionContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVersionClusterAsync(waitUntil, clusterName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update the version of the provided cluster to one of the available supported versions.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_UpdateVersion</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation UpdateVersionCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, ClusterUpdateVersionContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVersionCluster(waitUntil, clusterName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<KubernetesCluster> GetKubernetesClustersByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetKubernetesClustersByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<KubernetesCluster> GetKubernetesClustersByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetKubernetesClustersByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -641,10 +1721,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<KubernetesClusterResource>> GetKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        public static async Task<Response<KubernetesCluster>> GetKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetKubernetesClusters().GetAsync(kubernetesClusterName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetKubernetesClusterAsync(kubernetesClusterName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -665,18 +1746,271 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<KubernetesClusterResource> GetKubernetesCluster(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        public static Response<KubernetesCluster> GetKubernetesCluster(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetKubernetesClusters().Get(kubernetesClusterName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetKubernetesCluster(kubernetesClusterName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of L2NetworkResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new Kubernetes cluster or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of L2NetworkResources and their operations over a L2NetworkResource. </returns>
-        public static L2NetworkCollection GetL2Networks(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="kubernetesClusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="kubernetesClusterParameters"/> is null. </exception>
+        public static async Task<ArmOperation<KubernetesCluster>> CreateOrUpdateKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesCluster kubernetesClusterParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL2Networks();
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNull(kubernetesClusterParameters, nameof(kubernetesClusterParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateKubernetesClusterAsync(waitUntil, kubernetesClusterName, kubernetesClusterParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="kubernetesClusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="kubernetesClusterParameters"/> is null. </exception>
+        public static ArmOperation<KubernetesCluster> CreateOrUpdateKubernetesCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesCluster kubernetesClusterParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNull(kubernetesClusterParameters, nameof(kubernetesClusterParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateKubernetesCluster(waitUntil, kubernetesClusterName, kubernetesClusterParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteKubernetesClusterAsync(waitUntil, kubernetesClusterName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public static ArmOperation DeleteKubernetesCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteKubernetesCluster(waitUntil, kubernetesClusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public static async Task<ArmOperation<KubernetesCluster>> UpdateKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateKubernetesClusterAsync(waitUntil, kubernetesClusterName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public static ArmOperation<KubernetesCluster> UpdateKubernetesCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateKubernetesCluster(waitUntil, kubernetesClusterName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Restart a targeted node of a Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_RestartNode</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> RestartNodeKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterRestartNodeContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartNodeKubernetesClusterAsync(waitUntil, kubernetesClusterName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Restart a targeted node of a Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_RestartNode</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation RestartNodeKubernetesCluster(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterRestartNodeContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartNodeKubernetesCluster(waitUntil, kubernetesClusterName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<L2Network> GetL2NetworksByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL2NetworksByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<L2Network> GetL2NetworksByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL2NetworksByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -697,10 +2031,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<L2NetworkResource>> GetL2NetworkAsync(this ResourceGroupResource resourceGroupResource, string l2NetworkName, CancellationToken cancellationToken = default)
+        public static async Task<Response<L2Network>> GetL2NetworkAsync(this ResourceGroupResource resourceGroupResource, string l2NetworkName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetL2Networks().GetAsync(l2NetworkName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL2NetworkAsync(l2NetworkName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -721,18 +2056,213 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<L2NetworkResource> GetL2Network(this ResourceGroupResource resourceGroupResource, string l2NetworkName, CancellationToken cancellationToken = default)
+        public static Response<L2Network> GetL2Network(this ResourceGroupResource resourceGroupResource, string l2NetworkName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetL2Networks().Get(l2NetworkName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL2Network(l2NetworkName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of L3NetworkResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new layer 2 (L2) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of L3NetworkResources and their operations over a L3NetworkResource. </returns>
-        public static L3NetworkCollection GetL3Networks(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="l2NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> or <paramref name="l2NetworkParameters"/> is null. </exception>
+        public static async Task<ArmOperation<L2Network>> CreateOrUpdateL2NetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l2NetworkName, L2Network l2NetworkParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL3Networks();
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+            Argument.AssertNotNull(l2NetworkParameters, nameof(l2NetworkParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateL2NetworkAsync(waitUntil, l2NetworkName, l2NetworkParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new layer 2 (L2) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="l2NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> or <paramref name="l2NetworkParameters"/> is null. </exception>
+        public static ArmOperation<L2Network> CreateOrUpdateL2Network(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l2NetworkName, L2Network l2NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+            Argument.AssertNotNull(l2NetworkParameters, nameof(l2NetworkParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateL2Network(waitUntil, l2NetworkName, l2NetworkParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteL2NetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteL2NetworkAsync(waitUntil, l2NetworkName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
+        public static ArmOperation DeleteL2Network(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteL2Network(waitUntil, l2NetworkName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
+        public static async Task<Response<L2Network>> UpdateL2NetworkAsync(this ResourceGroupResource resourceGroupResource, string l2NetworkName, L2NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateL2NetworkAsync(l2NetworkName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l2NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l2NetworkName"/> is null. </exception>
+        public static Response<L2Network> UpdateL2Network(this ResourceGroupResource resourceGroupResource, string l2NetworkName, L2NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l2NetworkName, nameof(l2NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateL2Network(l2NetworkName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<L3Network> GetL3NetworksByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL3NetworksByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<L3Network> GetL3NetworksByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL3NetworksByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -753,10 +2283,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<L3NetworkResource>> GetL3NetworkAsync(this ResourceGroupResource resourceGroupResource, string l3NetworkName, CancellationToken cancellationToken = default)
+        public static async Task<Response<L3Network>> GetL3NetworkAsync(this ResourceGroupResource resourceGroupResource, string l3NetworkName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetL3Networks().GetAsync(l3NetworkName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL3NetworkAsync(l3NetworkName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -777,18 +2308,213 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<L3NetworkResource> GetL3Network(this ResourceGroupResource resourceGroupResource, string l3NetworkName, CancellationToken cancellationToken = default)
+        public static Response<L3Network> GetL3Network(this ResourceGroupResource resourceGroupResource, string l3NetworkName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetL3Networks().Get(l3NetworkName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetL3Network(l3NetworkName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of RackResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new layer 3 (L3) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of RackResources and their operations over a RackResource. </returns>
-        public static RackCollection GetRacks(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="l3NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> or <paramref name="l3NetworkParameters"/> is null. </exception>
+        public static async Task<ArmOperation<L3Network>> CreateOrUpdateL3NetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l3NetworkName, L3Network l3NetworkParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetRacks();
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+            Argument.AssertNotNull(l3NetworkParameters, nameof(l3NetworkParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateL3NetworkAsync(waitUntil, l3NetworkName, l3NetworkParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new layer 3 (L3) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="l3NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> or <paramref name="l3NetworkParameters"/> is null. </exception>
+        public static ArmOperation<L3Network> CreateOrUpdateL3Network(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l3NetworkName, L3Network l3NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+            Argument.AssertNotNull(l3NetworkParameters, nameof(l3NetworkParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateL3Network(waitUntil, l3NetworkName, l3NetworkParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteL3NetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteL3NetworkAsync(waitUntil, l3NetworkName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
+        public static ArmOperation DeleteL3Network(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteL3Network(waitUntil, l3NetworkName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
+        public static async Task<Response<L3Network>> UpdateL3NetworkAsync(this ResourceGroupResource resourceGroupResource, string l3NetworkName, L3NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateL3NetworkAsync(l3NetworkName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="l3NetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="l3NetworkName"/> is null. </exception>
+        public static Response<L3Network> UpdateL3Network(this ResourceGroupResource resourceGroupResource, string l3NetworkName, L3NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(l3NetworkName, nameof(l3NetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateL3Network(l3NetworkName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of racks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Rack> GetRacksByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetRacksByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of racks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Rack> GetRacksByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetRacksByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -809,10 +2535,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="rackName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="rackName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<RackResource>> GetRackAsync(this ResourceGroupResource resourceGroupResource, string rackName, CancellationToken cancellationToken = default)
+        public static async Task<Response<Rack>> GetRackAsync(this ResourceGroupResource resourceGroupResource, string rackName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetRacks().GetAsync(rackName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(rackName, nameof(rackName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetRackAsync(rackName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -833,18 +2560,107 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="rackName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="rackName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<RackResource> GetRack(this ResourceGroupResource resourceGroupResource, string rackName, CancellationToken cancellationToken = default)
+        public static Response<Rack> GetRack(this ResourceGroupResource resourceGroupResource, string rackName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetRacks().Get(rackName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(rackName, nameof(rackName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetRack(rackName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of StorageApplianceResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of StorageApplianceResources and their operations over a StorageApplianceResource. </returns>
-        public static StorageApplianceCollection GetStorageAppliances(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="rackName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="rackName"/> is null. </exception>
+        public static async Task<ArmOperation<Rack>> UpdateRackAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string rackName, RackPatchContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetStorageAppliances();
+            Argument.AssertNotNullOrEmpty(rackName, nameof(rackName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateRackAsync(waitUntil, rackName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="rackName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="rackName"/> is null. </exception>
+        public static ArmOperation<Rack> UpdateRack(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string rackName, RackPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(rackName, nameof(rackName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateRack(waitUntil, rackName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of storage appliances in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<StorageAppliance> GetStorageAppliancesByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetStorageAppliancesByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of storage appliances in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<StorageAppliance> GetStorageAppliancesByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetStorageAppliancesByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -865,10 +2681,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<StorageApplianceResource>> GetStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, string storageApplianceName, CancellationToken cancellationToken = default)
+        public static async Task<Response<StorageAppliance>> GetStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetStorageAppliances().GetAsync(storageApplianceName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetStorageApplianceAsync(storageApplianceName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -889,18 +2706,269 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<StorageApplianceResource> GetStorageAppliance(this ResourceGroupResource resourceGroupResource, string storageApplianceName, CancellationToken cancellationToken = default)
+        public static Response<StorageAppliance> GetStorageAppliance(this ResourceGroupResource resourceGroupResource, string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetStorageAppliances().Get(storageApplianceName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetStorageAppliance(storageApplianceName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of TrunkedNetworkResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of TrunkedNetworkResources and their operations over a TrunkedNetworkResource. </returns>
-        public static TrunkedNetworkCollection GetTrunkedNetworks(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static async Task<ArmOperation<StorageAppliance>> UpdateStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageAppliancePatchContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetTrunkedNetworks();
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateStorageApplianceAsync(waitUntil, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static ArmOperation<StorageAppliance> UpdateStorageAppliance(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageAppliancePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateStorageAppliance(waitUntil, storageApplianceName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Disable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_DisableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static async Task<ArmOperation> DisableRemoteVendorManagementStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DisableRemoteVendorManagementStorageApplianceAsync(waitUntil, storageApplianceName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Disable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_DisableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static ArmOperation DisableRemoteVendorManagementStorageAppliance(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DisableRemoteVendorManagementStorageAppliance(waitUntil, storageApplianceName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Enable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_EnableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static async Task<ArmOperation> EnableRemoteVendorManagementStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageApplianceEnableRemoteVendorManagementContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).EnableRemoteVendorManagementStorageApplianceAsync(waitUntil, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Enable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_EnableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public static ArmOperation EnableRemoteVendorManagementStorageAppliance(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageApplianceEnableRemoteVendorManagementContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).EnableRemoteVendorManagementStorageAppliance(waitUntil, storageApplianceName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Run and retrieve output from read only commands on the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<ArmOperation> RunReadCommandsStorageApplianceAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageApplianceRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RunReadCommandsStorageApplianceAsync(waitUntil, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Run and retrieve output from read only commands on the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> or <paramref name="content"/> is null. </exception>
+        public static ArmOperation RunReadCommandsStorageAppliance(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string storageApplianceName, StorageApplianceRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RunReadCommandsStorageAppliance(waitUntil, storageApplianceName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of trunked networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<TrunkedNetwork> GetTrunkedNetworksByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetTrunkedNetworksByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of trunked networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<TrunkedNetwork> GetTrunkedNetworksByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetTrunkedNetworksByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -921,10 +2989,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<TrunkedNetworkResource>> GetTrunkedNetworkAsync(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        public static async Task<Response<TrunkedNetwork>> GetTrunkedNetworkAsync(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetTrunkedNetworks().GetAsync(trunkedNetworkName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetTrunkedNetworkAsync(trunkedNetworkName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -945,18 +3014,213 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<TrunkedNetworkResource> GetTrunkedNetwork(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        public static Response<TrunkedNetwork> GetTrunkedNetwork(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetTrunkedNetworks().Get(trunkedNetworkName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetTrunkedNetwork(trunkedNetworkName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of VirtualMachineResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new trunked network or update the properties of the existing trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of VirtualMachineResources and their operations over a VirtualMachineResource. </returns>
-        public static VirtualMachineCollection GetVirtualMachines(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="trunkedNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> or <paramref name="trunkedNetworkParameters"/> is null. </exception>
+        public static async Task<ArmOperation<TrunkedNetwork>> CreateOrUpdateTrunkedNetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string trunkedNetworkName, TrunkedNetwork trunkedNetworkParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVirtualMachines();
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+            Argument.AssertNotNull(trunkedNetworkParameters, nameof(trunkedNetworkParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateTrunkedNetworkAsync(waitUntil, trunkedNetworkName, trunkedNetworkParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new trunked network or update the properties of the existing trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="trunkedNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> or <paramref name="trunkedNetworkParameters"/> is null. </exception>
+        public static ArmOperation<TrunkedNetwork> CreateOrUpdateTrunkedNetwork(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string trunkedNetworkName, TrunkedNetwork trunkedNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+            Argument.AssertNotNull(trunkedNetworkParameters, nameof(trunkedNetworkParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateTrunkedNetwork(waitUntil, trunkedNetworkName, trunkedNetworkParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteTrunkedNetworkAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteTrunkedNetworkAsync(waitUntil, trunkedNetworkName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
+        public static ArmOperation DeleteTrunkedNetwork(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteTrunkedNetwork(waitUntil, trunkedNetworkName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
+        public static async Task<Response<TrunkedNetwork>> UpdateTrunkedNetworkAsync(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, TrunkedNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateTrunkedNetworkAsync(trunkedNetworkName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="trunkedNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="trunkedNetworkName"/> is null. </exception>
+        public static Response<TrunkedNetwork> UpdateTrunkedNetwork(this ResourceGroupResource resourceGroupResource, string trunkedNetworkName, TrunkedNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(trunkedNetworkName, nameof(trunkedNetworkName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateTrunkedNetwork(trunkedNetworkName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of virtual machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<VirtualMachine> GetVirtualMachinesByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVirtualMachinesByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of virtual machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<VirtualMachine> GetVirtualMachinesByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVirtualMachinesByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -977,10 +3241,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<VirtualMachineResource>> GetVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
+        public static async Task<Response<VirtualMachine>> GetVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetVirtualMachines().GetAsync(virtualMachineName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVirtualMachineAsync(virtualMachineName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1001,18 +3266,537 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<VirtualMachineResource> GetVirtualMachine(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
+        public static Response<VirtualMachine> GetVirtualMachine(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetVirtualMachines().Get(virtualMachineName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVirtualMachine(virtualMachineName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of VolumeResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Create a new virtual machine or update the properties of the existing virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of VolumeResources and their operations over a VolumeResource. </returns>
-        public static VolumeCollection GetVolumes(this ResourceGroupResource resourceGroupResource)
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineParameters"/> is null. </exception>
+        public static async Task<ArmOperation<VirtualMachine>> CreateOrUpdateVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachine virtualMachineParameters, CancellationToken cancellationToken = default)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVolumes();
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineParameters, nameof(virtualMachineParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateVirtualMachineAsync(waitUntil, virtualMachineName, virtualMachineParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new virtual machine or update the properties of the existing virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineParameters"/> is null. </exception>
+        public static ArmOperation<VirtualMachine> CreateOrUpdateVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachine virtualMachineParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineParameters, nameof(virtualMachineParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateVirtualMachine(waitUntil, virtualMachineName, virtualMachineParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteVirtualMachineAsync(waitUntil, virtualMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation DeleteVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteVirtualMachine(waitUntil, virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation<VirtualMachine>> UpdateVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachinePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVirtualMachineAsync(waitUntil, virtualMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation<VirtualMachine> UpdateVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachinePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVirtualMachine(waitUntil, virtualMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Attach volume to the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/attachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_AttachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineAttachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineAttachVolumeParameters"/> is null. </exception>
+        public static async Task<ArmOperation> AttachVolumeVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineAttachVolumeParameters, nameof(virtualMachineAttachVolumeParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).AttachVolumeVirtualMachineAsync(waitUntil, virtualMachineName, virtualMachineAttachVolumeParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Attach volume to the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/attachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_AttachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineAttachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineAttachVolumeParameters"/> is null. </exception>
+        public static ArmOperation AttachVolumeVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineAttachVolumeParameters, nameof(virtualMachineAttachVolumeParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).AttachVolumeVirtualMachine(waitUntil, virtualMachineName, virtualMachineAttachVolumeParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Detach volume from the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/detachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_DetachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineDetachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineDetachVolumeParameters"/> is null. </exception>
+        public static async Task<ArmOperation> DetachVolumeVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineDetachVolumeParameters, nameof(virtualMachineDetachVolumeParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DetachVolumeVirtualMachineAsync(waitUntil, virtualMachineName, virtualMachineDetachVolumeParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Detach volume from the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/detachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_DetachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineDetachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="virtualMachineDetachVolumeParameters"/> is null. </exception>
+        public static ArmOperation DetachVolumeVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNull(virtualMachineDetachVolumeParameters, nameof(virtualMachineDetachVolumeParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DetachVolumeVirtualMachine(waitUntil, virtualMachineName, virtualMachineDetachVolumeParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Power off the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> PowerOffVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).PowerOffVirtualMachineAsync(waitUntil, virtualMachineName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Power off the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation PowerOffVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, VirtualMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).PowerOffVirtualMachine(waitUntil, virtualMachineName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Reimage the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> ReimageVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).ReimageVirtualMachineAsync(waitUntil, virtualMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Reimage the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation ReimageVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).ReimageVirtualMachine(waitUntil, virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Restart the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> RestartVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartVirtualMachineAsync(waitUntil, virtualMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Restart the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation RestartVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).RestartVirtualMachine(waitUntil, virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Start the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static async Task<ArmOperation> StartVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).StartVirtualMachineAsync(waitUntil, virtualMachineName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Start the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public static ArmOperation StartVirtualMachine(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).StartVirtualMachine(waitUntil, virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of volumes in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Volume> GetVolumesByResourceGroupAsync(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVolumesByResourceGroupAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of volumes in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Volume> GetVolumesByResourceGroup(this ResourceGroupResource resourceGroupResource, CancellationToken cancellationToken = default)
+        {
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVolumesByResourceGroup(cancellationToken);
         }
 
         /// <summary>
@@ -1033,10 +3817,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<VolumeResource>> GetVolumeAsync(this ResourceGroupResource resourceGroupResource, string volumeName, CancellationToken cancellationToken = default)
+        public static async Task<Response<Volume>> GetVolumeAsync(this ResourceGroupResource resourceGroupResource, string volumeName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetVolumes().GetAsync(volumeName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVolumeAsync(volumeName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1057,18 +3842,1907 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<VolumeResource> GetVolume(this ResourceGroupResource resourceGroupResource, string volumeName, CancellationToken cancellationToken = default)
+        public static Response<Volume> GetVolume(this ResourceGroupResource resourceGroupResource, string volumeName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetVolumes().Get(volumeName, cancellationToken);
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetVolume(volumeName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of RackSkuResources in the SubscriptionResource. </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <returns> An object representing collection of RackSkuResources and their operations over a RackSkuResource. </returns>
-        public static RackSkuCollection GetRackSkus(this SubscriptionResource subscriptionResource)
+        /// <summary>
+        /// Create a new volume or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="volumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> or <paramref name="volumeParameters"/> is null. </exception>
+        public static async Task<ArmOperation<Volume>> CreateOrUpdateVolumeAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string volumeName, Volume volumeParameters, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRackSkus();
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+            Argument.AssertNotNull(volumeParameters, nameof(volumeParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateVolumeAsync(waitUntil, volumeName, volumeParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new volume or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="volumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> or <paramref name="volumeParameters"/> is null. </exception>
+        public static ArmOperation<Volume> CreateOrUpdateVolume(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string volumeName, Volume volumeParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+            Argument.AssertNotNull(volumeParameters, nameof(volumeParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateVolume(waitUntil, volumeName, volumeParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteVolumeAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string volumeName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteVolumeAsync(waitUntil, volumeName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
+        public static ArmOperation DeleteVolume(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string volumeName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteVolume(waitUntil, volumeName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
+        public static async Task<Response<Volume>> UpdateVolumeAsync(this ResourceGroupResource resourceGroupResource, string volumeName, VolumePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVolumeAsync(volumeName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="volumeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="volumeName"/> is null. </exception>
+        public static Response<Volume> UpdateVolume(this ResourceGroupResource resourceGroupResource, string volumeName, VolumePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(volumeName, nameof(volumeName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateVolume(volumeName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machine key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> An async collection of <see cref="BareMetalMachineKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<BareMetalMachineKeySet> GetBareMetalMachineKeySetsByClusterAsync(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachineKeySetsByClusterAsync(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machine key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> A collection of <see cref="BareMetalMachineKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<BareMetalMachineKeySet> GetBareMetalMachineKeySetsByCluster(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachineKeySetsByCluster(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static async Task<Response<BareMetalMachineKeySet>> GetBareMetalMachineKeySetAsync(this ResourceGroupResource resourceGroupResource, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachineKeySetAsync(clusterName, bareMetalMachineKeySetName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static Response<BareMetalMachineKeySet> GetBareMetalMachineKeySet(this ResourceGroupResource resourceGroupResource, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBareMetalMachineKeySet(clusterName, bareMetalMachineKeySetName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create a new bare metal machine key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="bareMetalMachineKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="bareMetalMachineKeySetName"/> or <paramref name="bareMetalMachineKeySetParameters"/> is null. </exception>
+        public static async Task<ArmOperation<BareMetalMachineKeySet>> CreateOrUpdateBareMetalMachineKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySet bareMetalMachineKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+            Argument.AssertNotNull(bareMetalMachineKeySetParameters, nameof(bareMetalMachineKeySetParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateBareMetalMachineKeySetAsync(waitUntil, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new bare metal machine key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="bareMetalMachineKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="bareMetalMachineKeySetName"/> or <paramref name="bareMetalMachineKeySetParameters"/> is null. </exception>
+        public static ArmOperation<BareMetalMachineKeySet> CreateOrUpdateBareMetalMachineKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySet bareMetalMachineKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+            Argument.AssertNotNull(bareMetalMachineKeySetParameters, nameof(bareMetalMachineKeySetParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateBareMetalMachineKeySet(waitUntil, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteBareMetalMachineKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteBareMetalMachineKeySetAsync(waitUntil, clusterName, bareMetalMachineKeySetName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static ArmOperation DeleteBareMetalMachineKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteBareMetalMachineKeySet(waitUntil, clusterName, bareMetalMachineKeySetName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static async Task<ArmOperation<BareMetalMachineKeySet>> UpdateBareMetalMachineKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBareMetalMachineKeySetAsync(waitUntil, clusterName, bareMetalMachineKeySetName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bareMetalMachineKeySetName"/> is null. </exception>
+        public static ArmOperation<BareMetalMachineKeySet> UpdateBareMetalMachineKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bareMetalMachineKeySetName, nameof(bareMetalMachineKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBareMetalMachineKeySet(waitUntil, clusterName, bareMetalMachineKeySetName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of baseboard management controller key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> An async collection of <see cref="BmcKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<BmcKeySet> GetBmcKeySetsByClusterAsync(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBmcKeySetsByClusterAsync(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of baseboard management controller key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> A collection of <see cref="BmcKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<BmcKeySet> GetBmcKeySetsByCluster(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBmcKeySetsByCluster(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static async Task<Response<BmcKeySet>> GetBmcKeySetAsync(this ResourceGroupResource resourceGroupResource, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBmcKeySetAsync(clusterName, bmcKeySetName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static Response<BmcKeySet> GetBmcKeySet(this ResourceGroupResource resourceGroupResource, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetBmcKeySet(clusterName, bmcKeySetName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create a new baseboard management controller key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="bmcKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="bmcKeySetName"/> or <paramref name="bmcKeySetParameters"/> is null. </exception>
+        public static async Task<ArmOperation<BmcKeySet>> CreateOrUpdateBmcKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySet bmcKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+            Argument.AssertNotNull(bmcKeySetParameters, nameof(bmcKeySetParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateBmcKeySetAsync(waitUntil, clusterName, bmcKeySetName, bmcKeySetParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new baseboard management controller key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="bmcKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="bmcKeySetName"/> or <paramref name="bmcKeySetParameters"/> is null. </exception>
+        public static ArmOperation<BmcKeySet> CreateOrUpdateBmcKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySet bmcKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+            Argument.AssertNotNull(bmcKeySetParameters, nameof(bmcKeySetParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateBmcKeySet(waitUntil, clusterName, bmcKeySetName, bmcKeySetParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteBmcKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteBmcKeySetAsync(waitUntil, clusterName, bmcKeySetName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static ArmOperation DeleteBmcKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteBmcKeySet(waitUntil, clusterName, bmcKeySetName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static async Task<ArmOperation<BmcKeySet>> UpdateBmcKeySetAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBmcKeySetAsync(waitUntil, clusterName, bmcKeySetName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="bmcKeySetName"/> is null. </exception>
+        public static ArmOperation<BmcKeySet> UpdateBmcKeySet(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(bmcKeySetName, nameof(bmcKeySetName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateBmcKeySet(waitUntil, clusterName, bmcKeySetName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of metrics configurations for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ClusterMetricsConfiguration" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ClusterMetricsConfiguration> GetMetricsConfigurationsByClusterAsync(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetMetricsConfigurationsByClusterAsync(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of metrics configurations for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> is null. </exception>
+        /// <returns> A collection of <see cref="ClusterMetricsConfiguration" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ClusterMetricsConfiguration> GetMetricsConfigurationsByCluster(this ResourceGroupResource resourceGroupResource, string clusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetMetricsConfigurationsByCluster(clusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static async Task<Response<ClusterMetricsConfiguration>> GetMetricsConfigurationAsync(this ResourceGroupResource resourceGroupResource, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetMetricsConfigurationAsync(clusterName, metricsConfigurationName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static Response<ClusterMetricsConfiguration> GetMetricsConfiguration(this ResourceGroupResource resourceGroupResource, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetMetricsConfiguration(clusterName, metricsConfigurationName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create new or update the existing metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="metricsConfigurationParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="metricsConfigurationName"/> or <paramref name="metricsConfigurationParameters"/> is null. </exception>
+        public static async Task<ArmOperation<ClusterMetricsConfiguration>> CreateOrUpdateMetricsConfigurationAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfiguration metricsConfigurationParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+            Argument.AssertNotNull(metricsConfigurationParameters, nameof(metricsConfigurationParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateMetricsConfigurationAsync(waitUntil, clusterName, metricsConfigurationName, metricsConfigurationParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create new or update the existing metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="metricsConfigurationParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/>, <paramref name="metricsConfigurationName"/> or <paramref name="metricsConfigurationParameters"/> is null. </exception>
+        public static ArmOperation<ClusterMetricsConfiguration> CreateOrUpdateMetricsConfiguration(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfiguration metricsConfigurationParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+            Argument.AssertNotNull(metricsConfigurationParameters, nameof(metricsConfigurationParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateMetricsConfiguration(waitUntil, clusterName, metricsConfigurationName, metricsConfigurationParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteMetricsConfigurationAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteMetricsConfigurationAsync(waitUntil, clusterName, metricsConfigurationName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static ArmOperation DeleteMetricsConfiguration(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteMetricsConfiguration(waitUntil, clusterName, metricsConfigurationName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static async Task<ArmOperation<ClusterMetricsConfiguration>> UpdateMetricsConfigurationAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfigurationPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateMetricsConfigurationAsync(waitUntil, clusterName, metricsConfigurationName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="clusterName"/> or <paramref name="metricsConfigurationName"/> is null. </exception>
+        public static ArmOperation<ClusterMetricsConfiguration> UpdateMetricsConfiguration(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfigurationPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(clusterName, nameof(clusterName));
+            Argument.AssertNotNullOrEmpty(metricsConfigurationName, nameof(metricsConfigurationName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateMetricsConfiguration(waitUntil, clusterName, metricsConfigurationName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of agent pools for the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_ListByKubernetesCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        /// <returns> An async collection of <see cref="AgentPool" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<AgentPool> GetAgentPoolsByKubernetesClusterAsync(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetAgentPoolsByKubernetesClusterAsync(kubernetesClusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of agent pools for the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_ListByKubernetesCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        /// <returns> A collection of <see cref="AgentPool" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<AgentPool> GetAgentPoolsByKubernetesCluster(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetAgentPoolsByKubernetesCluster(kubernetesClusterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static async Task<Response<AgentPool>> GetAgentPoolAsync(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetAgentPoolAsync(kubernetesClusterName, agentPoolName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get properties of the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static Response<AgentPool> GetAgentPool(this ResourceGroupResource resourceGroupResource, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetAgentPool(kubernetesClusterName, agentPoolName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="agentPoolParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/>, <paramref name="agentPoolName"/> or <paramref name="agentPoolParameters"/> is null. </exception>
+        public static async Task<ArmOperation<AgentPool>> CreateOrUpdateAgentPoolAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPool agentPoolParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            Argument.AssertNotNull(agentPoolParameters, nameof(agentPoolParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateAgentPoolAsync(waitUntil, kubernetesClusterName, agentPoolName, agentPoolParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="agentPoolParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/>, <paramref name="agentPoolName"/> or <paramref name="agentPoolParameters"/> is null. </exception>
+        public static ArmOperation<AgentPool> CreateOrUpdateAgentPool(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPool agentPoolParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            Argument.AssertNotNull(agentPoolParameters, nameof(agentPoolParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateAgentPool(waitUntil, kubernetesClusterName, agentPoolName, agentPoolParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteAgentPoolAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteAgentPoolAsync(waitUntil, kubernetesClusterName, agentPoolName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static ArmOperation DeleteAgentPool(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteAgentPool(waitUntil, kubernetesClusterName, agentPoolName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static async Task<ArmOperation<AgentPool>> UpdateAgentPoolAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPoolPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateAgentPoolAsync(waitUntil, kubernetesClusterName, agentPoolName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="agentPoolName"/> is null. </exception>
+        public static ArmOperation<AgentPool> UpdateAgentPool(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPoolPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateAgentPool(waitUntil, kubernetesClusterName, agentPoolName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of consoles for the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_ListByVirtualMachine</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        /// <returns> An async collection of <see cref="Console" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Models.Console> GetConsolesByVirtualMachineAsync(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetConsolesByVirtualMachineAsync(virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of consoles for the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_ListByVirtualMachine</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        /// <returns> A collection of <see cref="Console" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Models.Console> GetConsolesByVirtualMachine(this ResourceGroupResource resourceGroupResource, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetConsolesByVirtualMachine(virtualMachineName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static async Task<Response<Models.Console>> GetConsoleAsync(this ResourceGroupResource resourceGroupResource, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).GetConsoleAsync(virtualMachineName, consoleName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static Response<Models.Console> GetConsole(this ResourceGroupResource resourceGroupResource, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetConsole(virtualMachineName, consoleName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create a new virtual machine console or update the properties of the existing virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="consoleParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="consoleParameters"/> is null. </exception>
+        public static async Task<ArmOperation<Models.Console>> CreateOrUpdateConsoleAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+            Argument.AssertNotNull(consoleParameters, nameof(consoleParameters));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateConsoleAsync(waitUntil, virtualMachineName, consoleName, consoleParameters, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create a new virtual machine console or update the properties of the existing virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="consoleParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="consoleParameters"/> is null. </exception>
+        public static ArmOperation<Models.Console> CreateOrUpdateConsole(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+            Argument.AssertNotNull(consoleParameters, nameof(consoleParameters));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CreateOrUpdateConsole(waitUntil, virtualMachineName, consoleName, consoleParameters, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static async Task<ArmOperation> DeleteConsoleAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteConsoleAsync(waitUntil, virtualMachineName, consoleName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static ArmOperation DeleteConsole(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).DeleteConsole(waitUntil, virtualMachineName, consoleName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static async Task<ArmOperation<Models.Console>> UpdateConsoleAsync(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateConsoleAsync(waitUntil, virtualMachineName, consoleName, content, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
+        public static ArmOperation<Models.Console> UpdateConsole(this ResourceGroupResource resourceGroupResource, WaitUntil waitUntil, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
+
+            return GetResourceGroupResourceExtensionClient(resourceGroupResource).UpdateConsole(waitUntil, virtualMachineName, consoleName, content, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machines in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<BareMetalMachine> GetBareMetalMachinesBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetBareMetalMachinesBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machines in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<BareMetalMachine> GetBareMetalMachinesBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetBareMetalMachinesBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<CloudServicesNetwork> GetCloudServicesNetworksBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetCloudServicesNetworksBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<CloudServicesNetwork> GetCloudServicesNetworksBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetCloudServicesNetworksBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ClusterManager> GetClusterManagersBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClusterManagersBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ClusterManager> GetClusterManagersBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClusterManagersBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Cluster> GetClustersBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClustersBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Cluster> GetClustersBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClustersBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<KubernetesCluster> GetKubernetesClustersBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetKubernetesClustersBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<KubernetesCluster> GetKubernetesClustersBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetKubernetesClustersBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<L2Network> GetL2NetworksBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL2NetworksBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<L2Network> GetL2NetworksBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL2NetworksBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<L3Network> GetL3NetworksBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL3NetworksBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<L3Network> GetL3NetworksBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL3NetworksBySubscription(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of rack SKUs in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/rackSkus</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RackSkus_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="RackSku" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<RackSku> GetRackSkusBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRackSkusBySubscriptionAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of rack SKUs in the provided subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/rackSkus</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RackSkus_ListBySubscription</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="RackSku" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<RackSku> GetRackSkusBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRackSkusBySubscription(cancellationToken);
         }
 
         /// <summary>
@@ -1089,10 +5763,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="rackSkuName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="rackSkuName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<RackSkuResource>> GetRackSkuAsync(this SubscriptionResource subscriptionResource, string rackSkuName, CancellationToken cancellationToken = default)
+        public static async Task<Response<RackSku>> GetRackSkuAsync(this SubscriptionResource subscriptionResource, string rackSkuName, CancellationToken cancellationToken = default)
         {
-            return await subscriptionResource.GetRackSkus().GetAsync(rackSkuName, cancellationToken).ConfigureAwait(false);
+            Argument.AssertNotNullOrEmpty(rackSkuName, nameof(rackSkuName));
+
+            return await GetSubscriptionResourceExtensionClient(subscriptionResource).GetRackSkuAsync(rackSkuName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1113,304 +5788,11 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="rackSkuName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="rackSkuName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public static Response<RackSkuResource> GetRackSku(this SubscriptionResource subscriptionResource, string rackSkuName, CancellationToken cancellationToken = default)
+        public static Response<RackSku> GetRackSku(this SubscriptionResource subscriptionResource, string rackSkuName, CancellationToken cancellationToken = default)
         {
-            return subscriptionResource.GetRackSkus().Get(rackSkuName, cancellationToken);
-        }
+            Argument.AssertNotNullOrEmpty(rackSkuName, nameof(rackSkuName));
 
-        /// <summary>
-        /// Get a list of bare metal machines in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>BareMetalMachines_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="BareMetalMachineResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<BareMetalMachineResource> GetBareMetalMachinesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetBareMetalMachinesAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of bare metal machines in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>BareMetalMachines_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="BareMetalMachineResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<BareMetalMachineResource> GetBareMetalMachines(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetBareMetalMachines(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of cloud services networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CloudServicesNetworks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CloudServicesNetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<CloudServicesNetworkResource> GetCloudServicesNetworksAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetCloudServicesNetworksAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of cloud services networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CloudServicesNetworks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CloudServicesNetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<CloudServicesNetworkResource> GetCloudServicesNetworks(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetCloudServicesNetworks(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of cluster managers in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ClusterManagers_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ClusterManagerResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<ClusterManagerResource> GetClusterManagersAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClusterManagersAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of cluster managers in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ClusterManagers_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ClusterManagerResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<ClusterManagerResource> GetClusterManagers(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClusterManagers(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of clusters in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Clusters_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ClusterResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<ClusterResource> GetClustersAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClustersAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of clusters in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Clusters_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ClusterResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<ClusterResource> GetClusters(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetClusters(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of Kubernetes clusters in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>KubernetesClusters_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="KubernetesClusterResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<KubernetesClusterResource> GetKubernetesClustersAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetKubernetesClustersAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of Kubernetes clusters in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>KubernetesClusters_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="KubernetesClusterResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<KubernetesClusterResource> GetKubernetesClusters(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetKubernetesClusters(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of layer 2 (L2) networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>L2Networks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="L2NetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<L2NetworkResource> GetL2NetworksAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL2NetworksAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of layer 2 (L2) networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>L2Networks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="L2NetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<L2NetworkResource> GetL2Networks(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL2Networks(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of layer 3 (L3) networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>L3Networks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="L3NetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<L3NetworkResource> GetL3NetworksAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL3NetworksAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a list of layer 3 (L3) networks in the provided subscription.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>L3Networks_ListBySubscription</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="L3NetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<L3NetworkResource> GetL3Networks(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
-        {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetL3Networks(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRackSku(rackSkuName, cancellationToken);
         }
 
         /// <summary>
@@ -1428,10 +5810,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RackResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<RackResource> GetRacksAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> An async collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Rack> GetRacksBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRacksAsync(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRacksBySubscriptionAsync(cancellationToken);
         }
 
         /// <summary>
@@ -1449,10 +5831,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RackResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<RackResource> GetRacks(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> A collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Rack> GetRacksBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRacks(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetRacksBySubscription(cancellationToken);
         }
 
         /// <summary>
@@ -1470,10 +5852,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StorageApplianceResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<StorageApplianceResource> GetStorageAppliancesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> An async collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<StorageAppliance> GetStorageAppliancesBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetStorageAppliancesAsync(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetStorageAppliancesBySubscriptionAsync(cancellationToken);
         }
 
         /// <summary>
@@ -1491,10 +5873,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StorageApplianceResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<StorageApplianceResource> GetStorageAppliances(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> A collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<StorageAppliance> GetStorageAppliancesBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetStorageAppliances(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetStorageAppliancesBySubscription(cancellationToken);
         }
 
         /// <summary>
@@ -1512,10 +5894,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="TrunkedNetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<TrunkedNetworkResource> GetTrunkedNetworksAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> An async collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<TrunkedNetwork> GetTrunkedNetworksBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetTrunkedNetworksAsync(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetTrunkedNetworksBySubscriptionAsync(cancellationToken);
         }
 
         /// <summary>
@@ -1533,10 +5915,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="TrunkedNetworkResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<TrunkedNetworkResource> GetTrunkedNetworks(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> A collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<TrunkedNetwork> GetTrunkedNetworksBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetTrunkedNetworks(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetTrunkedNetworksBySubscription(cancellationToken);
         }
 
         /// <summary>
@@ -1554,10 +5936,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="VirtualMachineResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<VirtualMachineResource> GetVirtualMachinesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> An async collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<VirtualMachine> GetVirtualMachinesBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVirtualMachinesAsync(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVirtualMachinesBySubscriptionAsync(cancellationToken);
         }
 
         /// <summary>
@@ -1575,10 +5957,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="VirtualMachineResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<VirtualMachineResource> GetVirtualMachines(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> A collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<VirtualMachine> GetVirtualMachinesBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVirtualMachines(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVirtualMachinesBySubscription(cancellationToken);
         }
 
         /// <summary>
@@ -1596,10 +5978,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="VolumeResource" /> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<VolumeResource> GetVolumesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> An async collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<Volume> GetVolumesBySubscriptionAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVolumesAsync(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVolumesBySubscriptionAsync(cancellationToken);
         }
 
         /// <summary>
@@ -1617,10 +5999,10 @@ namespace Azure.ResourceManager.NetworkCloud
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="VolumeResource" /> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<VolumeResource> GetVolumes(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <returns> A collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<Volume> GetVolumesBySubscription(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVolumes(cancellationToken);
+            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetVolumesBySubscription(cancellationToken);
         }
     }
 }

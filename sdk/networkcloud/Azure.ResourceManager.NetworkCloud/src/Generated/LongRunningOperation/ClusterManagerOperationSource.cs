@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class ClusterManagerOperationSource : IOperationSource<ClusterManagerResource>
+    internal class ClusterManagerOperationSource : IOperationSource<ClusterManager>
     {
-        private readonly ArmClient _client;
-
-        internal ClusterManagerOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        ClusterManagerResource IOperationSource<ClusterManagerResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        ClusterManager IOperationSource<ClusterManager>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = ClusterManagerData.DeserializeClusterManagerData(document.RootElement);
-            return new ClusterManagerResource(_client, data);
+            return ClusterManager.DeserializeClusterManager(document.RootElement);
         }
 
-        async ValueTask<ClusterManagerResource> IOperationSource<ClusterManagerResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<ClusterManager> IOperationSource<ClusterManager>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = ClusterManagerData.DeserializeClusterManagerData(document.RootElement);
-            return new ClusterManagerResource(_client, data);
+            return ClusterManager.DeserializeClusterManager(document.RootElement);
         }
     }
 }

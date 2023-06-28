@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of BareMetalMachineKeySetList. </summary>
         internal BareMetalMachineKeySetList()
         {
-            Value = new ChangeTrackingList<BareMetalMachineKeySetData>();
+            Value = new ChangeTrackingList<BareMetalMachineKeySet>();
         }
 
         /// <summary> Initializes a new instance of BareMetalMachineKeySetList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of bare metal machine key sets. </param>
-        internal BareMetalMachineKeySetList(string nextLink, IReadOnlyList<BareMetalMachineKeySetData> value)
+        internal BareMetalMachineKeySetList(string nextLink, IReadOnlyList<BareMetalMachineKeySet> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of bare metal machine key sets. </summary>
-        public IReadOnlyList<BareMetalMachineKeySetData> Value { get; }
+        public IReadOnlyList<BareMetalMachineKeySet> Value { get; }
     }
 }

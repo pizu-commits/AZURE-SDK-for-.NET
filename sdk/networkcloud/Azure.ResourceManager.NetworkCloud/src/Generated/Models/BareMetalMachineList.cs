@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of BareMetalMachineList. </summary>
         internal BareMetalMachineList()
         {
-            Value = new ChangeTrackingList<BareMetalMachineData>();
+            Value = new ChangeTrackingList<BareMetalMachine>();
         }
 
         /// <summary> Initializes a new instance of BareMetalMachineList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of bare metal machines. </param>
-        internal BareMetalMachineList(string nextLink, IReadOnlyList<BareMetalMachineData> value)
+        internal BareMetalMachineList(string nextLink, IReadOnlyList<BareMetalMachine> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of bare metal machines. </summary>
-        public IReadOnlyList<BareMetalMachineData> Value { get; }
+        public IReadOnlyList<BareMetalMachine> Value { get; }
     }
 }

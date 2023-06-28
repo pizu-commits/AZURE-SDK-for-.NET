@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class ClusterOperationSource : IOperationSource<ClusterResource>
+    internal class ClusterOperationSource : IOperationSource<Cluster>
     {
-        private readonly ArmClient _client;
-
-        internal ClusterOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        ClusterResource IOperationSource<ClusterResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        Cluster IOperationSource<Cluster>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = ClusterData.DeserializeClusterData(document.RootElement);
-            return new ClusterResource(_client, data);
+            return Cluster.DeserializeCluster(document.RootElement);
         }
 
-        async ValueTask<ClusterResource> IOperationSource<ClusterResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<Cluster> IOperationSource<Cluster>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = ClusterData.DeserializeClusterData(document.RootElement);
-            return new ClusterResource(_client, data);
+            return Cluster.DeserializeCluster(document.RootElement);
         }
     }
 }

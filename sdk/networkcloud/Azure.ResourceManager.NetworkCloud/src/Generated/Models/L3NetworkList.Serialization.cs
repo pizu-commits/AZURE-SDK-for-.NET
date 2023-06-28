@@ -8,7 +8,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -21,7 +20,7 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                 return null;
             }
             Optional<string> nextLink = default;
-            Optional<IReadOnlyList<L3NetworkData>> value = default;
+            Optional<IReadOnlyList<L3Network>> value = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("nextLink"u8))
@@ -35,10 +34,10 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                     {
                         continue;
                     }
-                    List<L3NetworkData> array = new List<L3NetworkData>();
+                    List<L3Network> array = new List<L3Network>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(L3NetworkData.DeserializeL3NetworkData(item));
+                        array.Add(L3Network.DeserializeL3Network(item));
                     }
                     value = array;
                     continue;

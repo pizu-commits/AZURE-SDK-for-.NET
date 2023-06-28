@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of BmcKeySetList. </summary>
         internal BmcKeySetList()
         {
-            Value = new ChangeTrackingList<BmcKeySetData>();
+            Value = new ChangeTrackingList<BmcKeySet>();
         }
 
         /// <summary> Initializes a new instance of BmcKeySetList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of baseboard management controller key sets. </param>
-        internal BmcKeySetList(string nextLink, IReadOnlyList<BmcKeySetData> value)
+        internal BmcKeySetList(string nextLink, IReadOnlyList<BmcKeySet> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of baseboard management controller key sets. </summary>
-        public IReadOnlyList<BmcKeySetData> Value { get; }
+        public IReadOnlyList<BmcKeySet> Value { get; }
     }
 }

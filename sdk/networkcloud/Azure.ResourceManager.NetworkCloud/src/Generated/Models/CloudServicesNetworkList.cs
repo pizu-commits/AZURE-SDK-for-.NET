@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of CloudServicesNetworkList. </summary>
         internal CloudServicesNetworkList()
         {
-            Value = new ChangeTrackingList<CloudServicesNetworkData>();
+            Value = new ChangeTrackingList<CloudServicesNetwork>();
         }
 
         /// <summary> Initializes a new instance of CloudServicesNetworkList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of cloud services networks. </param>
-        internal CloudServicesNetworkList(string nextLink, IReadOnlyList<CloudServicesNetworkData> value)
+        internal CloudServicesNetworkList(string nextLink, IReadOnlyList<CloudServicesNetwork> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of cloud services networks. </summary>
-        public IReadOnlyList<CloudServicesNetworkData> Value { get; }
+        public IReadOnlyList<CloudServicesNetwork> Value { get; }
     }
 }

@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of TrunkedNetworkList. </summary>
         internal TrunkedNetworkList()
         {
-            Value = new ChangeTrackingList<TrunkedNetworkData>();
+            Value = new ChangeTrackingList<TrunkedNetwork>();
         }
 
         /// <summary> Initializes a new instance of TrunkedNetworkList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of trunked networks. </param>
-        internal TrunkedNetworkList(string nextLink, IReadOnlyList<TrunkedNetworkData> value)
+        internal TrunkedNetworkList(string nextLink, IReadOnlyList<TrunkedNetwork> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of trunked networks. </summary>
-        public IReadOnlyList<TrunkedNetworkData> Value { get; }
+        public IReadOnlyList<TrunkedNetwork> Value { get; }
     }
 }

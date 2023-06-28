@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of AgentPoolList. </summary>
         internal AgentPoolList()
         {
-            Value = new ChangeTrackingList<AgentPoolData>();
+            Value = new ChangeTrackingList<AgentPool>();
         }
 
         /// <summary> Initializes a new instance of AgentPoolList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of agent pools. </param>
-        internal AgentPoolList(string nextLink, IReadOnlyList<AgentPoolData> value)
+        internal AgentPoolList(string nextLink, IReadOnlyList<AgentPool> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of agent pools. </summary>
-        public IReadOnlyList<AgentPoolData> Value { get; }
+        public IReadOnlyList<AgentPool> Value { get; }
     }
 }

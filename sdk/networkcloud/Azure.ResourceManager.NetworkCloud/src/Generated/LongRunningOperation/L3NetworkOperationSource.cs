@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class L3NetworkOperationSource : IOperationSource<L3NetworkResource>
+    internal class L3NetworkOperationSource : IOperationSource<L3Network>
     {
-        private readonly ArmClient _client;
-
-        internal L3NetworkOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        L3NetworkResource IOperationSource<L3NetworkResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        L3Network IOperationSource<L3Network>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = L3NetworkData.DeserializeL3NetworkData(document.RootElement);
-            return new L3NetworkResource(_client, data);
+            return L3Network.DeserializeL3Network(document.RootElement);
         }
 
-        async ValueTask<L3NetworkResource> IOperationSource<L3NetworkResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<L3Network> IOperationSource<L3Network>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = L3NetworkData.DeserializeL3NetworkData(document.RootElement);
-            return new L3NetworkResource(_client, data);
+            return L3Network.DeserializeL3Network(document.RootElement);
         }
     }
 }

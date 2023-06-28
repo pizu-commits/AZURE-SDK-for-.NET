@@ -146,7 +146,7 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<ConsoleData>> GetAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        public async Task<Response<Models.Console>> GetAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -159,13 +159,11 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 case 200:
                     {
-                        ConsoleData value = default;
+                        Models.Console value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = ConsoleData.DeserializeConsoleData(document.RootElement);
+                        value = Models.Console.DeserializeConsole(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
-                case 404:
-                    return Response.FromValue((ConsoleData)null, message.Response);
                 default:
                     throw new RequestFailedException(message.Response);
             }
@@ -179,7 +177,7 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<ConsoleData> Get(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        public Response<Models.Console> Get(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -192,19 +190,17 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 case 200:
                     {
-                        ConsoleData value = default;
+                        Models.Console value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = ConsoleData.DeserializeConsoleData(document.RootElement);
+                        value = Models.Console.DeserializeConsole(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
-                case 404:
-                    return Response.FromValue((ConsoleData)null, message.Response);
                 default:
                     throw new RequestFailedException(message.Response);
             }
         }
 
-        internal HttpMessage CreateCreateOrUpdateRequest(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsoleData data)
+        internal HttpMessage CreateCreateOrUpdateRequest(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, Models.Console consoleParameters)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -224,7 +220,7 @@ namespace Azure.ResourceManager.NetworkCloud
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
             var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(data);
+            content.JsonWriter.WriteObjectValue(consoleParameters);
             request.Content = content;
             _userAgent.Apply(message);
             return message;
@@ -235,19 +231,19 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
         /// <param name="consoleName"> The name of the virtual machine console. </param>
-        /// <param name="data"> The request body. </param>
+        /// <param name="consoleParameters"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="data"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="consoleParameters"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsoleData data, CancellationToken cancellationToken = default)
+        public async Task<Response> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
             Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
-            Argument.AssertNotNull(data, nameof(data));
+            Argument.AssertNotNull(consoleParameters, nameof(consoleParameters));
 
-            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, data);
+            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, consoleParameters);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
@@ -264,19 +260,19 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
         /// <param name="consoleName"> The name of the virtual machine console. </param>
-        /// <param name="data"> The request body. </param>
+        /// <param name="consoleParameters"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="data"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="consoleParameters"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response CreateOrUpdate(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsoleData data, CancellationToken cancellationToken = default)
+        public Response CreateOrUpdate(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
             Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
-            Argument.AssertNotNull(data, nameof(data));
+            Argument.AssertNotNull(consoleParameters, nameof(consoleParameters));
 
-            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, data);
+            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, consoleParameters);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
@@ -366,7 +362,7 @@ namespace Azure.ResourceManager.NetworkCloud
             }
         }
 
-        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatch patch)
+        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatchContent content)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -384,10 +380,13 @@ namespace Azure.ResourceManager.NetworkCloud
             uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(patch);
-            request.Content = content;
+            if (content != null)
+            {
+                request.Headers.Add("Content-Type", "application/json");
+                var content0 = new Utf8JsonRequestContent();
+                content0.JsonWriter.WriteObjectValue(content);
+                request.Content = content0;
+            }
             _userAgent.Apply(message);
             return message;
         }
@@ -397,19 +396,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
         /// <param name="consoleName"> The name of the virtual machine console. </param>
-        /// <param name="patch"> The request body. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> UpdateAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatch patch, CancellationToken cancellationToken = default)
+        public async Task<Response> UpdateAsync(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
             Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
-            Argument.AssertNotNull(patch, nameof(patch));
 
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
@@ -426,19 +424,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
         /// <param name="consoleName"> The name of the virtual machine console. </param>
-        /// <param name="patch"> The request body. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/>, <paramref name="consoleName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="virtualMachineName"/> or <paramref name="consoleName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response Update(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatch patch, CancellationToken cancellationToken = default)
+        public Response Update(string subscriptionId, string resourceGroupName, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
             Argument.AssertNotNullOrEmpty(consoleName, nameof(consoleName));
-            Argument.AssertNotNull(patch, nameof(patch));
 
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, virtualMachineName, consoleName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {

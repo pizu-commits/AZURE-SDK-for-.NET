@@ -7,7 +7,6 @@
 
 using System.Collections.Generic;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -17,13 +16,13 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> Initializes a new instance of L2NetworkList. </summary>
         internal L2NetworkList()
         {
-            Value = new ChangeTrackingList<L2NetworkData>();
+            Value = new ChangeTrackingList<L2Network>();
         }
 
         /// <summary> Initializes a new instance of L2NetworkList. </summary>
         /// <param name="nextLink"> The link used to get the next page of operations. </param>
         /// <param name="value"> The list of L2 networks. </param>
-        internal L2NetworkList(string nextLink, IReadOnlyList<L2NetworkData> value)
+        internal L2NetworkList(string nextLink, IReadOnlyList<L2Network> value)
         {
             NextLink = nextLink;
             Value = value;
@@ -32,6 +31,6 @@ namespace Azure.ResourceManager.NetworkCloud.Models
         /// <summary> The link used to get the next page of operations. </summary>
         public string NextLink { get; }
         /// <summary> The list of L2 networks. </summary>
-        public IReadOnlyList<L2NetworkData> Value { get; }
+        public IReadOnlyList<L2Network> Value { get; }
     }
 }

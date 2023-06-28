@@ -5,14 +5,55 @@
 
 #nullable disable
 
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Azure;
 using Azure.Core;
+using Azure.Core.Pipeline;
 using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
     /// <summary> A class to add extension methods to ResourceGroupResource. </summary>
     internal partial class ResourceGroupResourceExtensionClient : ArmResource
     {
+        private ClientDiagnostics _bareMetalMachinesClientDiagnostics;
+        private BareMetalMachinesRestOperations _bareMetalMachinesRestClient;
+        private ClientDiagnostics _cloudServicesNetworksClientDiagnostics;
+        private CloudServicesNetworksRestOperations _cloudServicesNetworksRestClient;
+        private ClientDiagnostics _clusterManagersClientDiagnostics;
+        private ClusterManagersRestOperations _clusterManagersRestClient;
+        private ClientDiagnostics _clustersClientDiagnostics;
+        private ClustersRestOperations _clustersRestClient;
+        private ClientDiagnostics _kubernetesClustersClientDiagnostics;
+        private KubernetesClustersRestOperations _kubernetesClustersRestClient;
+        private ClientDiagnostics _l2NetworksClientDiagnostics;
+        private L2NetworksRestOperations _l2NetworksRestClient;
+        private ClientDiagnostics _l3NetworksClientDiagnostics;
+        private L3NetworksRestOperations _l3NetworksRestClient;
+        private ClientDiagnostics _racksClientDiagnostics;
+        private RacksRestOperations _racksRestClient;
+        private ClientDiagnostics _storageAppliancesClientDiagnostics;
+        private StorageAppliancesRestOperations _storageAppliancesRestClient;
+        private ClientDiagnostics _trunkedNetworksClientDiagnostics;
+        private TrunkedNetworksRestOperations _trunkedNetworksRestClient;
+        private ClientDiagnostics _virtualMachinesClientDiagnostics;
+        private VirtualMachinesRestOperations _virtualMachinesRestClient;
+        private ClientDiagnostics _volumesClientDiagnostics;
+        private VolumesRestOperations _volumesRestClient;
+        private ClientDiagnostics _bareMetalMachineKeySetsClientDiagnostics;
+        private BareMetalMachineKeySetsRestOperations _bareMetalMachineKeySetsRestClient;
+        private ClientDiagnostics _bmcKeySetsClientDiagnostics;
+        private BmcKeySetsRestOperations _bmcKeySetsRestClient;
+        private ClientDiagnostics _metricsConfigurationsClientDiagnostics;
+        private MetricsConfigurationsRestOperations _metricsConfigurationsRestClient;
+        private ClientDiagnostics _agentPoolsClientDiagnostics;
+        private AgentPoolsRestOperations _agentPoolsRestClient;
+        private ClientDiagnostics _consolesClientDiagnostics;
+        private ConsolesRestOperations _consolesRestClient;
+
         /// <summary> Initializes a new instance of the <see cref="ResourceGroupResourceExtensionClient"/> class for mocking. </summary>
         protected ResourceGroupResourceExtensionClient()
         {
@@ -25,94 +66,6709 @@ namespace Azure.ResourceManager.NetworkCloud
         {
         }
 
+        private ClientDiagnostics BareMetalMachinesClientDiagnostics => _bareMetalMachinesClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private BareMetalMachinesRestOperations BareMetalMachinesRestClient => _bareMetalMachinesRestClient ??= new BareMetalMachinesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics CloudServicesNetworksClientDiagnostics => _cloudServicesNetworksClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private CloudServicesNetworksRestOperations CloudServicesNetworksRestClient => _cloudServicesNetworksRestClient ??= new CloudServicesNetworksRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics ClusterManagersClientDiagnostics => _clusterManagersClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private ClusterManagersRestOperations ClusterManagersRestClient => _clusterManagersRestClient ??= new ClusterManagersRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics ClustersClientDiagnostics => _clustersClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private ClustersRestOperations ClustersRestClient => _clustersRestClient ??= new ClustersRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics KubernetesClustersClientDiagnostics => _kubernetesClustersClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private KubernetesClustersRestOperations KubernetesClustersRestClient => _kubernetesClustersRestClient ??= new KubernetesClustersRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics L2NetworksClientDiagnostics => _l2NetworksClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private L2NetworksRestOperations L2NetworksRestClient => _l2NetworksRestClient ??= new L2NetworksRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics L3NetworksClientDiagnostics => _l3NetworksClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private L3NetworksRestOperations L3NetworksRestClient => _l3NetworksRestClient ??= new L3NetworksRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics RacksClientDiagnostics => _racksClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private RacksRestOperations RacksRestClient => _racksRestClient ??= new RacksRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics StorageAppliancesClientDiagnostics => _storageAppliancesClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private StorageAppliancesRestOperations StorageAppliancesRestClient => _storageAppliancesRestClient ??= new StorageAppliancesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics TrunkedNetworksClientDiagnostics => _trunkedNetworksClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private TrunkedNetworksRestOperations TrunkedNetworksRestClient => _trunkedNetworksRestClient ??= new TrunkedNetworksRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics VirtualMachinesClientDiagnostics => _virtualMachinesClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private VirtualMachinesRestOperations VirtualMachinesRestClient => _virtualMachinesRestClient ??= new VirtualMachinesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics VolumesClientDiagnostics => _volumesClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private VolumesRestOperations VolumesRestClient => _volumesRestClient ??= new VolumesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics BareMetalMachineKeySetsClientDiagnostics => _bareMetalMachineKeySetsClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private BareMetalMachineKeySetsRestOperations BareMetalMachineKeySetsRestClient => _bareMetalMachineKeySetsRestClient ??= new BareMetalMachineKeySetsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics BmcKeySetsClientDiagnostics => _bmcKeySetsClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private BmcKeySetsRestOperations BmcKeySetsRestClient => _bmcKeySetsRestClient ??= new BmcKeySetsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics MetricsConfigurationsClientDiagnostics => _metricsConfigurationsClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private MetricsConfigurationsRestOperations MetricsConfigurationsRestClient => _metricsConfigurationsRestClient ??= new MetricsConfigurationsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics AgentPoolsClientDiagnostics => _agentPoolsClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private AgentPoolsRestOperations AgentPoolsRestClient => _agentPoolsRestClient ??= new AgentPoolsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+        private ClientDiagnostics ConsolesClientDiagnostics => _consolesClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.NetworkCloud", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private ConsolesRestOperations ConsolesRestClient => _consolesRestClient ??= new ConsolesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
+
         private string GetApiVersionOrNull(ResourceType resourceType)
         {
             TryGetApiVersion(resourceType, out string apiVersion);
             return apiVersion;
         }
 
-        /// <summary> Gets a collection of BareMetalMachineResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of BareMetalMachineResources and their operations over a BareMetalMachineResource. </returns>
-        public virtual BareMetalMachineCollection GetBareMetalMachines()
+        /// <summary>
+        /// Get a list of bare metal machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<BareMetalMachine> GetBareMetalMachinesByResourceGroupAsync(CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new BareMetalMachineCollection(Client, Id));
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BareMetalMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BareMetalMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, BareMetalMachine.DeserializeBareMetalMachine, BareMetalMachinesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBareMetalMachinesByResourceGroup", "value", "nextLink", cancellationToken);
         }
 
-        /// <summary> Gets a collection of CloudServicesNetworkResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of CloudServicesNetworkResources and their operations over a CloudServicesNetworkResource. </returns>
-        public virtual CloudServicesNetworkCollection GetCloudServicesNetworks()
+        /// <summary>
+        /// Get a list of bare metal machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="BareMetalMachine" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<BareMetalMachine> GetBareMetalMachinesByResourceGroup(CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new CloudServicesNetworkCollection(Client, Id));
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BareMetalMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BareMetalMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, BareMetalMachine.DeserializeBareMetalMachine, BareMetalMachinesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBareMetalMachinesByResourceGroup", "value", "nextLink", cancellationToken);
         }
 
-        /// <summary> Gets a collection of ClusterManagerResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of ClusterManagerResources and their operations over a ClusterManagerResource. </returns>
-        public virtual ClusterManagerCollection GetClusterManagers()
+        /// <summary>
+        /// Get properties of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<BareMetalMachine>> GetBareMetalMachineAsync(string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new ClusterManagerCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of ClusterResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of ClusterResources and their operations over a ClusterResource. </returns>
-        public virtual ClusterCollection GetClusters()
+        /// <summary>
+        /// Get properties of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<BareMetalMachine> GetBareMetalMachine(string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new ClusterCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of KubernetesClusterResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of KubernetesClusterResources and their operations over a KubernetesClusterResource. </returns>
-        public virtual KubernetesClusterCollection GetKubernetesClusters()
+        /// <summary>
+        /// Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<BareMetalMachine>> UpdateBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePatchContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new KubernetesClusterCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<BareMetalMachine>(new BareMetalMachineOperationSource(), BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of L2NetworkResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of L2NetworkResources and their operations over a L2NetworkResource. </returns>
-        public virtual L2NetworkCollection GetL2Networks()
+        /// <summary>
+        /// Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<BareMetalMachine> UpdateBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePatchContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new L2NetworkCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<BareMetalMachine>(new BareMetalMachineOperationSource(), BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of L3NetworkResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of L3NetworkResources and their operations over a L3NetworkResource. </returns>
-        public virtual L3NetworkCollection GetL3Networks()
+        /// <summary>
+        /// Cordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Cordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> CordonBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new L3NetworkCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CordonBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.CordonAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateCordonRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of RackResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of RackResources and their operations over a RackResource. </returns>
-        public virtual RackCollection GetRacks()
+        /// <summary>
+        /// Cordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Cordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation CordonBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new RackCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CordonBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Cordon(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateCordonRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of StorageApplianceResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of StorageApplianceResources and their operations over a StorageApplianceResource. </returns>
-        public virtual StorageApplianceCollection GetStorageAppliances()
+        /// <summary>
+        /// Power off the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> PowerOffBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new StorageApplianceCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.PowerOffBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.PowerOffAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreatePowerOffRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of TrunkedNetworkResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of TrunkedNetworkResources and their operations over a TrunkedNetworkResource. </returns>
-        public virtual TrunkedNetworkCollection GetTrunkedNetworks()
+        /// <summary>
+        /// Power off the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation PowerOffBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new TrunkedNetworkCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.PowerOffBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.PowerOff(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreatePowerOffRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of VirtualMachineResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of VirtualMachineResources and their operations over a VirtualMachineResource. </returns>
-        public virtual VirtualMachineCollection GetVirtualMachines()
+        /// <summary>
+        /// Reimage the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> ReimageBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new VirtualMachineCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReimageBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.ReimageAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateReimageRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
 
-        /// <summary> Gets a collection of VolumeResources in the ResourceGroupResource. </summary>
-        /// <returns> An object representing collection of VolumeResources and their operations over a VolumeResource. </returns>
-        public virtual VolumeCollection GetVolumes()
+        /// <summary>
+        /// Reimage the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation ReimageBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            return GetCachedClient(Client => new VolumeCollection(Client, Id));
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReimageBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Reimage(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateReimageRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Replace the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Replace</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> ReplaceBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReplaceBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.ReplaceAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateReplaceRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Replace the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Replace</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation ReplaceBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReplaceBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Replace(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateReplaceRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RestartBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.RestartAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRestartRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RestartBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Restart(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRestartRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunCommand</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RunCommandBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunCommandBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.RunCommandAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunCommandRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunCommand</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RunCommandBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunCommandBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.RunCommand(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunCommandRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunDataExtracts</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RunDataExtractsBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunDataExtractsBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.RunDataExtractsAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunDataExtractsRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunDataExtracts</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RunDataExtractsBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunDataExtractsBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.RunDataExtracts(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunDataExtractsRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RunReadCommandsBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunReadCommandsBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.RunReadCommandsAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunReadCommandsRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RunReadCommandsBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunReadCommandsBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.RunReadCommands(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateRunReadCommandsRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Start the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> StartBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.StartBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.StartAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateStartRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Start the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation StartBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.StartBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Start(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateStartRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Uncordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Uncordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> UncordonBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UncordonBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.UncordonAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateUncordonRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Uncordon the provided bare metal machine's Kubernetes node.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_Uncordon</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation UncordonBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UncordonBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.Uncordon(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateUncordonRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Validate the hardware of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/validateHardware</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ValidateHardware</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> ValidateHardwareBareMetalMachineAsync(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineValidateHardwareContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ValidateHardwareBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachinesRestClient.ValidateHardwareAsync(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateValidateHardwareRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Validate the hardware of the provided bare metal machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/validateHardware</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachines_ValidateHardware</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="bareMetalMachineName"> The name of the bare metal machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation ValidateHardwareBareMetalMachine(WaitUntil waitUntil, string bareMetalMachineName, BareMetalMachineValidateHardwareContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ValidateHardwareBareMetalMachine");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachinesRestClient.ValidateHardware(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachinesClientDiagnostics, Pipeline, BareMetalMachinesRestClient.CreateValidateHardwareRequest(Id.SubscriptionId, Id.ResourceGroupName, bareMetalMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<CloudServicesNetwork> GetCloudServicesNetworksByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CloudServicesNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CloudServicesNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, CloudServicesNetwork.DeserializeCloudServicesNetwork, CloudServicesNetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetCloudServicesNetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cloud services networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="CloudServicesNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<CloudServicesNetwork> GetCloudServicesNetworksByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CloudServicesNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CloudServicesNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, CloudServicesNetwork.DeserializeCloudServicesNetwork, CloudServicesNetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetCloudServicesNetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<CloudServicesNetwork>> GetCloudServicesNetworkAsync(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = await CloudServicesNetworksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<CloudServicesNetwork> GetCloudServicesNetwork(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = CloudServicesNetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cloud services network or update the properties of the existing cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cloudServicesNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<CloudServicesNetwork>> CreateOrUpdateCloudServicesNetworkAsync(WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetwork cloudServicesNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = await CloudServicesNetworksRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<CloudServicesNetwork>(new CloudServicesNetworkOperationSource(), CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cloud services network or update the properties of the existing cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cloudServicesNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<CloudServicesNetwork> CreateOrUpdateCloudServicesNetwork(WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetwork cloudServicesNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = CloudServicesNetworksRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<CloudServicesNetwork>(new CloudServicesNetworkOperationSource(), CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cloudServicesNetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteCloudServicesNetworkAsync(WaitUntil waitUntil, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = await CloudServicesNetworksRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cloud services network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteCloudServicesNetwork(WaitUntil waitUntil, string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = CloudServicesNetworksRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<CloudServicesNetwork>> UpdateCloudServicesNetworkAsync(WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = await CloudServicesNetworksRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<CloudServicesNetwork>(new CloudServicesNetworkOperationSource(), CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<CloudServicesNetwork> UpdateCloudServicesNetwork(WaitUntil waitUntil, string cloudServicesNetworkName, CloudServicesNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = CloudServicesNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateCloudServicesNetwork");
+            scope.Start();
+            try
+            {
+                var response = CloudServicesNetworksRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<CloudServicesNetwork>(new CloudServicesNetworkOperationSource(), CloudServicesNetworksClientDiagnostics, Pipeline, CloudServicesNetworksRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<ClusterManager> GetClusterManagersByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ClusterManagersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ClusterManagersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, ClusterManager.DeserializeClusterManager, ClusterManagersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetClusterManagersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of cluster managers in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ClusterManager" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<ClusterManager> GetClusterManagersByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ClusterManagersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ClusterManagersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, ClusterManager.DeserializeClusterManager, ClusterManagersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetClusterManagersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get the properties of the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<ClusterManager>> GetClusterManagerAsync(string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetClusterManager");
+            scope.Start();
+            try
+            {
+                var response = await ClusterManagersRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get the properties of the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<ClusterManager> GetClusterManager(string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetClusterManager");
+            scope.Start();
+            try
+            {
+                var response = ClusterManagersRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cluster manager or update properties of the cluster manager if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="clusterManagerParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<ClusterManager>> CreateOrUpdateClusterManagerAsync(WaitUntil waitUntil, string clusterManagerName, ClusterManager clusterManagerParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateClusterManager");
+            scope.Start();
+            try
+            {
+                var response = await ClusterManagersRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, clusterManagerParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<ClusterManager>(new ClusterManagerOperationSource(), ClusterManagersClientDiagnostics, Pipeline, ClusterManagersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, clusterManagerParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cluster manager or update properties of the cluster manager if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="clusterManagerParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<ClusterManager> CreateOrUpdateClusterManager(WaitUntil waitUntil, string clusterManagerName, ClusterManager clusterManagerParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateClusterManager");
+            scope.Start();
+            try
+            {
+                var response = ClusterManagersRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, clusterManagerParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<ClusterManager>(new ClusterManagerOperationSource(), ClusterManagersClientDiagnostics, Pipeline, ClusterManagersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, clusterManagerParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteClusterManagerAsync(WaitUntil waitUntil, string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteClusterManager");
+            scope.Start();
+            try
+            {
+                var response = await ClusterManagersRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(ClusterManagersClientDiagnostics, Pipeline, ClusterManagersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cluster manager.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteClusterManager(WaitUntil waitUntil, string clusterManagerName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteClusterManager");
+            scope.Start();
+            try
+            {
+                var response = ClusterManagersRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(ClusterManagersClientDiagnostics, Pipeline, ClusterManagersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<ClusterManager>> UpdateClusterManagerAsync(string clusterManagerName, ClusterManagerPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateClusterManager");
+            scope.Start();
+            try
+            {
+                var response = await ClusterManagersRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ClusterManagers_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterManagerName"> The name of the cluster manager. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<ClusterManager> UpdateClusterManager(string clusterManagerName, ClusterManagerPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClusterManagersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateClusterManager");
+            scope.Start();
+            try
+            {
+                var response = ClusterManagersRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, clusterManagerName, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<Cluster> GetClustersByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, Cluster.DeserializeCluster, ClustersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetClustersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Cluster" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<Cluster> GetClustersByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, Cluster.DeserializeCluster, ClustersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetClustersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<Cluster>> GetClusterAsync(string clusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<Cluster> GetCluster(string clusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, clusterName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cluster or update the properties of the cluster if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="clusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Cluster>> CreateOrUpdateClusterAsync(WaitUntil waitUntil, string clusterName, Cluster clusterParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, clusterParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Cluster>(new ClusterOperationSource(), ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, clusterParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new cluster or update the properties of the cluster if it exists.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="clusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Cluster> CreateOrUpdateCluster(WaitUntil waitUntil, string clusterName, Cluster clusterParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, clusterName, clusterParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Cluster>(new ClusterOperationSource(), ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, clusterParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteClusterAsync(WaitUntil waitUntil, string clusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteCluster(WaitUntil waitUntil, string clusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, clusterName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Cluster>> UpdateClusterAsync(WaitUntil waitUntil, string clusterName, ClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Cluster>(new ClusterOperationSource(), ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Cluster> UpdateCluster(WaitUntil waitUntil, string clusterName, ClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Cluster>(new ClusterOperationSource(), ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deploy the cluster to the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Deploy</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeployClusterAsync(WaitUntil waitUntil, string clusterName, ClusterDeployContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeployCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.DeployAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateDeployRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deploy the cluster to the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_Deploy</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeployCluster(WaitUntil waitUntil, string clusterName, ClusterDeployContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeployCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.Deploy(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateDeployRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update the version of the provided cluster to one of the available supported versions.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_UpdateVersion</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> UpdateVersionClusterAsync(WaitUntil waitUntil, string clusterName, ClusterUpdateVersionContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVersionCluster");
+            scope.Start();
+            try
+            {
+                var response = await ClustersRestClient.UpdateVersionAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateUpdateVersionRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update the version of the provided cluster to one of the available supported versions.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Clusters_UpdateVersion</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation UpdateVersionCluster(WaitUntil waitUntil, string clusterName, ClusterUpdateVersionContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = ClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVersionCluster");
+            scope.Start();
+            try
+            {
+                var response = ClustersRestClient.UpdateVersion(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(ClustersClientDiagnostics, Pipeline, ClustersRestClient.CreateUpdateVersionRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<KubernetesCluster> GetKubernetesClustersByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => KubernetesClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => KubernetesClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, KubernetesCluster.DeserializeKubernetesCluster, KubernetesClustersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetKubernetesClustersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of Kubernetes clusters in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="KubernetesCluster" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<KubernetesCluster> GetKubernetesClustersByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => KubernetesClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => KubernetesClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, KubernetesCluster.DeserializeKubernetesCluster, KubernetesClustersClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetKubernetesClustersByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided the Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<KubernetesCluster>> GetKubernetesClusterAsync(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = await KubernetesClustersRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided the Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<KubernetesCluster> GetKubernetesCluster(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = KubernetesClustersRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="kubernetesClusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<KubernetesCluster>> CreateOrUpdateKubernetesClusterAsync(WaitUntil waitUntil, string kubernetesClusterName, KubernetesCluster kubernetesClusterParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = await KubernetesClustersRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, kubernetesClusterParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<KubernetesCluster>(new KubernetesClusterOperationSource(), KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, kubernetesClusterParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="kubernetesClusterParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<KubernetesCluster> CreateOrUpdateKubernetesCluster(WaitUntil waitUntil, string kubernetesClusterName, KubernetesCluster kubernetesClusterParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = KubernetesClustersRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, kubernetesClusterParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<KubernetesCluster>(new KubernetesClusterOperationSource(), KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, kubernetesClusterParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteKubernetesClusterAsync(WaitUntil waitUntil, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = await KubernetesClustersRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteKubernetesCluster(WaitUntil waitUntil, string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = KubernetesClustersRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<KubernetesCluster>> UpdateKubernetesClusterAsync(WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = await KubernetesClustersRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<KubernetesCluster>(new KubernetesClusterOperationSource(), KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<KubernetesCluster> UpdateKubernetesCluster(WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = KubernetesClustersRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<KubernetesCluster>(new KubernetesClusterOperationSource(), KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart a targeted node of a Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_RestartNode</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RestartNodeKubernetesClusterAsync(WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterRestartNodeContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartNodeKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = await KubernetesClustersRestClient.RestartNodeAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateRestartNodeRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart a targeted node of a Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_RestartNode</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RestartNodeKubernetesCluster(WaitUntil waitUntil, string kubernetesClusterName, KubernetesClusterRestartNodeContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = KubernetesClustersClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartNodeKubernetesCluster");
+            scope.Start();
+            try
+            {
+                var response = KubernetesClustersRestClient.RestartNode(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(KubernetesClustersClientDiagnostics, Pipeline, KubernetesClustersRestClient.CreateRestartNodeRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<L2Network> GetL2NetworksByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => L2NetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => L2NetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, L2Network.DeserializeL2Network, L2NetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetL2NetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 2 (L2) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L2Network" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<L2Network> GetL2NetworksByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => L2NetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => L2NetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, L2Network.DeserializeL2Network, L2NetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetL2NetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<L2Network>> GetL2NetworkAsync(string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetL2Network");
+            scope.Start();
+            try
+            {
+                var response = await L2NetworksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<L2Network> GetL2Network(string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetL2Network");
+            scope.Start();
+            try
+            {
+                var response = L2NetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new layer 2 (L2) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="l2NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<L2Network>> CreateOrUpdateL2NetworkAsync(WaitUntil waitUntil, string l2NetworkName, L2Network l2NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateL2Network");
+            scope.Start();
+            try
+            {
+                var response = await L2NetworksRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, l2NetworkParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<L2Network>(new L2NetworkOperationSource(), L2NetworksClientDiagnostics, Pipeline, L2NetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, l2NetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new layer 2 (L2) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="l2NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<L2Network> CreateOrUpdateL2Network(WaitUntil waitUntil, string l2NetworkName, L2Network l2NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateL2Network");
+            scope.Start();
+            try
+            {
+                var response = L2NetworksRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, l2NetworkParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<L2Network>(new L2NetworkOperationSource(), L2NetworksClientDiagnostics, Pipeline, L2NetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, l2NetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteL2NetworkAsync(WaitUntil waitUntil, string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteL2Network");
+            scope.Start();
+            try
+            {
+                var response = await L2NetworksRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(L2NetworksClientDiagnostics, Pipeline, L2NetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteL2Network(WaitUntil waitUntil, string l2NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteL2Network");
+            scope.Start();
+            try
+            {
+                var response = L2NetworksRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(L2NetworksClientDiagnostics, Pipeline, L2NetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<L2Network>> UpdateL2NetworkAsync(string l2NetworkName, L2NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateL2Network");
+            scope.Start();
+            try
+            {
+                var response = await L2NetworksRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 2 (L2) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L2Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l2NetworkName"> The name of the L2 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<L2Network> UpdateL2Network(string l2NetworkName, L2NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = L2NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateL2Network");
+            scope.Start();
+            try
+            {
+                var response = L2NetworksRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, l2NetworkName, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<L3Network> GetL3NetworksByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => L3NetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => L3NetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, L3Network.DeserializeL3Network, L3NetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetL3NetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of layer 3 (L3) networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="L3Network" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<L3Network> GetL3NetworksByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => L3NetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => L3NetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, L3Network.DeserializeL3Network, L3NetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetL3NetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<L3Network>> GetL3NetworkAsync(string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetL3Network");
+            scope.Start();
+            try
+            {
+                var response = await L3NetworksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<L3Network> GetL3Network(string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetL3Network");
+            scope.Start();
+            try
+            {
+                var response = L3NetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new layer 3 (L3) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="l3NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<L3Network>> CreateOrUpdateL3NetworkAsync(WaitUntil waitUntil, string l3NetworkName, L3Network l3NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateL3Network");
+            scope.Start();
+            try
+            {
+                var response = await L3NetworksRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, l3NetworkParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<L3Network>(new L3NetworkOperationSource(), L3NetworksClientDiagnostics, Pipeline, L3NetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, l3NetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new layer 3 (L3) network or update the properties of the existing network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="l3NetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<L3Network> CreateOrUpdateL3Network(WaitUntil waitUntil, string l3NetworkName, L3Network l3NetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateL3Network");
+            scope.Start();
+            try
+            {
+                var response = L3NetworksRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, l3NetworkParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<L3Network>(new L3NetworkOperationSource(), L3NetworksClientDiagnostics, Pipeline, L3NetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, l3NetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteL3NetworkAsync(WaitUntil waitUntil, string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteL3Network");
+            scope.Start();
+            try
+            {
+                var response = await L3NetworksRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(L3NetworksClientDiagnostics, Pipeline, L3NetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteL3Network(WaitUntil waitUntil, string l3NetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteL3Network");
+            scope.Start();
+            try
+            {
+                var response = L3NetworksRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(L3NetworksClientDiagnostics, Pipeline, L3NetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<L3Network>> UpdateL3NetworkAsync(string l3NetworkName, L3NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateL3Network");
+            scope.Start();
+            try
+            {
+                var response = await L3NetworksRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided layer 3 (L3) network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>L3Networks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="l3NetworkName"> The name of the L3 network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<L3Network> UpdateL3Network(string l3NetworkName, L3NetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = L3NetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateL3Network");
+            scope.Start();
+            try
+            {
+                var response = L3NetworksRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, l3NetworkName, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of racks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<Rack> GetRacksByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => RacksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => RacksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, Rack.DeserializeRack, RacksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetRacksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of racks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Rack" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<Rack> GetRacksByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => RacksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => RacksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, Rack.DeserializeRack, RacksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetRacksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<Rack>> GetRackAsync(string rackName, CancellationToken cancellationToken = default)
+        {
+            using var scope = RacksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetRack");
+            scope.Start();
+            try
+            {
+                var response = await RacksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, rackName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided rack.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<Rack> GetRack(string rackName, CancellationToken cancellationToken = default)
+        {
+            using var scope = RacksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetRack");
+            scope.Start();
+            try
+            {
+                var response = RacksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, rackName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Rack>> UpdateRackAsync(WaitUntil waitUntil, string rackName, RackPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = RacksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateRack");
+            scope.Start();
+            try
+            {
+                var response = await RacksRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, rackName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Rack>(new RackOperationSource(), RacksClientDiagnostics, Pipeline, RacksRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, rackName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Racks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="rackName"> The name of the rack. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Rack> UpdateRack(WaitUntil waitUntil, string rackName, RackPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = RacksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateRack");
+            scope.Start();
+            try
+            {
+                var response = RacksRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, rackName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Rack>(new RackOperationSource(), RacksClientDiagnostics, Pipeline, RacksRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, rackName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of storage appliances in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<StorageAppliance> GetStorageAppliancesByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => StorageAppliancesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => StorageAppliancesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, StorageAppliance.DeserializeStorageAppliance, StorageAppliancesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetStorageAppliancesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of storage appliances in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="StorageAppliance" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<StorageAppliance> GetStorageAppliancesByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => StorageAppliancesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => StorageAppliancesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, StorageAppliance.DeserializeStorageAppliance, StorageAppliancesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetStorageAppliancesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<StorageAppliance>> GetStorageApplianceAsync(string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = await StorageAppliancesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<StorageAppliance> GetStorageAppliance(string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = StorageAppliancesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<StorageAppliance>> UpdateStorageApplianceAsync(WaitUntil waitUntil, string storageApplianceName, StorageAppliancePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = await StorageAppliancesRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<StorageAppliance>(new StorageApplianceOperationSource(), StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<StorageAppliance> UpdateStorageAppliance(WaitUntil waitUntil, string storageApplianceName, StorageAppliancePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = StorageAppliancesRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<StorageAppliance>(new StorageApplianceOperationSource(), StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Disable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_DisableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DisableRemoteVendorManagementStorageApplianceAsync(WaitUntil waitUntil, string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DisableRemoteVendorManagementStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = await StorageAppliancesRestClient.DisableRemoteVendorManagementAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateDisableRemoteVendorManagementRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Disable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_DisableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DisableRemoteVendorManagementStorageAppliance(WaitUntil waitUntil, string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DisableRemoteVendorManagementStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = StorageAppliancesRestClient.DisableRemoteVendorManagement(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateDisableRemoteVendorManagementRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Enable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_EnableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> EnableRemoteVendorManagementStorageApplianceAsync(WaitUntil waitUntil, string storageApplianceName, StorageApplianceEnableRemoteVendorManagementContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.EnableRemoteVendorManagementStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = await StorageAppliancesRestClient.EnableRemoteVendorManagementAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateEnableRemoteVendorManagementRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Enable remote vendor management of the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_EnableRemoteVendorManagement</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation EnableRemoteVendorManagementStorageAppliance(WaitUntil waitUntil, string storageApplianceName, StorageApplianceEnableRemoteVendorManagementContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.EnableRemoteVendorManagementStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = StorageAppliancesRestClient.EnableRemoteVendorManagement(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateEnableRemoteVendorManagementRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run and retrieve output from read only commands on the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RunReadCommandsStorageApplianceAsync(WaitUntil waitUntil, string storageApplianceName, StorageApplianceRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunReadCommandsStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = await StorageAppliancesRestClient.RunReadCommandsAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateRunReadCommandsRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Run and retrieve output from read only commands on the provided storage appliance.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_RunReadCommands</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RunReadCommandsStorageAppliance(WaitUntil waitUntil, string storageApplianceName, StorageApplianceRunReadCommandsContent content, CancellationToken cancellationToken = default)
+        {
+            using var scope = StorageAppliancesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RunReadCommandsStorageAppliance");
+            scope.Start();
+            try
+            {
+                var response = StorageAppliancesRestClient.RunReadCommands(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(StorageAppliancesClientDiagnostics, Pipeline, StorageAppliancesRestClient.CreateRunReadCommandsRequest(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of trunked networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<TrunkedNetwork> GetTrunkedNetworksByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => TrunkedNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => TrunkedNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, TrunkedNetwork.DeserializeTrunkedNetwork, TrunkedNetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetTrunkedNetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of trunked networks in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="TrunkedNetwork" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<TrunkedNetwork> GetTrunkedNetworksByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => TrunkedNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => TrunkedNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, TrunkedNetwork.DeserializeTrunkedNetwork, TrunkedNetworksClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetTrunkedNetworksByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<TrunkedNetwork>> GetTrunkedNetworkAsync(string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = await TrunkedNetworksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<TrunkedNetwork> GetTrunkedNetwork(string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = TrunkedNetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new trunked network or update the properties of the existing trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="trunkedNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<TrunkedNetwork>> CreateOrUpdateTrunkedNetworkAsync(WaitUntil waitUntil, string trunkedNetworkName, TrunkedNetwork trunkedNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = await TrunkedNetworksRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, trunkedNetworkParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<TrunkedNetwork>(new TrunkedNetworkOperationSource(), TrunkedNetworksClientDiagnostics, Pipeline, TrunkedNetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, trunkedNetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new trunked network or update the properties of the existing trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="trunkedNetworkParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<TrunkedNetwork> CreateOrUpdateTrunkedNetwork(WaitUntil waitUntil, string trunkedNetworkName, TrunkedNetwork trunkedNetworkParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = TrunkedNetworksRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, trunkedNetworkParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<TrunkedNetwork>(new TrunkedNetworkOperationSource(), TrunkedNetworksClientDiagnostics, Pipeline, TrunkedNetworksRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, trunkedNetworkParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteTrunkedNetworkAsync(WaitUntil waitUntil, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = await TrunkedNetworksRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(TrunkedNetworksClientDiagnostics, Pipeline, TrunkedNetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteTrunkedNetwork(WaitUntil waitUntil, string trunkedNetworkName, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = TrunkedNetworksRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(TrunkedNetworksClientDiagnostics, Pipeline, TrunkedNetworksRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<TrunkedNetwork>> UpdateTrunkedNetworkAsync(string trunkedNetworkName, TrunkedNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = await TrunkedNetworksRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided trunked network.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TrunkedNetworks_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="trunkedNetworkName"> The name of the trunked network. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<TrunkedNetwork> UpdateTrunkedNetwork(string trunkedNetworkName, TrunkedNetworkPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = TrunkedNetworksClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateTrunkedNetwork");
+            scope.Start();
+            try
+            {
+                var response = TrunkedNetworksRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, trunkedNetworkName, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of virtual machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<VirtualMachine> GetVirtualMachinesByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => VirtualMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => VirtualMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, VirtualMachine.DeserializeVirtualMachine, VirtualMachinesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetVirtualMachinesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of virtual machines in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="VirtualMachine" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<VirtualMachine> GetVirtualMachinesByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => VirtualMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => VirtualMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, VirtualMachine.DeserializeVirtualMachine, VirtualMachinesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetVirtualMachinesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<VirtualMachine>> GetVirtualMachineAsync(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<VirtualMachine> GetVirtualMachine(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new virtual machine or update the properties of the existing virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<VirtualMachine>> CreateOrUpdateVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, VirtualMachine virtualMachineParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<VirtualMachine>(new VirtualMachineOperationSource(), VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new virtual machine or update the properties of the existing virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<VirtualMachine> CreateOrUpdateVirtualMachine(WaitUntil waitUntil, string virtualMachineName, VirtualMachine virtualMachineParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<VirtualMachine>(new VirtualMachineOperationSource(), VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteVirtualMachine(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<VirtualMachine>> UpdateVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, VirtualMachinePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<VirtualMachine>(new VirtualMachineOperationSource(), VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<VirtualMachine> UpdateVirtualMachine(WaitUntil waitUntil, string virtualMachineName, VirtualMachinePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<VirtualMachine>(new VirtualMachineOperationSource(), VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Attach volume to the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/attachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_AttachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineAttachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> AttachVolumeVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.AttachVolumeVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.AttachVolumeAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateAttachVolumeRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Attach volume to the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/attachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_AttachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineAttachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation AttachVolumeVirtualMachine(WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.AttachVolumeVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.AttachVolume(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateAttachVolumeRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Detach volume from the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/detachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_DetachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineDetachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DetachVolumeVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DetachVolumeVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.DetachVolumeAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateDetachVolumeRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Detach volume from the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/detachVolume</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_DetachVolume</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="virtualMachineDetachVolumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DetachVolumeVirtualMachine(WaitUntil waitUntil, string virtualMachineName, VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DetachVolumeVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.DetachVolume(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateDetachVolumeRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Power off the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> PowerOffVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, VirtualMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.PowerOffVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.PowerOffAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreatePowerOffRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Power off the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/powerOff</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_PowerOff</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation PowerOffVirtualMachine(WaitUntil waitUntil, string virtualMachineName, VirtualMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.PowerOffVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.PowerOff(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreatePowerOffRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, content).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Reimage the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> ReimageVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReimageVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.ReimageAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateReimageRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Reimage the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/reimage</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Reimage</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation ReimageVirtualMachine(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.ReimageVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Reimage(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateReimageRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> RestartVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.RestartAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateRestartRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Restart the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Restart</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation RestartVirtualMachine(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.RestartVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Restart(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateRestartRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Start the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> StartVirtualMachineAsync(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.StartVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = await VirtualMachinesRestClient.StartAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateStartRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Start the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Start</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation StartVirtualMachine(WaitUntil waitUntil, string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VirtualMachinesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.StartVirtualMachine");
+            scope.Start();
+            try
+            {
+                var response = VirtualMachinesRestClient.Start(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VirtualMachinesClientDiagnostics, Pipeline, VirtualMachinesRestClient.CreateStartRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of volumes in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<Volume> GetVolumesByResourceGroupAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => VolumesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => VolumesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, Volume.DeserializeVolume, VolumesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetVolumesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of volumes in the provided resource group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_ListByResourceGroup</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Volume" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<Volume> GetVolumesByResourceGroup(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => VolumesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => VolumesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, Volume.DeserializeVolume, VolumesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetVolumesByResourceGroup", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<Volume>> GetVolumeAsync(string volumeName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetVolume");
+            scope.Start();
+            try
+            {
+                var response = await VolumesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, volumeName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<Volume> GetVolume(string volumeName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetVolume");
+            scope.Start();
+            try
+            {
+                var response = VolumesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, volumeName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new volume or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="volumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Volume>> CreateOrUpdateVolumeAsync(WaitUntil waitUntil, string volumeName, Volume volumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateVolume");
+            scope.Start();
+            try
+            {
+                var response = await VolumesRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, volumeName, volumeParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Volume>(new VolumeOperationSource(), VolumesClientDiagnostics, Pipeline, VolumesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, volumeName, volumeParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new volume or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="volumeParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Volume> CreateOrUpdateVolume(WaitUntil waitUntil, string volumeName, Volume volumeParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateVolume");
+            scope.Start();
+            try
+            {
+                var response = VolumesRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, volumeName, volumeParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Volume>(new VolumeOperationSource(), VolumesClientDiagnostics, Pipeline, VolumesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, volumeName, volumeParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteVolumeAsync(WaitUntil waitUntil, string volumeName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteVolume");
+            scope.Start();
+            try
+            {
+                var response = await VolumesRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, volumeName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(VolumesClientDiagnostics, Pipeline, VolumesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, volumeName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteVolume(WaitUntil waitUntil, string volumeName, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteVolume");
+            scope.Start();
+            try
+            {
+                var response = VolumesRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, volumeName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(VolumesClientDiagnostics, Pipeline, VolumesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, volumeName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<Volume>> UpdateVolumeAsync(string volumeName, VolumePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVolume");
+            scope.Start();
+            try
+            {
+                var response = await VolumesRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, volumeName, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update tags associated with the provided volume.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Volumes_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="volumeName"> The name of the volume. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<Volume> UpdateVolume(string volumeName, VolumePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = VolumesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateVolume");
+            scope.Start();
+            try
+            {
+                var response = VolumesRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, volumeName, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machine key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="BareMetalMachineKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<BareMetalMachineKeySet> GetBareMetalMachineKeySetsByClusterAsync(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BareMetalMachineKeySetsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BareMetalMachineKeySetsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, BareMetalMachineKeySet.DeserializeBareMetalMachineKeySet, BareMetalMachineKeySetsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBareMetalMachineKeySetsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of bare metal machine key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="BareMetalMachineKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<BareMetalMachineKeySet> GetBareMetalMachineKeySetsByCluster(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BareMetalMachineKeySetsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BareMetalMachineKeySetsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, BareMetalMachineKeySet.DeserializeBareMetalMachineKeySet, BareMetalMachineKeySetsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBareMetalMachineKeySetsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<BareMetalMachineKeySet>> GetBareMetalMachineKeySetAsync(string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachineKeySetsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<BareMetalMachineKeySet> GetBareMetalMachineKeySet(string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachineKeySetsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new bare metal machine key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="bareMetalMachineKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<BareMetalMachineKeySet>> CreateOrUpdateBareMetalMachineKeySetAsync(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySet bareMetalMachineKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachineKeySetsRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<BareMetalMachineKeySet>(new BareMetalMachineKeySetOperationSource(), BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new bare metal machine key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="bareMetalMachineKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<BareMetalMachineKeySet> CreateOrUpdateBareMetalMachineKeySet(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySet bareMetalMachineKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachineKeySetsRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<BareMetalMachineKeySet>(new BareMetalMachineKeySetOperationSource(), BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, bareMetalMachineKeySetParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteBareMetalMachineKeySetAsync(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachineKeySetsRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the bare metal machine key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteBareMetalMachineKeySet(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachineKeySetsRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<BareMetalMachineKeySet>> UpdateBareMetalMachineKeySetAsync(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BareMetalMachineKeySetsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<BareMetalMachineKeySet>(new BareMetalMachineKeySetOperationSource(), BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BareMetalMachineKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bareMetalMachineKeySetName"> The name of the bare metal machine key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<BareMetalMachineKeySet> UpdateBareMetalMachineKeySet(WaitUntil waitUntil, string clusterName, string bareMetalMachineKeySetName, BareMetalMachineKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BareMetalMachineKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBareMetalMachineKeySet");
+            scope.Start();
+            try
+            {
+                var response = BareMetalMachineKeySetsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<BareMetalMachineKeySet>(new BareMetalMachineKeySetOperationSource(), BareMetalMachineKeySetsClientDiagnostics, Pipeline, BareMetalMachineKeySetsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bareMetalMachineKeySetName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of baseboard management controller key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="BmcKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<BmcKeySet> GetBmcKeySetsByClusterAsync(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BmcKeySetsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BmcKeySetsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, BmcKeySet.DeserializeBmcKeySet, BmcKeySetsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBmcKeySetsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of baseboard management controller key sets for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="BmcKeySet" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<BmcKeySet> GetBmcKeySetsByCluster(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => BmcKeySetsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => BmcKeySetsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, BmcKeySet.DeserializeBmcKeySet, BmcKeySetsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetBmcKeySetsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<BmcKeySet>> GetBmcKeySetAsync(string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BmcKeySetsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<BmcKeySet> GetBmcKeySet(string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = BmcKeySetsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new baseboard management controller key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="bmcKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<BmcKeySet>> CreateOrUpdateBmcKeySetAsync(WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySet bmcKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BmcKeySetsRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, bmcKeySetParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<BmcKeySet>(new BmcKeySetOperationSource(), BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, bmcKeySetParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new baseboard management controller key set or update the existing one for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="bmcKeySetParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<BmcKeySet> CreateOrUpdateBmcKeySet(WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySet bmcKeySetParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = BmcKeySetsRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, bmcKeySetParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<BmcKeySet>(new BmcKeySetOperationSource(), BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, bmcKeySetParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteBmcKeySetAsync(WaitUntil waitUntil, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BmcKeySetsRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the baseboard management controller key set of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteBmcKeySet(WaitUntil waitUntil, string clusterName, string bmcKeySetName, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = BmcKeySetsRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<BmcKeySet>> UpdateBmcKeySetAsync(WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = await BmcKeySetsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<BmcKeySet>(new BmcKeySetOperationSource(), BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BmcKeySets_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="bmcKeySetName"> The name of the baseboard management controller key set. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<BmcKeySet> UpdateBmcKeySet(WaitUntil waitUntil, string clusterName, string bmcKeySetName, BmcKeySetPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = BmcKeySetsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateBmcKeySet");
+            scope.Start();
+            try
+            {
+                var response = BmcKeySetsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<BmcKeySet>(new BmcKeySetOperationSource(), BmcKeySetsClientDiagnostics, Pipeline, BmcKeySetsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, bmcKeySetName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of metrics configurations for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ClusterMetricsConfiguration" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<ClusterMetricsConfiguration> GetMetricsConfigurationsByClusterAsync(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => MetricsConfigurationsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => MetricsConfigurationsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, ClusterMetricsConfiguration.DeserializeClusterMetricsConfiguration, MetricsConfigurationsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetMetricsConfigurationsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of metrics configurations for the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_ListByCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ClusterMetricsConfiguration" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<ClusterMetricsConfiguration> GetMetricsConfigurationsByCluster(string clusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => MetricsConfigurationsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => MetricsConfigurationsRestClient.CreateListByClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, clusterName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, ClusterMetricsConfiguration.DeserializeClusterMetricsConfiguration, MetricsConfigurationsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetMetricsConfigurationsByCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<ClusterMetricsConfiguration>> GetMetricsConfigurationAsync(string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = await MetricsConfigurationsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<ClusterMetricsConfiguration> GetMetricsConfiguration(string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = MetricsConfigurationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create new or update the existing metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="metricsConfigurationParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<ClusterMetricsConfiguration>> CreateOrUpdateMetricsConfigurationAsync(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfiguration metricsConfigurationParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = await MetricsConfigurationsRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, metricsConfigurationParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<ClusterMetricsConfiguration>(new ClusterMetricsConfigurationOperationSource(), MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, metricsConfigurationParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create new or update the existing metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="metricsConfigurationParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<ClusterMetricsConfiguration> CreateOrUpdateMetricsConfiguration(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfiguration metricsConfigurationParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = MetricsConfigurationsRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, metricsConfigurationParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<ClusterMetricsConfiguration>(new ClusterMetricsConfigurationOperationSource(), MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, metricsConfigurationParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteMetricsConfigurationAsync(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = await MetricsConfigurationsRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the metrics configuration of the provided cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteMetricsConfiguration(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = MetricsConfigurationsRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<ClusterMetricsConfiguration>> UpdateMetricsConfigurationAsync(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfigurationPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = await MetricsConfigurationsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<ClusterMetricsConfiguration>(new ClusterMetricsConfigurationOperationSource(), MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MetricsConfigurations_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="clusterName"> The name of the cluster. </param>
+        /// <param name="metricsConfigurationName"> The name of the metrics configuration for the cluster. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<ClusterMetricsConfiguration> UpdateMetricsConfiguration(WaitUntil waitUntil, string clusterName, string metricsConfigurationName, ClusterMetricsConfigurationPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = MetricsConfigurationsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateMetricsConfiguration");
+            scope.Start();
+            try
+            {
+                var response = MetricsConfigurationsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<ClusterMetricsConfiguration>(new ClusterMetricsConfigurationOperationSource(), MetricsConfigurationsClientDiagnostics, Pipeline, MetricsConfigurationsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, clusterName, metricsConfigurationName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of agent pools for the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_ListByKubernetesCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="AgentPool" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<AgentPool> GetAgentPoolsByKubernetesClusterAsync(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => AgentPoolsRestClient.CreateListByKubernetesClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => AgentPoolsRestClient.CreateListByKubernetesClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, AgentPool.DeserializeAgentPool, AgentPoolsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetAgentPoolsByKubernetesCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of agent pools for the provided Kubernetes cluster.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_ListByKubernetesCluster</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="AgentPool" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<AgentPool> GetAgentPoolsByKubernetesCluster(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => AgentPoolsRestClient.CreateListByKubernetesClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => AgentPoolsRestClient.CreateListByKubernetesClusterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, AgentPool.DeserializeAgentPool, AgentPoolsClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetAgentPoolsByKubernetesCluster", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<AgentPool>> GetAgentPoolAsync(string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetAgentPool");
+            scope.Start();
+            try
+            {
+                var response = await AgentPoolsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<AgentPool> GetAgentPool(string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetAgentPool");
+            scope.Start();
+            try
+            {
+                var response = AgentPoolsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="agentPoolParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<AgentPool>> CreateOrUpdateAgentPoolAsync(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPool agentPoolParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateAgentPool");
+            scope.Start();
+            try
+            {
+                var response = await AgentPoolsRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<AgentPool>(new AgentPoolOperationSource(), AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new Kubernetes cluster agent pool or update the properties of the existing one.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="agentPoolParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<AgentPool> CreateOrUpdateAgentPool(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPool agentPoolParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateAgentPool");
+            scope.Start();
+            try
+            {
+                var response = AgentPoolsRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<AgentPool>(new AgentPoolOperationSource(), AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, agentPoolParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteAgentPoolAsync(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteAgentPool");
+            scope.Start();
+            try
+            {
+                var response = await AgentPoolsRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided Kubernetes cluster agent pool.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteAgentPool(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteAgentPool");
+            scope.Start();
+            try
+            {
+                var response = AgentPoolsRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<AgentPool>> UpdateAgentPoolAsync(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPoolPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateAgentPool");
+            scope.Start();
+            try
+            {
+                var response = await AgentPoolsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<AgentPool>(new AgentPoolOperationSource(), AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="agentPoolName"> The name of the Kubernetes cluster agent pool. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<AgentPool> UpdateAgentPool(WaitUntil waitUntil, string kubernetesClusterName, string agentPoolName, AgentPoolPatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = AgentPoolsClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateAgentPool");
+            scope.Start();
+            try
+            {
+                var response = AgentPoolsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<AgentPool>(new AgentPoolOperationSource(), AgentPoolsClientDiagnostics, Pipeline, AgentPoolsRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, agentPoolName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get a list of consoles for the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_ListByVirtualMachine</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="Console" /> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<Models.Console> GetConsolesByVirtualMachineAsync(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ConsolesRestClient.CreateListByVirtualMachineRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ConsolesRestClient.CreateListByVirtualMachineNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName);
+            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, Models.Console.DeserializeConsole, ConsolesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetConsolesByVirtualMachine", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get a list of consoles for the provided virtual machine.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_ListByVirtualMachine</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="Console" /> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<Models.Console> GetConsolesByVirtualMachine(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ConsolesRestClient.CreateListByVirtualMachineRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ConsolesRestClient.CreateListByVirtualMachineNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName);
+            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, Models.Console.DeserializeConsole, ConsolesClientDiagnostics, Pipeline, "ResourceGroupResourceExtensionClient.GetConsolesByVirtualMachine", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response<Models.Console>> GetConsoleAsync(string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetConsole");
+            scope.Start();
+            try
+            {
+                var response = await ConsolesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get properties of the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Get</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response<Models.Console> GetConsole(string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.GetConsole");
+            scope.Start();
+            try
+            {
+                var response = ConsolesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new virtual machine console or update the properties of the existing virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="consoleParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Models.Console>> CreateOrUpdateConsoleAsync(WaitUntil waitUntil, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateConsole");
+            scope.Start();
+            try
+            {
+                var response = await ConsolesRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, consoleParameters, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Models.Console>(new ConsoleOperationSource(), ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, consoleParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a new virtual machine console or update the properties of the existing virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_CreateOrUpdate</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="consoleParameters"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Models.Console> CreateOrUpdateConsole(WaitUntil waitUntil, string virtualMachineName, string consoleName, Models.Console consoleParameters, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.CreateOrUpdateConsole");
+            scope.Start();
+            try
+            {
+                var response = ConsolesRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, consoleParameters, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Models.Console>(new ConsoleOperationSource(), ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, consoleParameters).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation> DeleteConsoleAsync(WaitUntil waitUntil, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteConsole");
+            scope.Start();
+            try
+            {
+                var response = await ConsolesRestClient.DeleteAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation(ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete the provided virtual machine console.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Delete</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation DeleteConsole(WaitUntil waitUntil, string virtualMachineName, string consoleName, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.DeleteConsole");
+            scope.Start();
+            try
+            {
+                var response = ConsolesRestClient.Delete(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, cancellationToken);
+                var operation = new NetworkCloudArmOperation(ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateDeleteRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<Models.Console>> UpdateConsoleAsync(WaitUntil waitUntil, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateConsole");
+            scope.Start();
+            try
+            {
+                var response = await ConsolesRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, content, cancellationToken).ConfigureAwait(false);
+                var operation = new NetworkCloudArmOperation<Models.Console>(new ConsoleOperationSource(), ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Consoles_Update</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="consoleName"> The name of the virtual machine console. </param>
+        /// <param name="content"> The request body. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<Models.Console> UpdateConsole(WaitUntil waitUntil, string virtualMachineName, string consoleName, ConsolePatchContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = ConsolesClientDiagnostics.CreateScope("ResourceGroupResourceExtensionClient.UpdateConsole");
+            scope.Start();
+            try
+            {
+                var response = ConsolesRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, content, cancellationToken);
+                var operation = new NetworkCloudArmOperation<Models.Console>(new ConsoleOperationSource(), ConsolesClientDiagnostics, Pipeline, ConsolesRestClient.CreateUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, consoleName, content).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
         }
     }
 }

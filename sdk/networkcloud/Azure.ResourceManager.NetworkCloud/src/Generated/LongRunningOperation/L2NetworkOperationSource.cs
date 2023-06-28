@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class L2NetworkOperationSource : IOperationSource<L2NetworkResource>
+    internal class L2NetworkOperationSource : IOperationSource<L2Network>
     {
-        private readonly ArmClient _client;
-
-        internal L2NetworkOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        L2NetworkResource IOperationSource<L2NetworkResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        L2Network IOperationSource<L2Network>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = L2NetworkData.DeserializeL2NetworkData(document.RootElement);
-            return new L2NetworkResource(_client, data);
+            return L2Network.DeserializeL2Network(document.RootElement);
         }
 
-        async ValueTask<L2NetworkResource> IOperationSource<L2NetworkResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<L2Network> IOperationSource<L2Network>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = L2NetworkData.DeserializeL2NetworkData(document.RootElement);
-            return new L2NetworkResource(_client, data);
+            return L2Network.DeserializeL2Network(document.RootElement);
         }
     }
 }

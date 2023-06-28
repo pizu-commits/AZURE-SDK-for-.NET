@@ -8,7 +8,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -21,7 +20,7 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                 return null;
             }
             Optional<string> nextLink = default;
-            Optional<IReadOnlyList<VolumeData>> value = default;
+            Optional<IReadOnlyList<Volume>> value = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("nextLink"u8))
@@ -35,10 +34,10 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                     {
                         continue;
                     }
-                    List<VolumeData> array = new List<VolumeData>();
+                    List<Volume> array = new List<Volume>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(VolumeData.DeserializeVolumeData(item));
+                        array.Add(Volume.DeserializeVolume(item));
                     }
                     value = array;
                     continue;

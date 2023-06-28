@@ -8,7 +8,6 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.NetworkCloud;
 
 namespace Azure.ResourceManager.NetworkCloud.Models
 {
@@ -21,7 +20,7 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                 return null;
             }
             Optional<string> nextLink = default;
-            Optional<IReadOnlyList<ClusterMetricsConfigurationData>> value = default;
+            Optional<IReadOnlyList<ClusterMetricsConfiguration>> value = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("nextLink"u8))
@@ -35,10 +34,10 @@ namespace Azure.ResourceManager.NetworkCloud.Models
                     {
                         continue;
                     }
-                    List<ClusterMetricsConfigurationData> array = new List<ClusterMetricsConfigurationData>();
+                    List<ClusterMetricsConfiguration> array = new List<ClusterMetricsConfiguration>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(ClusterMetricsConfigurationData.DeserializeClusterMetricsConfigurationData(item));
+                        array.Add(ClusterMetricsConfiguration.DeserializeClusterMetricsConfiguration(item));
                     }
                     value = array;
                     continue;

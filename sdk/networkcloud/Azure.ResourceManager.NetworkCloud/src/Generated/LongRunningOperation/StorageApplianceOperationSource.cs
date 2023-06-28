@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class StorageApplianceOperationSource : IOperationSource<StorageApplianceResource>
+    internal class StorageApplianceOperationSource : IOperationSource<StorageAppliance>
     {
-        private readonly ArmClient _client;
-
-        internal StorageApplianceOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        StorageApplianceResource IOperationSource<StorageApplianceResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        StorageAppliance IOperationSource<StorageAppliance>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = StorageApplianceData.DeserializeStorageApplianceData(document.RootElement);
-            return new StorageApplianceResource(_client, data);
+            return StorageAppliance.DeserializeStorageAppliance(document.RootElement);
         }
 
-        async ValueTask<StorageApplianceResource> IOperationSource<StorageApplianceResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<StorageAppliance> IOperationSource<StorageAppliance>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = StorageApplianceData.DeserializeStorageApplianceData(document.RootElement);
-            return new StorageApplianceResource(_client, data);
+            return StorageAppliance.DeserializeStorageAppliance(document.RootElement);
         }
     }
 }

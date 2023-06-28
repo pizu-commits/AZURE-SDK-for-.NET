@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.NetworkCloud.Models;
 
 namespace Azure.ResourceManager.NetworkCloud
 {
-    internal class RackOperationSource : IOperationSource<RackResource>
+    internal class RackOperationSource : IOperationSource<Rack>
     {
-        private readonly ArmClient _client;
-
-        internal RackOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        RackResource IOperationSource<RackResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        Rack IOperationSource<Rack>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = RackData.DeserializeRackData(document.RootElement);
-            return new RackResource(_client, data);
+            return Rack.DeserializeRack(document.RootElement);
         }
 
-        async ValueTask<RackResource> IOperationSource<RackResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<Rack> IOperationSource<Rack>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = RackData.DeserializeRackData(document.RootElement);
-            return new RackResource(_client, data);
+            return Rack.DeserializeRack(document.RootElement);
         }
     }
 }
