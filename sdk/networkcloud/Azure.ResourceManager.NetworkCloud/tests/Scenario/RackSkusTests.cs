@@ -22,21 +22,18 @@ namespace Azure.ResourceManager.NetworkCloud.Tests.ScenarioTests
             string subscriptionId = TestEnvironment.SubscriptionId;
 
             // List by Subscription
-            RackSkuCollection rackSkusCollection = SubscriptionResource.GetRackSkus();
-            var listBySubscription = new List<RackSkuResource>();
-            await foreach (var item in rackSkusCollection.GetAllAsync())
+            var listBySubscription = new List<RackSku>();
+            await foreach (var item in SubscriptionResource.GetRackSkusBySubscriptionAsync())
             {
                 listBySubscription.Add(item);
             }
             Assert.IsNotEmpty(listBySubscription);
 
-            var rackSkuName = listBySubscription[0].Data.Name;
+            var rackSkuName = "VNearEdge1_Compute_DellR750_12C2M"; //listBySubscription[0].Data.Name;
 
             // Get
-            ResourceIdentifier rackSkuResourceId = RackSkuResource.CreateResourceIdentifier(subscriptionId, rackSkuName);
-            RackSkuResource rackSkuResource = Client.GetRackSkuResource(rackSkuResourceId);
-            RackSkuResource getResult = await rackSkuResource.GetAsync();
-            Assert.AreEqual(rackSkuName, getResult.Data.Name);
+            RackSku result = await SubscriptionResource.GetRackSkuAsync(rackSkuName);
+           Assert.AreEqual(rackSkuName, result.Name);
         }
     }
 }

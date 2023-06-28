@@ -1,16 +1,16 @@
 {
   "Entries": [
     {
-      "RequestUri": "https://management.azure.com/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/resourcegroups/networkcloud-sdk4205?api-version=**",
+      "RequestUri": "https://management.azure.com/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/resourcegroups/networkcloud-sdk6281?api-version=**",
       "RequestMethod": "PUT",
       "RequestHeaders": {
         "Accept": "application/json",
         "Authorization": "Sanitized",
         "Content-Length": "21",
         "Content-Type": "application/json",
-        "traceparent": "00-b8a5953d801573e4225e90aace7b000f-0899793a37457d9b-00",
+        "traceparent": "00-2ac611358205acdd9e3a78541d73f2f7-e4ac9625eac7172f-00",
         "User-Agent": "azsdk-net-ResourceManager/1.6.0 (.NET 7.0.5; Linux 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023)",
-        "x-ms-client-request-id": "e9f1420f7493372d2c220bc74c4e9c66",
+        "x-ms-client-request-id": "ea85f87738dfa5df0fd66258a7c3f499",
         "x-ms-return-client-request-id": "true"
       },
       "RequestBody": {
@@ -21,19 +21,19 @@
         "Cache-Control": "no-cache",
         "Content-Length": "237",
         "Content-Type": "application/json; charset=utf-8",
-        "Date": "Thu, 22 Jun 2023 15:44:59 GMT",
+        "Date": "Wed, 28 Jun 2023 21:06:11 GMT",
         "Expires": "-1",
         "Pragma": "no-cache",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
         "X-Content-Type-Options": "nosniff",
-        "x-ms-correlation-request-id": "f009772b-c601-4888-80b3-6192cb009466",
+        "x-ms-correlation-request-id": "b21f7e2f-2de0-40e2-9965-23a3094b883a",
         "x-ms-ratelimit-remaining-subscription-writes": "1198",
-        "x-ms-request-id": "f009772b-c601-4888-80b3-6192cb009466",
-        "x-ms-routing-request-id": "CANADACENTRAL:20230622T154500Z:f009772b-c601-4888-80b3-6192cb009466"
+        "x-ms-request-id": "b21f7e2f-2de0-40e2-9965-23a3094b883a",
+        "x-ms-routing-request-id": "CANADACENTRAL:20230628T210612Z:b21f7e2f-2de0-40e2-9965-23a3094b883a"
       },
       "ResponseBody": {
-        "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/resourceGroups/networkcloud-sdk4205",
-        "name": "networkcloud-sdk4205",
+        "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/resourceGroups/networkcloud-sdk6281",
+        "name": "networkcloud-sdk6281",
         "type": "Microsoft.Resources/resourceGroups",
         "location": "eastus",
         "properties": {
@@ -47,33 +47,984 @@
       "RequestHeaders": {
         "Accept": "application/json",
         "Authorization": "Sanitized",
-        "User-Agent": "azsdk-net-ResourceManager.NetworkCloud/1.0.0-alpha.20230622.1 (.NET 7.0.5; Linux 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023)",
-        "x-ms-client-request-id": "0ff95bd2da33649aa2766e43a6084ba6",
+        "User-Agent": "azsdk-net-ResourceManager.NetworkCloud/1.0.0-alpha.20230628.1 (.NET 7.0.5; Linux 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023)",
+        "x-ms-client-request-id": "880c048a1d1f5cd242628aa283953c8e",
         "x-ms-return-client-request-id": "true"
       },
       "RequestBody": null,
       "StatusCode": 200,
       "ResponseHeaders": {
         "Cache-Control": "no-cache",
-        "Content-Length": "69412",
+        "Content-Length": "56601",
         "Content-Type": "application/json; charset=utf-8",
-        "Date": "Thu, 22 Jun 2023 15:44:59 GMT",
+        "Date": "Wed, 28 Jun 2023 21:06:12 GMT",
         "Expires": "-1",
         "Pragma": "no-cache",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
         "X-Content-Type-Options": "nosniff",
-        "x-ms-client-request-id": "0ff95bd2da33649aa2766e43a6084ba6",
-        "x-ms-correlation-request-id": "3b6df39f-ec99-4f1b-a63c-e5857c85a74c",
+        "x-ms-client-request-id": "880c048a1d1f5cd242628aa283953c8e",
+        "x-ms-correlation-request-id": "45081b7f-e866-4270-aeb8-b3351128d856",
         "x-ms-providerhub-traffic": "True",
         "x-ms-ratelimit-remaining-subscription-reads": "11997",
-        "x-ms-request-id": "d398c415-effd-4dd0-b023-b55ed62a62d6",
-        "x-ms-routing-request-id": "CANADACENTRAL:20230622T154500Z:3b6df39f-ec99-4f1b-a63c-e5857c85a74c"
+        "x-ms-request-id": "9ef43da0-fff3-42e6-ae6b-1bef0ce54e42",
+        "x-ms-routing-request-id": "CANADACENTRAL:20230628T210613Z:45081b7f-e866-4270-aeb8-b3351128d856"
       },
       "ResponseBody": {
         "value": [
           {
-            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_12C2M",
-            "name": "V1_5_4_Compute_DellR750_12C2M",
+            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_8C2M",
+            "name": "VNearEdge1_Compute_DellR750_8C2M",
+            "type": "Microsoft.NetworkCloud/rackSkus",
+            "properties": {
+              "provisioningState": "Succeeded",
+              "rackType": "Compute",
+              "maxClusterSlots": 0,
+              "description": "A compute rack with eight Dell750 computes and two Dell650 controllers",
+              "controllerMachines": [
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R650",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 1,
+                    "cpuCores": 8,
+                    "totalThreads": 16,
+                    "memoryCapacityGB": 128,
+                    "disks": [
+                      {
+                        "capacityGB": 446,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 446,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "51:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "51:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "52:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "52:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "8a:00.0",
+                        "physicalSlot": 1,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "8a:00.1",
+                        "physicalSlot": 1,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 9
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R650",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 1,
+                    "cpuCores": 8,
+                    "totalThreads": 16,
+                    "memoryCapacityGB": 128,
+                    "disks": [
+                      {
+                        "capacityGB": 446,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 446,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "51:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "51:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "52:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "52:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "8a:00.0",
+                        "physicalSlot": 1,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "8a:00.1",
+                        "physicalSlot": 1,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 10
+                }
+              ],
+              "computeMachines": [
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 1
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 2
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 3
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 4
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 5
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 6
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 7
+                },
+                {
+                  "properties": {
+                    "vendor": "Dell",
+                    "model": "R750",
+                    "generation": "8",
+                    "hardwareVersion": "3",
+                    "bootstrapProtocol": "PXE",
+                    "cpuSockets": 2,
+                    "cpuCores": 28,
+                    "totalThreads": 112,
+                    "memoryCapacityGB": 512,
+                    "disks": [
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 893,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      },
+                      {
+                        "capacityGB": 3576,
+                        "type": "SAS",
+                        "connection": "TBD"
+                      }
+                    ],
+                    "networkInterfaces": [
+                      {
+                        "address": "04:00.0",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "04:00.1",
+                        "physicalSlot": 0,
+                        "portCount": 2,
+                        "portSpeed": 1,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Broadcom",
+                        "model": "BCM5720"
+                      },
+                      {
+                        "address": "4b:00.0",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "4b:00.1",
+                        "physicalSlot": 3,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.0",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      },
+                      {
+                        "address": "98:00.1",
+                        "physicalSlot": 6,
+                        "portCount": 2,
+                        "portSpeed": 100,
+                        "deviceConnectionType": "PCI",
+                        "vendor": "Mellanox",
+                        "model": "ConnectX-6 DX"
+                      }
+                    ]
+                  },
+                  "rackSlot": 8
+                }
+              ]
+            }
+          },
+          {
+            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_12C2M",
+            "name": "VNearEdge1_Compute_DellR750_12C2M",
             "type": "Microsoft.NetworkCloud/rackSkus",
             "properties": {
               "provisioningState": "Succeeded",
@@ -166,7 +1117,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "8a:00.1",
@@ -175,7 +1126,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -266,7 +1217,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "8a:00.1",
@@ -275,7 +1226,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -342,7 +1293,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -351,7 +1302,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -360,7 +1311,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -369,7 +1320,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -434,7 +1385,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -443,7 +1394,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -452,7 +1403,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -461,7 +1412,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -526,7 +1477,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -535,7 +1486,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -544,7 +1495,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -553,7 +1504,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -618,7 +1569,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -627,7 +1578,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -636,7 +1587,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -645,7 +1596,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -710,7 +1661,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -719,7 +1670,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -728,7 +1679,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -737,7 +1688,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -802,7 +1753,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -811,7 +1762,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -820,7 +1771,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -829,7 +1780,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -894,7 +1845,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -903,7 +1854,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -912,7 +1863,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -921,7 +1872,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -986,7 +1937,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -995,7 +1946,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -1004,7 +1955,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -1013,7 +1964,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -1078,7 +2029,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -1087,7 +2038,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -1096,7 +2047,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -1105,7 +2056,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -1170,7 +2121,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -1179,7 +2130,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -1188,7 +2139,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -1197,7 +2148,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -1262,7 +2213,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -1271,7 +2222,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -1280,7 +2231,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -1289,7 +2240,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -1354,7 +2305,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -1363,7 +2314,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -1372,7 +2323,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -1381,7 +2332,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -1391,1936 +2342,8 @@
             }
           },
           {
-            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VLab1_4_Compute_DellR750_8C2M",
-            "name": "VLab1_4_Compute_DellR750_8C2M",
-            "type": "Microsoft.NetworkCloud/rackSkus",
-            "properties": {
-              "provisioningState": "Succeeded",
-              "rackType": "Compute",
-              "maxClusterSlots": 0,
-              "description": "A compute rack with eight Dell750 computes and two Dell650 controllers",
-              "controllerMachines": [
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R650",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 1,
-                    "cpuCores": 8,
-                    "totalThreads": 16,
-                    "memoryCapacityGB": 128,
-                    "disks": [
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "8a:00.0",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "8a:00.1",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 41
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R650",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 1,
-                    "cpuCores": 8,
-                    "totalThreads": 16,
-                    "memoryCapacityGB": 128,
-                    "disks": [
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "8a:00.0",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "8a:00.1",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 42
-                }
-              ],
-              "computeMachines": [
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 31
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 29
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 27
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 25
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 16
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 14
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 12
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 10
-                }
-              ]
-            }
-          },
-          {
-            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_8C2M",
-            "name": "V1_5_4_Compute_DellR750_8C2M",
-            "type": "Microsoft.NetworkCloud/rackSkus",
-            "properties": {
-              "provisioningState": "Succeeded",
-              "rackType": "Compute",
-              "maxClusterSlots": 0,
-              "description": "A compute rack with eight Dell750 computes and two Dell650 controllers",
-              "controllerMachines": [
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R650",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 1,
-                    "cpuCores": 8,
-                    "totalThreads": 16,
-                    "memoryCapacityGB": 128,
-                    "disks": [
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "8a:00.0",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "8a:00.1",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 9
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R650",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 1,
-                    "cpuCores": 8,
-                    "totalThreads": 16,
-                    "memoryCapacityGB": 128,
-                    "disks": [
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 446,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "51:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "52:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "8a:00.0",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "8a:00.1",
-                        "physicalSlot": 1,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 10
-                }
-              ],
-              "computeMachines": [
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 1
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 2
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 3
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 4
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 5
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 6
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 7
-                },
-                {
-                  "properties": {
-                    "vendor": "Dell",
-                    "model": "R750",
-                    "generation": "8",
-                    "hardwareVersion": "3",
-                    "bootstrapProtocol": "PXE",
-                    "cpuSockets": 2,
-                    "cpuCores": 28,
-                    "totalThreads": 112,
-                    "memoryCapacityGB": 512,
-                    "disks": [
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 893,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      },
-                      {
-                        "capacityGB": 3576,
-                        "type": "SAS",
-                        "connection": "TBD"
-                      }
-                    ],
-                    "networkInterfaces": [
-                      {
-                        "address": "04:00.0",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "04:00.1",
-                        "physicalSlot": 0,
-                        "portCount": 2,
-                        "portSpeed": 1,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Broadcom",
-                        "model": "BCM5720"
-                      },
-                      {
-                        "address": "4b:00.0",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "4b:00.1",
-                        "physicalSlot": 3,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.0",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      },
-                      {
-                        "address": "98:00.1",
-                        "physicalSlot": 6,
-                        "portCount": 2,
-                        "portSpeed": 100,
-                        "deviceConnectionType": "PCI",
-                        "vendor": "Mellanox",
-                        "model": "ConnectX-6"
-                      }
-                    ]
-                  },
-                  "rackSlot": 8
-                }
-              ]
-            }
-          },
-          {
-            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Aggregator_x70r3_9",
-            "name": "V1_5_4_Aggregator_x70r3_9",
-            "type": "Microsoft.NetworkCloud/rackSkus",
-            "properties": {
-              "provisioningState": "Succeeded",
-              "supportedRackSkuIds": [
-                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_8C2M",
-                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_12C2M",
-                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_16C2M",
-                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_4C2M"
-              ],
-              "rackType": "Aggregator",
-              "maxClusterSlots": 8,
-              "description": "An aggregator rack with one Pure device",
-              "storageAppliances": [
-                {
-                  "properties": {
-                    "capacityGB": 91000,
-                    "model": "x70r3-9"
-                  },
-                  "rackSlot": 1
-                }
-              ]
-            }
-          },
-          {
-            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_16C2M",
-            "name": "V1_5_4_Compute_DellR750_16C2M",
+            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_16C2M",
+            "name": "VNearEdge1_Compute_DellR750_16C2M",
             "type": "Microsoft.NetworkCloud/rackSkus",
             "properties": {
               "provisioningState": "Succeeded",
@@ -3413,7 +2436,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "8a:00.1",
@@ -3422,7 +2445,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3513,7 +2536,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "8a:00.1",
@@ -3522,7 +2545,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3589,7 +2612,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -3598,7 +2621,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -3607,7 +2630,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -3616,7 +2639,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3681,7 +2704,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -3690,7 +2713,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -3699,7 +2722,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -3708,7 +2731,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3773,7 +2796,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -3782,7 +2805,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -3791,7 +2814,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -3800,7 +2823,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3865,7 +2888,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -3874,7 +2897,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -3883,7 +2906,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -3892,7 +2915,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -3957,7 +2980,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -3966,7 +2989,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -3975,7 +2998,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -3984,7 +3007,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4049,7 +3072,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4058,7 +3081,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4067,7 +3090,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4076,7 +3099,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4141,7 +3164,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4150,7 +3173,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4159,7 +3182,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4168,7 +3191,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4233,7 +3256,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4242,7 +3265,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4251,7 +3274,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4260,7 +3283,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4325,7 +3348,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4334,7 +3357,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4343,7 +3366,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4352,7 +3375,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4417,7 +3440,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4426,7 +3449,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4435,7 +3458,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4444,7 +3467,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4509,7 +3532,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4518,7 +3541,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4527,7 +3550,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4536,7 +3559,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4601,7 +3624,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4610,7 +3633,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4619,7 +3642,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4628,7 +3651,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4693,7 +3716,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4702,7 +3725,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4711,7 +3734,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4720,7 +3743,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4785,7 +3808,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4794,7 +3817,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4803,7 +3826,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4812,7 +3835,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4877,7 +3900,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4886,7 +3909,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4895,7 +3918,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4904,7 +3927,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
@@ -4969,7 +3992,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "4b:00.1",
@@ -4978,7 +4001,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.0",
@@ -4987,7 +4010,7 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       },
                       {
                         "address": "98:00.1",
@@ -4996,11 +4019,37 @@
                         "portSpeed": 100,
                         "deviceConnectionType": "PCI",
                         "vendor": "Mellanox",
-                        "model": "ConnectX-6"
+                        "model": "ConnectX-6 DX"
                       }
                     ]
                   },
                   "rackSlot": 16
+                }
+              ]
+            }
+          },
+          {
+            "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Aggregator_x70r3_9",
+            "name": "VNearEdge1_Aggregator_x70r3_9",
+            "type": "Microsoft.NetworkCloud/rackSkus",
+            "properties": {
+              "provisioningState": "Succeeded",
+              "supportedRackSkuIds": [
+                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_8C2M",
+                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_12C2M",
+                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_16C2M",
+                "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_4C2M"
+              ],
+              "rackType": "Aggregator",
+              "maxClusterSlots": 8,
+              "description": "An aggregator rack with one Pure storage device",
+              "storageAppliances": [
+                {
+                  "properties": {
+                    "capacityGB": 91000,
+                    "model": "x70r3-9"
+                  },
+                  "rackSlot": 1
                 }
               ]
             }
@@ -5009,37 +4058,37 @@
       }
     },
     {
-      "RequestUri": "https://management.azure.com/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_12C2M?api-version=2023-05-01-preview",
+      "RequestUri": "https://management.azure.com/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_12C2M?api-version=2023-05-01-preview",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
         "Authorization": "Sanitized",
-        "traceparent": "00-fd9a23632b1a511b78427a64229787d9-f89e13ed0a16910f-00",
-        "User-Agent": "azsdk-net-ResourceManager.NetworkCloud/1.0.0-alpha.20230622.1 (.NET 7.0.5; Linux 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023)",
-        "x-ms-client-request-id": "15d057f87f6d9641e9eb6603f7b9db21",
+        "traceparent": "00-09334e052fabc87e6de0f1ed6f9ad5a6-f92814b624d102ad-00",
+        "User-Agent": "azsdk-net-ResourceManager.NetworkCloud/1.0.0-alpha.20230628.1 (.NET 7.0.5; Linux 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023)",
+        "x-ms-client-request-id": "7f02291e04bbd32e3556a17fa92cc0ee",
         "x-ms-return-client-request-id": "true"
       },
       "RequestBody": null,
       "StatusCode": 200,
       "ResponseHeaders": {
         "Cache-Control": "no-cache",
-        "Content-Length": "18366",
+        "Content-Length": "18530",
         "Content-Type": "application/json; charset=utf-8",
-        "Date": "Thu, 22 Jun 2023 15:45:00 GMT",
+        "Date": "Wed, 28 Jun 2023 21:06:12 GMT",
         "Expires": "-1",
         "Pragma": "no-cache",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
         "X-Content-Type-Options": "nosniff",
-        "x-ms-client-request-id": "15d057f87f6d9641e9eb6603f7b9db21",
-        "x-ms-correlation-request-id": "2bd4674b-2c69-4e9c-a233-81af07e4d9f1",
+        "x-ms-client-request-id": "7f02291e04bbd32e3556a17fa92cc0ee",
+        "x-ms-correlation-request-id": "8855d5ab-c67f-41a4-bc4a-23283b6dbbf9",
         "x-ms-providerhub-traffic": "True",
         "x-ms-ratelimit-remaining-subscription-reads": "11996",
-        "x-ms-request-id": "cff8caa7-2a25-4b71-bacb-b62405db7d9c",
-        "x-ms-routing-request-id": "CANADACENTRAL:20230622T154501Z:2bd4674b-2c69-4e9c-a233-81af07e4d9f1"
+        "x-ms-request-id": "636df6fe-e60f-4dbb-918c-3d66e2eb9568",
+        "x-ms-routing-request-id": "CANADACENTRAL:20230628T210613Z:8855d5ab-c67f-41a4-bc4a-23283b6dbbf9"
       },
       "ResponseBody": {
-        "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/V1_5_4_Compute_DellR750_12C2M",
-        "name": "V1_5_4_Compute_DellR750_12C2M",
+        "id": "/subscriptions/a3eeb848-665a-4dbf-80a4-eb460930fb23/providers/Microsoft.NetworkCloud/rackSkus/VNearEdge1_Compute_DellR750_12C2M",
+        "name": "VNearEdge1_Compute_DellR750_12C2M",
         "type": "Microsoft.NetworkCloud/rackSkus",
         "properties": {
           "provisioningState": "Succeeded",
@@ -5132,7 +4181,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "8a:00.1",
@@ -5141,7 +4190,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5232,7 +4281,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "8a:00.1",
@@ -5241,7 +4290,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5308,7 +4357,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5317,7 +4366,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5326,7 +4375,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5335,7 +4384,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5400,7 +4449,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5409,7 +4458,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5418,7 +4467,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5427,7 +4476,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5492,7 +4541,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5501,7 +4550,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5510,7 +4559,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5519,7 +4568,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5584,7 +4633,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5593,7 +4642,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5602,7 +4651,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5611,7 +4660,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5676,7 +4725,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5685,7 +4734,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5694,7 +4743,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5703,7 +4752,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5768,7 +4817,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5777,7 +4826,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5786,7 +4835,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5795,7 +4844,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5860,7 +4909,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5869,7 +4918,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5878,7 +4927,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5887,7 +4936,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -5952,7 +5001,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -5961,7 +5010,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -5970,7 +5019,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -5979,7 +5028,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -6044,7 +5093,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -6053,7 +5102,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -6062,7 +5111,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -6071,7 +5120,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -6136,7 +5185,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -6145,7 +5194,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -6154,7 +5203,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -6163,7 +5212,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -6228,7 +5277,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -6237,7 +5286,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -6246,7 +5295,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -6255,7 +5304,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -6320,7 +5369,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "4b:00.1",
@@ -6329,7 +5378,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.0",
@@ -6338,7 +5387,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   },
                   {
                     "address": "98:00.1",
@@ -6347,7 +5396,7 @@
                     "portSpeed": 100,
                     "deviceConnectionType": "PCI",
                     "vendor": "Mellanox",
-                    "model": "ConnectX-6"
+                    "model": "ConnectX-6 DX"
                   }
                 ]
               },
@@ -6360,7 +5409,7 @@
   ],
   "Variables": {
     "LOCATION": "eastus",
-    "RandomSeed": "718438750",
+    "RandomSeed": "821498720",
     "RESOURCE_MANAGER_URL": null,
     "SUBSCRIPTION_ID": "a3eeb848-665a-4dbf-80a4-eb460930fb23"
   }
