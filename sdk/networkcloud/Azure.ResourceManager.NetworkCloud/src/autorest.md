@@ -60,11 +60,6 @@ directive:
     where: $.definitions
     transform:
       $.ClusterAvailableUpgradeVersion.properties.expectedDuration['x-ms-format'] = 'duration';
-  # remove new POST direction as SDK generator doesn't support it
-  - from: networkcloud.json
-    where: $.paths.*.post['x-ms-long-running-operation-options']
-    transform: >
-      delete $['final-state-schema'];
   # The `password` is not required as it return null from service side
   - from: networkcloud.json
     where: $.definitions
