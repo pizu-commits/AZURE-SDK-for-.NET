@@ -29,6 +29,7 @@ steps:
         --version $version
     displayName: "Install test-proxy"
     condition: and(succeeded(), ${{ parameters.condition }})
+    workingDirectory: $(Build.ArtifactStagingDirectory)
 
   - pwsh: |
       Write-Host "##vso[task.prependpath]$(Build.BinariesDirectory)/test-proxy"
