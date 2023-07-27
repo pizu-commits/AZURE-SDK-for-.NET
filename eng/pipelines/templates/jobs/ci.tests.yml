@@ -90,6 +90,12 @@ jobs:
       - template: /eng/pipelines/templates/steps/dotnet-diagnostics.yml
         parameters:
           LogFilePath: $(Build.ArtifactStagingDirectory)/test.binlog
+      - template: /eng/common/testproxy/test-proxy-tool.yml
+        parameters:
+          runProxy: false
+      - pwsh: |
+          Get-ChildItem -Recurse -Path $(Build.SourcesDirectory)/sdk/${{ parameters.ServiceDirectory }} -Filter assets.json | ForEach-Object { test-proxy restore -a $_.FullName }
+        displayName: Restore to avoid breadcrumb clash
       - script: >-
           dotnet test eng/service.proj
           --filter "(TestCategory!=Manually) & (TestCategory!=Live) & ($(AdditionalTestFilters))"
