@@ -6,8 +6,8 @@ namespace Azure.Data.AppConfiguration
         private readonly object _dummy;
         private readonly int _dummyPrimitive;
         public CompositionType(string value) { throw null; }
-        public static Azure.Data.AppConfiguration.CompositionType All { get { throw null; } }
-        public static Azure.Data.AppConfiguration.CompositionType GroupByKey { get { throw null; } }
+        public static Azure.Data.AppConfiguration.CompositionType Key { get { throw null; } }
+        public static Azure.Data.AppConfiguration.CompositionType KeyLabel { get { throw null; } }
         public bool Equals(Azure.Data.AppConfiguration.CompositionType other) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public override bool Equals(object obj) { throw null; }
@@ -84,7 +84,7 @@ namespace Azure.Data.AppConfiguration
     }
     public partial class ConfigurationClientOptions : Azure.Core.ClientOptions
     {
-        public ConfigurationClientOptions(Azure.Data.AppConfiguration.ConfigurationClientOptions.ServiceVersion version = Azure.Data.AppConfiguration.ConfigurationClientOptions.ServiceVersion.V1_0) { }
+        public ConfigurationClientOptions(Azure.Data.AppConfiguration.ConfigurationClientOptions.ServiceVersion version = Azure.Data.AppConfiguration.ConfigurationClientOptions.ServiceVersion.V2022_11_01_Preview) { }
         public enum ServiceVersion
         {
             V1_0 = 0,

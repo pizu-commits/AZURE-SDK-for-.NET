@@ -46,7 +46,8 @@ namespace Azure.Identity.Tests
                 var options = new EnvironmentCredentialOptions
                 {
                     Transport = config.Transport,
-                    DisableAuthorityValidationAndInstanceDiscovery = config.DisableAuthorityValidationAndInstanceDiscovery,
+                    DisableInstanceDiscovery = config.DisableInstanceDiscovery,
+                IsSupportLoggingEnabled = config.IsSupportLoggingEnabled,
                 };
 
                 return InstrumentClient(new EnvironmentCredential(options));

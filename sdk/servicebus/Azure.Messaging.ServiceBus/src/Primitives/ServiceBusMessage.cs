@@ -124,11 +124,7 @@ namespace Azure.Messaging.ServiceBus
                 AmqpMessage.MessageAnnotations.Add(kvp.Key, kvp.Value);
             }
 
-            // copy delivery annotations
-            foreach (KeyValuePair<string, object> kvp in receivedMessage.AmqpMessage.DeliveryAnnotations)
-            {
-                AmqpMessage.DeliveryAnnotations.Add(kvp.Key, kvp.Value);
-            }
+            // delivery annotations should not be copied as they only apply to a single hop
 
             // copy footer
             foreach (KeyValuePair<string, object> kvp in receivedMessage.AmqpMessage.Footer)
@@ -384,17 +380,13 @@ namespace Azure.Messaging.ServiceBus
         }
 
         /// <summary>
-        /// Gets or sets the date and time in UTC at which the message will be enqueued. This
-        /// property returns the time in UTC; when setting the property, the supplied DateTime value must also be in UTC.
+        /// Gets or sets the date and time, in UTC, at which the message should be made available to receivers. This property does not control when a message is sent by the
+        /// client. Sending happens immediately when `SendAsync` is called.  Service Bus will hide the message from receivers until the the requested time.
         /// </summary>
         /// <value>
-        /// The scheduled enqueue time in UTC. This value is for delayed message sending.
-        /// It is utilized to delay messages sending to a specific time in the future.
+        /// The date and time, in UTC, at which the message should be available to receivers. This time may not be exact; the actual time depends on the entity's workload and state.
         /// </value>
-        /// <remarks>
-        /// Message enqueuing time does not mean that the message will be sent at the same time. It will get enqueued, but the actual sending time
-        /// depends on the queue's workload and its state.
-        /// </remarks>
+        /// <seealso href="https://learn.microsoft.com/azure/service-bus-messaging/message-sequencing#scheduled-messages">Scheduled messages</seealso>
         public DateTimeOffset ScheduledEnqueueTime
         {
             get

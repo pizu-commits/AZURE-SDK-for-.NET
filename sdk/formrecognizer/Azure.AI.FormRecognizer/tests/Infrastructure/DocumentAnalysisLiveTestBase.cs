@@ -116,10 +116,9 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis.Tests
         /// </summary>
         /// <param name="modelId">The identifier of the model.</param>
         /// <param name="containerType">The type of container to use for training.</param>
-        /// <param name="buildMode">The technique to use to build the model. Defaults to <see cref="DocumentBuildMode.Template"/>.</param>
         /// <param name="options">A set of options to apply when configuring the request.</param>
         /// <returns>A <see cref="DisposableDocumentModel"/> instance from which the built model ID can be obtained.</returns>
-        protected async Task<DisposableDocumentModel> BuildDisposableDocumentModelAsync(string modelId, ContainerType containerType = default, DocumentBuildMode buildMode = default, BuildDocumentModelOptions options = null)
+        protected async Task<DisposableDocumentModel> BuildDisposableDocumentModelAsync(string modelId, ContainerType containerType = default, BuildDocumentModelOptions options = null)
         {
             var client = CreateDocumentModelAdministrationClient();
 
@@ -128,17 +127,11 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis.Tests
                 ContainerType.Singleforms => TestEnvironment.BlobContainerSasUrl,
                 ContainerType.MultipageFiles => TestEnvironment.MultipageBlobContainerSasUrl,
                 ContainerType.SelectionMarks => TestEnvironment.SelectionMarkBlobContainerSasUrl,
-                ContainerType.TableVariableRows => TestEnvironment.TableDynamicRowsContainerSasUrl,
-                ContainerType.TableFixedRows => TestEnvironment.TableFixedRowsContainerSasUrl,
                 _ => TestEnvironment.BlobContainerSasUrl,
             };
             var trainingFilesUri = new Uri(trainingFiles);
 
-            buildMode = (buildMode == default)
-                ? DocumentBuildMode.Template
-                : buildMode;
-
-            return await DisposableDocumentModel.BuildAsync(client, trainingFilesUri, buildMode, modelId, options);
+            return await DisposableDocumentModel.BuildAsync(client, trainingFilesUri, DocumentBuildMode.Template, modelId, options);
         }
 
         /// <summary>
@@ -174,9 +167,7 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis.Tests
         {
             Singleforms,
             MultipageFiles,
-            SelectionMarks,
-            TableVariableRows,
-            TableFixedRows
+            SelectionMarks
         }
     }
 }

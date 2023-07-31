@@ -19,7 +19,6 @@ namespace Azure.AI.FormRecognizer.Tests
     /// These tests have a dependency on live Azure services and may incur costs for the associated
     /// Azure subscription.
     /// </remarks>
-    [IgnoreServiceError(200, "3014", Message = "Generic error during training.", Reason = "https://github.com/Azure/azure-sdk-for-net/issues/28913")]
     public class FormTrainingClientLiveTests : FormRecognizerLiveTestBase
     {
         /// <summary>
@@ -42,7 +41,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTrainingCanAuthenticateWithTokenCredential()
         {
             var client = CreateFormTrainingClient(useTokenCredential: true);
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, useTrainingLabels: false);
 
@@ -65,7 +64,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTraining(bool singlePage, bool labeled)
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(singlePage ? TestEnvironment.BlobContainerSasUrlV2 : TestEnvironment.MultipageBlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(singlePage ? TestEnvironment.BlobContainerSasUrl : TestEnvironment.MultipageBlobContainerSasUrl);
 
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, labeled);
             await operation.WaitForCompletionAsync();
@@ -113,7 +112,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTrainingSucceedsWithValidPrefix()
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             var filter = new TrainingFileFilter { IncludeSubfolders = true, Prefix = "subfolder" };
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, useTrainingLabels:false, new TrainingOptions() { TrainingFileFilter = filter });
@@ -128,7 +127,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTrainingFailsWithInvalidPrefix()
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             var filter = new TrainingFileFilter { IncludeSubfolders = true, Prefix = "invalidPrefix" };
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, useTrainingLabels: false, new TrainingOptions() { TrainingFileFilter = filter });
@@ -142,7 +141,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTrainingWithLabelsModelName()
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
             var modelName = "My training";
 
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, useTrainingLabels: true, modelName);
@@ -158,7 +157,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartTrainingWithNoLabelsModelName()
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
             var modelName = "My training";
 
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, useTrainingLabels: false, modelName);
@@ -191,7 +190,7 @@ namespace Azure.AI.FormRecognizer.Tests
             var client = CreateFormTrainingClient();
             var formClient = client.GetFormRecognizerClient();
 
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             TrainingOperation trainingOperation = await client.StartTrainingAsync(trainingFilesUri, labeled);
             await trainingOperation.WaitForCompletionAsync();
@@ -301,7 +300,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task StartCreateComposedModelFailsWithInvalidId()
         {
             var client = CreateFormTrainingClient();
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             await using var trainedModelA = await CreateDisposableTrainedModelAsync(useTrainingLabels: true);
 
@@ -321,7 +320,7 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task TrainingOps(bool labeled, bool useTokenCredential)
         {
             var client = CreateFormTrainingClient(useTokenCredential);
-            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrlV2);
+            var trainingFilesUri = new Uri(TestEnvironment.BlobContainerSasUrl);
 
             TrainingOperation operation = await client.StartTrainingAsync(trainingFilesUri, labeled);
 
@@ -408,8 +407,8 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient(useTokenCredential);
             var targetClient = CreateFormTrainingClient(useTokenCredential);
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             await using var trainedModel = await CreateDisposableTrainedModelAsync(useTrainingLabels: true);
 
@@ -434,8 +433,8 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient();
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             string modelName = "My model to copy";
 
@@ -465,8 +464,8 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient(useTokenCredential);
             var targetClient = CreateFormTrainingClient(useTokenCredential);
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             await using var trainedModelA = await CreateDisposableTrainedModelAsync(useTrainingLabels: true);
             await using var trainedModelB = await CreateDisposableTrainedModelAsync(useTrainingLabels: true);
@@ -503,8 +502,8 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient();
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             string modelName = "My model to copy";
 
@@ -531,8 +530,8 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient();
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             CopyAuthorization targetAuth = CopyAuthorization.FromJson("{\"modelId\":\"328c3b7d - a563 - 4ba2 - 8c2f - 2f26d664486a\",\"accessToken\":\"5b5685e4 - 2f24 - 4423 - ab18 - 000000000000\",\"expirationDateTimeTicks\":1591932653,\"resourceId\":\"resourceId\",\"resourceRegion\":\"westcentralus\"}");
 
@@ -547,7 +546,7 @@ namespace Azure.AI.FormRecognizer.Tests
         {
             var sourceClient = CreateFormTrainingClient();
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
+            var resourceId = TestEnvironment.ResourceId;
             var regionA = "regionA";
             var regionB = "regionB";
             switch (TestEnvironment.AuthorityHostUrl)
@@ -565,7 +564,7 @@ namespace Azure.AI.FormRecognizer.Tests
                     regionB = "eastus2";
                     break;
             }
-            var wrongRegion = TestEnvironment.TargetResourceRegion == regionA ? regionB : regionA;
+            var wrongRegion = TestEnvironment.ResourceRegion == regionA ? regionB : regionA;
 
             await using var trainedModel = await CreateDisposableTrainedModelAsync(useTrainingLabels: true);
             CopyAuthorization targetAuth = await targetClient.GetCopyAuthorizationAsync(resourceId, wrongRegion);
@@ -579,8 +578,8 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task GetCopyAuthorization()
         {
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             CopyAuthorization targetAuth = await targetClient.GetCopyAuthorizationAsync(resourceId, region);
 
@@ -595,8 +594,8 @@ namespace Azure.AI.FormRecognizer.Tests
         public async Task SerializeDeserializeCopyAuthorization()
         {
             var targetClient = CreateFormTrainingClient();
-            var resourceId = TestEnvironment.TargetResourceId;
-            var region = TestEnvironment.TargetResourceRegion;
+            var resourceId = TestEnvironment.ResourceId;
+            var region = TestEnvironment.ResourceRegion;
 
             CopyAuthorization targetAuth = await targetClient.GetCopyAuthorizationAsync(resourceId, region);
 
