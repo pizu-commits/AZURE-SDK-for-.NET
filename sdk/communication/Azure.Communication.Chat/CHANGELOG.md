@@ -7,6 +7,14 @@
 - Add apis to add `ChatParticipant` metadata and `ChatThreadProperties` metadata.
 - Add api to update `ChatThreadProperties` including metadata.
 
+## 1.2.0 (2023-12-04)
+
+### Features Added
+
+- Added `ChatAttachment` object that contains properties for inline images incoming from Teams Chat Threads.
+
+## 1.2.0-beta.1 (2023-08-15)
+
 ## 1.1.2 (2023-06-19)
 
 ### Features Added
