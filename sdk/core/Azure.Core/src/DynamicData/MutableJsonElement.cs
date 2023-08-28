@@ -4,6 +4,7 @@
 using System;
 using System.Buffers;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -25,6 +26,8 @@ namespace Azure.Core.Json
         private readonly string _path;
         private readonly int _highWaterMark;
 
+        internal const string SerializationRequiresUnreferencedCode = "This method utilizes reflection-based JSON serialization which is not compatible with trimming.";
+
         private readonly MutableJsonDocument.ChangeTracker Changes => _root.Changes;
 
         internal MutableJsonElement(MutableJsonDocument root, JsonElement element, string path, int highWaterMark = -1)
@@ -40,6 +43,7 @@ namespace Azure.Core.Json
         /// </summary>
         public JsonValueKind? ValueKind
         {
+            [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
             get
             {
                 if (Changes.TryGetChange(_path, _highWaterMark, out MutableJsonChange change))
@@ -186,6 +190,7 @@ namespace Azure.Core.Json
         ///   <see langword="false"/> otherwise.
         /// </returns>
         /// <exception cref="InvalidOperationException">This value's <see cref="ValueKind"/> is not <see cref="JsonValueKind.Number"/>.</exception>
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetDouble(out double value)
         {
             EnsureValid();
@@ -242,6 +247,7 @@ namespace Azure.Core.Json
         ///   <see langword="false"/> otherwise.
         /// </returns>
         /// <exception cref="InvalidOperationException">This value's <see cref="ValueKind"/> is not <see cref="JsonValueKind.Number"/>.</exception>
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetInt32(out int value)
         {
             EnsureValid();
@@ -293,6 +299,7 @@ namespace Azure.Core.Json
         ///   <see langword="false"/> otherwise.
         /// </returns>
         /// <exception cref="InvalidOperationException">This value's <see cref="ValueKind"/> is not <see cref="JsonValueKind.Number"/>.</exception>
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetInt64(out long value)
         {
             EnsureValid();
@@ -344,6 +351,7 @@ namespace Azure.Core.Json
         ///   <see langword="false"/> otherwise.
         /// </returns>
         /// <exception cref="InvalidOperationException">This value's <see cref="ValueKind"/> is not <see cref="JsonValueKind.Number"/>.</exception>
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetSingle(out float value)
         {
             EnsureValid();
@@ -392,6 +400,7 @@ namespace Azure.Core.Json
         /// </summary>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public string? GetString()
         {
             EnsureValid();
@@ -438,6 +447,7 @@ namespace Azure.Core.Json
             return _element.GetBoolean();
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetByte(out byte value)
         {
             EnsureValid();
@@ -553,6 +563,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetDecimal(out decimal value)
         {
             EnsureValid();
@@ -628,6 +639,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetInt16(out short value)
         {
             EnsureValid();
@@ -665,6 +677,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetSByte(out sbyte value)
         {
             EnsureValid();
@@ -702,6 +715,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetUInt16(out ushort value)
         {
             EnsureValid();
@@ -739,6 +753,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetUInt32(out uint value)
         {
             EnsureValid();
@@ -776,6 +791,7 @@ namespace Azure.Core.Json
             return value;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         public bool TryGetUInt64(out ulong value)
         {
             EnsureValid();
@@ -1321,6 +1337,7 @@ namespace Azure.Core.Json
 #endif
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         internal JsonElement GetJsonElement()
         {
             EnsureValid();
@@ -1339,6 +1356,7 @@ namespace Azure.Core.Json
             return _element;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         private byte[] GetRawBytes()
         {
             using MemoryStream changedElementStream = new();
@@ -1393,6 +1411,9 @@ namespace Azure.Core.Json
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal string DebuggerDisplay => $"ValueKind = {ValueKind} : \"{ToString()}\"";
 
+#if !NET5_0
+        [RequiresUnreferencedCode("This class utilizes reflection-based JSON serialization and deserialization which is not compatible with trimming.")]
+#endif
         private class MutableJsonElementConverter : JsonConverter<MutableJsonElement>
         {
             public override MutableJsonElement Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

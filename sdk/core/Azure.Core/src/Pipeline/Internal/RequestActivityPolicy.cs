@@ -3,6 +3,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis; // Needed for NET6.0 attributes
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -56,13 +57,13 @@ namespace Azure.Core.Pipeline
             }
         }
 
+        // This method writes HttpMessages and Exceptions to the DiagnosticSource held within DiagnosticScope. These attributes
+        // preserve the public properties on these types so they can be used by ApplicationInsights.
+        [DynamicDependency(DynamicallyAccessedMemberTypes.PublicProperties, typeof(HttpMessage))]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.PublicProperties, typeof(Exception))]
         private async ValueTask ProcessAsync(HttpMessage message, ReadOnlyMemory<HttpPipelinePolicy> pipeline, bool async)
         {
-#if NETCOREAPP2_1
-            using var scope = new DiagnosticScope("Azure.Core.Http.Request", s_diagnosticSource, message, s_activitySource, DiagnosticScope.ActivityKind.Client, false);
-#else
-            using var scope = new DiagnosticScope("Azure.Core.Http.Request", s_diagnosticSource, message, s_activitySource, System.Diagnostics.ActivityKind.Client, false);
-#endif
+            using var scope = CreateDiagnosticScope(message);
 
             bool isActivitySourceEnabled = IsActivitySourceEnabled;
 
@@ -105,7 +106,7 @@ namespace Azure.Core.Pipeline
             }
             catch (Exception e)
             {
-                scope.Failed(e);
+                ScopeFailed(scope, e);
                 throw;
             }
 
@@ -127,13 +128,33 @@ namespace Azure.Core.Pipeline
             if (message.Response.IsError)
             {
                 scope.AddAttribute("otel.status_code", "ERROR");
-                scope.Failed();
+                ScopeFailed(scope);
             }
             else
             {
                 // Set the status to UNSET so the AppInsights doesn't try to infer it from the status code
                 scope.AddAttribute("otel.status_code",  "UNSET");
             }
+        }
+
+        [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026", Justification = "The values being passed into Write have the commonly used properties being preserved with DynamicDependency.")]
+        private void ScopeFailed(DiagnosticScope scope, Exception? ex = default)
+        {
+            if (ex == null)
+            {
+                scope.Failed();
+            }
+            scope.Failed(ex);
+        }
+
+        [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026", Justification = "The values being passed into Write have the commonly used properties being preserved with DynamicDependency.")]
+        private DiagnosticScope CreateDiagnosticScope(HttpMessage message)
+        {
+#if NETCOREAPP2_1
+            return new DiagnosticScope("Azure.Core.Http.Request", s_diagnosticSource, message, s_activitySource, DiagnosticScope.ActivityKind.Client, false);
+#else
+            return new DiagnosticScope("Azure.Core.Http.Request", s_diagnosticSource, message, s_activitySource, System.Diagnostics.ActivityKind.Client, false);
+#endif
         }
 
         private static ValueTask ProcessNextAsync(HttpMessage message, ReadOnlyMemory<HttpPipelinePolicy> pipeline, bool async)

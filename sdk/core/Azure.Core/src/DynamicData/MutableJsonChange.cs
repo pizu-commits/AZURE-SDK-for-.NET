@@ -2,12 +2,15 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Azure.Core.Json
 {
     internal struct MutableJsonChange
     {
+        internal const string SerializationRequiresUnreferencedCode = "This method utilizes reflection-based JSON serialization which is not compatible with trimming.";
+
         public MutableJsonChange(string path,
             int index,
             object? value,
@@ -137,6 +140,7 @@ namespace Azure.Core.Json
             return Path.AsSpan().SequenceCompareTo(otherPath) > 0;
         }
 
+        [RequiresUnreferencedCode(SerializationRequiresUnreferencedCode)]
         internal string AsString()
         {
             if (Value is null)
