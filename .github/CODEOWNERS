@@ -665,7 +665,7 @@
 #/<NotInRepo>/                                                     @vpngwsuppgithub
 
 # ServiceLabel: %Network - Private Link %Service Attention
-#/<NotInRepo>/                                                     @privlinksuppgithub
+#/<NotInRepo>/                                                     @privlinksuppgithub @ronniegeraghty
 
 # ServiceLabel: %Notification Hub %Service Attention
 /sdk/notificationhubs/Microsoft.Azure.Management.NotificationHubs/ @tjsomasundaram
