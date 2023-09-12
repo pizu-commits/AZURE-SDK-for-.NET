@@ -12,7 +12,7 @@ namespace Azure.Communication.JobRouter
     {
         /// <summary> Initializes a new instance of WaitTimeExceptionTrigger. </summary>
         /// <param name="kind"> The type discriminator describing a sub-type of ExceptionTrigger. </param>
-        /// <param name="thresholdSeconds"> Threshold for wait time for this trigger. </param>
+        /// <param name="thresholdSeconds"> Threshold in seconds before triggering the exception action. </param>
         internal WaitTimeExceptionTrigger(string kind, double thresholdSeconds) : base(kind)
         {
             _thresholdSeconds = thresholdSeconds;

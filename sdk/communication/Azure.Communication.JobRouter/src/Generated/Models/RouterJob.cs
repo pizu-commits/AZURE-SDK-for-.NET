@@ -35,7 +35,15 @@ namespace Azure.Communication.JobRouter.Models
         /// <param name="tags"> A set of non-identifying attributes attached to this job. </param>
         /// <param name="notes"> Notes attached to a job, sorted by timestamp. </param>
         /// <param name="scheduledAt"> If set, job will be scheduled to be enqueued at a given time. </param>
-        /// <param name="matchingMode"></param>
+        /// <param name="matchingMode">
+        /// The matching mode to be applied to this job.
+        ///
+        /// Supported types:
+        ///
+        /// QueueAndMatchMode: Used when matching worker to a job is required to be done right after job is queued.
+        /// ScheduleAndSuspendMode: Used for scheduling jobs to be queued at a future time. At specified time, matching of a worker to the job will not start automatically.
+        /// SuspendMode: Used when matching workers to a job needs to be suspended.
+        /// </param>
         internal RouterJob(string id, string channelReference, RouterJobStatus? status, DateTimeOffset? enqueuedAt, string channelId, string classificationPolicyId, string queueId, int? priority, string dispositionCode, IList<RouterWorkerSelector> requestedWorkerSelectors, IReadOnlyList<RouterWorkerSelector> attachedWorkerSelectors, IDictionary<string, object> labels, IReadOnlyDictionary<string, RouterJobAssignment> assignments, IDictionary<string, object> tags, IDictionary<string, string> notes, DateTimeOffset? scheduledAt, JobMatchingMode matchingMode)
         {
             Id = id;

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> The JobMatchModeType. </summary>
+    /// <summary> Discriminator value used to differentiate between supported matching mode types. </summary>
     public readonly partial struct JobMatchModeType : IEquatable<JobMatchModeType>
     {
         private readonly string _value;

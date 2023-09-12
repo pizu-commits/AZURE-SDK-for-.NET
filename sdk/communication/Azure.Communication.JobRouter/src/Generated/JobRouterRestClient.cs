@@ -31,7 +31,7 @@ namespace Azure.Communication.JobRouter
         /// <param name="endpoint"> The endpoint of the Azure Communication resource. </param>
         /// <param name="apiVersion"> Api Version. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="clientDiagnostics"/>, <paramref name="pipeline"/>, <paramref name="endpoint"/> or <paramref name="apiVersion"/> is null. </exception>
-        public JobRouterRestClient(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, string endpoint, string apiVersion = "2022-07-18-preview")
+        public JobRouterRestClient(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, string endpoint, string apiVersion = "2023-08-25-preview")
         {
             ClientDiagnostics = clientDiagnostics ?? throw new ArgumentNullException(nameof(clientDiagnostics));
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
@@ -1543,10 +1543,7 @@ namespace Azure.Communication.JobRouter
         /// <param name="state"> If specified, select workers by worker state. </param>
         /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
         /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity">
-        /// If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel
-        ///             if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false.
-        /// </param>
+        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
         /// <param name="maxpagesize"> Number of objects to return per page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public async Task<Response<RouterWorkerCollection>> ListWorkersAsync(RouterWorkerStateSelector? state = null, string channelId = null, string queueId = null, bool? hasCapacity = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -1571,10 +1568,7 @@ namespace Azure.Communication.JobRouter
         /// <param name="state"> If specified, select workers by worker state. </param>
         /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
         /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity">
-        /// If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel
-        ///             if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false.
-        /// </param>
+        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
         /// <param name="maxpagesize"> Number of objects to return per page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public Response<RouterWorkerCollection> ListWorkers(RouterWorkerStateSelector? state = null, string channelId = null, string queueId = null, bool? hasCapacity = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -1668,10 +1662,7 @@ namespace Azure.Communication.JobRouter
         /// <param name="state"> If specified, select workers by worker state. </param>
         /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
         /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity">
-        /// If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel
-        ///             if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false.
-        /// </param>
+        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
         /// <param name="maxpagesize"> Number of objects to return per page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
@@ -1703,10 +1694,7 @@ namespace Azure.Communication.JobRouter
         /// <param name="state"> If specified, select workers by worker state. </param>
         /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
         /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity">
-        /// If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel
-        ///             if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false.
-        /// </param>
+        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
         /// <param name="maxpagesize"> Number of objects to return per page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>

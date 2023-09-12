@@ -7,12 +7,47 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Azure.Communication.JobRouter;
+using Azure.Communication.SkillsRegistry;
 
 namespace Azure.Communication.JobRouter.Models
 {
     /// <summary> Model factory for models. </summary>
     public static partial class CommunicationJobRouterModelFactory
     {
+        /// <summary> Initializes a new instance of RouterIntent. </summary>
+        /// <param name="id"> The Id of this intent. </param>
+        /// <param name="parameters"> A set of parameters that associated with this intent. </param>
+        /// <param name="description"> The description of this intent. </param>
+        /// <param name="escalationQueueId"> The queue Id to escalate this conversation to. </param>
+        /// <param name="analyzeSentiment"> Whether or not to analyze the sentiment of the conversation. </param>
+        /// <param name="summarizeConversation"> Provide a summary of the conversation. </param>
+        /// <param name="detectEscalation"> Detect whether a request to speak to a human occurred. </param>
+        /// <returns> A new <see cref="JobRouter.RouterIntent"/> instance for mocking. </returns>
+        public static RouterIntent RouterIntent(string id = null, IDictionary<string, IntentParameter> parameters = null, string description = null, string escalationQueueId = null, bool? analyzeSentiment = null, bool? summarizeConversation = null, bool? detectEscalation = null)
+        {
+            parameters ??= new Dictionary<string, IntentParameter>();
+
+            return new RouterIntent(id, parameters, description, escalationQueueId, analyzeSentiment, summarizeConversation, detectEscalation);
+        }
+
+        /// <summary> Initializes a new instance of IntentParameter. </summary>
+        /// <param name="type"> The data type of this parameter. </param>
+        /// <param name="description"> Description of this parameter. </param>
+        /// <param name="enum"> List of possible values for this parameter. </param>
+        /// <param name="required"> If this parameter is required during the intent classification. </param>
+        /// <param name="defaultValue"> Default value for this parameter, if not provided during intent classification. </param>
+        /// <param name="escalationOptions"> Describes how this intent parameter is used during escalation. </param>
+        /// <param name="generatedDescription"> Generated description based on intent type, description and enum. </param>
+        /// <returns> A new <see cref="SkillsRegistry.IntentParameter"/> instance for mocking. </returns>
+        public static IntentParameter IntentParameter(RouterIntentParameterType? type = null, string description = null, IEnumerable<string> @enum = null, bool? required = null, string defaultValue = null, EscalationOptions escalationOptions = null, string generatedDescription = null)
+        {
+            @enum ??= new List<string>();
+
+            return new IntentParameter(type, description, @enum?.ToList(), required, defaultValue, escalationOptions, generatedDescription);
+        }
+
         /// <summary> Initializes a new instance of RouterJobAssignment. </summary>
         /// <param name="assignmentId"> The Id of the job assignment. </param>
         /// <param name="workerId"> The Id of the Worker assigned to the job. </param>

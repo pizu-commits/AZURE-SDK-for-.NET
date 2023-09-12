@@ -7,7 +7,7 @@
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A rule providing static rules that always return the same result, regardless of input. </summary>
+    /// <summary> A rule that provides a static value. </summary>
     public partial class StaticRouterRule : RouterRule
     {
         /// <summary> Initializes a new instance of StaticRouterRule. </summary>

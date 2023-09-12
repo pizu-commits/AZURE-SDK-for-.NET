@@ -152,6 +152,22 @@ namespace Azure.Communication.JobRouter
         public int MaxConcurrentOffers { get { throw null; } set { } }
         public int MinConcurrentOffers { get { throw null; } set { } }
     }
+    public partial class EscalateRequest
+    {
+        public EscalateRequest() { }
+        public string ChannelId { get { throw null; } set { } }
+        public string IntentId { get { throw null; } set { } }
+        public string JobId { get { throw null; } set { } }
+        public System.Collections.Generic.IDictionary<string, object> Parameters { get { throw null; } }
+    }
+    public partial class EscalationOptions
+    {
+        public EscalationOptions() { }
+        public bool? Preferred { get { throw null; } set { } }
+        public bool? Required { get { throw null; } set { } }
+        public int? RequiredForSeconds { get { throw null; } set { } }
+        public string TargetName { get { throw null; } set { } }
+    }
     public abstract partial class ExceptionAction
     {
         internal ExceptionAction() { }
@@ -471,6 +487,37 @@ namespace Azure.Communication.JobRouter
     {
         public RoundRobinMode() { }
     }
+    public partial class RouterIntent
+    {
+        public RouterIntent() { }
+        public bool? AnalyzeSentiment { get { throw null; } set { } }
+        public string Description { get { throw null; } set { } }
+        public bool? DetectEscalation { get { throw null; } set { } }
+        public string EscalationQueueId { get { throw null; } set { } }
+        public string Id { get { throw null; } }
+        public System.Collections.Generic.IDictionary<string, Azure.Communication.SkillsRegistry.IntentParameter> Parameters { get { throw null; } }
+        public bool? SummarizeConversation { get { throw null; } set { } }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct RouterIntentParameterType : System.IEquatable<Azure.Communication.JobRouter.RouterIntentParameterType>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public RouterIntentParameterType(string value) { throw null; }
+        public static Azure.Communication.JobRouter.RouterIntentParameterType Boolean { get { throw null; } }
+        public static Azure.Communication.JobRouter.RouterIntentParameterType Decimal { get { throw null; } }
+        public static Azure.Communication.JobRouter.RouterIntentParameterType Integer { get { throw null; } }
+        public static Azure.Communication.JobRouter.RouterIntentParameterType String { get { throw null; } }
+        public bool Equals(Azure.Communication.JobRouter.RouterIntentParameterType other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Communication.JobRouter.RouterIntentParameterType left, Azure.Communication.JobRouter.RouterIntentParameterType right) { throw null; }
+        public static implicit operator Azure.Communication.JobRouter.RouterIntentParameterType (string value) { throw null; }
+        public static bool operator !=(Azure.Communication.JobRouter.RouterIntentParameterType left, Azure.Communication.JobRouter.RouterIntentParameterType right) { throw null; }
+        public override string ToString() { throw null; }
+    }
     public partial class RouterJobNote
     {
         public RouterJobNote() { }
@@ -605,6 +652,16 @@ namespace Azure.Communication.JobRouter
         public static implicit operator Azure.Communication.JobRouter.ScoringRuleParameterSelector (string value) { throw null; }
         public static bool operator !=(Azure.Communication.JobRouter.ScoringRuleParameterSelector left, Azure.Communication.JobRouter.ScoringRuleParameterSelector right) { throw null; }
         public override string ToString() { throw null; }
+    }
+    public partial class SkillsRegistryClient
+    {
+        protected SkillsRegistryClient() { }
+        public SkillsRegistryClient(string connectionString) { }
+        public SkillsRegistryClient(string connectionString, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options) { }
+        public SkillsRegistryClient(System.Uri endpoint, Azure.AzureKeyCredential credential, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options = null) { }
+        public SkillsRegistryClient(System.Uri endpoint, Azure.Core.TokenCredential credential, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options = null) { }
+        public virtual Azure.Response<Azure.Communication.JobRouter.Models.RouterJob> Escalate(Azure.Communication.SkillsRegistry.EscalateOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Communication.JobRouter.Models.RouterJob>> EscalateAsync(Azure.Communication.SkillsRegistry.EscalateOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
     }
     public partial class StaticQueueSelectorAttachment : Azure.Communication.JobRouter.QueueSelectorAttachment
     {
@@ -754,6 +811,8 @@ namespace Azure.Communication.JobRouter.Models
     public static partial class CommunicationJobRouterModelFactory
     {
         public static Azure.Communication.JobRouter.Models.AcceptJobOfferResult AcceptJobOfferResult(string assignmentId = null, string jobId = null, string workerId = null) { throw null; }
+        public static Azure.Communication.SkillsRegistry.IntentParameter IntentParameter(Azure.Communication.JobRouter.RouterIntentParameterType? type = default(Azure.Communication.JobRouter.RouterIntentParameterType?), string description = null, System.Collections.Generic.IEnumerable<string> @enum = null, bool? required = default(bool?), string defaultValue = null, Azure.Communication.JobRouter.EscalationOptions escalationOptions = null, string generatedDescription = null) { throw null; }
+        public static Azure.Communication.JobRouter.RouterIntent RouterIntent(string id = null, System.Collections.Generic.IDictionary<string, Azure.Communication.SkillsRegistry.IntentParameter> parameters = null, string description = null, string escalationQueueId = null, bool? analyzeSentiment = default(bool?), bool? summarizeConversation = default(bool?), bool? detectEscalation = default(bool?)) { throw null; }
         public static Azure.Communication.JobRouter.Models.RouterJobAssignment RouterJobAssignment(string assignmentId = null, string workerId = null, System.DateTimeOffset assignedAt = default(System.DateTimeOffset), System.DateTimeOffset? completedAt = default(System.DateTimeOffset?), System.DateTimeOffset? closedAt = default(System.DateTimeOffset?)) { throw null; }
         public static Azure.Communication.JobRouter.Models.RouterJobOffer RouterJobOffer(string offerId = null, string jobId = null, int capacityCost = 0, System.DateTimeOffset? offeredAt = default(System.DateTimeOffset?), System.DateTimeOffset? expiresAt = default(System.DateTimeOffset?)) { throw null; }
         public static Azure.Communication.JobRouter.Models.RouterQueueStatistics RouterQueueStatistics(string queueId = null, int length = 0, System.Collections.Generic.IReadOnlyDictionary<string, double> estimatedWaitTimeMinutes = null, double? longestJobWaitTimeMinutes = default(double?)) { throw null; }
@@ -952,5 +1011,88 @@ namespace Azure.Communication.JobRouter.Models
         internal UnassignJobResult() { }
         public string JobId { get { throw null; } }
         public int UnassignmentCount { get { throw null; } }
+    }
+}
+namespace Azure.Communication.SkillsRegistry
+{
+    public partial class CreateIntentOptions
+    {
+        public CreateIntentOptions(string intentId) { }
+        public bool? AnalyzeSentiment { get { throw null; } set { } }
+        public string Description { get { throw null; } set { } }
+        public bool? DetectEscalation { get { throw null; } set { } }
+        public string EscalationQueueId { get { throw null; } set { } }
+        public string IntentId { get { throw null; } }
+        public System.Collections.Generic.IDictionary<string, Azure.Communication.SkillsRegistry.IntentParameter> Parameters { get { throw null; } }
+        public bool? SummarizeConversation { get { throw null; } set { } }
+    }
+    public partial class EscalateOptions
+    {
+        public EscalateOptions(string jobId, string intentId, string channelId) { }
+        public string ChannelId { get { throw null; } }
+        public string IntentId { get { throw null; } }
+        public string JobId { get { throw null; } }
+        public System.Collections.Generic.IDictionary<string, Azure.Communication.JobRouter.LabelValue> Parameters { get { throw null; } }
+    }
+    public partial class IntentParameter
+    {
+        public IntentParameter() { }
+        public string DefaultValue { get { throw null; } set { } }
+        public string Description { get { throw null; } set { } }
+        public System.Collections.Generic.IList<string> Enum { get { throw null; } }
+        public Azure.Communication.JobRouter.EscalationOptions EscalationOptions { get { throw null; } set { } }
+        public string GeneratedDescription { get { throw null; } }
+        public bool? Required { get { throw null; } set { } }
+        public Azure.Communication.JobRouter.RouterIntentParameterType? Type { get { throw null; } set { } }
+    }
+    public partial class SkillsRegistryAdministrationClient
+    {
+        protected SkillsRegistryAdministrationClient() { }
+        public SkillsRegistryAdministrationClient(string connectionString) { }
+        public SkillsRegistryAdministrationClient(string connectionString, Azure.Communication.JobRouter.JobRouterClientOptions options) { }
+        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.AzureKeyCredential credential, Azure.Communication.JobRouter.JobRouterClientOptions options = null) { }
+        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.Core.TokenCredential credential, Azure.Communication.JobRouter.JobRouterClientOptions options = null) { }
+        public virtual Azure.Response<Azure.Communication.JobRouter.RouterIntent> CreateIntent(Azure.Communication.SkillsRegistry.CreateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Communication.JobRouter.RouterIntent>> CreateIntentAsync(Azure.Communication.SkillsRegistry.CreateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response DeleteIntent(string intentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> DeleteIntentAsync(string intentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response<Azure.Communication.JobRouter.RouterIntent> GetIntent(string intentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Communication.JobRouter.RouterIntent>> GetIntentAsync(string intentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Pageable<Azure.Communication.SkillsRegistry.Models.IntentItem> GetIntents(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.AsyncPageable<Azure.Communication.SkillsRegistry.Models.IntentItem> GetIntentsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response<Azure.Communication.JobRouter.RouterIntent> UpdateIntent(Azure.Communication.SkillsRegistry.UpdateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response UpdateIntent(string intentId, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Communication.JobRouter.RouterIntent>> UpdateIntentAsync(Azure.Communication.SkillsRegistry.UpdateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> UpdateIntentAsync(string intentId, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
+    }
+    public partial class SkillsRegistryClientOptions : Azure.Core.ClientOptions
+    {
+        public SkillsRegistryClientOptions(Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions.ServiceVersion version = Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions.ServiceVersion.V2023_08_25_preview) { }
+        public enum ServiceVersion
+        {
+            V2021_10_20_preview2 = 1,
+            V2022_07_18_preview = 2,
+            V2023_08_25_preview = 3,
+        }
+    }
+    public partial class UpdateIntentOptions
+    {
+        public UpdateIntentOptions(string intentId) { }
+        public bool? AnalyzeSentiment { get { throw null; } set { } }
+        public string? Description { get { throw null; } set { } }
+        public bool? DetectEscalation { get { throw null; } set { } }
+        public string? EscalationQueueId { get { throw null; } set { } }
+        public string IntentId { get { throw null; } }
+        public System.Collections.Generic.IDictionary<string, Azure.Communication.SkillsRegistry.IntentParameter> Parameters { get { throw null; } }
+        public bool? SummarizeConversation { get { throw null; } set { } }
+    }
+}
+namespace Azure.Communication.SkillsRegistry.Models
+{
+    public partial class IntentItem
+    {
+        internal IntentItem() { }
+        public Azure.ETag ETag { get { throw null; } }
+        public Azure.Communication.JobRouter.RouterIntent Intent { get { throw null; } }
     }
 }
