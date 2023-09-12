@@ -1049,9 +1049,9 @@ namespace Azure.Communication.SkillsRegistry
     {
         protected SkillsRegistryAdministrationClient() { }
         public SkillsRegistryAdministrationClient(string connectionString) { }
-        public SkillsRegistryAdministrationClient(string connectionString, Azure.Communication.JobRouter.JobRouterClientOptions options) { }
-        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.AzureKeyCredential credential, Azure.Communication.JobRouter.JobRouterClientOptions options = null) { }
-        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.Core.TokenCredential credential, Azure.Communication.JobRouter.JobRouterClientOptions options = null) { }
+        public SkillsRegistryAdministrationClient(string connectionString, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options) { }
+        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.AzureKeyCredential credential, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options = null) { }
+        public SkillsRegistryAdministrationClient(System.Uri endpoint, Azure.Core.TokenCredential credential, Azure.Communication.SkillsRegistry.SkillsRegistryClientOptions options = null) { }
         public virtual Azure.Response<Azure.Communication.JobRouter.RouterIntent> CreateIntent(Azure.Communication.SkillsRegistry.CreateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Communication.JobRouter.RouterIntent>> CreateIntentAsync(Azure.Communication.SkillsRegistry.CreateIntentOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.Response DeleteIntent(string intentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
