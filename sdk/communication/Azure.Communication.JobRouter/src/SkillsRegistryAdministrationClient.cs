@@ -31,17 +31,17 @@ namespace Azure.Communication.SkillsRegistry
         public SkillsRegistryAdministrationClient(string connectionString)
             : this(
                 ConnectionString.Parse(Argument.CheckNotNullOrEmpty(connectionString, nameof(connectionString))),
-                new JobRouterClientOptions())
+                new SkillsRegistryClientOptions())
         {
         }
 
         /// <summary> Initializes a new instance of <see cref="SkillsRegistryAdministrationClient"/>.</summary>
         /// <param name="connectionString">Connection string acquired from the Azure Communication Services resource.</param>
         /// <param name="options">Client option exposing <see cref="ClientOptions.Diagnostics"/>, <see cref="ClientOptions.Retry"/>, <see cref="ClientOptions.Transport"/>, etc.</param>
-        public SkillsRegistryAdministrationClient(string connectionString, JobRouterClientOptions options)
+        public SkillsRegistryAdministrationClient(string connectionString, SkillsRegistryClientOptions options)
             : this(
                 ConnectionString.Parse(Argument.CheckNotNullOrEmpty(connectionString, nameof(connectionString))),
-                options ?? new JobRouterClientOptions())
+                options ?? new SkillsRegistryClientOptions())
         {
         }
 
@@ -49,11 +49,11 @@ namespace Azure.Communication.SkillsRegistry
         /// <param name="endpoint">The URI of the Azure Communication Services resource.</param>
         /// <param name="credential">The <see cref="AzureKeyCredential"/> used to authenticate requests.</param>
         /// <param name="options">Client option exposing <see cref="ClientOptions.Diagnostics"/>, <see cref="ClientOptions.Retry"/>, <see cref="ClientOptions.Transport"/>, etc.</param>
-        public SkillsRegistryAdministrationClient(Uri endpoint, AzureKeyCredential credential, JobRouterClientOptions options = default)
+        public SkillsRegistryAdministrationClient(Uri endpoint, AzureKeyCredential credential, SkillsRegistryClientOptions options = default)
             : this(
                 Argument.CheckNotNull(endpoint, nameof(endpoint)).AbsoluteUri,
                 Argument.CheckNotNull(credential, nameof(credential)),
-                options ?? new JobRouterClientOptions())
+                options ?? new SkillsRegistryClientOptions())
         {
         }
 
@@ -61,11 +61,11 @@ namespace Azure.Communication.SkillsRegistry
         /// <param name="endpoint">The URI of the Azure Communication Services resource.</param>
         /// <param name="credential">The TokenCredential used to authenticate requests, such as DefaultAzureCredential.</param>
         /// <param name="options">Client option exposing <see cref="ClientOptions.Diagnostics"/>, <see cref="ClientOptions.Retry"/>, <see cref="ClientOptions.Transport"/>, etc.</param>
-        public SkillsRegistryAdministrationClient(Uri endpoint, TokenCredential credential, JobRouterClientOptions options = default)
+        public SkillsRegistryAdministrationClient(Uri endpoint, TokenCredential credential, SkillsRegistryClientOptions options = default)
             : this(
                 Argument.CheckNotNull(endpoint, nameof(endpoint)).AbsoluteUri,
                 Argument.CheckNotNull(credential, nameof(credential)),
-                options ?? new JobRouterClientOptions())
+                options ?? new SkillsRegistryClientOptions())
         {
         }
 
@@ -73,22 +73,22 @@ namespace Azure.Communication.SkillsRegistry
 
         #region private constructors
 
-        private SkillsRegistryAdministrationClient(ConnectionString connectionString, JobRouterClientOptions options)
+        private SkillsRegistryAdministrationClient(ConnectionString connectionString, SkillsRegistryClientOptions options)
             : this(connectionString.GetRequired("endpoint"), options.BuildHttpPipeline(connectionString), options)
         {
         }
 
-        private SkillsRegistryAdministrationClient(string endpoint, TokenCredential tokenCredential, JobRouterClientOptions options)
+        private SkillsRegistryAdministrationClient(string endpoint, TokenCredential tokenCredential, SkillsRegistryClientOptions options)
             : this(endpoint, options.BuildHttpPipeline(tokenCredential), options)
         {
         }
 
-        private SkillsRegistryAdministrationClient(string endpoint, AzureKeyCredential keyCredential, JobRouterClientOptions options)
+        private SkillsRegistryAdministrationClient(string endpoint, AzureKeyCredential keyCredential, SkillsRegistryClientOptions options)
             : this(endpoint, options.BuildHttpPipeline(keyCredential), options)
         {
         }
 
-        private SkillsRegistryAdministrationClient(string endpoint, HttpPipeline httpPipeline, JobRouterClientOptions options)
+        private SkillsRegistryAdministrationClient(string endpoint, HttpPipeline httpPipeline, SkillsRegistryClientOptions options)
         {
             _clientDiagnostics = new ClientDiagnostics(options);
             RestClient = new SkillsRegistryRestClient(_clientDiagnostics, httpPipeline, endpoint, options.ApiVersion);
