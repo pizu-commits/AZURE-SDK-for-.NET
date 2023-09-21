@@ -1,0 +1,1921 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="GetPoolAsync(string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetPoolAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Pool> response = await client.GetPoolAsync("<projectName>", "<poolName>");
+]]></code>
+This sample shows how to call GetPoolAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Pool> response = await client.GetPoolAsync("<projectName>", "<poolName>");
+]]></code></example>
+    </member>
+    <member name="GetPool(string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetPool.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Pool> response = client.GetPool("<projectName>", "<poolName>");
+]]></code>
+This sample shows how to call GetPool with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Pool> response = client.GetPool("<projectName>", "<poolName>");
+]]></code></example>
+    </member>
+    <member name="GetPoolAsync(string,string,RequestContext)">
+      <example>
+This sample shows how to call GetPoolAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetPoolAsync("<projectName>", "<poolName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("healthStatus").ToString());
+]]></code>
+This sample shows how to call GetPoolAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetPoolAsync("<projectName>", "<poolName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
+Console.WriteLine(result.GetProperty("healthStatus").ToString());
+]]></code></example>
+    </member>
+    <member name="GetPool(string,string,RequestContext)">
+      <example>
+This sample shows how to call GetPool and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetPool("<projectName>", "<poolName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("healthStatus").ToString());
+]]></code>
+This sample shows how to call GetPool with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetPool("<projectName>", "<poolName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
+Console.WriteLine(result.GetProperty("healthStatus").ToString());
+]]></code></example>
+    </member>
+    <member name="GetScheduleByPoolAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetScheduleByPoolAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Schedule> response = await client.GetScheduleByPoolAsync("<projectName>", "<poolName>", "<scheduleName>");
+]]></code>
+This sample shows how to call GetScheduleByPoolAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Schedule> response = await client.GetScheduleByPoolAsync("<projectName>", "<poolName>", "<scheduleName>");
+]]></code></example>
+    </member>
+    <member name="GetScheduleByPool(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetScheduleByPool.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Schedule> response = client.GetScheduleByPool("<projectName>", "<poolName>", "<scheduleName>");
+]]></code>
+This sample shows how to call GetScheduleByPool with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<Schedule> response = client.GetScheduleByPool("<projectName>", "<poolName>", "<scheduleName>");
+]]></code></example>
+    </member>
+    <member name="GetScheduleByPoolAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetScheduleByPoolAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetScheduleByPoolAsync("<projectName>", "<poolName>", "<scheduleName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("frequency").ToString());
+Console.WriteLine(result.GetProperty("time").ToString());
+Console.WriteLine(result.GetProperty("timeZone").ToString());
+]]></code>
+This sample shows how to call GetScheduleByPoolAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetScheduleByPoolAsync("<projectName>", "<poolName>", "<scheduleName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("frequency").ToString());
+Console.WriteLine(result.GetProperty("time").ToString());
+Console.WriteLine(result.GetProperty("timeZone").ToString());
+]]></code></example>
+    </member>
+    <member name="GetScheduleByPool(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetScheduleByPool and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetScheduleByPool("<projectName>", "<poolName>", "<scheduleName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("frequency").ToString());
+Console.WriteLine(result.GetProperty("time").ToString());
+Console.WriteLine(result.GetProperty("timeZone").ToString());
+]]></code>
+This sample shows how to call GetScheduleByPool with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetScheduleByPool("<projectName>", "<poolName>", "<scheduleName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("frequency").ToString());
+Console.WriteLine(result.GetProperty("time").ToString());
+Console.WriteLine(result.GetProperty("timeZone").ToString());
+]]></code></example>
+    </member>
+    <member name="GetDevBoxByUserAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetDevBoxByUserAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBox> response = await client.GetDevBoxByUserAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call GetDevBoxByUserAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBox> response = await client.GetDevBoxByUserAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="GetDevBoxByUser(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetDevBoxByUser.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBox> response = client.GetDevBoxByUser("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call GetDevBoxByUser with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBox> response = client.GetDevBoxByUser("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="GetDevBoxByUserAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetDevBoxByUserAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetDevBoxByUserAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("poolName").ToString());
+]]></code>
+This sample shows how to call GetDevBoxByUserAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetDevBoxByUserAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("projectName").ToString());
+Console.WriteLine(result.GetProperty("poolName").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("provisioningState").ToString());
+Console.WriteLine(result.GetProperty("actionState").ToString());
+Console.WriteLine(result.GetProperty("powerState").ToString());
+Console.WriteLine(result.GetProperty("uniqueId").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("user").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("createdTime").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+]]></code></example>
+    </member>
+    <member name="GetDevBoxByUser(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetDevBoxByUser and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetDevBoxByUser("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("poolName").ToString());
+]]></code>
+This sample shows how to call GetDevBoxByUser with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetDevBoxByUser("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("projectName").ToString());
+Console.WriteLine(result.GetProperty("poolName").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("provisioningState").ToString());
+Console.WriteLine(result.GetProperty("actionState").ToString());
+Console.WriteLine(result.GetProperty("powerState").ToString());
+Console.WriteLine(result.GetProperty("uniqueId").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("user").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("createdTime").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+]]></code></example>
+    </member>
+    <member name="CreateDevBoxAsync(string,string,string,DevBox,CancellationToken)">
+      <example>
+This sample shows how to call CreateDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+DevBox body = new DevBox("<poolName>");
+Response<DevBox> response = await client.CreateDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", body);
+]]></code>
+This sample shows how to call CreateDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+DevBox body = new DevBox("<poolName>")
+{
+    LocalAdministrator = LocalAdminStatus.Enabled,
+};
+Response<DevBox> response = await client.CreateDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", body);
+]]></code></example>
+    </member>
+    <member name="CreateDevBox(string,string,string,DevBox,CancellationToken)">
+      <example>
+This sample shows how to call CreateDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+DevBox body = new DevBox("<poolName>");
+Response<DevBox> response = client.CreateDevBox("<projectName>", "<userId>", "<devBoxName>", body);
+]]></code>
+This sample shows how to call CreateDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+DevBox body = new DevBox("<poolName>")
+{
+    LocalAdministrator = LocalAdminStatus.Enabled,
+};
+Response<DevBox> response = client.CreateDevBox("<projectName>", "<userId>", "<devBoxName>", body);
+]]></code></example>
+    </member>
+    <member name="CreateDevBoxAsync(string,string,string,RequestContent,RequestContext)">
+      <example>
+This sample shows how to call CreateDevBoxAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+RequestContent content = RequestContent.Create(new
+{
+    poolName = "<poolName>",
+});
+Response response = await client.CreateDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", content);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("poolName").ToString());
+]]></code>
+This sample shows how to call CreateDevBoxAsync with all parameters and request content and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+RequestContent content = RequestContent.Create(new
+{
+    poolName = "<poolName>",
+    localAdministrator = "Enabled",
+});
+Response response = await client.CreateDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", content);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("projectName").ToString());
+Console.WriteLine(result.GetProperty("poolName").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("provisioningState").ToString());
+Console.WriteLine(result.GetProperty("actionState").ToString());
+Console.WriteLine(result.GetProperty("powerState").ToString());
+Console.WriteLine(result.GetProperty("uniqueId").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("user").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("createdTime").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+]]></code></example>
+    </member>
+    <member name="CreateDevBox(string,string,string,RequestContent,RequestContext)">
+      <example>
+This sample shows how to call CreateDevBox and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+RequestContent content = RequestContent.Create(new
+{
+    poolName = "<poolName>",
+});
+Response response = client.CreateDevBox("<projectName>", "<userId>", "<devBoxName>", content);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("poolName").ToString());
+]]></code>
+This sample shows how to call CreateDevBox with all parameters and request content and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+RequestContent content = RequestContent.Create(new
+{
+    poolName = "<poolName>",
+    localAdministrator = "Enabled",
+});
+Response response = client.CreateDevBox("<projectName>", "<userId>", "<devBoxName>", content);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("projectName").ToString());
+Console.WriteLine(result.GetProperty("poolName").ToString());
+Console.WriteLine(result.GetProperty("hibernateSupport").ToString());
+Console.WriteLine(result.GetProperty("provisioningState").ToString());
+Console.WriteLine(result.GetProperty("actionState").ToString());
+Console.WriteLine(result.GetProperty("powerState").ToString());
+Console.WriteLine(result.GetProperty("uniqueId").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("location").ToString());
+Console.WriteLine(result.GetProperty("osType").ToString());
+Console.WriteLine(result.GetProperty("user").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+Console.WriteLine(result.GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+Console.WriteLine(result.GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("version").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+Console.WriteLine(result.GetProperty("imageReference").GetProperty("publishedDate").ToString());
+Console.WriteLine(result.GetProperty("createdTime").ToString());
+Console.WriteLine(result.GetProperty("localAdministrator").ToString());
+]]></code></example>
+    </member>
+    <member name="DeleteDevBoxAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call DeleteDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.DeleteDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call DeleteDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.DeleteDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="DeleteDevBox(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call DeleteDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.DeleteDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call DeleteDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.DeleteDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="DeleteDevBoxAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call DeleteDevBoxAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.DeleteDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call DeleteDevBoxAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.DeleteDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="DeleteDevBox(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call DeleteDevBox and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.DeleteDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call DeleteDevBox with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.DeleteDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="StartDevBoxAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call StartDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.StartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call StartDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.StartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="StartDevBox(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call StartDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.StartDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call StartDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.StartDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="StartDevBoxAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call StartDevBoxAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.StartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call StartDevBoxAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.StartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="StartDevBox(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call StartDevBox and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.StartDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call StartDevBox with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.StartDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="StopDevBoxAsync(string,string,string,bool,CancellationToken)">
+      <example>
+This sample shows how to call StopDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.StopDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", true);
+]]></code>
+This sample shows how to call StopDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.StopDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", true);
+]]></code></example>
+    </member>
+    <member name="StopDevBox(string,string,string,bool,CancellationToken)">
+      <example>
+This sample shows how to call StopDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.StopDevBox("<projectName>", "<userId>", "<devBoxName>", true);
+]]></code>
+This sample shows how to call StopDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.StopDevBox("<projectName>", "<userId>", "<devBoxName>", true);
+]]></code></example>
+    </member>
+    <member name="StopDevBoxAsync(string,string,string,bool,RequestContext)">
+      <example>
+This sample shows how to call StopDevBoxAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.StopDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", true, null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call StopDevBoxAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.StopDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", true, null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="StopDevBox(string,string,string,bool,RequestContext)">
+      <example>
+This sample shows how to call StopDevBox and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.StopDevBox("<projectName>", "<userId>", "<devBoxName>", true, null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call StopDevBox with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.StopDevBox("<projectName>", "<userId>", "<devBoxName>", true, null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="RestartDevBoxAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call RestartDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.RestartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call RestartDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = await client.RestartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="RestartDevBox(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call RestartDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.RestartDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call RestartDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<OperationStatus> response = client.RestartDevBox("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="RestartDevBoxAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call RestartDevBoxAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.RestartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call RestartDevBoxAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.RestartDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="RestartDevBox(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call RestartDevBox and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.RestartDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call RestartDevBox with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.RestartDevBox("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("resourceId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("percentComplete").ToString());
+Console.WriteLine(result.GetProperty("properties").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+]]></code></example>
+    </member>
+    <member name="GetRemoteConnectionAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetRemoteConnectionAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<RemoteConnection> response = await client.GetRemoteConnectionAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call GetRemoteConnectionAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<RemoteConnection> response = await client.GetRemoteConnectionAsync("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="GetRemoteConnection(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetRemoteConnection.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<RemoteConnection> response = client.GetRemoteConnection("<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call GetRemoteConnection with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<RemoteConnection> response = client.GetRemoteConnection("<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="GetRemoteConnectionAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetRemoteConnectionAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetRemoteConnectionAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.ToString());
+]]></code>
+This sample shows how to call GetRemoteConnectionAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetRemoteConnectionAsync("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("webUrl").ToString());
+Console.WriteLine(result.GetProperty("rdpConnectionUrl").ToString());
+]]></code></example>
+    </member>
+    <member name="GetRemoteConnection(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetRemoteConnection and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetRemoteConnection("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.ToString());
+]]></code>
+This sample shows how to call GetRemoteConnection with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetRemoteConnection("<projectName>", "<userId>", "<devBoxName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("webUrl").ToString());
+Console.WriteLine(result.GetProperty("rdpConnectionUrl").ToString());
+]]></code></example>
+    </member>
+    <member name="GetActionAsync(string,string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetActionAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = await client.GetActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+]]></code>
+This sample shows how to call GetActionAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = await client.GetActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+]]></code></example>
+    </member>
+    <member name="GetAction(string,string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetAction.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = client.GetAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+]]></code>
+This sample shows how to call GetAction with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = client.GetAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+]]></code></example>
+    </member>
+    <member name="GetActionAsync(string,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetActionAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+]]></code>
+This sample shows how to call GetActionAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
+Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+]]></code></example>
+    </member>
+    <member name="GetAction(string,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetAction and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+]]></code>
+This sample shows how to call GetAction with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
+Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+]]></code></example>
+    </member>
+    <member name="SkipActionAsync(string,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call SkipActionAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.SkipActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+Console.WriteLine(response.Status);
+]]></code>
+This sample shows how to call SkipActionAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.SkipActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+Console.WriteLine(response.Status);
+]]></code></example>
+    </member>
+    <member name="SkipAction(string,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call SkipAction.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.SkipAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+Console.WriteLine(response.Status);
+]]></code>
+This sample shows how to call SkipAction with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.SkipAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>");
+Console.WriteLine(response.Status);
+]]></code></example>
+    </member>
+    <member name="DelayActionAsync(string,string,string,string,DateTimeOffset,CancellationToken)">
+      <example>
+This sample shows how to call DelayActionAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+]]></code>
+This sample shows how to call DelayActionAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+]]></code></example>
+    </member>
+    <member name="DelayAction(string,string,string,string,DateTimeOffset,CancellationToken)">
+      <example>
+This sample shows how to call DelayAction.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+]]></code>
+This sample shows how to call DelayAction with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxAction> response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+]]></code></example>
+    </member>
+    <member name="DelayActionAsync(string,string,string,string,DateTimeOffset,RequestContext)">
+      <example>
+This sample shows how to call DelayActionAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+]]></code>
+This sample shows how to call DelayActionAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
+Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+]]></code></example>
+    </member>
+    <member name="DelayAction(string,string,string,string,DateTimeOffset,RequestContext)">
+      <example>
+This sample shows how to call DelayAction and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+]]></code>
+This sample shows how to call DelayAction with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("actionType").ToString());
+Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
+Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+]]></code></example>
+    </member>
+    <member name="GetPoolsAsync(string,int,string,CancellationToken)">
+      <example>
+This sample shows how to call GetPoolsAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (Pool item in client.GetPoolsAsync("<projectName>", 1234, "<filter>"))
+{
+}
+]]></code>
+This sample shows how to call GetPoolsAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (Pool item in client.GetPoolsAsync("<projectName>", 1234, "<filter>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetPools(string,int,string,CancellationToken)">
+      <example>
+This sample shows how to call GetPools.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (Pool item in client.GetPools("<projectName>", 1234, "<filter>"))
+{
+}
+]]></code>
+This sample shows how to call GetPools with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (Pool item in client.GetPools("<projectName>", 1234, "<filter>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetPoolsAsync(string,int,string,RequestContext)">
+      <example>
+This sample shows how to call GetPoolsAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetPoolsAsync("<projectName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("healthStatus").ToString());
+}
+]]></code>
+This sample shows how to call GetPoolsAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetPoolsAsync("<projectName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("osType").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+    Console.WriteLine(result[0].GetProperty("hibernateSupport").ToString());
+    Console.WriteLine(result[0].GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("version").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("publishedDate").ToString());
+    Console.WriteLine(result[0].GetProperty("localAdministrator").ToString());
+    Console.WriteLine(result[0].GetProperty("stopOnDisconnect").GetProperty("status").ToString());
+    Console.WriteLine(result[0].GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
+    Console.WriteLine(result[0].GetProperty("healthStatus").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetPools(string,int,string,RequestContext)">
+      <example>
+This sample shows how to call GetPools and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetPools("<projectName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("healthStatus").ToString());
+}
+]]></code>
+This sample shows how to call GetPools with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetPools("<projectName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("osType").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+    Console.WriteLine(result[0].GetProperty("hibernateSupport").ToString());
+    Console.WriteLine(result[0].GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("version").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("publishedDate").ToString());
+    Console.WriteLine(result[0].GetProperty("localAdministrator").ToString());
+    Console.WriteLine(result[0].GetProperty("stopOnDisconnect").GetProperty("status").ToString());
+    Console.WriteLine(result[0].GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
+    Console.WriteLine(result[0].GetProperty("healthStatus").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByPoolAsync(string,string,int,string,CancellationToken)">
+      <example>
+This sample shows how to call GetSchedulesByPoolAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (Schedule item in client.GetSchedulesByPoolAsync("<projectName>", "<poolName>", 1234, "<filter>"))
+{
+}
+]]></code>
+This sample shows how to call GetSchedulesByPoolAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (Schedule item in client.GetSchedulesByPoolAsync("<projectName>", "<poolName>", 1234, "<filter>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByPool(string,string,int,string,CancellationToken)">
+      <example>
+This sample shows how to call GetSchedulesByPool.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (Schedule item in client.GetSchedulesByPool("<projectName>", "<poolName>", 1234, "<filter>"))
+{
+}
+]]></code>
+This sample shows how to call GetSchedulesByPool with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (Schedule item in client.GetSchedulesByPool("<projectName>", "<poolName>", 1234, "<filter>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByPoolAsync(string,string,int,string,RequestContext)">
+      <example>
+This sample shows how to call GetSchedulesByPoolAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetSchedulesByPoolAsync("<projectName>", "<poolName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("type").ToString());
+    Console.WriteLine(result[0].GetProperty("frequency").ToString());
+    Console.WriteLine(result[0].GetProperty("time").ToString());
+    Console.WriteLine(result[0].GetProperty("timeZone").ToString());
+}
+]]></code>
+This sample shows how to call GetSchedulesByPoolAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetSchedulesByPoolAsync("<projectName>", "<poolName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("type").ToString());
+    Console.WriteLine(result[0].GetProperty("frequency").ToString());
+    Console.WriteLine(result[0].GetProperty("time").ToString());
+    Console.WriteLine(result[0].GetProperty("timeZone").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByPool(string,string,int,string,RequestContext)">
+      <example>
+This sample shows how to call GetSchedulesByPool and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetSchedulesByPool("<projectName>", "<poolName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("type").ToString());
+    Console.WriteLine(result[0].GetProperty("frequency").ToString());
+    Console.WriteLine(result[0].GetProperty("time").ToString());
+    Console.WriteLine(result[0].GetProperty("timeZone").ToString());
+}
+]]></code>
+This sample shows how to call GetSchedulesByPool with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetSchedulesByPool("<projectName>", "<poolName>", 1234, "<filter>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("type").ToString());
+    Console.WriteLine(result[0].GetProperty("frequency").ToString());
+    Console.WriteLine(result[0].GetProperty("time").ToString());
+    Console.WriteLine(result[0].GetProperty("timeZone").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetDevBoxesByUserAsync(string,string,string,int,CancellationToken)">
+      <example>
+This sample shows how to call GetDevBoxesByUserAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBox item in client.GetDevBoxesByUserAsync("<projectName>", "<userId>", "<filter>", 1234))
+{
+}
+]]></code>
+This sample shows how to call GetDevBoxesByUserAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBox item in client.GetDevBoxesByUserAsync("<projectName>", "<userId>", "<filter>", 1234))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetDevBoxesByUser(string,string,string,int,CancellationToken)">
+      <example>
+This sample shows how to call GetDevBoxesByUser.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBox item in client.GetDevBoxesByUser("<projectName>", "<userId>", "<filter>", 1234))
+{
+}
+]]></code>
+This sample shows how to call GetDevBoxesByUser with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBox item in client.GetDevBoxesByUser("<projectName>", "<userId>", "<filter>", 1234))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetDevBoxesByUserAsync(string,string,string,int,RequestContext)">
+      <example>
+This sample shows how to call GetDevBoxesByUserAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetDevBoxesByUserAsync("<projectName>", "<userId>", "<filter>", 1234, null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("poolName").ToString());
+}
+]]></code>
+This sample shows how to call GetDevBoxesByUserAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetDevBoxesByUserAsync("<projectName>", "<userId>", "<filter>", 1234, null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("projectName").ToString());
+    Console.WriteLine(result[0].GetProperty("poolName").ToString());
+    Console.WriteLine(result[0].GetProperty("hibernateSupport").ToString());
+    Console.WriteLine(result[0].GetProperty("provisioningState").ToString());
+    Console.WriteLine(result[0].GetProperty("actionState").ToString());
+    Console.WriteLine(result[0].GetProperty("powerState").ToString());
+    Console.WriteLine(result[0].GetProperty("uniqueId").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("target").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("osType").ToString());
+    Console.WriteLine(result[0].GetProperty("user").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+    Console.WriteLine(result[0].GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("version").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("publishedDate").ToString());
+    Console.WriteLine(result[0].GetProperty("createdTime").ToString());
+    Console.WriteLine(result[0].GetProperty("localAdministrator").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetDevBoxesByUser(string,string,string,int,RequestContext)">
+      <example>
+This sample shows how to call GetDevBoxesByUser and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetDevBoxesByUser("<projectName>", "<userId>", "<filter>", 1234, null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("poolName").ToString());
+}
+]]></code>
+This sample shows how to call GetDevBoxesByUser with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetDevBoxesByUser("<projectName>", "<userId>", "<filter>", 1234, null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("projectName").ToString());
+    Console.WriteLine(result[0].GetProperty("poolName").ToString());
+    Console.WriteLine(result[0].GetProperty("hibernateSupport").ToString());
+    Console.WriteLine(result[0].GetProperty("provisioningState").ToString());
+    Console.WriteLine(result[0].GetProperty("actionState").ToString());
+    Console.WriteLine(result[0].GetProperty("powerState").ToString());
+    Console.WriteLine(result[0].GetProperty("uniqueId").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("target").ToString());
+    Console.WriteLine(result[0].GetProperty("location").ToString());
+    Console.WriteLine(result[0].GetProperty("osType").ToString());
+    Console.WriteLine(result[0].GetProperty("user").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("skuName").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("vCPUs").ToString());
+    Console.WriteLine(result[0].GetProperty("hardwareProfile").GetProperty("memoryGB").ToString());
+    Console.WriteLine(result[0].GetProperty("storageProfile").GetProperty("osDisk").GetProperty("diskSizeGB").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("version").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("operatingSystem").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("osBuildNumber").ToString());
+    Console.WriteLine(result[0].GetProperty("imageReference").GetProperty("publishedDate").ToString());
+    Console.WriteLine(result[0].GetProperty("createdTime").ToString());
+    Console.WriteLine(result[0].GetProperty("localAdministrator").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetActionsAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetActionsAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxAction item in client.GetActionsAsync("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code>
+This sample shows how to call GetActionsAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxAction item in client.GetActionsAsync("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetActions(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetActions.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxAction item in client.GetActions("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code>
+This sample shows how to call GetActions with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxAction item in client.GetActions("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetActionsAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetActionsAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetActionsAsync("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("sourceId").ToString());
+}
+]]></code>
+This sample shows how to call GetActionsAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetActionsAsync("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("sourceId").ToString());
+    Console.WriteLine(result[0].GetProperty("suspendedUntil").ToString());
+    Console.WriteLine(result[0].GetProperty("next").GetProperty("scheduledTime").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetActions(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetActions and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetActions("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("sourceId").ToString());
+}
+]]></code>
+This sample shows how to call GetActions with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetActions("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("sourceId").ToString());
+    Console.WriteLine(result[0].GetProperty("suspendedUntil").ToString());
+    Console.WriteLine(result[0].GetProperty("next").GetProperty("scheduledTime").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="DelayActionsAsync(string,string,string,DateTimeOffset,CancellationToken)">
+      <example>
+This sample shows how to call DelayActionsAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxActionDelayResult item in client.DelayActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00")))
+{
+}
+]]></code>
+This sample shows how to call DelayActionsAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxActionDelayResult item in client.DelayActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00")))
+{
+}
+]]></code></example>
+    </member>
+    <member name="DelayActions(string,string,string,DateTimeOffset,CancellationToken)">
+      <example>
+This sample shows how to call DelayActions.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxActionDelayResult item in client.DelayActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00")))
+{
+}
+]]></code>
+This sample shows how to call DelayActions with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxActionDelayResult item in client.DelayActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00")))
+{
+}
+]]></code></example>
+    </member>
+    <member name="DelayActionsAsync(string,string,string,DateTimeOffset,RequestContext)">
+      <example>
+This sample shows how to call DelayActionsAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.DelayActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("result").ToString());
+}
+]]></code>
+This sample shows how to call DelayActionsAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.DelayActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("result").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("sourceId").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("suspendedUntil").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("next").GetProperty("scheduledTime").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("target").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="DelayActions(string,string,string,DateTimeOffset,RequestContext)">
+      <example>
+This sample shows how to call DelayActions and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.DelayActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("result").ToString());
+}
+]]></code>
+This sample shows how to call DelayActions with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.DelayActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result[0].GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("result").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("name").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("actionType").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("sourceId").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("suspendedUntil").ToString());
+    Console.WriteLine(result[0].GetProperty("action").GetProperty("next").GetProperty("scheduledTime").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result[0].GetProperty("error").GetProperty("target").ToString());
+}
+]]></code></example>
+    </member>
+  </members>
+</doc>
