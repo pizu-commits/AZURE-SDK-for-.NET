@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Azure.Communication.CallAutomation.Tests.Infrastructure;
-using NUnit.Framework;
+using System;
 
 namespace Azure.Communication.CallAutomation.Tests.CallConnections
 {
@@ -26,16 +26,11 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
             "}";
 
         private const string GetParticipantsPayload = "{" +
-            "\"values\":[" +
+            "\"value\":[" +
                "{\"identifier\":{\"rawId\":\"participantId1\",\"kind\":\"communicationUser\",\"communicationUser\":{\"id\":\"participantId1\"}},\"isMuted\":false}," +
                "{\"identifier\":{\"rawId\":\"participantId2\",\"kind\":\"phoneNumber\",\"phoneNumber\":{\"value\":\"+11234567\"}},\"isMuted\":true}" +
                "]" +
             "}";
-
-        private const string CancelAddParticipantPayload = "{" +
-                                    "\"operationContext\": \"someOperationContext\"," +
-                                    "\"invitationId\": \"invitationId\"" +
-                                    "}";
 
         private const string OperationContext = "someOperationContext";
         private const string ParticipantUserId = "participantId1";
@@ -143,18 +138,6 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
         }
 
         [TestCaseSource(nameof(TestData_TransferCallToParticipant))]
-        public async Task TransferCallToParticipantAsyncWithTransferee_202Accepted(CallInvite callInvite)
-        {
-            var callConnection = CreateMockCallConnection(202, OperationContextPayload);
-            var options = new TransferToParticipantOptions(callInvite.Target as CommunicationUserIdentifier);
-            options.Transferee = new CommunicationUserIdentifier("transfereeid");
-
-            var response = await callConnection.TransferCallToParticipantAsync(options).ConfigureAwait(false);
-            Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            verifyOperationContext(response);
-        }
-
-        [TestCaseSource(nameof(TestData_TransferCallToParticipant))]
         public void TransferCallToParticipant_simpleMethod_202Accepted(CallInvite callInvite)
         {
             var callConnection = CreateMockCallConnection(202, OperationContextPayload);
@@ -170,18 +153,6 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
             var callConnection = CreateMockCallConnection(202, OperationContextPayload);
 
             var response = callConnection.TransferCallToParticipant(new TransferToParticipantOptions(callInvite.Target as CommunicationUserIdentifier));
-            Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            verifyOperationContext(response);
-        }
-
-        [TestCaseSource(nameof(TestData_TransferCallToParticipant))]
-        public void TransferCallToParticipantWithTransferee_202Accepted(CallInvite callInvite)
-        {
-            var callConnection = CreateMockCallConnection(202, OperationContextPayload);
-            var options = new TransferToParticipantOptions(callInvite.Target as CommunicationUserIdentifier);
-            options.Transferee = new CommunicationUserIdentifier("transfereeid");
-
-            var response = callConnection.TransferCallToParticipant(options);
             Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
             verifyOperationContext(response);
         }
@@ -396,59 +367,22 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
         }
 
         [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void MuteParticipant_200OK(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(200, OperationContextPayload);
-
-            var response = callConnection.MuteParticipants(participant, OperationContext);
-            Assert.AreEqual((int)HttpStatusCode.OK, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void UnmuteParticipant_202Accepted(CommunicationIdentifier participant)
+        public void MuteParticipant_202Accepted(CommunicationIdentifier participant)
         {
             var callConnection = CreateMockCallConnection(202, OperationContextPayload);
 
-            var response = callConnection.UnmuteParticipants(participant, OperationContext);
+            var response = callConnection.MuteParticipant(participant);
             Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
             Assert.AreEqual(OperationContext, response.Value.OperationContext);
         }
 
         [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void MuteParticipant_WithOptions_200OK(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(200, OperationContextPayload);
-            var options = new MuteParticipantsOptions(new List<CommunicationIdentifier> { participant })
-            {
-                OperationContext = OperationContext
-            };
-            var response = callConnection.MuteParticipants(options);
-            Assert.AreEqual((int)HttpStatusCode.OK, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void UnmuteParticipant_WithOptions_202Accepted(CommunicationIdentifier participant)
+        public async Task MuteParticipantAsync_202Accepted(CommunicationIdentifier participant)
         {
             var callConnection = CreateMockCallConnection(202, OperationContextPayload);
-            var options = new UnmuteParticipantsOptions(new List<CommunicationIdentifier> { participant })
-            {
-                OperationContext = OperationContext
-            };
 
-            var response = callConnection.UnmuteParticipants(options);
+            var response = await callConnection.MuteParticipantAsync(participant, "");
             Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public async Task MuteParticipantAsync_200OK(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(200, OperationContextPayload);
-
-            var response = await callConnection.MuteParticipantsAsync(participant, OperationContext);
-            Assert.AreEqual((int)HttpStatusCode.OK, response.GetRawResponse().Status);
             Assert.AreEqual(OperationContext, response.Value.OperationContext);
         }
 
@@ -457,88 +391,7 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
         {
             var callConnection = CreateMockCallConnection(400);
             var participant = new PhoneNumberIdentifier("+15559501234");
-            Assert.ThrowsAsync(typeof(RequestFailedException), async () => await callConnection.MuteParticipantsAsync(participant, OperationContext));
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public async Task UnmuteParticipantAsync_202Accepted(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(202, OperationContextPayload);
-
-            var response = await callConnection.UnmuteParticipantsAsync(participant, OperationContext);
-            Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [Test]
-        public void UnmuteParticipantAsync_NotAcsUser_400BadRequest()
-        {
-            var callConnection = CreateMockCallConnection(400);
-            var participant = new PhoneNumberIdentifier("+15559501234");
-            Assert.ThrowsAsync(typeof(RequestFailedException), async () => await callConnection.UnmuteParticipantsAsync(participant, OperationContext));
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public async Task MuteParticipantAsync_WithOptions_200OK(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(200, OperationContextPayload);
-            var options = new MuteParticipantsOptions(new List<CommunicationIdentifier> { participant })
-            {
-                OperationContext = OperationContext,
-            };
-
-            var response = await callConnection.MuteParticipantsAsync(options);
-            Assert.AreEqual((int)HttpStatusCode.OK, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void MuteParticipantAsync_WithOptions_MoreThanOneParticipant_400BadRequest(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(400);
-            var options = new MuteParticipantsOptions(new List<CommunicationIdentifier> { participant, participant })
-            {
-                OperationContext = OperationContext,
-            };
-
-            Assert.ThrowsAsync(typeof(RequestFailedException), async () => await callConnection.MuteParticipantsAsync(options));
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public async Task UnmuteParticipantAsync_WithOptions_202Accepted(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(202, OperationContextPayload);
-            var options = new UnmuteParticipantsOptions(new List<CommunicationIdentifier> { participant })
-            {
-                OperationContext = OperationContext,
-            };
-
-            var response = await callConnection.UnmuteParticipantsAsync(options);
-            Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            Assert.AreEqual(OperationContext, response.Value.OperationContext);
-        }
-
-        [TestCaseSource(nameof(TestData_MuteParticipant))]
-        public void UnmuteParticipantAsync_WithOptions_MoreThanOneParticipant_400BadRequest(CommunicationIdentifier participant)
-        {
-            var callConnection = CreateMockCallConnection(400);
-            var options = new UnmuteParticipantsOptions(new List<CommunicationIdentifier> { participant, participant })
-            {
-                OperationContext = OperationContext,
-            };
-
-            Assert.ThrowsAsync(typeof(RequestFailedException), async () => await callConnection.UnmuteParticipantsAsync(options));
-        }
-
-        [Test]
-        public async Task CancelAddParticipantAsync_202Accepted()
-        {
-            var callConnection = CreateMockCallConnection(202, CancelAddParticipantPayload);
-            var invitationId = "invitationId";
-
-            var response = await callConnection.CancelAddParticipantAsync(invitationId).ConfigureAwait(false);
-            Assert.AreEqual((int)HttpStatusCode.Accepted, response.GetRawResponse().Status);
-            Assert.AreEqual(invitationId, response.Value.InvitationId);
+            Assert.ThrowsAsync(typeof(RequestFailedException), async () => await callConnection.MuteParticipantAsync(participant));
         }
 
         private CallConnection CreateMockCallConnection(int responseCode, string? responseContent = null, string callConnectionId = "9ec7da16-30be-4e74-a941-285cfc4bffc5")
@@ -548,13 +401,11 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
 
         private static IEnumerable<object?[]> TestData_TransferCallToParticipant()
         {
-            var callInvite = new CallInvite(new CommunicationUserIdentifier("userId"));
-            callInvite.CustomContext.Add(new VoipHeader("key1", "value1"));
             return new[]
             {
                 new object?[]
                 {
-                    callInvite
+                    new CallInvite(new CommunicationUserIdentifier("userId"))
                 },
             };
         }
@@ -599,7 +450,7 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
 
         private void verifyAddParticipantsResult(AddParticipantResult result)
         {
-            var identifier = (CommunicationUserIdentifier) result.Participant.Identifier;
+            var identifier = (CommunicationUserIdentifier)result.Participant.Identifier;
             Assert.AreEqual(ParticipantUserId, identifier.Id);
             Assert.IsFalse(result.Participant.IsMuted);
             Assert.AreEqual(OperationContext, result.OperationContext);
