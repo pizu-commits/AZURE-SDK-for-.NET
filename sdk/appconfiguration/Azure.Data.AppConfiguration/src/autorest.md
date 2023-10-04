@@ -6,7 +6,7 @@ Run `dotnet build /t:GenerateCode` to generate code.
 > see https://aka.ms/autorest
 ``` yaml
 input-file:
-- https://github.com/Azure/azure-rest-api-specs/blob/dacba58ef1d48851ecd6ca93bc329ac63ba1f662/specification/appconfiguration/data-plane/Microsoft.AppConfiguration/stable/2023-10-01/appconfiguration.json
+- https://github.com/Azure/azure-rest-api-specs/blob/8254662a1b996276c37b871c8fe68d71e397ba41/specification/appconfiguration/data-plane/Microsoft.AppConfiguration/stable/2023-11-01/appconfiguration.json
 namespace: Azure.Data.AppConfiguration
 title: ConfigurationClient
 ```

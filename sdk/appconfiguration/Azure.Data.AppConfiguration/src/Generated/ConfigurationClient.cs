@@ -110,6 +110,7 @@ namespace Azure.Data.AppConfiguration
         /// </summary>
         /// <param name="key"> A filter used to match keys. </param>
         /// <param name="label"> A filter used to match labels. </param>
+        /// <param name="tags"> A filter used to query by tags. </param>
         /// <param name="after"> Instructs the server to return elements that appear after the element referred to by the specified token. </param>
         /// <param name="acceptDatetime"> Requests the server to respond with the state of the resource at the specified time. </param>
         /// <param name="select"> Used to select what fields are present in the returned resource(s). </param>
@@ -118,13 +119,13 @@ namespace Azure.Data.AppConfiguration
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        internal virtual async Task<Response> CheckKeyValuesAsync(string key = null, string label = null, string after = null, string acceptDatetime = null, IEnumerable<string> select = null, string snapshot = null, MatchConditions matchConditions = null, RequestContext context = null)
+        internal virtual async Task<Response> CheckKeyValuesAsync(string key = null, string label = null, IEnumerable<string> tags = null, string after = null, string acceptDatetime = null, IEnumerable<string> select = null, string snapshot = null, MatchConditions matchConditions = null, RequestContext context = null)
         {
             using var scope = ClientDiagnostics.CreateScope("ConfigurationClient.CheckKeyValues");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCheckKeyValuesRequest(key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
+                using HttpMessage message = CreateCheckKeyValuesRequest(key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
                 return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -146,6 +147,7 @@ namespace Azure.Data.AppConfiguration
         /// </summary>
         /// <param name="key"> A filter used to match keys. </param>
         /// <param name="label"> A filter used to match labels. </param>
+        /// <param name="tags"> A filter used to query by tags. </param>
         /// <param name="after"> Instructs the server to return elements that appear after the element referred to by the specified token. </param>
         /// <param name="acceptDatetime"> Requests the server to respond with the state of the resource at the specified time. </param>
         /// <param name="select"> Used to select what fields are present in the returned resource(s). </param>
@@ -154,13 +156,13 @@ namespace Azure.Data.AppConfiguration
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        internal virtual Response CheckKeyValues(string key = null, string label = null, string after = null, string acceptDatetime = null, IEnumerable<string> select = null, string snapshot = null, MatchConditions matchConditions = null, RequestContext context = null)
+        internal virtual Response CheckKeyValues(string key = null, string label = null, IEnumerable<string> tags = null, string after = null, string acceptDatetime = null, IEnumerable<string> select = null, string snapshot = null, MatchConditions matchConditions = null, RequestContext context = null)
         {
             using var scope = ClientDiagnostics.CreateScope("ConfigurationClient.CheckKeyValues");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateCheckKeyValuesRequest(key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
+                using HttpMessage message = CreateCheckKeyValuesRequest(key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -1150,6 +1152,7 @@ namespace Azure.Data.AppConfiguration
         /// </summary>
         /// <param name="key"> A filter used to match keys. </param>
         /// <param name="label"> A filter used to match labels. </param>
+        /// <param name="tags"> A filter used to query by tags. </param>
         /// <param name="after"> Instructs the server to return elements that appear after the element referred to by the specified token. </param>
         /// <param name="acceptDatetime"> Requests the server to respond with the state of the resource at the specified time. </param>
         /// <param name="select"> Used to select what fields are present in the returned resource(s). </param>
@@ -1158,10 +1161,10 @@ namespace Azure.Data.AppConfiguration
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        internal virtual AsyncPageable<BinaryData> GetConfigurationSettingsAsync(string key, string label, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
+        internal virtual AsyncPageable<BinaryData> GetConfigurationSettingsAsync(string key, string label, IEnumerable<string> tags, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConfigurationSettingsRequest(key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConfigurationSettingsNextPageRequest(nextLink, key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConfigurationSettingsRequest(key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConfigurationSettingsNextPageRequest(nextLink, key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
             return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfigurationClient.GetConfigurationSettings", "items", "@nextLink", context);
         }
 
@@ -1177,6 +1180,7 @@ namespace Azure.Data.AppConfiguration
         /// </summary>
         /// <param name="key"> A filter used to match keys. </param>
         /// <param name="label"> A filter used to match labels. </param>
+        /// <param name="tags"> A filter used to query by tags. </param>
         /// <param name="after"> Instructs the server to return elements that appear after the element referred to by the specified token. </param>
         /// <param name="acceptDatetime"> Requests the server to respond with the state of the resource at the specified time. </param>
         /// <param name="select"> Used to select what fields are present in the returned resource(s). </param>
@@ -1185,10 +1189,10 @@ namespace Azure.Data.AppConfiguration
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        internal virtual Pageable<BinaryData> GetConfigurationSettings(string key, string label, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
+        internal virtual Pageable<BinaryData> GetConfigurationSettings(string key, string label, IEnumerable<string> tags, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
         {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConfigurationSettingsRequest(key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConfigurationSettingsNextPageRequest(nextLink, key, label, after, acceptDatetime, select, snapshot, matchConditions, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConfigurationSettingsRequest(key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConfigurationSettingsNextPageRequest(nextLink, key, label, tags, after, acceptDatetime, select, snapshot, matchConditions, context);
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfigurationClient.GetConfigurationSettings", "items", "@nextLink", context);
         }
 
@@ -1473,7 +1477,7 @@ namespace Azure.Data.AppConfiguration
             return message;
         }
 
-        internal HttpMessage CreateGetConfigurationSettingsRequest(string key, string label, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
+        internal HttpMessage CreateGetConfigurationSettingsRequest(string key, string label, IEnumerable<string> tags, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1488,6 +1492,13 @@ namespace Azure.Data.AppConfiguration
             if (label != null)
             {
                 uri.AppendQuery("label", label, true);
+            }
+            if (tags != null && Optional.IsCollectionDefined(tags))
+            {
+                foreach (var param in tags)
+                {
+                    uri.AppendQuery("tags", param, true);
+                }
             }
             uri.AppendQuery("api-version", _apiVersion, true);
             if (after != null)
@@ -1519,7 +1530,7 @@ namespace Azure.Data.AppConfiguration
             return message;
         }
 
-        internal HttpMessage CreateCheckKeyValuesRequest(string key, string label, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
+        internal HttpMessage CreateCheckKeyValuesRequest(string key, string label, IEnumerable<string> tags, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1534,6 +1545,13 @@ namespace Azure.Data.AppConfiguration
             if (label != null)
             {
                 uri.AppendQuery("label", label, true);
+            }
+            if (tags != null && Optional.IsCollectionDefined(tags))
+            {
+                foreach (var param in tags)
+                {
+                    uri.AppendQuery("tags", param, true);
+                }
             }
             uri.AppendQuery("api-version", _apiVersion, true);
             if (after != null)
@@ -2071,7 +2089,7 @@ namespace Azure.Data.AppConfiguration
             return message;
         }
 
-        internal HttpMessage CreateGetConfigurationSettingsNextPageRequest(string nextLink, string key, string label, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
+        internal HttpMessage CreateGetConfigurationSettingsNextPageRequest(string nextLink, string key, string label, IEnumerable<string> tags, string after, string acceptDatetime, IEnumerable<string> select, string snapshot, MatchConditions matchConditions, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
