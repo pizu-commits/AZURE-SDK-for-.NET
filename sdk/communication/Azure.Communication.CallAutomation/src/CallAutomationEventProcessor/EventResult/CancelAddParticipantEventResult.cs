@@ -1,9 +1,9 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 namespace Azure.Communication.CallAutomation
 {
-    /// <summary><see cref="CancelAddParticipantEventResult"/> is returned from WaitForEvent of <see cref="CancelAddParticipantResult"/>.</summary>
+    /// <summary><see cref="CancelAddParticipantEventResult"/> is returned from WaitForEvent of <see cref="CancelAddParticipantEventResult"/>.</summary>
     public class CancelAddParticipantEventResult
     {
         /// <summary>
@@ -12,29 +12,27 @@ namespace Azure.Communication.CallAutomation
         public bool IsSuccess { get; internal set; }
 
         /// <summary>
-        /// <see cref="AddParticipantCancelled"/> event will be returned when the invitation was cancelled successfully.
+        /// <see cref="CancelAddParticipantSucceeded"/> event will be returned when the participant joined the call successfully.
         /// </summary>
-        public AddParticipantCancelled SuccessResult { get; }
+        public CancelAddParticipantSucceeded SuccessResult { get; }
 
         /// <summary>
-        /// <see cref="CancelAddParticipantFailed"/> event will be returned when the invitation could not be cancelled.
+        /// <see cref="CancelAddParticipantFailed"/> event will be returned when the participant did not join the call.
         /// </summary>
         public CancelAddParticipantFailed FailureResult { get; }
 
         /// <summary>
         /// <see cref="CommunicationIdentifier"/> Participant whoose invitation was cancelled. Only applicable for
-        /// <see cref="AddParticipantCancelled"/> event
+        /// <see cref="CancelAddParticipantSucceeded"/> event
         /// </summary>
         public CommunicationIdentifier Participant { get; }
 
-        /// <summary>
-        /// Invitation ID used to cancel the request.
-        /// </summary>
+        /// <summary> Invitation ID used to cancel the add participant action. </summary>
         public string InvitationId { get; }
 
         internal CancelAddParticipantEventResult(
             bool isSuccess,
-            AddParticipantCancelled successResult,
+            CancelAddParticipantSucceeded successResult,
             CancelAddParticipantFailed failureResult,
             string invitationId,
             CommunicationIdentifier participant = null)

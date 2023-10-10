@@ -887,7 +887,7 @@ namespace Azure.Communication.CallAutomation.Tests.Events
         [Test]
         public void AddParticipantCancelledEventParsed_Test()
         {
-            AddParticipantCancelled @event = CommunicationCallAutomationModelFactory.AddParticipantCancelled(
+            CancelAddParticipantSucceeded @event = CommunicationCallAutomationModelFactory.CancelAddParticipantSucceeded(
                 callConnectionId: "callConnectionId",
                 serverCallId: "serverCallId",
                 correlationId: "correlationId",
@@ -896,15 +896,16 @@ namespace Azure.Communication.CallAutomation.Tests.Events
                 operationContext: "operationContext");
             JsonSerializerOptions jsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
             string jsonEvent = JsonSerializer.Serialize(@event, jsonOptions);
-            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.AddParticipantCancelled");
+            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.CancelAddParticipantSucceeded");
 
-            if (parsedEvent is AddParticipantCancelled addParticipantCancelled)
+            if (parsedEvent is CancelAddParticipantSucceeded cancelAddParticipantSucceeded)
             {
-                Assert.AreEqual("operationContext", addParticipantCancelled.OperationContext);
-                Assert.AreEqual("callConnectionId", addParticipantCancelled.CallConnectionId);
-                Assert.AreEqual("correlationId", addParticipantCancelled.CorrelationId);
-                Assert.AreEqual("serverCallId", addParticipantCancelled.ServerCallId);
-                Assert.AreEqual("invitationId", addParticipantCancelled.InvitationId);
+                Assert.AreEqual("operationContext", cancelAddParticipantSucceeded.OperationContext);
+                Assert.AreEqual("callConnectionId", cancelAddParticipantSucceeded.CallConnectionId);
+                Assert.AreEqual("correlationId", cancelAddParticipantSucceeded.CorrelationId);
+                Assert.AreEqual("serverCallId", cancelAddParticipantSucceeded.ServerCallId);
+                Assert.AreEqual("8:acs:12345", cancelAddParticipantSucceeded.Participant.RawId);
+                Assert.AreEqual("invitationId", cancelAddParticipantSucceeded.InvitationId);
             }
             else
             {
@@ -934,122 +935,6 @@ namespace Azure.Communication.CallAutomation.Tests.Events
                 Assert.AreEqual("serverCallId", cancelAddParticipantFailed.ServerCallId);
                 Assert.AreEqual("invitationId", cancelAddParticipantFailed.InvitationId);
                 Assert.AreEqual(400, cancelAddParticipantFailed.ResultInformation?.Code);
-            }
-            else
-            {
-                Assert.Fail("Event parsed wrongfully");
-            }
-        }
-
-        [Test]
-        public void TranscriptionStartedEventParsed_Test()
-        {
-            TranscriptionStarted @event = CommunicationCallAutomationModelFactory.TranscriptionStarted(
-                callConnectionId: "callConnectionId",
-                serverCallId: "serverCallId",
-                correlationId: "correlationId",
-                operationContext: "operationContext",
-                resultInformation: new ResultInformation(code: 200, subCode: 0, message: "Action completed successfully"),
-                transcriptionUpdateResult: new TranscriptionUpdate(TranscriptionStatus.TranscriptionStarted, TranscriptionStatusDetails.SubscriptionStarted));
-            JsonSerializerOptions jsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            string jsonEvent = JsonSerializer.Serialize(@event, jsonOptions);
-            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.TranscriptionStarted");
-            if (parsedEvent is TranscriptionStarted transcriptionStarted)
-            {
-                Assert.AreEqual("callConnectionId", transcriptionStarted.CallConnectionId);
-                Assert.AreEqual("correlationId", transcriptionStarted.CorrelationId);
-                Assert.AreEqual("serverCallId", transcriptionStarted.ServerCallId);
-                Assert.AreEqual("operationContext", transcriptionStarted.OperationContext);
-                Assert.AreEqual(200, transcriptionStarted.ResultInformation?.Code);
-                Assert.AreEqual(TranscriptionStatus.TranscriptionStarted, transcriptionStarted.TranscriptionUpdateResult.TranscriptionStatus);
-                Assert.AreEqual(TranscriptionStatusDetails.SubscriptionStarted, transcriptionStarted.TranscriptionUpdateResult.TranscriptionStatusDetails);
-            }
-            else
-            {
-                Assert.Fail("Event parsed wrongfully");
-            }
-        }
-
-        [Test]
-        public void TranscriptionStoppedEventParsed_Test()
-        {
-            TranscriptionStopped @event = CommunicationCallAutomationModelFactory.TranscriptionStopped(
-                callConnectionId: "callConnectionId",
-                serverCallId: "serverCallId",
-                correlationId: "correlationId",
-                operationContext: "operationContext",
-                resultInformation: new ResultInformation(code: 200, subCode: 0, message: "Action completed successfully"),
-                transcriptionUpdateResult: new TranscriptionUpdate(transcriptionStatus: TranscriptionStatus.TranscriptionStopped, transcriptionStatusDetails: TranscriptionStatusDetails.SubscriptionStopped));
-            JsonSerializerOptions jsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            string jsonEvent = JsonSerializer.Serialize(@event, jsonOptions);
-            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.TranscriptionStopped");
-            if (parsedEvent is TranscriptionStopped transcriptionStopped)
-            {
-                Assert.AreEqual("callConnectionId", transcriptionStopped.CallConnectionId);
-                Assert.AreEqual("correlationId", transcriptionStopped.CorrelationId);
-                Assert.AreEqual("serverCallId", transcriptionStopped.ServerCallId);
-                Assert.AreEqual("operationContext", transcriptionStopped.OperationContext);
-                Assert.AreEqual(200, transcriptionStopped.ResultInformation?.Code);
-                Assert.AreEqual(TranscriptionStatus.TranscriptionStopped, transcriptionStopped.TranscriptionUpdateResult.TranscriptionStatus);
-                Assert.AreEqual(TranscriptionStatusDetails.SubscriptionStopped, transcriptionStopped.TranscriptionUpdateResult.TranscriptionStatusDetails);
-            }
-            else
-            {
-                Assert.Fail("Event parsed wrongfully");
-            }
-        }
-
-        [Test]
-        public void TranscriptionResumedEventParsed_Test()
-        {
-            TranscriptionResumed @event = CommunicationCallAutomationModelFactory.TranscriptionResumed(
-                callConnectionId: "callConnectionId",
-                serverCallId: "serverCallId",
-                correlationId: "correlationId",
-                operationContext: "operationContext",
-                resultInformation: new ResultInformation(code: 200, subCode: 0, message: "Action completed successfully"),
-                transcriptionUpdateResult: new TranscriptionUpdate(transcriptionStatus: TranscriptionStatus.TranscriptionResumed, transcriptionStatusDetails: TranscriptionStatusDetails.StreamConnectionReestablished));
-            JsonSerializerOptions jsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            string jsonEvent = JsonSerializer.Serialize(@event, jsonOptions);
-            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.TranscriptionResumed");
-            if (parsedEvent is TranscriptionResumed transcriptionResumed)
-            {
-                Assert.AreEqual("callConnectionId", transcriptionResumed.CallConnectionId);
-                Assert.AreEqual("correlationId", transcriptionResumed.CorrelationId);
-                Assert.AreEqual("serverCallId", transcriptionResumed.ServerCallId);
-                Assert.AreEqual("operationContext", transcriptionResumed.OperationContext);
-                Assert.AreEqual(200, transcriptionResumed.ResultInformation?.Code);
-                Assert.AreEqual(TranscriptionStatus.TranscriptionResumed, transcriptionResumed.TranscriptionUpdateResult.TranscriptionStatus);
-                Assert.AreEqual(TranscriptionStatusDetails.StreamConnectionReestablished, transcriptionResumed.TranscriptionUpdateResult.TranscriptionStatusDetails);
-            }
-            else
-            {
-                Assert.Fail("Event parsed wrongfully");
-            }
-        }
-
-        [Test]
-        public void TranscriptionFailedEventParsed_Test()
-        {
-            TranscriptionFailed @event = CommunicationCallAutomationModelFactory.TranscriptionFailed(
-                callConnectionId: "callConnectionId",
-                serverCallId: "serverCallId",
-                correlationId: "correlationId",
-                operationContext: "operationContext",
-                resultInformation: new ResultInformation(code: 200, subCode: 0, message: "Action completed successfully"),
-                transcriptionUpdateResult: new TranscriptionUpdate(transcriptionStatus: TranscriptionStatus.TranscriptionFailed, transcriptionStatusDetails: TranscriptionStatusDetails.UnspecifiedError));
-            JsonSerializerOptions jsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            string jsonEvent = JsonSerializer.Serialize(@event, jsonOptions);
-            var parsedEvent = CallAutomationEventParser.Parse(jsonEvent, "Microsoft.Communication.TranscriptionFailed");
-            if (parsedEvent is TranscriptionFailed transcriptionFailed)
-            {
-                Assert.AreEqual("callConnectionId", transcriptionFailed.CallConnectionId);
-                Assert.AreEqual("correlationId", transcriptionFailed.CorrelationId);
-                Assert.AreEqual("serverCallId", transcriptionFailed.ServerCallId);
-                Assert.AreEqual("operationContext", transcriptionFailed.OperationContext);
-                Assert.AreEqual(200, transcriptionFailed.ResultInformation?.Code);
-                Assert.AreEqual(TranscriptionStatus.TranscriptionFailed, transcriptionFailed.TranscriptionUpdateResult.TranscriptionStatus);
-                Assert.AreEqual(TranscriptionStatusDetails.UnspecifiedError, transcriptionFailed.TranscriptionUpdateResult.TranscriptionStatusDetails);
             }
             else
             {
