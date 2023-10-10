@@ -6,13 +6,14 @@
 #nullable disable
 
 using System.Text.Json;
+using Azure.Communication;
 using Azure.Core;
 
 namespace Azure.Communication.CallAutomation
 {
-    public partial class CallTransferAccepted
+    internal partial class CancelAddParticipantSucceededInternal
     {
-        internal static CallTransferAccepted DeserializeCallTransferAccepted(JsonElement element)
+        internal static CancelAddParticipantSucceededInternal DeserializeCancelAddParticipantSucceededInternal(JsonElement element)
         {
             if (element.ValueKind == JsonValueKind.Null)
             {
@@ -22,7 +23,8 @@ namespace Azure.Communication.CallAutomation
             Optional<string> serverCallId = default;
             Optional<string> correlationId = default;
             Optional<string> operationContext = default;
-            Optional<ResultInformation> resultInformation = default;
+            Optional<CommunicationIdentifierModel> participant = default;
+            Optional<string> invitationId = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("callConnectionId"u8))
@@ -45,17 +47,22 @@ namespace Azure.Communication.CallAutomation
                     operationContext = property.Value.GetString();
                     continue;
                 }
-                if (property.NameEquals("resultInformation"u8))
+                if (property.NameEquals("participant"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
                         continue;
                     }
-                    resultInformation = ResultInformation.DeserializeResultInformation(property.Value);
+                    participant = CommunicationIdentifierModel.DeserializeCommunicationIdentifierModel(property.Value);
+                    continue;
+                }
+                if (property.NameEquals("invitationId"u8))
+                {
+                    invitationId = property.Value.GetString();
                     continue;
                 }
             }
-            return new CallTransferAccepted(callConnectionId.Value, serverCallId.Value, correlationId.Value, operationContext.Value, resultInformation.Value);
+            return new CancelAddParticipantSucceededInternal(callConnectionId.Value, serverCallId.Value, correlationId.Value, operationContext.Value, participant.Value, invitationId.Value);
         }
     }
 }

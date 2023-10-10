@@ -2,37 +2,37 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Azure.Communication.CallAutomation
 {
-    /// <summary>AddParticipantsResult Result.</summary>
+    /// <summary>CancelAddParticipantResult Result.</summary>
     public class CancelAddParticipantResult
     {
         private CallAutomationEventProcessor _evHandler;
         private string _callConnectionId;
         private string _operationContext;
 
-        internal CancelAddParticipantResult(CancelAddParticipantResponseInternal internalObj)
-        {
-            OperationContext = internalObj.OperationContext;
-            InvitationId = internalObj.InvitationId;
-        }
-
-        internal CancelAddParticipantResult(string invitationId, string operationcontext)
+        internal CancelAddParticipantResult(string invitationId, string operationContext)
         {
             InvitationId = invitationId;
-            OperationContext = operationcontext;
+            OperationContext = operationContext;
         }
+
+        internal CancelAddParticipantResult(CancelAddParticipantResponseInternal internalObj)
+        {
+            InvitationId = internalObj.InvitationId;
+            OperationContext = internalObj.OperationContext;
+        }
+
+        /// <summary> Invitation ID used to cancel the add participant action. </summary>
+        public string InvitationId { get; }
 
         /// <summary>The operation context provided by client.</summary>
         public string OperationContext { get; }
-
-        /// <summary>
-        /// Invitation ID used to cancel the add participant action.
-        /// </summary>
-        public string InvitationId { get; }
 
         internal void SetEventProcessor(CallAutomationEventProcessor evHandler, string callConnectionId, string operationContext)
         {
@@ -45,7 +45,7 @@ namespace Azure.Communication.CallAutomation
         /// This is blocking call. Wait for <see cref="CancelAddParticipantEventResult"/> using <see cref="CallAutomationEventProcessor"/>.
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token can be used to set timeout or cancel this WaitForEventProcessor.</param>
-        /// <returns>Returns <see cref="CancelAddParticipantEventResult"/> which contains either <see cref="AddParticipantCancelled"/> event or <see cref="CancelAddParticipantFailed"/> event.</returns>
+        /// <returns>Returns <see cref="CancelAddParticipantEventResult"/> which contains either <see cref="CancelAddParticipantSucceeded"/> event or <see cref="CancelAddParticipantFailed"/> event.</returns>
         public CancelAddParticipantEventResult WaitForEventProcessor(CancellationToken cancellationToken = default)
         {
             if (_evHandler is null)
@@ -56,7 +56,7 @@ namespace Azure.Communication.CallAutomation
             var returnedEvent = _evHandler.WaitForEventProcessor(filter
                 => filter.CallConnectionId == _callConnectionId
                 && (filter.OperationContext == _operationContext || _operationContext is null)
-                && (filter.GetType() == typeof(AddParticipantCancelled)
+                && (filter.GetType() == typeof(CancelAddParticipantSucceeded)
                 || filter.GetType() == typeof(CancelAddParticipantFailed)),
                 cancellationToken);
 
@@ -67,7 +67,7 @@ namespace Azure.Communication.CallAutomation
         /// Wait for <see cref="CancelAddParticipantEventResult"/> using <see cref="CallAutomationEventProcessor"/>.
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token can be used to set timeout or cancel this WaitForEventProcessor.</param>
-        /// <returns>Returns <see cref="CancelAddParticipantEventResult"/> which contains either <see cref="AddParticipantCancelled"/> event or <see cref="CancelAddParticipantFailed"/> event.</returns>
+        /// <returns>Returns <see cref="CancelAddParticipantEventResult"/> which contains either <see cref="CancelAddParticipantSucceeded"/> event or <see cref="CancelAddParticipantFailed"/> event.</returns>
         public async Task<CancelAddParticipantEventResult> WaitForEventProcessorAsync(CancellationToken cancellationToken = default)
         {
             if (_evHandler is null)
@@ -78,7 +78,7 @@ namespace Azure.Communication.CallAutomation
             var returnedEvent = await _evHandler.WaitForEventProcessorAsync(filter
                 => filter.CallConnectionId == _callConnectionId
                 && (filter.OperationContext == _operationContext || _operationContext is null)
-                && (filter.GetType() == typeof(AddParticipantCancelled)
+                && (filter.GetType() == typeof(CancelAddParticipantSucceeded)
                 || filter.GetType() == typeof(CancelAddParticipantFailed)),
                 cancellationToken).ConfigureAwait(false);
 
@@ -87,34 +87,20 @@ namespace Azure.Communication.CallAutomation
 
         private static CancelAddParticipantEventResult SetReturnedEvent(CallAutomationEventBase returnedEvent)
         {
+            CancelAddParticipantEventResult result = default;
             switch (returnedEvent)
             {
-                case AddParticipantCancelled:
-                    {
-                        var successEvent = returnedEvent as AddParticipantCancelled;
-
-                        return new CancelAddParticipantEventResult(
-                            true,
-                            successEvent,
-                            null,
-                            successEvent?.InvitationId,
-                            successEvent?.Participant);
-                    }
-
-                case CancelAddParticipantFailed:
-                    {
-                        var failedEvent = returnedEvent as CancelAddParticipantFailed;
-
-                        return new CancelAddParticipantEventResult(
-                            false,
-                            null,
-                            failedEvent,
-                            failedEvent?.InvitationId);
-                    }
-
+                case CancelAddParticipantSucceeded successEvent:
+                    result = new CancelAddParticipantEventResult(true, successEvent, null, successEvent?.InvitationId, successEvent?.Participant);
+                    break;
+                case CancelAddParticipantFailed failedEvent:
+                    result = new CancelAddParticipantEventResult(false, null, failedEvent, failedEvent?.InvitationId);
+                    break;
                 default:
                     throw new NotSupportedException(returnedEvent.GetType().Name);
             }
+
+            return result;
         }
     }
 }

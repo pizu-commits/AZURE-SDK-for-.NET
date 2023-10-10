@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace Azure.Communication.CallAutomation
 {
     /// <summary>
-    /// The cancel add participant failed event.
+    /// The Cancel add participant failed event.
     /// </summary>
     public class CancelAddParticipantFailed : CallAutomationEventBase
     {
@@ -15,21 +15,19 @@ namespace Azure.Communication.CallAutomation
         {
         }
 
-        /// <summary> Initializes a new instance of CancelAddParticipantFailedEvent. </summary>
-        /// <param name="internalEvent">Internal Representation of the CancelAddParticipantFailedEvent. </param>
+        /// <summary> Initializes a new instance of CancelAddParticipantFailed event. </summary>
+        /// <param name="internalEvent">Internal Representation of the CancelAddParticipantFailed. </param>
         internal CancelAddParticipantFailed(CancelAddParticipantFailedInternal internalEvent)
         {
             OperationContext = internalEvent.OperationContext;
+            ResultInformation = internalEvent.ResultInformation;
             CallConnectionId = internalEvent.CallConnectionId;
             ServerCallId = internalEvent.ServerCallId;
             CorrelationId = internalEvent.CorrelationId;
             InvitationId = internalEvent.InvitationId;
-            ResultInformation = internalEvent.ResultInformation;
         }
 
-        /// <summary>
-        /// Invitation ID used to cancel the invitation.
-        /// </summary>
+        /// <summary> Invitation ID used to cancel the request. </summary>
         public string InvitationId { get; }
 
         /// <summary>

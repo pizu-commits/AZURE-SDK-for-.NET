@@ -4,23 +4,21 @@
 namespace Azure.Communication.CallAutomation
 {
     /// <summary>
-    /// The Cancel add participants operation options.
+    /// The ContinuousDtmfRecognitionOptions operation options.
     /// </summary>
-    public class CancelAddParticipantOptions
+    public class ContinuousDtmfRecognitionOptions
     {
         /// <summary>
-        /// Creates a new CancelAddParticipantOptions object.
+        /// Creates a new SendDtmfOptions object.
         /// </summary>
-        /// <param name="invitationId"></param>
-        public CancelAddParticipantOptions(string invitationId)
+        /// <param name="targetParticipant"> The target communication identifier. </param>
+        public ContinuousDtmfRecognitionOptions(CommunicationIdentifier targetParticipant)
         {
-            InvitationId = invitationId;
+            TargetParticipant = targetParticipant;
         }
 
-        /// <summary>
-        /// Invitation ID used to add a participant.
-        /// </summary>
-        public string InvitationId { get; }
+        /// <summary> The target communication identifier. </summary>
+        public CommunicationIdentifier TargetParticipant { get; }
 
         /// <summary>
         /// The operationContext for this add participants call.
