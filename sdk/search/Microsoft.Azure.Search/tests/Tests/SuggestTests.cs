@@ -12,6 +12,7 @@ namespace Microsoft.Azure.Search.Tests
     using Microsoft.Azure.Search.Models;
     using Microsoft.Azure.Search.Tests.Utilities;
     using Xunit;
+    using Index = Models.Index;
 
     // MAINTENANCE NOTE: Test methods (those marked with [Fact]) need to be in the derived classes in order for
     // the mock recording/playback to work properly.

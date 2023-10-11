@@ -11,6 +11,7 @@ using System.Reflection;
 using Microsoft.Azure.Search.Models;
 using Microsoft.Azure.Search.Tests.Utilities;
 using Xunit;
+using Index = Microsoft.Azure.Search.Models.Index;
 
 namespace Microsoft.Azure.Search.Tests
 {

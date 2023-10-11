@@ -7,6 +7,7 @@ namespace Microsoft.Azure.Search.Tests
     using System;
     using Models;
     using Utilities;
+    using Index = Models.Index;
 
     internal class Author
     {

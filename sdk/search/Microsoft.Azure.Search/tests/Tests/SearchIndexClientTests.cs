@@ -11,6 +11,7 @@ namespace Microsoft.Azure.Search.Tests
     using Microsoft.Azure.Search.Tests.Utilities;
     using Microsoft.Rest.Azure;
     using Xunit;
+    using Index = Models.Index;
 
     public sealed class SearchIndexClientTests : SearchTestBase<IndexFixture>
     {

@@ -4,8 +4,14 @@
 
 namespace Microsoft.Azure.Search.Tests
 {
+    using Microsoft.Azure.Search.Models;
     using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
+    using Microsoft.Spatial;
+    using Newtonsoft.Json.Linq;
+    using System;
+    using System.Threading;
     using Xunit;
+    using Index = Models.Index;
 
     public class GetSearchTests : SearchTests
     {
@@ -211,6 +217,52 @@ namespace Microsoft.Azure.Search.Tests
             SearchIndexClient client = base.GetClientForQuery();
             client.UseHttpGetForQueries = true;
             return client;
+        }
+
+        [Fact]
+        public void MyTest()
+        {
+            var serviceName = Environment.GetEnvironmentVariable("SEARCH_SERVICE_NAME");
+            var apiKey = Environment.GetEnvironmentVariable("SEARCH_ADMIN_API_KEY");
+            //-----------Create Index---------------------
+            Index index = new()
+            {
+                Name = "testindex",
+                Fields = new[]
+                {
+                    Field.New("Id", DataType.String, isKey: true, isFilterable: true, isSortable: true, isFacetable: true),
+                    Field.New("Name", DataType.String, isSearchable: true, isFilterable: true, isSortable: true, isFacetable: false),
+                    Field.New("Location", DataType.GeographyPoint, isFilterable: true, isSortable: true),
+                },
+            };
+            SearchServiceClient searchClient = new SearchServiceClient(serviceName, new SearchCredentials(apiKey));
+            searchClient.Indexes.Create(index);
+
+            //-----------Upload data---------------------
+            SearchIndexClient client = new SearchIndexClient(serviceName, index.Name, new SearchCredentials(apiKey));
+
+            var batch = IndexBatch.New(new[]
+               {
+                    IndexAction.Upload(
+                        new Document()
+                        {
+                            ["Id"] = "1",
+                            ["Name"] = "Rainier",
+                            ["Location"] = GeographyPoint.Create(-75.5646879643, 39.7093928328)
+                        }),
+                });
+
+            client.Documents.Index(batch);
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+
+            //-----------Search Data---------------------
+            DocumentSearchResult<Document> response = client.Documents.Search<Document>("Rainier");
+            foreach (SearchResult<Document> result in response.Results)
+            {
+                var document = result.Document;
+                dynamic location = document["Location"];
+                Console.WriteLine(location);
+            }
         }
     }
 }

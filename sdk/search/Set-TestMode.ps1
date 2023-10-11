@@ -2,7 +2,8 @@
 param(
     [parameter(ParameterSetName="None", Mandatory=$true)][switch]$None,
     [parameter(ParameterSetName="Playback", Mandatory=$true)][switch]$Playback,
-    [parameter(ParameterSetName="Record", Mandatory=$true)][switch]$Record
+    [parameter(ParameterSetName="Record", Mandatory=$true)][switch]$Record,
+    [parameter(ParameterSetName="Live", Mandatory=$true)][switch]$Live
 )
 
 if ($Record)
@@ -12,6 +13,10 @@ if ($Record)
 elseif ($Playback)
 {
     $mode = "Playback"
+}
+elseif ($Live)
+{
+    $mode = "Live"
 }
 else
 {

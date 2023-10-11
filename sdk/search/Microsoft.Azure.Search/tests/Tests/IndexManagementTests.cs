@@ -13,6 +13,7 @@ namespace Microsoft.Azure.Search.Tests
     using Microsoft.Rest.Azure;
     using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
     using Xunit;
+    using Index = Models.Index;
 
     public sealed class IndexManagementTests : SearchTestBase<SearchServiceFixture>
     {

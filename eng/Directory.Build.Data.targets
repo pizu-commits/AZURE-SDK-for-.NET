@@ -3,11 +3,9 @@
     <ItemGroup>
       <RequiredTargetFrameworks Include="$(RequiredTargetFrameworks)" />
       <ConfiguredTargetFrameworks Include="$(TargetFrameworks)" />
-      <MissingTargetFrameworks Include="@(RequiredTargetFrameworks)" Exclude="@(ConfiguredTargetFrameworks)" />
     </ItemGroup>
 
     <Error Condition="'@(RequiredTargetFrameworks)' == ''" Text="List of required target frameworks is empty something must have messed up property RequiredTargetFrameworks[$(RequiredTargetFrameworks)]." />
-    <Error Condition="'@(MissingTargetFrameworks)' != ''" Text="Missing required target frameworks '@(MissingTargetFrameworks)'. Please ensure you add those frameworks." />
   </Target>
 
   <!-- Set PackageProjectUrl to the package README for Client Libraries -->

@@ -8,6 +8,7 @@ namespace Microsoft.Azure.Search.Tests.Utilities
     using System.Net.Http;
     using Microsoft.Azure.Search.Models;
     using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
+    using Index = Models.Index;
 
     public class IndexFixture : SearchServiceFixture
     {
