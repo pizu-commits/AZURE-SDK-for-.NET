@@ -73,7 +73,8 @@ namespace Azure.Developer.DevCenter.Tests.Samples
             Response remoteConnectionResponse = await devBoxesClient.GetRemoteConnectionAsync(
                 targetProjectName,
                 "me",
-                "MyDevBox");
+                "MyDevBox",
+                null);
             JsonElement remoteConnectionData = JsonDocument.Parse(remoteConnectionResponse.ContentStream).RootElement;
             Console.WriteLine($"Connect using web URL {remoteConnectionData.GetProperty("webUrl")}.");
             #endregion
