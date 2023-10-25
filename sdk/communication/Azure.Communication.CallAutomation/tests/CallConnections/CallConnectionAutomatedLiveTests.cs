@@ -2,9 +2,11 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Azure.Communication.CallAutomation.Tests.Infrastructure;
 using Azure.Core.TestFramework;
+using Microsoft.Azure.Amqp.Framing;
 using NUnit.Framework;
 
 namespace Azure.Communication.CallAutomation.Tests.CallConnections
@@ -113,18 +115,19 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
         }
 
         /// <summary>
-        /// Tests: CreateCall, AddParticipant, CancelAddParticipant
+        /// Tests: CreateCall, MuteParticipant, GetParticipant
         /// Test case: ACS to ACS call
         /// 1. create a CallAutomationClient.
         /// 2. create a call from source to ACS target.
         /// 3. get updated call properties and check for the connected state.
         /// 4. Add a Participant.
-        /// 5. Cancel the add participant
+        /// 5. Mute the target participant
+        /// 6. verify the participant is mutred successfully
         /// </summary>
         /// <returns></returns>
-        [Ignore("ignore until record asset infrastructure is in place")]
+        /// [Ignore("ignore until record asset infrastructure is in place")]
         [RecordedTest]
-        public async Task CancelAddParticipantTest()
+        public async Task MuteParticipantTest()
         {
             // create caller and receiver
             var user = await CreateIdentityUserAsync().ConfigureAwait(false);
@@ -169,20 +172,35 @@ namespace Azure.Communication.CallAutomation.Tests.CallConnections
                 };
                 var addParticipantResponse = await callConnection.AddParticipantAsync(addParticipantOptions);
                 Assert.AreEqual(operationContext, addParticipantResponse.Value.OperationContext);
-                Assert.IsNotNull(addParticipantResponse.Value.InvitationId);
 
-                // ensure invitation has arrived
-                await Task.Delay(3000);
+                await WaitForOperationCompletion(4000);
 
-                // cancel add participant
-                await callConnection.CancelAddParticipantAsync(addParticipantResponse.Value.InvitationId);
+                // mute the target participant
+                Response<MuteParticipantResult> muteParticipantResponse = await response.CallConnection.MuteParticipantAsync(new MuteParticipantOptions(target)
+                {
+                    OperationContext = "context"
+                });
+                Assert.IsNotNull(muteParticipantResponse);
+                Assert.AreEqual(200, muteParticipantResponse.GetRawResponse().Status);
 
-                // wait for cancel event
-                var addParticipantCancelledEvent = await WaitForEvent<AddParticipantCancelled>(callConnectionId, TimeSpan.FromSeconds(20));
-                Assert.IsNotNull(addParticipantCancelledEvent);
-                Assert.IsTrue(addParticipantCancelledEvent is AddParticipantCancelled);
-                Assert.AreEqual(((AddParticipantCancelled)addParticipantCancelledEvent!).InvitationId, addParticipantResponse.Value.InvitationId);
+                await WaitForOperationCompletion(4000);
+
+                Response<IReadOnlyList<CallParticipant>> participantsResponse = await response.CallConnection.GetParticipantsAsync();
+                Assert.IsNotNull(target);
+
+                // verify the participant is mutred successfully
+                bool isMuted = false;
+                IReadOnlyList<CallParticipant> participants = participantsResponse.Value;
+                foreach (CallParticipant participant in participants)
+                {
+                    if (participant.Identifier.Equals(target) && participant.IsMuted)
+                    {
+                        isMuted = true;
+                    }
+                }
+                Assert.IsTrue(isMuted, "Failed to mute participant");
             }
+
             catch (Exception ex)
             {
                 Assert.Fail($"Unexpected error: {ex}");
