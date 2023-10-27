@@ -8,35 +8,46 @@
 using System;
 using System.Text.Json;
 using Azure;
+using Azure.Core;
 
 namespace Azure.AI.OpenAI
 {
-    public partial class ImageLocation
+    public partial class ImageGenerationData
     {
-        internal static ImageLocation DeserializeImageLocation(JsonElement element)
+        internal static ImageGenerationData DeserializeImageGenerationData(JsonElement element)
         {
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
             }
-            Uri url = default;
+            Optional<Uri> url = default;
+            Optional<string> b64Json = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("url"u8))
                 {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
                     url = new Uri(property.Value.GetString());
                     continue;
                 }
+                if (property.NameEquals("b64_json"u8))
+                {
+                    b64Json = property.Value.GetString();
+                    continue;
+                }
             }
-            return new ImageLocation(url);
+            return new ImageGenerationData(url.Value, b64Json.Value);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>
         /// <param name="response"> The response to deserialize the model from. </param>
-        internal static ImageLocation FromResponse(Response response)
+        internal static ImageGenerationData FromResponse(Response response)
         {
             using var document = JsonDocument.Parse(response.Content);
-            return DeserializeImageLocation(document.RootElement);
+            return DeserializeImageGenerationData(document.RootElement);
         }
     }
 }

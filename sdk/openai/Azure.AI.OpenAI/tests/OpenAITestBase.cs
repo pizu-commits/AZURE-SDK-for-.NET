@@ -56,7 +56,9 @@ namespace Azure.AI.OpenAI.Tests
                 !string.IsNullOrEmpty(azureResourceApiKeyVariableName)
                     ? TestEnvironment.GetKeyVariable(azureResourceApiKeyVariableName)
                     : GetAzureApiKey(),
-                GetInstrumentedClientOptions(azureServiceVersionOverride)));
+                azureServiceVersionOverride == null
+                    ? GetInstrumentedClientOptions()
+                    : GetInstrumentedClientOptions(azureServiceVersionOverride)));
 
         protected OpenAIClient GetAzureClientWithToken(
             OpenAIClientOptions.ServiceVersion? azureServiceVersionOverride = null,
@@ -334,6 +336,12 @@ namespace Azure.AI.OpenAI.Tests
                 NonAzureModelName = "whisper-1",
             };
 
+            public static readonly ModelDeploymentEntry ImageGenerations = new()
+            {
+                AzureDeploymentName = "dalle3",
+                NonAzureModelName = null,
+            };
+
             public string AzureDeploymentName { get; set; }
             public string AzureModelName { get; set; }
             public string NonAzureModelName { get; set; }
@@ -411,6 +419,7 @@ namespace Azure.AI.OpenAI.Tests
             ChatCompletions,
             Embeddings,
             AudioTranscription,
+            ImageGenerations,
         }
 
         protected static string GetDeploymentOrModelName(
@@ -429,6 +438,8 @@ namespace Azure.AI.OpenAI.Tests
                     => ModelDeploymentEntry.Embeddings.AzureDeploymentName,
                 (OpenAIClientServiceTarget.Azure, OpenAIClientScenario.AudioTranscription)
                     => ModelDeploymentEntry.AudioTranscription.AzureDeploymentName,
+                (OpenAIClientServiceTarget.Azure, OpenAIClientScenario.ImageGenerations)
+                    => ModelDeploymentEntry.ImageGenerations.AzureDeploymentName,
                 (OpenAIClientServiceTarget.NonAzure, OpenAIClientScenario.LegacyCompletions)
                     => ModelDeploymentEntry.LegacyCompletions.NonAzureModelName,
                 (OpenAIClientServiceTarget.NonAzure, OpenAIClientScenario.Completions)
@@ -439,6 +450,8 @@ namespace Azure.AI.OpenAI.Tests
                     => ModelDeploymentEntry.Embeddings.NonAzureModelName,
                 (OpenAIClientServiceTarget.NonAzure, OpenAIClientScenario.AudioTranscription)
                     => ModelDeploymentEntry.AudioTranscription.NonAzureModelName,
+                (OpenAIClientServiceTarget.NonAzure, OpenAIClientScenario.ImageGenerations)
+                    => ModelDeploymentEntry.ImageGenerations.NonAzureModelName,
                 _ => throw new ArgumentException("Unsupported service target / scenario combination")
             };
         }

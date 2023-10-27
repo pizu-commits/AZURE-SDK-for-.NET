@@ -15,6 +15,11 @@ namespace Azure.AI.OpenAI
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            if (Optional.IsDefined(DeploymentName))
+            {
+                writer.WritePropertyName("model"u8);
+                writer.WriteStringValue(DeploymentName);
+            }
             writer.WritePropertyName("prompt"u8);
             writer.WriteStringValue(Prompt);
             if (Optional.IsDefined(ImageCount))

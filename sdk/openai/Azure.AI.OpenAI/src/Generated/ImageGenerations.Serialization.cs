@@ -21,7 +21,7 @@ namespace Azure.AI.OpenAI
                 return null;
             }
             DateTimeOffset created = default;
-            IReadOnlyList<ImageLocation> data = default;
+            IReadOnlyList<ImageGenerationData> data = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("created"u8))
@@ -31,7 +31,12 @@ namespace Azure.AI.OpenAI
                 }
                 if (property.NameEquals("data"u8))
                 {
-                    DeserializeDataProperty(property, ref data);
+                    List<ImageGenerationData> array = new List<ImageGenerationData>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(ImageGenerationData.DeserializeImageGenerationData(item));
+                    }
+                    data = array;
                     continue;
                 }
             }

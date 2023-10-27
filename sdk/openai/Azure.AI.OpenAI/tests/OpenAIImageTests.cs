@@ -17,21 +17,39 @@ namespace Azure.AI.OpenAI.Tests
         }
 
         [RecordedTest]
-        [TestCase(OpenAIClientServiceTarget.Azure)]
-        [TestCase(OpenAIClientServiceTarget.NonAzure)]
-        public async Task CanGenerateImages(OpenAIClientServiceTarget serviceTarget)
+        [TestCase(OpenAIClientServiceTarget.Azure, ImageDataType.Url)]
+        [TestCase(OpenAIClientServiceTarget.Azure, ImageDataType.Base64)]
+        [TestCase(OpenAIClientServiceTarget.Azure, ImageDataType.None)]
+        [TestCase(OpenAIClientServiceTarget.NonAzure, ImageDataType.Url)]
+        [TestCase(OpenAIClientServiceTarget.NonAzure, ImageDataType.Base64)]
+        [TestCase(OpenAIClientServiceTarget.NonAzure, ImageDataType.None)]
+        public async Task CanGenerateImages(OpenAIClientServiceTarget serviceTarget, ImageDataType imageDataType)
         {
-            OpenAIClient client = GetTestClient(serviceTarget);
+            OpenAIClient client = GetDevelopmentTestClient(
+                serviceTarget,
+                "AOAI_IMAGE_GENERATION_RESOURCE_URL",
+                "AOAI_IMAGE_GENERATION_RESOURCE_API_KEY");
             Assert.That(client, Is.InstanceOf<OpenAIClient>());
 
+            string deploymentName = GetDeploymentOrModelName(serviceTarget, OpenAIClientScenario.ImageGenerations);
             const string prompt = "a simplistic picture of a cyberpunk money dreaming of electric bananas";
             var requestOptions = new ImageGenerationOptions()
             {
+                DeploymentName = deploymentName,
                 Prompt = prompt,
                 Size = ImageSize.Size256x256,
                 ImageCount = 2,
                 User = "placeholder",
             };
+            if (imageDataType != ImageDataType.None)
+            {
+                requestOptions.ResponseFormat = imageDataType switch
+                {
+                    ImageDataType.Url => ImageGenerationResponseFormat.Url,
+                    ImageDataType.Base64 => ImageGenerationResponseFormat.Base64,
+                    _ => throw new ArgumentException("Unhandled image data type"),
+                };
+            }
             Assert.That(requestOptions, Is.InstanceOf<ImageGenerationOptions>());
 
             Response<ImageGenerations> imagesResponse = await client.GetImageGenerationsAsync(requestOptions);
@@ -48,16 +66,32 @@ namespace Azure.AI.OpenAI.Tests
             Assert.That(imageGenerations.Data, Is.Not.Null.Or.Empty);
             Assert.That(imageGenerations.Data.Count, Is.EqualTo(requestOptions.ImageCount));
 
-            ImageLocation firstImageLocation = imageGenerations.Data[0];
-            Assert.That(firstImageLocation, Is.Not.Null);
-            Assert.That(firstImageLocation.Url, Is.Not.Null.Or.Empty);
+            for (int i = 0; i < imageGenerations.Data.Count; i++)
+            {
+                ImageGenerationData dataItem = imageGenerations.Data[i];
+                Assert.That(dataItem, Is.Not.Null);
+                if (imageDataType == ImageDataType.Url || imageDataType == ImageDataType.None)
+                {
+                    Assert.That(dataItem.Url, Is.Not.Null.Or.Empty);
+                    Assert.That(dataItem.Base64Data, Is.Null);
+                }
+                else if (imageDataType == ImageDataType.Base64)
+                {
+                    Assert.That(dataItem.Url, Is.Null);
+                    Assert.That(dataItem.Base64Data, Is.Not.Null);
+                }
+                else
+                {
+                    throw new NotImplementedException("test not updated for new expected data type");
+                }
+            }
+        }
 
-            ImageLocation secondImageLocation = imageGenerations.Data[1];
-            Assert.That(secondImageLocation, Is.Not.Null);
-            Assert.That(secondImageLocation.Url, Is.Not.Null.Or.Empty);
-            Assert.That(
-                secondImageLocation.Url.ToString(),
-                Is.Not.EquivalentTo(firstImageLocation.Url.ToString()));
+        public enum ImageDataType
+        {
+            None,
+            Url,
+            Base64,
         }
     }
 }

@@ -590,8 +590,36 @@ namespace Azure.AI.OpenAI
         public virtual Response<ImageGenerations> GetImageGenerations(
             ImageGenerationOptions imageGenerationOptions,
             CancellationToken cancellationToken = default)
+                => GetImageGenerations(imageGenerationOptions?.DeploymentName, imageGenerationOptions, cancellationToken);
+
+        /// <summary>
+        ///     Get a set of generated images influenced by a provided textual prompt.
+        /// </summary>
+        /// <param name="deploymentName">
+        /// <para>
+        /// The name of the model deployment to use for image generation.
+        /// </para>
+        /// </param>
+        /// <param name="imageGenerationOptions">
+        ///     The configuration information for the image generation request that controls the content,
+        ///     size, and other details about generated images.
+        /// </param>
+        /// <param name="cancellationToken">
+        ///     An optional cancellation token that may be used to abort an ongoing request.
+        /// </param>
+        /// <returns>
+        ///     The response information for the image generations request.
+        /// </returns>
+        internal virtual Response<ImageGenerations> GetImageGenerations(
+            string deploymentName,
+            ImageGenerationOptions imageGenerationOptions,
+            CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(imageGenerationOptions, nameof(imageGenerationOptions));
+            if (_isConfiguredForAzureOpenAI)
+            {
+                Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            }
 
             using DiagnosticScope scope = ClientDiagnostics.CreateScope("OpenAIClient.GetImageGenerations");
             scope.Start();
@@ -601,7 +629,9 @@ namespace Azure.AI.OpenAI
                 Response rawResponse = default;
                 ImageGenerations responseValue = default;
 
-                if (_isConfiguredForAzureOpenAI)
+                if (_isConfiguredForAzureOpenAI
+                    && DateTime.TryParse(_apiVersion.Substring(0, "yyyy-MM-dd".Length), out DateTime apiVersionDate)
+                    && apiVersionDate < new DateTime(2023, 12, 01))
                 {
                     Operation<ImageGenerations> imagesOperation
                         = BeginAzureBatchImageGeneration(
@@ -617,7 +647,7 @@ namespace Azure.AI.OpenAI
                 {
                     RequestContext context = FromCancellationToken(cancellationToken);
                     HttpMessage message = CreatePostRequestMessage(
-                        string.Empty,
+                        deploymentName,
                         "images/generations",
                         content: imageGenerationOptions.ToRequestContent(),
                         context);
@@ -646,11 +676,39 @@ namespace Azure.AI.OpenAI
         /// <returns>
         ///     The response information for the image generations request.
         /// </returns>
-        public virtual async Task<Response<ImageGenerations>> GetImageGenerationsAsync(
+        public virtual Task<Response<ImageGenerations>> GetImageGenerationsAsync(
+            ImageGenerationOptions imageGenerationOptions,
+            CancellationToken cancellationToken = default)
+                => GetImageGenerationsAsync(imageGenerationOptions?.DeploymentName, imageGenerationOptions, cancellationToken);
+
+        /// <summary>
+        ///     Get a set of generated images influenced by a provided textual prompt.
+        /// </summary>
+        /// <param name="deploymentName">
+        /// <para>
+        /// The name of the model deployment to use for image generation.
+        /// </para>
+        /// </param>
+        /// <param name="imageGenerationOptions">
+        ///     The configuration information for the image generation request that controls the content,
+        ///     size, and other details about generated images.
+        /// </param>
+        /// <param name="cancellationToken">
+        ///     An optional cancellation token that may be used to abort an ongoing request.
+        /// </param>
+        /// <returns>
+        ///     The response information for the image generations request.
+        /// </returns>
+        internal virtual async Task<Response<ImageGenerations>> GetImageGenerationsAsync(
+            string deploymentName,
             ImageGenerationOptions imageGenerationOptions,
             CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(imageGenerationOptions, nameof(imageGenerationOptions));
+            if (_isConfiguredForAzureOpenAI)
+            {
+                Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            }
 
             using DiagnosticScope scope = ClientDiagnostics.CreateScope("OpenAIClient.GetImageGenerations");
             scope.Start();
@@ -660,7 +718,9 @@ namespace Azure.AI.OpenAI
                 Response rawResponse = default;
                 ImageGenerations responseValue = default;
 
-                if (_isConfiguredForAzureOpenAI)
+                if (_isConfiguredForAzureOpenAI
+                    && DateTime.TryParse(_apiVersion.Substring(0, "yyyy-MM-dd".Length), out DateTime apiVersionDate)
+                    && apiVersionDate < new DateTime(2023, 12, 01))
                 {
                     Operation<ImageGenerations> imagesOperation
                         = await BeginAzureBatchImageGenerationAsync(
@@ -677,7 +737,7 @@ namespace Azure.AI.OpenAI
                 {
                     RequestContext context = FromCancellationToken(cancellationToken);
                     HttpMessage message = CreatePostRequestMessage(
-                        string.Empty,
+                        deploymentName,
                         "images/generations",
                         content: imageGenerationOptions.ToRequestContent(),
                         context);
@@ -859,7 +919,9 @@ namespace Azure.AI.OpenAI
                 uri.AppendPath("/deployments/", false);
                 uri.AppendPath(deploymentOrModelName, true);
                 uri.AppendPath($"/{operationPath}", false);
-                uri.AppendQuery("api-version", _apiVersion, true);
+                // TEMPORARY: (development-only) -- redirect 2023-12-01-preview to 2023-11-01-preview
+                uri.AppendQuery("api-version", _apiVersion == "2023-12-01-preview" ? "2023-11-01-preview" : _apiVersion, true);
+                // uri.AppendQuery("api-version", _apiVersion, true);
             }
             else
             {

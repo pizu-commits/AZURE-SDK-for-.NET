@@ -3,6 +3,8 @@
 
 #nullable disable
 
+using Azure.Core;
+
 namespace Azure.AI.OpenAI
 {
     /// <summary> Represents the request data used to generate images. </summary>
@@ -23,9 +25,5 @@ namespace Azure.AI.OpenAI
         ///     desired topical content.
         /// </remarks>
         public string Prompt { get; set; }
-
-        // Custom code note: we suppress the ResponseFormat field as it'll be handled by unique method signatures
-        // for the differing response types (separate URL and b64 methods)
-        internal ImageGenerationResponseFormat? ResponseFormat { get; set; }
     }
 }

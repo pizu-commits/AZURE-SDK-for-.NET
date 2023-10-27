@@ -201,8 +201,8 @@ namespace Azure.AI.OpenAI
         public static Azure.AI.OpenAI.EmbeddingItem EmbeddingItem(System.Collections.Generic.IEnumerable<float> embedding = null, int index = 0) { throw null; }
         public static Azure.AI.OpenAI.Embeddings Embeddings(System.Collections.Generic.IEnumerable<Azure.AI.OpenAI.EmbeddingItem> data = null, Azure.AI.OpenAI.EmbeddingsUsage usage = null) { throw null; }
         public static Azure.AI.OpenAI.EmbeddingsUsage EmbeddingsUsage(int promptTokens = 0, int totalTokens = 0) { throw null; }
-        public static Azure.AI.OpenAI.ImageGenerations ImageGenerations(System.DateTimeOffset created = default(System.DateTimeOffset), System.Collections.Generic.IEnumerable<Azure.AI.OpenAI.ImageLocation> data = null) { throw null; }
-        public static Azure.AI.OpenAI.ImageLocation ImageLocation(System.Uri url = null) { throw null; }
+        public static Azure.AI.OpenAI.ImageGenerationData ImageGenerationData(System.Uri url = null, string base64Data = null) { throw null; }
+        public static Azure.AI.OpenAI.ImageGenerations ImageGenerations(System.DateTimeOffset created = default(System.DateTimeOffset), System.Collections.Generic.IEnumerable<Azure.AI.OpenAI.ImageGenerationData> data = null) { throw null; }
         public static Azure.AI.OpenAI.PromptFilterResult PromptFilterResult(int promptIndex = 0, Azure.AI.OpenAI.ContentFilterResults contentFilterResults = null) { throw null; }
         public static Azure.AI.OpenAI.StreamingChatChoice StreamingChatChoice(Azure.AI.OpenAI.ChatChoice originalBaseChoice = null) { throw null; }
         public static Azure.AI.OpenAI.StreamingChatCompletions StreamingChatCompletions(Azure.AI.OpenAI.ChatCompletions baseChatCompletions = null, System.Collections.Generic.List<Azure.AI.OpenAI.StreamingChatChoice> streamingChatChoices = null) { throw null; }
@@ -423,25 +423,46 @@ namespace Azure.AI.OpenAI
         public string Name { get { throw null; } set { } }
         public System.BinaryData Parameters { get { throw null; } set { } }
     }
+    public partial class ImageGenerationData
+    {
+        internal ImageGenerationData() { }
+        public string Base64Data { get { throw null; } }
+        public System.Uri Url { get { throw null; } }
+    }
     public partial class ImageGenerationOptions
     {
         public ImageGenerationOptions() { }
         public ImageGenerationOptions(string prompt) { }
+        public string DeploymentName { get { throw null; } set { } }
         public int? ImageCount { get { throw null; } set { } }
         public string Prompt { get { throw null; } set { } }
+        public Azure.AI.OpenAI.ImageGenerationResponseFormat? ResponseFormat { get { throw null; } set { } }
         public Azure.AI.OpenAI.ImageSize? Size { get { throw null; } set { } }
         public string User { get { throw null; } set { } }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ImageGenerationResponseFormat : System.IEquatable<Azure.AI.OpenAI.ImageGenerationResponseFormat>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public ImageGenerationResponseFormat(string value) { throw null; }
+        public static Azure.AI.OpenAI.ImageGenerationResponseFormat Base64 { get { throw null; } }
+        public static Azure.AI.OpenAI.ImageGenerationResponseFormat Url { get { throw null; } }
+        public bool Equals(Azure.AI.OpenAI.ImageGenerationResponseFormat other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.AI.OpenAI.ImageGenerationResponseFormat left, Azure.AI.OpenAI.ImageGenerationResponseFormat right) { throw null; }
+        public static implicit operator Azure.AI.OpenAI.ImageGenerationResponseFormat (string value) { throw null; }
+        public static bool operator !=(Azure.AI.OpenAI.ImageGenerationResponseFormat left, Azure.AI.OpenAI.ImageGenerationResponseFormat right) { throw null; }
+        public override string ToString() { throw null; }
     }
     public partial class ImageGenerations
     {
         internal ImageGenerations() { }
         public System.DateTimeOffset Created { get { throw null; } }
-        public System.Collections.Generic.IReadOnlyList<Azure.AI.OpenAI.ImageLocation> Data { get { throw null; } }
-    }
-    public partial class ImageLocation
-    {
-        internal ImageLocation() { }
-        public System.Uri Url { get { throw null; } }
+        public System.Collections.Generic.IReadOnlyList<Azure.AI.OpenAI.ImageGenerationData> Data { get { throw null; } }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct ImageSize : System.IEquatable<Azure.AI.OpenAI.ImageSize>
@@ -493,7 +514,7 @@ namespace Azure.AI.OpenAI
     }
     public partial class OpenAIClientOptions : Azure.Core.ClientOptions
     {
-        public OpenAIClientOptions(Azure.AI.OpenAI.OpenAIClientOptions.ServiceVersion version = Azure.AI.OpenAI.OpenAIClientOptions.ServiceVersion.V2023_09_01_Preview) { }
+        public OpenAIClientOptions(Azure.AI.OpenAI.OpenAIClientOptions.ServiceVersion version = Azure.AI.OpenAI.OpenAIClientOptions.ServiceVersion.V2023_12_01_Preview) { }
         public enum ServiceVersion
         {
             V2022_12_01 = 1,
@@ -502,6 +523,7 @@ namespace Azure.AI.OpenAI
             V2023_07_01_Preview = 4,
             V2023_08_01_Preview = 5,
             V2023_09_01_Preview = 6,
+            V2023_12_01_Preview = 7,
         }
     }
     public partial class PromptFilterResult
