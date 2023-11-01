@@ -35,10 +35,6 @@ namespace Azure.Communication.CallAutomation
 
         /// <summary>The operation context provided by client.</summary>
         public string OperationContext { get; }
-        /// <summary>
-        /// The invitation ID used to add the participant.
-        /// </summary>
-        public string InvitationId { get; }
 
         /// <summary> Invitation ID used to add a participant. </summary>
         public string InvitationId { get; }
