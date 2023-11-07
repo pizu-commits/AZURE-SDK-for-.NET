@@ -6,4 +6,5 @@ Run `dotnet build /t:GenerateCode` to generate code.
 title: TestProxyClient
 input-file: testproxy.json
 generation1-convenience-client: true
+keep-optional-client-parameters-in-constructor: true
 ```
