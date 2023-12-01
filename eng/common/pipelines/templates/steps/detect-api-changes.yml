@@ -5,7 +5,7 @@ parameters:
 
 steps:
   - pwsh: |
-      $apiChangeDetectRequestUrl = "https://apiview.dev/PullRequest/DetectApiChanges"
+      $apiChangeDetectRequestUrl = "https://apiviewuxtest.com/PullRequest/DetectApiChanges"
       echo "##vso[task.setvariable variable=ApiChangeDetectRequestUrl]$apiChangeDetectRequestUrl"
     displayName: "Set API change detect request URL"
     condition: eq(variables['ApiChangeDetectRequestUrl'], '')
