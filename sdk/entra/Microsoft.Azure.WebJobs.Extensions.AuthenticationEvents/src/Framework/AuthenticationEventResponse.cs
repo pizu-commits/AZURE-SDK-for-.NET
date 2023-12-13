@@ -106,15 +106,15 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework
         internal void MarkAsFailed(Exception ex, bool internalError)
         {
             StatusCode = internalError ? System.Net.HttpStatusCode.InternalServerError : System.Net.HttpStatusCode.BadRequest;
-            ReasonPhrase = String.Empty;
+            ReasonPhrase = string.Empty;
             Body = Helpers.GetFailedRequestPayload(ex);
         }
 
         internal void MarkAsUnauthorized()
         {
             StatusCode = System.Net.HttpStatusCode.Unauthorized;
-            ReasonPhrase = String.Empty;
-            Body = String.Empty;
+            ReasonPhrase = string.Empty;
+            Body = string.Empty;
         }
     }
 }

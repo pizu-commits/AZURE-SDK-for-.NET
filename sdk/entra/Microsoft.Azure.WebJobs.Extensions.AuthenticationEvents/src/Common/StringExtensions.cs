@@ -27,7 +27,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
         ///     True if match
         /// </returns>
         public static bool EqualsOic(this string input, string compare)
-            => String.Equals(input, compare, StringComparison.OrdinalIgnoreCase);
+            => string.Equals(input, compare, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
         ///     Returns true if the string collection contains the provided
@@ -109,7 +109,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
         ///     front and not having to see/parse the not operator (!) squashed
         ///     between the parenthesis and variable name:
         ///     <code>
-        ///         if (!String.IsNullOrWhitespace(value))
+        ///         if (!string.IsNullOrWhitespace(value))
         ///     </code>
         /// </summary>
         /// <param name="value">
@@ -133,6 +133,6 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
         ///     True if the value has no content; false otherwise.
         /// </returns>
         public static bool HasNoContent(this string value)
-            => String.IsNullOrWhiteSpace(value);
+            => string.IsNullOrWhiteSpace(value);
     }
 }

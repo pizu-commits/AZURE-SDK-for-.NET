@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+
 using Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework;
 using Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.TokenIssuanceStart.Actions;
 
@@ -90,7 +91,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
                 errors.Add(AuthenticationEventResource.Ex_Gen_Failure);
             }
 
-            return $"{{\"errors\":[\"{String.Join("\",\"", errors.Select(m => m))}\"]}}";
+            return $"{{\"errors\":[\"{string.Join("\",\"", errors.Select(m => m))}\"]}}";
         }
 
         internal static HttpResponseMessage HttpUnauthorizedResponse()
@@ -123,7 +124,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
         {
             return actionType != null && _actionMapping.ContainsKey(actionType.ToLower(CultureInfo.CurrentCulture))
                  ? (AuthenticationEventAction)Activator.CreateInstance(_actionMapping[actionType.ToLower(CultureInfo.CurrentCulture)])
-                 : throw new Exception(String.Format(CultureInfo.CurrentCulture, AuthenticationEventResource.Ex_Invalid_Action, actionType, String.Join("', '", _actionMapping.Select(x => x.Key))));
+                 : throw new Exception(string.Format(CultureInfo.CurrentCulture, AuthenticationEventResource.Ex_Invalid_Action, actionType, string.Join("', '", _actionMapping.Select(x => x.Key))));
         }
 
         internal static void ValidateGraph(object obj)

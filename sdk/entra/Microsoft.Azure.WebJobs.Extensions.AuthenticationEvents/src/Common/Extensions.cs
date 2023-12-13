@@ -68,7 +68,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents
 
         internal static string DecodeBase64(this HttpRequestHeaders headers, string key)
         {
-            return headers.Contains(key) ? Encoding.UTF8.GetString(Convert.FromBase64String(headers.GetValues(key).First())) : String.Empty;
+            return headers.Contains(key) ? Encoding.UTF8.GetString(Convert.FromBase64String(headers.GetValues(key).First())) : string.Empty;
         }
 
         internal static Dictionary<string, string> ToDictionary(this NameValueCollection nvc)

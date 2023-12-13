@@ -33,7 +33,7 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework.Vali
         /// <returns>An instance of the formatted error message.</returns>
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(CultureInfo.CurrentCulture, AuthenticationEventResource.Val_One_Of, name) + string.Join(", ", EventIds);
+            return string.Format(CultureInfo.CurrentCulture, AuthenticationEventResource.Val_One_Of, name) + string.Join(", ", EventIds);
         }
 
         /// <summary>Returns true if the value is a valid event identifier.</summary>
