@@ -29,6 +29,8 @@ pr:
     exclude:
     - eng/mgmt/
     - eng/common/
+variables:
+- template: /eng/pipelines/templates/variables/globals.yml@self
 extends:
   template: /eng/pipelines/templates/stages/archetype-sdk-client.yml@self
   parameters:

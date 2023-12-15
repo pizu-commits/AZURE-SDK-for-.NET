@@ -77,8 +77,6 @@ parameters:
 - name: ReleaseDependsOnLiveTests
   type: string
   default: not-specified
-variables:
-- template: /eng/pipelines/templates/variables/globals.yml@self
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
