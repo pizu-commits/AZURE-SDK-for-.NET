@@ -1,13 +1,10 @@
-# cSpell:ignore changedfiles
-# cSpell:ignore credscan
-# cSpell:ignore securedevelopmentteam
-# cSpell:ignore postanalysis
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   SuppressionFilePath: 'eng/CredScanSuppression.json'
   BaselineFilePath: ''
   SourceDirectory: $(Build.SourcesDirectory)
   ServiceDirectory: ''
-
 steps:
 - pwsh: |
     if ("$(Build.Reason)" -eq 'PullRequest') {
@@ -29,26 +26,6 @@ steps:
     }
   displayName: CredScan setup
   condition: succeededOrFailed()
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
-  displayName: CredScan running
-  condition: and(succeededOrFailed(), ne(variables['SKIP_CREDSCAN'], true))
-  inputs:
-    toolVersion: 2.3.12.23
-    scanFolder: "${{ parameters.SourceDirectory }}/credscan.tsv"
-    suppressionsFile: ${{ parameters.SuppressionFilePath }}
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
-  displayName: CredScan result analysis
-  condition: and(succeededOrFailed(), ne(variables['SKIP_CREDSCAN'], true))
-  inputs:
-    GdnBreakBaselineFiles: ${{ parameters.BaselineFilePath }}
-    GdnBreakAllTools: false
-    GdnBreakGdnToolCredScan: true
-    GdnBreakGdnToolCredScanSeverity: Error
-    GdnBreakBaselines: baseline
-    # Used for generating baseline file.
-    # GdnBreakOutputBaselineFile: baseline
-    # GdnBreakOutputBaseline: baseline
 - pwsh: |
     Write-Host "Please check https://aka.ms/azsdk/credscan for more information about the cred scan failure."
   displayName: CredScan troubleshooting guide

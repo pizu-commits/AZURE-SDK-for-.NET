@@ -1,18 +1,18 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
-  - name: ScriptDirectory
-    type: string
-    default: 'eng/common/scripts'
-  - name: AgentImage
-    type: string
-
+- name: ScriptDirectory
+  type: string
+  default: 'eng/common/scripts'
+- name: AgentImage
+  type: string
 steps:
-  - task: PowerShell@2
-    displayName: Verify agent OS
-    inputs:
-      pwsh: true
-      workingDirectory: $(System.DefaultWorkingDirectory)
-      filePath: ${{ parameters.ScriptDirectory }}/Verify-AgentOS.ps1
-      arguments: >
-        -AgentImage "${{ parameters.AgentImage }}"
-
-  - template: /eng/common/pipelines/templates/steps/bypass-local-dns.yml
+- task: PowerShell@2
+  displayName: Verify agent OS
+  inputs:
+    pwsh: true
+    workingDirectory: $(System.DefaultWorkingDirectory)
+    filePath: ${{ parameters.ScriptDirectory }}/Verify-AgentOS.ps1
+    arguments: >
+      -AgentImage "${{ parameters.AgentImage }}"
+- template: /eng/common/pipelines/templates/steps/bypass-local-dns.yml@self

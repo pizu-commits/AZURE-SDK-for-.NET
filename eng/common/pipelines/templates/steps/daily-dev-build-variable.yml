@@ -1,5 +1,5 @@
-# This script fragment is used across our repos to set a variable "SetDevVersion" which
-# is used when this pipeline is going to be generating and publishing daily dev builds.
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   ServiceDirectory: ''
 steps:
@@ -8,8 +8,7 @@ steps:
     inputs:
       filePath: $(Build.SourcesDirectory)/eng/common/scripts/Save-Package-Properties.ps1
       arguments: >
-        -ServiceDirectory ${{parameters.ServiceDirectory}}
-        -OutDirectory $(Build.ArtifactStagingDirectory)/PackageInfo
+        -ServiceDirectory ${{parameters.ServiceDirectory}} -OutDirectory $(Build.ArtifactStagingDirectory)/PackageInfo
       pwsh: true
       workingDirectory: $(Pipeline.Workspace)
     displayName: Dump Package properties

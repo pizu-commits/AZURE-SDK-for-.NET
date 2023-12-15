@@ -1,3 +1,5 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   ArtifactLocation: 'not-specified'
   PackageRepository: 'not-specified'
@@ -5,18 +7,13 @@ parameters:
   RepoId: $(Build.Repository.Name)
   WorkingDirectory: ''
   ScriptDirectory: eng/common/scripts
-
 steps:
 - task: PowerShell@2
   displayName: 'Verify Package Tags and Create Git Releases'
   inputs:
     filePath: ${{ parameters.ScriptDirectory }}/create-tags-and-git-release.ps1
     arguments: >
-      -artifactLocation ${{ parameters.ArtifactLocation }}
-      -packageRepository ${{ parameters.PackageRepository }}
-      -releaseSha ${{ parameters.ReleaseSha }}
-      -repoId ${{ parameters.RepoId }}
-      -workingDirectory '${{ parameters.WorkingDirectory }}'
+      -artifactLocation ${{ parameters.ArtifactLocation }} -packageRepository ${{ parameters.PackageRepository }} -releaseSha ${{ parameters.ReleaseSha }} -repoId ${{ parameters.RepoId }} -workingDirectory '${{ parameters.WorkingDirectory }}'
     pwsh: true
   timeoutInMinutes: 5
   env:

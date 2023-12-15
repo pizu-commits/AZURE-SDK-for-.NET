@@ -1,10 +1,17 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
+# This pipeline will be extended to the OneESPT template
+# If you are not using the E+D shared hosted pool with windows-2022, replace the pool section with your hosted pool, os, and image name. If you are using a Linux image, you must specify an additional windows image for SDL: https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/1es-pipeline-templates/features/sdlanalysis/overview#how-to-specify-a-windows-pool-for-the-sdl-source-analysis-stage
 resources:
   repositories:
-    - repository: azure-sdk-build-tools
-      type: git
-      name: internal/azure-sdk-build-tools
-      ref: refs/tags/azure-sdk-build-tools_20230829.1
-
+  - repository: azure-sdk-build-tools
+    type: git
+    name: internal/azure-sdk-build-tools
+    ref: refs/tags/azure-sdk-build-tools_20230829.1
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
 parameters:
 - name: Artifacts
   type: object
@@ -45,10 +52,10 @@ parameters:
 - name: MatrixConfigs
   type: object
   default:
-    - Name: NET_ci_test_base
-      Path: eng/pipelines/templates/stages/platform-matrix.json
-      Selection: sparse
-      GenerateVMJobs: true
+  - Name: NET_ci_test_base
+    Path: eng/pipelines/templates/stages/platform-matrix.json
+    Selection: sparse
+    GenerateVMJobs: true
 - name: AdditionalMatrixConfigs
   type: object
   default: []
@@ -70,60 +77,61 @@ parameters:
 - name: ReleaseDependsOnLiveTests
   type: string
   default: not-specified
-
 variables:
-  - template: ../variables/globals.yml
-
-stages:
-  - stage: Build
-    jobs:
-    - template: /eng/pipelines/templates/jobs/ci.yml
-      parameters:
-        SDKType: ${{ parameters.SDKType }}
-        ServiceDirectory: ${{ parameters.ServiceDirectory }}
-        Artifacts: ${{ parameters.Artifacts }}
-        ${{ if eq(parameters.ServiceDirectory, 'template') }}:
-          TestPipeline: true
-        ArtifactName: packages
-        LimitForPullRequest: ${{ parameters.LimitForPullRequest }}
-        BuildSnippets: ${{ parameters.BuildSnippets }}
-        CheckAOTCompat: ${{ parameters.CheckAOTCompat }}
-        AOTTestInputs: ${{ parameters.AOTTestInputs }}
-        TestSetupSteps: ${{ parameters.TestSetupSteps }}
-        TestTimeoutInMinutes: ${{ parameters.TestTimeoutInMinutes }}
-        MatrixConfigs:
+- template: /eng/pipelines/templates/variables/globals.yml@self
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
+    pool:
+      name: Azure-Pipelines-1ESPT-ExDShared
+      image: windows-2022
+      os: windows
+    customBuildTags:
+    - ES365AIMigrationTooling
+    stages:
+    - stage: Build
+      jobs:
+      - template: /eng/pipelines/templates/jobs/ci.yml@self
+        parameters:
+          SDKType: ${{ parameters.SDKType }}
+          ServiceDirectory: ${{ parameters.ServiceDirectory }}
+          Artifacts: ${{ parameters.Artifacts }}
+          ${{ if eq(parameters.ServiceDirectory, 'template') }}:
+            TestPipeline: true
+          ArtifactName: packages
+          LimitForPullRequest: ${{ parameters.LimitForPullRequest }}
+          BuildSnippets: ${{ parameters.BuildSnippets }}
+          CheckAOTCompat: ${{ parameters.CheckAOTCompat }}
+          AOTTestInputs: ${{ parameters.AOTTestInputs }}
+          TestSetupSteps: ${{ parameters.TestSetupSteps }}
+          TestTimeoutInMinutes: ${{ parameters.TestTimeoutInMinutes }}
+          MatrixConfigs:
           - ${{ each config in parameters.MatrixConfigs }}:
-            -  ${{ config }}
+            - ${{ config }}
           - ${{ each config in parameters.AdditionalMatrixConfigs }}:
-            -  ${{ config }}
-        MatrixFilters: ${{ parameters.MatrixFilters }}
-        MatrixReplace:
-          # For nightly/release pipelines we build and test release only
+            - ${{ config }}
+          MatrixFilters: ${{ parameters.MatrixFilters }}
+          MatrixReplace:
           - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
             - BuildConfiguration=Debug/Release
           - ${{ parameters.MatrixReplace }}
-        TestDependsOnDependency: ${{ parameters.TestDependsOnDependency }}
-
-  # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
-  - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
-    - ${{ parameters.LiveTestStages }}
-
-    - template: archetype-net-release.yml
-      parameters:
-        SDKType: ${{ parameters.SDKType }}
-        ServiceDirectory: ${{ parameters.ServiceDirectory }}
-        DependsOn:
+          TestDependsOnDependency: ${{ parameters.TestDependsOnDependency }}
+    - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
+      - ${{ parameters.LiveTestStages }}
+      - template: /eng/pipelines/templates/stages/archetype-net-release.yml@self
+        parameters:
+          SDKType: ${{ parameters.SDKType }}
+          ServiceDirectory: ${{ parameters.ServiceDirectory }}
+          DependsOn:
           - Build
-          # Only depend on live test stages if the build depends on live tests and the build reason is manual.
-          # This prevents check-in builds and scheduled builds from having a requirement on live test stages.
           - ${{ if eq(parameters.ReleaseDependsOnLiveTests, 'true') }}:
             - ${{ each liveTestStage in parameters.LiveTestStages }}:
               - ${{ liveTestStage.stage }}
-        Artifacts: ${{ parameters.Artifacts }}
-        ${{ if eq(parameters.ServiceDirectory, 'template') }}:
-          TestPipeline: true
-        ArtifactName: packages
-        TargetDocRepoOwner: ${{ parameters.TargetDocRepoOwner }}
-        TargetDocRepoName: ${{ parameters.TargetDocRepoName }}
-        ${{ if eq(parameters.ReleaseDependsOnLiveTests, 'false') }}:
-          Environment: 'nuget-break-glass-approvers'
+          Artifacts: ${{ parameters.Artifacts }}
+          ${{ if eq(parameters.ServiceDirectory, 'template') }}:
+            TestPipeline: true
+          ArtifactName: packages
+          TargetDocRepoOwner: ${{ parameters.TargetDocRepoOwner }}
+          TargetDocRepoName: ${{ parameters.TargetDocRepoName }}
+          ${{ if eq(parameters.ReleaseDependsOnLiveTests, 'false') }}:
+            Environment: 'nuget-break-glass-approvers'

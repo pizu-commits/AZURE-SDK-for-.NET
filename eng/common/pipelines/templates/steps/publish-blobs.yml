@@ -1,3 +1,5 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   FolderForUpload: ''
   BlobSASKey: ''
@@ -6,9 +8,8 @@ parameters:
   ScriptPath: ''
   ArtifactLocation: ''
   RepoId: $(Build.Repository.Name)
-
 steps:
-- template: /eng/common/pipelines/templates/steps/set-default-branch.yml
+- template: /eng/common/pipelines/templates/steps/set-default-branch.yml@self
 - pwsh: |
     if (!(Test-Path '$(Build.BinariesDirectory)/azcopy/azcopy_windows_amd64_*/azcopy.exe')) {
       Invoke-WebRequest -MaximumRetryCount 10 -Uri "https://aka.ms/downloadazcopy-v10-windows" -OutFile "azcopy.zip" | Wait-Process;
@@ -16,17 +17,11 @@ steps:
     }
   workingDirectory: $(Build.BinariesDirectory)
   displayName: Download and Extract azcopy Zip
-
 - task: Powershell@2
   inputs:
     filePath: ${{ parameters.ScriptPath }}
     arguments: >
-      -AzCopy $(Resolve-Path "$(Build.BinariesDirectory)/azcopy/azcopy_windows_amd64_*/azcopy.exe")[0]
-      -DocLocation "${{ parameters.FolderForUpload }}"
-      -SASKey "${{ parameters.BlobSASKey }}"
-      -BlobName "${{ parameters.BlobName }}"
-      -PublicArtifactLocation "${{ parameters.ArtifactLocation }}"
-      -RepoReplaceRegex "(https://github.com/${{ parameters.RepoId }}/(?:blob|tree)/)$(DefaultBranch)"
+      -AzCopy $(Resolve-Path "$(Build.BinariesDirectory)/azcopy/azcopy_windows_amd64_*/azcopy.exe")[0] -DocLocation "${{ parameters.FolderForUpload }}" -SASKey "${{ parameters.BlobSASKey }}" -BlobName "${{ parameters.BlobName }}" -PublicArtifactLocation "${{ parameters.ArtifactLocation }}" -RepoReplaceRegex "(https://github.com/${{ parameters.RepoId }}/(?:blob|tree)/)$(DefaultBranch)"
     pwsh: true
     workingDirectory: $(Pipeline.Workspace)
   displayName: Copy Docs to Blob

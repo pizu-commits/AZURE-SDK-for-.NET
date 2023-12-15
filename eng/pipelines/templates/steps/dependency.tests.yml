@@ -1,3 +1,6 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
+# The Task 'PublishBuildArtifacts@1' has been converted to an output named '' in the templateContext section.
 parameters:
 - name: ProjectFilesOutputFolder
   type: string
@@ -24,35 +27,23 @@ parameters:
   type: string
   default: 'not-specific'
 steps:
-  - template: /eng/pipelines/templates/steps/install-dotnet.yml
-    parameters:
-      EnableNuGetCache: false
-  - pwsh: |
-      dotnet build /t:ProjectDependsOn ./eng/service.proj `
-        /p:TestDependsOnDependency="${{parameters.TestDependsOnDependency}}" `
-        /p:IncludeSrc=false /p:IncludeStress=false /p:IncludeSamples=false  `
-        /p:IncludePerf=false /p:RunApiCompat=false `
-        /p:InheritDocEnabled=false /p:BuildProjectReferences=false `
-        /p:OutputProjectFilePath="${{parameters.OutputProjectFilePath}}"
-    displayName: Find all test dependencies
-
-  - task: PowerShell@2
-    inputs:
-      targetType: filePath
-      filePath: eng/scripts/splittestdependencies/Generate-Dependency-Test-References.ps1
-      arguments: >-
-        -ProjectListFilePath ${{ parameters.OutputProjectFilePath }}
-        -ProjectFilesOutputFolder ${{ parameters.ProjectFilesOutputFolder }}
-        -NumOfTestProjectsPerJob ${{ parameters.NumOfTestProjectsPerJob }}
-        -MatrixConfigsFile ${{parameters.MatrixConfigsFile}}
-        -ProjectFileConfigName ${{parameters.ProjectListOverrideFilePropertyName}}
-        -ExcludeTargetTestProjects: $${{parameters.ExcludeTargetTestProjects}}
-        -ServiceDirectoryToExclude ${{parameters.ServiceDirectory}}
-      ignoreLASTEXITCODE: true
-      pwsh: true
-    displayName: Split testing packages into different files
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathToPublish: $(Build.ArtifactStagingDirectory)
-      artifactName: DependencyTestProjectReferences
+- template: /eng/pipelines/templates/steps/install-dotnet.yml@self
+  parameters:
+    EnableNuGetCache: false
+- pwsh: |
+    dotnet build /t:ProjectDependsOn ./eng/service.proj `
+      /p:TestDependsOnDependency="${{parameters.TestDependsOnDependency}}" `
+      /p:IncludeSrc=false /p:IncludeStress=false /p:IncludeSamples=false  `
+      /p:IncludePerf=false /p:RunApiCompat=false `
+      /p:InheritDocEnabled=false /p:BuildProjectReferences=false `
+      /p:OutputProjectFilePath="${{parameters.OutputProjectFilePath}}"
+  displayName: Find all test dependencies
+- task: PowerShell@2
+  inputs:
+    targetType: filePath
+    filePath: eng/scripts/splittestdependencies/Generate-Dependency-Test-References.ps1
+    arguments: >-
+      -ProjectListFilePath ${{ parameters.OutputProjectFilePath }} -ProjectFilesOutputFolder ${{ parameters.ProjectFilesOutputFolder }} -NumOfTestProjectsPerJob ${{ parameters.NumOfTestProjectsPerJob }} -MatrixConfigsFile ${{parameters.MatrixConfigsFile}} -ProjectFileConfigName ${{parameters.ProjectListOverrideFilePropertyName}} -ExcludeTargetTestProjects: $${{parameters.ExcludeTargetTestProjects}} -ServiceDirectoryToExclude ${{parameters.ServiceDirectory}}
+    ignoreLASTEXITCODE: true
+    pwsh: true
+  displayName: Split testing packages into different files

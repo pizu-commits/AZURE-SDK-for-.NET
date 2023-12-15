@@ -1,5 +1,5 @@
-# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
-
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 trigger:
   branches:
     include:
@@ -13,7 +13,6 @@ trigger:
     exclude:
     - eng/mgmt/
     - eng/common/
-
 pr:
   branches:
     include:
@@ -30,9 +29,8 @@ pr:
     exclude:
     - eng/mgmt/
     - eng/common/
-
 extends:
-  template: /eng/pipelines/templates/stages/archetype-sdk-client.yml
+  template: /eng/pipelines/templates/stages/archetype-sdk-client.yml@self
   parameters:
     ServiceDirectory: core
     BuildSnippets: false
@@ -58,7 +56,6 @@ extends:
     AOTTestInputs:
     - ArtifactName: Azure.Core
       ExpectedWarningsFilepath: /Azure.Core/tests/compatibility/ExpectedAotWarnings.txt
-
     TestSetupSteps:
     - template: /sdk/storage/tests-install-azurite.yml
     TestTimeoutInMinutes: 100

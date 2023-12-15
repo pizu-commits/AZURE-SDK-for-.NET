@@ -1,6 +1,5 @@
-# Expects azuresdk-github-pat is set to the PAT for azure-sdk
-# Expects the buildtools to be cloned
-
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   BaseBranchName: $(Build.SourceBranch)
   PRBranchName: not-specified
@@ -8,7 +7,7 @@ parameters:
   CommitMsg: not-specified
   RepoOwner: Azure
   RepoName: $(Build.Repository.Name)
-  PushArgs:
+  PushArgs: ''
   WorkingDirectory: $(System.DefaultWorkingDirectory)
   PRTitle: not-specified
   PRBody: ''
@@ -16,14 +15,12 @@ parameters:
   GHReviewers: ''
   GHTeamReviewers: ''
   GHAssignees: ''
-  # Multiple labels seperated by comma, e.g. "bug, APIView"
   PRLabels: ''
   SkipCheckingForChanges: false
   CloseAfterOpenForTesting: false
   OpenAsDraft: false
-
 steps:
-- template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+- template: /eng/common/pipelines/templates/steps/git-push-changes.yml@self
   parameters:
     BaseRepoBranch: ${{ parameters.PRBranchName }}
     BaseRepoOwner: ${{ parameters.PROwner }}
@@ -34,7 +31,6 @@ steps:
     WorkingDirectory: ${{ parameters.WorkingDirectory }}
     ScriptDirectory: ${{ parameters.ScriptDirectory }}
     SkipCheckingForChanges: ${{ parameters.SkipCheckingForChanges }}
-
 - task: PowerShell@2
   displayName: Create pull request
   condition: and(succeeded(), eq(variables['HasChanges'], 'true'))
@@ -43,17 +39,4 @@ steps:
     workingDirectory: ${{ parameters.WorkingDirectory }}
     filePath: ${{ parameters.ScriptDirectory }}/Submit-PullRequest.ps1
     arguments: >
-      -RepoOwner "${{ parameters.RepoOwner }}"
-      -RepoName "$(RepoNameWithoutOwner)"
-      -BaseBranch "${{ parameters.BaseBranchName }}"
-      -PROwner "${{ parameters.PROwner }}"
-      -PRBranch "${{ parameters.PRBranchName }}"
-      -AuthToken "$(azuresdk-github-pat)"
-      -PRTitle "${{ parameters.PRTitle }}"
-      -PRBody "${{ coalesce(parameters.PRBody, parameters.CommitMsg, parameters.PRTitle) }}"
-      -PRLabels "${{ parameters.PRLabels }}"
-      -UserReviewers "${{ parameters.GHReviewers }}"
-      -TeamReviewers "${{ parameters.GHTeamReviewers }}"
-      -Assignees "${{ parameters.GHAssignees }}"
-      -CloseAfterOpenForTesting $${{ coalesce(parameters.CloseAfterOpenForTesting, 'false') }}
-      -OpenAsDraft $${{ parameters.OpenAsDraft }}
+      -RepoOwner "${{ parameters.RepoOwner }}" -RepoName "$(RepoNameWithoutOwner)" -BaseBranch "${{ parameters.BaseBranchName }}" -PROwner "${{ parameters.PROwner }}" -PRBranch "${{ parameters.PRBranchName }}" -AuthToken "$(azuresdk-github-pat)" -PRTitle "${{ parameters.PRTitle }}" -PRBody "${{ coalesce(parameters.PRBody, parameters.CommitMsg, parameters.PRTitle) }}" -PRLabels "${{ parameters.PRLabels }}" -UserReviewers "${{ parameters.GHReviewers }}" -TeamReviewers "${{ parameters.GHTeamReviewers }}" -Assignees "${{ parameters.GHAssignees }}" -CloseAfterOpenForTesting $${{ coalesce(parameters.CloseAfterOpenForTesting, 'false') }} -OpenAsDraft $${{ parameters.OpenAsDraft }}

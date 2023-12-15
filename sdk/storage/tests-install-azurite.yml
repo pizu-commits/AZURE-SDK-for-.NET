@@ -1,3 +1,5 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
 - name: AzuriteLocation
   type: string
@@ -5,23 +7,22 @@ parameters:
 - name: AzuriteVersion
   type: string
   default: 3.11.0
-
 steps:
-  - task: Cache@2
-    inputs:
-      key: storageazurite | "$(Agent.OS)" | "${{ parameters.AzuriteVersion }}"
-      path: ${{ parameters.AzuriteLocation }}
-      cacheHitVar: STORAGE_AZURITE_CACHE_RESTORED
-    displayName: Cache Azurite installation
-    continueOnError: true
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: install --prefix ${{ parameters.AzuriteLocation }} azurite@${{ parameters.AzuriteVersion }}
-    condition: and(succeeded(), ne(variables.STORAGE_AZURITE_CACHE_RESTORED, 'true'))
-    displayName: Install Azurite
-  - task: PowerShell@2
-    displayName: Add Azurite location as environment variable
-    inputs:
-      targetType: 'inline'
-      script: Write-Host "##vso[task.setvariable variable=Azure.Azurite.Location;]${{ parameters.AzuriteLocation }}"
+- task: Cache@2
+  inputs:
+    key: storageazurite | "$(Agent.OS)" | "${{ parameters.AzuriteVersion }}"
+    path: ${{ parameters.AzuriteLocation }}
+    cacheHitVar: STORAGE_AZURITE_CACHE_RESTORED
+  displayName: Cache Azurite installation
+  continueOnError: true
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: install --prefix ${{ parameters.AzuriteLocation }} azurite@${{ parameters.AzuriteVersion }}
+  condition: and(succeeded(), ne(variables.STORAGE_AZURITE_CACHE_RESTORED, 'true'))
+  displayName: Install Azurite
+- task: PowerShell@2
+  displayName: Add Azurite location as environment variable
+  inputs:
+    targetType: 'inline'
+    script: Write-Host "##vso[task.setvariable variable=Azure.Azurite.Location;]${{ parameters.AzuriteLocation }}"

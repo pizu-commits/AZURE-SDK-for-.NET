@@ -1,11 +1,11 @@
-
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 steps:
-    # https://github.com/actions/virtual-environments/issues/798
-    - script: sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-      displayName: Bypass local DNS server to workaround issue resolving cognitiveservices names
-      condition: |
-        and(
-          succeededOrFailed(),
-          contains(variables['OSVmImage'], 'ubuntu'),
-          eq(variables['Container'], '')
-        )
+- script: sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+  displayName: Bypass local DNS server to workaround issue resolving cognitiveservices names
+  condition: |
+    and(
+      succeededOrFailed(),
+      contains(variables['OSVmImage'], 'ubuntu'),
+      eq(variables['Container'], '')
+    )

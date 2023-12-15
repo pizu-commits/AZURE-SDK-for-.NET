@@ -1,27 +1,20 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
   ArtifactPath: $(Build.ArtifactStagingDirectory)
   Artifacts: []
   ArtifactName: 'packages'
-
 steps:
-  - pwsh: |
-      $apiChangeDetectRequestUrl = "https://apiview.dev/PullRequest/DetectApiChanges"
-      echo "##vso[task.setvariable variable=ApiChangeDetectRequestUrl]$apiChangeDetectRequestUrl"
-    displayName: "Set API change detect request URL"
-    condition: eq(variables['ApiChangeDetectRequestUrl'], '')
-
-  - task: Powershell@2
-    inputs:
-      filePath: $(Build.SourcesDirectory)/eng/common/scripts/Detect-Api-Changes.ps1
-      arguments: >
-        -ArtifactList ('${{ convertToJson(parameters.Artifacts) }}' | ConvertFrom-Json | Select-Object Name)
-        -ArtifactPath ${{parameters.ArtifactPath}}
-        -CommitSha '$(Build.SourceVersion)'
-        -BuildId $(Build.BuildId)
-        -PullRequestNumber $(System.PullRequest.PullRequestNumber)
-        -RepoFullName $(Build.Repository.Name)
-        -APIViewUri $(ApiChangeDetectRequestUrl)
-        -ArtifactName ${{ parameters.ArtifactName }}
-      pwsh: true
-    displayName: Detect API changes
-    condition: and(succeededOrFailed(), eq(variables['Build.Reason'],'PullRequest'))
+- pwsh: |
+    $apiChangeDetectRequestUrl = "https://apiview.dev/PullRequest/DetectApiChanges"
+    echo "##vso[task.setvariable variable=ApiChangeDetectRequestUrl]$apiChangeDetectRequestUrl"
+  displayName: "Set API change detect request URL"
+  condition: eq(variables['ApiChangeDetectRequestUrl'], '')
+- task: Powershell@2
+  inputs:
+    filePath: $(Build.SourcesDirectory)/eng/common/scripts/Detect-Api-Changes.ps1
+    arguments: >
+      -ArtifactList ('${{ convertToJson(parameters.Artifacts) }}' | ConvertFrom-Json | Select-Object Name) -ArtifactPath ${{parameters.ArtifactPath}} -CommitSha '$(Build.SourceVersion)' -BuildId $(Build.BuildId) -PullRequestNumber $(System.PullRequest.PullRequestNumber) -RepoFullName $(Build.Repository.Name) -APIViewUri $(ApiChangeDetectRequestUrl) -ArtifactName ${{ parameters.ArtifactName }}
+    pwsh: true
+  displayName: Detect API changes
+  condition: and(succeededOrFailed(), eq(variables['Build.Reason'],'PullRequest'))

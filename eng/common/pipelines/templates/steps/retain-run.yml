@@ -1,21 +1,16 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 parameters:
-  - name: DaysValid
-    default: 731
-    type: number
-
+- name: DaysValid
+  default: 731
+  type: number
 steps:
-  - task: PowerShell@2
-    displayName: Retain pipeline run
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-    inputs:
-      pwsh: true
-      filePath: $(Build.SourcesDirectory)/eng/common/scripts/Add-RetentionLease.ps1
-      arguments: >
-        -Organization azure-sdk
-        -Project $(System.TeamProject)
-        -DefinitionId $(System.DefinitionId)
-        -RunId $(Build.BuildId)
-        -DaysValid ${{ parameters.DaysValid }}
-        -AccessToken $env:SYSTEM_ACCESSTOKEN
-        -Debug
+- task: PowerShell@2
+  displayName: Retain pipeline run
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  inputs:
+    pwsh: true
+    filePath: $(Build.SourcesDirectory)/eng/common/scripts/Add-RetentionLease.ps1
+    arguments: >
+      -Organization azure-sdk -Project $(System.TeamProject) -DefinitionId $(System.DefinitionId) -RunId $(Build.BuildId) -DaysValid ${{ parameters.DaysValid }} -AccessToken $env:SYSTEM_ACCESSTOKEN -Debug

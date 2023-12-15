@@ -1,14 +1,14 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 steps:
 - pwsh: |
     . ./eng/common/scripts/Helpers/PSModule-Helpers.ps1
     Write-Host "##vso[task.setvariable variable=CachedPSModulePath]$global:CurrentUserModulePath"
   displayName: Set PS Modules Cache Directory
-  # Containers should bake modules into the image to save on pipeline time
   condition: and(succeeded(), eq(variables['Container'], ''))
 - task: Cache@2
   inputs:
     key: 'PSModulePath | $(CacheSalt) | $(Agent.OS) | $(Build.SourcesDirectory)/eng/common/scripts/Import-AzModules.ps1'
     path: $(CachedPSModulePath)
   displayName: Cache PS Modules
-  # Containers should bake modules into the image to save on pipeline time
   condition: and(succeeded(), eq(variables['Container'], ''))

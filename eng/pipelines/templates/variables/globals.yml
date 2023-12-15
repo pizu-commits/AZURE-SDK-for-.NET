@@ -1,3 +1,5 @@
+# This Yaml Document has been converted by ESAI Yaml Pipeline Conversion Tool.
+# Please make sure to check all the converted content, it is your team's responsibility to make sure that the pipeline is still valid and functions as expected.
 variables:
   DocWardenVersion: '0.6.1'
   OfficialBuildId: $(Build.BuildNumber)
@@ -16,6 +18,4 @@ variables:
   DOTNET_NOLOGO: 1
   Package.EnableSBOMSigning: true
   Codeql.SkipTaskAutoInjection: true
-  # Define optional AdditionalTestFilters via pipeline runtime variables or matrix config variables
-  # See https://docs.microsoft.com/dotnet/core/testing/selective-unit-tests?pivots=nunit
   AdditionalTestFilters: "Placeholder!=DefaultIgnoreMe"
