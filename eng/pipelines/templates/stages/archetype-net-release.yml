@@ -132,7 +132,7 @@ stages:
                     inputs:
                       solution: '$(AzureSDKBuildToolsPath)/tools/symboltool/SymbolUploader.proj'
                       msbuildArguments: >-
-                        /p:PackagesPath=$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}
+                        /p:PackagesPath=$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/foo
                         /p:MSPublicSymbolsPAT=$(azuresdk-microsoftpublicsymbols-devops-pat)
                         /p:MSSymbolsPAT=$(azuresdk-microsoft-devops-pat)
                         /p:AzureSDKSymbolsPAT=$(azuresdk-azure-sdk-devops-pat)
@@ -233,7 +233,7 @@ stages:
       - output: nuget
         displayName: 'Publish to DevOps Feed'
         packageParentPath: '$(Build.ArtifactStagingDirectory)'
-        packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+        packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/foo/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/foo/*.symbols.nupkg'
         publishVstsFeed: $(DevOpsFeedID)
     steps:
     - checkout: none
