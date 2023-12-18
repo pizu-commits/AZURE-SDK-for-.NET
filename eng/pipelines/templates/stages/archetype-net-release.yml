@@ -132,7 +132,10 @@ stages:
                     inputs:
                       solution: '$(AzureSDKBuildToolsPath)/tools/symboltool/SymbolUploader.proj'
                       msbuildArguments: >-
-                        /p:PackagesPath=$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}} /p:MSPublicSymbolsPAT=$(azuresdk-microsoftpublicsymbols-devops-pat) /p:MSSymbolsPAT=$(azuresdk-microsoft-devops-pat) /p:AzureSDKSymbolsPAT=$(azuresdk-azure-sdk-devops-pat)
+                        /p:PackagesPath=$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}
+                        /p:MSPublicSymbolsPAT=$(azuresdk-microsoftpublicsymbols-devops-pat)
+                        /p:MSSymbolsPAT=$(azuresdk-microsoft-devops-pat)
+                        /p:AzureSDKSymbolsPAT=$(azuresdk-azure-sdk-devops-pat)
         - ${{if ne(artifact.skipPublishDocMs, 'true')}}:
           - deployment: PublicDocsMS
             displayName: Publish to Docs.MS
