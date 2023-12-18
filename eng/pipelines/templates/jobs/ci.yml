@@ -14,6 +14,9 @@ parameters:
 - name: ArtifactName
   type: string
   default: packages
+- name: ArtifactPath
+  type: string
+  default: packages
 - name: SDKType
   type: string
   default: all
@@ -53,6 +56,18 @@ parameters:
   default: false
 jobs:
 - job: Build
+  templateContext:
+    outputs:
+    - output: pipelineArtifact
+      displayName: 'Publish ${{ parameters.ArtifactName }} Artifacts'
+      condition: and(succeeded())
+      artifactName: '${{ parameters.ArtifactName }}'
+      targetPath: '${{ parameters.ArtifactPath }}'
+    - output: pipelineArtifact
+      displayName: 'Publish failed ${{ parameters.ArtifactName }} Artifacts'
+      condition: and(failed())
+      artifactName: '${{ parameters.ArtifactName }}-FailedAttempt$(System.JobAttempt)'
+      targetPath: '${{ parameters.ArtifactPath }}'
   variables:
     Codeql.Enabled: true
     Codeql.BuildIdentifier: ${{ parameters.ServiceDirectory }}
