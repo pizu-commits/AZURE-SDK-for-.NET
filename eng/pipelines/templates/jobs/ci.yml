@@ -57,12 +57,12 @@ jobs:
     outputs:
     - output: pipelineArtifact
       displayName: 'Publish ${{ parameters.ArtifactName }} Artifacts'
-      condition: and(succeeded(), ${{ parameters.CustomCondition }})
+      condition: and(succeeded())
       artifactName: '${{ parameters.ArtifactName }}'
       targetPath: '${{ parameters.ArtifactPath }}'
     - output: pipelineArtifact
       displayName: 'Publish failed ${{ parameters.ArtifactName }} Artifacts'
-      condition: and(failed(), ${{ parameters.CustomCondition }})
+      condition: and(failed())
       artifactName: '${{ parameters.ArtifactName }}-FailedAttempt$(System.JobAttempt)'
       targetPath: '${{ parameters.ArtifactPath }}'
   variables:
