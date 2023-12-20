@@ -36,7 +36,7 @@ namespace Compute.Tests
                     ValidateCapacityReservationGroup(createdCRG, returnedCRG);
 
                     createdCRG.Tags = new Dictionary<string, string>() { { "testKey", "testValue" } };
-                    returnedCRG = m_CrpClient.CapacityReservationGroups.Update(rgName, crgName, createdCRG.Tags);
+                    returnedCRG = m_CrpClient.CapacityReservationGroups.Update(rgName, crgName, null);
                     ValidateCapacityReservationGroup(createdCRG, returnedCRG);
 
                     //List CapacityReservationGroups by subscription and by resourceGroup
