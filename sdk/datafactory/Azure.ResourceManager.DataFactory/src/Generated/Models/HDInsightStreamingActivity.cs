@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             Argument.AssertNotNull(output, nameof(output));
             Argument.AssertNotNull(filePaths, nameof(filePaths));
 
-            StorageLinkedServices = new ChangeTrackingList<DataFactoryLinkedServiceReference>();
+            StorageLinkedServices = new ChangeTrackingList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>();
             Arguments = new ChangeTrackingList<BinaryData>();
             Mapper = mapper;
             Reducer = reducer;
@@ -68,7 +68,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="combiner"> Combiner executable name. Type: string (or Expression with resultType string). </param>
         /// <param name="commandEnvironment"> Command line environment values. </param>
         /// <param name="defines"> Allows user to specify defines for streaming job request. </param>
-        internal HDInsightStreamingActivity(string name, string activityType, string description, PipelineActivityState? state, ActivityOnInactiveMarkAs? onInactiveMarkAs, IList<PipelineActivityDependency> dependsOn, IList<PipelineActivityUserProperty> userProperties, IDictionary<string, BinaryData> additionalProperties, DataFactoryLinkedServiceReference linkedServiceName, PipelineActivityPolicy policy, IList<DataFactoryLinkedServiceReference> storageLinkedServices, IList<BinaryData> arguments, HDInsightActivityDebugInfoOptionSetting? getDebugInfo, DataFactoryElement<string> mapper, DataFactoryElement<string> reducer, DataFactoryElement<string> input, DataFactoryElement<string> output, IList<BinaryData> filePaths, DataFactoryLinkedServiceReference fileLinkedService, DataFactoryElement<string> combiner, IList<BinaryData> commandEnvironment, IDictionary<string, BinaryData> defines) : base(name, activityType, description, state, onInactiveMarkAs, dependsOn, userProperties, additionalProperties, linkedServiceName, policy)
+        internal HDInsightStreamingActivity(string name, string activityType, string description, PipelineActivityState? state, ActivityOnInactiveMarkAs? onInactiveMarkAs, IList<PipelineActivityDependency> dependsOn, IList<PipelineActivityUserProperty> userProperties, IDictionary<string, BinaryData> additionalProperties, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedServiceName, PipelineActivityPolicy policy, IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> storageLinkedServices, IList<BinaryData> arguments, HDInsightActivityDebugInfoOptionSetting? getDebugInfo, DataFactoryElement<string> mapper, DataFactoryElement<string> reducer, DataFactoryElement<string> input, DataFactoryElement<string> output, IList<BinaryData> filePaths, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference fileLinkedService, DataFactoryElement<string> combiner, IList<BinaryData> commandEnvironment, IDictionary<string, BinaryData> defines) : base(name, activityType, description, state, onInactiveMarkAs, dependsOn, userProperties, additionalProperties, linkedServiceName, policy)
         {
             StorageLinkedServices = storageLinkedServices;
             Arguments = arguments;
@@ -86,7 +86,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         }
 
         /// <summary> Storage linked service references. </summary>
-        public IList<DataFactoryLinkedServiceReference> StorageLinkedServices { get; }
+        public IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> StorageLinkedServices { get; }
         /// <summary>
         /// User specified arguments to HDInsightActivity.
         /// <para>
@@ -160,7 +160,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// </summary>
         public IList<BinaryData> FilePaths { get; }
         /// <summary> Linked service reference where the files are located. </summary>
-        public DataFactoryLinkedServiceReference FileLinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference FileLinkedService { get; set; }
         /// <summary> Combiner executable name. Type: string (or Expression with resultType string). </summary>
         public DataFactoryElement<string> Combiner { get; set; }
         /// <summary>

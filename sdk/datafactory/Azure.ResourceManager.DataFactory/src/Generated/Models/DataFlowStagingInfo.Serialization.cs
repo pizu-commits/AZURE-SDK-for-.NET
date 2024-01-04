@@ -35,7 +35,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             {
                 return null;
             }
-            Optional<DataFactoryLinkedServiceReference> linkedService = default;
+            Optional<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> linkedService = default;
             Optional<DataFactoryElement<string>> folderPath = default;
             foreach (var property in element.EnumerateObject())
             {
@@ -45,7 +45,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    linkedService = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property.Value.GetRawText());
+                    linkedService = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("folderPath"u8))

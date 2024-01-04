@@ -20,14 +20,14 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <summary> Initializes a new instance of <see cref="DataFlowStagingInfo"/>. </summary>
         /// <param name="linkedService"> Staging linked service reference. </param>
         /// <param name="folderPath"> Folder path for staging blob. Type: string (or Expression with resultType string). </param>
-        internal DataFlowStagingInfo(DataFactoryLinkedServiceReference linkedService, DataFactoryElement<string> folderPath)
+        internal DataFlowStagingInfo(Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, DataFactoryElement<string> folderPath)
         {
             LinkedService = linkedService;
             FolderPath = folderPath;
         }
 
         /// <summary> Staging linked service reference. </summary>
-        public DataFactoryLinkedServiceReference LinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference LinkedService { get; set; }
         /// <summary> Folder path for staging blob. Type: string (or Expression with resultType string). </summary>
         public DataFactoryElement<string> FolderPath { get; set; }
     }

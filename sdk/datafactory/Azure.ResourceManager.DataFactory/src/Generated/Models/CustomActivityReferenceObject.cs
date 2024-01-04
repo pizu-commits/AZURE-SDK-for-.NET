@@ -17,21 +17,21 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <summary> Initializes a new instance of <see cref="CustomActivityReferenceObject"/>. </summary>
         public CustomActivityReferenceObject()
         {
-            LinkedServices = new ChangeTrackingList<DataFactoryLinkedServiceReference>();
+            LinkedServices = new ChangeTrackingList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>();
             Datasets = new ChangeTrackingList<DatasetReference>();
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomActivityReferenceObject"/>. </summary>
         /// <param name="linkedServices"> Linked service references. </param>
         /// <param name="datasets"> Dataset references. </param>
-        internal CustomActivityReferenceObject(IList<DataFactoryLinkedServiceReference> linkedServices, IList<DatasetReference> datasets)
+        internal CustomActivityReferenceObject(IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> linkedServices, IList<DatasetReference> datasets)
         {
             LinkedServices = linkedServices;
             Datasets = datasets;
         }
 
         /// <summary> Linked service references. </summary>
-        public IList<DataFactoryLinkedServiceReference> LinkedServices { get; }
+        public IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> LinkedServices { get; }
         /// <summary> Dataset references. </summary>
         public IList<DatasetReference> Datasets { get; }
     }

@@ -30,7 +30,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="flowlet"> Flowlet Reference. </param>
         /// <param name="schemaLinkedService"> Schema linked service reference. </param>
         /// <param name="script"> source script. </param>
-        internal PowerQuerySource(string name, string description, DatasetReference dataset, DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, DataFactoryLinkedServiceReference schemaLinkedService, string script) : base(name, description, dataset, linkedService, flowlet, schemaLinkedService)
+        internal PowerQuerySource(string name, string description, DatasetReference dataset, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference schemaLinkedService, string script) : base(name, description, dataset, linkedService, flowlet, schemaLinkedService)
         {
             Script = script;
         }

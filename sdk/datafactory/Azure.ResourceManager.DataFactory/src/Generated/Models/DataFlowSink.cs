@@ -30,15 +30,15 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="flowlet"> Flowlet Reference. </param>
         /// <param name="schemaLinkedService"> Schema linked service reference. </param>
         /// <param name="rejectedDataLinkedService"> Rejected data linked service reference. </param>
-        internal DataFlowSink(string name, string description, DatasetReference dataset, DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, DataFactoryLinkedServiceReference schemaLinkedService, DataFactoryLinkedServiceReference rejectedDataLinkedService) : base(name, description, dataset, linkedService, flowlet)
+        internal DataFlowSink(string name, string description, DatasetReference dataset, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference schemaLinkedService, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference rejectedDataLinkedService) : base(name, description, dataset, linkedService, flowlet)
         {
             SchemaLinkedService = schemaLinkedService;
             RejectedDataLinkedService = rejectedDataLinkedService;
         }
 
         /// <summary> Schema linked service reference. </summary>
-        public DataFactoryLinkedServiceReference SchemaLinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference SchemaLinkedService { get; set; }
         /// <summary> Rejected data linked service reference. </summary>
-        public DataFactoryLinkedServiceReference RejectedDataLinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference RejectedDataLinkedService { get; set; }
     }
 }

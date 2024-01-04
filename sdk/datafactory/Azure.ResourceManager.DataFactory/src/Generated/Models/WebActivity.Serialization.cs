@@ -140,7 +140,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             {
                 return null;
             }
-            Optional<DataFactoryLinkedServiceReference> linkedServiceName = default;
+            Optional<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> linkedServiceName = default;
             Optional<PipelineActivityPolicy> policy = default;
             string name = default;
             string type = default;
@@ -156,7 +156,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<WebActivityAuthentication> authentication = default;
             Optional<bool> disableCertValidation = default;
             Optional<IList<DatasetReference>> datasets = default;
-            Optional<IList<DataFactoryLinkedServiceReference>> linkedServices = default;
+            Optional<IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>> linkedServices = default;
             Optional<IntegrationRuntimeReference> connectVia = default;
             IDictionary<string, BinaryData> additionalProperties = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
@@ -168,7 +168,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    linkedServiceName = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property.Value.GetRawText());
+                    linkedServiceName = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("policy"u8))
@@ -316,10 +316,10 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            List<DataFactoryLinkedServiceReference> array = new List<DataFactoryLinkedServiceReference>();
+                            List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> array = new List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>();
                             foreach (var item in property0.Value.EnumerateArray())
                             {
-                                array.Add(JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(item.GetRawText()));
+                                array.Add(JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(item.GetRawText()));
                             }
                             linkedServices = array;
                             continue;

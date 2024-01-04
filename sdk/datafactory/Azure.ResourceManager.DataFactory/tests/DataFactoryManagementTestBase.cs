@@ -187,7 +187,7 @@ namespace Azure.ResourceManager.DataFactory.Tests
 
         protected async Task<DataFactoryDatasetResource> CreateAzureBlobStorageDataSet(DataFactoryResource dataFactory, string dataSetName, string linkedServiceName)
         {
-            DataFactoryLinkedServiceReference dataFactoryLinkedServiceReference = new DataFactoryLinkedServiceReference(DataFactoryLinkedServiceReferenceType.LinkedServiceReference, linkedServiceName);
+            DataFactoryLinkedServiceReference dataFactoryLinkedServiceReference = new AzDataFactoryLinkedServiceReference(DataFactoryLinkedServiceReferenceType.LinkedServiceReference, linkedServiceName);
             DataFactoryDatasetData dataFactoryDatasetData = new DataFactoryDatasetData(new DelimitedTextDataset(dataFactoryLinkedServiceReference)
             {
                 Schema = new List<DatasetSchemaDataElement>()

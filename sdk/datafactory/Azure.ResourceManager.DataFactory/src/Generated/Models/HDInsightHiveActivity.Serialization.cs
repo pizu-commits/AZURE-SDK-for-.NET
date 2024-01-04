@@ -189,7 +189,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             {
                 return null;
             }
-            Optional<DataFactoryLinkedServiceReference> linkedServiceName = default;
+            Optional<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> linkedServiceName = default;
             Optional<PipelineActivityPolicy> policy = default;
             string name = default;
             string type = default;
@@ -198,11 +198,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<ActivityOnInactiveMarkAs> onInactiveMarkAs = default;
             Optional<IList<PipelineActivityDependency>> dependsOn = default;
             Optional<IList<PipelineActivityUserProperty>> userProperties = default;
-            Optional<IList<DataFactoryLinkedServiceReference>> storageLinkedServices = default;
+            Optional<IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>> storageLinkedServices = default;
             Optional<IList<BinaryData>> arguments = default;
             Optional<HDInsightActivityDebugInfoOptionSetting> getDebugInfo = default;
             Optional<DataFactoryElement<string>> scriptPath = default;
-            Optional<DataFactoryLinkedServiceReference> scriptLinkedService = default;
+            Optional<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> scriptLinkedService = default;
             Optional<IDictionary<string, BinaryData>> defines = default;
             Optional<IDictionary<string, BinaryData>> variables = default;
             Optional<int> queryTimeout = default;
@@ -216,7 +216,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    linkedServiceName = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property.Value.GetRawText());
+                    linkedServiceName = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("policy"u8))
@@ -304,10 +304,10 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            List<DataFactoryLinkedServiceReference> array = new List<DataFactoryLinkedServiceReference>();
+                            List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> array = new List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>();
                             foreach (var item in property0.Value.EnumerateArray())
                             {
-                                array.Add(JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(item.GetRawText()));
+                                array.Add(JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(item.GetRawText()));
                             }
                             storageLinkedServices = array;
                             continue;
@@ -357,7 +357,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            scriptLinkedService = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
+                            scriptLinkedService = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("defines"u8))

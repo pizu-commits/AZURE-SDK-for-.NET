@@ -22,7 +22,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <summary> Initializes a new instance of <see cref="DataFactoryDatasetProperties"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
-        protected DataFactoryDatasetProperties(DataFactoryLinkedServiceReference linkedServiceName)
+        protected DataFactoryDatasetProperties(Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedServiceName)
         {
             Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
 
@@ -42,7 +42,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="annotations"> List of tags that can be used for describing the Dataset. </param>
         /// <param name="folder"> The folder that this Dataset is in. If not specified, Dataset will appear at the root level. </param>
         /// <param name="additionalProperties"> Additional Properties. </param>
-        internal DataFactoryDatasetProperties(string datasetType, string description, DataFactoryElement<IList<DatasetDataElement>> structure, DataFactoryElement<IList<DatasetSchemaDataElement>> schema, DataFactoryLinkedServiceReference linkedServiceName, IDictionary<string, EntityParameterSpecification> parameters, IList<BinaryData> annotations, DatasetFolder folder, IDictionary<string, BinaryData> additionalProperties)
+        internal DataFactoryDatasetProperties(string datasetType, string description, DataFactoryElement<IList<DatasetDataElement>> structure, DataFactoryElement<IList<DatasetSchemaDataElement>> schema, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedServiceName, IDictionary<string, EntityParameterSpecification> parameters, IList<BinaryData> annotations, DatasetFolder folder, IDictionary<string, BinaryData> additionalProperties)
         {
             DatasetType = datasetType;
             Description = description;
@@ -64,7 +64,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <summary> Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement. </summary>
         public DataFactoryElement<IList<DatasetSchemaDataElement>> Schema { get; set; }
         /// <summary> Linked service reference. </summary>
-        public DataFactoryLinkedServiceReference LinkedServiceName { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference LinkedServiceName { get; set; }
         /// <summary> Parameters for dataset. </summary>
         public IDictionary<string, EntityParameterSpecification> Parameters { get; }
         /// <summary>

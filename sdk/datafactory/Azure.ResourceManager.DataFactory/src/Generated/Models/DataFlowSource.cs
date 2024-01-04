@@ -29,12 +29,12 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="linkedService"> Linked service reference. </param>
         /// <param name="flowlet"> Flowlet Reference. </param>
         /// <param name="schemaLinkedService"> Schema linked service reference. </param>
-        internal DataFlowSource(string name, string description, DatasetReference dataset, DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, DataFactoryLinkedServiceReference schemaLinkedService) : base(name, description, dataset, linkedService, flowlet)
+        internal DataFlowSource(string name, string description, DatasetReference dataset, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference schemaLinkedService) : base(name, description, dataset, linkedService, flowlet)
         {
             SchemaLinkedService = schemaLinkedService;
         }
 
         /// <summary> Schema linked service reference. </summary>
-        public DataFactoryLinkedServiceReference SchemaLinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference SchemaLinkedService { get; set; }
     }
 }

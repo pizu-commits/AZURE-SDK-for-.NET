@@ -331,7 +331,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             DataFactoryElement<string> clusterSize = default;
             DataFactoryElement<string> timeToLive = default;
             DataFactoryElement<string> version = default;
-            DataFactoryLinkedServiceReference linkedServiceName = default;
+            Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedServiceName = default;
             DataFactoryElement<string> hostSubscriptionId = default;
             Optional<DataFactoryElement<string>> servicePrincipalId = default;
             Optional<DataFactorySecretBaseDefinition> servicePrincipalKey = default;
@@ -342,8 +342,8 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<DataFactorySecretBaseDefinition> clusterPassword = default;
             Optional<DataFactoryElement<string>> clusterSshUserName = default;
             Optional<DataFactorySecretBaseDefinition> clusterSshPassword = default;
-            Optional<IList<DataFactoryLinkedServiceReference>> additionalLinkedServiceNames = default;
-            Optional<DataFactoryLinkedServiceReference> hcatalogLinkedServiceName = default;
+            Optional<IList<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>> additionalLinkedServiceNames = default;
+            Optional<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> hcatalogLinkedServiceName = default;
             Optional<DataFactoryElement<string>> clusterType = default;
             Optional<DataFactoryElement<string>> sparkVersion = default;
             Optional<BinaryData> coreConfiguration = default;
@@ -446,7 +446,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                         }
                         if (property0.NameEquals("linkedServiceName"u8))
                         {
-                            linkedServiceName = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
+                            linkedServiceName = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("hostSubscriptionId"u8))
@@ -533,10 +533,10 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            List<DataFactoryLinkedServiceReference> array = new List<DataFactoryLinkedServiceReference>();
+                            List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference> array = new List<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>();
                             foreach (var item in property0.Value.EnumerateArray())
                             {
-                                array.Add(JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(item.GetRawText()));
+                                array.Add(JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(item.GetRawText()));
                             }
                             additionalLinkedServiceNames = array;
                             continue;
@@ -547,7 +547,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            hcatalogLinkedServiceName = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
+                            hcatalogLinkedServiceName = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("clusterType"u8))

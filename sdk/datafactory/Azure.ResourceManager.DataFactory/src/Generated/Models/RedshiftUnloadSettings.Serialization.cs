@@ -29,13 +29,13 @@ namespace Azure.ResourceManager.DataFactory.Models
             {
                 return null;
             }
-            DataFactoryLinkedServiceReference s3LinkedServiceName = default;
+            Core.Expressions.DataFactory.DataFactoryLinkedServiceReference s3LinkedServiceName = default;
             DataFactoryElement<string> bucketName = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("s3LinkedServiceName"u8))
                 {
-                    s3LinkedServiceName = JsonSerializer.Deserialize<DataFactoryLinkedServiceReference>(property.Value.GetRawText());
+                    s3LinkedServiceName = JsonSerializer.Deserialize<Core.Expressions.DataFactory.DataFactoryLinkedServiceReference>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("bucketName"u8))

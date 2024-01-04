@@ -28,7 +28,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="connectionType"> Type of connection via linked service or dataset. </param>
         /// <param name="isInlineDataset"> A boolean indicating whether linked service is of type inline dataset. Currently only inline datasets are supported. </param>
         /// <param name="commonDslConnectorProperties"> List of name/value pairs for connection properties. </param>
-        internal MapperConnection(DataFactoryLinkedServiceReference linkedService, string linkedServiceType, MapperConnectionType connectionType, bool? isInlineDataset, IList<MapperDslConnectorProperties> commonDslConnectorProperties)
+        internal MapperConnection(Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, string linkedServiceType, MapperConnectionType connectionType, bool? isInlineDataset, IList<MapperDslConnectorProperties> commonDslConnectorProperties)
         {
             LinkedService = linkedService;
             LinkedServiceType = linkedServiceType;
@@ -38,7 +38,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         }
 
         /// <summary> Linked service reference. </summary>
-        public DataFactoryLinkedServiceReference LinkedService { get; set; }
+        public Core.Expressions.DataFactory.DataFactoryLinkedServiceReference LinkedService { get; set; }
         /// <summary> Type of the linked service e.g.: AzureBlobFS. </summary>
         public string LinkedServiceType { get; set; }
         /// <summary> Type of connection via linked service or dataset. </summary>

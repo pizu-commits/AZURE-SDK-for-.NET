@@ -31,7 +31,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <param name="schemaLinkedService"> Schema linked service reference. </param>
         /// <param name="rejectedDataLinkedService"> Rejected data linked service reference. </param>
         /// <param name="script"> sink script. </param>
-        internal PowerQuerySink(string name, string description, DatasetReference dataset, DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, DataFactoryLinkedServiceReference schemaLinkedService, DataFactoryLinkedServiceReference rejectedDataLinkedService, string script) : base(name, description, dataset, linkedService, flowlet, schemaLinkedService, rejectedDataLinkedService)
+        internal PowerQuerySink(string name, string description, DatasetReference dataset, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference linkedService, DataFlowReference flowlet, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference schemaLinkedService, Core.Expressions.DataFactory.DataFactoryLinkedServiceReference rejectedDataLinkedService, string script) : base(name, description, dataset, linkedService, flowlet, schemaLinkedService, rejectedDataLinkedService)
         {
             Script = script;
         }
