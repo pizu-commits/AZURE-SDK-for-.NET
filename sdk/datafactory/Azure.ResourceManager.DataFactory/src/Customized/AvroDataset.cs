@@ -14,7 +14,7 @@ namespace Azure.ResourceManager.DataFactory.Models
 {
     /// <summary> Avro dataset. </summary>
     [CodeGenSuppress(nameof(AvroDataset), typeof(string), typeof(string), typeof(DataFactoryElement<IList<DatasetDataElement>>),
-        typeof(DataFactoryElement<IDictionary<string, BinaryData>>), typeof(DataFactoryLinkedServiceReference), typeof(IDictionary<string, EntityParameterSpecification>),
+        typeof(DataFactoryElement<IDictionary<string, BinaryData>>), typeof(Core.Expressions.DataFactory.DataFactoryLinkedServiceReference), typeof(IDictionary<string, EntityParameterSpecification>),
         typeof(IList<BinaryData>), typeof(string), typeof(IDictionary<string, BinaryData>), typeof(DatasetLocation), typeof(DataFactoryElement<string>), typeof(int))]
     public partial class AvroDataset : DataFactoryDatasetProperties
     {
