@@ -120,18 +120,17 @@ stages:
                     deploy:
                       steps:
                         - checkout: none
-                        - task: NuGetCommand@2
+                        - task: 1ES.PublishNuGet@1
                           displayName: 'Publish ${{artifact.name}} package to NuGet.org'
                           inputs:
-                            command: push
                             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)//${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+                            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
                             nuGetFeedType: external
-                            publishFeedCredentials: Nuget.org
-                        - task: NuGetCommand@2
+                        - task: 1ES.PublishNuget@1
                           displayName: 'Publish to DevOps Feed'
                           inputs:
-                            command: push
                             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+                            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
                             publishVstsFeed: ${{ parameters.DevOpsFeedID }}
 
             - ${{if ne(artifact.skipSymbolsUpload, 'true')}}:
@@ -286,11 +285,11 @@ stages:
           echo "Using DevopsFeedId = $devopsFeedId"
         displayName: Setup DevOpsFeedId
       - ${{ each artifact in parameters.Artifacts }}:
-        - task: NuGetCommand@2
+        - task: 1ES.PublishNuget@1
           displayName: 'Publish to DevOps Feed'
           inputs:
-            command: push
             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
             publishVstsFeed: $(DevOpsFeedID)
 
     - job: PublishDocsToNightlyBranch
