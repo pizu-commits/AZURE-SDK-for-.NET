@@ -8,9 +8,6 @@ resources:
       type: git
       name: internal/azure-sdk-build-tools
       ref: refs/tags/azure-sdk-build-tools_20230829.1
-    - repository: azure-sdk-for-net
-      type: git
-      name: Azure/azure-sdk-for-net
 
 parameters:
 - name: Artifacts
@@ -80,14 +77,14 @@ parameters:
 
 
 extends:
-  template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     stages:
       - stage: Build
         variables:
-          - template: /eng/pipelines/templates/variables/globals.yml@Azure/azure-sdk-for-net
+          - template: /eng/pipelines/templates/variables/globals.yml@self
         jobs:
-          - template: /eng/pipelines/templates/jobs/ci.yml@Azure/azure-sdk-for-net
+          - template: /eng/pipelines/templates/jobs/ci.yml@self
             parameters:
               SDKType: ${{ parameters.SDKType }}
               ServiceDirectory: ${{ parameters.ServiceDirectory }}
@@ -118,7 +115,7 @@ extends:
       - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
         - ${{ parameters.LiveTestStages }}
 
-        - template: archetype-net-release.yml@Azure/azure-sdk-for-net
+        - template: archetype-net-release.yml@self
           parameters:
             SDKType: ${{ parameters.SDKType }}
             ServiceDirectory: ${{ parameters.ServiceDirectory }}
