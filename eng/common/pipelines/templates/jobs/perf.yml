@@ -75,11 +75,13 @@ jobs:
         Linux:
           Pool: ${{ parameters.LinuxPool }}
           OsVmImage: ${{ parameters.LinuxVmImage }}
+          OS: linux
           MatrixName: 'Linux'
       ${{ if contains(parameters.OperatingSystems, 'Windows') }}:
         Windows:
           Pool: ${{ parameters.WindowsPool }}
           OsVmImage: ${{ parameters.WindowsVmImage }}
+          OS: windows
           MatrixName: 'Windows'
   variables:
   - ${{ parameters.Variables }}
@@ -91,6 +93,7 @@ jobs:
   pool:
     name: $(Pool)
     vmImage: $(OSVmImage)
+    os: $(OS)
   steps:
 
   - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
@@ -112,7 +115,7 @@ jobs:
   - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
     parameters:
       AgentImage: $(OSVmImage)
-      
+
   - ${{ parameters.InstallLanguageSteps }}
 
   - template: /eng/common/TestResources/deploy-test-resources.yml
@@ -163,16 +166,16 @@ jobs:
     displayName: Print results.json
     condition: always()
 
-  - task: PublishPipelineArtifact@1
+  - task: 1ES.PublishPipelineArtifact@1
     inputs:
-      targetPath: azure-sdk-tools/tools/perf-automation/Azure.Sdk.Tools.PerfAutomation/results
-      artifactName: results-${{ parameters.Language }}-$(MatrixName)
+      path: azure-sdk-tools/tools/perf-automation/Azure.Sdk.Tools.PerfAutomation/results
+      artifact: results-${{ parameters.Language }}-$(MatrixName)
     condition: always()
 
-  - task: PublishPipelineArtifact@1
+  - task: 1ES.PublishPipelineArtifact@1
     inputs:
-      targetPath: $(System.DefaultWorkingDirectory)/${{ parameters.Language }}-profile.zip
-      artifactName: ${{ parameters.Language }}-profile.zip
+      path: $(System.DefaultWorkingDirectory)/${{ parameters.Language }}-profile.zip
+      artifact: ${{ parameters.Language }}-profile.zip
     condition: ${{ parameters.Profile }}
 
   - template: /eng/common/TestResources/remove-test-resources.yml

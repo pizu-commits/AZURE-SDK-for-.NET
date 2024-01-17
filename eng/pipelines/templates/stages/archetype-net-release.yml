@@ -10,12 +10,15 @@ parameters:
 stages:
   - stage: Signing
     dependsOn: ${{parameters.DependsOn}}
+    variables:
+      - template: /eng/pipelines/templates/variables/globals.yml
     jobs:
       - deployment: SignPackage
         environment: esrp
         pool:
-          name: azsdk-pool-mms-win-2022-general
-          vmImage: windows-2022
+          name: azsdk-pool-mms-win-2022-1es-pt
+          vmImage: azsdk-pool-mms-win-2022-1espt
+          os: windows
 
         strategy:
           runOnce:
@@ -34,14 +37,18 @@ stages:
                     PackagesPath:  $(Pipeline.Workspace)/${{parameters.ArtifactName}}
                     BuildToolsPath: $(AzureSDKBuildToolsPath)
 
-                - publish: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
-                  artifact: ${{parameters.ArtifactName}}-signed
+                - task: 1ES.PublishPipelineArtifact@1
                   displayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
+                  inputs:
+                    artifact: ${{parameters.ArtifactName}}-signed
+                    path: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
 
   - ${{if and(in(variables['Build.Reason'], 'Manual', ''), eq(variables['System.TeamProject'], 'internal'))}}:
     - ${{ each artifact in parameters.Artifacts }}:
       - ${{if ne(artifact.skipReleaseStage, 'true')}}:
         - stage:
+          variables:
+            - template: /eng/pipelines/templates/variables/globals.yml
           displayName: 'Release: ${{artifact.name}}'
           dependsOn: Signing
           condition: and(succeeded(), ne(variables['SetDevVersion'], 'true'), ne(variables['Skip.Release'], 'true'), ne(variables['Build.Repository.Name'], 'Azure/azure-sdk-for-net-pr'))
@@ -53,8 +60,9 @@ stages:
                 environment: ${{parameters.Environment}}
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -106,26 +114,26 @@ stages:
                 dependsOn: TagRepository
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-general
-                  vmImage: MMSUbuntu20.04
+                  name: azsdk-pool-mms-ubuntu-2004-1es-pt
+                  vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+                  os: linux
 
                 strategy:
                   runOnce:
                     deploy:
                       steps:
                         - checkout: none
-                        - task: NuGetCommand@2
+                        - task: 1ES.PublishNuGet@1
                           displayName: 'Publish ${{artifact.name}} package to NuGet.org'
                           inputs:
-                            command: push
                             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)//${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+                            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
                             nuGetFeedType: external
-                            publishFeedCredentials: Nuget.org
-                        - task: NuGetCommand@2
+                        - task: 1ES.PublishNuget@1
                           displayName: 'Publish to DevOps Feed'
                           inputs:
-                            command: push
                             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+                            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
                             publishVstsFeed: ${{ parameters.DevOpsFeedID }}
 
             - ${{if ne(artifact.skipSymbolsUpload, 'true')}}:
@@ -136,8 +144,9 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -163,8 +172,9 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-general
-                  vmImage: MMSUbuntu20.04
+                  name: azsdk-pool-mms-ubuntu-2004-1es-pt
+                  vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+                  os: linux
 
                 strategy:
                   runOnce:
@@ -196,8 +206,9 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -222,8 +233,9 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -254,13 +266,16 @@ stages:
 
   - stage: Integration
     dependsOn: Signing
+    variables:
+      - template: /eng/pipelines/templates/variables/globals.yml
     jobs:
     - job: PublishPackages
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       displayName: Publish package to daily feed
       pool:
-        name: azsdk-pool-mms-win-2022-general
-        vmImage: windows-2022
+        name: azsdk-pool-mms-win-2022-1es-pt
+        vmImage: azsdk-pool-mms-win-2022-1espt
+        os: windows
       steps:
       - checkout: none
       - template: tools/clone-buildtools/clone-buildtools.yml@azure-sdk-build-tools
@@ -278,19 +293,20 @@ stages:
           echo "Using DevopsFeedId = $devopsFeedId"
         displayName: Setup DevOpsFeedId
       - ${{ each artifact in parameters.Artifacts }}:
-        - task: NuGetCommand@2
+        - task: 1ES.PublishNuget@1
           displayName: 'Publish to DevOps Feed'
           inputs:
-            command: push
             packagesToPush: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.nupkg;!$(Pipeline.Workspace)/${{parameters.ArtifactName}}-signed/${{artifact.name}}/*.symbols.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/${{ parameters.ArtifactName }}-signed/${{ artifact.name }}'
             publishVstsFeed: $(DevOpsFeedID)
 
     - job: PublishDocsToNightlyBranch
       dependsOn: PublishPackages
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       pool:
-        name: azsdk-pool-mms-ubuntu-2004-general
-        vmImage: MMSUbuntu20.04
+        name: azsdk-pool-mms-ubuntu-2004-1es-pt
+        vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+        os: linux
       steps:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
           parameters:

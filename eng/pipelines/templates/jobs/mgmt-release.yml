@@ -20,8 +20,9 @@ jobs:
   - job: Release
     dependsOn: ${{ parameters.DependsOn }}
     pool:
-      name: azsdk-pool-mms-win-2022-general
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
 
     steps:
       - checkout: self
@@ -70,13 +71,12 @@ jobs:
           inputs:
             versionSpec: ${{ parameters.NugetVersion }}
 
-        - task: NuGetCommand@2
+        - task: 1ES.PublishNuget@1
           displayName: 'Publish to Nuget'
           inputs:
-            command: push
-            packagesToPush: '$(PIPELINE.WORKSPACE)/packages/**/*.nupkg;!$(PIPELINE.WORKSPACE)/packages/**/*.symbols.nupkg'
+            packagesToPush: '$(Pipeline.Workspace)/packages/**/*.nupkg;!$(Pipeline.Workspace)/packages/**/*.symbols.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/packages'
             nuGetFeedType: external
-            publishFeedCredentials: Nuget.org
 
       - ${{ if eq(parameters.ShouldPublishToDevOps, 'true') }}:
 
@@ -92,11 +92,11 @@ jobs:
             echo "Using DevopsFeedId = $devopsFeedId"
           displayName: Setup DevOpsFeedId
 
-        - task: NuGetCommand@2
+        - task: 1ES.PublishNuget@1
           displayName: 'Publish to DevOps Feed'
           inputs:
-            command: push
             packagesToPush: '$(PIPELINE.WORKSPACE)/packages/**/*.nupkg;!$(PIPELINE.WORKSPACE)/packages/**/*.symbols.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/packages'
             publishVstsFeed: $(DevOpsFeedID)
 
       - template: /eng/common/pipelines/templates/steps/publish-artifact.yml

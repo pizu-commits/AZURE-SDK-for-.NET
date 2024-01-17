@@ -52,7 +52,7 @@ steps:
       pwsh: true
     displayName: Split testing packages into different files
 
-  - task: PublishBuildArtifacts@1
+  - task: 1ES.PublishBuildArtifacts@1
     inputs:
-      pathToPublish: $(Build.ArtifactStagingDirectory)
-      artifactName: DependencyTestProjectReferences
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      ArtifactName: DependencyTestProjectReferences

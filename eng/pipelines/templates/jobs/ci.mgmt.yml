@@ -10,8 +10,14 @@ jobs:
   - job: Build
     timeoutInMinutes: 100
     pool:
-      name: azsdk-pool-mms-win-2022-general
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
+    templateContext:
+     outputs:
+       - output: pipelineArtifact
+         path: $(Build.ArtifactStagingDirectory)
+         artifact: packages
     steps:
       #- script: "echo $(system.pullrequest.pullrequestnumber), https://github.com/$(build.repository.id), https://github.com/$(build.repository.ID)"
       - template: /eng/pipelines/templates/steps/install-dotnet.yml
@@ -37,16 +43,11 @@ jobs:
         env:
           REPOSITORY_NAME: $(Build.Repository.Name)
           PULLREQUEST_ID: $(System.PullRequest.PullRequestNumber)
-      - task: PublishBuildArtifacts@1
+      - task: 1ES.PublishBuildArtifacts@1
         condition: succeededOrFailed()
         inputs:
-          pathtoPublish: $(msBuildLogDir)
-          artifactName: MsBuildLogs
-      - task: PublishPipelineArtifact@0
-        condition: succeeded()
-        inputs:
-          artifactName: packages
-          targetPath: $(Build.ArtifactStagingDirectory)
+          PathtoPublish: $(msBuildLogDir)
+          ArtifactName: MsBuildLogs
       - pwsh: |
           $releaseTag = "FOR_SIGNING"
           if ("${{ parameters.ShouldPublish }}" -eq "true") { $releaseTag = "FOR_PUBLISHING" }
@@ -61,17 +62,21 @@ jobs:
       maxParallel: $[ variables['MaxParallelTestJobs'] ]
       matrix:
         Linux:
-          Pool: azsdk-pool-mms-ubuntu-2004-general
-          OSVmImage: "MMSUbuntu20.04"
+          Pool: azsdk-pool-mms-ubuntu-2004-1es-pt
+          OSVmImage: azsdk-pool-mms-ubuntu-2004-1espt
+          os: linux
         Windows:
-          Pool: azsdk-pool-mms-win-2022-general
-          OSVmImage: windows-2022
+          Pool: azsdk-pool-mms-win-2022-1es-pt
+          OSVmImage: azsdk-pool-mms-win-2022-1espt
+          os: windows
         MacOs:
           Pool: Azure Pipelines
           OSVmImage: "macos-11"
+          os: macOS
     pool:
       name: $(Pool)
       vmImage: $(OSVmImage)
+      os: $(OS)
     steps:
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
@@ -104,8 +109,9 @@ jobs:
     dependsOn:
       - Build
     pool:
-      name: azsdk-pool-mms-win-2022-general
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
     steps:
       - task: UsePythonVersion@0
         displayName: "Use Python 3.9"
@@ -126,8 +132,9 @@ jobs:
 
   - job: Compliance
     pool:
-      name: azsdk-pool-mms-win-2022-general
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
     steps:
       - template: /eng/common/pipelines/templates/steps/credscan.yml
         parameters:

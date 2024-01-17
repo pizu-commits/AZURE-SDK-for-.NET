@@ -36,6 +36,7 @@ jobs:
     pool:
       vmImage: $(OSVmImage)
       name: $(Pool)
+      os: $(OS)
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
       # Add a default so the job doesn't fail when the matrix is empty
       container: $[ variables['Container'] ]
