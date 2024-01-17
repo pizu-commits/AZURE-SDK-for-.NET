@@ -95,12 +95,12 @@ parameters:
         # in the context of a parameter definition.
         contents: 'sdk/$(ServiceDirectory)/**/SessionRecords/**/*.json'
         targetFolder: '$(Build.ArtifactStagingDirectory)/SessionRecords'
-    - task: PublishBuildArtifacts@1
+    - task: 1ES.PublishBuildArtifacts@1
       condition: and(succeededOrFailed(), eq(variables.TestMode, 'Record'))
       displayName: "Publish Test Recordings"
       inputs:
-        pathToPublish: '$(Build.ArtifactStagingDirectory)/SessionRecords'
-        artifactName: SessionRecords
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/SessionRecords'
+        ArtifactName: SessionRecords
 
 stages:
 - ${{ each cloud in parameters.CloudConfig }}:

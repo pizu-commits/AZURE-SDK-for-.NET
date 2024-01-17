@@ -42,11 +42,11 @@ jobs:
         env:
           REPOSITORY_NAME: $(Build.Repository.Name)
           PULLREQUEST_ID: $(System.PullRequest.PullRequestNumber)
-      - task: PublishBuildArtifacts@1
+      - task: 1ES.PublishBuildArtifacts@1
         condition: succeededOrFailed()
         inputs:
-          pathtoPublish: $(msBuildLogDir)
-          artifactName: MsBuildLogs
+          PathtoPublish: $(msBuildLogDir)
+          ArtifactName: MsBuildLogs
       - pwsh: |
           $releaseTag = "FOR_SIGNING"
           if ("${{ parameters.ShouldPublish }}" -eq "true") { $releaseTag = "FOR_PUBLISHING" }
