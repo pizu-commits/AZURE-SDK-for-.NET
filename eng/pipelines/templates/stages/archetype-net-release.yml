@@ -36,9 +36,11 @@ stages:
                     PackagesPath:  $(Pipeline.Workspace)/${{parameters.ArtifactName}}
                     BuildToolsPath: $(AzureSDKBuildToolsPath)
 
-                - publish: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
-                  artifact: ${{parameters.ArtifactName}}-signed
+                - task: 1ES.PublishPipelineArtifact@1
                   displayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
+                  inputs:
+                    artifact: ${{parameters.ArtifactName}}-signed
+                    path: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
 
   - ${{if and(in(variables['Build.Reason'], 'Manual', ''), eq(variables['System.TeamProject'], 'internal'))}}:
     - ${{ each artifact in parameters.Artifacts }}:
