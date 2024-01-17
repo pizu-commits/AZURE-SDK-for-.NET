@@ -10,6 +10,8 @@ parameters:
 stages:
   - stage: Signing
     dependsOn: ${{parameters.DependsOn}}
+    variables:
+      - template: /eng/pipelines/templates/variables/globals.yml
     jobs:
       - deployment: SignPackage
         environment: esrp
@@ -42,6 +44,8 @@ stages:
     - ${{ each artifact in parameters.Artifacts }}:
       - ${{if ne(artifact.skipReleaseStage, 'true')}}:
         - stage:
+          variables:
+            - template: /eng/pipelines/templates/variables/globals.yml
           displayName: 'Release: ${{artifact.name}}'
           dependsOn: Signing
           condition: and(succeeded(), ne(variables['SetDevVersion'], 'true'), ne(variables['Skip.Release'], 'true'), ne(variables['Build.Repository.Name'], 'Azure/azure-sdk-for-net-pr'))
@@ -254,6 +258,8 @@ stages:
 
   - stage: Integration
     dependsOn: Signing
+    variables:
+      - template: /eng/pipelines/templates/variables/globals.yml
     jobs:
     - job: PublishPackages
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
