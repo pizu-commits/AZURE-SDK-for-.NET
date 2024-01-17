@@ -23,6 +23,11 @@ stages:
     jobs:
       - job: GenerateReports
         timeoutInMinutes: 120
+        templateContext:
+         outputs:
+           - output: pipelineArtifact
+             path: '$(Build.ArtifactStagingDirectory)/reports'
+             artifact: reports
         steps:
           - template: /eng/pipelines/templates/steps/install-dotnet.yml
 
@@ -101,12 +106,6 @@ stages:
               arguments: >
                 -PSDepsFile 'https://aka.ms/ps-deps-preview'
                 -AzSdkDepsFile '$(Build.ArtifactStagingDirectory)/reports/azure-sdk.deps.json'
-
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish Report Artifacts'
-            inputs:
-              artifactName: reports
-              path: '$(Build.ArtifactStagingDirectory)/reports'
 
           - task: AzureFileCopy@4
             displayName: 'Upload Dependency Report'

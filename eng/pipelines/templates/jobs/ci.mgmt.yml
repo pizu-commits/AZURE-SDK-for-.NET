@@ -12,6 +12,11 @@ jobs:
     pool:
       name: azsdk-pool-mms-win-2022-general
       vmImage: windows-2022
+    templateContext:
+     outputs:
+       - output: pipelineArtifact
+         path: $(Build.ArtifactStagingDirectory)
+         artifact: packages
     steps:
       #- script: "echo $(system.pullrequest.pullrequestnumber), https://github.com/$(build.repository.id), https://github.com/$(build.repository.ID)"
       - template: /eng/pipelines/templates/steps/install-dotnet.yml
@@ -42,11 +47,6 @@ jobs:
         inputs:
           pathtoPublish: $(msBuildLogDir)
           artifactName: MsBuildLogs
-      - task: PublishPipelineArtifact@0
-        condition: succeeded()
-        inputs:
-          artifactName: packages
-          targetPath: $(Build.ArtifactStagingDirectory)
       - pwsh: |
           $releaseTag = "FOR_SIGNING"
           if ("${{ parameters.ShouldPublish }}" -eq "true") { $releaseTag = "FOR_PUBLISHING" }
