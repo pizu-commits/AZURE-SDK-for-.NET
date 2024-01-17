@@ -79,6 +79,11 @@ parameters:
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
+    sdl:
+      sourceAnalysisPool:
+        name: azsdk-pool-mms-win-2022-general
+        image: windows-2022
+        os: windows
     stages:
       - stage: Build
         variables:
