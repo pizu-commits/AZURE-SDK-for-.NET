@@ -81,8 +81,8 @@ extends:
   parameters:
     stages:
       - stage: Build
-        variables:
-          - template: /eng/pipelines/templates/variables/globals.yml
+        #variables:
+        #  - template: /eng/pipelines/templates/variables/globals.yml@Azure/azure-sdk-for-net
         jobs:
           - template: /eng/pipelines/templates/jobs/ci.yml
             parameters:
