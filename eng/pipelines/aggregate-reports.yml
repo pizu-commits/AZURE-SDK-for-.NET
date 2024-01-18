@@ -10,8 +10,8 @@ pr:
       - eng/CredScanSuppression.json
 
 pool:
-  name: azsdk-pool-mms-win-2022-1espt
-  vmImage: windows-2022
+  name: azsdk-pool-mms-win-2022-1es-pt
+  vmImage: azsdk-pool-mms-win-2022-1espt
 
 variables:
   - template: templates/variables/globals.yml

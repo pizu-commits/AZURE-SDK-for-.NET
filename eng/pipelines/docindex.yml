@@ -12,8 +12,8 @@ jobs:
 
   - job: UpdateDocsMsBuildConfig
     pool:
-      name: azsdk-pool-mms-ubuntu-2004-1espt
-      vmImage: Ubuntu20.04
+      name: azsdk-pool-mms-ubuntu-2004-1es-pt
+      vmImage: azsdk-pool-mms-ubuntu-2004-1espt
     variables:
       DocRepoLocation: $(Pipeline.Workspace)/docs
       DocRepoOwner: Azure

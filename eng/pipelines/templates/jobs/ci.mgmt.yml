@@ -10,8 +10,8 @@ jobs:
   - job: Build
     timeoutInMinutes: 100
     pool:
-      name: azsdk-pool-mms-win-2022-1espt
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
     templateContext:
      outputs:
        - output: pipelineArtifact
@@ -61,11 +61,11 @@ jobs:
       maxParallel: $[ variables['MaxParallelTestJobs'] ]
       matrix:
         Linux:
-          Pool: azsdk-pool-mms-ubuntu-2004-1espt
-          OSVmImage: "MMSUbuntu20.04"
+          Pool: azsdk-pool-mms-ubuntu-2004-1es-pt
+          OSVmImage: azsdk-pool-mms-ubuntu-2004-1espt
         Windows:
-          Pool: azsdk-pool-mms-win-2022-1espt
-          OSVmImage: windows-2022
+          Pool: azsdk-pool-mms-win-2022-1es-pt
+          OSVmImage: azsdk-pool-mms-win-2022-1espt
         MacOs:
           Pool: Azure Pipelines
           OSVmImage: "macos-11"
@@ -104,8 +104,8 @@ jobs:
     dependsOn:
       - Build
     pool:
-      name: azsdk-pool-mms-win-2022-1espt
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
     steps:
       - task: UsePythonVersion@0
         displayName: "Use Python 3.9"
@@ -126,8 +126,8 @@ jobs:
 
   - job: Compliance
     pool:
-      name: azsdk-pool-mms-win-2022-1espt
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
     steps:
       - template: /eng/common/pipelines/templates/steps/credscan.yml
         parameters:

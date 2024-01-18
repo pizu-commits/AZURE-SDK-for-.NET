@@ -20,8 +20,8 @@ parameters:
 jobs:
 - job: PreparePipelines
   pool:
-    name: azsdk-pool-mms-ubuntu-2204-1espt
-    vmImage: ubuntu-22.04
+    name: azsdk-pool-mms-ubuntu-2204-1es-pt
+    vmImage: azsdk-pool-mms-ubuntu-2204-1espt
   steps:
     - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
       parameters:

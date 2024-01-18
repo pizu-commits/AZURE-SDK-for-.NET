@@ -16,8 +16,8 @@ stages:
       - deployment: SignPackage
         environment: esrp
         pool:
-          name: azsdk-pool-mms-win-2022-1espt
-          vmImage: windows-2022
+          name: azsdk-pool-mms-win-2022-1es-pt
+          vmImage: azsdk-pool-mms-win-2022-1espt
 
         strategy:
           runOnce:
@@ -59,8 +59,8 @@ stages:
                 environment: ${{parameters.Environment}}
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-1espt
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
 
                 strategy:
                   runOnce:
@@ -112,8 +112,8 @@ stages:
                 dependsOn: TagRepository
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-1espt
-                  vmImage: MMSUbuntu20.04
+                  name: azsdk-pool-mms-ubuntu-2004-1es-pt
+                  vmImage: azsdk-pool-mms-ubuntu-2004-1espt
 
                 strategy:
                   runOnce:
@@ -141,8 +141,8 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-1espt
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
 
                 strategy:
                   runOnce:
@@ -168,8 +168,8 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-1espt
-                  vmImage: MMSUbuntu20.04
+                  name: azsdk-pool-mms-ubuntu-2004-1es-pt
+                  vmImage: azsdk-pool-mms-ubuntu-2004-1espt
 
                 strategy:
                   runOnce:
@@ -201,8 +201,8 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-1espt
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
 
                 strategy:
                   runOnce:
@@ -227,8 +227,8 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-1espt
-                  vmImage: windows-2022
+                  name: azsdk-pool-mms-win-2022-1es-pt
+                  vmImage: azsdk-pool-mms-win-2022-1espt
 
                 strategy:
                   runOnce:
@@ -266,8 +266,8 @@ stages:
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       displayName: Publish package to daily feed
       pool:
-        name: azsdk-pool-mms-win-2022-1espt
-        vmImage: windows-2022
+        name: azsdk-pool-mms-win-2022-1es-pt
+        vmImage: azsdk-pool-mms-win-2022-1espt
       steps:
       - checkout: none
       - template: tools/clone-buildtools/clone-buildtools.yml@azure-sdk-build-tools
@@ -296,8 +296,8 @@ stages:
       dependsOn: PublishPackages
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       pool:
-        name: azsdk-pool-mms-ubuntu-2004-1espt
-        vmImage: MMSUbuntu20.04
+        name: azsdk-pool-mms-ubuntu-2004-1es-pt
+        vmImage: azsdk-pool-mms-ubuntu-2004-1espt
       steps:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
           parameters:

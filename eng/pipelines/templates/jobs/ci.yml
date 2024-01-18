@@ -49,8 +49,8 @@ parameters:
 jobs:
   - job: Build
     pool:
-      name: azsdk-pool-mms-win-2022-1espt
-      vmImage: windows-2022
+      name: azsdk-pool-mms-win-2022-1es-pt
+      vmImage: azsdk-pool-mms-win-2022-1espt
 
     variables:
       Codeql.Enabled: true
@@ -165,8 +165,8 @@ jobs:
     timeoutInMinutes: ${{ parameters.TestTimeoutInMinutes }}
     condition: and(succeededOrFailed(), ne(variables['Skip.Analyze'], true))
     pool:
-      name: azsdk-pool-mms-ubuntu-2004-1espt
-      vmImage: MMSUbuntu20.04
+      name: azsdk-pool-mms-ubuntu-2004-1es-pt
+      vmImage: azsdk-pool-mms-ubuntu-2004-1espt
     steps:
       - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
@@ -233,8 +233,8 @@ jobs:
   - ${{ if or(ne(variables['Build.Reason'], 'PullRequest'), ne(parameters.LimitForPullRequest, 'true')) }}:
     - job: Compliance
       pool:
-        name: azsdk-pool-mms-win-2022-1espt
-        vmImage: windows-2022
+        name: azsdk-pool-mms-win-2022-1es-pt
+        vmImage: azsdk-pool-mms-win-2022-1espt
       steps:
         - task: UsePythonVersion@0
           displayName: "Use Python 3.9"
