@@ -25,8 +25,8 @@ stages:
               Pool: azsdk-pool-mms-win-2022-1es-pt
               Image: azsdk-pool-mms-win-2022-1espt
             Linux:
-              Pool: azsdk-pool-mms-ubuntu-2204-1es-pt
-              Image: azsdk-pool-mms-ubuntu-2204-1espt
+              Pool: azsdk-pool-mms-ubuntu-2004-1es-pt
+              Image: azsdk-pool-mms-ubuntu-2004-1espt
             Mac:
               Pool: Azure Pipelines
               Image: macos-11

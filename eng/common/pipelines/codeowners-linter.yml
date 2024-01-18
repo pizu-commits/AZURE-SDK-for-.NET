@@ -26,8 +26,8 @@ stages:
   - job: Run
     timeoutInMinutes: 120
     pool:
-      name: azsdk-pool-mms-ubuntu-2204-1es-pt
-      vmImage: azsdk-pool-mms-ubuntu-2204-1espt
+      name: azsdk-pool-mms-ubuntu-2004-1es-pt
+      vmImage: azsdk-pool-mms-ubuntu-2004-1espt
 
     variables:
       CodeownersLinterVersion: '1.0.0-dev.20231120.3'
