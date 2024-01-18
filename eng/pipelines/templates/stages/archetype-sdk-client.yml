@@ -81,7 +81,7 @@ extends:
   parameters:
     sdl:
       sourceAnalysisPool:
-        name: azsdk-pool-mms-win-2022-general
+        name: azsdk-pool-mms-win-2022-1espt
         image: windows-2022
         os: windows
     stages:

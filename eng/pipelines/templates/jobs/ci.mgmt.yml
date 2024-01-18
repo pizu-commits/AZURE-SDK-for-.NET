@@ -10,7 +10,7 @@ jobs:
   - job: Build
     timeoutInMinutes: 100
     pool:
-      name: azsdk-pool-mms-win-2022-general
+      name: azsdk-pool-mms-win-2022-1espt
       vmImage: windows-2022
     templateContext:
      outputs:
@@ -61,10 +61,10 @@ jobs:
       maxParallel: $[ variables['MaxParallelTestJobs'] ]
       matrix:
         Linux:
-          Pool: azsdk-pool-mms-ubuntu-2004-general
+          Pool: azsdk-pool-mms-ubuntu-2004-1espt
           OSVmImage: "MMSUbuntu20.04"
         Windows:
-          Pool: azsdk-pool-mms-win-2022-general
+          Pool: azsdk-pool-mms-win-2022-1espt
           OSVmImage: windows-2022
         MacOs:
           Pool: Azure Pipelines
@@ -104,7 +104,7 @@ jobs:
     dependsOn:
       - Build
     pool:
-      name: azsdk-pool-mms-win-2022-general
+      name: azsdk-pool-mms-win-2022-1espt
       vmImage: windows-2022
     steps:
       - task: UsePythonVersion@0
@@ -126,7 +126,7 @@ jobs:
 
   - job: Compliance
     pool:
-      name: azsdk-pool-mms-win-2022-general
+      name: azsdk-pool-mms-win-2022-1espt
       vmImage: windows-2022
     steps:
       - template: /eng/common/pipelines/templates/steps/credscan.yml

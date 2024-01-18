@@ -16,7 +16,7 @@ stages:
       - deployment: SignPackage
         environment: esrp
         pool:
-          name: azsdk-pool-mms-win-2022-general
+          name: azsdk-pool-mms-win-2022-1espt
           vmImage: windows-2022
 
         strategy:
@@ -59,7 +59,7 @@ stages:
                 environment: ${{parameters.Environment}}
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
+                  name: azsdk-pool-mms-win-2022-1espt
                   vmImage: windows-2022
 
                 strategy:
@@ -112,7 +112,7 @@ stages:
                 dependsOn: TagRepository
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-general
+                  name: azsdk-pool-mms-ubuntu-2004-1espt
                   vmImage: MMSUbuntu20.04
 
                 strategy:
@@ -141,7 +141,7 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
+                  name: azsdk-pool-mms-win-2022-1espt
                   vmImage: windows-2022
 
                 strategy:
@@ -168,7 +168,7 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-ubuntu-2004-general
+                  name: azsdk-pool-mms-ubuntu-2004-1espt
                   vmImage: MMSUbuntu20.04
 
                 strategy:
@@ -201,7 +201,7 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
+                  name: azsdk-pool-mms-win-2022-1espt
                   vmImage: windows-2022
 
                 strategy:
@@ -227,7 +227,7 @@ stages:
                 dependsOn: PublishPackage
 
                 pool:
-                  name: azsdk-pool-mms-win-2022-general
+                  name: azsdk-pool-mms-win-2022-1espt
                   vmImage: windows-2022
 
                 strategy:
@@ -266,7 +266,7 @@ stages:
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       displayName: Publish package to daily feed
       pool:
-        name: azsdk-pool-mms-win-2022-general
+        name: azsdk-pool-mms-win-2022-1espt
         vmImage: windows-2022
       steps:
       - checkout: none
@@ -296,7 +296,7 @@ stages:
       dependsOn: PublishPackages
       condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
       pool:
-        name: azsdk-pool-mms-ubuntu-2004-general
+        name: azsdk-pool-mms-ubuntu-2004-1espt
         vmImage: MMSUbuntu20.04
       steps:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml

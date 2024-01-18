@@ -7,22 +7,22 @@
     "Agent": {
       "Ubuntu-20.04_NET6.0": {
         "OSVmImage": "MMSUbuntu20.04",
-        "Pool": "azsdk-pool-mms-ubuntu-2004-general",
+        "Pool": "azsdk-pool-mms-ubuntu-2004-1espt",
         "TestTargetFramework": "net6.0"
       },
       "Ubuntu-20.04_NET7.0": {
         "OSVmImage": "MMSUbuntu20.04",
-        "Pool": "azsdk-pool-mms-ubuntu-2004-general",
+        "Pool": "azsdk-pool-mms-ubuntu-2004-1espt",
         "TestTargetFramework": "net7.0"
       },
       "Windows2022_NET462": {
         "OSVmImage": "windows-2022",
-        "Pool": "azsdk-pool-mms-win-2022-general",
+        "Pool": "azsdk-pool-mms-win-2022-1espt",
         "TestTargetFramework": "net462"
       },
       "Windows2022_NET7.0": {
         "OSVmImage": "windows-2022",
-        "Pool": "azsdk-pool-mms-win-2022-general",
+        "Pool": "azsdk-pool-mms-win-2022-1espt",
         "TestTargetFramework": "net7.0"
       },
       "MacOS-11_NET6.0": {
@@ -50,7 +50,7 @@
       "Agent": {
         "Windows2022_NET7.0": {
           "OSVmImage": "windows-2022",
-          "Pool": "azsdk-pool-mms-win-2022-general",
+          "Pool": "azsdk-pool-mms-win-2022-1espt",
           "TestTargetFramework": "net7.0"
         }
       },

@@ -16,7 +16,7 @@ jobs:
   - ${{ if eq(parameters.Daily, false) }}:
     - job: smoke_test_eligibility
       pool:
-        name: "azsdk-pool-mms-ubuntu-2004-general"
+        name: "azsdk-pool-mms-ubuntu-2004-1espt"
         vmImage: "MMSUbuntu20.04"
       displayName: Check Smoke Test Eligibility
       steps:
@@ -48,19 +48,19 @@ jobs:
     strategy:
       matrix:
         Ubuntu_Net60:
-          Pool: "azsdk-pool-mms-ubuntu-2004-general"
+          Pool: "azsdk-pool-mms-ubuntu-2004-1espt"
           OSVmImage: "MMSUbuntu20.04"
           TestTargetFramework: net6.0
         Windows_NetFramework:
-          Pool: "azsdk-pool-mms-win-2022-general"
+          Pool: "azsdk-pool-mms-win-2022-1espt"
           OSVmImage: "windows-2022"
           TestTargetFramework: net462
         Windows_Net60:
-          Pool: "azsdk-pool-mms-win-2022-general"
+          Pool: "azsdk-pool-mms-win-2022-1espt"
           OSVmImage: "windows-2022"
           TestTargetFramework: net6.0
         Windows_Net70:
-          Pool: "azsdk-pool-mms-win-2022-general"
+          Pool: "azsdk-pool-mms-win-2022-1espt"
           OSVmImage: "windows-2022"
           TestTargetFramework: net7.0
     pool:

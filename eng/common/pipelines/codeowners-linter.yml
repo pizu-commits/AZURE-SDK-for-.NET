@@ -26,7 +26,7 @@ stages:
   - job: Run
     timeoutInMinutes: 120
     pool:
-      name: azsdk-pool-mms-ubuntu-2204-general
+      name: azsdk-pool-mms-ubuntu-2204-1espt
       vmImage: ubuntu-22.04
 
     variables:
