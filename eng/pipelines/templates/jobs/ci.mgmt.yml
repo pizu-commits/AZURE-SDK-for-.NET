@@ -12,6 +12,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-win-2022-1es-pt
       vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
     templateContext:
      outputs:
        - output: pipelineArtifact
@@ -63,15 +64,19 @@ jobs:
         Linux:
           Pool: azsdk-pool-mms-ubuntu-2004-1es-pt
           OSVmImage: azsdk-pool-mms-ubuntu-2004-1espt
+          os: linux
         Windows:
           Pool: azsdk-pool-mms-win-2022-1es-pt
           OSVmImage: azsdk-pool-mms-win-2022-1espt
+          os: windows
         MacOs:
           Pool: Azure Pipelines
           OSVmImage: "macos-11"
+          os: macOS
     pool:
       name: $(Pool)
       vmImage: $(OSVmImage)
+      os: $(OS)
     steps:
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
@@ -106,6 +111,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-win-2022-1es-pt
       vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
     steps:
       - task: UsePythonVersion@0
         displayName: "Use Python 3.9"
@@ -128,6 +134,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-win-2022-1es-pt
       vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
     steps:
       - template: /eng/common/pipelines/templates/steps/credscan.yml
         parameters:

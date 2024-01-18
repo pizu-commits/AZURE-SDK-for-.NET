@@ -8,31 +8,37 @@
       "Ubuntu-20.04_NET6.0": {
         "OSVmImage": "azsdk-pool-mms-ubuntu-2004-1espt",
         "Pool": "azsdk-pool-mms-ubuntu-2004-1es-pt",
+        "OS": "linux",
         "TestTargetFramework": "net6.0"
       },
       "Ubuntu-20.04_NET7.0": {
         "OSVmImage": "azsdk-pool-mms-ubuntu-2004-1espt",
         "Pool": "azsdk-pool-mms-ubuntu-2004-1es-pt",
+        "OS": "linux",
         "TestTargetFramework": "net7.0"
       },
       "Windows2022_NET462": {
         "OSVmImage": "azsdk-pool-mms-win-2022-1espt",
         "Pool": "azsdk-pool-mms-win-2022-1es-pt",
+        "OS": "windows",
         "TestTargetFramework": "net462"
       },
       "Windows2022_NET7.0": {
         "OSVmImage": "azsdk-pool-mms-win-2022-1espt",
         "Pool": "azsdk-pool-mms-win-2022-1es-pt",
+        "OS": "windows",
         "TestTargetFramework": "net7.0"
       },
       "MacOS-11_NET6.0": {
         "OSVmImage": "macos-11",
         "Pool": "Azure Pipelines",
+        "OS": "macOS",
         "TestTargetFramework": "net6.0"
       },
       "MacOS-11_NET7.0": {
         "OSVmImage": "macos-11",
         "Pool": "Azure Pipelines",
+        "OS": "macOS",
         "TestTargetFramework": "net7.0"
       }
     },
@@ -51,6 +57,7 @@
         "Windows2022_NET7.0": {
           "OSVmImage": "azsdk-pool-mms-win-2022-1espt",
           "Pool": "azsdk-pool-mms-win-2022-1es-pt",
+          "OS": "windows",
           "TestTargetFramework": "net7.0"
         }
       },

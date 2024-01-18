@@ -24,16 +24,20 @@ stages:
             Windows:
               Pool: azsdk-pool-mms-win-2022-1es-pt
               Image: azsdk-pool-mms-win-2022-1espt
+              OS: windows
             Linux:
               Pool: azsdk-pool-mms-ubuntu-2004-1es-pt
               Image: azsdk-pool-mms-ubuntu-2004-1espt
+              OS: linux
             Mac:
               Pool: Azure Pipelines
               Image: macos-11
+              OS: macOS
 
         pool:
           name: $(Pool)
           vmImage: $(Image)
+          os: $(OS)
 
         steps:
           - template: /eng/common/pipelines/templates/steps/run-pester-tests.yml

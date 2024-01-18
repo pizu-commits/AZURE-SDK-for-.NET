@@ -18,6 +18,7 @@ stages:
         pool:
           name: azsdk-pool-mms-win-2022-1es-pt
           vmImage: azsdk-pool-mms-win-2022-1espt
+          os: windows
 
         strategy:
           runOnce:
@@ -61,6 +62,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-win-2022-1es-pt
                   vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -114,6 +116,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-ubuntu-2004-1es-pt
                   vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+                  os: linux
 
                 strategy:
                   runOnce:
@@ -143,6 +146,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-win-2022-1es-pt
                   vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -170,6 +174,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-ubuntu-2004-1es-pt
                   vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+                  os: linux
 
                 strategy:
                   runOnce:
@@ -203,6 +208,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-win-2022-1es-pt
                   vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -229,6 +235,7 @@ stages:
                 pool:
                   name: azsdk-pool-mms-win-2022-1es-pt
                   vmImage: azsdk-pool-mms-win-2022-1espt
+                  os: windows
 
                 strategy:
                   runOnce:
@@ -268,6 +275,7 @@ stages:
       pool:
         name: azsdk-pool-mms-win-2022-1es-pt
         vmImage: azsdk-pool-mms-win-2022-1espt
+        os: windows
       steps:
       - checkout: none
       - template: tools/clone-buildtools/clone-buildtools.yml@azure-sdk-build-tools
@@ -298,6 +306,7 @@ stages:
       pool:
         name: azsdk-pool-mms-ubuntu-2004-1es-pt
         vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+        os: linux
       steps:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
           parameters:

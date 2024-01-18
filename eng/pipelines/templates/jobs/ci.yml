@@ -51,6 +51,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-win-2022-1es-pt
       vmImage: azsdk-pool-mms-win-2022-1espt
+      os: windows
 
     variables:
       Codeql.Enabled: true
@@ -167,6 +168,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-ubuntu-2004-1es-pt
       vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+      os: linux
     steps:
       - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
@@ -235,6 +237,7 @@ jobs:
       pool:
         name: azsdk-pool-mms-win-2022-1es-pt
         vmImage: azsdk-pool-mms-win-2022-1espt
+        os: windows
       steps:
         - task: UsePythonVersion@0
           displayName: "Use Python 3.9"

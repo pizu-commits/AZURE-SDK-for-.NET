@@ -14,6 +14,7 @@ jobs:
     pool:
       name: azsdk-pool-mms-ubuntu-2004-1es-pt
       vmImage: azsdk-pool-mms-ubuntu-2004-1espt
+      os: linux
     variables:
       DocRepoLocation: $(Pipeline.Workspace)/docs
       DocRepoOwner: Azure

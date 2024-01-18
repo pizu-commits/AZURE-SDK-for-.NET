@@ -18,6 +18,7 @@ jobs:
       pool:
         name: "azsdk-pool-mms-ubuntu-2004-1es-pt"
         vmImage: "azsdk-pool-mms-ubuntu-2004-1espt"
+        os: linux
       displayName: Check Smoke Test Eligibility
       steps:
         # pipelines only supports template each when it generates the entire script block.
@@ -50,22 +51,27 @@ jobs:
         Ubuntu_Net60:
           Pool: "azsdk-pool-mms-ubuntu-2004-1es-pt"
           OSVmImage: "azsdk-pool-mms-ubuntu-2004-1espt"
+          OS: linux
           TestTargetFramework: net6.0
         Windows_NetFramework:
           Pool: "azsdk-pool-mms-win-2022-1es-pt"
           OSVmImage: "azsdk-pool-mms-win-2022-1espt"
+          OS: windows
           TestTargetFramework: net462
         Windows_Net60:
           Pool: "azsdk-pool-mms-win-2022-1es-pt"
           OSVmImage: "azsdk-pool-mms-win-2022-1espt"
+          OS: windows
           TestTargetFramework: net6.0
         Windows_Net70:
           Pool: "azsdk-pool-mms-win-2022-1es-pt"
           OSVmImage: "azsdk-pool-mms-win-2022-1espt"
+          OS: windows
           TestTargetFramework: net7.0
     pool:
       name: $(Pool)
       vmImage: $(OSVmImage)
+      os: $(OS)
     timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
 
     steps:

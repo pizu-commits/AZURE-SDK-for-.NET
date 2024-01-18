@@ -12,6 +12,7 @@ pr:
 pool:
   name: azsdk-pool-mms-win-2022-1es-pt
   vmImage: azsdk-pool-mms-win-2022-1espt
+  os: windows
 
 variables:
   - template: templates/variables/globals.yml

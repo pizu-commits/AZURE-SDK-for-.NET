@@ -75,11 +75,13 @@ jobs:
         Linux:
           Pool: ${{ parameters.LinuxPool }}
           OsVmImage: ${{ parameters.LinuxVmImage }}
+          OS: linux
           MatrixName: 'Linux'
       ${{ if contains(parameters.OperatingSystems, 'Windows') }}:
         Windows:
           Pool: ${{ parameters.WindowsPool }}
           OsVmImage: ${{ parameters.WindowsVmImage }}
+          OS: windows
           MatrixName: 'Windows'
   variables:
   - ${{ parameters.Variables }}
@@ -91,6 +93,7 @@ jobs:
   pool:
     name: $(Pool)
     vmImage: $(OSVmImage)
+    os: $(OS)
   steps:
 
   - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
