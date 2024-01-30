@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace Azure.Communication.CallAutomation
 {
     /// <summary>
-    /// Transcription package for Transcription Streaming.
+    /// Metadata for Transcription Streaming.
     /// </summary>
     public class TranscriptionMetadata : StreamingData
     {
@@ -27,5 +27,11 @@ namespace Azure.Communication.CallAutomation
         /// </summary>
         [JsonPropertyName("callConnectionId")]
         public string CallConnectionId { get; set; }
+
+        /// <summary>
+        /// correlation Id.
+        /// </summary>
+        [JsonPropertyName("correlationId")]
+        public string CorrelationId { get; set; }
     }
 }

@@ -10,15 +10,9 @@ using Azure.Core;
 
 namespace Azure.Communication.CallAutomation
 {
-<<<<<<<< HEAD:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/SendDtmfTonesResultInternal.Serialization.cs
     internal partial class SendDtmfTonesResultInternal
     {
         internal static SendDtmfTonesResultInternal DeserializeSendDtmfTonesResultInternal(JsonElement element)
-========
-    public partial class SendDtmfTonesResult
-    {
-        internal static SendDtmfTonesResult DeserializeSendDtmfTonesResult(JsonElement element)
->>>>>>>> main:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/SendDtmfTonesResult.Serialization.cs
         {
             if (element.ValueKind == JsonValueKind.Null)
             {
@@ -33,11 +27,7 @@ namespace Azure.Communication.CallAutomation
                     continue;
                 }
             }
-<<<<<<<< HEAD:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/SendDtmfTonesResultInternal.Serialization.cs
             return new SendDtmfTonesResultInternal(operationContext.Value);
-========
-            return new SendDtmfTonesResult(operationContext.Value);
->>>>>>>> main:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/SendDtmfTonesResult.Serialization.cs
         }
     }
 }

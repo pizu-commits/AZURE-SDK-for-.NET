@@ -21,16 +21,17 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
                 "{" +
                     "\"subscriptionId\":\"subscriptionId\"," +
                     "\"locale\":\"en-US\"," +
-                    "\"callConnectionId\":\"callConnectionId\"" +
+                    "\"callConnectionId\":\"callConnectionId\"," +
+                    "\"correlationId\":\"correlationId\"" +
                 "}" +
             "}";
 
             TranscriptionMetadata streamingMetadata = (TranscriptionMetadata)StreamingDataParser.Parse(metadataJson);
-            ValidateMetadata(streamingMetadata);
+            ValidateTranscriptionMetadata(streamingMetadata);
         }
 
         [Test]
-        public void ParseTranscription_Test()
+        public void ParseTranscriptionData_Test()
         {
             var transcriptionJson =
             "{" +
@@ -41,15 +42,18 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
                     "\"format\":\"display\"," +
                     "\"confidence\":0.98," +
                     "\"offset\":1," +
+                    "\"duration\":2," +
                     "\"words\":" +
                     "[" +
                         "{" +
                             "\"text\":\"Hello\"," +
-                            "\"offset\":1" +
+                            "\"offset\":1," +
+                            "\"duration\":1" +
                         "}," +
                         "{" +
                             "\"text\":\"World\"," +
-                            "\"offset\":6" +
+                            "\"offset\":6," +
+                            "\"duration\":1" +
                         "}" +
                     "]," +
                     "\"participantRawID\":\"abc12345\"," +
@@ -62,37 +66,40 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
         }
 
         [Test]
-        public void ParseBinaryData()
+        public void ParseTranscriptionBinaryData()
         {
             JObject jsonData = new()
             {
                 ["kind"] = "TranscriptionData",
                 ["transcriptionData"] = new JObject()
             };
-            jsonData["transcriptionData"]["text"] = "Hello World!";
-            jsonData["transcriptionData"]["format"] = "display";
-            jsonData["transcriptionData"]["confidence"] = 0.98d;
-            jsonData["transcriptionData"]["offset"] = 1;
+            jsonData["transcriptionData"]!["text"] = "Hello World!";
+            jsonData["transcriptionData"]!["format"] = "display";
+            jsonData["transcriptionData"]!["confidence"] = 0.98d;
+            jsonData["transcriptionData"]!["offset"] = 1;
+            jsonData["transcriptionData"]!["duration"] = 2;
 
             JArray words = new();
-            jsonData["transcriptionData"]["words"] = words;
+            jsonData["transcriptionData"]!["words"] = words;
 
             JObject word0 = new()
             {
                 ["text"] = "Hello",
-                ["offset"] = 1
+                ["offset"] = 1,
+                ["duration"] = 1
             };
             words.Add(word0);
 
             JObject word1 = new()
             {
                 ["text"] = "World",
-                ["offset"] = 6
+                ["offset"] = 6,
+                ["duration"] = 1
             };
             words.Add(word1);
 
-            jsonData["transcriptionData"]["participantRawID"] = "abc12345";
-            jsonData["transcriptionData"]["resultStatus"] = "final";
+            jsonData["transcriptionData"]!["participantRawID"] = "abc12345";
+            jsonData["transcriptionData"]!["resultStatus"] = "final";
 
             var binaryData = BinaryData.FromString(jsonData.ToString());
 
@@ -101,37 +108,40 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
         }
 
         [Test]
-        public void ParseAudioEventsWithBynaryArray()
+        public void ParseTranscriptionDataEventsWithBinaryArray()
         {
             JObject jsonData = new()
             {
                 ["kind"] = "TranscriptionData",
                 ["transcriptionData"] = new JObject()
             };
-            jsonData["transcriptionData"]["text"] = "Hello World!";
-            jsonData["transcriptionData"]["format"] = "display";
-            jsonData["transcriptionData"]["confidence"] = 0.98d;
-            jsonData["transcriptionData"]["offset"] = 1;
+            jsonData["transcriptionData"]!["text"] = "Hello World!";
+            jsonData["transcriptionData"]!["format"] = "display";
+            jsonData["transcriptionData"]!["confidence"] = 0.98d;
+            jsonData["transcriptionData"]!["offset"] = 1;
+            jsonData["transcriptionData"]!["duration"] = 2;
 
             JArray words = new();
-            jsonData["transcriptionData"]["words"] = words;
+            jsonData["transcriptionData"]!["words"] = words;
 
             JObject word0 = new()
             {
                 ["text"] = "Hello",
-                ["offset"] = 1
+                ["offset"] = 1,
+                ["duration"] = 1
             };
             words.Add(word0);
 
             JObject word1 = new()
             {
                 ["text"] = "World",
-                ["offset"] = 6
+                ["offset"] = 6,
+                ["duration"] = 1
             };
             words.Add(word1);
 
-            jsonData["transcriptionData"]["participantRawID"] = "abc12345";
-            jsonData["transcriptionData"]["resultStatus"] = "final";
+            jsonData["transcriptionData"]!["participantRawID"] = "abc12345";
+            jsonData["transcriptionData"]!["resultStatus"] = "final";
 
             byte[] receivedBytes = System.Text.Encoding.UTF8.GetBytes(jsonData.ToString());
             TranscriptionData parsedPackage = (TranscriptionData)StreamingDataParser.Parse(receivedBytes);
@@ -140,12 +150,13 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
             ValidateTranscriptionData(parsedPackage);
         }
 
-        private static void ValidateMetadata(TranscriptionMetadata transcriptionMetadata)
+        private static void ValidateTranscriptionMetadata(TranscriptionMetadata transcriptionMetadata)
         {
             Assert.IsNotNull(transcriptionMetadata);
             Assert.AreEqual("subscriptionId", transcriptionMetadata.TranscriptionSubscriptionId);
             Assert.AreEqual("en-US", transcriptionMetadata.Locale);
             Assert.AreEqual("callConnectionId", transcriptionMetadata.CallConnectionId);
+            Assert.AreEqual("correlationId", transcriptionMetadata.CorrelationId);
         }
 
         private static void ValidateTranscriptionData(TranscriptionData transcription)
@@ -155,14 +166,17 @@ namespace Azure.Communication.CallAutomation.Tests.MediaStreaming
             Assert.AreEqual(TextFormat.Display, transcription.Format);
             Assert.AreEqual(0.98d, transcription.Confidence);
             Assert.AreEqual(1, transcription.Offset);
+            Assert.AreEqual(2, transcription.Duration);
 
             // validate individual words
             IList<WordData> words = transcription.Words.ToList();
             Assert.AreEqual(2, words.Count);
             Assert.AreEqual("Hello", words[0].Text);
             Assert.AreEqual(1, words[0].Offset);
+            Assert.AreEqual(1, words[0].Duration);
             Assert.AreEqual("World", words[1].Text);
             Assert.AreEqual(6, words[1].Offset);
+            Assert.AreEqual(1, words[1].Duration);
 
             Assert.IsTrue(transcription.Participant is CommunicationIdentifier);
             Assert.AreEqual("abc12345", transcription.Participant.RawId);

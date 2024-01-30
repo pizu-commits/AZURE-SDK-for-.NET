@@ -23,7 +23,7 @@ namespace Azure.Communication.CallAutomation
         /// <param name="interToneTimeoutInSeconds"> Time to wait between DTMF inputs to stop recognizing. </param>
         /// <param name="maxTonesToCollect"> Maximum number of DTMF tones to be collected. </param>
         /// <param name="stopTones"> List of tones that will stop recognizing. </param>
-        internal DtmfOptionsInternal(int? interToneTimeoutInSeconds, int? maxTonesToCollect, IReadOnlyList<DtmfTone> stopTones)
+        internal DtmfOptionsInternal(int? interToneTimeoutInSeconds, int? maxTonesToCollect, IList<DtmfTone> stopTones)
         {
             InterToneTimeoutInSeconds = interToneTimeoutInSeconds;
             MaxTonesToCollect = maxTonesToCollect;

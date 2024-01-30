@@ -7,31 +7,17 @@
 
 namespace Azure.Communication.CallAutomation
 {
-<<<<<<<< HEAD:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/SendDtmfTonesResultInternal.cs
     /// <summary> The SendDtmfTonesResult. </summary>
     internal partial class SendDtmfTonesResultInternal
     {
-        /// <summary> Initializes a new instance of SendDtmfTonesResultInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="SendDtmfTonesResultInternal"/>. </summary>
         internal SendDtmfTonesResultInternal()
         {
         }
 
-        /// <summary> Initializes a new instance of SendDtmfTonesResultInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="SendDtmfTonesResultInternal"/>. </summary>
         /// <param name="operationContext"> The operation context provided by client. </param>
         internal SendDtmfTonesResultInternal(string operationContext)
-========
-    /// <summary> The response payload for unmuting participants from the call. </summary>
-    public partial class UnmuteParticipantResult
-    {
-        /// <summary> Initializes a new instance of <see cref="UnmuteParticipantResult"/>. </summary>
-        internal UnmuteParticipantResult()
-        {
-        }
-
-        /// <summary> Initializes a new instance of <see cref="UnmuteParticipantResult"/>. </summary>
-        /// <param name="operationContext"> The operation context provided by client. </param>
-        internal UnmuteParticipantResult(string operationContext)
->>>>>>>> main:sdk/communication/Azure.Communication.CallAutomation/src/Generated/Models/UnmuteParticipantResult.cs
         {
             OperationContext = operationContext;
         }
