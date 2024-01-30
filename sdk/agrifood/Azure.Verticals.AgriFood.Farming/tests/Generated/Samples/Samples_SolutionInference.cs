@@ -16,16 +16,17 @@ using NUnit.Framework;
 
 namespace Azure.Verticals.AgriFood.Farming.Samples
 {
-    internal class Samples_SolutionInference
+    public partial class Samples_SolutionInference
     {
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_Cancel()
+        public void Example_Cancel_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -37,12 +38,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_Cancel_Async()
+        public async Task Example_Cancel_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -56,10 +58,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_Cancel_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new
@@ -77,10 +80,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_Cancel_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new
@@ -96,12 +100,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_Fetch()
+        public void Example_Fetch_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -113,12 +118,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_Fetch_Async()
+        public async Task Example_Fetch_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -132,10 +138,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_Fetch_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new
@@ -153,10 +160,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_Fetch_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new
@@ -172,12 +180,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_CreateOrUpdate()
+        public void Example_CreateOrUpdate_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -190,12 +199,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_CreateOrUpdate_Async()
+        public async Task Example_CreateOrUpdate_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
             });
@@ -210,10 +220,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_CreateOrUpdate_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new
@@ -232,10 +243,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_CreateOrUpdate_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            SolutionInference client = new FarmBeatsClient(credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
+            SolutionInference client = new FarmBeatsClient(endpoint, credential).GetSolutionInferenceClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 requestPath = "<requestPath>",
                 partnerRequestBody = new

@@ -17,14 +17,15 @@ using NUnit.Framework;
 
 namespace Azure.Verticals.AgriFood.Farming.Samples
 {
-    internal class Samples_OAuthProviders
+    public partial class Samples_OAuthProviders
     {
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetOAuthProvider()
+        public void Example_GetOAuthProvider_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetOAuthProvider("<oauthProviderId>", null);
 
@@ -34,10 +35,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetOAuthProvider_Async()
+        public async Task Example_GetOAuthProvider_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetOAuthProviderAsync("<oauthProviderId>", null);
 
@@ -49,8 +51,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetOAuthProvider_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetOAuthProvider("<oauthProviderId>", null);
 
@@ -74,8 +77,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetOAuthProvider_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetOAuthProviderAsync("<oauthProviderId>", null);
 
@@ -97,12 +101,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_CreateOrUpdate()
+        public void Example_CreateOrUpdate_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new object());
+            using RequestContent content = RequestContent.Create(new object());
             Response response = client.CreateOrUpdate("<oauthProviderId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -111,12 +116,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_CreateOrUpdate_Async()
+        public async Task Example_CreateOrUpdate_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new object());
+            using RequestContent content = RequestContent.Create(new object());
             Response response = await client.CreateOrUpdateAsync("<oauthProviderId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -127,10 +133,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_CreateOrUpdate_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 appId = "<appId>",
                 appSecret = "<appSecret>",
@@ -165,10 +172,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_CreateOrUpdate_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 appId = "<appId>",
                 appSecret = "<appSecret>",
@@ -201,23 +209,27 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_Delete()
+        public void Example_Delete_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.Delete("<oauthProviderId>");
+
             Console.WriteLine(response.Status);
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_Delete_Async()
+        public async Task Example_Delete_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.DeleteAsync("<oauthProviderId>");
+
             Console.WriteLine(response.Status);
         }
 
@@ -225,10 +237,12 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_Delete_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.Delete("<oauthProviderId>");
+
             Console.WriteLine(response.Status);
         }
 
@@ -236,19 +250,22 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_Delete_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.DeleteAsync("<oauthProviderId>");
+
             Console.WriteLine(response.Status);
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetCascadeDeleteJobDetails()
+        public void Example_GetCascadeDeleteJobDetails_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetCascadeDeleteJobDetails("<jobId>", null);
 
@@ -258,10 +275,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetCascadeDeleteJobDetails_Async()
+        public async Task Example_GetCascadeDeleteJobDetails_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetCascadeDeleteJobDetailsAsync("<jobId>", null);
 
@@ -273,8 +291,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetCascadeDeleteJobDetails_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetCascadeDeleteJobDetails("<jobId>", null);
 
@@ -300,8 +319,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetCascadeDeleteJobDetails_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetCascadeDeleteJobDetailsAsync("<jobId>", null);
 
@@ -325,29 +345,31 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetOAuthProviders()
+        public void Example_GetOAuthProviders_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             foreach (BinaryData item in client.GetOAuthProviders(null, null, null, null, null, null, null, null, null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].ToString());
+                Console.WriteLine(result.ToString());
             }
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetOAuthProviders_Async()
+        public async Task Example_GetOAuthProviders_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             await foreach (BinaryData item in client.GetOAuthProvidersAsync(null, null, null, null, null, null, null, null, null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].ToString());
+                Console.WriteLine(result.ToString());
             }
         }
 
@@ -355,37 +377,26 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetOAuthProviders_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            foreach (BinaryData item in client.GetOAuthProviders(new List<string>()
-{
-"<providerIds>"
-}, new List<string>()
-{
-"<names>"
-}, new List<string>()
-{
-"<propertyFilters>"
-}, new List<string>()
-{
-"<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+            foreach (BinaryData item in client.GetOAuthProviders(new string[] { "<providerIds>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].GetProperty("appId").ToString());
-                Console.WriteLine(result[0].GetProperty("appSecret").ToString());
-                Console.WriteLine(result[0].GetProperty("apiKey").ToString());
-                Console.WriteLine(result[0].GetProperty("isProductionApp").ToString());
-                Console.WriteLine(result[0].GetProperty("id").ToString());
-                Console.WriteLine(result[0].GetProperty("eTag").ToString());
-                Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("name").ToString());
-                Console.WriteLine(result[0].GetProperty("description").ToString());
-                Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-                Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("appId").ToString());
+                Console.WriteLine(result.GetProperty("appSecret").ToString());
+                Console.WriteLine(result.GetProperty("apiKey").ToString());
+                Console.WriteLine(result.GetProperty("isProductionApp").ToString());
+                Console.WriteLine(result.GetProperty("id").ToString());
+                Console.WriteLine(result.GetProperty("eTag").ToString());
+                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+                Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("description").ToString());
+                Console.WriteLine(result.GetProperty("createdBy").ToString());
+                Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
             }
         }
 
@@ -393,46 +404,36 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetOAuthProviders_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
-            await foreach (BinaryData item in client.GetOAuthProvidersAsync(new List<string>()
-{
-"<providerIds>"
-}, new List<string>()
-{
-"<names>"
-}, new List<string>()
-{
-"<propertyFilters>"
-}, new List<string>()
-{
-"<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+            await foreach (BinaryData item in client.GetOAuthProvidersAsync(new string[] { "<providerIds>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].GetProperty("appId").ToString());
-                Console.WriteLine(result[0].GetProperty("appSecret").ToString());
-                Console.WriteLine(result[0].GetProperty("apiKey").ToString());
-                Console.WriteLine(result[0].GetProperty("isProductionApp").ToString());
-                Console.WriteLine(result[0].GetProperty("id").ToString());
-                Console.WriteLine(result[0].GetProperty("eTag").ToString());
-                Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("name").ToString());
-                Console.WriteLine(result[0].GetProperty("description").ToString());
-                Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-                Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("appId").ToString());
+                Console.WriteLine(result.GetProperty("appSecret").ToString());
+                Console.WriteLine(result.GetProperty("apiKey").ToString());
+                Console.WriteLine(result.GetProperty("isProductionApp").ToString());
+                Console.WriteLine(result.GetProperty("id").ToString());
+                Console.WriteLine(result.GetProperty("eTag").ToString());
+                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+                Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("description").ToString());
+                Console.WriteLine(result.GetProperty("createdBy").ToString());
+                Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
             }
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_CreateCascadeDeleteJob()
+        public void Example_CreateCascadeDeleteJob_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Operation<BinaryData> operation = client.CreateCascadeDeleteJob(WaitUntil.Completed, "<jobId>", "<oauthProviderId>", null);
             BinaryData responseData = operation.Value;
@@ -443,10 +444,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_CreateCascadeDeleteJob_Async()
+        public async Task Example_CreateCascadeDeleteJob_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Operation<BinaryData> operation = await client.CreateCascadeDeleteJobAsync(WaitUntil.Completed, "<jobId>", "<oauthProviderId>", null);
             BinaryData responseData = operation.Value;
@@ -459,8 +461,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_CreateCascadeDeleteJob_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Operation<BinaryData> operation = client.CreateCascadeDeleteJob(WaitUntil.Completed, "<jobId>", "<oauthProviderId>", null);
             BinaryData responseData = operation.Value;
@@ -487,8 +490,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_CreateCascadeDeleteJob_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            OAuthProviders client = new FarmBeatsClient(credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
+            OAuthProviders client = new FarmBeatsClient(endpoint, credential).GetOAuthProvidersClient(apiVersion: "2022-11-01-preview");
 
             Operation<BinaryData> operation = await client.CreateCascadeDeleteJobAsync(WaitUntil.Completed, "<jobId>", "<oauthProviderId>", null);
             BinaryData responseData = operation.Value;

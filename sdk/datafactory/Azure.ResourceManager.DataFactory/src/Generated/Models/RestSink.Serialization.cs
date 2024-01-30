@@ -39,17 +39,16 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(RequestInterval);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(RequestInterval.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(RequestInterval))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(HttpCompressionType))
             {
                 writer.WritePropertyName("httpCompressionType"u8);
-#if NET6_0_OR_GREATER
-				writer.WriteRawValue(HttpCompressionType);
-#else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(HttpCompressionType.ToString()).RootElement);
-#endif
+                JsonSerializer.Serialize(writer, HttpCompressionType);
             }
             writer.WritePropertyName("type"u8);
             writer.WriteStringValue(CopySinkType);
@@ -89,7 +88,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -102,10 +104,10 @@ namespace Azure.ResourceManager.DataFactory.Models
                 return null;
             }
             Optional<DataFactoryElement<string>> requestMethod = default;
-            Optional<DataFactoryElement<string>> additionalHeaders = default;
+            Optional<DataFactoryElement<IDictionary<string, string>>> additionalHeaders = default;
             Optional<DataFactoryElement<string>> httpRequestTimeout = default;
             Optional<BinaryData> requestInterval = default;
-            Optional<BinaryData> httpCompressionType = default;
+            Optional<DataFactoryElement<string>> httpCompressionType = default;
             string type = default;
             Optional<DataFactoryElement<int>> writeBatchSize = default;
             Optional<DataFactoryElement<string>> writeBatchTimeout = default;
@@ -132,7 +134,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    additionalHeaders = JsonSerializer.Deserialize<DataFactoryElement<string>>(property.Value.GetRawText());
+                    additionalHeaders = JsonSerializer.Deserialize<DataFactoryElement<IDictionary<string, string>>>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("httpRequestTimeout"u8))
@@ -159,7 +161,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    httpCompressionType = BinaryData.FromString(property.Value.GetRawText());
+                    httpCompressionType = JsonSerializer.Deserialize<DataFactoryElement<string>>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("type"u8))

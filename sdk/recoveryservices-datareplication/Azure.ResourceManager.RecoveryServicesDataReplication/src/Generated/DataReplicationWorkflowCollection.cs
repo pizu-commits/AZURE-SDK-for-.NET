@@ -20,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.RecoveryServicesDataReplication
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DataReplicationWorkflowResource" /> and their operations.
-    /// Each <see cref="DataReplicationWorkflowResource" /> in the collection will belong to the same instance of <see cref="DataReplicationVaultResource" />.
-    /// To get a <see cref="DataReplicationWorkflowCollection" /> instance call the GetDataReplicationWorkflows method from an instance of <see cref="DataReplicationVaultResource" />.
+    /// A class representing a collection of <see cref="DataReplicationWorkflowResource"/> and their operations.
+    /// Each <see cref="DataReplicationWorkflowResource"/> in the collection will belong to the same instance of <see cref="DataReplicationVaultResource"/>.
+    /// To get a <see cref="DataReplicationWorkflowCollection"/> instance call the GetDataReplicationWorkflows method from an instance of <see cref="DataReplicationVaultResource"/>.
     /// </summary>
     public partial class DataReplicationWorkflowCollection : ArmCollection, IEnumerable<DataReplicationWorkflowResource>, IAsyncEnumerable<DataReplicationWorkflowResource>
     {
@@ -64,6 +64,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Workflow_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> The job (workflow) name. </param>
@@ -100,6 +108,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Workflow_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -138,12 +154,20 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Workflow_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Filter string. </param>
         /// <param name="continuationToken"> Continuation token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DataReplicationWorkflowResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DataReplicationWorkflowResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DataReplicationWorkflowResource> GetAllAsync(string filter = null, string continuationToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataReplicationWorkflowWorkflowRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, continuationToken);
@@ -162,12 +186,20 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Workflow_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Filter string. </param>
         /// <param name="continuationToken"> Continuation token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DataReplicationWorkflowResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DataReplicationWorkflowResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DataReplicationWorkflowResource> GetAll(string filter = null, string continuationToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataReplicationWorkflowWorkflowRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, continuationToken);
@@ -185,6 +217,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Workflow_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -221,6 +261,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Workflow_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> The job (workflow) name. </param>
@@ -237,6 +285,96 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
             {
                 var response = _dataReplicationWorkflowWorkflowRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/jobs/{jobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Workflow_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobName"> The job (workflow) name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DataReplicationWorkflowResource>> GetIfExistsAsync(string jobName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+
+            using var scope = _dataReplicationWorkflowWorkflowClientDiagnostics.CreateScope("DataReplicationWorkflowCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _dataReplicationWorkflowWorkflowRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DataReplicationWorkflowResource>(response.GetRawResponse());
+                return Response.FromValue(new DataReplicationWorkflowResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/jobs/{jobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Workflow_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationWorkflowResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobName"> The job (workflow) name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
+        public virtual NullableResponse<DataReplicationWorkflowResource> GetIfExists(string jobName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+
+            using var scope = _dataReplicationWorkflowWorkflowClientDiagnostics.CreateScope("DataReplicationWorkflowCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _dataReplicationWorkflowWorkflowRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DataReplicationWorkflowResource>(response.GetRawResponse());
+                return Response.FromValue(new DataReplicationWorkflowResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

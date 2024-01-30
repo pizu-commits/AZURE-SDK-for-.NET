@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Azure;
@@ -17,14 +16,15 @@ using NUnit.Framework;
 
 namespace Azure.Verticals.AgriFood.Farming.Samples
 {
-    internal class Samples_FarmOperationsDataIngestion
+    public partial class Samples_FarmOperationsDataIngestion
     {
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetJobDetails()
+        public void Example_GetJobDetails_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetJobDetails("<jobId>", null);
 
@@ -36,10 +36,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetJobDetails_Async()
+        public async Task Example_GetJobDetails_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetJobDetailsAsync("<jobId>", null);
 
@@ -53,8 +54,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetJobDetails_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetJobDetails("<jobId>", null);
 
@@ -84,8 +86,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetJobDetails_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetJobDetailsAsync("<jobId>", null);
 
@@ -113,12 +116,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_CreateJob()
+        public void Example_CreateJob_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 partyId = "<partyId>",
                 authProviderId = "<authProviderId>",
@@ -135,12 +139,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_CreateJob_Async()
+        public async Task Example_CreateJob_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 partyId = "<partyId>",
                 authProviderId = "<authProviderId>",
@@ -159,17 +164,18 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_CreateJob_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 partyId = "<partyId>",
                 authProviderId = "<authProviderId>",
-                operations = new List<object>()
-{
+                operations = new object[]
+            {
 "<operations>"
-},
+            },
                 startYear = 1234,
                 isIncremental = true,
                 name = "<name>",
@@ -208,17 +214,18 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_CreateJob_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            FarmOperationsDataIngestion client = new FarmBeatsClient(credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
+            FarmOperationsDataIngestion client = new FarmBeatsClient(endpoint, credential).GetFarmOperationsDataIngestionClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 partyId = "<partyId>",
                 authProviderId = "<authProviderId>",
-                operations = new List<object>()
-{
+                operations = new object[]
+            {
 "<operations>"
-},
+            },
                 startYear = 1234,
                 isIncremental = true,
                 name = "<name>",

@@ -5,16 +5,26 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.MachineLearning.Models
 {
-    public partial class ClassificationTask : IUtf8JsonSerializable
+    public partial class ClassificationTask : IUtf8JsonSerializable, IJsonModel<ClassificationTask>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<ClassificationTask>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<ClassificationTask>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ClassificationTask>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ClassificationTask)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(PositiveLabel))
             {
@@ -74,6 +84,18 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     writer.WriteNull("featurizationSettings");
                 }
             }
+            if (Optional.IsDefined(FixedParameters))
+            {
+                if (FixedParameters != null)
+                {
+                    writer.WritePropertyName("fixedParameters"u8);
+                    writer.WriteObjectValue(FixedParameters);
+                }
+                else
+                {
+                    writer.WriteNull("fixedParameters");
+                }
+            }
             if (Optional.IsDefined(LimitSettings))
             {
                 if (LimitSettings != null)
@@ -96,6 +118,35 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 else
                 {
                     writer.WriteNull("nCrossValidations");
+                }
+            }
+            if (Optional.IsCollectionDefined(SearchSpace))
+            {
+                if (SearchSpace != null)
+                {
+                    writer.WritePropertyName("searchSpace"u8);
+                    writer.WriteStartArray();
+                    foreach (var item in SearchSpace)
+                    {
+                        writer.WriteObjectValue(item);
+                    }
+                    writer.WriteEndArray();
+                }
+                else
+                {
+                    writer.WriteNull("searchSpace");
+                }
+            }
+            if (Optional.IsDefined(SweepSettings))
+            {
+                if (SweepSettings != null)
+                {
+                    writer.WritePropertyName("sweepSettings"u8);
+                    writer.WriteObjectValue(SweepSettings);
+                }
+                else
+                {
+                    writer.WriteNull("sweepSettings");
                 }
             }
             if (Optional.IsDefined(TestData))
@@ -179,11 +230,40 @@ namespace Azure.ResourceManager.MachineLearning.Models
             writer.WriteStringValue(TaskType.ToString());
             writer.WritePropertyName("trainingData"u8);
             writer.WriteObjectValue(TrainingData);
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static ClassificationTask DeserializeClassificationTask(JsonElement element)
+        ClassificationTask IJsonModel<ClassificationTask>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ClassificationTask>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ClassificationTask)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeClassificationTask(document.RootElement, options);
+        }
+
+        internal static ClassificationTask DeserializeClassificationTask(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -193,8 +273,11 @@ namespace Azure.ResourceManager.MachineLearning.Models
             Optional<ClassificationTrainingSettings> trainingSettings = default;
             Optional<IList<string>> cvSplitColumnNames = default;
             Optional<TableVerticalFeaturizationSettings> featurizationSettings = default;
+            Optional<TableFixedParameters> fixedParameters = default;
             Optional<TableVerticalLimitSettings> limitSettings = default;
             Optional<NCrossValidations> nCrossValidations = default;
+            Optional<IList<TableParameterSubspace>> searchSpace = default;
+            Optional<TableSweepSettings> sweepSettings = default;
             Optional<MachineLearningTableJobInput> testData = default;
             Optional<double?> testDataSize = default;
             Optional<MachineLearningTableJobInput> validationData = default;
@@ -204,6 +287,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             Optional<string> targetColumnName = default;
             TaskType taskType = default;
             MachineLearningTableJobInput trainingData = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("positiveLabel"u8))
@@ -260,6 +345,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     featurizationSettings = TableVerticalFeaturizationSettings.DeserializeTableVerticalFeaturizationSettings(property.Value);
                     continue;
                 }
+                if (property.NameEquals("fixedParameters"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        fixedParameters = null;
+                        continue;
+                    }
+                    fixedParameters = TableFixedParameters.DeserializeTableFixedParameters(property.Value);
+                    continue;
+                }
                 if (property.NameEquals("limitSettings"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -278,6 +373,31 @@ namespace Azure.ResourceManager.MachineLearning.Models
                         continue;
                     }
                     nCrossValidations = NCrossValidations.DeserializeNCrossValidations(property.Value);
+                    continue;
+                }
+                if (property.NameEquals("searchSpace"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        searchSpace = null;
+                        continue;
+                    }
+                    List<TableParameterSubspace> array = new List<TableParameterSubspace>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(TableParameterSubspace.DeserializeTableParameterSubspace(item));
+                    }
+                    searchSpace = array;
+                    continue;
+                }
+                if (property.NameEquals("sweepSettings"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        sweepSettings = null;
+                        continue;
+                    }
+                    sweepSettings = TableSweepSettings.DeserializeTableSweepSettings(property.Value);
                     continue;
                 }
                 if (property.NameEquals("testData"u8))
@@ -359,8 +479,44 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     trainingData = MachineLearningTableJobInput.DeserializeMachineLearningTableJobInput(property.Value);
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new ClassificationTask(Optional.ToNullable(logVerbosity), targetColumnName.Value, taskType, trainingData, positiveLabel.Value, Optional.ToNullable(primaryMetric), trainingSettings.Value, Optional.ToList(cvSplitColumnNames), featurizationSettings.Value, limitSettings.Value, nCrossValidations.Value, testData.Value, Optional.ToNullable(testDataSize), validationData.Value, Optional.ToNullable(validationDataSize), weightColumnName.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new ClassificationTask(Optional.ToNullable(logVerbosity), targetColumnName.Value, taskType, trainingData, serializedAdditionalRawData, positiveLabel.Value, Optional.ToNullable(primaryMetric), trainingSettings.Value, Optional.ToList(cvSplitColumnNames), featurizationSettings.Value, fixedParameters.Value, limitSettings.Value, nCrossValidations.Value, Optional.ToList(searchSpace), sweepSettings.Value, testData.Value, Optional.ToNullable(testDataSize), validationData.Value, Optional.ToNullable(validationDataSize), weightColumnName.Value);
         }
+
+        BinaryData IPersistableModel<ClassificationTask>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ClassificationTask>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(ClassificationTask)} does not support '{options.Format}' format.");
+            }
+        }
+
+        ClassificationTask IPersistableModel<ClassificationTask>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ClassificationTask>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeClassificationTask(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(ClassificationTask)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<ClassificationTask>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

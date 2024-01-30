@@ -29,7 +29,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(AdditionalColumns);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(AdditionalColumns.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(AdditionalColumns))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WritePropertyName("type"u8);
@@ -60,7 +63,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -115,6 +121,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "ResponsysSource": return ResponsysSource.DeserializeResponsysSource(element);
                     case "SalesforceMarketingCloudSource": return SalesforceMarketingCloudSource.DeserializeSalesforceMarketingCloudSource(element);
                     case "SalesforceSource": return SalesforceSource.DeserializeSalesforceSource(element);
+                    case "SalesforceV2Source": return SalesforceV2Source.DeserializeSalesforceV2Source(element);
                     case "SapBwSource": return SapBWSource.DeserializeSapBWSource(element);
                     case "SapCloudForCustomerSource": return SapCloudForCustomerSource.DeserializeSapCloudForCustomerSource(element);
                     case "SapEccSource": return SapEccSource.DeserializeSapEccSource(element);
@@ -133,6 +140,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "SybaseSource": return SybaseSource.DeserializeSybaseSource(element);
                     case "TeradataSource": return TeradataSource.DeserializeTeradataSource(element);
                     case "VerticaSource": return VerticaSource.DeserializeVerticaSource(element);
+                    case "WarehouseSource": return WarehouseSource.DeserializeWarehouseSource(element);
                     case "XeroSource": return XeroSource.DeserializeXeroSource(element);
                     case "ZohoSource": return ZohoSource.DeserializeZohoSource(element);
                 }

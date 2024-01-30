@@ -20,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.RecoveryServicesDataReplication
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DataReplicationEventResource" /> and their operations.
-    /// Each <see cref="DataReplicationEventResource" /> in the collection will belong to the same instance of <see cref="DataReplicationVaultResource" />.
-    /// To get a <see cref="DataReplicationEventCollection" /> instance call the GetDataReplicationEvents method from an instance of <see cref="DataReplicationVaultResource" />.
+    /// A class representing a collection of <see cref="DataReplicationEventResource"/> and their operations.
+    /// Each <see cref="DataReplicationEventResource"/> in the collection will belong to the same instance of <see cref="DataReplicationVaultResource"/>.
+    /// To get a <see cref="DataReplicationEventCollection"/> instance call the GetDataReplicationEvents method from an instance of <see cref="DataReplicationVaultResource"/>.
     /// </summary>
     public partial class DataReplicationEventCollection : ArmCollection, IEnumerable<DataReplicationEventResource>, IAsyncEnumerable<DataReplicationEventResource>
     {
@@ -64,6 +64,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Event_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="eventName"> The event name. </param>
@@ -100,6 +108,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Event_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -138,12 +154,20 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Event_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Filter string. </param>
         /// <param name="continuationToken"> Continuation token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DataReplicationEventResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DataReplicationEventResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DataReplicationEventResource> GetAllAsync(string filter = null, string continuationToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataReplicationEventEventRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, continuationToken);
@@ -162,12 +186,20 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Event_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Filter string. </param>
         /// <param name="continuationToken"> Continuation token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DataReplicationEventResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DataReplicationEventResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DataReplicationEventResource> GetAll(string filter = null, string continuationToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataReplicationEventEventRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, continuationToken);
@@ -185,6 +217,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Event_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -221,6 +261,14 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
         /// <term>Operation Id</term>
         /// <description>Event_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="eventName"> The event name. </param>
@@ -237,6 +285,96 @@ namespace Azure.ResourceManager.RecoveryServicesDataReplication
             {
                 var response = _dataReplicationEventEventRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, eventName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events/{eventName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Event_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="eventName"> The event name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="eventName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="eventName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DataReplicationEventResource>> GetIfExistsAsync(string eventName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(eventName, nameof(eventName));
+
+            using var scope = _dataReplicationEventEventClientDiagnostics.CreateScope("DataReplicationEventCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _dataReplicationEventEventRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, eventName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DataReplicationEventResource>(response.GetRawResponse());
+                return Response.FromValue(new DataReplicationEventResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events/{eventName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Event_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-16-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataReplicationEventResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="eventName"> The event name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="eventName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="eventName"/> is null. </exception>
+        public virtual NullableResponse<DataReplicationEventResource> GetIfExists(string eventName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(eventName, nameof(eventName));
+
+            using var scope = _dataReplicationEventEventClientDiagnostics.CreateScope("DataReplicationEventCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _dataReplicationEventEventRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, eventName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DataReplicationEventResource>(response.GetRawResponse());
+                return Response.FromValue(new DataReplicationEventResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

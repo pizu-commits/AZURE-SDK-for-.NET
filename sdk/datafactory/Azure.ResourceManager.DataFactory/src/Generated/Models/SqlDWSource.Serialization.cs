@@ -34,7 +34,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(StoredProcedureParameters);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(StoredProcedureParameters.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(StoredProcedureParameters))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(IsolationLevel))
@@ -45,11 +48,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             if (Optional.IsDefined(PartitionOption))
             {
                 writer.WritePropertyName("partitionOption"u8);
-#if NET6_0_OR_GREATER
-				writer.WriteRawValue(PartitionOption);
-#else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(PartitionOption.ToString()).RootElement);
-#endif
+                JsonSerializer.Serialize(writer, PartitionOption);
             }
             if (Optional.IsDefined(PartitionSettings))
             {
@@ -67,7 +66,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(AdditionalColumns);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(AdditionalColumns.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(AdditionalColumns))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WritePropertyName("type"u8);
@@ -98,7 +100,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -114,7 +119,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<DataFactoryElement<string>> sqlReaderStoredProcedureName = default;
             Optional<BinaryData> storedProcedureParameters = default;
             Optional<DataFactoryElement<string>> isolationLevel = default;
-            Optional<BinaryData> partitionOption = default;
+            Optional<DataFactoryElement<string>> partitionOption = default;
             Optional<SqlPartitionSettings> partitionSettings = default;
             Optional<DataFactoryElement<string>> queryTimeout = default;
             Optional<BinaryData> additionalColumns = default;
@@ -169,7 +174,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    partitionOption = BinaryData.FromString(property.Value.GetRawText());
+                    partitionOption = JsonSerializer.Deserialize<DataFactoryElement<string>>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("partitionSettings"u8))

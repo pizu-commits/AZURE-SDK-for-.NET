@@ -6,6 +6,8 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
+using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 using Azure.ResourceManager.Models;
@@ -13,11 +15,39 @@ using Azure.ResourceManager.Support.Models;
 
 namespace Azure.ResourceManager.Support
 {
-    public partial class SupportTicketData : IUtf8JsonSerializable
+    public partial class SupportTicketData : IUtf8JsonSerializable, IJsonModel<SupportTicketData>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<SupportTicketData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<SupportTicketData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<SupportTicketData>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(SupportTicketData)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("id"u8);
+                writer.WriteStringValue(Id);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(Name);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("type"u8);
+                writer.WriteStringValue(ResourceType);
+            }
+            if (options.Format != "W" && Optional.IsDefined(SystemData))
+            {
+                writer.WritePropertyName("systemData"u8);
+                JsonSerializer.Serialize(writer, SystemData);
+            }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
             if (Optional.IsDefined(SupportTicketId))
@@ -35,15 +65,40 @@ namespace Azure.ResourceManager.Support
                 writer.WritePropertyName("problemClassificationId"u8);
                 writer.WriteStringValue(ProblemClassificationId);
             }
+            if (options.Format != "W" && Optional.IsDefined(ProblemClassificationDisplayName))
+            {
+                writer.WritePropertyName("problemClassificationDisplayName"u8);
+                writer.WriteStringValue(ProblemClassificationDisplayName);
+            }
             if (Optional.IsDefined(Severity))
             {
                 writer.WritePropertyName("severity"u8);
                 writer.WriteStringValue(Severity.Value.ToString());
             }
+            if (options.Format != "W" && Optional.IsDefined(EnrollmentId))
+            {
+                writer.WritePropertyName("enrollmentId"u8);
+                writer.WriteStringValue(EnrollmentId);
+            }
             if (Optional.IsDefined(Require24X7Response))
             {
                 writer.WritePropertyName("require24X7Response"u8);
                 writer.WriteBooleanValue(Require24X7Response.Value);
+            }
+            if (Optional.IsDefined(AdvancedDiagnosticConsent))
+            {
+                writer.WritePropertyName("advancedDiagnosticConsent"u8);
+                writer.WriteStringValue(AdvancedDiagnosticConsent.Value.ToString());
+            }
+            if (Optional.IsDefined(ProblemScopingQuestions))
+            {
+                writer.WritePropertyName("problemScopingQuestions"u8);
+                writer.WriteStringValue(ProblemScopingQuestions);
+            }
+            if (Optional.IsDefined(SupportPlanId))
+            {
+                writer.WritePropertyName("supportPlanId"u8);
+                writer.WriteStringValue(SupportPlanId);
             }
             if (Optional.IsDefined(ContactDetails))
             {
@@ -60,6 +115,16 @@ namespace Azure.ResourceManager.Support
                 writer.WritePropertyName("supportEngineer"u8);
                 writer.WriteObjectValue(SupportEngineer);
             }
+            if (options.Format != "W" && Optional.IsDefined(SupportPlanType))
+            {
+                writer.WritePropertyName("supportPlanType"u8);
+                writer.WriteStringValue(SupportPlanType);
+            }
+            if (options.Format != "W" && Optional.IsDefined(SupportPlanDisplayName))
+            {
+                writer.WritePropertyName("supportPlanDisplayName"u8);
+                writer.WriteStringValue(SupportPlanDisplayName);
+            }
             if (Optional.IsDefined(Title))
             {
                 writer.WritePropertyName("title"u8);
@@ -75,6 +140,31 @@ namespace Azure.ResourceManager.Support
                 writer.WritePropertyName("serviceId"u8);
                 writer.WriteStringValue(ServiceId);
             }
+            if (options.Format != "W" && Optional.IsDefined(ServiceDisplayName))
+            {
+                writer.WritePropertyName("serviceDisplayName"u8);
+                writer.WriteStringValue(ServiceDisplayName);
+            }
+            if (options.Format != "W" && Optional.IsDefined(Status))
+            {
+                writer.WritePropertyName("status"u8);
+                writer.WriteStringValue(Status);
+            }
+            if (options.Format != "W" && Optional.IsDefined(CreatedOn))
+            {
+                writer.WritePropertyName("createdDate"u8);
+                writer.WriteStringValue(CreatedOn.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(ModifiedOn))
+            {
+                writer.WritePropertyName("modifiedDate"u8);
+                writer.WriteStringValue(ModifiedOn.Value, "O");
+            }
+            if (Optional.IsDefined(FileWorkspaceName))
+            {
+                writer.WritePropertyName("fileWorkspaceName"u8);
+                writer.WriteStringValue(FileWorkspaceName);
+            }
             if (Optional.IsDefined(TechnicalTicketDetails))
             {
                 writer.WritePropertyName("technicalTicketDetails"u8);
@@ -85,12 +175,51 @@ namespace Azure.ResourceManager.Support
                 writer.WritePropertyName("quotaTicketDetails"u8);
                 writer.WriteObjectValue(QuotaTicketDetails);
             }
+            if (Optional.IsCollectionDefined(SecondaryConsent))
+            {
+                writer.WritePropertyName("secondaryConsent"u8);
+                writer.WriteStartArray();
+                foreach (var item in SecondaryConsent)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
+            }
             writer.WriteEndObject();
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static SupportTicketData DeserializeSupportTicketData(JsonElement element)
+        SupportTicketData IJsonModel<SupportTicketData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<SupportTicketData>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(SupportTicketData)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeSupportTicketData(document.RootElement, options);
+        }
+
+        internal static SupportTicketData DeserializeSupportTicketData(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -106,10 +235,14 @@ namespace Azure.ResourceManager.Support
             Optional<SupportSeverityLevel> severity = default;
             Optional<string> enrollmentId = default;
             Optional<bool> require24X7Response = default;
+            Optional<AdvancedDiagnosticConsent> advancedDiagnosticConsent = default;
+            Optional<string> problemScopingQuestions = default;
+            Optional<string> supportPlanId = default;
             Optional<SupportContactProfile> contactDetails = default;
             Optional<SupportServiceLevelAgreement> serviceLevelAgreement = default;
             Optional<SupportEngineer> supportEngineer = default;
             Optional<string> supportPlanType = default;
+            Optional<string> supportPlanDisplayName = default;
             Optional<string> title = default;
             Optional<DateTimeOffset> problemStartTime = default;
             Optional<string> serviceId = default;
@@ -117,8 +250,12 @@ namespace Azure.ResourceManager.Support
             Optional<string> status = default;
             Optional<DateTimeOffset> createdDate = default;
             Optional<DateTimeOffset> modifiedDate = default;
+            Optional<string> fileWorkspaceName = default;
             Optional<TechnicalTicketDetails> technicalTicketDetails = default;
             Optional<QuotaTicketDetails> quotaTicketDetails = default;
+            Optional<IList<SecondaryConsent>> secondaryConsent = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("id"u8))
@@ -197,6 +334,25 @@ namespace Azure.ResourceManager.Support
                             require24X7Response = property0.Value.GetBoolean();
                             continue;
                         }
+                        if (property0.NameEquals("advancedDiagnosticConsent"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            advancedDiagnosticConsent = new AdvancedDiagnosticConsent(property0.Value.GetString());
+                            continue;
+                        }
+                        if (property0.NameEquals("problemScopingQuestions"u8))
+                        {
+                            problemScopingQuestions = property0.Value.GetString();
+                            continue;
+                        }
+                        if (property0.NameEquals("supportPlanId"u8))
+                        {
+                            supportPlanId = property0.Value.GetString();
+                            continue;
+                        }
                         if (property0.NameEquals("contactDetails"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -227,6 +383,11 @@ namespace Azure.ResourceManager.Support
                         if (property0.NameEquals("supportPlanType"u8))
                         {
                             supportPlanType = property0.Value.GetString();
+                            continue;
+                        }
+                        if (property0.NameEquals("supportPlanDisplayName"u8))
+                        {
+                            supportPlanDisplayName = property0.Value.GetString();
                             continue;
                         }
                         if (property0.NameEquals("title"u8))
@@ -276,6 +437,11 @@ namespace Azure.ResourceManager.Support
                             modifiedDate = property0.Value.GetDateTimeOffset("O");
                             continue;
                         }
+                        if (property0.NameEquals("fileWorkspaceName"u8))
+                        {
+                            fileWorkspaceName = property0.Value.GetString();
+                            continue;
+                        }
                         if (property0.NameEquals("technicalTicketDetails"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -294,11 +460,61 @@ namespace Azure.ResourceManager.Support
                             quotaTicketDetails = QuotaTicketDetails.DeserializeQuotaTicketDetails(property0.Value);
                             continue;
                         }
+                        if (property0.NameEquals("secondaryConsent"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            List<SecondaryConsent> array = new List<SecondaryConsent>();
+                            foreach (var item in property0.Value.EnumerateArray())
+                            {
+                                array.Add(Models.SecondaryConsent.DeserializeSecondaryConsent(item));
+                            }
+                            secondaryConsent = array;
+                            continue;
+                        }
                     }
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new SupportTicketData(id, name, type, systemData.Value, supportTicketId.Value, description.Value, problemClassificationId.Value, problemClassificationDisplayName.Value, Optional.ToNullable(severity), enrollmentId.Value, Optional.ToNullable(require24X7Response), contactDetails.Value, serviceLevelAgreement.Value, supportEngineer.Value, supportPlanType.Value, title.Value, Optional.ToNullable(problemStartTime), serviceId.Value, serviceDisplayName.Value, status.Value, Optional.ToNullable(createdDate), Optional.ToNullable(modifiedDate), technicalTicketDetails.Value, quotaTicketDetails.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new SupportTicketData(id, name, type, systemData.Value, supportTicketId.Value, description.Value, problemClassificationId.Value, problemClassificationDisplayName.Value, Optional.ToNullable(severity), enrollmentId.Value, Optional.ToNullable(require24X7Response), Optional.ToNullable(advancedDiagnosticConsent), problemScopingQuestions.Value, supportPlanId.Value, contactDetails.Value, serviceLevelAgreement.Value, supportEngineer.Value, supportPlanType.Value, supportPlanDisplayName.Value, title.Value, Optional.ToNullable(problemStartTime), serviceId.Value, serviceDisplayName.Value, status.Value, Optional.ToNullable(createdDate), Optional.ToNullable(modifiedDate), fileWorkspaceName.Value, technicalTicketDetails.Value, quotaTicketDetails.Value, Optional.ToList(secondaryConsent), serializedAdditionalRawData);
         }
+
+        BinaryData IPersistableModel<SupportTicketData>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<SupportTicketData>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(SupportTicketData)} does not support '{options.Format}' format.");
+            }
+        }
+
+        SupportTicketData IPersistableModel<SupportTicketData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<SupportTicketData>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeSupportTicketData(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(SupportTicketData)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<SupportTicketData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

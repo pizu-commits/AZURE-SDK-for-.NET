@@ -5,10 +5,11 @@
       <example>
 This sample shows how to call CreateOrUpdateAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     measures = new
     {
@@ -25,10 +26,11 @@ Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetPropert
 ]]></code>
 This sample shows how to call CreateOrUpdateAsync with all parameters and request content and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     type = "<type>",
     manufacturer = "<manufacturer>",
@@ -83,10 +85,11 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call CreateOrUpdate and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     measures = new
     {
@@ -103,10 +106,11 @@ Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetPropert
 ]]></code>
 This sample shows how to call CreateOrUpdate with all parameters and request content and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     type = "<type>",
     manufacturer = "<manufacturer>",
@@ -161,8 +165,9 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call GetSensorDataModelAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.GetSensorDataModelAsync("<sensorPartnerId>", "<sensorDataModelId>", null);
 
@@ -171,8 +176,9 @@ Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetPropert
 ]]></code>
 This sample shows how to call GetSensorDataModelAsync with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.GetSensorDataModelAsync("<sensorPartnerId>", "<sensorDataModelId>", null);
 
@@ -202,8 +208,9 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call GetSensorDataModel and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.GetSensorDataModel("<sensorPartnerId>", "<sensorDataModelId>", null);
 
@@ -212,8 +219,9 @@ Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetPropert
 ]]></code>
 This sample shows how to call GetSensorDataModel with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.GetSensorDataModel("<sensorPartnerId>", "<sensorDataModelId>", null);
 
@@ -243,18 +251,22 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call DeleteAsync.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.DeleteAsync("<sensorPartnerId>", "<sensorDataModelId>");
+
 Console.WriteLine(response.Status);
 ]]></code>
 This sample shows how to call DeleteAsync with all parameters.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.DeleteAsync("<sensorPartnerId>", "<sensorDataModelId>");
+
 Console.WriteLine(response.Status);
 ]]></code></example>
     </member>
@@ -262,18 +274,22 @@ Console.WriteLine(response.Status);
       <example>
 This sample shows how to call Delete.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.Delete("<sensorPartnerId>", "<sensorDataModelId>");
+
 Console.WriteLine(response.Status);
 ]]></code>
 This sample shows how to call Delete with all parameters.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.Delete("<sensorPartnerId>", "<sensorDataModelId>");
+
 Console.WriteLine(response.Status);
 ]]></code></example>
     </member>
@@ -281,54 +297,44 @@ Console.WriteLine(response.Status);
       <example>
 This sample shows how to call GetSensorDataModelsAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 await foreach (BinaryData item in client.GetSensorDataModelsAsync("<sensorPartnerId>", null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
 }
 ]]></code>
 This sample shows how to call GetSensorDataModelsAsync with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-await foreach (BinaryData item in client.GetSensorDataModelsAsync("<sensorPartnerId>", new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+await foreach (BinaryData item in client.GetSensorDataModelsAsync("<sensorPartnerId>", new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("type").ToString());
-    Console.WriteLine(result[0].GetProperty("manufacturer").ToString());
-    Console.WriteLine(result[0].GetProperty("productCode").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("type").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("properties").GetProperty("<key>").ToString());
-    Console.WriteLine(result[0].GetProperty("sensorPartnerId").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("manufacturer").ToString());
+    Console.WriteLine(result.GetProperty("productCode").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("sensorPartnerId").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>
@@ -336,54 +342,44 @@ await foreach (BinaryData item in client.GetSensorDataModelsAsync("<sensorPartne
       <example>
 This sample shows how to call GetSensorDataModels and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
 foreach (BinaryData item in client.GetSensorDataModels("<sensorPartnerId>", null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
 }
 ]]></code>
 This sample shows how to call GetSensorDataModels with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-SensorDataModels client = new FarmBeatsClient(credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
+SensorDataModels client = new FarmBeatsClient(endpoint, credential).GetSensorDataModelsClient(apiVersion: "2022-11-01-preview");
 
-foreach (BinaryData item in client.GetSensorDataModels("<sensorPartnerId>", new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+foreach (BinaryData item in client.GetSensorDataModels("<sensorPartnerId>", new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("type").ToString());
-    Console.WriteLine(result[0].GetProperty("manufacturer").ToString());
-    Console.WriteLine(result[0].GetProperty("productCode").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("type").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("measures").GetProperty("<key>").GetProperty("properties").GetProperty("<key>").ToString());
-    Console.WriteLine(result[0].GetProperty("sensorPartnerId").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("manufacturer").ToString());
+    Console.WriteLine(result.GetProperty("productCode").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("dataType").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("measures").GetProperty("<key>").GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("sensorPartnerId").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>

@@ -55,21 +55,49 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item);
 #else
-                    JsonSerializer.Serialize(writer, JsonDocument.Parse(item.ToString()).RootElement);
+                    using (JsonDocument document = JsonDocument.Parse(item))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
 #endif
                 }
                 writer.WriteEndArray();
             }
             writer.WritePropertyName("typeProperties"u8);
             writer.WriteStartObject();
+            if (Optional.IsDefined(DriverVersion))
+            {
+                writer.WritePropertyName("driverVersion"u8);
+                JsonSerializer.Serialize(writer, DriverVersion);
+            }
             if (Optional.IsDefined(ConnectionString))
             {
                 writer.WritePropertyName("connectionString"u8);
                 JsonSerializer.Serialize(writer, ConnectionString);
             }
+            if (Optional.IsDefined(Server))
+            {
+                writer.WritePropertyName("server"u8);
+                JsonSerializer.Serialize(writer, Server);
+            }
+            if (Optional.IsDefined(Port))
+            {
+                writer.WritePropertyName("port"u8);
+                JsonSerializer.Serialize(writer, Port);
+            }
+            if (Optional.IsDefined(Username))
+            {
+                writer.WritePropertyName("username"u8);
+                JsonSerializer.Serialize(writer, Username);
+            }
+            if (Optional.IsDefined(Database))
+            {
+                writer.WritePropertyName("database"u8);
+                JsonSerializer.Serialize(writer, Database);
+            }
             if (Optional.IsDefined(Password))
             {
-                writer.WritePropertyName("pwd"u8);
+                writer.WritePropertyName("password"u8);
                 JsonSerializer.Serialize(writer, Password);
             }
             if (Optional.IsDefined(EncryptedCredential))
@@ -84,7 +112,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -101,7 +132,12 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<string> description = default;
             Optional<IDictionary<string, EntityParameterSpecification>> parameters = default;
             Optional<IList<BinaryData>> annotations = default;
+            Optional<DataFactoryElement<string>> driverVersion = default;
             Optional<DataFactoryElement<string>> connectionString = default;
+            Optional<DataFactoryElement<string>> server = default;
+            Optional<DataFactoryElement<int>> port = default;
+            Optional<DataFactoryElement<string>> username = default;
+            Optional<DataFactoryElement<string>> database = default;
             Optional<DataFactoryKeyVaultSecretReference> password = default;
             Optional<string> encryptedCredential = default;
             IDictionary<string, BinaryData> additionalProperties = default;
@@ -171,6 +207,15 @@ namespace Azure.ResourceManager.DataFactory.Models
                     }
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
+                        if (property0.NameEquals("driverVersion"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            driverVersion = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
+                            continue;
+                        }
                         if (property0.NameEquals("connectionString"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -180,7 +225,43 @@ namespace Azure.ResourceManager.DataFactory.Models
                             connectionString = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
                             continue;
                         }
-                        if (property0.NameEquals("pwd"u8))
+                        if (property0.NameEquals("server"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            server = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
+                            continue;
+                        }
+                        if (property0.NameEquals("port"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            port = JsonSerializer.Deserialize<DataFactoryElement<int>>(property0.Value.GetRawText());
+                            continue;
+                        }
+                        if (property0.NameEquals("username"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            username = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
+                            continue;
+                        }
+                        if (property0.NameEquals("database"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            database = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
+                            continue;
+                        }
+                        if (property0.NameEquals("password"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
                             {
@@ -200,7 +281,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                 additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
             }
             additionalProperties = additionalPropertiesDictionary;
-            return new MariaDBLinkedService(type, connectVia.Value, description.Value, Optional.ToDictionary(parameters), Optional.ToList(annotations), additionalProperties, connectionString.Value, password, encryptedCredential.Value);
+            return new MariaDBLinkedService(type, connectVia.Value, description.Value, Optional.ToDictionary(parameters), Optional.ToList(annotations), additionalProperties, driverVersion.Value, connectionString.Value, server.Value, port.Value, username.Value, database.Value, password, encryptedCredential.Value);
         }
     }
 }

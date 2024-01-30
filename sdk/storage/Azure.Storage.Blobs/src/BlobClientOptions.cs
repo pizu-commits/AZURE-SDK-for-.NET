@@ -131,7 +131,12 @@ namespace Azure.Storage.Blobs
             /// <summary>
             /// The 2023-11-03 service version.
             /// </summary>
-            V2023_11_03 = 20
+            V2023_11_03 = 20,
+
+            /// <summary>
+            /// The 2024-02-04 service version.
+            /// </summary>
+            V2024_02_04 = 21
 #pragma warning restore CA1707 // Identifiers should not contain underscores
         }
 
@@ -177,6 +182,11 @@ namespace Azure.Storage.Blobs
         /// Defaults to true for backwards compatibility.
         /// </summary>
         public bool TrimBlobNameSlashes { get; set; } = Constants.DefaultTrimBlobNameSlashes;
+
+        /// <summary>
+        /// Behavior options for setting HTTP header <c>Expect: 100-continue</c> on requests.
+        /// </summary>
+        public ExpectContinueOptions ExpectContinueBehavior { get; set; }
 
         #region Advanced Options
         internal ClientSideEncryptionOptions _clientSideEncryptionOptions;
@@ -329,7 +339,7 @@ namespace Azure.Storage.Blobs
         /// <returns>An HttpPipeline to use for Storage requests.</returns>
         internal HttpPipeline Build(HttpPipelinePolicy authentication = null)
         {
-            return this.Build(authentication, GeoRedundantSecondaryUri);
+            return this.Build(authentication, GeoRedundantSecondaryUri, ExpectContinueBehavior);
         }
 
         /// <summary>
@@ -339,7 +349,7 @@ namespace Azure.Storage.Blobs
         /// <returns>An HttpPipeline to use for Storage requests.</returns>
         internal HttpPipeline Build(object credentials)
         {
-            return this.Build(credentials, GeoRedundantSecondaryUri);
+            return this.Build(credentials, GeoRedundantSecondaryUri, ExpectContinueBehavior);
         }
 
         /// <inheritdoc />
@@ -348,7 +358,7 @@ namespace Azure.Storage.Blobs
         /// <summary>
         /// Gets or sets the Audience to use for authentication with Azure Active Directory (AAD). The audience is not considered when using a shared key.
         /// </summary>
-        /// <value>If <c>null</c>, <see cref="BlobAudience.PublicAudience" /> will be assumed.</value>
+        /// <value>If <c>null</c>, <see cref="BlobAudience.DefaultAudience" /> will be assumed.</value>
         public BlobAudience? Audience { get; set; }
     }
 }

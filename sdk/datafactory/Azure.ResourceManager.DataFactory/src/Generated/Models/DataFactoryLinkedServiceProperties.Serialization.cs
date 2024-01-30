@@ -52,7 +52,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item);
 #else
-                    JsonSerializer.Serialize(writer, JsonDocument.Parse(item.ToString()).RootElement);
+                    using (JsonDocument document = JsonDocument.Parse(item))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
 #endif
                 }
                 writer.WriteEndArray();
@@ -63,7 +66,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -141,6 +147,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "Impala": return ImpalaLinkedService.DeserializeImpalaLinkedService(element);
                     case "Informix": return InformixLinkedService.DeserializeInformixLinkedService(element);
                     case "Jira": return JiraLinkedService.DeserializeJiraLinkedService(element);
+                    case "LakeHouse": return LakeHouseLinkedService.DeserializeLakeHouseLinkedService(element);
                     case "Magento": return MagentoLinkedService.DeserializeMagentoLinkedService(element);
                     case "MariaDB": return MariaDBLinkedService.DeserializeMariaDBLinkedService(element);
                     case "Marketo": return MarketoLinkedService.DeserializeMarketoLinkedService(element);
@@ -167,6 +174,8 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "Salesforce": return SalesforceLinkedService.DeserializeSalesforceLinkedService(element);
                     case "SalesforceMarketingCloud": return SalesforceMarketingCloudLinkedService.DeserializeSalesforceMarketingCloudLinkedService(element);
                     case "SalesforceServiceCloud": return SalesforceServiceCloudLinkedService.DeserializeSalesforceServiceCloudLinkedService(element);
+                    case "SalesforceServiceCloudV2": return SalesforceServiceCloudV2LinkedService.DeserializeSalesforceServiceCloudV2LinkedService(element);
+                    case "SalesforceV2": return SalesforceV2LinkedService.DeserializeSalesforceV2LinkedService(element);
                     case "SapBW": return SapBWLinkedService.DeserializeSapBWLinkedService(element);
                     case "SapCloudForCustomer": return SapCloudForCustomerLinkedService.DeserializeSapCloudForCustomerLinkedService(element);
                     case "SapEcc": return SapEccLinkedService.DeserializeSapEccLinkedService(element);
@@ -180,6 +189,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "Shopify": return ShopifyLinkedService.DeserializeShopifyLinkedService(element);
                     case "Smartsheet": return SmartsheetLinkedService.DeserializeSmartsheetLinkedService(element);
                     case "Snowflake": return SnowflakeLinkedService.DeserializeSnowflakeLinkedService(element);
+                    case "SnowflakeV2": return SnowflakeV2LinkedService.DeserializeSnowflakeV2LinkedService(element);
                     case "Spark": return SparkLinkedService.DeserializeSparkLinkedService(element);
                     case "SqlServer": return SqlServerLinkedService.DeserializeSqlServerLinkedService(element);
                     case "Square": return SquareLinkedService.DeserializeSquareLinkedService(element);
@@ -188,6 +198,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "Teradata": return TeradataLinkedService.DeserializeTeradataLinkedService(element);
                     case "Twilio": return TwilioLinkedService.DeserializeTwilioLinkedService(element);
                     case "Vertica": return VerticaLinkedService.DeserializeVerticaLinkedService(element);
+                    case "Warehouse": return WarehouseLinkedService.DeserializeWarehouseLinkedService(element);
                     case "Web": return WebLinkedService.DeserializeWebLinkedService(element);
                     case "Xero": return XeroLinkedService.DeserializeXeroLinkedService(element);
                     case "Zendesk": return ZendeskLinkedService.DeserializeZendeskLinkedService(element);

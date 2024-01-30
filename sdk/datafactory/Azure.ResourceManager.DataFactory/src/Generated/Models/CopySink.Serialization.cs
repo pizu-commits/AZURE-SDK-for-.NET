@@ -53,7 +53,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -92,6 +95,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "FileSystemSink": return FileSystemSink.DeserializeFileSystemSink(element);
                     case "InformixSink": return InformixSink.DeserializeInformixSink(element);
                     case "JsonSink": return JsonSink.DeserializeJsonSink(element);
+                    case "LakeHouseTableSink": return LakeHouseTableSink.DeserializeLakeHouseTableSink(element);
                     case "MicrosoftAccessSink": return MicrosoftAccessSink.DeserializeMicrosoftAccessSink(element);
                     case "MongoDbAtlasSink": return MongoDBAtlasSink.DeserializeMongoDBAtlasSink(element);
                     case "MongoDbV2Sink": return MongoDBV2Sink.DeserializeMongoDBV2Sink(element);
@@ -101,13 +105,17 @@ namespace Azure.ResourceManager.DataFactory.Models
                     case "ParquetSink": return ParquetSink.DeserializeParquetSink(element);
                     case "RestSink": return RestSink.DeserializeRestSink(element);
                     case "SalesforceServiceCloudSink": return SalesforceServiceCloudSink.DeserializeSalesforceServiceCloudSink(element);
+                    case "SalesforceServiceCloudV2Sink": return SalesforceServiceCloudV2Sink.DeserializeSalesforceServiceCloudV2Sink(element);
                     case "SalesforceSink": return SalesforceSink.DeserializeSalesforceSink(element);
+                    case "SalesforceV2Sink": return SalesforceV2Sink.DeserializeSalesforceV2Sink(element);
                     case "SapCloudForCustomerSink": return SapCloudForCustomerSink.DeserializeSapCloudForCustomerSink(element);
                     case "SnowflakeSink": return SnowflakeSink.DeserializeSnowflakeSink(element);
+                    case "SnowflakeV2Sink": return SnowflakeV2Sink.DeserializeSnowflakeV2Sink(element);
                     case "SqlDWSink": return SqlDWSink.DeserializeSqlDWSink(element);
                     case "SqlMISink": return SqlMISink.DeserializeSqlMISink(element);
                     case "SqlServerSink": return SqlServerSink.DeserializeSqlServerSink(element);
                     case "SqlSink": return SqlSink.DeserializeSqlSink(element);
+                    case "WarehouseSink": return WarehouseSink.DeserializeWarehouseSink(element);
                 }
             }
             return UnknownCopySink.DeserializeUnknownCopySink(element);

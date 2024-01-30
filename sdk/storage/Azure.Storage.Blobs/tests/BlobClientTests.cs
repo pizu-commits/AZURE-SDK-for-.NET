@@ -208,7 +208,7 @@ namespace Azure.Storage.Blobs.Test
             }
 
             // Act - Create new blob client with the OAuth Credential and Audience
-            BlobClientOptions options = GetOptionsWithAudience(BlobAudience.PublicAudience);
+            BlobClientOptions options = GetOptionsWithAudience(BlobAudience.DefaultAudience);
 
             BlobUriBuilder uriBuilder = new BlobUriBuilder(new Uri(Tenants.TestConfigOAuth.BlobServiceEndpoint))
             {
@@ -272,7 +272,7 @@ namespace Azure.Storage.Blobs.Test
             }
 
             // Act - Create new blob client with the OAuth Credential and Audience
-            BlobClientOptions options = GetOptionsWithAudience(BlobAudience.GetBlobServiceAccountAudience(test.Container.AccountName));
+            BlobClientOptions options = GetOptionsWithAudience(BlobAudience.CreateBlobServiceAccountAudience(test.Container.AccountName));
 
             BlobUriBuilder uriBuilder = new BlobUriBuilder(new Uri(Tenants.TestConfigOAuth.BlobServiceEndpoint))
             {
@@ -1325,6 +1325,28 @@ namespace Azure.Storage.Blobs.Test
             Assert.IsFalse(progress.List.Count == 0);
 
             Assert.AreEqual(size, progress.List[progress.List.Count - 1]);
+        }
+
+        [RecordedTest]
+        public async Task UploadAsync_ExpectContinue()
+        {
+            AssertMessageContentsPolicy assertPolicy = new(checkRequest: req =>
+            {
+                Assert.That(req.Headers.TryGetValue("Expect", out string val), Is.True);
+                Assert.That(val, Is.EqualTo("100-continue"));
+            });
+
+            BlobClientOptions options = GetOptions();
+            options.ExpectContinueBehavior = new() { Mode = ExpectContinueMode.On };
+            options.AddPolicy(assertPolicy, Core.HttpPipelinePosition.BeforeTransport);
+            await using DisposingContainer test = await GetTestContainerAsync(
+                BlobsClientBuilder.GetServiceClient_SharedKey(options));
+            BlobClient blob = InstrumentClient(test.Container.GetBlobClient(GetNewBlobName()));
+
+            using (assertPolicy.CheckRequestScope())
+            {
+                await blob.UploadAsync(BinaryData.FromBytes(GetRandomBuffer(1024)));
+            }
         }
         #endregion Upload
 

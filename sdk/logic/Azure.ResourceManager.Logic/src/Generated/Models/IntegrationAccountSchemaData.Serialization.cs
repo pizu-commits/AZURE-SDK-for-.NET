@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
@@ -14,10 +15,18 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.Logic
 {
-    public partial class IntegrationAccountSchemaData : IUtf8JsonSerializable
+    public partial class IntegrationAccountSchemaData : IUtf8JsonSerializable, IJsonModel<IntegrationAccountSchemaData>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<IntegrationAccountSchemaData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<IntegrationAccountSchemaData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<IntegrationAccountSchemaData>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(IntegrationAccountSchemaData)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsCollectionDefined(Tags))
             {
@@ -32,6 +41,26 @@ namespace Azure.ResourceManager.Logic
             }
             writer.WritePropertyName("location"u8);
             writer.WriteStringValue(Location);
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("id"u8);
+                writer.WriteStringValue(Id);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(Name);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("type"u8);
+                writer.WriteStringValue(ResourceType);
+            }
+            if (options.Format != "W" && Optional.IsDefined(SystemData))
+            {
+                writer.WritePropertyName("systemData"u8);
+                JsonSerializer.Serialize(writer, SystemData);
+            }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
             writer.WritePropertyName("schemaType"u8);
@@ -51,13 +80,26 @@ namespace Azure.ResourceManager.Logic
                 writer.WritePropertyName("fileName"u8);
                 writer.WriteStringValue(FileName);
             }
+            if (options.Format != "W" && Optional.IsDefined(CreatedOn))
+            {
+                writer.WritePropertyName("createdTime"u8);
+                writer.WriteStringValue(CreatedOn.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(ChangedOn))
+            {
+                writer.WritePropertyName("changedTime"u8);
+                writer.WriteStringValue(ChangedOn.Value, "O");
+            }
             if (Optional.IsDefined(Metadata))
             {
                 writer.WritePropertyName("metadata"u8);
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Metadata);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Metadata.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Metadata))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(Content))
@@ -66,7 +108,10 @@ namespace Azure.ResourceManager.Logic
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Content);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Content.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Content))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(ContentType))
@@ -74,12 +119,46 @@ namespace Azure.ResourceManager.Logic
                 writer.WritePropertyName("contentType"u8);
                 writer.WriteStringValue(ContentType.Value.ToString());
             }
+            if (options.Format != "W" && Optional.IsDefined(ContentLink))
+            {
+                writer.WritePropertyName("contentLink"u8);
+                writer.WriteObjectValue(ContentLink);
+            }
             writer.WriteEndObject();
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static IntegrationAccountSchemaData DeserializeIntegrationAccountSchemaData(JsonElement element)
+        IntegrationAccountSchemaData IJsonModel<IntegrationAccountSchemaData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<IntegrationAccountSchemaData>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(IntegrationAccountSchemaData)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeIntegrationAccountSchemaData(document.RootElement, options);
+        }
+
+        internal static IntegrationAccountSchemaData DeserializeIntegrationAccountSchemaData(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -100,6 +179,8 @@ namespace Azure.ResourceManager.Logic
             Optional<BinaryData> content = default;
             Optional<ContentType> contentType = default;
             Optional<LogicContentLink> contentLink = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("tags"u8))
@@ -231,8 +312,44 @@ namespace Azure.ResourceManager.Logic
                     }
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new IntegrationAccountSchemaData(id, name, type, systemData.Value, Optional.ToDictionary(tags), location, schemaType, targetNamespace.Value, documentName.Value, fileName.Value, Optional.ToNullable(createdTime), Optional.ToNullable(changedTime), metadata.Value, content.Value, Optional.ToNullable(contentType), contentLink.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new IntegrationAccountSchemaData(id, name, type, systemData.Value, Optional.ToDictionary(tags), location, schemaType, targetNamespace.Value, documentName.Value, fileName.Value, Optional.ToNullable(createdTime), Optional.ToNullable(changedTime), metadata.Value, content.Value, Optional.ToNullable(contentType), contentLink.Value, serializedAdditionalRawData);
         }
+
+        BinaryData IPersistableModel<IntegrationAccountSchemaData>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<IntegrationAccountSchemaData>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(IntegrationAccountSchemaData)} does not support '{options.Format}' format.");
+            }
+        }
+
+        IntegrationAccountSchemaData IPersistableModel<IntegrationAccountSchemaData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<IntegrationAccountSchemaData>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeIntegrationAccountSchemaData(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(IntegrationAccountSchemaData)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<IntegrationAccountSchemaData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

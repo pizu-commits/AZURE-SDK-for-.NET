@@ -5,8 +5,9 @@
       <example>
 This sample shows how to call GetNutrientAnalysisAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.GetNutrientAnalysisAsync("<partyId>", "<nutrientAnalysisId>", null);
 
@@ -15,8 +16,9 @@ Console.WriteLine(result.ToString());
 ]]></code>
 This sample shows how to call GetNutrientAnalysisAsync with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.GetNutrientAnalysisAsync("<partyId>", "<nutrientAnalysisId>", null);
 
@@ -50,8 +52,9 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call GetNutrientAnalysis and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.GetNutrientAnalysis("<partyId>", "<nutrientAnalysisId>", null);
 
@@ -60,8 +63,9 @@ Console.WriteLine(result.ToString());
 ]]></code>
 This sample shows how to call GetNutrientAnalysis with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.GetNutrientAnalysis("<partyId>", "<nutrientAnalysisId>", null);
 
@@ -95,10 +99,11 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call CreateOrUpdateAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new object());
+using RequestContent content = RequestContent.Create(new object());
 Response response = await client.CreateOrUpdateAsync("<partyId>", "<nutrientAnalysisId>", content);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -106,10 +111,11 @@ Console.WriteLine(result.ToString());
 ]]></code>
 This sample shows how to call CreateOrUpdateAsync with all parameters and request content and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     parentId = "<parentId>",
     parentType = "PlantTissueAnalysis",
@@ -119,7 +125,7 @@ RequestContent content = RequestContent.Create(new
     referenceValueHigh = 123.45,
     classification = "<classification>",
     recommendation = "<recommendation>",
-    products = new List<object>()
+    products = new object[]
     {
         new
         {
@@ -169,10 +175,11 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call CreateOrUpdate and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new object());
+using RequestContent content = RequestContent.Create(new object());
 Response response = client.CreateOrUpdate("<partyId>", "<nutrientAnalysisId>", content);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -180,10 +187,11 @@ Console.WriteLine(result.ToString());
 ]]></code>
 This sample shows how to call CreateOrUpdate with all parameters and request content and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
     parentId = "<parentId>",
     parentType = "PlantTissueAnalysis",
@@ -193,7 +201,7 @@ RequestContent content = RequestContent.Create(new
     referenceValueHigh = 123.45,
     classification = "<classification>",
     recommendation = "<recommendation>",
-    products = new List<object>()
+    products = new object[]
     {
         new
         {
@@ -243,18 +251,22 @@ Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString
       <example>
 This sample shows how to call DeleteAsync.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.DeleteAsync("<partyId>", "<nutrientAnalysisId>");
+
 Console.WriteLine(response.Status);
 ]]></code>
 This sample shows how to call DeleteAsync with all parameters.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = await client.DeleteAsync("<partyId>", "<nutrientAnalysisId>");
+
 Console.WriteLine(response.Status);
 ]]></code></example>
     </member>
@@ -262,18 +274,22 @@ Console.WriteLine(response.Status);
       <example>
 This sample shows how to call Delete.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.Delete("<partyId>", "<nutrientAnalysisId>");
+
 Console.WriteLine(response.Status);
 ]]></code>
 This sample shows how to call Delete with all parameters.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 Response response = client.Delete("<partyId>", "<nutrientAnalysisId>");
+
 Console.WriteLine(response.Status);
 ]]></code></example>
     </member>
@@ -281,64 +297,48 @@ Console.WriteLine(response.Status);
       <example>
 This sample shows how to call GetNutrientAnalysesAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 await foreach (BinaryData item in client.GetNutrientAnalysesAsync(null, null, null, null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].ToString());
+    Console.WriteLine(result.ToString());
 }
 ]]></code>
 This sample shows how to call GetNutrientAnalysesAsync with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-await foreach (BinaryData item in client.GetNutrientAnalysesAsync("<parentType>", new List<string>()
-{
-    "<parentIds>"
-}, new List<string>()
-{
-    "<classifications>"
-}, new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+await foreach (BinaryData item in client.GetNutrientAnalysesAsync("<parentType>", new string[] { "<parentIds>" }, new string[] { "<classifications>" }, new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("partyId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentType").ToString());
-    Console.WriteLine(result[0].GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("value").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueLow").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueHigh").ToString());
-    Console.WriteLine(result[0].GetProperty("classification").ToString());
-    Console.WriteLine(result[0].GetProperty("recommendation").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("rate").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("instruction").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("product").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("source").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("partyId").ToString());
+    Console.WriteLine(result.GetProperty("parentId").ToString());
+    Console.WriteLine(result.GetProperty("parentType").ToString());
+    Console.WriteLine(result.GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("value").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueLow").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueHigh").ToString());
+    Console.WriteLine(result.GetProperty("classification").ToString());
+    Console.WriteLine(result.GetProperty("recommendation").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("rate").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("instruction").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("product").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("source").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>
@@ -346,64 +346,48 @@ await foreach (BinaryData item in client.GetNutrientAnalysesAsync("<parentType>"
       <example>
 This sample shows how to call GetNutrientAnalyses and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 foreach (BinaryData item in client.GetNutrientAnalyses(null, null, null, null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].ToString());
+    Console.WriteLine(result.ToString());
 }
 ]]></code>
 This sample shows how to call GetNutrientAnalyses with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-foreach (BinaryData item in client.GetNutrientAnalyses("<parentType>", new List<string>()
-{
-    "<parentIds>"
-}, new List<string>()
-{
-    "<classifications>"
-}, new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+foreach (BinaryData item in client.GetNutrientAnalyses("<parentType>", new string[] { "<parentIds>" }, new string[] { "<classifications>" }, new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("partyId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentType").ToString());
-    Console.WriteLine(result[0].GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("value").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueLow").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueHigh").ToString());
-    Console.WriteLine(result[0].GetProperty("classification").ToString());
-    Console.WriteLine(result[0].GetProperty("recommendation").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("rate").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("instruction").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("product").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("source").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("partyId").ToString());
+    Console.WriteLine(result.GetProperty("parentId").ToString());
+    Console.WriteLine(result.GetProperty("parentType").ToString());
+    Console.WriteLine(result.GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("value").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueLow").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueHigh").ToString());
+    Console.WriteLine(result.GetProperty("classification").ToString());
+    Console.WriteLine(result.GetProperty("recommendation").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("rate").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("instruction").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("product").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("source").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>
@@ -411,64 +395,48 @@ foreach (BinaryData item in client.GetNutrientAnalyses("<parentType>", new List<
       <example>
 This sample shows how to call GetNutrientAnalysesByPartyIdAsync and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 await foreach (BinaryData item in client.GetNutrientAnalysesByPartyIdAsync("<partyId>", null, null, null, null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].ToString());
+    Console.WriteLine(result.ToString());
 }
 ]]></code>
 This sample shows how to call GetNutrientAnalysesByPartyIdAsync with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-await foreach (BinaryData item in client.GetNutrientAnalysesByPartyIdAsync("<partyId>", "<parentType>", new List<string>()
-{
-    "<parentIds>"
-}, new List<string>()
-{
-    "<classifications>"
-}, new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+await foreach (BinaryData item in client.GetNutrientAnalysesByPartyIdAsync("<partyId>", "<parentType>", new string[] { "<parentIds>" }, new string[] { "<classifications>" }, new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("partyId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentType").ToString());
-    Console.WriteLine(result[0].GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("value").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueLow").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueHigh").ToString());
-    Console.WriteLine(result[0].GetProperty("classification").ToString());
-    Console.WriteLine(result[0].GetProperty("recommendation").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("rate").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("instruction").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("product").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("source").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("partyId").ToString());
+    Console.WriteLine(result.GetProperty("parentId").ToString());
+    Console.WriteLine(result.GetProperty("parentType").ToString());
+    Console.WriteLine(result.GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("value").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueLow").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueHigh").ToString());
+    Console.WriteLine(result.GetProperty("classification").ToString());
+    Console.WriteLine(result.GetProperty("recommendation").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("rate").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("instruction").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("product").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("source").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>
@@ -476,64 +444,48 @@ await foreach (BinaryData item in client.GetNutrientAnalysesByPartyIdAsync("<par
       <example>
 This sample shows how to call GetNutrientAnalysesByPartyId and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
 foreach (BinaryData item in client.GetNutrientAnalysesByPartyId("<partyId>", null, null, null, null, null, null, null, null, null, null, null, null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].ToString());
+    Console.WriteLine(result.ToString());
 }
 ]]></code>
 This sample shows how to call GetNutrientAnalysesByPartyId with all parameters and parse the result.
 <code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
-NutrientAnalyses client = new FarmBeatsClient(credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
+NutrientAnalyses client = new FarmBeatsClient(endpoint, credential).GetNutrientAnalysesClient(apiVersion: "2022-11-01-preview");
 
-foreach (BinaryData item in client.GetNutrientAnalysesByPartyId("<partyId>", "<parentType>", new List<string>()
-{
-    "<parentIds>"
-}, new List<string>()
-{
-    "<classifications>"
-}, new List<string>()
-{
-    "<ids>"
-}, new List<string>()
-{
-    "<names>"
-}, new List<string>()
-{
-    "<propertyFilters>"
-}, new List<string>()
-{
-    "<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+foreach (BinaryData item in client.GetNutrientAnalysesByPartyId("<partyId>", "<parentType>", new string[] { "<parentIds>" }, new string[] { "<classifications>" }, new string[] { "<ids>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-    Console.WriteLine(result[0].GetProperty("partyId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentId").ToString());
-    Console.WriteLine(result[0].GetProperty("parentType").ToString());
-    Console.WriteLine(result[0].GetProperty("unit").ToString());
-    Console.WriteLine(result[0].GetProperty("value").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueLow").ToString());
-    Console.WriteLine(result[0].GetProperty("referenceValueHigh").ToString());
-    Console.WriteLine(result[0].GetProperty("classification").ToString());
-    Console.WriteLine(result[0].GetProperty("recommendation").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("rate").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("instruction").ToString());
-    Console.WriteLine(result[0].GetProperty("products")[0].GetProperty("product").ToString());
-    Console.WriteLine(result[0].GetProperty("id").ToString());
-    Console.WriteLine(result[0].GetProperty("eTag").ToString());
-    Console.WriteLine(result[0].GetProperty("status").ToString());
-    Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-    Console.WriteLine(result[0].GetProperty("source").ToString());
-    Console.WriteLine(result[0].GetProperty("name").ToString());
-    Console.WriteLine(result[0].GetProperty("description").ToString());
-    Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-    Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-    Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+    Console.WriteLine(result.GetProperty("partyId").ToString());
+    Console.WriteLine(result.GetProperty("parentId").ToString());
+    Console.WriteLine(result.GetProperty("parentType").ToString());
+    Console.WriteLine(result.GetProperty("unit").ToString());
+    Console.WriteLine(result.GetProperty("value").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueLow").ToString());
+    Console.WriteLine(result.GetProperty("referenceValueHigh").ToString());
+    Console.WriteLine(result.GetProperty("classification").ToString());
+    Console.WriteLine(result.GetProperty("recommendation").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("rate").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("instruction").ToString());
+    Console.WriteLine(result.GetProperty("products")[0].GetProperty("product").ToString());
+    Console.WriteLine(result.GetProperty("id").ToString());
+    Console.WriteLine(result.GetProperty("eTag").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+    Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+    Console.WriteLine(result.GetProperty("source").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("description").ToString());
+    Console.WriteLine(result.GetProperty("createdBy").ToString());
+    Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+    Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
 }
 ]]></code></example>
     </member>

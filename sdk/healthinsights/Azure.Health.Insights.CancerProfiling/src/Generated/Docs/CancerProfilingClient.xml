@@ -9,12 +9,12 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new List<PatientRecord>()
+OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new PatientRecord[]
 {
     new PatientRecord("<id>")
 });
-Operation<OncoPhenotypeResult> operation = await client.InferCancerProfileAsync(WaitUntil.Completed, oncoPhenotypeData);
-OncoPhenotypeResult responseData = operation.Value;
+Operation<OncoPhenotypeResults> operation = await client.InferCancerProfileAsync(WaitUntil.Completed, oncoPhenotypeData);
+OncoPhenotypeResults responseData = operation.Value;
 ]]></code>
 This sample shows how to call InferCancerProfileAsync with all parameters.
 <code><![CDATA[
@@ -22,48 +22,39 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new List<PatientRecord>()
+OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new PatientRecord[]
 {
     new PatientRecord("<id>")
     {
-        Info = new PatientInfo()
+        Info = new PatientInfo
         {
             Sex = PatientInfoSex.Female,
             BirthDate = DateTimeOffset.Parse("2022-05-10"),
-            ClinicalInfo =
+            ClinicalInfo = {new ClinicalCodedElement("<system>", "<code>")
             {
-                new ClinicalCodedElement("<system>","<code>")
-                {
-                    Name = "<name>",
-                    Value = "<value>",
-                }
-            },
+                Name = "<name>",
+                Value = "<value>",
+            }},
         },
-        Data =
+        Data = {new PatientDocument(DocumentType.Note, "<id>", new DocumentContent(DocumentContentSourceType.Inline, "<value>"))
         {
-            new PatientDocument(DocumentType.Note,"<id>",new DocumentContent(DocumentContentSourceType.Inline,"<value>"))
-            {
-                ClinicalType = ClinicalDocumentType.Consultation,
-                Language = "<language>",
-                CreatedDateTime = DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"),
-            }
-        },
+            ClinicalType = ClinicalDocumentType.Consultation,
+            Language = "<language>",
+            CreatedDateTime = DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"),
+        }},
     }
 })
 {
-    Configuration = new OncoPhenotypeModelConfiguration()
+    Configuration = new OncoPhenotypeModelConfiguration
     {
         Verbose = true,
         IncludeEvidence = true,
-        InferenceTypes =
-        {
-            OncoPhenotypeInferenceType.TumorSite
-        },
+        InferenceTypes = { OncoPhenotypeInferenceType.TumorSite },
         CheckForCancerCase = true,
     },
 };
-Operation<OncoPhenotypeResult> operation = await client.InferCancerProfileAsync(WaitUntil.Completed, oncoPhenotypeData);
-OncoPhenotypeResult responseData = operation.Value;
+Operation<OncoPhenotypeResults> operation = await client.InferCancerProfileAsync(WaitUntil.Completed, oncoPhenotypeData);
+OncoPhenotypeResults responseData = operation.Value;
 ]]></code></example>
     </member>
     <member name="InferCancerProfile(WaitUntil,OncoPhenotypeData,CancellationToken)">
@@ -74,12 +65,12 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new List<PatientRecord>()
+OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new PatientRecord[]
 {
     new PatientRecord("<id>")
 });
-Operation<OncoPhenotypeResult> operation = client.InferCancerProfile(WaitUntil.Completed, oncoPhenotypeData);
-OncoPhenotypeResult responseData = operation.Value;
+Operation<OncoPhenotypeResults> operation = client.InferCancerProfile(WaitUntil.Completed, oncoPhenotypeData);
+OncoPhenotypeResults responseData = operation.Value;
 ]]></code>
 This sample shows how to call InferCancerProfile with all parameters.
 <code><![CDATA[
@@ -87,48 +78,39 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new List<PatientRecord>()
+OncoPhenotypeData oncoPhenotypeData = new OncoPhenotypeData(new PatientRecord[]
 {
     new PatientRecord("<id>")
     {
-        Info = new PatientInfo()
+        Info = new PatientInfo
         {
             Sex = PatientInfoSex.Female,
             BirthDate = DateTimeOffset.Parse("2022-05-10"),
-            ClinicalInfo =
+            ClinicalInfo = {new ClinicalCodedElement("<system>", "<code>")
             {
-                new ClinicalCodedElement("<system>","<code>")
-                {
-                    Name = "<name>",
-                    Value = "<value>",
-                }
-            },
+                Name = "<name>",
+                Value = "<value>",
+            }},
         },
-        Data =
+        Data = {new PatientDocument(DocumentType.Note, "<id>", new DocumentContent(DocumentContentSourceType.Inline, "<value>"))
         {
-            new PatientDocument(DocumentType.Note,"<id>",new DocumentContent(DocumentContentSourceType.Inline,"<value>"))
-            {
-                ClinicalType = ClinicalDocumentType.Consultation,
-                Language = "<language>",
-                CreatedDateTime = DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"),
-            }
-        },
+            ClinicalType = ClinicalDocumentType.Consultation,
+            Language = "<language>",
+            CreatedDateTime = DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"),
+        }},
     }
 })
 {
-    Configuration = new OncoPhenotypeModelConfiguration()
+    Configuration = new OncoPhenotypeModelConfiguration
     {
         Verbose = true,
         IncludeEvidence = true,
-        InferenceTypes =
-        {
-            OncoPhenotypeInferenceType.TumorSite
-        },
+        InferenceTypes = { OncoPhenotypeInferenceType.TumorSite },
         CheckForCancerCase = true,
     },
 };
-Operation<OncoPhenotypeResult> operation = client.InferCancerProfile(WaitUntil.Completed, oncoPhenotypeData);
-OncoPhenotypeResult responseData = operation.Value;
+Operation<OncoPhenotypeResults> operation = client.InferCancerProfile(WaitUntil.Completed, oncoPhenotypeData);
+OncoPhenotypeResults responseData = operation.Value;
 ]]></code></example>
     </member>
     <member name="InferCancerProfileAsync(WaitUntil,RequestContent,RequestContext)">
@@ -139,9 +121,9 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
-    patients = new List<object>()
+    patients = new object[]
     {
         new
         {
@@ -153,11 +135,10 @@ Operation<BinaryData> operation = await client.InferCancerProfileAsync(WaitUntil
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
-Console.WriteLine(result.GetProperty("jobId").ToString());
-Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-Console.WriteLine(result.GetProperty("expirationDateTime").ToString());
-Console.WriteLine(result.GetProperty("lastUpdateDateTime").ToString());
-Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("modelVersion").ToString());
 ]]></code>
 This sample shows how to call InferCancerProfileAsync with all parameters and request content and parse the result.
 <code><![CDATA[
@@ -165,9 +146,9 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
-    patients = new List<object>()
+    patients = new object[]
     {
         new
         {
@@ -176,7 +157,7 @@ RequestContent content = RequestContent.Create(new
             {
                 sex = "female",
                 birthDate = "2022-05-10",
-                clinicalInfo = new List<object>()
+                clinicalInfo = new object[]
                 {
                     new
                     {
@@ -187,7 +168,7 @@ RequestContent content = RequestContent.Create(new
                     }
                 },
             },
-            data = new List<object>()
+            data = new object[]
             {
                 new
                 {
@@ -209,7 +190,7 @@ RequestContent content = RequestContent.Create(new
     {
         verbose = true,
         includeEvidence = true,
-        inferenceTypes = new List<object>()
+        inferenceTypes = new object[]
         {
             "tumorSite"
         },
@@ -220,31 +201,22 @@ Operation<BinaryData> operation = await client.InferCancerProfileAsync(WaitUntil
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
-Console.WriteLine(result.GetProperty("jobId").ToString());
-Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-Console.WriteLine(result.GetProperty("expirationDateTime").ToString());
-Console.WriteLine(result.GetProperty("lastUpdateDateTime").ToString());
-Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("message").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("target").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("innererror").GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("id").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("description").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("confidenceScore").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("id").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("text").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("offset").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("length").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("system").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("name").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("value").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("importance").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("caseId").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("modelVersion").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("description").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("confidenceScore").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("text").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("offset").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("length").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("system").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("importance").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("caseId").ToString());
+Console.WriteLine(result.GetProperty("modelVersion").ToString());
 ]]></code></example>
     </member>
     <member name="InferCancerProfile(WaitUntil,RequestContent,RequestContext)">
@@ -255,9 +227,9 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
-    patients = new List<object>()
+    patients = new object[]
     {
         new
         {
@@ -269,11 +241,10 @@ Operation<BinaryData> operation = client.InferCancerProfile(WaitUntil.Completed,
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
-Console.WriteLine(result.GetProperty("jobId").ToString());
-Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-Console.WriteLine(result.GetProperty("expirationDateTime").ToString());
-Console.WriteLine(result.GetProperty("lastUpdateDateTime").ToString());
-Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("modelVersion").ToString());
 ]]></code>
 This sample shows how to call InferCancerProfile with all parameters and request content and parse the result.
 <code><![CDATA[
@@ -281,9 +252,9 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 AzureKeyCredential credential = new AzureKeyCredential("<key>");
 CancerProfilingClient client = new CancerProfilingClient(endpoint, credential);
 
-RequestContent content = RequestContent.Create(new
+using RequestContent content = RequestContent.Create(new
 {
-    patients = new List<object>()
+    patients = new object[]
     {
         new
         {
@@ -292,7 +263,7 @@ RequestContent content = RequestContent.Create(new
             {
                 sex = "female",
                 birthDate = "2022-05-10",
-                clinicalInfo = new List<object>()
+                clinicalInfo = new object[]
                 {
                     new
                     {
@@ -303,7 +274,7 @@ RequestContent content = RequestContent.Create(new
                     }
                 },
             },
-            data = new List<object>()
+            data = new object[]
             {
                 new
                 {
@@ -325,7 +296,7 @@ RequestContent content = RequestContent.Create(new
     {
         verbose = true,
         includeEvidence = true,
-        inferenceTypes = new List<object>()
+        inferenceTypes = new object[]
         {
             "tumorSite"
         },
@@ -336,31 +307,22 @@ Operation<BinaryData> operation = client.InferCancerProfile(WaitUntil.Completed,
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
-Console.WriteLine(result.GetProperty("jobId").ToString());
-Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-Console.WriteLine(result.GetProperty("expirationDateTime").ToString());
-Console.WriteLine(result.GetProperty("lastUpdateDateTime").ToString());
-Console.WriteLine(result.GetProperty("status").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("message").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("target").ToString());
-Console.WriteLine(result.GetProperty("errors")[0].GetProperty("innererror").GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("id").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("description").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("confidenceScore").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("id").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("text").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("offset").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("length").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("system").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("code").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("name").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("value").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("importance").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("caseId").ToString());
-Console.WriteLine(result.GetProperty("results").GetProperty("modelVersion").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("type").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("description").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("confidenceScore").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("id").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("text").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("offset").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientDataEvidence").GetProperty("length").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("system").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("patientInfoEvidence").GetProperty("value").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("evidence")[0].GetProperty("importance").ToString());
+Console.WriteLine(result.GetProperty("patients")[0].GetProperty("inferences")[0].GetProperty("caseId").ToString());
+Console.WriteLine(result.GetProperty("modelVersion").ToString());
 ]]></code></example>
     </member>
   </members>

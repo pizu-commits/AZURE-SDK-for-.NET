@@ -6,16 +6,25 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.MachineLearning.Models
 {
-    public partial class MachineLearningSweepJob : IUtf8JsonSerializable
+    public partial class MachineLearningSweepJob : IUtf8JsonSerializable, IJsonModel<MachineLearningSweepJob>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<MachineLearningSweepJob>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<MachineLearningSweepJob>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningSweepJob>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MachineLearningSweepJob)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(EarlyTermination))
             {
@@ -72,13 +81,28 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     writer.WriteNull("outputs");
                 }
             }
+            if (Optional.IsDefined(QueueSettings))
+            {
+                if (QueueSettings != null)
+                {
+                    writer.WritePropertyName("queueSettings"u8);
+                    writer.WriteObjectValue(QueueSettings);
+                }
+                else
+                {
+                    writer.WriteNull("queueSettings");
+                }
+            }
             writer.WritePropertyName("samplingAlgorithm"u8);
             writer.WriteObjectValue(SamplingAlgorithm);
             writer.WritePropertyName("searchSpace"u8);
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(SearchSpace);
 #else
-            JsonSerializer.Serialize(writer, JsonDocument.Parse(SearchSpace.ToString()).RootElement);
+            using (JsonDocument document = JsonDocument.Parse(SearchSpace))
+            {
+                JsonSerializer.Serialize(writer, document.RootElement);
+            }
 #endif
             writer.WritePropertyName("trial"u8);
             writer.WriteObjectValue(Trial);
@@ -142,6 +166,36 @@ namespace Azure.ResourceManager.MachineLearning.Models
             }
             writer.WritePropertyName("jobType"u8);
             writer.WriteStringValue(JobType.ToString());
+            if (Optional.IsDefined(NotificationSetting))
+            {
+                if (NotificationSetting != null)
+                {
+                    writer.WritePropertyName("notificationSetting"u8);
+                    writer.WriteObjectValue(NotificationSetting);
+                }
+                else
+                {
+                    writer.WriteNull("notificationSetting");
+                }
+            }
+            if (Optional.IsCollectionDefined(SecretsConfiguration))
+            {
+                if (SecretsConfiguration != null)
+                {
+                    writer.WritePropertyName("secretsConfiguration"u8);
+                    writer.WriteStartObject();
+                    foreach (var item in SecretsConfiguration)
+                    {
+                        writer.WritePropertyName(item.Key);
+                        writer.WriteObjectValue(item.Value);
+                    }
+                    writer.WriteEndObject();
+                }
+                else
+                {
+                    writer.WriteNull("secretsConfiguration");
+                }
+            }
             if (Optional.IsCollectionDefined(Services))
             {
                 if (Services != null)
@@ -159,6 +213,11 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 {
                     writer.WriteNull("services");
                 }
+            }
+            if (options.Format != "W" && Optional.IsDefined(Status))
+            {
+                writer.WritePropertyName("status"u8);
+                writer.WriteStringValue(Status.Value.ToString());
             }
             if (Optional.IsDefined(Description))
             {
@@ -208,11 +267,40 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     writer.WriteNull("tags");
                 }
             }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static MachineLearningSweepJob DeserializeMachineLearningSweepJob(JsonElement element)
+        MachineLearningSweepJob IJsonModel<MachineLearningSweepJob>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningSweepJob>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MachineLearningSweepJob)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeMachineLearningSweepJob(document.RootElement, options);
+        }
+
+        internal static MachineLearningSweepJob DeserializeMachineLearningSweepJob(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -222,6 +310,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
             Optional<MachineLearningSweepJobLimits> limits = default;
             MachineLearningObjective objective = default;
             Optional<IDictionary<string, MachineLearningJobOutput>> outputs = default;
+            Optional<JobQueueSettings> queueSettings = default;
             SamplingAlgorithm samplingAlgorithm = default;
             BinaryData searchSpace = default;
             MachineLearningTrialComponent trial = default;
@@ -232,11 +321,15 @@ namespace Azure.ResourceManager.MachineLearning.Models
             Optional<MachineLearningIdentityConfiguration> identity = default;
             Optional<bool> isArchived = default;
             JobType jobType = default;
+            Optional<NotificationSetting> notificationSetting = default;
+            Optional<IDictionary<string, SecretConfiguration>> secretsConfiguration = default;
             Optional<IDictionary<string, MachineLearningJobService>> services = default;
             Optional<MachineLearningJobStatus> status = default;
             Optional<string> description = default;
             Optional<IDictionary<string, string>> properties = default;
             Optional<IDictionary<string, string>> tags = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("earlyTermination"u8))
@@ -291,6 +384,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
                         dictionary.Add(property0.Name, MachineLearningJobOutput.DeserializeMachineLearningJobOutput(property0.Value));
                     }
                     outputs = dictionary;
+                    continue;
+                }
+                if (property.NameEquals("queueSettings"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        queueSettings = null;
+                        continue;
+                    }
+                    queueSettings = JobQueueSettings.DeserializeJobQueueSettings(property.Value);
                     continue;
                 }
                 if (property.NameEquals("samplingAlgorithm"u8))
@@ -367,6 +470,31 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     jobType = new JobType(property.Value.GetString());
                     continue;
                 }
+                if (property.NameEquals("notificationSetting"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        notificationSetting = null;
+                        continue;
+                    }
+                    notificationSetting = NotificationSetting.DeserializeNotificationSetting(property.Value);
+                    continue;
+                }
+                if (property.NameEquals("secretsConfiguration"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        secretsConfiguration = null;
+                        continue;
+                    }
+                    Dictionary<string, SecretConfiguration> dictionary = new Dictionary<string, SecretConfiguration>();
+                    foreach (var property0 in property.Value.EnumerateObject())
+                    {
+                        dictionary.Add(property0.Name, SecretConfiguration.DeserializeSecretConfiguration(property0.Value));
+                    }
+                    secretsConfiguration = dictionary;
+                    continue;
+                }
                 if (property.NameEquals("services"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -431,8 +559,44 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     tags = dictionary;
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new MachineLearningSweepJob(description.Value, Optional.ToDictionary(properties), Optional.ToDictionary(tags), componentId.Value, computeId.Value, displayName.Value, experimentName.Value, identity.Value, Optional.ToNullable(isArchived), jobType, Optional.ToDictionary(services), Optional.ToNullable(status), earlyTermination.Value, Optional.ToDictionary(inputs), limits.Value, objective, Optional.ToDictionary(outputs), samplingAlgorithm, searchSpace, trial);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new MachineLearningSweepJob(description.Value, Optional.ToDictionary(properties), Optional.ToDictionary(tags), serializedAdditionalRawData, componentId.Value, computeId.Value, displayName.Value, experimentName.Value, identity.Value, Optional.ToNullable(isArchived), jobType, notificationSetting.Value, Optional.ToDictionary(secretsConfiguration), Optional.ToDictionary(services), Optional.ToNullable(status), earlyTermination.Value, Optional.ToDictionary(inputs), limits.Value, objective, Optional.ToDictionary(outputs), queueSettings.Value, samplingAlgorithm, searchSpace, trial);
         }
+
+        BinaryData IPersistableModel<MachineLearningSweepJob>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningSweepJob>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(MachineLearningSweepJob)} does not support '{options.Format}' format.");
+            }
+        }
+
+        MachineLearningSweepJob IPersistableModel<MachineLearningSweepJob>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningSweepJob>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeMachineLearningSweepJob(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(MachineLearningSweepJob)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<MachineLearningSweepJob>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

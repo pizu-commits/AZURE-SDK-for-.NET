@@ -1,14 +1,36 @@
 # Release History
 
-## 1.3.0-beta.3 (Unreleased)
+## 1.3.0-beta.5 (Unreleased)
 
 ### Features Added
+
+- Enable the new model serialization by using the System.ClientModel, refer this [document](https://aka.ms/azsdk/net/mrw) for more details.
 
 ### Breaking Changes
 
 ### Bugs Fixed
 
 ### Other Changes
+
+## 1.3.0-beta.4 (2023-11-21)
+
+### Features Added
+
+- Enable mocking for extension methods, refer this [document](https://aka.ms/azsdk/net/mocking) for more details.
+
+### Other Changes
+
+- Upgraded dependent `Azure.ResourceManager` to 1.9.0.
+
+## 1.3.0-beta.3 (2023-09-25)
+
+### Features Added
+
+- Unhide the `IsIPv6Enabled` parameter for server creation and updating.
+
+### Other Changes
+
+- Upgraded API version of Servers to `2023-02-01-preview`.
 
 ## 1.3.0-beta.2 (2023-07-31)
 

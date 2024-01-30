@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.Network.Samples
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task CreateOrUpdate_UpdateVirtualNetworkGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkGatewayUpdate.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkGatewayUpdate.json
             // this example is just showing the usage of "VirtualNetworkGateways_CreateOrUpdate" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -164,7 +164,7 @@ Name = "natRule2",
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task CreateOrUpdate_UpdateVirtualNetworkScalableGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkScalableGatewayUpdate.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkScalableGatewayUpdate.json
             // this example is just showing the usage of "VirtualNetworkGateways_CreateOrUpdate" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -203,8 +203,8 @@ Name = "gwipconfig1",
                 DisableIPSecReplayProtection = false,
                 Sku = new VirtualNetworkGatewaySku()
                 {
-                    Name = new VirtualNetworkGatewaySkuName("ErGwScale"),
-                    Tier = new VirtualNetworkGatewaySkuTier("ErGwScale"),
+                    Name = VirtualNetworkGatewaySkuName.ErGwScale,
+                    Tier = VirtualNetworkGatewaySkuTier.ErGwScale,
                 },
                 VpnClientConfiguration = null,
                 BgpSettings = null,
@@ -274,7 +274,7 @@ Name = "natRule2",
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task Get_GetVirtualNetworkGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkGatewayGet.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkGatewayGet.json
             // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -308,7 +308,7 @@ Name = "natRule2",
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task Exists_GetVirtualNetworkGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkGatewayGet.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkGatewayGet.json
             // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -333,12 +333,54 @@ Name = "natRule2",
             Console.WriteLine($"Succeeded: {result}");
         }
 
+        // GetVirtualNetworkGateway
+        [NUnit.Framework.Test]
+        [NUnit.Framework.Ignore("Only verifying that the sample builds")]
+        public async Task GetIfExists_GetVirtualNetworkGateway()
+        {
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkGatewayGet.json
+            // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this ResourceGroupResource created on azure
+            // for more information of creating ResourceGroupResource, please refer to the document of ResourceGroupResource
+            string subscriptionId = "subid";
+            string resourceGroupName = "rg1";
+            ResourceIdentifier resourceGroupResourceId = ResourceGroupResource.CreateResourceIdentifier(subscriptionId, resourceGroupName);
+            ResourceGroupResource resourceGroupResource = client.GetResourceGroupResource(resourceGroupResourceId);
+
+            // get the collection of this VirtualNetworkGatewayResource
+            VirtualNetworkGatewayCollection collection = resourceGroupResource.GetVirtualNetworkGateways();
+
+            // invoke the operation
+            string virtualNetworkGatewayName = "vpngw";
+            NullableResponse<VirtualNetworkGatewayResource> response = await collection.GetIfExistsAsync(virtualNetworkGatewayName);
+            VirtualNetworkGatewayResource result = response.HasValue ? response.Value : null;
+
+            if (result == null)
+            {
+                Console.WriteLine($"Succeeded with null as result");
+            }
+            else
+            {
+                // the variable result is a resource, you could call other operations on this instance as well
+                // but just for demo, we get its data from this resource instance
+                VirtualNetworkGatewayData resourceData = result.Data;
+                // for demo we just print out the id
+                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
+            }
+        }
+
         // GetVirtualNetworkScalableGateway
         [NUnit.Framework.Test]
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task Get_GetVirtualNetworkScalableGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkScalableGatewayGet.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkScalableGatewayGet.json
             // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -372,7 +414,7 @@ Name = "natRule2",
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task Exists_GetVirtualNetworkScalableGateway()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkScalableGatewayGet.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkScalableGatewayGet.json
             // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -397,12 +439,54 @@ Name = "natRule2",
             Console.WriteLine($"Succeeded: {result}");
         }
 
+        // GetVirtualNetworkScalableGateway
+        [NUnit.Framework.Test]
+        [NUnit.Framework.Ignore("Only verifying that the sample builds")]
+        public async Task GetIfExists_GetVirtualNetworkScalableGateway()
+        {
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkScalableGatewayGet.json
+            // this example is just showing the usage of "VirtualNetworkGateways_Get" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this ResourceGroupResource created on azure
+            // for more information of creating ResourceGroupResource, please refer to the document of ResourceGroupResource
+            string subscriptionId = "subid";
+            string resourceGroupName = "rg1";
+            ResourceIdentifier resourceGroupResourceId = ResourceGroupResource.CreateResourceIdentifier(subscriptionId, resourceGroupName);
+            ResourceGroupResource resourceGroupResource = client.GetResourceGroupResource(resourceGroupResourceId);
+
+            // get the collection of this VirtualNetworkGatewayResource
+            VirtualNetworkGatewayCollection collection = resourceGroupResource.GetVirtualNetworkGateways();
+
+            // invoke the operation
+            string virtualNetworkGatewayName = "ergw";
+            NullableResponse<VirtualNetworkGatewayResource> response = await collection.GetIfExistsAsync(virtualNetworkGatewayName);
+            VirtualNetworkGatewayResource result = response.HasValue ? response.Value : null;
+
+            if (result == null)
+            {
+                Console.WriteLine($"Succeeded with null as result");
+            }
+            else
+            {
+                // the variable result is a resource, you could call other operations on this instance as well
+                // but just for demo, we get its data from this resource instance
+                VirtualNetworkGatewayData resourceData = result.Data;
+                // for demo we just print out the id
+                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
+            }
+        }
+
         // ListVirtualNetworkGatewaysinResourceGroup
         [NUnit.Framework.Test]
         [NUnit.Framework.Ignore("Only verifying that the sample builds")]
         public async Task GetAll_ListVirtualNetworkGatewaysinResourceGroup()
         {
-            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/examples/VirtualNetworkGatewayList.json
+            // Generated from example definition: specification/network/resource-manager/Microsoft.Network/stable/2023-09-01/examples/VirtualNetworkGatewayList.json
             // this example is just showing the usage of "VirtualNetworkGateways_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line

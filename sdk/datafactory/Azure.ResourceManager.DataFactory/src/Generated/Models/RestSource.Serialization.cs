@@ -49,17 +49,16 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(RequestInterval);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(RequestInterval.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(RequestInterval))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(AdditionalColumns))
             {
                 writer.WritePropertyName("additionalColumns"u8);
-#if NET6_0_OR_GREATER
-				writer.WriteRawValue(AdditionalColumns);
-#else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(AdditionalColumns.ToString()).RootElement);
-#endif
+                JsonSerializer.Serialize(writer, AdditionalColumns);
             }
             writer.WritePropertyName("type"u8);
             writer.WriteStringValue(CopySourceType);
@@ -89,7 +88,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
@@ -107,7 +109,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<DataFactoryElement<string>> paginationRules = default;
             Optional<DataFactoryElement<string>> httpRequestTimeout = default;
             Optional<BinaryData> requestInterval = default;
-            Optional<BinaryData> additionalColumns = default;
+            Optional<DataFactoryElement<IDictionary<string, string>>> additionalColumns = default;
             string type = default;
             Optional<DataFactoryElement<int>> sourceRetryCount = default;
             Optional<DataFactoryElement<string>> sourceRetryWait = default;
@@ -177,7 +179,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    additionalColumns = BinaryData.FromString(property.Value.GetRawText());
+                    additionalColumns = JsonSerializer.Deserialize<DataFactoryElement<IDictionary<string, string>>>(property.Value.GetRawText());
                     continue;
                 }
                 if (property.NameEquals("type"u8))

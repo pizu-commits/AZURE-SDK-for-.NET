@@ -618,6 +618,7 @@ namespace Azure.Communication.CallAutomation
         public Azure.Communication.CallAutomation.DialogSensitivityUpdate DialogSensitivityUpdateEvent { get { throw null; } }
         public Azure.Communication.CallAutomation.DialogStarted DialogStartedSuccessEvent { get { throw null; } }
         public Azure.Communication.CallAutomation.DialogTransfer DialogTransferSuccessEvent { get { throw null; } }
+        public Azure.Communication.CallAutomation.DialogUpdated DialogUpdatedEvent { get { throw null; } }
         public Azure.Communication.CallAutomation.DialogFailed FailureResult { get { throw null; } }
         public bool IsSuccess { get { throw null; } }
     }
@@ -642,6 +643,7 @@ namespace Azure.Communication.CallAutomation
         private readonly object _dummy;
         private readonly int _dummyPrimitive;
         public DialogInputType(string value) { throw null; }
+        public static Azure.Communication.CallAutomation.DialogInputType AzureOpenAI { get { throw null; } }
         public static Azure.Communication.CallAutomation.DialogInputType PowerVirtualAgents { get { throw null; } }
         public bool Equals(Azure.Communication.CallAutomation.DialogInputType other) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -692,6 +694,21 @@ namespace Azure.Communication.CallAutomation
         public string TransferDestination { get { throw null; } }
         public string TransferType { get { throw null; } }
         public static Azure.Communication.CallAutomation.DialogTransfer Deserialize(string content) { throw null; }
+    }
+    public abstract partial class DialogUpdateBase
+    {
+        protected DialogUpdateBase() { }
+        public System.Collections.Generic.IDictionary<string, object> Context { get { throw null; } set { } }
+    }
+    public partial class DialogUpdated : Azure.Communication.CallAutomation.CallAutomationEventBase
+    {
+        internal DialogUpdated() { }
+        public string DialogId { get { throw null; } }
+        public Azure.Communication.CallAutomation.DialogInputType? DialogInputType { get { throw null; } }
+        public object IvrContext { get { throw null; } }
+        public string UpdatedDestination { get { throw null; } }
+        public string UpdatedType { get { throw null; } }
+        public static Azure.Communication.CallAutomation.DialogUpdated Deserialize(string content) { throw null; }
     }
     public partial class DtmfResult : Azure.Communication.CallAutomation.RecognizeResult
     {
@@ -1005,6 +1022,7 @@ namespace Azure.Communication.CallAutomation
     {
         internal RecordingStateChanged() { }
         public string RecordingId { get { throw null; } }
+        public Azure.Communication.CallAutomation.RecordingType? RecordingType { get { throw null; } }
         public System.DateTimeOffset? StartDateTime { get { throw null; } }
         public Azure.Communication.CallAutomation.RecordingState State { get { throw null; } set { } }
         public static Azure.Communication.CallAutomation.RecordingStateChanged Deserialize(string content) { throw null; }
@@ -1014,6 +1032,7 @@ namespace Azure.Communication.CallAutomation
         internal RecordingStateResult() { }
         public string RecordingId { get { throw null; } }
         public Azure.Communication.CallAutomation.RecordingState? RecordingState { get { throw null; } }
+        public Azure.Communication.CallAutomation.RecordingType? RecordingType { get { throw null; } }
     }
     public partial class RedirectCallOptions
     {
@@ -1132,6 +1151,8 @@ namespace Azure.Communication.CallAutomation
         public string DialogId { get { throw null; } }
         public string OperationCallbackUri { get { throw null; } set { } }
         public string OperationContext { get { throw null; } set { } }
+        public Azure.Communication.CallAutomation.PlaySource PlaySourceInfo { get { throw null; } set { } }
+        public Azure.Communication.CommunicationIdentifier TargetParticipant { get { throw null; } }
     }
     public partial class StartRecognizingCallMediaResult
     {

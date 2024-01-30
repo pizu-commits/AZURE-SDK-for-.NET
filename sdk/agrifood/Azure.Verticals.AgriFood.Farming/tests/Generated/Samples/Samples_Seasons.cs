@@ -17,14 +17,15 @@ using NUnit.Framework;
 
 namespace Azure.Verticals.AgriFood.Farming.Samples
 {
-    internal class Samples_Seasons
+    public partial class Samples_Seasons
     {
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetSeason()
+        public void Example_GetSeason_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetSeason("<seasonId>", null);
 
@@ -34,10 +35,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetSeason_Async()
+        public async Task Example_GetSeason_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetSeasonAsync("<seasonId>", null);
 
@@ -49,8 +51,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetSeason_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.GetSeason("<seasonId>", null);
 
@@ -76,8 +79,9 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetSeason_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.GetSeasonAsync("<seasonId>", null);
 
@@ -101,12 +105,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_CreateOrUpdate()
+        public void Example_CreateOrUpdate_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new object());
+            using RequestContent content = RequestContent.Create(new object());
             Response response = client.CreateOrUpdate("<seasonId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -115,12 +120,13 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_CreateOrUpdate_Async()
+        public async Task Example_CreateOrUpdate_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new object());
+            using RequestContent content = RequestContent.Create(new object());
             Response response = await client.CreateOrUpdateAsync("<seasonId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
@@ -131,10 +137,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_CreateOrUpdate_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 startDateTime = "2022-05-10T18:57:31.2311892Z",
                 endDateTime = "2022-05-10T18:57:31.2311892Z",
@@ -173,10 +180,11 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_CreateOrUpdate_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            RequestContent content = RequestContent.Create(new
+            using RequestContent content = RequestContent.Create(new
             {
                 startDateTime = "2022-05-10T18:57:31.2311892Z",
                 endDateTime = "2022-05-10T18:57:31.2311892Z",
@@ -213,23 +221,27 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_Delete()
+        public void Example_Delete_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.Delete("<seasonId>");
+
             Console.WriteLine(response.Status);
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_Delete_Async()
+        public async Task Example_Delete_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.DeleteAsync("<seasonId>");
+
             Console.WriteLine(response.Status);
         }
 
@@ -237,10 +249,12 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_Delete_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = client.Delete("<seasonId>");
+
             Console.WriteLine(response.Status);
         }
 
@@ -248,38 +262,42 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_Delete_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             Response response = await client.DeleteAsync("<seasonId>");
+
             Console.WriteLine(response.Status);
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetSeasons()
+        public void Example_GetSeasons_ShortVersion()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             foreach (BinaryData item in client.GetSeasons(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].ToString());
+                Console.WriteLine(result.ToString());
             }
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetSeasons_Async()
+        public async Task Example_GetSeasons_ShortVersion_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
             await foreach (BinaryData item in client.GetSeasonsAsync(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].ToString());
+                Console.WriteLine(result.ToString());
             }
         }
 
@@ -287,42 +305,28 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public void Example_GetSeasons_AllParameters()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            foreach (BinaryData item in client.GetSeasons(DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), new List<int>()
-{
-1234
-}, new List<string>()
-{
-"<seasonIds>"
-}, new List<string>()
-{
-"<names>"
-}, new List<string>()
-{
-"<propertyFilters>"
-}, new List<string>()
-{
-"<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+            foreach (BinaryData item in client.GetSeasons(DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), new int[] { 1234 }, new string[] { "<seasonIds>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].GetProperty("startDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("endDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("year").ToString());
-                Console.WriteLine(result[0].GetProperty("geographicIdentifier").ToString());
-                Console.WriteLine(result[0].GetProperty("id").ToString());
-                Console.WriteLine(result[0].GetProperty("eTag").ToString());
-                Console.WriteLine(result[0].GetProperty("status").ToString());
-                Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("source").ToString());
-                Console.WriteLine(result[0].GetProperty("name").ToString());
-                Console.WriteLine(result[0].GetProperty("description").ToString());
-                Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-                Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("startDateTime").ToString());
+                Console.WriteLine(result.GetProperty("endDateTime").ToString());
+                Console.WriteLine(result.GetProperty("year").ToString());
+                Console.WriteLine(result.GetProperty("geographicIdentifier").ToString());
+                Console.WriteLine(result.GetProperty("id").ToString());
+                Console.WriteLine(result.GetProperty("eTag").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+                Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+                Console.WriteLine(result.GetProperty("source").ToString());
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("description").ToString());
+                Console.WriteLine(result.GetProperty("createdBy").ToString());
+                Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
             }
         }
 
@@ -330,42 +334,28 @@ namespace Azure.Verticals.AgriFood.Farming.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Example_GetSeasons_AllParameters_Async()
         {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
-            Seasons client = new FarmBeatsClient(credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
+            Seasons client = new FarmBeatsClient(endpoint, credential).GetSeasonsClient(apiVersion: "2022-11-01-preview");
 
-            await foreach (BinaryData item in client.GetSeasonsAsync(DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), new List<int>()
-{
-1234
-}, new List<string>()
-{
-"<seasonIds>"
-}, new List<string>()
-{
-"<names>"
-}, new List<string>()
-{
-"<propertyFilters>"
-}, new List<string>()
-{
-"<statuses>"
-}, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
+            await foreach (BinaryData item in client.GetSeasonsAsync(DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), new int[] { 1234 }, new string[] { "<seasonIds>" }, new string[] { "<names>" }, new string[] { "<propertyFilters>" }, new string[] { "<statuses>" }, DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), DateTimeOffset.Parse("2022-05-10T18:57:31.2311892Z"), 1234, "<skipToken>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result[0].GetProperty("startDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("endDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("year").ToString());
-                Console.WriteLine(result[0].GetProperty("geographicIdentifier").ToString());
-                Console.WriteLine(result[0].GetProperty("id").ToString());
-                Console.WriteLine(result[0].GetProperty("eTag").ToString());
-                Console.WriteLine(result[0].GetProperty("status").ToString());
-                Console.WriteLine(result[0].GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedDateTime").ToString());
-                Console.WriteLine(result[0].GetProperty("source").ToString());
-                Console.WriteLine(result[0].GetProperty("name").ToString());
-                Console.WriteLine(result[0].GetProperty("description").ToString());
-                Console.WriteLine(result[0].GetProperty("createdBy").ToString());
-                Console.WriteLine(result[0].GetProperty("modifiedBy").ToString());
-                Console.WriteLine(result[0].GetProperty("properties").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("startDateTime").ToString());
+                Console.WriteLine(result.GetProperty("endDateTime").ToString());
+                Console.WriteLine(result.GetProperty("year").ToString());
+                Console.WriteLine(result.GetProperty("geographicIdentifier").ToString());
+                Console.WriteLine(result.GetProperty("id").ToString());
+                Console.WriteLine(result.GetProperty("eTag").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+                Console.WriteLine(result.GetProperty("modifiedDateTime").ToString());
+                Console.WriteLine(result.GetProperty("source").ToString());
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("description").ToString());
+                Console.WriteLine(result.GetProperty("createdBy").ToString());
+                Console.WriteLine(result.GetProperty("modifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("properties").GetProperty("<key>").ToString());
             }
         }
     }
