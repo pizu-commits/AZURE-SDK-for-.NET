@@ -56,6 +56,9 @@ parameters:
   type: string
 - name: Os
   type: string
+- name: OSVmImage
+  type: string
+  default: ''
 
 jobs:
   - job:
@@ -80,6 +83,8 @@ jobs:
 
     pool:
       name: ${{ parameters.Pool }}
+      ${{ if ne(parameters.OSVmImage, '') }}:
+        vmImage: ${{ parameters.OSVmImage }}
       # Uncomment for 1es pt context
       # os: ${{ parameters.Os }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:

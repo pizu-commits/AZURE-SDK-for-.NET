@@ -150,6 +150,7 @@ jobs:
       parameters:
         UsePlatformContainer: false
         Pool: Azure Pipelines
+        OSVmImage: macos-11
         Os: macOS
         Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_mac.matrix']
         DependsOn: ${{ parameters.GenerateJobName }}
