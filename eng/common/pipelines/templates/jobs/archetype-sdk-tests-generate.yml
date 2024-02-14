@@ -100,7 +100,7 @@ jobs:
                 -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
                 -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
             displayName: Generate VM Job Matrix ${{ config.Name }}
-            name: vm_job_matrix_${{ config.Name }}_linux
+            name: vm_job_matrix_${{ config.Name }}_${{ pool.AgentAlias }}
 
         - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
           - task: Powershell@2
