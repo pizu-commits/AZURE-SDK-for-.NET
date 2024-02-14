@@ -146,7 +146,7 @@ jobs:
       - template: /eng/common/pipelines/templates/steps/detect-api-changes.yml
         parameters:
           Artifacts: ${{ parameters.Artifacts }}
-      
+
       - ${{ if eq(parameters.CheckAOTCompat, 'true') }}:
         - template: /eng/pipelines/templates/steps/aot-compatibility.yml
           parameters:

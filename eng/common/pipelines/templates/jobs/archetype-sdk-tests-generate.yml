@@ -74,11 +74,39 @@ jobs:
               -ConfigPath ${{ config.Path }}
               -Selection ${{ config.Selection }}
               -DisplayNameFilter '$(displayNameFilter)'
-              -Filters '${{ join(''',''', parameters.MatrixFilters) }}','container=^$','SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}'
+              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*mms-ubuntu.*'
               -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
               -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
           displayName: Generate VM Job Matrix ${{ config.Name }}
-          name: generate_vm_job_matrix_${{ config.Name }}
+          name: vm_job_matrix_${{ config.Name }}_linux
+
+        - task: Powershell@2
+          inputs:
+            pwsh: true
+            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
+            arguments: >
+              -ConfigPath ${{ config.Path }}
+              -Selection ${{ config.Selection }}
+              -DisplayNameFilter '$(displayNameFilter)'
+              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*mms-win.*'
+              -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
+              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
+          displayName: Generate VM Job Matrix ${{ config.Name }}
+          name: vm_job_matrix_${{ config.Name }}_windows
+
+        - task: Powershell@2
+          inputs:
+            pwsh: true
+            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
+            arguments: >
+              -ConfigPath ${{ config.Path }}
+              -Selection ${{ config.Selection }}
+              -DisplayNameFilter '$(displayNameFilter)'
+              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=Azure.Pipelines'
+              -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
+              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
+          displayName: Generate VM Job Matrix ${{ config.Name }}
+          name: vm_job_matrix_${{ config.Name }}_mac
 
       - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
         - task: Powershell@2
@@ -99,7 +127,31 @@ jobs:
     - template: ${{ parameters.JobTemplatePath }}
       parameters:
         UsePlatformContainer: false
-        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['generate_vm_job_matrix_${{ config.Name }}.matrix']
+        Pool: azsdk-pool-mms-ubuntu-2004-general
+        Os: linux
+        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_linux.matrix']
+        DependsOn: ${{ parameters.GenerateJobName }}
+        CloudConfig: ${{ parameters.CloudConfig }}
+        ${{ each param in parameters.AdditionalParameters }}:
+          ${{ param.key }}: ${{ param.value }}
+
+    - template: ${{ parameters.JobTemplatePath }}
+      parameters:
+        UsePlatformContainer: false
+        Pool: azsdk-pool-mms-win-2022-general
+        Os: windows
+        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_windows.matrix']
+        DependsOn: ${{ parameters.GenerateJobName }}
+        CloudConfig: ${{ parameters.CloudConfig }}
+        ${{ each param in parameters.AdditionalParameters }}:
+          ${{ param.key }}: ${{ param.value }}
+
+    - template: ${{ parameters.JobTemplatePath }}
+      parameters:
+        UsePlatformContainer: false
+        Pool: Azure Pipelines
+        Os: macOS
+        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_mac.matrix']
         DependsOn: ${{ parameters.GenerateJobName }}
         CloudConfig: ${{ parameters.CloudConfig }}
         ${{ each param in parameters.AdditionalParameters }}:

@@ -24,6 +24,10 @@ parameters:
 - name: ServiceDirectory
   type: string
   default: ''
+- name: Pool
+  type: string
+- name: Os
+  type: string
 
 jobs:
   - job:
@@ -34,8 +38,9 @@ jobs:
     strategy:
       matrix: $[ ${{ parameters.Matrix }} ]
     pool:
-      vmImage: $(OSVmImage)
-      name: $(Pool)
+      name: ${{ parameters.Pool }}
+      # Uncomment for 1es pt context
+      # os: ${{ parameters.Os }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
       # Add a default so the job doesn't fail when the matrix is empty
       container: $[ variables['Container'] ]
