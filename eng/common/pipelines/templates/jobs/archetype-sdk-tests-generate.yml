@@ -39,6 +39,27 @@ parameters:
 - name: PreGenerationSteps
   type: stepList
   default: []
+- name: Pools
+  type: object
+  default:
+    - Pool: azsdk-pool-mms-ubuntu-2004-general
+      AgentAlias: ubuntu
+      Demands: ImageOverride -equals ubuntu-20.04
+      OSName: linux
+    - Pool: azsdk-pool-mms-ubuntu-2204-general
+      AgentAlias: ubuntuNext
+      Demands: ImageOverride -equals ubuntu-22.04
+      OSName: linux
+    - Pool: azsdk-pool-mms-win-2022-general
+      AgentAlias: windows
+      Demands: ImageOverride -equals windows-2022
+      OSName: windows
+    - Pool: azsdk-pool-mms-ubuntu-2004-general
+      AgentAlias: macos
+      Demands: ImageOverride -equals macos-11
+      OSName: macOS
+
+
 
 jobs:
 - job: ${{ parameters.GenerateJobName }}
@@ -65,105 +86,60 @@ jobs:
     - ${{ parameters.PreGenerationSteps }}
 
     - ${{ each config in parameters.MatrixConfigs }}:
-      - ${{ if eq(config.GenerateVMJobs, 'true') }}:
-        - task: Powershell@2
-          inputs:
-            pwsh: true
-            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
-            arguments: >
-              -ConfigPath ${{ config.Path }}
-              -Selection ${{ config.Selection }}
-              -DisplayNameFilter '$(displayNameFilter)'
-              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*mms-ubuntu.*'
-              -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
-              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-          displayName: Generate VM Job Matrix ${{ config.Name }}
-          name: vm_job_matrix_${{ config.Name }}_linux
+      - ${{ each pool in parameters.Pools }}:
+        - ${{ if eq(config.GenerateVMJobs, 'true') }}:
+          - task: Powershell@2
+            inputs:
+              pwsh: true
+              filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
+              arguments: >
+                -ConfigPath ${{ config.Path }}
+                -Selection ${{ config.Selection }}
+                -DisplayNameFilter '$(displayNameFilter)'
+                -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=${{ pool.AgentAlias }}'
+                -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
+                -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
+            displayName: Generate VM Job Matrix ${{ config.Name }}
+            name: vm_job_matrix_${{ config.Name }}_linux
 
-        - task: Powershell@2
-          inputs:
-            pwsh: true
-            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
-            arguments: >
-              -ConfigPath ${{ config.Path }}
-              -Selection ${{ config.Selection }}
-              -DisplayNameFilter '$(displayNameFilter)'
-              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*mms-win.*'
-              -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
-              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-          displayName: Generate VM Job Matrix ${{ config.Name }}
-          name: vm_job_matrix_${{ config.Name }}_windows
-
-        - task: Powershell@2
-          inputs:
-            pwsh: true
-            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
-            arguments: >
-              -ConfigPath ${{ config.Path }}
-              -Selection ${{ config.Selection }}
-              -DisplayNameFilter '$(displayNameFilter)'
-              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=Azure.Pipelines'
-              -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
-              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-          displayName: Generate VM Job Matrix ${{ config.Name }}
-          name: vm_job_matrix_${{ config.Name }}_mac
-
-      - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
-        - task: Powershell@2
-          inputs:
-            pwsh: true
-            filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
-            arguments: >
-              -ConfigPath ${{ config.Path }}
-              -Selection ${{ config.Selection }}
-              -DisplayNameFilter '$(displayNameFilter)'
-              -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=.*', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}'
-              -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-          displayName: Generate Container Job Matrix
-          name: generate_container_job_matrix_${{ config.Name }}
+        - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
+          - task: Powershell@2
+            inputs:
+              pwsh: true
+              filePath: eng/common/scripts/job-matrix/Create-JobMatrix.ps1
+              arguments: >
+                -ConfigPath ${{ config.Path }}
+                -Selection ${{ config.Selection }}
+                -DisplayNameFilter '$(displayNameFilter)'
+                -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=${{ pool.AgentAlias }}'
+                -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
+            displayName: Generate Container Job Matrix
+            name: generate_container_job_matrix_${{ config.Name }}
 
 - ${{ each config in parameters.MatrixConfigs }}:
-  - ${{ if eq(config.GenerateVMJobs, 'true') }}:
-    - template: ${{ parameters.JobTemplatePath }}
-      parameters:
-        UsePlatformContainer: false
-        Pool: azsdk-pool-mms-ubuntu-2004-general
-        Os: linux
-        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_linux.matrix']
-        DependsOn: ${{ parameters.GenerateJobName }}
-        CloudConfig: ${{ parameters.CloudConfig }}
-        ${{ each param in parameters.AdditionalParameters }}:
-          ${{ param.key }}: ${{ param.value }}
+  - ${{ each pool in parameters.Pools }}:
+    - ${{ if eq(config.GenerateVMJobs, 'true') }}:
+      - template: ${{ parameters.JobTemplatePath }}
+        parameters:
+          UsePlatformContainer: false
+          Pool: ${{ pool.Pool }}
+          Demands: ${{ pool.Demands }}
+          OSName: ${{ pool.OSName }}
+          Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_${{ pool.AgentAlias }}.matrix']
+          DependsOn: ${{ parameters.GenerateJobName }}
+          CloudConfig: ${{ parameters.CloudConfig }}
+          ${{ each param in parameters.AdditionalParameters }}:
+            ${{ param.key }}: ${{ param.value }}
 
-    - template: ${{ parameters.JobTemplatePath }}
-      parameters:
-        UsePlatformContainer: false
-        Pool: azsdk-pool-mms-win-2022-general
-        Os: windows
-        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_windows.matrix']
-        DependsOn: ${{ parameters.GenerateJobName }}
-        CloudConfig: ${{ parameters.CloudConfig }}
-        ${{ each param in parameters.AdditionalParameters }}:
-          ${{ param.key }}: ${{ param.value }}
-
-    - template: ${{ parameters.JobTemplatePath }}
-      parameters:
-        UsePlatformContainer: false
-        Pool: Azure Pipelines
-        OSVmImage: macos-11
-        Os: macOS
-        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_mac.matrix']
-        DependsOn: ${{ parameters.GenerateJobName }}
-        CloudConfig: ${{ parameters.CloudConfig }}
-        ${{ each param in parameters.AdditionalParameters }}:
-          ${{ param.key }}: ${{ param.value }}
-
-  - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
-    - template: ${{ parameters.JobTemplatePath }}
-      parameters:
-        UsePlatformContainer: true
-        Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['generate_container_job_matrix_${{ config.Name }}.matrix']
-        DependsOn: ${{ parameters.GenerateJobName }}
-        CloudConfig: ${{ parameters.CloudConfig }}
-        ${{ each param in parameters.AdditionalParameters }}:
-          ${{ param.key }}: ${{ param.value }}
+    - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
+      - template: ${{ parameters.JobTemplatePath }}
+        parameters:
+          UsePlatformContainer: true
+          Pool: ${{ pool.Pool }}
+          Demands: ${{ pool.Demands }}
+          OSName: ${{ pool.OSName }}
+          Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_${{ pool.AgentAlias }}.matrix']
+          DependsOn: ${{ parameters.GenerateJobName }}
+          CloudConfig: ${{ parameters.CloudConfig }}
+          ${{ each param in parameters.AdditionalParameters }}:
+            ${{ param.key }}: ${{ param.value }}

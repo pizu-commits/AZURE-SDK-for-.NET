@@ -28,7 +28,10 @@ parameters:
   type: string
 - name: Os
   type: string
-- name: OSVmImage
+- name: Demands
+  type: string
+  default: ''
+- name: OSName
   type: string
   default: ''
 
@@ -42,10 +45,9 @@ jobs:
       matrix: $[ ${{ parameters.Matrix }} ]
     pool:
       name: ${{ parameters.Pool }}
-      ${{ if ne(parameters.OSVmImage, '') }}:
-        vmImage: ${{ parameters.OSVmImage }}
+      demands: ${{ parameters.Demands }}
       # Uncomment for 1es pt context
-      # os: ${{ parameters.Os }}
+      # os: ${{ parameters.OSName }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
       # Add a default so the job doesn't fail when the matrix is empty
       container: $[ variables['Container'] ]
@@ -79,7 +81,7 @@ jobs:
         displayName: 'Configure Kestrel Environment Variables'
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
-          AgentImage: $(OSVmImage)
+          AgentImage: ${{ parameters.AgentAlias }}
       - ${{ each step in parameters.TestSetupSteps }}:
         - ${{ each pair in step }}:
             ${{ pair.key }}: ${{ pair.value }}

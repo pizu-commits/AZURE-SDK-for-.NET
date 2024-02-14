@@ -5,6 +5,7 @@ resources:
       name: internal/azure-sdk-build-tools
       ref: refs/tags/azure-sdk-build-tools_20230829.1
 
+
 parameters:
 - name: Artifacts
   type: object
@@ -70,6 +71,9 @@ parameters:
 - name: ReleaseDependsOnLiveTests
   type: string
   default: not-specified
+- name: Pools
+  type: object
+  default: []
 
 variables:
   - template: ../variables/globals.yml
@@ -103,6 +107,7 @@ stages:
             - BuildConfiguration=Debug/Release
           - ${{ parameters.MatrixReplace }}
         TestDependsOnDependency: ${{ parameters.TestDependsOnDependency }}
+        Pools: ${{ parameters.Pools }}
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
