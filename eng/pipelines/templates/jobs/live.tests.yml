@@ -58,6 +58,8 @@ parameters:
   type: string
 - name: OSName
   type: string
+- name: AgentAlias
+  type: string
 
 jobs:
   - job:
@@ -101,7 +103,7 @@ jobs:
 
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
-          AgentImage: $(OSVmImage)
+          AgentImage: ${{ parameters.AgentAlias }}
 
       - ${{ each step in parameters.TestSetupSteps }}:
         - ${{ each pair in step }}:

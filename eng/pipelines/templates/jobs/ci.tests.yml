@@ -30,7 +30,8 @@ parameters:
   type: string
 - name: Demands
   type: string
-  default: ''
+- name: AgentAlias
+  type: string
 
 jobs:
   - job:

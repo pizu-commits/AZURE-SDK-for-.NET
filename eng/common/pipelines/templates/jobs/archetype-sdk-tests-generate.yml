@@ -125,6 +125,7 @@ jobs:
           Pool: ${{ pool.Pool }}
           Demands: ${{ pool.Demands }}
           OSName: ${{ pool.OSName }}
+          AgentAlias: ${{ pool.AgentAlias }}
           Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_${{ pool.AgentAlias }}.matrix']
           DependsOn: ${{ parameters.GenerateJobName }}
           CloudConfig: ${{ parameters.CloudConfig }}
@@ -138,6 +139,7 @@ jobs:
           Pool: ${{ pool.Pool }}
           Demands: ${{ pool.Demands }}
           OSName: ${{ pool.OSName }}
+          AgentAlias: ${{ pool.AgentAlias }}
           Matrix: dependencies.${{ parameters.GenerateJobName }}.outputs['vm_job_matrix_${{ config.Name }}_${{ pool.AgentAlias }}.matrix']
           DependsOn: ${{ parameters.GenerateJobName }}
           CloudConfig: ${{ parameters.CloudConfig }}
