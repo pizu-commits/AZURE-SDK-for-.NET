@@ -26,12 +26,9 @@ parameters:
   default: ''
 - name: Pool
   type: string
-- name: Os
+- name: OSName
   type: string
 - name: Demands
-  type: string
-  default: ''
-- name: OSName
   type: string
   default: ''
 
