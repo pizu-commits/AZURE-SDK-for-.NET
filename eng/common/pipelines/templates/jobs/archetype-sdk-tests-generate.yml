@@ -52,12 +52,14 @@ parameters:
     - name: MacPool
       os: macOS
 
-
 jobs:
 - job: ${{ parameters.GenerateJobName }}
   variables:
-    skipComponentGovernanceDetection: true
-    displayNameFilter: $[ coalesce(variables.jobMatrixFilter, '.*') ]
+    - template: /eng/pipelines/templates/variables/image.yml
+    - name: skipComponentGovernanceDetection
+      value: true
+    - name: displayNameFilter
+      value: $[ coalesce(variables.jobMatrixFilter, '.*') ]
   pool:
     name: ${{ parameters.Pool }}
     vmImage: ${{ parameters.OsVmImage }}
