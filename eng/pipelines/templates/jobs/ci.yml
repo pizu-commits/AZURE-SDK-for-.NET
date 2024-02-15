@@ -45,9 +45,6 @@ parameters:
 - name: LimitForPullRequest
   type: boolean
   default: false
-- name: Pools
-  type: object
-  default: []
 
 jobs:
   - job: Build
@@ -270,8 +267,6 @@ jobs:
 
     - template: /eng/common/pipelines/templates/jobs/archetype-sdk-tests-generate.yml
       parameters:
-        ${{ if ne(length(parameters.Pools), 0) }}:
-          Pools: ${{ parameters.Pools }}
         GenerateJobName: target_service_test_matrix
         JobTemplatePath: /eng/pipelines/templates/jobs/ci.tests.yml
         MatrixConfigs: ${{ parameters.MatrixConfigs }}
@@ -288,8 +283,6 @@ jobs:
     - ${{ if ne(parameters.TestDependsOnDependency, 'not-specified') }}:
       - template: /eng/common/pipelines/templates/jobs/archetype-sdk-tests-generate.yml
         parameters:
-          ${{ if ne(length(parameters.Pools), 0) }}:
-            Pools: ${{ parameters.Pools }}
           GenerateJobName: target_dependencies_test_matrix
           JobTemplatePath: /eng/pipelines/templates/jobs/ci.tests.yml
           MatrixConfigs: ${{ parameters.MatrixConfigs }}

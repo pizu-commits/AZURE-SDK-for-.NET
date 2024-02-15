@@ -38,22 +38,6 @@ parameters:
   displayName: Allow release with failing live tests
   type: boolean
   default: false
-- name: Pools
-  displayName: Agent Pool Override
-  type: object
-  default:
-    - Pool: azsdk-pool-mms-ubuntu-2004-general
-      AgentAlias: ubuntu
-      Demands: ImageOverride -equals ubuntu-20.04
-      OSName: linux
-    - Pool: azsdk-pool-mms-win-2022-general
-      AgentAlias: windows
-      Demands: ImageOverride -equals windows-2022
-      OSName: windows
-    - Pool: azsdk-pool-mms-ubuntu-2004-general
-      AgentAlias: mac
-      Demands: ImageOverride -equals macos-11
-      OSName: macOS
 
 extends:
   template: /eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -68,5 +52,3 @@ extends:
       - template: /eng/pipelines/templates/stages/archetype-sdk-tests.yml
         parameters:
           ServiceDirectory: template
-    # Plumb through pool override so we can test/flight new pools at queue time
-    Pools: ${{ parameters.Pools }}
