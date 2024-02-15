@@ -8,14 +8,14 @@ variables:
   - name: MACPOOL
     value: Azure Pipelines
 
-  - name: LINUXIMAGEDEMANDS
-    value: ImageOverride -equals ubuntu-20.04
-  - name: LINUXIMAGENEXTDEMANDS
-    value: ImageOverride -equals ubuntu-22.04
-  - name: WINDOWSIMAGEDEMANDS
-    value: ImageOverride -equals windows-2022
-  - name: MACIMAGEDEMANDS
-    value: ImageOverride -equals macos-11
+  - name: LINUXVMIMAGE
+    value: ubuntu-20.04
+  - name: LINUXNEXTVMIMAGE
+    value: ubuntu-22.04
+  - name: WINDOWSVMIMAGE
+    value: windows-2022
+  - name: MACVMIMAGE
+    value: macos-11
 
   # Values required for pool.os field in 1es pipeline templates
   - name: LINUXOS

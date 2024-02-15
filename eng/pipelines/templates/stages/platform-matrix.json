@@ -6,32 +6,32 @@
   "matrix": {
     "Agent": {
       "Ubuntu-20.04_NET6.0": {
-        "ImageDemands": "env:LINUXIMAGEDEMANDS",
+        "OSVmImage": "env:LINUXVMIMAGE",
         "Pool": "env:LINUXPOOL",
         "TestTargetFramework": "net6.0"
       },
       "Ubuntu-20.04_NET7.0": {
-        "ImageDemands": "env:LINUXIMAGEDEMANDS",
+        "OSVmImage": "env:LINUXVMIMAGE",
         "Pool": "env:LINUXPOOL",
         "TestTargetFramework": "net7.0"
       },
       "Windows2022_NET462": {
-        "ImageDemands": "env:WINDOWSIMAGEDEMANDS",
+        "OSVmImage": "env:WINDOWSVMIMAGE",
         "Pool": "env:WINDOWSPOOL",
         "TestTargetFramework": "net462"
       },
       "Windows2022_NET7.0": {
-        "ImageDemands": "env:WINDOWSIMAGEDEMANDS",
+        "OSVmImage": "env:WINDOWSVMIMAGE",
         "Pool": "env:WINDOWSPOOL",
         "TestTargetFramework": "net7.0"
       },
       "MacOS-11_NET6.0": {
-        "ImageDemands": "env:MACIMAGEDEMANDS",
+        "OSVmImage": "env:MACVMIMAGE",
         "Pool": "env:MACPOOL",
         "TestTargetFramework": "net6.0"
       },
       "MacOS-11_NET7.0": {
-        "ImageDemands": "env:MACIMAGEDEMANDS",
+        "OSVmImage": "env:MACVMIMAGE",
         "Pool": "env:MACPOOL",
         "TestTargetFramework": "net7.0"
       }
@@ -49,7 +49,7 @@
     {
       "Agent": {
         "Windows2022_NET7.0": {
-          "ImageDemands": "env:WINDOWSIMAGEDEMANDS",
+          "OSVmImage": "env:WINDOWSVMIMAGE",
           "Pool": "env:WINDOWSPOOL",
           "TestTargetFramework": "net7.0"
         }

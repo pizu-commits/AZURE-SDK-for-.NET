@@ -78,7 +78,7 @@ jobs:
 
     pool:
       name: $(Pool)
-      demands: $(ImageDemands)
+      vmImage: $(OSVmImage)
       # Uncomment for 1es pt context
       # os: ${{ parameters.Os }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:

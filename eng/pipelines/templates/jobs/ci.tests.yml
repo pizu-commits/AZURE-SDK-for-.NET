@@ -37,7 +37,7 @@ jobs:
       matrix: $[ ${{ parameters.Matrix }} ]
     pool:
       name: $(Pool)
-      demands: $(ImageDemands)
+      vmImage: $(OSVmImage)
       # Uncomment for 1es pt context
       # os: ${{ parameters.OSName }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
@@ -116,7 +116,7 @@ jobs:
         displayName: "Publish Results ($(TestTargetFramework))"
         inputs:
           testResultsFiles: "**/$(TestTargetFramework)*.trx"
-          testRunTitle: "$(OSName) $(TestTargetFramework)"
+          testRunTitle: "${{ parameters.OSName }} $(TestTargetFramework)"
           testResultsFormat: "VSTest"
           mergeTestResults: true
       - template: /eng/common/pipelines/templates/steps/publish-artifact.yml

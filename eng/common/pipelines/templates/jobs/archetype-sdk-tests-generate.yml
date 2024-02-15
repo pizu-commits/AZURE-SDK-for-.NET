@@ -82,11 +82,6 @@ jobs:
     - ${{ each config in parameters.MatrixConfigs }}:
       - ${{ each pool in parameters.Pools }}:
         - ${{ if eq(config.GenerateVMJobs, 'true') }}:
-          - pwsh: |
-              Write-Host "ENV LINUX POOL"
-              Write-Host $env:LINUXPOOL
-              Write-Host [System.Environment]::GetEnvironmentVariable("LINUXPOOL")
-
           - task: Powershell@2
             inputs:
               pwsh: true
@@ -98,7 +93,7 @@ jobs:
                 -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*${{ pool.name }}$'
                 -Replace '${{ join(''',''', parameters.MatrixReplace) }}'
                 -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-            displayName: Generate VM Job Matrix ${{ config.Name }}
+            displayName: Create ${{ pool.name }} Matrix ${{ config.Name }}
             name: vm_job_matrix_${{ config.Name }}_${{ pool.name }}
 
         - ${{ if eq(config.GenerateContainerJobs, 'true') }}:
@@ -112,7 +107,7 @@ jobs:
                 -DisplayNameFilter '$(displayNameFilter)'
                 -Filters '${{ join(''',''', parameters.MatrixFilters) }}', 'container=^$', 'SupportedClouds=^$|${{ parameters.CloudConfig.Cloud }}', 'Pool=.*${{ pool.name }}$'
                 -NonSparseParameters '${{ join(''',''', config.NonSparseParameters) }}'
-            displayName: Generate Container Job Matrix
+            displayName: Create ${{ pool.name }} Container Matrix ${{ config.Name }}
             name: container_job_matrix_${{ config.Name }}_${{ pool.name }}
 
 - ${{ each config in parameters.MatrixConfigs }}:
