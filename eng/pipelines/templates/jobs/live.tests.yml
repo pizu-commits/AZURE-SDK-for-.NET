@@ -52,13 +52,7 @@ parameters:
 - name: UsePlatformContainer
   type: boolean
   default: false
-- name: Pool
-  type: string
-- name: Demands
-  type: string
 - name: OSName
-  type: string
-- name: AgentAlias
   type: string
 
 jobs:
@@ -83,8 +77,8 @@ jobs:
     timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
 
     pool:
-      name: ${{ parameters.Pool }}
-      demands: ${{ parameters.Demands }}
+      name: $(Pool)
+      demands: $(ImageDemands)
       # Uncomment for 1es pt context
       # os: ${{ parameters.Os }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
@@ -103,7 +97,7 @@ jobs:
 
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
-          AgentImage: ${{ parameters.AgentAlias }}
+          AgentImage: ${{ parameters.OSName }}
 
       - ${{ each step in parameters.TestSetupSteps }}:
         - ${{ each pair in step }}:

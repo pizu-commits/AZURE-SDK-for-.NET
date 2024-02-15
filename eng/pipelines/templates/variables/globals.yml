@@ -1,21 +1,38 @@
 variables:
-  DocWardenVersion: '0.6.1'
-  OfficialBuildId: $(Build.BuildNumber)
-  AdditionalTestArguments: ''
-  skipComponentGovernanceDetection: true
-  nugetMultiFeedWarnLevel: 'none'
-  ${{ if ne(variables['System.TeamProject'], 'internal') }}:
-    BuildConfiguration: 'Debug'
-  ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-    BuildConfiguration: 'Release'
-  DocFxVersion: 'v2.56.1'
-  CollectCoverage: false
-  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages/
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  DOTNET_NOLOGO: 1
-  Package.EnableSBOMSigning: true
-  Codeql.SkipTaskAutoInjection: true
-  # Define optional AdditionalTestFilters via pipeline runtime variables or matrix config variables
-  # See https://docs.microsoft.com/dotnet/core/testing/selective-unit-tests?pivots=nunit
-  AdditionalTestFilters: "Placeholder!=DefaultIgnoreMe"
+  - template: image.yml
+  - name: DocWardenVersion
+    value: '0.6.1'
+  - name: OfficialBuildId
+    value: $(Build.BuildNumber)
+  - name: AdditionalTestArguments
+    value: ''
+  - name: skipComponentGovernanceDetection
+    value: true
+  - name: nugetMultiFeedWarnLevel
+    value: 'none'
+  - ${{ if ne(variables['System.TeamProject'], 'internal') }}:
+    - name: BuildConfiguration
+      value: 'Debug'
+  - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+    - name: BuildConfiguration
+      value: 'Release'
+  - name: DocFxVersion
+    value: 'v2.56.1'
+  - name: CollectCoverage
+    value: false
+  - name: NUGET_PACKAGES
+    value: $(Pipeline.Workspace)/.nuget/packages/
+  - name: DOTNET_SKIP_FIRST_TIME_EXPERIENCE
+    value: 1
+  - name: DOTNET_CLI_TELEMETRY_OPTOUT
+    value: 1
+  - name: DOTNET_NOLOGO
+    value: 1
+  - name: Package.EnableSBOMSigning
+    value: true
+  - name: Codeql.SkipTaskAutoInjection
+    value: true
+    # Define optional AdditionalTestFilters via pipeline runtime variables or matrix config variables
+    # See https://docs.microsoft.com/dotnet/core/testing/selective-unit-tests?pivots=nunit
+  - name: AdditionalTestFilters
+    value: "Placeholder!=DefaultIgnoreMe"

@@ -24,13 +24,7 @@ parameters:
 - name: ServiceDirectory
   type: string
   default: ''
-- name: Pool
-  type: string
 - name: OSName
-  type: string
-- name: Demands
-  type: string
-- name: AgentAlias
   type: string
 
 jobs:
@@ -42,8 +36,8 @@ jobs:
     strategy:
       matrix: $[ ${{ parameters.Matrix }} ]
     pool:
-      name: ${{ parameters.Pool }}
-      demands: ${{ parameters.Demands }}
+      name: $(Pool)
+      demands: $(ImageDemands)
       # Uncomment for 1es pt context
       # os: ${{ parameters.OSName }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
@@ -79,7 +73,7 @@ jobs:
         displayName: 'Configure Kestrel Environment Variables'
       - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
         parameters:
-          AgentImage: ${{ parameters.AgentAlias }}
+          AgentImage: ${{ parameters.OSName }}
       - ${{ each step in parameters.TestSetupSteps }}:
         - ${{ each pair in step }}:
             ${{ pair.key }}: ${{ pair.value }}
