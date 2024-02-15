@@ -82,6 +82,11 @@ jobs:
     - ${{ each config in parameters.MatrixConfigs }}:
       - ${{ each pool in parameters.Pools }}:
         - ${{ if eq(config.GenerateVMJobs, 'true') }}:
+          - pwsh: |
+              Write-Host "ENV LINUX POOL"
+              Write-Host $env:LINUXPOOL
+              Write-Host [System.Environment]::GetEnvironmentVariable("LINUXPOOL")
+
           - task: Powershell@2
             inputs:
               pwsh: true
