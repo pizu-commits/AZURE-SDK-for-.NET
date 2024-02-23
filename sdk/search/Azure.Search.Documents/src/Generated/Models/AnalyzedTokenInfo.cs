@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Search.Documents.Indexes.Models
 {
     /// <summary> Information about a token returned by an analyzer. </summary>
     public partial class AnalyzedTokenInfo
     {
-        /// <summary> Initializes a new instance of AnalyzedTokenInfo. </summary>
+        /// <summary> Initializes a new instance of <see cref="AnalyzedTokenInfo"/>. </summary>
         /// <param name="token"> The token returned by the analyzer. </param>
         /// <param name="startOffset"> The index of the first character of the token in the input text. </param>
         /// <param name="endOffset"> The index of the last character of the token in the input text. </param>
@@ -21,7 +20,10 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <exception cref="ArgumentNullException"> <paramref name="token"/> is null. </exception>
         internal AnalyzedTokenInfo(string token, int startOffset, int endOffset, int position)
         {
-            Argument.AssertNotNull(token, nameof(token));
+            if (token == null)
+            {
+                throw new ArgumentNullException(nameof(token));
+            }
 
             Token = token;
             StartOffset = startOffset;

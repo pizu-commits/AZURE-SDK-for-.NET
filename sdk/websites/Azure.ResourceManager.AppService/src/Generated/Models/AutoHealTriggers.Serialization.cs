@@ -5,16 +5,26 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.AppService.Models
 {
-    public partial class AutoHealTriggers : IUtf8JsonSerializable
+    public partial class AutoHealTriggers : IUtf8JsonSerializable, IJsonModel<AutoHealTriggers>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<AutoHealTriggers>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<AutoHealTriggers>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<AutoHealTriggers>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(AutoHealTriggers)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(Requests))
             {
@@ -61,11 +71,40 @@ namespace Azure.ResourceManager.AppService.Models
                 }
                 writer.WriteEndArray();
             }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static AutoHealTriggers DeserializeAutoHealTriggers(JsonElement element)
+        AutoHealTriggers IJsonModel<AutoHealTriggers>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<AutoHealTriggers>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(AutoHealTriggers)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeAutoHealTriggers(document.RootElement, options);
+        }
+
+        internal static AutoHealTriggers DeserializeAutoHealTriggers(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -76,6 +115,8 @@ namespace Azure.ResourceManager.AppService.Models
             Optional<SlowRequestsBasedTrigger> slowRequests = default;
             Optional<IList<SlowRequestsBasedTrigger>> slowRequestsWithPath = default;
             Optional<IList<StatusCodesRangeBasedTrigger>> statusCodesRange = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("requests"u8))
@@ -84,7 +125,7 @@ namespace Azure.ResourceManager.AppService.Models
                     {
                         continue;
                     }
-                    requests = RequestsBasedTrigger.DeserializeRequestsBasedTrigger(property.Value);
+                    requests = RequestsBasedTrigger.DeserializeRequestsBasedTrigger(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("privateBytesInKB"u8))
@@ -105,7 +146,7 @@ namespace Azure.ResourceManager.AppService.Models
                     List<StatusCodesBasedTrigger> array = new List<StatusCodesBasedTrigger>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(StatusCodesBasedTrigger.DeserializeStatusCodesBasedTrigger(item));
+                        array.Add(StatusCodesBasedTrigger.DeserializeStatusCodesBasedTrigger(item, options));
                     }
                     statusCodes = array;
                     continue;
@@ -116,7 +157,7 @@ namespace Azure.ResourceManager.AppService.Models
                     {
                         continue;
                     }
-                    slowRequests = SlowRequestsBasedTrigger.DeserializeSlowRequestsBasedTrigger(property.Value);
+                    slowRequests = SlowRequestsBasedTrigger.DeserializeSlowRequestsBasedTrigger(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("slowRequestsWithPath"u8))
@@ -128,7 +169,7 @@ namespace Azure.ResourceManager.AppService.Models
                     List<SlowRequestsBasedTrigger> array = new List<SlowRequestsBasedTrigger>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(SlowRequestsBasedTrigger.DeserializeSlowRequestsBasedTrigger(item));
+                        array.Add(SlowRequestsBasedTrigger.DeserializeSlowRequestsBasedTrigger(item, options));
                     }
                     slowRequestsWithPath = array;
                     continue;
@@ -142,13 +183,49 @@ namespace Azure.ResourceManager.AppService.Models
                     List<StatusCodesRangeBasedTrigger> array = new List<StatusCodesRangeBasedTrigger>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(StatusCodesRangeBasedTrigger.DeserializeStatusCodesRangeBasedTrigger(item));
+                        array.Add(StatusCodesRangeBasedTrigger.DeserializeStatusCodesRangeBasedTrigger(item, options));
                     }
                     statusCodesRange = array;
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new AutoHealTriggers(requests.Value, Optional.ToNullable(privateBytesInKB), Optional.ToList(statusCodes), slowRequests.Value, Optional.ToList(slowRequestsWithPath), Optional.ToList(statusCodesRange));
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new AutoHealTriggers(requests.Value, Optional.ToNullable(privateBytesInKB), Optional.ToList(statusCodes), slowRequests.Value, Optional.ToList(slowRequestsWithPath), Optional.ToList(statusCodesRange), serializedAdditionalRawData);
         }
+
+        BinaryData IPersistableModel<AutoHealTriggers>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<AutoHealTriggers>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(AutoHealTriggers)} does not support '{options.Format}' format.");
+            }
+        }
+
+        AutoHealTriggers IPersistableModel<AutoHealTriggers>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<AutoHealTriggers>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeAutoHealTriggers(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(AutoHealTriggers)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<AutoHealTriggers>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

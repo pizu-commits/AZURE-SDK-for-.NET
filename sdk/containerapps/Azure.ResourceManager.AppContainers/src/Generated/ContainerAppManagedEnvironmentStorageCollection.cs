@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppContainers
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerAppManagedEnvironmentStorageResource" /> and their operations.
-    /// Each <see cref="ContainerAppManagedEnvironmentStorageResource" /> in the collection will belong to the same instance of <see cref="ContainerAppManagedEnvironmentResource" />.
-    /// To get a <see cref="ContainerAppManagedEnvironmentStorageCollection" /> instance call the GetContainerAppManagedEnvironmentStorages method from an instance of <see cref="ContainerAppManagedEnvironmentResource" />.
+    /// A class representing a collection of <see cref="ContainerAppManagedEnvironmentStorageResource"/> and their operations.
+    /// Each <see cref="ContainerAppManagedEnvironmentStorageResource"/> in the collection will belong to the same instance of <see cref="ContainerAppManagedEnvironmentResource"/>.
+    /// To get a <see cref="ContainerAppManagedEnvironmentStorageCollection"/> instance call the GetContainerAppManagedEnvironmentStorages method from an instance of <see cref="ContainerAppManagedEnvironmentResource"/>.
     /// </summary>
     public partial class ContainerAppManagedEnvironmentStorageCollection : ArmCollection, IEnumerable<ContainerAppManagedEnvironmentStorageResource>, IAsyncEnumerable<ContainerAppManagedEnvironmentStorageResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerAppManagedEnvironmentStorageResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string storageName, ContainerAppManagedEnvironmentStorageData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerAppManagedEnvironmentStorageResource> CreateOrUpdate(WaitUntil waitUntil, string storageName, ContainerAppManagedEnvironmentStorageData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageName"> Name of the storage. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
         public virtual async Task<Response<ContainerAppManagedEnvironmentStorageResource>> GetAsync(string storageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageName"> Name of the storage. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
         public virtual Response<ContainerAppManagedEnvironmentStorageResource> Get(string storageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.Get");
             scope.Start();
@@ -219,14 +286,22 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerAppManagedEnvironmentStorageResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerAppManagedEnvironmentStorageResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerAppManagedEnvironmentStorageResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new ContainerAppManagedEnvironmentStorageResource(Client, ContainerAppManagedEnvironmentStorageData.DeserializeContainerAppManagedEnvironmentStorageData(e)), _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics, Pipeline, "ContainerAppManagedEnvironmentStorageCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new ContainerAppManagedEnvironmentStorageResource(Client, ContainerAppManagedEnvironmentStorageData.DeserializeContainerAppManagedEnvironmentStorageData(e)), _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics, Pipeline, "ContainerAppManagedEnvironmentStorageCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -240,14 +315,22 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerAppManagedEnvironmentStorageResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerAppManagedEnvironmentStorageResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerAppManagedEnvironmentStorageResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new ContainerAppManagedEnvironmentStorageResource(Client, ContainerAppManagedEnvironmentStorageData.DeserializeContainerAppManagedEnvironmentStorageData(e)), _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics, Pipeline, "ContainerAppManagedEnvironmentStorageCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new ContainerAppManagedEnvironmentStorageResource(Client, ContainerAppManagedEnvironmentStorageData.DeserializeContainerAppManagedEnvironmentStorageData(e)), _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics, Pipeline, "ContainerAppManagedEnvironmentStorageCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -261,6 +344,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageName"> Name of the storage. </param>
@@ -269,7 +360,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string storageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.Exists");
             scope.Start();
@@ -296,6 +394,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <term>Operation Id</term>
         /// <description>ManagedEnvironmentsStorages_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageName"> Name of the storage. </param>
@@ -304,7 +410,14 @@ namespace Azure.ResourceManager.AppContainers
         /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
         public virtual Response<bool> Exists(string storageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageName, nameof(storageName));
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
 
             using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.Exists");
             scope.Start();
@@ -312,6 +425,110 @@ namespace Azure.ResourceManager.AppContainers
             {
                 var response = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ManagedEnvironmentsStorages_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageName"> Name of the storage. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerAppManagedEnvironmentStorageResource>> GetIfExistsAsync(string storageName, CancellationToken cancellationToken = default)
+        {
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
+
+            using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerAppManagedEnvironmentStorageResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerAppManagedEnvironmentStorageResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ManagedEnvironmentsStorages_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerAppManagedEnvironmentStorageResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageName"> Name of the storage. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageName"/> is null. </exception>
+        public virtual NullableResponse<ContainerAppManagedEnvironmentStorageResource> GetIfExists(string storageName, CancellationToken cancellationToken = default)
+        {
+            if (storageName == null)
+            {
+                throw new ArgumentNullException(nameof(storageName));
+            }
+            if (storageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageName));
+            }
+
+            using var scope = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesClientDiagnostics.CreateScope("ContainerAppManagedEnvironmentStorageCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerAppManagedEnvironmentStorageManagedEnvironmentsStoragesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerAppManagedEnvironmentStorageResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerAppManagedEnvironmentStorageResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

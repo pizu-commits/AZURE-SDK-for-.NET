@@ -1,6 +1,34 @@
 # Release History
 
-## 12.16.0-beta.1 (Unreleased)
+## 12.18.0-beta.2 (Unreleased)
+
+### Features Added
+
+### Breaking Changes
+
+### Bugs Fixed
+- Fixed bug where on `DataLakeDirectoryClient`, `DataLakeFileClient` and `DataLakePathClient`, calling `.Rename(..)` will throw a 403 Authentication Error, if the source storage client was instantiated with a SAS on the `Uri`, will not pass the SAS to the destination- Fixed bug where on `ShareDirectoryClient`, `ShareFileClient` and `DataLakePathClient`, calling `.Rename(..)` will throw a 403 Authentication Error, if the source storage client was instantiated with a SAS on the `Uri`, will not pass the SAS to the destination client, when the destination does not have any credentials.
+
+### Other Changes
+
+## 12.18.0-beta.1 (2023-12-05)
+- Added support for service version 2024-02-04.
+- Fixed bug where SAS Directory Depth ("sdd") value 10 or over will add 6 to the sdd value
+
+## 12.17.1 (2023-11-13)
+- Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+
+## 12.17.0 (2023-11-06)
+- Includes all features from 12.17.0-beta.1.
+
+## 12.17.0-beta.1 (2023-10-16)
+- Added support for service version 2023-11-03.
+- Added support for DataLakeClientOptions.Audience
+
+## 12.16.0 (2023-09-12)
+- Includes all features from 12.16.0-beta.1.
+
+## 12.16.0-beta.1 (2023-08-08)
 - Added support for service version 2023-05-03 and 2023-08-03.
 - Added support for paginated directory delete when using AAD authentication.  Note that this feature only applies to HNS storage accounts.
 

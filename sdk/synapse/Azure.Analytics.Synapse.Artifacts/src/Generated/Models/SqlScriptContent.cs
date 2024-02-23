@@ -14,18 +14,21 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> The content of the SQL script. </summary>
     public partial class SqlScriptContent
     {
-        /// <summary> Initializes a new instance of SqlScriptContent. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlScriptContent"/>. </summary>
         /// <param name="query"> SQL query to execute. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="query"/> is null. </exception>
         public SqlScriptContent(string query)
         {
-            Argument.AssertNotNull(query, nameof(query));
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
 
             Query = query;
             AdditionalProperties = new ChangeTrackingDictionary<string, object>();
         }
 
-        /// <summary> Initializes a new instance of SqlScriptContent. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlScriptContent"/>. </summary>
         /// <param name="query"> SQL query to execute. </param>
         /// <param name="currentConnection"> The connection used to execute the SQL script. </param>
         /// <param name="resultLimit"> Limit of results, '-1' for no limit. </param>

@@ -20,13 +20,17 @@ namespace Azure.ResourceManager.FrontDoor
 {
     /// <summary>
     /// A Class representing a FrontDoorExperiment along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="FrontDoorExperimentResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetFrontDoorExperimentResource method.
-    /// Otherwise you can get one from its parent resource <see cref="FrontDoorNetworkExperimentProfileResource" /> using the GetFrontDoorExperiment method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="FrontDoorExperimentResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetFrontDoorExperimentResource method.
+    /// Otherwise you can get one from its parent resource <see cref="FrontDoorNetworkExperimentProfileResource"/> using the GetFrontDoorExperiment method.
     /// </summary>
     public partial class FrontDoorExperimentResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="FrontDoorExperimentResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="profileName"> The profileName. </param>
+        /// <param name="experimentName"> The experimentName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string profileName, string experimentName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/NetworkExperimentProfiles/{profileName}/Experiments/{experimentName}";
@@ -39,12 +43,15 @@ namespace Azure.ResourceManager.FrontDoor
         private readonly ReportsRestOperations _reportsRestClient;
         private readonly FrontDoorExperimentData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Network/NetworkExperimentProfiles/Experiments";
+
         /// <summary> Initializes a new instance of the <see cref="FrontDoorExperimentResource"/> class for mocking. </summary>
         protected FrontDoorExperimentResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "FrontDoorExperimentResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="FrontDoorExperimentResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal FrontDoorExperimentResource(ArmClient client, FrontDoorExperimentData data) : this(client, data.Id)
@@ -67,9 +74,6 @@ namespace Azure.ResourceManager.FrontDoor
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Network/NetworkExperimentProfiles/Experiments";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -103,6 +107,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -135,6 +147,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -166,6 +186,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Experiments_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -201,6 +229,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -235,6 +271,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -243,7 +287,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<FrontDoorExperimentResource>> UpdateAsync(WaitUntil waitUntil, FrontDoorExperimentPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.Update");
             scope.Start();
@@ -273,6 +320,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -281,7 +336,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<FrontDoorExperimentResource> Update(WaitUntil waitUntil, FrontDoorExperimentPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.Update");
             scope.Start();
@@ -310,6 +368,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Reports_GetLatencyScorecards</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
         /// </item>
         /// </list>
         /// </summary>
@@ -344,6 +406,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Reports_GetLatencyScorecards</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="aggregationInterval"> The aggregation interval of the Latency Scorecard. </param>
@@ -377,6 +443,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Reports_GetTimeseries</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="options"> A property bag which contains all the parameters of this method except the LRO qualifier and request context parameter. </param>
@@ -384,7 +454,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         public virtual async Task<Response<FrontDoorTimeSeriesInfo>> GetTimeSeriesReportAsync(FrontDoorExperimentResourceGetTimeSeriesReportOptions options, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(options, nameof(options));
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
 
             using var scope = _reportsClientDiagnostics.CreateScope("FrontDoorExperimentResource.GetTimeSeriesReport");
             scope.Start();
@@ -411,6 +484,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Reports_GetTimeseries</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="options"> A property bag which contains all the parameters of this method except the LRO qualifier and request context parameter. </param>
@@ -418,7 +495,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         public virtual Response<FrontDoorTimeSeriesInfo> GetTimeSeriesReport(FrontDoorExperimentResourceGetTimeSeriesReportOptions options, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(options, nameof(options));
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
 
             using var scope = _reportsClientDiagnostics.CreateScope("FrontDoorExperimentResource.GetTimeSeriesReport");
             scope.Start();
@@ -445,6 +525,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -453,8 +541,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<FrontDoorExperimentResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.AddTag");
             scope.Start();
@@ -499,6 +593,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -507,8 +609,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<FrontDoorExperimentResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.AddTag");
             scope.Start();
@@ -553,6 +661,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -560,7 +676,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<FrontDoorExperimentResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.SetTags");
             scope.Start();
@@ -602,6 +721,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -609,7 +736,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<FrontDoorExperimentResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.SetTags");
             scope.Start();
@@ -651,6 +781,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -658,7 +796,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<FrontDoorExperimentResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.RemoveTag");
             scope.Start();
@@ -703,6 +844,14 @@ namespace Azure.ResourceManager.FrontDoor
         /// <term>Operation Id</term>
         /// <description>Experiments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontDoorExperimentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -710,7 +859,10 @@ namespace Azure.ResourceManager.FrontDoor
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<FrontDoorExperimentResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _frontDoorExperimentExperimentsClientDiagnostics.CreateScope("FrontDoorExperimentResource.RemoveTag");
             scope.Start();

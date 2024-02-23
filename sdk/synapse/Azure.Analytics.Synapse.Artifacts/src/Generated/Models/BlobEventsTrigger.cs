@@ -8,28 +8,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Trigger that runs every time a Blob event occurs. </summary>
     public partial class BlobEventsTrigger : MultiplePipelineTrigger
     {
-        /// <summary> Initializes a new instance of BlobEventsTrigger. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobEventsTrigger"/>. </summary>
         /// <param name="events"> The type of events that cause this trigger to fire. </param>
         /// <param name="scope"> The ARM resource ID of the Storage Account. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="events"/> or <paramref name="scope"/> is null. </exception>
         public BlobEventsTrigger(IEnumerable<BlobEventType> events, string scope)
         {
-            Argument.AssertNotNull(events, nameof(events));
-            Argument.AssertNotNull(scope, nameof(scope));
+            if (events == null)
+            {
+                throw new ArgumentNullException(nameof(events));
+            }
+            if (scope == null)
+            {
+                throw new ArgumentNullException(nameof(scope));
+            }
 
             Events = events.ToList();
             Scope = scope;
             Type = "BlobEventsTrigger";
         }
 
-        /// <summary> Initializes a new instance of BlobEventsTrigger. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobEventsTrigger"/>. </summary>
         /// <param name="type"> Trigger type. </param>
         /// <param name="description"> Trigger description. </param>
         /// <param name="runtimeState"> Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. </param>

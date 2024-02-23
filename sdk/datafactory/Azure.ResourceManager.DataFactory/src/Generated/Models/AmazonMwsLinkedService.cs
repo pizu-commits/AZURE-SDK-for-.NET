@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,7 +14,7 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Amazon Marketplace Web Service linked service. </summary>
     public partial class AmazonMwsLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AmazonMwsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonMwsLinkedService"/>. </summary>
         /// <param name="endpoint"> The endpoint of the Amazon MWS server, (i.e. mws.amazonservices.com). </param>
         /// <param name="marketplaceId"> The Amazon Marketplace ID you want to retrieve data from. To retrieve data from multiple Marketplace IDs, separate them with a comma (,). (i.e. A2EUQ1WTGCTBG2). </param>
         /// <param name="sellerId"> The Amazon seller ID. </param>
@@ -23,10 +22,22 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="marketplaceId"/>, <paramref name="sellerId"/> or <paramref name="accessKeyId"/> is null. </exception>
         public AmazonMwsLinkedService(DataFactoryElement<string> endpoint, DataFactoryElement<string> marketplaceId, DataFactoryElement<string> sellerId, DataFactoryElement<string> accessKeyId)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(marketplaceId, nameof(marketplaceId));
-            Argument.AssertNotNull(sellerId, nameof(sellerId));
-            Argument.AssertNotNull(accessKeyId, nameof(accessKeyId));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (marketplaceId == null)
+            {
+                throw new ArgumentNullException(nameof(marketplaceId));
+            }
+            if (sellerId == null)
+            {
+                throw new ArgumentNullException(nameof(sellerId));
+            }
+            if (accessKeyId == null)
+            {
+                throw new ArgumentNullException(nameof(accessKeyId));
+            }
 
             Endpoint = endpoint;
             MarketplaceId = marketplaceId;
@@ -35,7 +46,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "AmazonMWS";
         }
 
-        /// <summary> Initializes a new instance of AmazonMwsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonMwsLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -65,6 +76,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             UsePeerVerification = usePeerVerification;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AmazonMWS";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AmazonMwsLinkedService"/> for deserialization. </summary>
+        internal AmazonMwsLinkedService()
+        {
         }
 
         /// <summary> The endpoint of the Amazon MWS server, (i.e. mws.amazonservices.com). </summary>

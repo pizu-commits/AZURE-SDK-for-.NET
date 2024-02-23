@@ -15,7 +15,39 @@ namespace Azure.ResourceManager.AppPlatform.Models
     /// <summary> Git repository property payload for Application Configuration Service. </summary>
     public partial class AppPlatformConfigurationServiceGitRepository
     {
-        /// <summary> Initializes a new instance of AppPlatformConfigurationServiceGitRepository. </summary>
+        /// <summary>
+        /// Keeps track of any properties unknown to the library.
+        /// <para>
+        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// </para>
+        /// <para>
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson("foo")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("\"foo\"")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson(new { key = "value" })</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("{\"key\": \"value\"}")</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+
+        /// <summary> Initializes a new instance of <see cref="AppPlatformConfigurationServiceGitRepository"/>. </summary>
         /// <param name="name"> Name of the repository. </param>
         /// <param name="patterns"> Collection of patterns of the repository. </param>
         /// <param name="uri"> URI of the repository. </param>
@@ -23,10 +55,22 @@ namespace Azure.ResourceManager.AppPlatform.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="patterns"/>, <paramref name="uri"/> or <paramref name="label"/> is null. </exception>
         public AppPlatformConfigurationServiceGitRepository(string name, IEnumerable<string> patterns, Uri uri, string label)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(patterns, nameof(patterns));
-            Argument.AssertNotNull(uri, nameof(uri));
-            Argument.AssertNotNull(label, nameof(label));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (patterns == null)
+            {
+                throw new ArgumentNullException(nameof(patterns));
+            }
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
+            if (label == null)
+            {
+                throw new ArgumentNullException(nameof(label));
+            }
 
             Name = name;
             Patterns = patterns.ToList();
@@ -35,7 +79,7 @@ namespace Azure.ResourceManager.AppPlatform.Models
             SearchPaths = new ChangeTrackingList<string>();
         }
 
-        /// <summary> Initializes a new instance of AppPlatformConfigurationServiceGitRepository. </summary>
+        /// <summary> Initializes a new instance of <see cref="AppPlatformConfigurationServiceGitRepository"/>. </summary>
         /// <param name="name"> Name of the repository. </param>
         /// <param name="patterns"> Collection of patterns of the repository. </param>
         /// <param name="uri"> URI of the repository. </param>
@@ -47,7 +91,8 @@ namespace Azure.ResourceManager.AppPlatform.Models
         /// <param name="hostKeyAlgorithm"> SshKey algorithm of git repository. </param>
         /// <param name="privateKey"> Private sshKey algorithm of git repository. </param>
         /// <param name="isHostKeyCheckingStrict"> Strict host key checking or not. </param>
-        internal AppPlatformConfigurationServiceGitRepository(string name, IList<string> patterns, Uri uri, string label, IList<string> searchPaths, string username, string password, string hostKey, string hostKeyAlgorithm, string privateKey, bool? isHostKeyCheckingStrict)
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
+        internal AppPlatformConfigurationServiceGitRepository(string name, IList<string> patterns, Uri uri, string label, IList<string> searchPaths, string username, string password, string hostKey, string hostKeyAlgorithm, string privateKey, bool? isHostKeyCheckingStrict, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Name = name;
             Patterns = patterns;
@@ -60,6 +105,12 @@ namespace Azure.ResourceManager.AppPlatform.Models
             HostKeyAlgorithm = hostKeyAlgorithm;
             PrivateKey = privateKey;
             IsHostKeyCheckingStrict = isHostKeyCheckingStrict;
+            _serializedAdditionalRawData = serializedAdditionalRawData;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppPlatformConfigurationServiceGitRepository"/> for deserialization. </summary>
+        internal AppPlatformConfigurationServiceGitRepository()
+        {
         }
 
         /// <summary> Name of the repository. </summary>

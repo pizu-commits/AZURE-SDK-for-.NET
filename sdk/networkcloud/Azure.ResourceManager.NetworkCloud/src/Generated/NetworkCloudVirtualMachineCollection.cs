@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.NetworkCloud
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NetworkCloudVirtualMachineResource" /> and their operations.
-    /// Each <see cref="NetworkCloudVirtualMachineResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="NetworkCloudVirtualMachineCollection" /> instance call the GetNetworkCloudVirtualMachines method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="NetworkCloudVirtualMachineResource"/> and their operations.
+    /// Each <see cref="NetworkCloudVirtualMachineResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="NetworkCloudVirtualMachineCollection"/> instance call the GetNetworkCloudVirtualMachines method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class NetworkCloudVirtualMachineCollection : ArmCollection, IEnumerable<NetworkCloudVirtualMachineResource>, IAsyncEnumerable<NetworkCloudVirtualMachineResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<NetworkCloudVirtualMachineResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string virtualMachineName, NetworkCloudVirtualMachineData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<NetworkCloudVirtualMachineResource> CreateOrUpdate(WaitUntil waitUntil, string virtualMachineName, NetworkCloudVirtualMachineData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
         public virtual async Task<Response<NetworkCloudVirtualMachineResource>> GetAsync(string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
         public virtual Response<NetworkCloudVirtualMachineResource> Get(string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NetworkCloudVirtualMachineResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NetworkCloudVirtualMachineResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NetworkCloudVirtualMachineResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudVirtualMachineVirtualMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudVirtualMachineVirtualMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudVirtualMachineResource(Client, NetworkCloudVirtualMachineData.DeserializeNetworkCloudVirtualMachineData(e)), _networkCloudVirtualMachineVirtualMachinesClientDiagnostics, Pipeline, "NetworkCloudVirtualMachineCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudVirtualMachineResource(Client, NetworkCloudVirtualMachineData.DeserializeNetworkCloudVirtualMachineData(e)), _networkCloudVirtualMachineVirtualMachinesClientDiagnostics, Pipeline, "NetworkCloudVirtualMachineCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NetworkCloudVirtualMachineResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NetworkCloudVirtualMachineResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NetworkCloudVirtualMachineResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudVirtualMachineVirtualMachinesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudVirtualMachineVirtualMachinesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudVirtualMachineResource(Client, NetworkCloudVirtualMachineData.DeserializeNetworkCloudVirtualMachineData(e)), _networkCloudVirtualMachineVirtualMachinesClientDiagnostics, Pipeline, "NetworkCloudVirtualMachineCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudVirtualMachineResource(Client, NetworkCloudVirtualMachineData.DeserializeNetworkCloudVirtualMachineData(e)), _networkCloudVirtualMachineVirtualMachinesClientDiagnostics, Pipeline, "NetworkCloudVirtualMachineCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>VirtualMachines_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualMachineName"> The name of the virtual machine. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
         public virtual Response<bool> Exists(string virtualMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualMachineName, nameof(virtualMachineName));
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
 
             using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 var response = _networkCloudVirtualMachineVirtualMachinesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NetworkCloudVirtualMachineResource>> GetIfExistsAsync(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
+
+            using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _networkCloudVirtualMachineVirtualMachinesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudVirtualMachineResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudVirtualMachineResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachines_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudVirtualMachineResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualMachineName"> The name of the virtual machine. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineName"/> is null. </exception>
+        public virtual NullableResponse<NetworkCloudVirtualMachineResource> GetIfExists(string virtualMachineName, CancellationToken cancellationToken = default)
+        {
+            if (virtualMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualMachineName));
+            }
+            if (virtualMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualMachineName));
+            }
+
+            using var scope = _networkCloudVirtualMachineVirtualMachinesClientDiagnostics.CreateScope("NetworkCloudVirtualMachineCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _networkCloudVirtualMachineVirtualMachinesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, virtualMachineName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudVirtualMachineResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudVirtualMachineResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

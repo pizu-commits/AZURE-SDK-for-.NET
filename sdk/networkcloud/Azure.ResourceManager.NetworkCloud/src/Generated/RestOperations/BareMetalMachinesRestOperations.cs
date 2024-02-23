@@ -61,7 +61,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<BareMetalMachineList>> ListBySubscriptionAsync(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionRequest(subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -86,7 +93,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<BareMetalMachineList> ListBySubscription(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionRequest(subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -131,8 +145,22 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<BareMetalMachineList>> ListByResourceGroupAsync(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -158,8 +186,22 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<BareMetalMachineList> ListByResourceGroup(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);
@@ -206,9 +248,30 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<NetworkCloudBareMetalMachineData>> GetAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -237,9 +300,30 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<NetworkCloudBareMetalMachineData> Get(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             _pipeline.Send(message, cancellationToken);
@@ -293,10 +377,34 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> UpdateAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, NetworkCloudBareMetalMachinePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, bareMetalMachineName, patch);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -320,10 +428,34 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Update(string subscriptionId, string resourceGroupName, string bareMetalMachineName, NetworkCloudBareMetalMachinePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, bareMetalMachineName, patch);
             _pipeline.Send(message, cancellationToken);
@@ -375,14 +507,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> CordonAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateCordonRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -401,14 +555,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Cordon(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineCordonContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateCordonRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -455,14 +631,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> PowerOffAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreatePowerOffRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -481,14 +679,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response PowerOff(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachinePowerOffContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreatePowerOffRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -527,14 +747,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> ReimageAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateReimageRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -552,14 +794,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Reimage(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateReimageRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -606,14 +870,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> ReplaceAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateReplaceRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -632,14 +918,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Replace(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineReplaceContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateReplaceRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -678,14 +986,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> RestartAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateRestartRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -703,14 +1033,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Restart(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateRestartRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -754,15 +1106,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> RunCommandAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunCommandRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -781,15 +1158,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response RunCommand(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunCommandContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunCommandRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -833,15 +1235,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> RunDataExtractsAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunDataExtractsRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -860,15 +1287,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response RunDataExtracts(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunDataExtractsContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunDataExtractsRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -912,15 +1364,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> RunReadCommandsAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunReadCommandsRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -939,15 +1416,40 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response RunReadCommands(string subscriptionId, string resourceGroupName, string bareMetalMachineName, BareMetalMachineRunReadCommandsContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateRunReadCommandsRequest(subscriptionId, resourceGroupName, bareMetalMachineName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -986,14 +1488,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> StartAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateStartRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -1011,14 +1535,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Start(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateStartRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -1057,14 +1603,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> UncordonAsync(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateUncordonRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -1082,14 +1650,36 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="bareMetalMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Uncordon(string subscriptionId, string resourceGroupName, string bareMetalMachineName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(bareMetalMachineName, nameof(bareMetalMachineName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (bareMetalMachineName == null)
+            {
+                throw new ArgumentNullException(nameof(bareMetalMachineName));
+            }
+            if (bareMetalMachineName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bareMetalMachineName));
+            }
 
             using var message = CreateUncordonRequest(subscriptionId, resourceGroupName, bareMetalMachineName);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -1120,8 +1710,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<BareMetalMachineList>> ListBySubscriptionNextPageAsync(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionNextPageRequest(nextLink, subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -1147,8 +1747,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<BareMetalMachineList> ListBySubscriptionNextPage(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionNextPageRequest(nextLink, subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -1189,9 +1799,26 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<BareMetalMachineList>> ListByResourceGroupNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -1218,9 +1845,26 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<BareMetalMachineList> ListByResourceGroupNextPage(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);

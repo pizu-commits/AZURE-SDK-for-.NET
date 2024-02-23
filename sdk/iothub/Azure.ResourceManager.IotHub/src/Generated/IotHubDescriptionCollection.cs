@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.IotHub
 {
     /// <summary>
-    /// A class representing a collection of <see cref="IotHubDescriptionResource" /> and their operations.
-    /// Each <see cref="IotHubDescriptionResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get an <see cref="IotHubDescriptionCollection" /> instance call the GetIotHubDescriptions method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="IotHubDescriptionResource"/> and their operations.
+    /// Each <see cref="IotHubDescriptionResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get an <see cref="IotHubDescriptionCollection"/> instance call the GetIotHubDescriptions method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class IotHubDescriptionCollection : ArmCollection, IEnumerable<IotHubDescriptionResource>, IAsyncEnumerable<IotHubDescriptionResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<IotHubDescriptionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string resourceName, IotHubDescriptionData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -117,8 +144,18 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<IotHubDescriptionResource> CreateOrUpdate(WaitUntil waitUntil, string resourceName, IotHubDescriptionData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.CreateOrUpdate");
             scope.Start();
@@ -148,6 +185,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceName"> The name of the IoT hub. </param>
@@ -156,7 +201,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
         public virtual async Task<Response<IotHubDescriptionResource>> GetAsync(string resourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.Get");
             scope.Start();
@@ -185,6 +237,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceName"> The name of the IoT hub. </param>
@@ -193,7 +253,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
         public virtual Response<IotHubDescriptionResource> Get(string resourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.Get");
             scope.Start();
@@ -222,15 +289,23 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="IotHubDescriptionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="IotHubDescriptionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<IotHubDescriptionResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _iotHubDescriptionIotHubResourceRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _iotHubDescriptionIotHubResourceRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IotHubDescriptionResource(Client, IotHubDescriptionData.DeserializeIotHubDescriptionData(e)), _iotHubDescriptionIotHubResourceClientDiagnostics, Pipeline, "IotHubDescriptionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IotHubDescriptionResource(Client, IotHubDescriptionData.DeserializeIotHubDescriptionData(e)), _iotHubDescriptionIotHubResourceClientDiagnostics, Pipeline, "IotHubDescriptionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -244,15 +319,23 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="IotHubDescriptionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="IotHubDescriptionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<IotHubDescriptionResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _iotHubDescriptionIotHubResourceRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _iotHubDescriptionIotHubResourceRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IotHubDescriptionResource(Client, IotHubDescriptionData.DeserializeIotHubDescriptionData(e)), _iotHubDescriptionIotHubResourceClientDiagnostics, Pipeline, "IotHubDescriptionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IotHubDescriptionResource(Client, IotHubDescriptionData.DeserializeIotHubDescriptionData(e)), _iotHubDescriptionIotHubResourceClientDiagnostics, Pipeline, "IotHubDescriptionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -266,6 +349,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceName"> The name of the IoT hub. </param>
@@ -274,7 +365,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string resourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.Exists");
             scope.Start();
@@ -301,6 +399,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceName"> The name of the IoT hub. </param>
@@ -309,7 +415,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
         public virtual Response<bool> Exists(string resourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceName, nameof(resourceName));
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
 
             using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.Exists");
             scope.Start();
@@ -317,6 +430,110 @@ namespace Azure.ResourceManager.IotHub
             {
                 var response = _iotHubDescriptionIotHubResourceRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, resourceName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IotHubResource_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceName"> The name of the IoT hub. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="resourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
+        public virtual async Task<NullableResponse<IotHubDescriptionResource>> GetIfExistsAsync(string resourceName, CancellationToken cancellationToken = default)
+        {
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
+
+            using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _iotHubDescriptionIotHubResourceRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, resourceName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<IotHubDescriptionResource>(response.GetRawResponse());
+                return Response.FromValue(new IotHubDescriptionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IotHubResource_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotHubDescriptionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceName"> The name of the IoT hub. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="resourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceName"/> is null. </exception>
+        public virtual NullableResponse<IotHubDescriptionResource> GetIfExists(string resourceName, CancellationToken cancellationToken = default)
+        {
+            if (resourceName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceName));
+            }
+            if (resourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceName));
+            }
+
+            using var scope = _iotHubDescriptionIotHubResourceClientDiagnostics.CreateScope("IotHubDescriptionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _iotHubDescriptionIotHubResourceRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, resourceName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<IotHubDescriptionResource>(response.GetRawResponse());
+                return Response.FromValue(new IotHubDescriptionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

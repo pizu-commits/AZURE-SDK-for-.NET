@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,17 +14,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> The Common Data Service for Apps entity dataset. </summary>
     public partial class CommonDataServiceForAppsEntityDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of CommonDataServiceForAppsEntityDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="CommonDataServiceForAppsEntityDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
         public CommonDataServiceForAppsEntityDataset(DataFactoryLinkedServiceReference linkedServiceName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
 
             DatasetType = "CommonDataServiceForAppsEntity";
         }
 
-        /// <summary> Initializes a new instance of CommonDataServiceForAppsEntityDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="CommonDataServiceForAppsEntityDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -40,6 +42,11 @@ namespace Azure.ResourceManager.DataFactory.Models
         {
             EntityName = entityName;
             DatasetType = datasetType ?? "CommonDataServiceForAppsEntity";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="CommonDataServiceForAppsEntityDataset"/> for deserialization. </summary>
+        internal CommonDataServiceForAppsEntityDataset()
+        {
         }
 
         /// <summary> The logical name of the entity. Type: string (or Expression with resultType string). </summary>

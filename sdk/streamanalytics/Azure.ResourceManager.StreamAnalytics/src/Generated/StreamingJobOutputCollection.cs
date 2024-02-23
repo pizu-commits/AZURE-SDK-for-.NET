@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.StreamAnalytics
 {
     /// <summary>
-    /// A class representing a collection of <see cref="StreamingJobOutputResource" /> and their operations.
-    /// Each <see cref="StreamingJobOutputResource" /> in the collection will belong to the same instance of <see cref="StreamingJobResource" />.
-    /// To get a <see cref="StreamingJobOutputCollection" /> instance call the GetStreamingJobOutputs method from an instance of <see cref="StreamingJobResource" />.
+    /// A class representing a collection of <see cref="StreamingJobOutputResource"/> and their operations.
+    /// Each <see cref="StreamingJobOutputResource"/> in the collection will belong to the same instance of <see cref="StreamingJobResource"/>.
+    /// To get a <see cref="StreamingJobOutputCollection"/> instance call the GetStreamingJobOutputs method from an instance of <see cref="StreamingJobResource"/>.
     /// </summary>
     public partial class StreamingJobOutputCollection : ArmCollection, IEnumerable<StreamingJobOutputResource>, IAsyncEnumerable<StreamingJobOutputResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_CreateOrReplace</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<StreamingJobOutputResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string outputName, StreamingJobOutputData data, string ifMatch = null, string ifNoneMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_CreateOrReplace</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -118,8 +145,18 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<StreamingJobOutputResource> CreateOrUpdate(WaitUntil waitUntil, string outputName, StreamingJobOutputData data, string ifMatch = null, string ifNoneMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.CreateOrUpdate");
             scope.Start();
@@ -149,6 +186,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="outputName"> The name of the output. </param>
@@ -157,7 +202,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
         public virtual async Task<Response<StreamingJobOutputResource>> GetAsync(string outputName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.Get");
             scope.Start();
@@ -186,6 +238,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="outputName"> The name of the output. </param>
@@ -194,7 +254,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
         public virtual Response<StreamingJobOutputResource> Get(string outputName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.Get");
             scope.Start();
@@ -223,16 +290,24 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_ListByStreamingJob</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="select"> The $select OData query parameter. This is a comma-separated list of structural properties to include in the response, or "*" to include all properties. By default, all properties are returned except diagnostics. Currently only accepts '*' as a valid value. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StreamingJobOutputResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="StreamingJobOutputResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<StreamingJobOutputResource> GetAllAsync(string select = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _streamingJobOutputOutputsRestClient.CreateListByStreamingJobRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, select);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _streamingJobOutputOutputsRestClient.CreateListByStreamingJobNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, select);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StreamingJobOutputResource(Client, StreamingJobOutputData.DeserializeStreamingJobOutputData(e)), _streamingJobOutputOutputsClientDiagnostics, Pipeline, "StreamingJobOutputCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StreamingJobOutputResource(Client, StreamingJobOutputData.DeserializeStreamingJobOutputData(e)), _streamingJobOutputOutputsClientDiagnostics, Pipeline, "StreamingJobOutputCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -246,16 +321,24 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_ListByStreamingJob</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="select"> The $select OData query parameter. This is a comma-separated list of structural properties to include in the response, or "*" to include all properties. By default, all properties are returned except diagnostics. Currently only accepts '*' as a valid value. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StreamingJobOutputResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="StreamingJobOutputResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<StreamingJobOutputResource> GetAll(string select = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _streamingJobOutputOutputsRestClient.CreateListByStreamingJobRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, select);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _streamingJobOutputOutputsRestClient.CreateListByStreamingJobNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, select);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StreamingJobOutputResource(Client, StreamingJobOutputData.DeserializeStreamingJobOutputData(e)), _streamingJobOutputOutputsClientDiagnostics, Pipeline, "StreamingJobOutputCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StreamingJobOutputResource(Client, StreamingJobOutputData.DeserializeStreamingJobOutputData(e)), _streamingJobOutputOutputsClientDiagnostics, Pipeline, "StreamingJobOutputCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -269,6 +352,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="outputName"> The name of the output. </param>
@@ -277,7 +368,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string outputName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.Exists");
             scope.Start();
@@ -304,6 +402,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="outputName"> The name of the output. </param>
@@ -312,7 +418,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
         public virtual Response<bool> Exists(string outputName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(outputName, nameof(outputName));
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.Exists");
             scope.Start();
@@ -320,6 +433,110 @@ namespace Azure.ResourceManager.StreamAnalytics
             {
                 var response = _streamingJobOutputOutputsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, outputName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/outputs/{outputName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Outputs_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="outputName"> The name of the output. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="outputName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
+        public virtual async Task<NullableResponse<StreamingJobOutputResource>> GetIfExistsAsync(string outputName, CancellationToken cancellationToken = default)
+        {
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
+
+            using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _streamingJobOutputOutputsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, outputName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingJobOutputResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingJobOutputResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/outputs/{outputName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Outputs_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="outputName"> The name of the output. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="outputName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="outputName"/> is null. </exception>
+        public virtual NullableResponse<StreamingJobOutputResource> GetIfExists(string outputName, CancellationToken cancellationToken = default)
+        {
+            if (outputName == null)
+            {
+                throw new ArgumentNullException(nameof(outputName));
+            }
+            if (outputName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(outputName));
+            }
+
+            using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _streamingJobOutputOutputsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, outputName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingJobOutputResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingJobOutputResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

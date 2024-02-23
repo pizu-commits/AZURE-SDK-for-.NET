@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.DevTestLabs
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DevTestLabArtifactSourceResource" /> and their operations.
-    /// Each <see cref="DevTestLabArtifactSourceResource" /> in the collection will belong to the same instance of <see cref="DevTestLabResource" />.
-    /// To get a <see cref="DevTestLabArtifactSourceCollection" /> instance call the GetDevTestLabArtifactSources method from an instance of <see cref="DevTestLabResource" />.
+    /// A class representing a collection of <see cref="DevTestLabArtifactSourceResource"/> and their operations.
+    /// Each <see cref="DevTestLabArtifactSourceResource"/> in the collection will belong to the same instance of <see cref="DevTestLabResource"/>.
+    /// To get a <see cref="DevTestLabArtifactSourceCollection"/> instance call the GetDevTestLabArtifactSources method from an instance of <see cref="DevTestLabResource"/>.
     /// </summary>
     public partial class DevTestLabArtifactSourceCollection : ArmCollection, IEnumerable<DevTestLabArtifactSourceResource>, IAsyncEnumerable<DevTestLabArtifactSourceResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<DevTestLabArtifactSourceResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string name, DevTestLabArtifactSourceData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
-            Argument.AssertNotNull(data, nameof(data));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<DevTestLabArtifactSourceResource> CreateOrUpdate(WaitUntil waitUntil, string name, DevTestLabArtifactSourceData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
-            Argument.AssertNotNull(data, nameof(data));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the artifact source. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual async Task<Response<DevTestLabArtifactSourceResource>> GetAsync(string name, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the artifact source. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual Response<DevTestLabArtifactSourceResource> Get(string name, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.Get");
             scope.Start();
@@ -221,6 +288,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> Specify the $expand query. Example: 'properties($select=displayName)'. </param>
@@ -228,12 +303,12 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="orderby"> The ordering expression for the results, using OData notation. Example: '$orderby=name desc'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DevTestLabArtifactSourceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DevTestLabArtifactSourceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DevTestLabArtifactSourceResource> GetAllAsync(string expand = null, string filter = null, int? top = null, string orderby = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devTestLabArtifactSourceArtifactSourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand, filter, top, orderby);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devTestLabArtifactSourceArtifactSourcesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand, filter, top, orderby);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevTestLabArtifactSourceResource(Client, DevTestLabArtifactSourceData.DeserializeDevTestLabArtifactSourceData(e)), _devTestLabArtifactSourceArtifactSourcesClientDiagnostics, Pipeline, "DevTestLabArtifactSourceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevTestLabArtifactSourceResource(Client, DevTestLabArtifactSourceData.DeserializeDevTestLabArtifactSourceData(e)), _devTestLabArtifactSourceArtifactSourcesClientDiagnostics, Pipeline, "DevTestLabArtifactSourceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -247,6 +322,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> Specify the $expand query. Example: 'properties($select=displayName)'. </param>
@@ -254,12 +337,12 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="orderby"> The ordering expression for the results, using OData notation. Example: '$orderby=name desc'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DevTestLabArtifactSourceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DevTestLabArtifactSourceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DevTestLabArtifactSourceResource> GetAll(string expand = null, string filter = null, int? top = null, string orderby = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devTestLabArtifactSourceArtifactSourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand, filter, top, orderby);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devTestLabArtifactSourceArtifactSourcesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand, filter, top, orderby);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevTestLabArtifactSourceResource(Client, DevTestLabArtifactSourceData.DeserializeDevTestLabArtifactSourceData(e)), _devTestLabArtifactSourceArtifactSourcesClientDiagnostics, Pipeline, "DevTestLabArtifactSourceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevTestLabArtifactSourceResource(Client, DevTestLabArtifactSourceData.DeserializeDevTestLabArtifactSourceData(e)), _devTestLabArtifactSourceArtifactSourcesClientDiagnostics, Pipeline, "DevTestLabArtifactSourceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -273,6 +356,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the artifact source. </param>
@@ -282,7 +373,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string name, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.Exists");
             scope.Start();
@@ -309,6 +407,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <term>Operation Id</term>
         /// <description>ArtifactSources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the artifact source. </param>
@@ -318,7 +424,14 @@ namespace Azure.ResourceManager.DevTestLabs
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual Response<bool> Exists(string name, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.Exists");
             scope.Start();
@@ -326,6 +439,112 @@ namespace Azure.ResourceManager.DevTestLabs
             {
                 var response = _devTestLabArtifactSourceArtifactSourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, name, expand, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ArtifactSources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> The name of the artifact source. </param>
+        /// <param name="expand"> Specify the $expand query. Example: 'properties($select=displayName)'. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        public virtual async Task<NullableResponse<DevTestLabArtifactSourceResource>> GetIfExistsAsync(string name, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+
+            using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _devTestLabArtifactSourceArtifactSourcesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, name, expand, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DevTestLabArtifactSourceResource>(response.GetRawResponse());
+                return Response.FromValue(new DevTestLabArtifactSourceResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ArtifactSources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-09-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevTestLabArtifactSourceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> The name of the artifact source. </param>
+        /// <param name="expand"> Specify the $expand query. Example: 'properties($select=displayName)'. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        public virtual NullableResponse<DevTestLabArtifactSourceResource> GetIfExists(string name, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+
+            using var scope = _devTestLabArtifactSourceArtifactSourcesClientDiagnostics.CreateScope("DevTestLabArtifactSourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _devTestLabArtifactSourceArtifactSourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, name, expand, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DevTestLabArtifactSourceResource>(response.GetRawResponse());
+                return Response.FromValue(new DevTestLabArtifactSourceResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

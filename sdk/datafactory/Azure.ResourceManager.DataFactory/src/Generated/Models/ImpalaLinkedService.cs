@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,23 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Impala server linked service. </summary>
     public partial class ImpalaLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of ImpalaLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ImpalaLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Impala server. (i.e. 192.168.222.160). </param>
         /// <param name="authenticationType"> The authentication type to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public ImpalaLinkedService(DataFactoryElement<string> host, ImpalaAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             AuthenticationType = authenticationType;
             LinkedServiceType = "Impala";
         }
 
-        /// <summary> Initializes a new instance of ImpalaLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ImpalaLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -60,6 +62,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             AllowSelfSignedServerCert = allowSelfSignedServerCert;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Impala";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ImpalaLinkedService"/> for deserialization. </summary>
+        internal ImpalaLinkedService()
+        {
         }
 
         /// <summary> The IP address or host name of the Impala server. (i.e. 192.168.222.160). </summary>

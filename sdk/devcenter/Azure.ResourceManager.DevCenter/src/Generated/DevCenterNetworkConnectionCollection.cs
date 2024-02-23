@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.DevCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DevCenterNetworkConnectionResource" /> and their operations.
-    /// Each <see cref="DevCenterNetworkConnectionResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="DevCenterNetworkConnectionCollection" /> instance call the GetDevCenterNetworkConnections method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="DevCenterNetworkConnectionResource"/> and their operations.
+    /// Each <see cref="DevCenterNetworkConnectionResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="DevCenterNetworkConnectionCollection"/> instance call the GetDevCenterNetworkConnections method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class DevCenterNetworkConnectionCollection : ArmCollection, IEnumerable<DevCenterNetworkConnectionResource>, IAsyncEnumerable<DevCenterNetworkConnectionResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<DevCenterNetworkConnectionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string networkConnectionName, DevCenterNetworkConnectionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<DevCenterNetworkConnectionResource> CreateOrUpdate(WaitUntil waitUntil, string networkConnectionName, DevCenterNetworkConnectionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
         public virtual async Task<Response<DevCenterNetworkConnectionResource>> GetAsync(string networkConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
         public virtual Response<DevCenterNetworkConnectionResource> Get(string networkConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.Get");
             scope.Start();
@@ -220,16 +287,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DevCenterNetworkConnectionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DevCenterNetworkConnectionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DevCenterNetworkConnectionResource> GetAllAsync(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterNetworkConnectionNetworkConnectionsRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterNetworkConnectionNetworkConnectionsRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, top);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterNetworkConnectionResource(Client, DevCenterNetworkConnectionData.DeserializeDevCenterNetworkConnectionData(e)), _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics, Pipeline, "DevCenterNetworkConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterNetworkConnectionResource(Client, DevCenterNetworkConnectionData.DeserializeDevCenterNetworkConnectionData(e)), _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics, Pipeline, "DevCenterNetworkConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,16 +318,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DevCenterNetworkConnectionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DevCenterNetworkConnectionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DevCenterNetworkConnectionResource> GetAll(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterNetworkConnectionNetworkConnectionsRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterNetworkConnectionNetworkConnectionsRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, top);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterNetworkConnectionResource(Client, DevCenterNetworkConnectionData.DeserializeDevCenterNetworkConnectionData(e)), _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics, Pipeline, "DevCenterNetworkConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterNetworkConnectionResource(Client, DevCenterNetworkConnectionData.DeserializeDevCenterNetworkConnectionData(e)), _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics, Pipeline, "DevCenterNetworkConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -266,6 +349,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
@@ -274,7 +365,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string networkConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.Exists");
             scope.Start();
@@ -301,6 +399,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>NetworkConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
@@ -309,7 +415,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
         public virtual Response<bool> Exists(string networkConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkConnectionName, nameof(networkConnectionName));
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
 
             using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.Exists");
             scope.Start();
@@ -317,6 +430,110 @@ namespace Azure.ResourceManager.DevCenter
             {
                 var response = _devCenterNetworkConnectionNetworkConnectionsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, networkConnectionName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>NetworkConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DevCenterNetworkConnectionResource>> GetIfExistsAsync(string networkConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
+
+            using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _devCenterNetworkConnectionNetworkConnectionsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, networkConnectionName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterNetworkConnectionResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterNetworkConnectionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>NetworkConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterNetworkConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkConnectionName"> Name of the Network Connection that can be applied to a Pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkConnectionName"/> is null. </exception>
+        public virtual NullableResponse<DevCenterNetworkConnectionResource> GetIfExists(string networkConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (networkConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkConnectionName));
+            }
+            if (networkConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkConnectionName));
+            }
+
+            using var scope = _devCenterNetworkConnectionNetworkConnectionsClientDiagnostics.CreateScope("DevCenterNetworkConnectionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _devCenterNetworkConnectionNetworkConnectionsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, networkConnectionName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterNetworkConnectionResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterNetworkConnectionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

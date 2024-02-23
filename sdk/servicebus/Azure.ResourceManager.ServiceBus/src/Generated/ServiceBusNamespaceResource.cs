@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.ServiceBus
 {
     /// <summary>
     /// A Class representing a ServiceBusNamespace along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="ServiceBusNamespaceResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetServiceBusNamespaceResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetServiceBusNamespace method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="ServiceBusNamespaceResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetServiceBusNamespaceResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetServiceBusNamespace method.
     /// </summary>
     public partial class ServiceBusNamespaceResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="ServiceBusNamespaceResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="namespaceName"> The namespaceName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string namespaceName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}";
@@ -42,12 +46,15 @@ namespace Azure.ResourceManager.ServiceBus
         private readonly DisasterRecoveryConfigsRestOperations _serviceBusDisasterRecoveryDisasterRecoveryConfigsRestClient;
         private readonly ServiceBusNamespaceData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.ServiceBus/namespaces";
+
         /// <summary> Initializes a new instance of the <see cref="ServiceBusNamespaceResource"/> class for mocking. </summary>
         protected ServiceBusNamespaceResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "ServiceBusNamespaceResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="ServiceBusNamespaceResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal ServiceBusNamespaceResource(ArmClient client, ServiceBusNamespaceData data) : this(client, data.Id)
@@ -74,9 +81,6 @@ namespace Azure.ResourceManager.ServiceBus
 #endif
         }
 
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.ServiceBus/namespaces";
-
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
 
@@ -99,7 +103,7 @@ namespace Azure.ResourceManager.ServiceBus
         }
 
         /// <summary> Gets an object representing a ServiceBusNetworkRuleSetResource along with the instance operations that can be performed on it in the ServiceBusNamespace. </summary>
-        /// <returns> Returns a <see cref="ServiceBusNetworkRuleSetResource" /> object. </returns>
+        /// <returns> Returns a <see cref="ServiceBusNetworkRuleSetResource"/> object. </returns>
         public virtual ServiceBusNetworkRuleSetResource GetServiceBusNetworkRuleSet()
         {
             return new ServiceBusNetworkRuleSetResource(Client, Id.AppendChildResource("networkRuleSets", "default"));
@@ -109,7 +113,7 @@ namespace Azure.ResourceManager.ServiceBus
         /// <returns> An object representing collection of ServiceBusPrivateEndpointConnectionResources and their operations over a ServiceBusPrivateEndpointConnectionResource. </returns>
         public virtual ServiceBusPrivateEndpointConnectionCollection GetServiceBusPrivateEndpointConnections()
         {
-            return GetCachedClient(Client => new ServiceBusPrivateEndpointConnectionCollection(Client, Id));
+            return GetCachedClient(client => new ServiceBusPrivateEndpointConnectionCollection(client, Id));
         }
 
         /// <summary>
@@ -123,12 +127,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The PrivateEndpointConnection name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceBusPrivateEndpointConnectionResource>> GetServiceBusPrivateEndpointConnectionAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -146,12 +158,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The PrivateEndpointConnection name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceBusPrivateEndpointConnectionResource> GetServiceBusPrivateEndpointConnection(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -162,7 +182,7 @@ namespace Azure.ResourceManager.ServiceBus
         /// <returns> An object representing collection of ServiceBusDisasterRecoveryResources and their operations over a ServiceBusDisasterRecoveryResource. </returns>
         public virtual ServiceBusDisasterRecoveryCollection GetServiceBusDisasterRecoveries()
         {
-            return GetCachedClient(Client => new ServiceBusDisasterRecoveryCollection(Client, Id));
+            return GetCachedClient(client => new ServiceBusDisasterRecoveryCollection(client, Id));
         }
 
         /// <summary>
@@ -176,16 +196,24 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>DisasterRecoveryConfigs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusDisasterRecoveryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alias"> The Disaster Recovery configuration name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="alias"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="alias"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="alias"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceBusDisasterRecoveryResource>> GetServiceBusDisasterRecoveryAsync(string @alias, CancellationToken cancellationToken = default)
         {
-            return await GetServiceBusDisasterRecoveries().GetAsync(alias, cancellationToken).ConfigureAwait(false);
+            return await GetServiceBusDisasterRecoveries().GetAsync(@alias, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -199,23 +227,31 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>DisasterRecoveryConfigs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusDisasterRecoveryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alias"> The Disaster Recovery configuration name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="alias"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="alias"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="alias"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceBusDisasterRecoveryResource> GetServiceBusDisasterRecovery(string @alias, CancellationToken cancellationToken = default)
         {
-            return GetServiceBusDisasterRecoveries().Get(alias, cancellationToken);
+            return GetServiceBusDisasterRecoveries().Get(@alias, cancellationToken);
         }
 
         /// <summary> Gets a collection of MigrationConfigurationResources in the ServiceBusNamespace. </summary>
         /// <returns> An object representing collection of MigrationConfigurationResources and their operations over a MigrationConfigurationResource. </returns>
         public virtual MigrationConfigurationCollection GetMigrationConfigurations()
         {
-            return GetCachedClient(Client => new MigrationConfigurationCollection(Client, Id));
+            return GetCachedClient(client => new MigrationConfigurationCollection(client, Id));
         }
 
         /// <summary>
@@ -228,6 +264,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <item>
         /// <term>Operation Id</term>
         /// <description>MigrationConfigs_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MigrationConfigurationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -250,6 +294,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>MigrationConfigs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MigrationConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configName"> The configuration name. Should always be "$default". </param>
@@ -264,7 +316,7 @@ namespace Azure.ResourceManager.ServiceBus
         /// <returns> An object representing collection of ServiceBusNamespaceAuthorizationRuleResources and their operations over a ServiceBusNamespaceAuthorizationRuleResource. </returns>
         public virtual ServiceBusNamespaceAuthorizationRuleCollection GetServiceBusNamespaceAuthorizationRules()
         {
-            return GetCachedClient(Client => new ServiceBusNamespaceAuthorizationRuleCollection(Client, Id));
+            return GetCachedClient(client => new ServiceBusNamespaceAuthorizationRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -278,12 +330,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="authorizationRuleName"> The authorization rule name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="authorizationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizationRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="authorizationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceBusNamespaceAuthorizationRuleResource>> GetServiceBusNamespaceAuthorizationRuleAsync(string authorizationRuleName, CancellationToken cancellationToken = default)
         {
@@ -301,12 +361,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="authorizationRuleName"> The authorization rule name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="authorizationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizationRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="authorizationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceBusNamespaceAuthorizationRuleResource> GetServiceBusNamespaceAuthorizationRule(string authorizationRuleName, CancellationToken cancellationToken = default)
         {
@@ -317,7 +385,7 @@ namespace Azure.ResourceManager.ServiceBus
         /// <returns> An object representing collection of ServiceBusQueueResources and their operations over a ServiceBusQueueResource. </returns>
         public virtual ServiceBusQueueCollection GetServiceBusQueues()
         {
-            return GetCachedClient(Client => new ServiceBusQueueCollection(Client, Id));
+            return GetCachedClient(client => new ServiceBusQueueCollection(client, Id));
         }
 
         /// <summary>
@@ -331,12 +399,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Queues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusQueueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="queueName"> The queue name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="queueName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="queueName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="queueName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceBusQueueResource>> GetServiceBusQueueAsync(string queueName, CancellationToken cancellationToken = default)
         {
@@ -354,12 +430,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Queues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusQueueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="queueName"> The queue name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="queueName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="queueName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="queueName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceBusQueueResource> GetServiceBusQueue(string queueName, CancellationToken cancellationToken = default)
         {
@@ -370,7 +454,7 @@ namespace Azure.ResourceManager.ServiceBus
         /// <returns> An object representing collection of ServiceBusTopicResources and their operations over a ServiceBusTopicResource. </returns>
         public virtual ServiceBusTopicCollection GetServiceBusTopics()
         {
-            return GetCachedClient(Client => new ServiceBusTopicCollection(Client, Id));
+            return GetCachedClient(client => new ServiceBusTopicCollection(client, Id));
         }
 
         /// <summary>
@@ -384,12 +468,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Topics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusTopicResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicName"> The topic name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceBusTopicResource>> GetServiceBusTopicAsync(string topicName, CancellationToken cancellationToken = default)
         {
@@ -407,12 +499,20 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Topics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusTopicResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicName"> The topic name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceBusTopicResource> GetServiceBusTopic(string topicName, CancellationToken cancellationToken = default)
         {
@@ -429,6 +529,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -462,6 +570,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -493,6 +609,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Namespaces_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -528,6 +652,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -562,6 +694,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Parameters supplied to update a namespace resource. </param>
@@ -569,7 +709,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<ServiceBusNamespaceResource>> UpdateAsync(ServiceBusNamespacePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.Update");
             scope.Start();
@@ -596,6 +739,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Parameters supplied to update a namespace resource. </param>
@@ -603,7 +754,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<ServiceBusNamespaceResource> Update(ServiceBusNamespacePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.Update");
             scope.Start();
@@ -630,14 +784,18 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ServiceBusPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ServiceBusPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ServiceBusPrivateLinkResource> GetPrivateLinkResourcesAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateLinkResourcesRestClient.CreateGetRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, ServiceBusPrivateLinkResource.DeserializeServiceBusPrivateLinkResource, _privateLinkResourcesClientDiagnostics, Pipeline, "ServiceBusNamespaceResource.GetPrivateLinkResources", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => ServiceBusPrivateLinkResource.DeserializeServiceBusPrivateLinkResource(e), _privateLinkResourcesClientDiagnostics, Pipeline, "ServiceBusNamespaceResource.GetPrivateLinkResources", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -651,14 +809,18 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ServiceBusPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ServiceBusPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ServiceBusPrivateLinkResource> GetPrivateLinkResources(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateLinkResourcesRestClient.CreateGetRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, ServiceBusPrivateLinkResource.DeserializeServiceBusPrivateLinkResource, _privateLinkResourcesClientDiagnostics, Pipeline, "ServiceBusNamespaceResource.GetPrivateLinkResources", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => ServiceBusPrivateLinkResource.DeserializeServiceBusPrivateLinkResource(e), _privateLinkResourcesClientDiagnostics, Pipeline, "ServiceBusNamespaceResource.GetPrivateLinkResources", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -672,6 +834,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>DisasterRecoveryConfigs_CheckNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusDisasterRecoveryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Parameters to check availability of the given namespace name. </param>
@@ -679,7 +849,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<ServiceBusNameAvailabilityResult>> CheckServiceBusDisasterRecoveryNameAvailabilityAsync(ServiceBusNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _serviceBusDisasterRecoveryDisasterRecoveryConfigsClientDiagnostics.CreateScope("ServiceBusNamespaceResource.CheckServiceBusDisasterRecoveryNameAvailability");
             scope.Start();
@@ -706,6 +879,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>DisasterRecoveryConfigs_CheckNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusDisasterRecoveryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Parameters to check availability of the given namespace name. </param>
@@ -713,7 +894,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<ServiceBusNameAvailabilityResult> CheckServiceBusDisasterRecoveryNameAvailability(ServiceBusNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _serviceBusDisasterRecoveryDisasterRecoveryConfigsClientDiagnostics.CreateScope("ServiceBusNamespaceResource.CheckServiceBusDisasterRecoveryNameAvailability");
             scope.Start();
@@ -740,6 +924,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -748,8 +940,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<ServiceBusNamespaceResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.AddTag");
             scope.Start();
@@ -794,6 +992,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -802,8 +1008,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<ServiceBusNamespaceResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.AddTag");
             scope.Start();
@@ -848,6 +1060,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -855,7 +1075,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<ServiceBusNamespaceResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.SetTags");
             scope.Start();
@@ -897,6 +1120,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -904,7 +1135,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<ServiceBusNamespaceResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.SetTags");
             scope.Start();
@@ -946,6 +1180,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -953,7 +1195,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<ServiceBusNamespaceResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.RemoveTag");
             scope.Start();
@@ -998,6 +1243,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -1005,7 +1258,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<ServiceBusNamespaceResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _serviceBusNamespaceNamespacesClientDiagnostics.CreateScope("ServiceBusNamespaceResource.RemoveTag");
             scope.Start();

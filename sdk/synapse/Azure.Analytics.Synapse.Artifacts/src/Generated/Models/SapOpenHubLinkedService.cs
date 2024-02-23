@@ -7,23 +7,31 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> SAP Business Warehouse Open Hub Destination Linked Service. </summary>
     public partial class SapOpenHubLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of SapOpenHubLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapOpenHubLinkedService"/>. </summary>
         /// <param name="server"> Host name of the SAP BW instance where the open hub destination is located. Type: string (or Expression with resultType string). </param>
         /// <param name="systemNumber"> System number of the BW system where the open hub destination is located. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string). </param>
         /// <param name="clientId"> Client ID of the client on the BW system where the open hub destination is located. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="server"/>, <paramref name="systemNumber"/> or <paramref name="clientId"/> is null. </exception>
         public SapOpenHubLinkedService(object server, object systemNumber, object clientId)
         {
-            Argument.AssertNotNull(server, nameof(server));
-            Argument.AssertNotNull(systemNumber, nameof(systemNumber));
-            Argument.AssertNotNull(clientId, nameof(clientId));
+            if (server == null)
+            {
+                throw new ArgumentNullException(nameof(server));
+            }
+            if (systemNumber == null)
+            {
+                throw new ArgumentNullException(nameof(systemNumber));
+            }
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
 
             Server = server;
             SystemNumber = systemNumber;
@@ -31,7 +39,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "SapOpenHub";
         }
 
-        /// <summary> Initializes a new instance of SapOpenHubLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapOpenHubLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

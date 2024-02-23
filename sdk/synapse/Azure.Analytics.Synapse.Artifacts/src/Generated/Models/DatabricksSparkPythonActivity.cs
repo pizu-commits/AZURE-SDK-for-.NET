@@ -14,14 +14,20 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> DatabricksSparkPython activity. </summary>
     public partial class DatabricksSparkPythonActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of DatabricksSparkPythonActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="DatabricksSparkPythonActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="pythonFile"> The URI of the Python file to be executed. DBFS paths are supported. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="pythonFile"/> is null. </exception>
         public DatabricksSparkPythonActivity(string name, object pythonFile) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(pythonFile, nameof(pythonFile));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (pythonFile == null)
+            {
+                throw new ArgumentNullException(nameof(pythonFile));
+            }
 
             PythonFile = pythonFile;
             Parameters = new ChangeTrackingList<object>();
@@ -29,7 +35,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "DatabricksSparkPython";
         }
 
-        /// <summary> Initializes a new instance of DatabricksSparkPythonActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="DatabricksSparkPythonActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

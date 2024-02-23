@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="WebSiteSlotWebJobResource" /> and their operations.
-    /// Each <see cref="WebSiteSlotWebJobResource" /> in the collection will belong to the same instance of <see cref="WebSiteSlotResource" />.
-    /// To get a <see cref="WebSiteSlotWebJobCollection" /> instance call the GetWebSiteSlotWebJobs method from an instance of <see cref="WebSiteSlotResource" />.
+    /// A class representing a collection of <see cref="WebSiteSlotWebJobResource"/> and their operations.
+    /// Each <see cref="WebSiteSlotWebJobResource"/> in the collection will belong to the same instance of <see cref="WebSiteSlotResource"/>.
+    /// To get a <see cref="WebSiteSlotWebJobCollection"/> instance call the GetWebSiteSlotWebJobs method from an instance of <see cref="WebSiteSlotResource"/>.
     /// </summary>
     public partial class WebSiteSlotWebJobCollection : ArmCollection, IEnumerable<WebSiteSlotWebJobResource>, IAsyncEnumerable<WebSiteSlotWebJobResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetWebJobSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="webJobName"> Name of the web job. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
         public virtual async Task<Response<WebSiteSlotWebJobResource>> GetAsync(string webJobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(webJobName, nameof(webJobName));
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
 
             using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetWebJobSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="webJobName"> Name of the web job. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
         public virtual Response<WebSiteSlotWebJobResource> Get(string webJobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(webJobName, nameof(webJobName));
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
 
             using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListWebJobsSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="WebSiteSlotWebJobResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="WebSiteSlotWebJobResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<WebSiteSlotWebJobResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _webSiteSlotWebJobWebAppsRestClient.CreateListWebJobsSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _webSiteSlotWebJobWebAppsRestClient.CreateListWebJobsSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new WebSiteSlotWebJobResource(Client, WebJobData.DeserializeWebJobData(e)), _webSiteSlotWebJobWebAppsClientDiagnostics, Pipeline, "WebSiteSlotWebJobCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new WebSiteSlotWebJobResource(Client, WebJobData.DeserializeWebJobData(e)), _webSiteSlotWebJobWebAppsClientDiagnostics, Pipeline, "WebSiteSlotWebJobCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListWebJobsSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="WebSiteSlotWebJobResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="WebSiteSlotWebJobResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<WebSiteSlotWebJobResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _webSiteSlotWebJobWebAppsRestClient.CreateListWebJobsSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _webSiteSlotWebJobWebAppsRestClient.CreateListWebJobsSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new WebSiteSlotWebJobResource(Client, WebJobData.DeserializeWebJobData(e)), _webSiteSlotWebJobWebAppsClientDiagnostics, Pipeline, "WebSiteSlotWebJobCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new WebSiteSlotWebJobResource(Client, WebJobData.DeserializeWebJobData(e)), _webSiteSlotWebJobWebAppsClientDiagnostics, Pipeline, "WebSiteSlotWebJobCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetWebJobSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="webJobName"> Name of the web job. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string webJobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(webJobName, nameof(webJobName));
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
 
             using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetWebJobSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="webJobName"> Name of the web job. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
         public virtual Response<bool> Exists(string webJobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(webJobName, nameof(webJobName));
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
 
             using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _webSiteSlotWebJobWebAppsRestClient.GetWebJobSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, webJobName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/webjobs/{webJobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetWebJobSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="webJobName"> Name of the web job. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="webJobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
+        public virtual async Task<NullableResponse<WebSiteSlotWebJobResource>> GetIfExistsAsync(string webJobName, CancellationToken cancellationToken = default)
+        {
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
+
+            using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _webSiteSlotWebJobWebAppsRestClient.GetWebJobSlotAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, webJobName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<WebSiteSlotWebJobResource>(response.GetRawResponse());
+                return Response.FromValue(new WebSiteSlotWebJobResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/webjobs/{webJobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetWebJobSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="WebSiteSlotWebJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="webJobName"> Name of the web job. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="webJobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="webJobName"/> is null. </exception>
+        public virtual NullableResponse<WebSiteSlotWebJobResource> GetIfExists(string webJobName, CancellationToken cancellationToken = default)
+        {
+            if (webJobName == null)
+            {
+                throw new ArgumentNullException(nameof(webJobName));
+            }
+            if (webJobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(webJobName));
+            }
+
+            using var scope = _webSiteSlotWebJobWebAppsClientDiagnostics.CreateScope("WebSiteSlotWebJobCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _webSiteSlotWebJobWebAppsRestClient.GetWebJobSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, webJobName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<WebSiteSlotWebJobResource>(response.GetRawResponse());
+                return Response.FromValue(new WebSiteSlotWebJobResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

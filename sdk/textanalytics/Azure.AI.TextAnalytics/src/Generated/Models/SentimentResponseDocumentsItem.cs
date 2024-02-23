@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The SentimentResponseDocumentsItem. </summary>
     internal partial class SentimentResponseDocumentsItem : SentimentDocumentResult
     {
-        /// <summary> Initializes a new instance of SentimentResponseDocumentsItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="SentimentResponseDocumentsItem"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="sentiment"> Predicted sentiment for document (Negative, Neutral, Positive, or Mixed). </param>
@@ -24,13 +23,25 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/>, <paramref name="confidenceScores"/> or <paramref name="sentences"/> is null. </exception>
         public SentimentResponseDocumentsItem(string id, IEnumerable<DocumentWarning> warnings, TextSentiment sentiment, SentimentConfidenceScores confidenceScores, IEnumerable<SentenceSentimentInternal> sentences) : base(id, warnings, sentiment, confidenceScores, sentences)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(warnings, nameof(warnings));
-            Argument.AssertNotNull(confidenceScores, nameof(confidenceScores));
-            Argument.AssertNotNull(sentences, nameof(sentences));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
+            if (confidenceScores == null)
+            {
+                throw new ArgumentNullException(nameof(confidenceScores));
+            }
+            if (sentences == null)
+            {
+                throw new ArgumentNullException(nameof(sentences));
+            }
         }
 
-        /// <summary> Initializes a new instance of SentimentResponseDocumentsItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="SentimentResponseDocumentsItem"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>

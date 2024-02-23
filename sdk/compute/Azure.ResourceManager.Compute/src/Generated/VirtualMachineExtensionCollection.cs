@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Compute
 {
     /// <summary>
-    /// A class representing a collection of <see cref="VirtualMachineExtensionResource" /> and their operations.
-    /// Each <see cref="VirtualMachineExtensionResource" /> in the collection will belong to the same instance of <see cref="VirtualMachineResource" />.
-    /// To get a <see cref="VirtualMachineExtensionCollection" /> instance call the GetVirtualMachineExtensions method from an instance of <see cref="VirtualMachineResource" />.
+    /// A class representing a collection of <see cref="VirtualMachineExtensionResource"/> and their operations.
+    /// Each <see cref="VirtualMachineExtensionResource"/> in the collection will belong to the same instance of <see cref="VirtualMachineResource"/>.
+    /// To get a <see cref="VirtualMachineExtensionCollection"/> instance call the GetVirtualMachineExtensions method from an instance of <see cref="VirtualMachineResource"/>.
     /// </summary>
     public partial class VirtualMachineExtensionCollection : ArmCollection, IEnumerable<VirtualMachineExtensionResource>, IAsyncEnumerable<VirtualMachineExtensionResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<VirtualMachineExtensionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string vmExtensionName, VirtualMachineExtensionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<VirtualMachineExtensionResource> CreateOrUpdate(WaitUntil waitUntil, string vmExtensionName, VirtualMachineExtensionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
         public virtual async Task<Response<VirtualMachineExtensionResource>> GetAsync(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
         public virtual Response<VirtualMachineExtensionResource> Get(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.Get");
             scope.Start();
@@ -221,15 +288,23 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> The expand expression to apply on the operation. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="VirtualMachineExtensionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="VirtualMachineExtensionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<VirtualMachineExtensionResource> GetAllAsync(string expand = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _virtualMachineExtensionRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new VirtualMachineExtensionResource(Client, VirtualMachineExtensionData.DeserializeVirtualMachineExtensionData(e)), _virtualMachineExtensionClientDiagnostics, Pipeline, "VirtualMachineExtensionCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new VirtualMachineExtensionResource(Client, VirtualMachineExtensionData.DeserializeVirtualMachineExtensionData(e)), _virtualMachineExtensionClientDiagnostics, Pipeline, "VirtualMachineExtensionCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -243,15 +318,23 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> The expand expression to apply on the operation. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="VirtualMachineExtensionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="VirtualMachineExtensionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<VirtualMachineExtensionResource> GetAll(string expand = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _virtualMachineExtensionRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new VirtualMachineExtensionResource(Client, VirtualMachineExtensionData.DeserializeVirtualMachineExtensionData(e)), _virtualMachineExtensionClientDiagnostics, Pipeline, "VirtualMachineExtensionCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new VirtualMachineExtensionResource(Client, VirtualMachineExtensionData.DeserializeVirtualMachineExtensionData(e)), _virtualMachineExtensionClientDiagnostics, Pipeline, "VirtualMachineExtensionCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +348,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
@@ -274,7 +365,14 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.Exists");
             scope.Start();
@@ -301,6 +399,14 @@ namespace Azure.ResourceManager.Compute
         /// <term>Operation Id</term>
         /// <description>VirtualMachineExtensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
@@ -310,7 +416,14 @@ namespace Azure.ResourceManager.Compute
         /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
         public virtual Response<bool> Exists(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(vmExtensionName, nameof(vmExtensionName));
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
 
             using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.Exists");
             scope.Start();
@@ -318,6 +431,112 @@ namespace Azure.ResourceManager.Compute
             {
                 var response = _virtualMachineExtensionRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, vmExtensionName, expand, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachineExtensions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
+        /// <param name="expand"> The expand expression to apply on the operation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="vmExtensionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
+        public virtual async Task<NullableResponse<VirtualMachineExtensionResource>> GetIfExistsAsync(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
+
+            using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _virtualMachineExtensionRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, vmExtensionName, expand, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<VirtualMachineExtensionResource>(response.GetRawResponse());
+                return Response.FromValue(new VirtualMachineExtensionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualMachineExtensions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VirtualMachineExtensionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="vmExtensionName"> The name of the virtual machine extension. </param>
+        /// <param name="expand"> The expand expression to apply on the operation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="vmExtensionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="vmExtensionName"/> is null. </exception>
+        public virtual NullableResponse<VirtualMachineExtensionResource> GetIfExists(string vmExtensionName, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (vmExtensionName == null)
+            {
+                throw new ArgumentNullException(nameof(vmExtensionName));
+            }
+            if (vmExtensionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(vmExtensionName));
+            }
+
+            using var scope = _virtualMachineExtensionClientDiagnostics.CreateScope("VirtualMachineExtensionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _virtualMachineExtensionRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, vmExtensionName, expand, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<VirtualMachineExtensionResource>(response.GetRawResponse());
+                return Response.FromValue(new VirtualMachineExtensionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

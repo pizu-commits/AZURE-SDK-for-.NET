@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Maps.Search.Models
 {
     /// <summary> The GeoJsonFeatureData. </summary>
     internal partial class GeoJsonFeatureData
     {
-        /// <summary> Initializes a new instance of GeoJsonFeatureData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonFeatureData"/>. </summary>
         /// <param name="geometry">
         /// A valid `GeoJSON` geometry object. The type must be one of the seven valid GeoJSON geometry types - Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon and GeometryCollection. Please refer to [RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.1) for details.
         /// Please note <see cref="GeoJsonGeometry"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
@@ -22,12 +21,15 @@ namespace Azure.Maps.Search.Models
         /// <exception cref="ArgumentNullException"> <paramref name="geometry"/> is null. </exception>
         public GeoJsonFeatureData(GeoJsonGeometry geometry)
         {
-            Argument.AssertNotNull(geometry, nameof(geometry));
+            if (geometry == null)
+            {
+                throw new ArgumentNullException(nameof(geometry));
+            }
 
             Geometry = geometry;
         }
 
-        /// <summary> Initializes a new instance of GeoJsonFeatureData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonFeatureData"/>. </summary>
         /// <param name="geometry">
         /// A valid `GeoJSON` geometry object. The type must be one of the seven valid GeoJSON geometry types - Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon and GeometryCollection. Please refer to [RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.1) for details.
         /// Please note <see cref="GeoJsonGeometry"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.

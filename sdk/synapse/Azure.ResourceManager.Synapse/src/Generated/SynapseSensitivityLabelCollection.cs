@@ -18,9 +18,9 @@ using Azure.ResourceManager.Synapse.Models;
 namespace Azure.ResourceManager.Synapse
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SynapseSensitivityLabelResource" /> and their operations.
-    /// Each <see cref="SynapseSensitivityLabelResource" /> in the collection will belong to the same instance of <see cref="SynapseSqlPoolColumnResource" />.
-    /// To get a <see cref="SynapseSensitivityLabelCollection" /> instance call the GetSynapseSensitivityLabels method from an instance of <see cref="SynapseSqlPoolColumnResource" />.
+    /// A class representing a collection of <see cref="SynapseSensitivityLabelResource"/> and their operations.
+    /// Each <see cref="SynapseSensitivityLabelResource"/> in the collection will belong to the same instance of <see cref="SynapseSqlPoolColumnResource"/>.
+    /// To get a <see cref="SynapseSensitivityLabelCollection"/> instance call the GetSynapseSensitivityLabels method from an instance of <see cref="SynapseSqlPoolColumnResource"/>.
     /// </summary>
     public partial class SynapseSensitivityLabelCollection : ArmCollection
     {
@@ -62,6 +62,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -70,7 +78,10 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<SynapseSensitivityLabelResource>> CreateOrUpdateAsync(WaitUntil waitUntil, SynapseSensitivityLabelData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _synapseSensitivityLabelSqlPoolSensitivityLabelsClientDiagnostics.CreateScope("SynapseSensitivityLabelCollection.CreateOrUpdate");
             scope.Start();
@@ -100,6 +111,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -108,7 +127,10 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<SynapseSensitivityLabelResource> CreateOrUpdate(WaitUntil waitUntil, SynapseSensitivityLabelData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _synapseSensitivityLabelSqlPoolSensitivityLabelsClientDiagnostics.CreateScope("SynapseSensitivityLabelCollection.CreateOrUpdate");
             scope.Start();
@@ -137,6 +159,14 @@ namespace Azure.ResourceManager.Synapse
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -171,6 +201,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sensitivityLabelSource"> The source of the sensitivity label. </param>
@@ -204,6 +242,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sensitivityLabelSource"> The source of the sensitivity label. </param>
@@ -235,6 +281,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>SqlPoolSensitivityLabels_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sensitivityLabelSource"> The source of the sensitivity label. </param>
@@ -247,6 +301,88 @@ namespace Azure.ResourceManager.Synapse
             {
                 var response = _synapseSensitivityLabelSqlPoolSensitivityLabelsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Parent.Name, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, sensitivityLabelSource, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SqlPoolSensitivityLabels_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sensitivityLabelSource"> The source of the sensitivity label. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<NullableResponse<SynapseSensitivityLabelResource>> GetIfExistsAsync(SynapseSensitivityLabelSource sensitivityLabelSource, CancellationToken cancellationToken = default)
+        {
+            using var scope = _synapseSensitivityLabelSqlPoolSensitivityLabelsClientDiagnostics.CreateScope("SynapseSensitivityLabelCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _synapseSensitivityLabelSqlPoolSensitivityLabelsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Parent.Name, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, sensitivityLabelSource, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapseSensitivityLabelResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapseSensitivityLabelResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SqlPoolSensitivityLabels_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseSensitivityLabelResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sensitivityLabelSource"> The source of the sensitivity label. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual NullableResponse<SynapseSensitivityLabelResource> GetIfExists(SynapseSensitivityLabelSource sensitivityLabelSource, CancellationToken cancellationToken = default)
+        {
+            using var scope = _synapseSensitivityLabelSqlPoolSensitivityLabelsClientDiagnostics.CreateScope("SynapseSensitivityLabelCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _synapseSensitivityLabelSqlPoolSensitivityLabelsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Parent.Name, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, sensitivityLabelSource, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapseSensitivityLabelResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapseSensitivityLabelResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

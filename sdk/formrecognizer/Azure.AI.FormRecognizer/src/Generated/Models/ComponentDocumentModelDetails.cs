@@ -6,19 +6,21 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.FormRecognizer.DocumentAnalysis
 {
     /// <summary> A component of a composed document model. </summary>
     internal partial class ComponentDocumentModelDetails
     {
-        /// <summary> Initializes a new instance of ComponentDocumentModelDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="ComponentDocumentModelDetails"/>. </summary>
         /// <param name="modelId"> Unique document model name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         public ComponentDocumentModelDetails(string modelId)
         {
-            Argument.AssertNotNull(modelId, nameof(modelId));
+            if (modelId == null)
+            {
+                throw new ArgumentNullException(nameof(modelId));
+            }
 
             ModelId = modelId;
         }

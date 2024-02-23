@@ -18,13 +18,15 @@ namespace Azure.ResourceManager.Authorization
 {
     /// <summary>
     /// A Class representing a RoleAssignmentScheduleRequest along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="RoleAssignmentScheduleRequestResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetRoleAssignmentScheduleRequestResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ArmResource" /> using the GetRoleAssignmentScheduleRequest method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="RoleAssignmentScheduleRequestResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetRoleAssignmentScheduleRequestResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ArmResource"/> using the GetRoleAssignmentScheduleRequest method.
     /// </summary>
     public partial class RoleAssignmentScheduleRequestResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="RoleAssignmentScheduleRequestResource"/> instance. </summary>
+        /// <param name="scope"> The scope. </param>
+        /// <param name="roleAssignmentScheduleRequestName"> The roleAssignmentScheduleRequestName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string scope, string roleAssignmentScheduleRequestName)
         {
             var resourceId = $"{scope}/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/{roleAssignmentScheduleRequestName}";
@@ -35,12 +37,15 @@ namespace Azure.ResourceManager.Authorization
         private readonly RoleAssignmentScheduleRequestsRestOperations _roleAssignmentScheduleRequestRestClient;
         private readonly RoleAssignmentScheduleRequestData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Authorization/roleAssignmentScheduleRequests";
+
         /// <summary> Initializes a new instance of the <see cref="RoleAssignmentScheduleRequestResource"/> class for mocking. </summary>
         protected RoleAssignmentScheduleRequestResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "RoleAssignmentScheduleRequestResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="RoleAssignmentScheduleRequestResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal RoleAssignmentScheduleRequestResource(ArmClient client, RoleAssignmentScheduleRequestData data) : this(client, data.Id)
@@ -61,9 +66,6 @@ namespace Azure.ResourceManager.Authorization
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Authorization/roleAssignmentScheduleRequests";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +99,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +138,14 @@ namespace Azure.ResourceManager.Authorization
         /// <item>
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +179,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -169,7 +195,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<RoleAssignmentScheduleRequestResource>> UpdateAsync(WaitUntil waitUntil, RoleAssignmentScheduleRequestData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleAssignmentScheduleRequestClientDiagnostics.CreateScope("RoleAssignmentScheduleRequestResource.Update");
             scope.Start();
@@ -199,6 +228,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -207,7 +244,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<RoleAssignmentScheduleRequestResource> Update(WaitUntil waitUntil, RoleAssignmentScheduleRequestData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleAssignmentScheduleRequestClientDiagnostics.CreateScope("RoleAssignmentScheduleRequestResource.Update");
             scope.Start();
@@ -236,6 +276,14 @@ namespace Azure.ResourceManager.Authorization
         /// <item>
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Cancel</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -267,6 +315,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Cancel</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -297,6 +353,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Validate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Parameters for the role assignment schedule request. </param>
@@ -304,7 +368,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<RoleAssignmentScheduleRequestResource>> ValidateAsync(RoleAssignmentScheduleRequestData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleAssignmentScheduleRequestClientDiagnostics.CreateScope("RoleAssignmentScheduleRequestResource.Validate");
             scope.Start();
@@ -331,6 +398,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleAssignmentScheduleRequests_Validate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleAssignmentScheduleRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Parameters for the role assignment schedule request. </param>
@@ -338,7 +413,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<RoleAssignmentScheduleRequestResource> Validate(RoleAssignmentScheduleRequestData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleAssignmentScheduleRequestClientDiagnostics.CreateScope("RoleAssignmentScheduleRequestResource.Validate");
             scope.Start();

@@ -14,19 +14,22 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> HDInsight Pig activity type. </summary>
     public partial class HDInsightPigActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of HDInsightPigActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightPigActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public HDInsightPigActivity(string name) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             StorageLinkedServices = new ChangeTrackingList<LinkedServiceReference>();
             Defines = new ChangeTrackingDictionary<string, object>();
             Type = "HDInsightPig";
         }
 
-        /// <summary> Initializes a new instance of HDInsightPigActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightPigActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

@@ -14,21 +14,27 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Spark job definition. </summary>
     public partial class SparkJobDefinition
     {
-        /// <summary> Initializes a new instance of SparkJobDefinition. </summary>
+        /// <summary> Initializes a new instance of <see cref="SparkJobDefinition"/>. </summary>
         /// <param name="targetBigDataPool"> Big data pool reference. </param>
         /// <param name="jobProperties"> The properties of the Spark job. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetBigDataPool"/> or <paramref name="jobProperties"/> is null. </exception>
         public SparkJobDefinition(BigDataPoolReference targetBigDataPool, SparkJobProperties jobProperties)
         {
-            Argument.AssertNotNull(targetBigDataPool, nameof(targetBigDataPool));
-            Argument.AssertNotNull(jobProperties, nameof(jobProperties));
+            if (targetBigDataPool == null)
+            {
+                throw new ArgumentNullException(nameof(targetBigDataPool));
+            }
+            if (jobProperties == null)
+            {
+                throw new ArgumentNullException(nameof(jobProperties));
+            }
 
             TargetBigDataPool = targetBigDataPool;
             JobProperties = jobProperties;
             AdditionalProperties = new ChangeTrackingDictionary<string, object>();
         }
 
-        /// <summary> Initializes a new instance of SparkJobDefinition. </summary>
+        /// <summary> Initializes a new instance of <see cref="SparkJobDefinition"/>. </summary>
         /// <param name="description"> The description of the Spark job definition. </param>
         /// <param name="targetBigDataPool"> Big data pool reference. </param>
         /// <param name="targetSparkConfiguration"> The spark configuration of the spark job. </param>

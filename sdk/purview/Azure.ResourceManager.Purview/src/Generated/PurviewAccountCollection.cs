@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.Purview
 {
     /// <summary>
-    /// A class representing a collection of <see cref="PurviewAccountResource" /> and their operations.
-    /// Each <see cref="PurviewAccountResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="PurviewAccountCollection" /> instance call the GetPurviewAccounts method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="PurviewAccountResource"/> and their operations.
+    /// Each <see cref="PurviewAccountResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="PurviewAccountCollection"/> instance call the GetPurviewAccounts method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class PurviewAccountCollection : ArmCollection, IEnumerable<PurviewAccountResource>, IAsyncEnumerable<PurviewAccountResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<PurviewAccountResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string accountName, PurviewAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<PurviewAccountResource> CreateOrUpdate(WaitUntil waitUntil, string accountName, PurviewAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> The name of the account. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual async Task<Response<PurviewAccountResource>> GetAsync(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> The name of the account. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual Response<PurviewAccountResource> Get(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.Get");
             scope.Start();
@@ -220,16 +287,24 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skipToken"> The skip token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PurviewAccountResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PurviewAccountResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PurviewAccountResource> GetAllAsync(string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _purviewAccountAccountsRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _purviewAccountAccountsRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PurviewAccountResource(Client, PurviewAccountData.DeserializePurviewAccountData(e)), _purviewAccountAccountsClientDiagnostics, Pipeline, "PurviewAccountCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PurviewAccountResource(Client, PurviewAccountData.DeserializePurviewAccountData(e)), _purviewAccountAccountsClientDiagnostics, Pipeline, "PurviewAccountCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,16 +318,24 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skipToken"> The skip token. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PurviewAccountResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PurviewAccountResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PurviewAccountResource> GetAll(string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _purviewAccountAccountsRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _purviewAccountAccountsRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PurviewAccountResource(Client, PurviewAccountData.DeserializePurviewAccountData(e)), _purviewAccountAccountsClientDiagnostics, Pipeline, "PurviewAccountCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PurviewAccountResource(Client, PurviewAccountData.DeserializePurviewAccountData(e)), _purviewAccountAccountsClientDiagnostics, Pipeline, "PurviewAccountCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -266,6 +349,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> The name of the account. </param>
@@ -274,7 +365,14 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.Exists");
             scope.Start();
@@ -301,6 +399,14 @@ namespace Azure.ResourceManager.Purview
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> The name of the account. </param>
@@ -309,7 +415,14 @@ namespace Azure.ResourceManager.Purview
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual Response<bool> Exists(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.Exists");
             scope.Start();
@@ -317,6 +430,110 @@ namespace Azure.ResourceManager.Purview
             {
                 var response = _purviewAccountAccountsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Accounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accountName"> The name of the account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
+        public virtual async Task<NullableResponse<PurviewAccountResource>> GetIfExistsAsync(string accountName, CancellationToken cancellationToken = default)
+        {
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+
+            using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _purviewAccountAccountsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<PurviewAccountResource>(response.GetRawResponse());
+                return Response.FromValue(new PurviewAccountResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Accounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PurviewAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accountName"> The name of the account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
+        public virtual NullableResponse<PurviewAccountResource> GetIfExists(string accountName, CancellationToken cancellationToken = default)
+        {
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+
+            using var scope = _purviewAccountAccountsClientDiagnostics.CreateScope("PurviewAccountCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _purviewAccountAccountsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<PurviewAccountResource>(response.GetRawResponse());
+                return Response.FromValue(new PurviewAccountResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

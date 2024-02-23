@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -52,9 +53,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="instanceId"/> or <paramref name="credential"/> is null. </exception>
         public DeviceManagementClient(Uri endpoint, string instanceId, TokenCredential credential, DeviceUpdateClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(instanceId, nameof(instanceId));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (instanceId == null)
+            {
+                throw new ArgumentNullException(nameof(instanceId));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new DeviceUpdateClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -84,7 +94,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceClassAsync(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClass");
             scope.Start();
@@ -119,7 +136,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClass(string,RequestContext)']/*" />
         public virtual Response GetDeviceClass(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClass");
             scope.Start();
@@ -155,8 +179,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='UpdateDeviceClassAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> UpdateDeviceClassAsync(string deviceClassId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.UpdateDeviceClass");
             scope.Start();
@@ -192,8 +226,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='UpdateDeviceClass(string,RequestContent,RequestContext)']/*" />
         public virtual Response UpdateDeviceClass(string deviceClassId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.UpdateDeviceClass");
             scope.Start();
@@ -228,7 +272,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeviceClassAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteDeviceClassAsync(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeviceClass");
             scope.Start();
@@ -263,7 +314,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeviceClass(string,RequestContext)']/*" />
         public virtual Response DeleteDeviceClass(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeviceClass");
             scope.Start();
@@ -298,7 +356,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceAsync(string deviceId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceId, nameof(deviceId));
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceId));
+            }
+            if (deviceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDevice");
             scope.Start();
@@ -333,7 +398,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDevice(string,RequestContext)']/*" />
         public virtual Response GetDevice(string deviceId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceId, nameof(deviceId));
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceId));
+            }
+            if (deviceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDevice");
             scope.Start();
@@ -369,8 +441,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceModuleAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceModuleAsync(string deviceId, string moduleId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceId, nameof(deviceId));
-            Argument.AssertNotNullOrEmpty(moduleId, nameof(moduleId));
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceId));
+            }
+            if (deviceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceId));
+            }
+            if (moduleId == null)
+            {
+                throw new ArgumentNullException(nameof(moduleId));
+            }
+            if (moduleId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(moduleId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceModule");
             scope.Start();
@@ -406,8 +492,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceModule(string,string,RequestContext)']/*" />
         public virtual Response GetDeviceModule(string deviceId, string moduleId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceId, nameof(deviceId));
-            Argument.AssertNotNullOrEmpty(moduleId, nameof(moduleId));
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceId));
+            }
+            if (deviceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceId));
+            }
+            if (moduleId == null)
+            {
+                throw new ArgumentNullException(nameof(moduleId));
+            }
+            if (moduleId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(moduleId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceModule");
             scope.Start();
@@ -502,7 +602,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetGroupAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetGroupAsync(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetGroup");
             scope.Start();
@@ -537,7 +644,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetGroup(string,RequestContext)']/*" />
         public virtual Response GetGroup(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetGroup");
             scope.Start();
@@ -572,7 +686,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteGroupAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteGroupAsync(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteGroup");
             scope.Start();
@@ -607,7 +728,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteGroup(string,RequestContext)']/*" />
         public virtual Response DeleteGroup(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteGroup");
             scope.Start();
@@ -642,7 +770,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetUpdateComplianceForGroupAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetUpdateComplianceForGroupAsync(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetUpdateComplianceForGroup");
             scope.Start();
@@ -677,7 +812,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetUpdateComplianceForGroup(string,RequestContext)']/*" />
         public virtual Response GetUpdateComplianceForGroup(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetUpdateComplianceForGroup");
             scope.Start();
@@ -713,8 +855,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeploymentAsync(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeployment");
             scope.Start();
@@ -750,8 +906,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeployment(string,string,RequestContext)']/*" />
         public virtual Response GetDeployment(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeployment");
             scope.Start();
@@ -788,9 +958,26 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='CreateOrUpdateDeploymentAsync(string,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateDeploymentAsync(string groupId, string deploymentId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.CreateOrUpdateDeployment");
             scope.Start();
@@ -827,9 +1014,26 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='CreateOrUpdateDeployment(string,string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdateDeployment(string groupId, string deploymentId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.CreateOrUpdateDeployment");
             scope.Start();
@@ -865,8 +1069,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeploymentAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteDeploymentAsync(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeployment");
             scope.Start();
@@ -902,8 +1120,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeployment(string,string,RequestContext)']/*" />
         public virtual Response DeleteDeployment(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeployment");
             scope.Start();
@@ -939,8 +1171,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentStatusAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeploymentStatusAsync(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeploymentStatus");
             scope.Start();
@@ -976,8 +1222,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentStatus(string,string,RequestContext)']/*" />
         public virtual Response GetDeploymentStatus(string groupId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeploymentStatus");
             scope.Start();
@@ -1013,8 +1273,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceClassSubgroupAsync(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroup");
             scope.Start();
@@ -1050,8 +1324,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroup(string,string,RequestContext)']/*" />
         public virtual Response GetDeviceClassSubgroup(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroup");
             scope.Start();
@@ -1087,8 +1375,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeviceClassSubgroupAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteDeviceClassSubgroupAsync(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeviceClassSubgroup");
             scope.Start();
@@ -1124,8 +1426,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeviceClassSubgroup(string,string,RequestContext)']/*" />
         public virtual Response DeleteDeviceClassSubgroup(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeviceClassSubgroup");
             scope.Start();
@@ -1161,8 +1477,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupUpdateComplianceAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceClassSubgroupUpdateComplianceAsync(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroupUpdateCompliance");
             scope.Start();
@@ -1198,8 +1528,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupUpdateCompliance(string,string,RequestContext)']/*" />
         public virtual Response GetDeviceClassSubgroupUpdateCompliance(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroupUpdateCompliance");
             scope.Start();
@@ -1235,8 +1579,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetBestUpdatesForDeviceClassSubgroupAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetBestUpdatesForDeviceClassSubgroupAsync(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetBestUpdatesForDeviceClassSubgroup");
             scope.Start();
@@ -1272,8 +1630,22 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetBestUpdatesForDeviceClassSubgroup(string,string,RequestContext)']/*" />
         public virtual Response GetBestUpdatesForDeviceClassSubgroup(string groupId, string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetBestUpdatesForDeviceClassSubgroup");
             scope.Start();
@@ -1310,9 +1682,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentForDeviceClassSubgroupAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeploymentForDeviceClassSubgroupAsync(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeploymentForDeviceClassSubgroup");
             scope.Start();
@@ -1349,9 +1742,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentForDeviceClassSubgroup(string,string,string,RequestContext)']/*" />
         public virtual Response GetDeploymentForDeviceClassSubgroup(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeploymentForDeviceClassSubgroup");
             scope.Start();
@@ -1388,9 +1802,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeploymentForDeviceClassSubgroupAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteDeploymentForDeviceClassSubgroupAsync(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeploymentForDeviceClassSubgroup");
             scope.Start();
@@ -1427,9 +1862,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='DeleteDeploymentForDeviceClassSubgroup(string,string,string,RequestContext)']/*" />
         public virtual Response DeleteDeploymentForDeviceClassSubgroup(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.DeleteDeploymentForDeviceClassSubgroup");
             scope.Start();
@@ -1466,9 +1922,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='StopDeploymentAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> StopDeploymentAsync(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.StopDeployment");
             scope.Start();
@@ -1505,9 +1982,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='StopDeployment(string,string,string,RequestContext)']/*" />
         public virtual Response StopDeployment(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.StopDeployment");
             scope.Start();
@@ -1544,9 +2042,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='RetryDeploymentAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> RetryDeploymentAsync(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.RetryDeployment");
             scope.Start();
@@ -1583,9 +2102,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='RetryDeployment(string,string,string,RequestContext)']/*" />
         public virtual Response RetryDeployment(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.RetryDeployment");
             scope.Start();
@@ -1622,9 +2162,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupDeploymentStatusAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeviceClassSubgroupDeploymentStatusAsync(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroupDeploymentStatus");
             scope.Start();
@@ -1661,9 +2222,30 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupDeploymentStatus(string,string,string,RequestContext)']/*" />
         public virtual Response GetDeviceClassSubgroupDeploymentStatus(string groupId, string deviceClassId, string deploymentId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetDeviceClassSubgroupDeploymentStatus");
             scope.Start();
@@ -1699,7 +2281,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetOperationStatusAsync(string,ETag?,RequestContext)']/*" />
         public virtual async Task<Response> GetOperationStatusAsync(string operationId, ETag? ifNoneMatch = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetOperationStatus");
             scope.Start();
@@ -1735,7 +2324,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetOperationStatus(string,ETag?,RequestContext)']/*" />
         public virtual Response GetOperationStatus(string operationId, ETag? ifNoneMatch = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetOperationStatus");
             scope.Start();
@@ -1771,8 +2367,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='StartLogCollectionAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> StartLogCollectionAsync(string logCollectionId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.StartLogCollection");
             scope.Start();
@@ -1808,8 +2414,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='StartLogCollection(string,RequestContent,RequestContext)']/*" />
         public virtual Response StartLogCollection(string logCollectionId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.StartLogCollection");
             scope.Start();
@@ -1844,7 +2460,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetLogCollectionAsync(string logCollectionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollection");
             scope.Start();
@@ -1879,7 +2502,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollection(string,RequestContext)']/*" />
         public virtual Response GetLogCollection(string logCollectionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollection");
             scope.Start();
@@ -1914,7 +2544,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatusAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetLogCollectionDetailedStatusAsync(string logCollectionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollectionDetailedStatus");
             scope.Start();
@@ -1949,7 +2586,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatus(string,RequestContext)']/*" />
         public virtual Response GetLogCollectionDetailedStatus(string logCollectionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(logCollectionId, nameof(logCollectionId));
+            if (logCollectionId == null)
+            {
+                throw new ArgumentNullException(nameof(logCollectionId));
+            }
+            if (logCollectionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(logCollectionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollectionDetailedStatus");
             scope.Start();
@@ -1984,7 +2628,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceClassesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceClassesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClasses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClasses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2006,7 +2650,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceClassesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceClassesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClasses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClasses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2028,11 +2672,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetInstallableUpdatesForDeviceClassesAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetInstallableUpdatesForDeviceClassesAsync(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetInstallableUpdatesForDeviceClassesRequest(deviceClassId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetInstallableUpdatesForDeviceClassesNextPageRequest(nextLink, deviceClassId, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetInstallableUpdatesForDeviceClasses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetInstallableUpdatesForDeviceClasses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2054,11 +2705,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetInstallableUpdatesForDeviceClasses(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetInstallableUpdatesForDeviceClasses(string deviceClassId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetInstallableUpdatesForDeviceClassesRequest(deviceClassId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetInstallableUpdatesForDeviceClassesNextPageRequest(nextLink, deviceClassId, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetInstallableUpdatesForDeviceClasses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetInstallableUpdatesForDeviceClasses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2080,7 +2738,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDevicesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDevicesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDevices", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDevices", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2102,7 +2760,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDevicesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDevicesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDevices", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDevices", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2124,7 +2782,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetGroupsRequest(orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetGroupsNextPageRequest(nextLink, orderBy, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2146,7 +2804,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetGroupsRequest(orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetGroupsNextPageRequest(nextLink, orderBy, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2168,11 +2826,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetBestUpdatesForGroupsAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetBestUpdatesForGroupsAsync(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetBestUpdatesForGroupsRequest(groupId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetBestUpdatesForGroupsNextPageRequest(nextLink, groupId, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetBestUpdatesForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetBestUpdatesForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2194,11 +2859,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetBestUpdatesForGroups(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetBestUpdatesForGroups(string groupId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetBestUpdatesForGroupsRequest(groupId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetBestUpdatesForGroupsNextPageRequest(nextLink, groupId, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetBestUpdatesForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetBestUpdatesForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2221,11 +2893,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentsForGroupsAsync(string,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetDeploymentsForGroupsAsync(string groupId, string orderBy = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsForGroupsRequest(groupId, orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsForGroupsNextPageRequest(nextLink, groupId, orderBy, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2248,11 +2927,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentsForGroups(string,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetDeploymentsForGroups(string groupId, string orderBy = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsForGroupsRequest(groupId, orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsForGroupsNextPageRequest(nextLink, groupId, orderBy, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2275,11 +2961,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupsForGroupsAsync(string,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetDeviceClassSubgroupsForGroupsAsync(string groupId, string filter = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceClassSubgroupsForGroupsRequest(groupId, filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceClassSubgroupsForGroupsNextPageRequest(nextLink, groupId, filter, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClassSubgroupsForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClassSubgroupsForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2302,11 +2995,18 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceClassSubgroupsForGroups(string,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetDeviceClassSubgroupsForGroups(string groupId, string filter = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceClassSubgroupsForGroupsRequest(groupId, filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceClassSubgroupsForGroupsNextPageRequest(nextLink, groupId, filter, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClassSubgroupsForGroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceClassSubgroupsForGroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2330,12 +3030,26 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentsForDeviceClassSubgroupsAsync(string,string,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetDeploymentsForDeviceClassSubgroupsAsync(string groupId, string deviceClassId, string orderBy = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsForDeviceClassSubgroupsRequest(groupId, deviceClassId, orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsForDeviceClassSubgroupsNextPageRequest(nextLink, groupId, deviceClassId, orderBy, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForDeviceClassSubgroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForDeviceClassSubgroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2359,12 +3073,26 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeploymentsForDeviceClassSubgroups(string,string,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetDeploymentsForDeviceClassSubgroups(string groupId, string deviceClassId, string orderBy = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsForDeviceClassSubgroupsRequest(groupId, deviceClassId, orderBy, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsForDeviceClassSubgroupsNextPageRequest(nextLink, groupId, deviceClassId, orderBy, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForDeviceClassSubgroups", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeploymentsForDeviceClassSubgroups", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2389,13 +3117,34 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceStatesForDeviceClassSubgroupDeploymentsAsync(string,string,string,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetDeviceStatesForDeviceClassSubgroupDeploymentsAsync(string groupId, string deviceClassId, string deploymentId, string filter = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceStatesForDeviceClassSubgroupDeploymentsRequest(groupId, deviceClassId, deploymentId, filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceStatesForDeviceClassSubgroupDeploymentsNextPageRequest(nextLink, groupId, deviceClassId, deploymentId, filter, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceStatesForDeviceClassSubgroupDeployments", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceStatesForDeviceClassSubgroupDeployments", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2420,13 +3169,34 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetDeviceStatesForDeviceClassSubgroupDeployments(string,string,string,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetDeviceStatesForDeviceClassSubgroupDeployments(string groupId, string deviceClassId, string deploymentId, string filter = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
-            Argument.AssertNotNullOrEmpty(deviceClassId, nameof(deviceClassId));
-            Argument.AssertNotNullOrEmpty(deploymentId, nameof(deploymentId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+            if (deviceClassId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceClassId));
+            }
+            if (deviceClassId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deviceClassId));
+            }
+            if (deploymentId == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentId));
+            }
+            if (deploymentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeviceStatesForDeviceClassSubgroupDeploymentsRequest(groupId, deviceClassId, deploymentId, filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeviceStatesForDeviceClassSubgroupDeploymentsNextPageRequest(nextLink, groupId, deviceClassId, deploymentId, filter, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceStatesForDeviceClassSubgroupDeployments", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetDeviceStatesForDeviceClassSubgroupDeployments", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2449,7 +3219,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationStatusesRequest(filter, top, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationStatusesNextPageRequest(nextLink, filter, top, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetOperationStatuses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetOperationStatuses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2472,7 +3242,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationStatusesRequest(filter, top, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationStatusesNextPageRequest(nextLink, filter, top, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetOperationStatuses", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetOperationStatuses", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2493,7 +3263,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollections", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollections", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2514,7 +3284,7 @@ namespace Azure.IoT.DeviceUpdate
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollections", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollections", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2535,11 +3305,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetHealthOfDevicesAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetHealthOfDevicesAsync(string filter, RequestContext context = null)
         {
-            Argument.AssertNotNull(filter, nameof(filter));
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetHealthOfDevicesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetHealthOfDevicesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetHealthOfDevices", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetHealthOfDevices", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2560,11 +3333,14 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetHealthOfDevices(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetHealthOfDevices(string filter, RequestContext context = null)
         {
-            Argument.AssertNotNull(filter, nameof(filter));
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetHealthOfDevicesRequest(filter, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetHealthOfDevicesNextPageRequest(nextLink, filter, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetHealthOfDevices", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetHealthOfDevices", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -2586,7 +3362,10 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='ImportDevicesAsync(WaitUntil,RequestContent,RequestContext)']/*" />
         public virtual async Task<Operation> ImportDevicesAsync(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.ImportDevices");
             scope.Start();
@@ -2621,7 +3400,10 @@ namespace Azure.IoT.DeviceUpdate
         /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='ImportDevices(WaitUntil,RequestContent,RequestContext)']/*" />
         public virtual Operation ImportDevices(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.ImportDevices");
             scope.Start();

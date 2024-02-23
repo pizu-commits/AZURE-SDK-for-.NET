@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Network
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DefaultSecurityRuleResource" /> and their operations.
-    /// Each <see cref="DefaultSecurityRuleResource" /> in the collection will belong to the same instance of <see cref="NetworkSecurityGroupResource" />.
-    /// To get a <see cref="DefaultSecurityRuleCollection" /> instance call the GetDefaultSecurityRules method from an instance of <see cref="NetworkSecurityGroupResource" />.
+    /// A class representing a collection of <see cref="DefaultSecurityRuleResource"/> and their operations.
+    /// Each <see cref="DefaultSecurityRuleResource"/> in the collection will belong to the same instance of <see cref="NetworkSecurityGroupResource"/>.
+    /// To get a <see cref="DefaultSecurityRuleCollection"/> instance call the GetDefaultSecurityRules method from an instance of <see cref="NetworkSecurityGroupResource"/>.
     /// </summary>
     public partial class DefaultSecurityRuleCollection : ArmCollection, IEnumerable<DefaultSecurityRuleResource>, IAsyncEnumerable<DefaultSecurityRuleResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
         public virtual async Task<Response<DefaultSecurityRuleResource>> GetAsync(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(defaultSecurityRuleName, nameof(defaultSecurityRuleName));
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
 
             using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
         public virtual Response<DefaultSecurityRuleResource> Get(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(defaultSecurityRuleName, nameof(defaultSecurityRuleName));
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
 
             using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DefaultSecurityRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DefaultSecurityRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DefaultSecurityRuleResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _defaultSecurityRuleRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _defaultSecurityRuleRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DefaultSecurityRuleResource(Client, SecurityRuleData.DeserializeSecurityRuleData(e)), _defaultSecurityRuleClientDiagnostics, Pipeline, "DefaultSecurityRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DefaultSecurityRuleResource(Client, SecurityRuleData.DeserializeSecurityRuleData(e)), _defaultSecurityRuleClientDiagnostics, Pipeline, "DefaultSecurityRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DefaultSecurityRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DefaultSecurityRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DefaultSecurityRuleResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _defaultSecurityRuleRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _defaultSecurityRuleRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DefaultSecurityRuleResource(Client, SecurityRuleData.DeserializeSecurityRuleData(e)), _defaultSecurityRuleClientDiagnostics, Pipeline, "DefaultSecurityRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DefaultSecurityRuleResource(Client, SecurityRuleData.DeserializeSecurityRuleData(e)), _defaultSecurityRuleClientDiagnostics, Pipeline, "DefaultSecurityRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(defaultSecurityRuleName, nameof(defaultSecurityRuleName));
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
 
             using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>DefaultSecurityRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
         public virtual Response<bool> Exists(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(defaultSecurityRuleName, nameof(defaultSecurityRuleName));
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
 
             using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.Network
             {
                 var response = _defaultSecurityRuleRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, defaultSecurityRuleName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/defaultSecurityRules/{defaultSecurityRuleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DefaultSecurityRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="defaultSecurityRuleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DefaultSecurityRuleResource>> GetIfExistsAsync(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
+        {
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
+
+            using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _defaultSecurityRuleRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, defaultSecurityRuleName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DefaultSecurityRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new DefaultSecurityRuleResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/defaultSecurityRules/{defaultSecurityRuleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DefaultSecurityRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DefaultSecurityRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="defaultSecurityRuleName"> The name of the default security rule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="defaultSecurityRuleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="defaultSecurityRuleName"/> is null. </exception>
+        public virtual NullableResponse<DefaultSecurityRuleResource> GetIfExists(string defaultSecurityRuleName, CancellationToken cancellationToken = default)
+        {
+            if (defaultSecurityRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(defaultSecurityRuleName));
+            }
+            if (defaultSecurityRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(defaultSecurityRuleName));
+            }
+
+            using var scope = _defaultSecurityRuleClientDiagnostics.CreateScope("DefaultSecurityRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _defaultSecurityRuleRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, defaultSecurityRuleName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DefaultSecurityRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new DefaultSecurityRuleResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

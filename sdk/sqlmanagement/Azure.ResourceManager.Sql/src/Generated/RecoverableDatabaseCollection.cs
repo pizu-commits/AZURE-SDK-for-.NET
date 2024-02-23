@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Sql
 {
     /// <summary>
-    /// A class representing a collection of <see cref="RecoverableDatabaseResource" /> and their operations.
-    /// Each <see cref="RecoverableDatabaseResource" /> in the collection will belong to the same instance of <see cref="SqlServerResource" />.
-    /// To get a <see cref="RecoverableDatabaseCollection" /> instance call the GetRecoverableDatabases method from an instance of <see cref="SqlServerResource" />.
+    /// A class representing a collection of <see cref="RecoverableDatabaseResource"/> and their operations.
+    /// Each <see cref="RecoverableDatabaseResource"/> in the collection will belong to the same instance of <see cref="SqlServerResource"/>.
+    /// To get a <see cref="RecoverableDatabaseCollection"/> instance call the GetRecoverableDatabases method from an instance of <see cref="SqlServerResource"/>.
     /// </summary>
     public partial class RecoverableDatabaseCollection : ArmCollection, IEnumerable<RecoverableDatabaseResource>, IAsyncEnumerable<RecoverableDatabaseResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
@@ -73,7 +82,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
         public virtual async Task<Response<RecoverableDatabaseResource>> GetAsync(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(databaseName, nameof(databaseName));
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
 
             using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.Get");
             scope.Start();
@@ -102,6 +118,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
@@ -112,7 +136,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
         public virtual Response<RecoverableDatabaseResource> Get(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(databaseName, nameof(databaseName));
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
 
             using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.Get");
             scope.Start();
@@ -141,15 +172,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RecoverableDatabaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="RecoverableDatabaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<RecoverableDatabaseResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _recoverableDatabaseRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _recoverableDatabaseRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new RecoverableDatabaseResource(Client, RecoverableDatabaseData.DeserializeRecoverableDatabaseData(e)), _recoverableDatabaseClientDiagnostics, Pipeline, "RecoverableDatabaseCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new RecoverableDatabaseResource(Client, RecoverableDatabaseData.DeserializeRecoverableDatabaseData(e)), _recoverableDatabaseClientDiagnostics, Pipeline, "RecoverableDatabaseCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -163,15 +202,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RecoverableDatabaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="RecoverableDatabaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<RecoverableDatabaseResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _recoverableDatabaseRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _recoverableDatabaseRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new RecoverableDatabaseResource(Client, RecoverableDatabaseData.DeserializeRecoverableDatabaseData(e)), _recoverableDatabaseClientDiagnostics, Pipeline, "RecoverableDatabaseCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new RecoverableDatabaseResource(Client, RecoverableDatabaseData.DeserializeRecoverableDatabaseData(e)), _recoverableDatabaseClientDiagnostics, Pipeline, "RecoverableDatabaseCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -185,6 +232,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
@@ -195,7 +250,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(databaseName, nameof(databaseName));
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
 
             using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.Exists");
             scope.Start();
@@ -222,6 +284,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
@@ -232,7 +302,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
         public virtual Response<bool> Exists(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(databaseName, nameof(databaseName));
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
 
             using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.Exists");
             scope.Start();
@@ -240,6 +317,114 @@ namespace Azure.ResourceManager.Sql
             {
                 var response = _recoverableDatabaseRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, databaseName, expand, filter, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases/{databaseName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RecoverableDatabases_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="databaseName"> The name of the database. </param>
+        /// <param name="expand"> The child resources to include in the response. </param>
+        /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        public virtual async Task<NullableResponse<RecoverableDatabaseResource>> GetIfExistsAsync(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
+        {
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
+
+            using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _recoverableDatabaseRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, databaseName, expand, filter, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<RecoverableDatabaseResource>(response.GetRawResponse());
+                return Response.FromValue(new RecoverableDatabaseResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases/{databaseName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RecoverableDatabases_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="databaseName"> The name of the database. </param>
+        /// <param name="expand"> The child resources to include in the response. </param>
+        /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        public virtual NullableResponse<RecoverableDatabaseResource> GetIfExists(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
+        {
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+            if (databaseName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(databaseName));
+            }
+
+            using var scope = _recoverableDatabaseClientDiagnostics.CreateScope("RecoverableDatabaseCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _recoverableDatabaseRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, databaseName, expand, filter, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<RecoverableDatabaseResource>(response.GetRawResponse());
+                return Response.FromValue(new RecoverableDatabaseResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

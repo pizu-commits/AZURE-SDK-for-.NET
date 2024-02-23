@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.DevCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DevCenterGalleryResource" /> and their operations.
-    /// Each <see cref="DevCenterGalleryResource" /> in the collection will belong to the same instance of <see cref="DevCenterResource" />.
-    /// To get a <see cref="DevCenterGalleryCollection" /> instance call the GetDevCenterGalleries method from an instance of <see cref="DevCenterResource" />.
+    /// A class representing a collection of <see cref="DevCenterGalleryResource"/> and their operations.
+    /// Each <see cref="DevCenterGalleryResource"/> in the collection will belong to the same instance of <see cref="DevCenterResource"/>.
+    /// To get a <see cref="DevCenterGalleryCollection"/> instance call the GetDevCenterGalleries method from an instance of <see cref="DevCenterResource"/>.
     /// </summary>
     public partial class DevCenterGalleryCollection : ArmCollection, IEnumerable<DevCenterGalleryResource>, IAsyncEnumerable<DevCenterGalleryResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<DevCenterGalleryResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string galleryName, DevCenterGalleryData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<DevCenterGalleryResource> CreateOrUpdate(WaitUntil waitUntil, string galleryName, DevCenterGalleryData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="galleryName"> The name of the gallery. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
         public virtual async Task<Response<DevCenterGalleryResource>> GetAsync(string galleryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="galleryName"> The name of the gallery. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
         public virtual Response<DevCenterGalleryResource> Get(string galleryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.Get");
             scope.Start();
@@ -219,16 +286,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_ListByDevCenter</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DevCenterGalleryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DevCenterGalleryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DevCenterGalleryResource> GetAllAsync(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterGalleryGalleriesRestClient.CreateListByDevCenterRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterGalleryGalleriesRestClient.CreateListByDevCenterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterGalleryResource(Client, DevCenterGalleryData.DeserializeDevCenterGalleryData(e)), _devCenterGalleryGalleriesClientDiagnostics, Pipeline, "DevCenterGalleryCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterGalleryResource(Client, DevCenterGalleryData.DeserializeDevCenterGalleryData(e)), _devCenterGalleryGalleriesClientDiagnostics, Pipeline, "DevCenterGalleryCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,16 +317,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_ListByDevCenter</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DevCenterGalleryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DevCenterGalleryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DevCenterGalleryResource> GetAll(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterGalleryGalleriesRestClient.CreateListByDevCenterRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterGalleryGalleriesRestClient.CreateListByDevCenterNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterGalleryResource(Client, DevCenterGalleryData.DeserializeDevCenterGalleryData(e)), _devCenterGalleryGalleriesClientDiagnostics, Pipeline, "DevCenterGalleryCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterGalleryResource(Client, DevCenterGalleryData.DeserializeDevCenterGalleryData(e)), _devCenterGalleryGalleriesClientDiagnostics, Pipeline, "DevCenterGalleryCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +348,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="galleryName"> The name of the gallery. </param>
@@ -273,7 +364,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string galleryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.Exists");
             scope.Start();
@@ -300,6 +398,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>Galleries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="galleryName"> The name of the gallery. </param>
@@ -308,7 +414,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
         public virtual Response<bool> Exists(string galleryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(galleryName, nameof(galleryName));
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
 
             using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.Exists");
             scope.Start();
@@ -316,6 +429,110 @@ namespace Azure.ResourceManager.DevCenter
             {
                 var response = _devCenterGalleryGalleriesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, galleryName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/galleries/{galleryName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Galleries_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="galleryName"> The name of the gallery. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="galleryName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DevCenterGalleryResource>> GetIfExistsAsync(string galleryName, CancellationToken cancellationToken = default)
+        {
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
+
+            using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _devCenterGalleryGalleriesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, galleryName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterGalleryResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterGalleryResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/galleries/{galleryName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Galleries_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterGalleryResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="galleryName"> The name of the gallery. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="galleryName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="galleryName"/> is null. </exception>
+        public virtual NullableResponse<DevCenterGalleryResource> GetIfExists(string galleryName, CancellationToken cancellationToken = default)
+        {
+            if (galleryName == null)
+            {
+                throw new ArgumentNullException(nameof(galleryName));
+            }
+            if (galleryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(galleryName));
+            }
+
+            using var scope = _devCenterGalleryGalleriesClientDiagnostics.CreateScope("DevCenterGalleryCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _devCenterGalleryGalleriesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, galleryName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterGalleryResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterGalleryResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.SecurityDevOps
 {
     /// <summary>
     /// A Class representing an AzureDevOpsConnector along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="AzureDevOpsConnectorResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetAzureDevOpsConnectorResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetAzureDevOpsConnector method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="AzureDevOpsConnectorResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetAzureDevOpsConnectorResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetAzureDevOpsConnector method.
     /// </summary>
     public partial class AzureDevOpsConnectorResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="AzureDevOpsConnectorResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="azureDevOpsConnectorName"> The azureDevOpsConnectorName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string azureDevOpsConnectorName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}";
@@ -42,12 +46,15 @@ namespace Azure.ResourceManager.SecurityDevOps
         private readonly AzureDevOpsConnectorStatsRestOperations _azureDevOpsConnectorStatsRestClient;
         private readonly AzureDevOpsConnectorData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.SecurityDevOps/azureDevOpsConnectors";
+
         /// <summary> Initializes a new instance of the <see cref="AzureDevOpsConnectorResource"/> class for mocking. </summary>
         protected AzureDevOpsConnectorResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "AzureDevOpsConnectorResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="AzureDevOpsConnectorResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal AzureDevOpsConnectorResource(ArmClient client, AzureDevOpsConnectorData data) : this(client, data.Id)
@@ -74,9 +81,6 @@ namespace Azure.ResourceManager.SecurityDevOps
 #endif
         }
 
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.SecurityDevOps/azureDevOpsConnectors";
-
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
 
@@ -102,7 +106,7 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <returns> An object representing collection of AzureDevOpsOrgResources and their operations over a AzureDevOpsOrgResource. </returns>
         public virtual AzureDevOpsOrgCollection GetAzureDevOpsOrgs()
         {
-            return GetCachedClient(Client => new AzureDevOpsOrgCollection(Client, Id));
+            return GetCachedClient(client => new AzureDevOpsOrgCollection(client, Id));
         }
 
         /// <summary>
@@ -116,12 +120,20 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsOrg_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsOrgResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="azureDevOpsOrgName"> Name of the AzureDevOps Org. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="azureDevOpsOrgName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="azureDevOpsOrgName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="azureDevOpsOrgName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<AzureDevOpsOrgResource>> GetAzureDevOpsOrgAsync(string azureDevOpsOrgName, CancellationToken cancellationToken = default)
         {
@@ -139,12 +151,20 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsOrg_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsOrgResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="azureDevOpsOrgName"> Name of the AzureDevOps Org. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="azureDevOpsOrgName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="azureDevOpsOrgName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="azureDevOpsOrgName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<AzureDevOpsOrgResource> GetAzureDevOpsOrg(string azureDevOpsOrgName, CancellationToken cancellationToken = default)
         {
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -194,6 +222,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -225,6 +261,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -260,6 +304,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -294,6 +346,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -302,7 +362,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AzureDevOpsConnectorResource>> UpdateAsync(WaitUntil waitUntil, AzureDevOpsConnectorData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.Update");
             scope.Start();
@@ -332,6 +395,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -340,7 +411,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AzureDevOpsConnectorResource> Update(WaitUntil waitUntil, AzureDevOpsConnectorData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.Update");
             scope.Start();
@@ -369,15 +443,23 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsRepo_ListByConnector</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsRepoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AzureDevOpsRepoResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AzureDevOpsRepoResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AzureDevOpsRepoResource> GetAzureDevOpsReposByConnectorAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _azureDevOpsRepoRestClient.CreateListByConnectorRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _azureDevOpsRepoRestClient.CreateListByConnectorNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AzureDevOpsRepoResource(Client, AzureDevOpsRepoData.DeserializeAzureDevOpsRepoData(e)), _azureDevOpsRepoClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsReposByConnector", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AzureDevOpsRepoResource(Client, AzureDevOpsRepoData.DeserializeAzureDevOpsRepoData(e)), _azureDevOpsRepoClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsReposByConnector", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -390,15 +472,23 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsRepo_ListByConnector</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsRepoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AzureDevOpsRepoResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AzureDevOpsRepoResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AzureDevOpsRepoResource> GetAzureDevOpsReposByConnector(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _azureDevOpsRepoRestClient.CreateListByConnectorRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _azureDevOpsRepoRestClient.CreateListByConnectorNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AzureDevOpsRepoResource(Client, AzureDevOpsRepoData.DeserializeAzureDevOpsRepoData(e)), _azureDevOpsRepoClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsReposByConnector", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AzureDevOpsRepoResource(Client, AzureDevOpsRepoData.DeserializeAzureDevOpsRepoData(e)), _azureDevOpsRepoClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsReposByConnector", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -412,14 +502,18 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnectorStats_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AzureDevOpsConnectorStats" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AzureDevOpsConnectorStats"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AzureDevOpsConnectorStats> GetAzureDevOpsConnectorStatsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _azureDevOpsConnectorStatsRestClient.CreateGetRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, AzureDevOpsConnectorStats.DeserializeAzureDevOpsConnectorStats, _azureDevOpsConnectorStatsClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsConnectorStats", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => AzureDevOpsConnectorStats.DeserializeAzureDevOpsConnectorStats(e), _azureDevOpsConnectorStatsClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsConnectorStats", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -433,14 +527,18 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnectorStats_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AzureDevOpsConnectorStats" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AzureDevOpsConnectorStats"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AzureDevOpsConnectorStats> GetAzureDevOpsConnectorStats(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _azureDevOpsConnectorStatsRestClient.CreateGetRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, AzureDevOpsConnectorStats.DeserializeAzureDevOpsConnectorStats, _azureDevOpsConnectorStatsClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsConnectorStats", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => AzureDevOpsConnectorStats.DeserializeAzureDevOpsConnectorStats(e), _azureDevOpsConnectorStatsClientDiagnostics, Pipeline, "AzureDevOpsConnectorResource.GetAzureDevOpsConnectorStats", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -454,6 +552,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -462,8 +568,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<AzureDevOpsConnectorResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.AddTag");
             scope.Start();
@@ -508,6 +620,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -516,8 +636,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<AzureDevOpsConnectorResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.AddTag");
             scope.Start();
@@ -562,6 +688,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -569,7 +703,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<AzureDevOpsConnectorResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.SetTags");
             scope.Start();
@@ -611,6 +748,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -618,7 +763,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<AzureDevOpsConnectorResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.SetTags");
             scope.Start();
@@ -660,6 +808,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -667,7 +823,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<AzureDevOpsConnectorResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.RemoveTag");
             scope.Start();
@@ -712,6 +871,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>AzureDevOpsConnector_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AzureDevOpsConnectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -719,7 +886,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<AzureDevOpsConnectorResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _azureDevOpsConnectorClientDiagnostics.CreateScope("AzureDevOpsConnectorResource.RemoveTag");
             scope.Start();

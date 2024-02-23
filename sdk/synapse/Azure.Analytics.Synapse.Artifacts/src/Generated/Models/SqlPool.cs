@@ -7,22 +7,24 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> A SQL Analytics pool. </summary>
     public partial class SqlPool : TrackedResource
     {
-        /// <summary> Initializes a new instance of SqlPool. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlPool"/>. </summary>
         /// <param name="location"> The geo-location where the resource lives. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="location"/> is null. </exception>
         public SqlPool(string location) : base(location)
         {
-            Argument.AssertNotNull(location, nameof(location));
+            if (location == null)
+            {
+                throw new ArgumentNullException(nameof(location));
+            }
         }
 
-        /// <summary> Initializes a new instance of SqlPool. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlPool"/>. </summary>
         /// <param name="id"> Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}. </param>
         /// <param name="name"> The name of the resource. </param>
         /// <param name="type"> The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts". </param>

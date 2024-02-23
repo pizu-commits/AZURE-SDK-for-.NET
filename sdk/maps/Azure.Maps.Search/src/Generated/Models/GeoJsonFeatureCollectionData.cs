@@ -8,24 +8,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Maps.Search.Models
 {
     /// <summary> The GeoJsonFeatureCollectionData. </summary>
     internal partial class GeoJsonFeatureCollectionData
     {
-        /// <summary> Initializes a new instance of GeoJsonFeatureCollectionData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonFeatureCollectionData"/>. </summary>
         /// <param name="features"> Contains a list of valid `GeoJSON Feature` objects. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="features"/> is null. </exception>
         public GeoJsonFeatureCollectionData(IEnumerable<GeoJsonFeature> features)
         {
-            Argument.AssertNotNull(features, nameof(features));
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
 
             Features = features.ToList();
         }
 
-        /// <summary> Initializes a new instance of GeoJsonFeatureCollectionData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonFeatureCollectionData"/>. </summary>
         /// <param name="features"> Contains a list of valid `GeoJSON Feature` objects. </param>
         internal GeoJsonFeatureCollectionData(IList<GeoJsonFeature> features)
         {

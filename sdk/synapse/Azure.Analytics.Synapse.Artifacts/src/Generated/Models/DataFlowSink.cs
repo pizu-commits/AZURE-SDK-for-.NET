@@ -6,22 +6,24 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Transformation for data flow sink. </summary>
     public partial class DataFlowSink : Transformation
     {
-        /// <summary> Initializes a new instance of DataFlowSink. </summary>
+        /// <summary> Initializes a new instance of <see cref="DataFlowSink"/>. </summary>
         /// <param name="name"> Transformation name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public DataFlowSink(string name) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
         }
 
-        /// <summary> Initializes a new instance of DataFlowSink. </summary>
+        /// <summary> Initializes a new instance of <see cref="DataFlowSink"/>. </summary>
         /// <param name="name"> Transformation name. </param>
         /// <param name="description"> Transformation description. </param>
         /// <param name="dataset"> Dataset reference. </param>

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.Sql
 {
     /// <summary>
     /// A Class representing an InstancePool along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="InstancePoolResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetInstancePoolResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetInstancePool method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="InstancePoolResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetInstancePoolResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetInstancePool method.
     /// </summary>
     public partial class InstancePoolResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="InstancePoolResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="instancePoolName"> The instancePoolName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string instancePoolName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}";
@@ -42,12 +46,15 @@ namespace Azure.ResourceManager.Sql
         private readonly ManagedInstancesRestOperations _managedInstanceRestClient;
         private readonly InstancePoolData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Sql/instancePools";
+
         /// <summary> Initializes a new instance of the <see cref="InstancePoolResource"/> class for mocking. </summary>
         protected InstancePoolResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "InstancePoolResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="InstancePoolResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal InstancePoolResource(ArmClient client, InstancePoolData data) : this(client, data.Id)
@@ -73,9 +80,6 @@ namespace Azure.ResourceManager.Sql
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Sql/instancePools";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -109,6 +113,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -141,6 +153,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -172,6 +192,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>InstancePools_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -207,6 +235,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -241,6 +277,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -249,7 +293,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<InstancePoolResource>> UpdateAsync(WaitUntil waitUntil, InstancePoolPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.Update");
             scope.Start();
@@ -279,6 +326,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -287,7 +342,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<InstancePoolResource> Update(WaitUntil waitUntil, InstancePoolPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.Update");
             scope.Start();
@@ -317,16 +375,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Usages_ListByInstancePool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expandChildren"> Optional request parameter to include managed instance usages within the instance pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="InstancePoolUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="InstancePoolUsage"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<InstancePoolUsage> GetUsagesAsync(bool? expandChildren = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _usagesRestClient.CreateListByInstancePoolRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expandChildren);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _usagesRestClient.CreateListByInstancePoolNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expandChildren);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, InstancePoolUsage.DeserializeInstancePoolUsage, _usagesClientDiagnostics, Pipeline, "InstancePoolResource.GetUsages", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => InstancePoolUsage.DeserializeInstancePoolUsage(e), _usagesClientDiagnostics, Pipeline, "InstancePoolResource.GetUsages", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -340,16 +402,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Usages_ListByInstancePool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expandChildren"> Optional request parameter to include managed instance usages within the instance pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="InstancePoolUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="InstancePoolUsage"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<InstancePoolUsage> GetUsages(bool? expandChildren = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _usagesRestClient.CreateListByInstancePoolRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expandChildren);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _usagesRestClient.CreateListByInstancePoolNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expandChildren);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, InstancePoolUsage.DeserializeInstancePoolUsage, _usagesClientDiagnostics, Pipeline, "InstancePoolResource.GetUsages", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => InstancePoolUsage.DeserializeInstancePoolUsage(e), _usagesClientDiagnostics, Pipeline, "InstancePoolResource.GetUsages", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -363,16 +429,24 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ManagedInstances_ListByInstancePool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagedInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ManagedInstanceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ManagedInstanceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ManagedInstanceResource> GetManagedInstancesAsync(string expand = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _managedInstanceRestClient.CreateListByInstancePoolRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _managedInstanceRestClient.CreateListByInstancePoolNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ManagedInstanceResource(Client, ManagedInstanceData.DeserializeManagedInstanceData(e)), _managedInstanceClientDiagnostics, Pipeline, "InstancePoolResource.GetManagedInstances", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ManagedInstanceResource(Client, ManagedInstanceData.DeserializeManagedInstanceData(e)), _managedInstanceClientDiagnostics, Pipeline, "InstancePoolResource.GetManagedInstances", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -386,16 +460,24 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ManagedInstances_ListByInstancePool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagedInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ManagedInstanceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ManagedInstanceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ManagedInstanceResource> GetManagedInstances(string expand = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _managedInstanceRestClient.CreateListByInstancePoolRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _managedInstanceRestClient.CreateListByInstancePoolNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expand);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ManagedInstanceResource(Client, ManagedInstanceData.DeserializeManagedInstanceData(e)), _managedInstanceClientDiagnostics, Pipeline, "InstancePoolResource.GetManagedInstances", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ManagedInstanceResource(Client, ManagedInstanceData.DeserializeManagedInstanceData(e)), _managedInstanceClientDiagnostics, Pipeline, "InstancePoolResource.GetManagedInstances", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -409,6 +491,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -417,8 +507,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<InstancePoolResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.AddTag");
             scope.Start();
@@ -463,6 +559,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -471,8 +575,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<InstancePoolResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.AddTag");
             scope.Start();
@@ -517,6 +627,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -524,7 +642,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<InstancePoolResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.SetTags");
             scope.Start();
@@ -566,6 +687,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -573,7 +702,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<InstancePoolResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.SetTags");
             scope.Start();
@@ -615,6 +747,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -622,7 +762,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<InstancePoolResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.RemoveTag");
             scope.Start();
@@ -667,6 +810,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>InstancePools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="InstancePoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -674,7 +825,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<InstancePoolResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _instancePoolClientDiagnostics.CreateScope("InstancePoolResource.RemoveTag");
             scope.Start();

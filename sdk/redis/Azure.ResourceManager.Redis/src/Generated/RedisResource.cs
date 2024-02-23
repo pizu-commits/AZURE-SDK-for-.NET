@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
 using Azure.ResourceManager;
+using Azure.ResourceManager.Models;
 using Azure.ResourceManager.Redis.Models;
 using Azure.ResourceManager.Resources;
 
@@ -21,13 +23,16 @@ namespace Azure.ResourceManager.Redis
 {
     /// <summary>
     /// A Class representing a Redis along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="RedisResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetRedisResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetRedis method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="RedisResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetRedisResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetRedis method.
     /// </summary>
     public partial class RedisResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="RedisResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="name"> The name. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string name)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{name}";
@@ -40,12 +45,15 @@ namespace Azure.ResourceManager.Redis
         private readonly PrivateLinkResourcesRestOperations _privateLinkResourcesRestClient;
         private readonly RedisData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Cache/redis";
+
         /// <summary> Initializes a new instance of the <see cref="RedisResource"/> class for mocking. </summary>
         protected RedisResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "RedisResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="RedisResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal RedisResource(ArmClient client, RedisData data) : this(client, data.Id)
@@ -68,9 +76,6 @@ namespace Azure.ResourceManager.Redis
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Cache/redis";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,7 +102,7 @@ namespace Azure.ResourceManager.Redis
         /// <returns> An object representing collection of RedisFirewallRuleResources and their operations over a RedisFirewallRuleResource. </returns>
         public virtual RedisFirewallRuleCollection GetRedisFirewallRules()
         {
-            return GetCachedClient(Client => new RedisFirewallRuleCollection(Client, Id));
+            return GetCachedClient(client => new RedisFirewallRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -111,12 +116,20 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="ruleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="ruleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="ruleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<RedisFirewallRuleResource>> GetRedisFirewallRuleAsync(string ruleName, CancellationToken cancellationToken = default)
         {
@@ -134,12 +147,20 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="ruleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="ruleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="ruleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<RedisFirewallRuleResource> GetRedisFirewallRule(string ruleName, CancellationToken cancellationToken = default)
         {
@@ -150,7 +171,7 @@ namespace Azure.ResourceManager.Redis
         /// <returns> An object representing collection of RedisPatchScheduleResources and their operations over a RedisPatchScheduleResource. </returns>
         public virtual RedisPatchScheduleCollection GetRedisPatchSchedules()
         {
-            return GetCachedClient(Client => new RedisPatchScheduleCollection(Client, Id));
+            return GetCachedClient(client => new RedisPatchScheduleCollection(client, Id));
         }
 
         /// <summary>
@@ -163,6 +184,14 @@ namespace Azure.ResourceManager.Redis
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PatchSchedules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisPatchScheduleResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -185,6 +214,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>PatchSchedules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisPatchScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="defaultName"> Default string modeled as parameter for auto generation to work correctly. </param>
@@ -199,7 +236,7 @@ namespace Azure.ResourceManager.Redis
         /// <returns> An object representing collection of RedisLinkedServerWithPropertyResources and their operations over a RedisLinkedServerWithPropertyResource. </returns>
         public virtual RedisLinkedServerWithPropertyCollection GetRedisLinkedServerWithProperties()
         {
-            return GetCachedClient(Client => new RedisLinkedServerWithPropertyCollection(Client, Id));
+            return GetCachedClient(client => new RedisLinkedServerWithPropertyCollection(client, Id));
         }
 
         /// <summary>
@@ -213,12 +250,20 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>LinkedServer_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisLinkedServerWithPropertyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="linkedServerName"> The name of the linked server. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="linkedServerName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServerName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="linkedServerName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<RedisLinkedServerWithPropertyResource>> GetRedisLinkedServerWithPropertyAsync(string linkedServerName, CancellationToken cancellationToken = default)
         {
@@ -236,12 +281,20 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>LinkedServer_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisLinkedServerWithPropertyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="linkedServerName"> The name of the linked server. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="linkedServerName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServerName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="linkedServerName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<RedisLinkedServerWithPropertyResource> GetRedisLinkedServerWithProperty(string linkedServerName, CancellationToken cancellationToken = default)
         {
@@ -252,7 +305,7 @@ namespace Azure.ResourceManager.Redis
         /// <returns> An object representing collection of RedisPrivateEndpointConnectionResources and their operations over a RedisPrivateEndpointConnectionResource. </returns>
         public virtual RedisPrivateEndpointConnectionCollection GetRedisPrivateEndpointConnections()
         {
-            return GetCachedClient(Client => new RedisPrivateEndpointConnectionCollection(Client, Id));
+            return GetCachedClient(client => new RedisPrivateEndpointConnectionCollection(client, Id));
         }
 
         /// <summary>
@@ -266,12 +319,20 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The name of the private endpoint connection associated with the Azure resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<RedisPrivateEndpointConnectionResource>> GetRedisPrivateEndpointConnectionAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -289,16 +350,162 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The name of the private endpoint connection associated with the Azure resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<RedisPrivateEndpointConnectionResource> GetRedisPrivateEndpointConnection(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
             return GetRedisPrivateEndpointConnections().Get(privateEndpointConnectionName, cancellationToken);
+        }
+
+        /// <summary> Gets a collection of RedisCacheAccessPolicyResources in the Redis. </summary>
+        /// <returns> An object representing collection of RedisCacheAccessPolicyResources and their operations over a RedisCacheAccessPolicyResource. </returns>
+        public virtual RedisCacheAccessPolicyCollection GetRedisCacheAccessPolicies()
+        {
+            return GetCachedClient(client => new RedisCacheAccessPolicyCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Gets the detailed information about an access policy of a redis cache
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/accessPolicies/{accessPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccessPolicy_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisCacheAccessPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accessPolicyName"> The name of the access policy that is being added to the Redis cache. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="accessPolicyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="accessPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<RedisCacheAccessPolicyResource>> GetRedisCacheAccessPolicyAsync(string accessPolicyName, CancellationToken cancellationToken = default)
+        {
+            return await GetRedisCacheAccessPolicies().GetAsync(accessPolicyName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the detailed information about an access policy of a redis cache
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/accessPolicies/{accessPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccessPolicy_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisCacheAccessPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accessPolicyName"> The name of the access policy that is being added to the Redis cache. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="accessPolicyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="accessPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<RedisCacheAccessPolicyResource> GetRedisCacheAccessPolicy(string accessPolicyName, CancellationToken cancellationToken = default)
+        {
+            return GetRedisCacheAccessPolicies().Get(accessPolicyName, cancellationToken);
+        }
+
+        /// <summary> Gets a collection of RedisCacheAccessPolicyAssignmentResources in the Redis. </summary>
+        /// <returns> An object representing collection of RedisCacheAccessPolicyAssignmentResources and their operations over a RedisCacheAccessPolicyAssignmentResource. </returns>
+        public virtual RedisCacheAccessPolicyAssignmentCollection GetRedisCacheAccessPolicyAssignments()
+        {
+            return GetCachedClient(client => new RedisCacheAccessPolicyAssignmentCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Gets the list of assignments for an access policy of a redis cache
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/accessPolicyAssignments/{accessPolicyAssignmentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccessPolicyAssignment_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisCacheAccessPolicyAssignmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accessPolicyAssignmentName"> The name of the access policy assignment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="accessPolicyAssignmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="accessPolicyAssignmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<RedisCacheAccessPolicyAssignmentResource>> GetRedisCacheAccessPolicyAssignmentAsync(string accessPolicyAssignmentName, CancellationToken cancellationToken = default)
+        {
+            return await GetRedisCacheAccessPolicyAssignments().GetAsync(accessPolicyAssignmentName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the list of assignments for an access policy of a redis cache
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/accessPolicyAssignments/{accessPolicyAssignmentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccessPolicyAssignment_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisCacheAccessPolicyAssignmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accessPolicyAssignmentName"> The name of the access policy assignment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="accessPolicyAssignmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="accessPolicyAssignmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<RedisCacheAccessPolicyAssignmentResource> GetRedisCacheAccessPolicyAssignment(string accessPolicyAssignmentName, CancellationToken cancellationToken = default)
+        {
+            return GetRedisCacheAccessPolicyAssignments().Get(accessPolicyAssignmentName, cancellationToken);
         }
 
         /// <summary>
@@ -311,6 +518,14 @@ namespace Azure.ResourceManager.Redis
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -344,6 +559,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -375,6 +598,14 @@ namespace Azure.ResourceManager.Redis
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Redis_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -410,6 +641,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -444,6 +683,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -452,7 +699,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<RedisResource>> UpdateAsync(WaitUntil waitUntil, RedisPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.Update");
             scope.Start();
@@ -482,6 +732,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -490,7 +748,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<RedisResource> Update(WaitUntil waitUntil, RedisPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.Update");
             scope.Start();
@@ -520,16 +781,24 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ListUpgradeNotifications</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="history"> how many minutes in past to look for upgrade notifications. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RedisUpgradeNotification" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="RedisUpgradeNotification"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<RedisUpgradeNotification> GetUpgradeNotificationsAsync(double history, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _redisRestClient.CreateListUpgradeNotificationsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, history);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _redisRestClient.CreateListUpgradeNotificationsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, history);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, RedisUpgradeNotification.DeserializeRedisUpgradeNotification, _redisClientDiagnostics, Pipeline, "RedisResource.GetUpgradeNotifications", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => RedisUpgradeNotification.DeserializeRedisUpgradeNotification(e), _redisClientDiagnostics, Pipeline, "RedisResource.GetUpgradeNotifications", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -543,16 +812,24 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ListUpgradeNotifications</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="history"> how many minutes in past to look for upgrade notifications. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RedisUpgradeNotification" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="RedisUpgradeNotification"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<RedisUpgradeNotification> GetUpgradeNotifications(double history, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _redisRestClient.CreateListUpgradeNotificationsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, history);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _redisRestClient.CreateListUpgradeNotificationsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, history);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, RedisUpgradeNotification.DeserializeRedisUpgradeNotification, _redisClientDiagnostics, Pipeline, "RedisResource.GetUpgradeNotifications", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => RedisUpgradeNotification.DeserializeRedisUpgradeNotification(e), _redisClientDiagnostics, Pipeline, "RedisResource.GetUpgradeNotifications", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -565,6 +842,14 @@ namespace Azure.ResourceManager.Redis
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Redis_ListKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -596,6 +881,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ListKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -626,6 +919,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_RegenerateKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Specifies which key to regenerate. </param>
@@ -633,7 +934,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<RedisAccessKeys>> RegenerateKeyAsync(RedisRegenerateKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.RegenerateKey");
             scope.Start();
@@ -660,6 +964,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_RegenerateKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Specifies which key to regenerate. </param>
@@ -667,7 +979,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<RedisAccessKeys> RegenerateKey(RedisRegenerateKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.RegenerateKey");
             scope.Start();
@@ -694,6 +1009,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ForceReboot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Specifies which Redis node(s) to reboot. </param>
@@ -701,7 +1024,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<RedisForceRebootResult>> ForceRebootAsync(RedisRebootContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ForceReboot");
             scope.Start();
@@ -728,6 +1054,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ForceReboot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Specifies which Redis node(s) to reboot. </param>
@@ -735,7 +1069,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<RedisForceRebootResult> ForceReboot(RedisRebootContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ForceReboot");
             scope.Start();
@@ -762,6 +1099,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ImportData</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -770,7 +1115,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation> ImportDataAsync(WaitUntil waitUntil, ImportRdbContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ImportData");
             scope.Start();
@@ -800,6 +1148,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ImportData</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -808,7 +1164,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation ImportData(WaitUntil waitUntil, ImportRdbContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ImportData");
             scope.Start();
@@ -838,6 +1197,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ExportData</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -846,7 +1213,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation> ExportDataAsync(WaitUntil waitUntil, ExportRdbContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ExportData");
             scope.Start();
@@ -876,6 +1246,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_ExportData</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -884,7 +1262,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation ExportData(WaitUntil waitUntil, ExportRdbContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.ExportData");
             scope.Start();
@@ -894,6 +1275,90 @@ namespace Azure.ResourceManager.Redis
                 var operation = new RedisArmOperation(_redisClientDiagnostics, Pipeline, _redisRestClient.CreateExportDataRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, content).Request, response, OperationFinalStateVia.Location);
                 if (waitUntil == WaitUntil.Completed)
                     operation.WaitForCompletionResponse(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deletes all of the keys in a cache.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/flush</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Redis_FlushCache</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<ArmOperation<OperationStatusResult>> FlushCacheAsync(WaitUntil waitUntil, CancellationToken cancellationToken = default)
+        {
+            using var scope = _redisClientDiagnostics.CreateScope("RedisResource.FlushCache");
+            scope.Start();
+            try
+            {
+                var response = await _redisRestClient.FlushCacheAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, cancellationToken).ConfigureAwait(false);
+                var operation = new RedisArmOperation<OperationStatusResult>(new OperationStatusResultOperationSource(), _redisClientDiagnostics, Pipeline, _redisRestClient.CreateFlushCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deletes all of the keys in a cache.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redis/{cacheName}/flush</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Redis_FlushCache</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual ArmOperation<OperationStatusResult> FlushCache(WaitUntil waitUntil, CancellationToken cancellationToken = default)
+        {
+            using var scope = _redisClientDiagnostics.CreateScope("RedisResource.FlushCache");
+            scope.Start();
+            try
+            {
+                var response = _redisRestClient.FlushCache(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, cancellationToken);
+                var operation = new RedisArmOperation<OperationStatusResult>(new OperationStatusResultOperationSource(), _redisClientDiagnostics, Pipeline, _redisRestClient.CreateFlushCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
                 return operation;
             }
             catch (Exception e)
@@ -914,14 +1379,18 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_ListByRedisCache</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RedisPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="RedisPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<RedisPrivateLinkResource> GetPrivateLinkResourcesByRedisCacheAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateLinkResourcesRestClient.CreateListByRedisCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, RedisPrivateLinkResource.DeserializeRedisPrivateLinkResource, _privateLinkResourcesClientDiagnostics, Pipeline, "RedisResource.GetPrivateLinkResourcesByRedisCache", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => RedisPrivateLinkResource.DeserializeRedisPrivateLinkResource(e), _privateLinkResourcesClientDiagnostics, Pipeline, "RedisResource.GetPrivateLinkResourcesByRedisCache", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -935,14 +1404,18 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_ListByRedisCache</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RedisPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="RedisPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<RedisPrivateLinkResource> GetPrivateLinkResourcesByRedisCache(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateLinkResourcesRestClient.CreateListByRedisCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, RedisPrivateLinkResource.DeserializeRedisPrivateLinkResource, _privateLinkResourcesClientDiagnostics, Pipeline, "RedisResource.GetPrivateLinkResourcesByRedisCache", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => RedisPrivateLinkResource.DeserializeRedisPrivateLinkResource(e), _privateLinkResourcesClientDiagnostics, Pipeline, "RedisResource.GetPrivateLinkResourcesByRedisCache", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -956,6 +1429,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -964,8 +1445,14 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<RedisResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.AddTag");
             scope.Start();
@@ -1010,6 +1497,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -1018,8 +1513,14 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<RedisResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.AddTag");
             scope.Start();
@@ -1064,6 +1565,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -1071,7 +1580,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<RedisResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.SetTags");
             scope.Start();
@@ -1113,6 +1625,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -1120,7 +1640,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<RedisResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.SetTags");
             scope.Start();
@@ -1162,6 +1685,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -1169,7 +1700,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<RedisResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.RemoveTag");
             scope.Start();
@@ -1214,6 +1748,14 @@ namespace Azure.ResourceManager.Redis
         /// <term>Operation Id</term>
         /// <description>Redis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RedisResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -1221,7 +1763,10 @@ namespace Azure.ResourceManager.Redis
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<RedisResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _redisClientDiagnostics.CreateScope("RedisResource.RemoveTag");
             scope.Start();

@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Delimited text write settings. </summary>
     public partial class DelimitedTextWriteSettings : FormatWriteSettings
     {
-        /// <summary> Initializes a new instance of DelimitedTextWriteSettings. </summary>
+        /// <summary> Initializes a new instance of <see cref="DelimitedTextWriteSettings"/>. </summary>
         /// <param name="fileExtension"> The file extension used to create the files. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileExtension"/> is null. </exception>
         public DelimitedTextWriteSettings(DataFactoryElement<string> fileExtension)
         {
-            Argument.AssertNotNull(fileExtension, nameof(fileExtension));
+            if (fileExtension == null)
+            {
+                throw new ArgumentNullException(nameof(fileExtension));
+            }
 
             FileExtension = fileExtension;
             FormatWriteSettingsType = "DelimitedTextWriteSettings";
         }
 
-        /// <summary> Initializes a new instance of DelimitedTextWriteSettings. </summary>
+        /// <summary> Initializes a new instance of <see cref="DelimitedTextWriteSettings"/>. </summary>
         /// <param name="formatWriteSettingsType"> The write setting type. </param>
         /// <param name="additionalProperties"> Additional Properties. </param>
         /// <param name="quoteAllText"> Indicates whether string values should always be enclosed with quotes. Type: boolean (or Expression with resultType boolean). </param>
@@ -40,6 +42,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             MaxRowsPerFile = maxRowsPerFile;
             FileNamePrefix = fileNamePrefix;
             FormatWriteSettingsType = formatWriteSettingsType ?? "DelimitedTextWriteSettings";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="DelimitedTextWriteSettings"/> for deserialization. </summary>
+        internal DelimitedTextWriteSettings()
+        {
         }
 
         /// <summary> Indicates whether string values should always be enclosed with quotes. Type: boolean (or Expression with resultType boolean). </summary>

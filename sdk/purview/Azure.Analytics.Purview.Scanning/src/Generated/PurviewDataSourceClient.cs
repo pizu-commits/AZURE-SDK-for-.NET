@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -37,7 +38,7 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewDataSourceClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="dataSourceName"> The String to use. </param>
+        /// <param name="dataSourceName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="dataSourceName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -47,16 +48,29 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewDataSourceClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="dataSourceName"> The String to use. </param>
+        /// <param name="dataSourceName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="dataSourceName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceName"/> is an empty string, and was expected to be non-empty. </exception>
         public PurviewDataSourceClient(Uri endpoint, string dataSourceName, TokenCredential credential, PurviewScanningServiceClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNullOrEmpty(dataSourceName, nameof(dataSourceName));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (dataSourceName == null)
+            {
+                throw new ArgumentNullException(nameof(dataSourceName));
+            }
+            if (dataSourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(dataSourceName));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new PurviewScanningServiceClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -267,7 +281,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetScansRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetScansNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewDataSourceClient.GetScans", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewDataSourceClient.GetScans", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -288,7 +302,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetScansRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetScansNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewDataSourceClient.GetScans", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewDataSourceClient.GetScans", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateCreateOrUpdateRequest(RequestContent content, RequestContext context)

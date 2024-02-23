@@ -7,27 +7,32 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> This activity suspends pipeline execution for the specified interval. </summary>
     public partial class WaitActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of WaitActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WaitActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="waitTimeInSeconds"> Duration in seconds. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="waitTimeInSeconds"/> is null. </exception>
         public WaitActivity(string name, object waitTimeInSeconds) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(waitTimeInSeconds, nameof(waitTimeInSeconds));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (waitTimeInSeconds == null)
+            {
+                throw new ArgumentNullException(nameof(waitTimeInSeconds));
+            }
 
             WaitTimeInSeconds = waitTimeInSeconds;
             Type = "Wait";
         }
 
-        /// <summary> Initializes a new instance of WaitActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WaitActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

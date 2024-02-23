@@ -15,7 +15,7 @@ namespace Azure.AI.TextAnalytics.Models
     /// <summary> The JobState. </summary>
     internal partial class JobState
     {
-        /// <summary> Initializes a new instance of JobState. </summary>
+        /// <summary> Initializes a new instance of <see cref="JobState"/>. </summary>
         /// <param name="createdDateTime"></param>
         /// <param name="jobId"></param>
         /// <param name="lastUpdatedDateTime"></param>
@@ -23,7 +23,10 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         internal JobState(DateTimeOffset createdDateTime, string jobId, DateTimeOffset lastUpdatedDateTime, TextAnalyticsOperationStatus status)
         {
-            Argument.AssertNotNull(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
 
             CreatedDateTime = createdDateTime;
             JobId = jobId;
@@ -32,7 +35,7 @@ namespace Azure.AI.TextAnalytics.Models
             Errors = new ChangeTrackingList<Error>();
         }
 
-        /// <summary> Initializes a new instance of JobState. </summary>
+        /// <summary> Initializes a new instance of <see cref="JobState"/>. </summary>
         /// <param name="displayName"></param>
         /// <param name="createdDateTime"></param>
         /// <param name="expirationDateTime"></param>

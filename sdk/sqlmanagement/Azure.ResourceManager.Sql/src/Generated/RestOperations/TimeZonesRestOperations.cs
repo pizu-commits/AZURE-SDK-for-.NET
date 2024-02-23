@@ -58,13 +58,20 @@ namespace Azure.ResourceManager.Sql
 
         /// <summary> Gets a list of managed instance time zones by location. </summary>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<TimeZoneListResult>> ListByLocationAsync(string subscriptionId, AzureLocation locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListByLocationRequest(subscriptionId, locationName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -84,13 +91,20 @@ namespace Azure.ResourceManager.Sql
 
         /// <summary> Gets a list of managed instance time zones by location. </summary>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<TimeZoneListResult> ListByLocation(string subscriptionId, AzureLocation locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListByLocationRequest(subscriptionId, locationName);
             _pipeline.Send(message, cancellationToken);
@@ -130,15 +144,29 @@ namespace Azure.ResourceManager.Sql
 
         /// <summary> Gets a managed instance time zone. </summary>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
-        /// <param name="timeZoneId"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="timeZoneId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="timeZoneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="timeZoneId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<SqlTimeZoneData>> GetAsync(string subscriptionId, AzureLocation locationName, string timeZoneId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(timeZoneId, nameof(timeZoneId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (timeZoneId == null)
+            {
+                throw new ArgumentNullException(nameof(timeZoneId));
+            }
+            if (timeZoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(timeZoneId));
+            }
 
             using var message = CreateGetRequest(subscriptionId, locationName, timeZoneId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -160,15 +188,29 @@ namespace Azure.ResourceManager.Sql
 
         /// <summary> Gets a managed instance time zone. </summary>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
-        /// <param name="timeZoneId"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="timeZoneId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="timeZoneId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="timeZoneId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<SqlTimeZoneData> Get(string subscriptionId, AzureLocation locationName, string timeZoneId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(timeZoneId, nameof(timeZoneId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (timeZoneId == null)
+            {
+                throw new ArgumentNullException(nameof(timeZoneId));
+            }
+            if (timeZoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(timeZoneId));
+            }
 
             using var message = CreateGetRequest(subscriptionId, locationName, timeZoneId);
             _pipeline.Send(message, cancellationToken);
@@ -205,14 +247,24 @@ namespace Azure.ResourceManager.Sql
         /// <summary> Gets a list of managed instance time zones by location. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<TimeZoneListResult>> ListByLocationNextPageAsync(string nextLink, string subscriptionId, AzureLocation locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListByLocationNextPageRequest(nextLink, subscriptionId, locationName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -233,14 +285,24 @@ namespace Azure.ResourceManager.Sql
         /// <summary> Gets a list of managed instance time zones by location. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The subscription ID that identifies an Azure subscription. </param>
-        /// <param name="locationName"> The String to use. </param>
+        /// <param name="locationName"> The <see cref="AzureLocation"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<TimeZoneListResult> ListByLocationNextPage(string nextLink, string subscriptionId, AzureLocation locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListByLocationNextPageRequest(nextLink, subscriptionId, locationName);
             _pipeline.Send(message, cancellationToken);

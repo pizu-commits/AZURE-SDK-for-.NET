@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> A linked service for an SSH File Transfer Protocol (SFTP) server. </summary>
     public partial class SftpServerLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of SftpServerLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SftpServerLinkedService"/>. </summary>
         /// <param name="host"> The SFTP server host name. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public SftpServerLinkedService(DataFactoryElement<string> host)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             LinkedServiceType = "Sftp";
         }
 
-        /// <summary> Initializes a new instance of SftpServerLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SftpServerLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -58,6 +60,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             SkipHostKeyValidation = skipHostKeyValidation;
             HostKeyFingerprint = hostKeyFingerprint;
             LinkedServiceType = linkedServiceType ?? "Sftp";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SftpServerLinkedService"/> for deserialization. </summary>
+        internal SftpServerLinkedService()
+        {
         }
 
         /// <summary> The SFTP server host name. Type: string (or Expression with resultType string). </summary>

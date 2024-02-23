@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.CustomerInsights
 {
     /// <summary>
     /// A Class representing an AuthorizationPolicyResourceFormat along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="AuthorizationPolicyResourceFormatResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetAuthorizationPolicyResourceFormatResource method.
-    /// Otherwise you can get one from its parent resource <see cref="HubResource" /> using the GetAuthorizationPolicyResourceFormat method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="AuthorizationPolicyResourceFormatResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetAuthorizationPolicyResourceFormatResource method.
+    /// Otherwise you can get one from its parent resource <see cref="HubResource"/> using the GetAuthorizationPolicyResourceFormat method.
     /// </summary>
     public partial class AuthorizationPolicyResourceFormatResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="AuthorizationPolicyResourceFormatResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="hubName"> The hubName. </param>
+        /// <param name="authorizationPolicyName"> The authorizationPolicyName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string hubName, string authorizationPolicyName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/authorizationPolicies/{authorizationPolicyName}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.CustomerInsights
         private readonly AuthorizationPoliciesRestOperations _authorizationPolicyResourceFormatAuthorizationPoliciesRestClient;
         private readonly AuthorizationPolicyResourceFormatData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.CustomerInsights/hubs/authorizationPolicies";
+
         /// <summary> Initializes a new instance of the <see cref="AuthorizationPolicyResourceFormatResource"/> class for mocking. </summary>
         protected AuthorizationPolicyResourceFormatResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "AuthorizationPolicyResourceFormatResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="AuthorizationPolicyResourceFormatResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal AuthorizationPolicyResourceFormatResource(ArmClient client, AuthorizationPolicyResourceFormatData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.CustomerInsights
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.CustomerInsights/hubs/authorizationPolicies";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +102,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -129,6 +141,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -162,6 +182,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -170,7 +198,10 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AuthorizationPolicyResourceFormatResource>> UpdateAsync(WaitUntil waitUntil, AuthorizationPolicyResourceFormatData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _authorizationPolicyResourceFormatAuthorizationPoliciesClientDiagnostics.CreateScope("AuthorizationPolicyResourceFormatResource.Update");
             scope.Start();
@@ -200,6 +231,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -208,7 +247,10 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AuthorizationPolicyResourceFormatResource> Update(WaitUntil waitUntil, AuthorizationPolicyResourceFormatData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _authorizationPolicyResourceFormatAuthorizationPoliciesClientDiagnostics.CreateScope("AuthorizationPolicyResourceFormatResource.Update");
             scope.Start();
@@ -237,6 +279,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_RegeneratePrimaryKey</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -268,6 +318,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_RegeneratePrimaryKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -298,6 +356,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_RegenerateSecondaryKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -327,6 +393,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AuthorizationPolicies_RegenerateSecondaryKey</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AuthorizationPolicyResourceFormatResource"/></description>
         /// </item>
         /// </list>
         /// </summary>

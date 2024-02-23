@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.ResourceManager.Monitor.Models
 {
     /// <summary> Criterion to filter metrics. </summary>
     public partial class MetricCriteria : MultiMetricCriteria
     {
-        /// <summary> Initializes a new instance of MetricCriteria. </summary>
+        /// <summary> Initializes a new instance of <see cref="MetricCriteria"/>. </summary>
         /// <param name="name"> Name of the criteria. </param>
         /// <param name="metricName"> Name of the metric. </param>
         /// <param name="timeAggregation"> the criteria time aggregation types. </param>
@@ -23,15 +22,21 @@ namespace Azure.ResourceManager.Monitor.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="metricName"/> is null. </exception>
         public MetricCriteria(string name, string metricName, MetricCriteriaTimeAggregationType timeAggregation, MetricCriteriaOperator @operator, double threshold) : base(name, metricName, timeAggregation)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(metricName, nameof(metricName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (metricName == null)
+            {
+                throw new ArgumentNullException(nameof(metricName));
+            }
 
             Operator = @operator;
             Threshold = threshold;
             CriterionType = CriterionType.StaticThresholdCriterion;
         }
 
-        /// <summary> Initializes a new instance of MetricCriteria. </summary>
+        /// <summary> Initializes a new instance of <see cref="MetricCriteria"/>. </summary>
         /// <param name="criterionType"> Specifies the type of threshold criteria. </param>
         /// <param name="name"> Name of the criteria. </param>
         /// <param name="metricName"> Name of the metric. </param>
@@ -47,6 +52,11 @@ namespace Azure.ResourceManager.Monitor.Models
             Operator = @operator;
             Threshold = threshold;
             CriterionType = criterionType;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="MetricCriteria"/> for deserialization. </summary>
+        internal MetricCriteria()
+        {
         }
 
         /// <summary> the criteria operator. </summary>

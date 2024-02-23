@@ -15,18 +15,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Staging settings. </summary>
     public partial class StagingSettings
     {
-        /// <summary> Initializes a new instance of StagingSettings. </summary>
+        /// <summary> Initializes a new instance of <see cref="StagingSettings"/>. </summary>
         /// <param name="linkedServiceName"> Staging linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
         public StagingSettings(DataFactoryLinkedServiceReference linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
 
             LinkedServiceName = linkedServiceName;
             AdditionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
         }
 
-        /// <summary> Initializes a new instance of StagingSettings. </summary>
+        /// <summary> Initializes a new instance of <see cref="StagingSettings"/>. </summary>
         /// <param name="linkedServiceName"> Staging linked service reference. </param>
         /// <param name="path"> The path to storage for storing the interim data. Type: string (or Expression with resultType string). </param>
         /// <param name="enableCompression"> Specifies whether to use compression when copying data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean). </param>
@@ -37,6 +40,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Path = path;
             EnableCompression = enableCompression;
             AdditionalProperties = additionalProperties;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="StagingSettings"/> for deserialization. </summary>
+        internal StagingSettings()
+        {
         }
 
         /// <summary> Staging linked service reference. </summary>
@@ -51,7 +59,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:

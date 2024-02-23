@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
@@ -13,10 +14,18 @@ using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
 {
-    public partial class AzureFunctionLinkedService : IUtf8JsonSerializable
+    public partial class AzureFunctionLinkedService : IUtf8JsonSerializable, IJsonModel<AzureFunctionLinkedService>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<AzureFunctionLinkedService>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<AzureFunctionLinkedService>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<AzureFunctionLinkedService>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(AzureFunctionLinkedService)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             writer.WritePropertyName("type"u8);
             writer.WriteStringValue(LinkedServiceType);
@@ -55,7 +64,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item);
 #else
-                    JsonSerializer.Serialize(writer, JsonDocument.Parse(item.ToString()).RootElement);
+                    using (JsonDocument document = JsonDocument.Parse(item))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
 #endif
                 }
                 writer.WriteEndArray();
@@ -63,11 +75,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             writer.WritePropertyName("typeProperties"u8);
             writer.WriteStartObject();
             writer.WritePropertyName("functionAppUrl"u8);
-#if NET6_0_OR_GREATER
-				writer.WriteRawValue(FunctionAppUri);
-#else
-            JsonSerializer.Serialize(writer, JsonDocument.Parse(FunctionAppUri.ToString()).RootElement);
-#endif
+            JsonSerializer.Serialize(writer, FunctionAppUri);
             if (Optional.IsDefined(FunctionKey))
             {
                 writer.WritePropertyName("functionKey"u8);
@@ -86,11 +94,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             if (Optional.IsDefined(ResourceId))
             {
                 writer.WritePropertyName("resourceId"u8);
-#if NET6_0_OR_GREATER
-				writer.WriteRawValue(ResourceId);
-#else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(ResourceId.ToString()).RootElement);
-#endif
+                JsonSerializer.Serialize(writer, ResourceId);
             }
             if (Optional.IsDefined(Authentication))
             {
@@ -104,14 +108,31 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
         }
 
-        internal static AzureFunctionLinkedService DeserializeAzureFunctionLinkedService(JsonElement element)
+        AzureFunctionLinkedService IJsonModel<AzureFunctionLinkedService>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<AzureFunctionLinkedService>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(AzureFunctionLinkedService)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeAzureFunctionLinkedService(document.RootElement, options);
+        }
+
+        internal static AzureFunctionLinkedService DeserializeAzureFunctionLinkedService(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -121,11 +142,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Optional<string> description = default;
             Optional<IDictionary<string, EntityParameterSpecification>> parameters = default;
             Optional<IList<BinaryData>> annotations = default;
-            BinaryData functionAppUrl = default;
+            DataFactoryElement<string> functionAppUrl = default;
             Optional<DataFactorySecretBaseDefinition> functionKey = default;
             Optional<string> encryptedCredential = default;
             Optional<DataFactoryCredentialReference> credential = default;
-            Optional<BinaryData> resourceId = default;
+            Optional<DataFactoryElement<string>> resourceId = default;
             Optional<DataFactoryElement<string>> authentication = default;
             IDictionary<string, BinaryData> additionalProperties = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
@@ -142,7 +163,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         continue;
                     }
-                    connectVia = IntegrationRuntimeReference.DeserializeIntegrationRuntimeReference(property.Value);
+                    connectVia = IntegrationRuntimeReference.DeserializeIntegrationRuntimeReference(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("description"u8))
@@ -159,7 +180,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     Dictionary<string, EntityParameterSpecification> dictionary = new Dictionary<string, EntityParameterSpecification>();
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
-                        dictionary.Add(property0.Name, EntityParameterSpecification.DeserializeEntityParameterSpecification(property0.Value));
+                        dictionary.Add(property0.Name, EntityParameterSpecification.DeserializeEntityParameterSpecification(property0.Value, options));
                     }
                     parameters = dictionary;
                     continue;
@@ -196,7 +217,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     {
                         if (property0.NameEquals("functionAppUrl"u8))
                         {
-                            functionAppUrl = BinaryData.FromString(property0.Value.GetRawText());
+                            functionAppUrl = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("functionKey"u8))
@@ -219,7 +240,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            credential = DataFactoryCredentialReference.DeserializeDataFactoryCredentialReference(property0.Value);
+                            credential = DataFactoryCredentialReference.DeserializeDataFactoryCredentialReference(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("resourceId"u8))
@@ -228,7 +249,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                             {
                                 continue;
                             }
-                            resourceId = BinaryData.FromString(property0.Value.GetRawText());
+                            resourceId = JsonSerializer.Deserialize<DataFactoryElement<string>>(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("authentication"u8))
@@ -248,5 +269,36 @@ namespace Azure.ResourceManager.DataFactory.Models
             additionalProperties = additionalPropertiesDictionary;
             return new AzureFunctionLinkedService(type, connectVia.Value, description.Value, Optional.ToDictionary(parameters), Optional.ToList(annotations), additionalProperties, functionAppUrl, functionKey, encryptedCredential.Value, credential.Value, resourceId.Value, authentication.Value);
         }
+
+        BinaryData IPersistableModel<AzureFunctionLinkedService>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<AzureFunctionLinkedService>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(AzureFunctionLinkedService)} does not support '{options.Format}' format.");
+            }
+        }
+
+        AzureFunctionLinkedService IPersistableModel<AzureFunctionLinkedService>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<AzureFunctionLinkedService>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeAzureFunctionLinkedService(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(AzureFunctionLinkedService)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<AzureFunctionLinkedService>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

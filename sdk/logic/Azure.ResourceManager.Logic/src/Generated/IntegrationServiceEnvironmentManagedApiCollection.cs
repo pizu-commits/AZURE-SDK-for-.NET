@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Logic
 {
     /// <summary>
-    /// A class representing a collection of <see cref="IntegrationServiceEnvironmentManagedApiResource" /> and their operations.
-    /// Each <see cref="IntegrationServiceEnvironmentManagedApiResource" /> in the collection will belong to the same instance of <see cref="IntegrationServiceEnvironmentResource" />.
-    /// To get an <see cref="IntegrationServiceEnvironmentManagedApiCollection" /> instance call the GetIntegrationServiceEnvironmentManagedApis method from an instance of <see cref="IntegrationServiceEnvironmentResource" />.
+    /// A class representing a collection of <see cref="IntegrationServiceEnvironmentManagedApiResource"/> and their operations.
+    /// Each <see cref="IntegrationServiceEnvironmentManagedApiResource"/> in the collection will belong to the same instance of <see cref="IntegrationServiceEnvironmentResource"/>.
+    /// To get an <see cref="IntegrationServiceEnvironmentManagedApiCollection"/> instance call the GetIntegrationServiceEnvironmentManagedApis method from an instance of <see cref="IntegrationServiceEnvironmentResource"/>.
     /// </summary>
     public partial class IntegrationServiceEnvironmentManagedApiCollection : ArmCollection, IEnumerable<IntegrationServiceEnvironmentManagedApiResource>, IAsyncEnumerable<IntegrationServiceEnvironmentManagedApiResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Put</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<IntegrationServiceEnvironmentManagedApiResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string apiName, IntegrationServiceEnvironmentManagedApiData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Put</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<IntegrationServiceEnvironmentManagedApiResource> CreateOrUpdate(WaitUntil waitUntil, string apiName, IntegrationServiceEnvironmentManagedApiData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
         public virtual async Task<Response<IntegrationServiceEnvironmentManagedApiResource>> GetAsync(string apiName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
         public virtual Response<IntegrationServiceEnvironmentManagedApiResource> Get(string apiName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="IntegrationServiceEnvironmentManagedApiResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="IntegrationServiceEnvironmentManagedApiResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<IntegrationServiceEnvironmentManagedApiResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationServiceEnvironmentManagedApiRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationServiceEnvironmentManagedApiRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IntegrationServiceEnvironmentManagedApiResource(Client, IntegrationServiceEnvironmentManagedApiData.DeserializeIntegrationServiceEnvironmentManagedApiData(e)), _integrationServiceEnvironmentManagedApiClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentManagedApiCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IntegrationServiceEnvironmentManagedApiResource(Client, IntegrationServiceEnvironmentManagedApiData.DeserializeIntegrationServiceEnvironmentManagedApiData(e)), _integrationServiceEnvironmentManagedApiClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentManagedApiCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="IntegrationServiceEnvironmentManagedApiResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="IntegrationServiceEnvironmentManagedApiResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<IntegrationServiceEnvironmentManagedApiResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationServiceEnvironmentManagedApiRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationServiceEnvironmentManagedApiRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IntegrationServiceEnvironmentManagedApiResource(Client, IntegrationServiceEnvironmentManagedApiData.DeserializeIntegrationServiceEnvironmentManagedApiData(e)), _integrationServiceEnvironmentManagedApiClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentManagedApiCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IntegrationServiceEnvironmentManagedApiResource(Client, IntegrationServiceEnvironmentManagedApiData.DeserializeIntegrationServiceEnvironmentManagedApiData(e)), _integrationServiceEnvironmentManagedApiClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentManagedApiCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string apiName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
         public virtual Response<bool> Exists(string apiName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(apiName, nameof(apiName));
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
 
             using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.Logic
             {
                 var response = _integrationServiceEnvironmentManagedApiRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, apiName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="apiName"> The api name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
+        public virtual async Task<NullableResponse<IntegrationServiceEnvironmentManagedApiResource>> GetIfExistsAsync(string apiName, CancellationToken cancellationToken = default)
+        {
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
+
+            using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _integrationServiceEnvironmentManagedApiRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, apiName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<IntegrationServiceEnvironmentManagedApiResource>(response.GetRawResponse());
+                return Response.FromValue(new IntegrationServiceEnvironmentManagedApiResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="apiName"> The api name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
+        public virtual NullableResponse<IntegrationServiceEnvironmentManagedApiResource> GetIfExists(string apiName, CancellationToken cancellationToken = default)
+        {
+            if (apiName == null)
+            {
+                throw new ArgumentNullException(nameof(apiName));
+            }
+            if (apiName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(apiName));
+            }
+
+            using var scope = _integrationServiceEnvironmentManagedApiClientDiagnostics.CreateScope("IntegrationServiceEnvironmentManagedApiCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _integrationServiceEnvironmentManagedApiRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, apiName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<IntegrationServiceEnvironmentManagedApiResource>(response.GetRawResponse());
+                return Response.FromValue(new IntegrationServiceEnvironmentManagedApiResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -9,14 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.Communication;
-using Azure.Core;
 
 namespace Azure.Communication.CallAutomation
 {
     /// <summary> The request payload for muting participants from the call. </summary>
     internal partial class MuteParticipantsRequestInternal
     {
-        /// <summary> Initializes a new instance of MuteParticipantsRequestInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="MuteParticipantsRequestInternal"/>. </summary>
         /// <param name="targetParticipants">
         /// Participants to be muted from the call.
         /// Only ACS Users are supported.
@@ -24,9 +23,24 @@ namespace Azure.Communication.CallAutomation
         /// <exception cref="ArgumentNullException"> <paramref name="targetParticipants"/> is null. </exception>
         public MuteParticipantsRequestInternal(IEnumerable<CommunicationIdentifierModel> targetParticipants)
         {
-            Argument.AssertNotNull(targetParticipants, nameof(targetParticipants));
+            if (targetParticipants == null)
+            {
+                throw new ArgumentNullException(nameof(targetParticipants));
+            }
 
             TargetParticipants = targetParticipants.ToList();
+        }
+
+        /// <summary> Initializes a new instance of <see cref="MuteParticipantsRequestInternal"/>. </summary>
+        /// <param name="targetParticipants">
+        /// Participants to be muted from the call.
+        /// Only ACS Users are supported.
+        /// </param>
+        /// <param name="operationContext"> Used by customers when calling mid-call actions to correlate the request to the response event. </param>
+        internal MuteParticipantsRequestInternal(IList<CommunicationIdentifierModel> targetParticipants, string operationContext)
+        {
+            TargetParticipants = targetParticipants;
+            OperationContext = operationContext;
         }
 
         /// <summary>

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.EventGrid
 {
     /// <summary>
-    /// A class representing a collection of <see cref="TopicTypeResource" /> and their operations.
-    /// Each <see cref="TopicTypeResource" /> in the collection will belong to the same instance of <see cref="TenantResource" />.
-    /// To get a <see cref="TopicTypeCollection" /> instance call the GetTopicTypes method from an instance of <see cref="TenantResource" />.
+    /// A class representing a collection of <see cref="TopicTypeResource"/> and their operations.
+    /// Each <see cref="TopicTypeResource"/> in the collection will belong to the same instance of <see cref="TenantResource"/>.
+    /// To get a <see cref="TopicTypeCollection"/> instance call the GetTopicTypes method from an instance of <see cref="TenantResource"/>.
     /// </summary>
     public partial class TopicTypeCollection : ArmCollection, IEnumerable<TopicTypeResource>, IAsyncEnumerable<TopicTypeResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicTypeName"> Name of the topic type. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
         public virtual async Task<Response<TopicTypeResource>> GetAsync(string topicTypeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(topicTypeName, nameof(topicTypeName));
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
 
             using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.Get");
             scope.Start();
@@ -101,6 +117,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicTypeName"> Name of the topic type. </param>
@@ -109,7 +133,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
         public virtual Response<TopicTypeResource> Get(string topicTypeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(topicTypeName, nameof(topicTypeName));
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
 
             using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.Get");
             scope.Start();
@@ -138,14 +169,22 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="TopicTypeResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="TopicTypeResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<TopicTypeResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _topicTypeRestClient.CreateListRequest();
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new TopicTypeResource(Client, TopicTypeData.DeserializeTopicTypeData(e)), _topicTypeClientDiagnostics, Pipeline, "TopicTypeCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new TopicTypeResource(Client, TopicTypeData.DeserializeTopicTypeData(e)), _topicTypeClientDiagnostics, Pipeline, "TopicTypeCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -159,14 +198,22 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="TopicTypeResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="TopicTypeResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<TopicTypeResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _topicTypeRestClient.CreateListRequest();
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new TopicTypeResource(Client, TopicTypeData.DeserializeTopicTypeData(e)), _topicTypeClientDiagnostics, Pipeline, "TopicTypeCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new TopicTypeResource(Client, TopicTypeData.DeserializeTopicTypeData(e)), _topicTypeClientDiagnostics, Pipeline, "TopicTypeCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -180,6 +227,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicTypeName"> Name of the topic type. </param>
@@ -188,7 +243,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string topicTypeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(topicTypeName, nameof(topicTypeName));
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
 
             using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.Exists");
             scope.Start();
@@ -215,6 +277,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicTypeName"> Name of the topic type. </param>
@@ -223,7 +293,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
         public virtual Response<bool> Exists(string topicTypeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(topicTypeName, nameof(topicTypeName));
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
 
             using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.Exists");
             scope.Start();
@@ -231,6 +308,110 @@ namespace Azure.ResourceManager.EventGrid
             {
                 var response = _topicTypeRestClient.Get(topicTypeName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.EventGrid/topicTypes/{topicTypeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TopicTypes_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="topicTypeName"> Name of the topic type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="topicTypeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
+        public virtual async Task<NullableResponse<TopicTypeResource>> GetIfExistsAsync(string topicTypeName, CancellationToken cancellationToken = default)
+        {
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
+
+            using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _topicTypeRestClient.GetAsync(topicTypeName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<TopicTypeResource>(response.GetRawResponse());
+                return Response.FromValue(new TopicTypeResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.EventGrid/topicTypes/{topicTypeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TopicTypes_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicTypeResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="topicTypeName"> Name of the topic type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="topicTypeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="topicTypeName"/> is null. </exception>
+        public virtual NullableResponse<TopicTypeResource> GetIfExists(string topicTypeName, CancellationToken cancellationToken = default)
+        {
+            if (topicTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(topicTypeName));
+            }
+            if (topicTypeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(topicTypeName));
+            }
+
+            using var scope = _topicTypeClientDiagnostics.CreateScope("TopicTypeCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _topicTypeRestClient.Get(topicTypeName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<TopicTypeResource>(response.GetRawResponse());
+                return Response.FromValue(new TopicTypeResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,17 +14,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> The Azure Blob storage. </summary>
     public partial class AzureBlobDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of AzureBlobDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureBlobDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
         public AzureBlobDataset(DataFactoryLinkedServiceReference linkedServiceName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
 
             DatasetType = "AzureBlob";
         }
 
-        /// <summary> Initializes a new instance of AzureBlobDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureBlobDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -56,6 +58,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Format = format;
             Compression = compression;
             DatasetType = datasetType ?? "AzureBlob";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureBlobDataset"/> for deserialization. </summary>
+        internal AzureBlobDataset()
+        {
         }
 
         /// <summary> The path of the Azure Blob storage. Type: string (or Expression with resultType string). </summary>

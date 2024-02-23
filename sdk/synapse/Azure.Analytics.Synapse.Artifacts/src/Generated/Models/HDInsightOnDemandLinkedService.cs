@@ -14,7 +14,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> HDInsight ondemand linked service. </summary>
     public partial class HDInsightOnDemandLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of HDInsightOnDemandLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightOnDemandLinkedService"/>. </summary>
         /// <param name="clusterSize"> Number of worker/data nodes in the cluster. Suggestion value: 4. Type: string (or Expression with resultType string). </param>
         /// <param name="timeToLive"> The allowed idle time for the on-demand HDInsight cluster. Specifies how long the on-demand HDInsight cluster stays alive after completion of an activity run if there are no other active jobs in the cluster. The minimum value is 5 mins. Type: string (or Expression with resultType string). </param>
         /// <param name="version"> Version of the HDInsight cluster.  Type: string (or Expression with resultType string). </param>
@@ -25,13 +25,34 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="clusterSize"/>, <paramref name="timeToLive"/>, <paramref name="version"/>, <paramref name="linkedServiceName"/>, <paramref name="hostSubscriptionId"/>, <paramref name="tenant"/> or <paramref name="clusterResourceGroup"/> is null. </exception>
         public HDInsightOnDemandLinkedService(object clusterSize, object timeToLive, object version, LinkedServiceReference linkedServiceName, object hostSubscriptionId, object tenant, object clusterResourceGroup)
         {
-            Argument.AssertNotNull(clusterSize, nameof(clusterSize));
-            Argument.AssertNotNull(timeToLive, nameof(timeToLive));
-            Argument.AssertNotNull(version, nameof(version));
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
-            Argument.AssertNotNull(hostSubscriptionId, nameof(hostSubscriptionId));
-            Argument.AssertNotNull(tenant, nameof(tenant));
-            Argument.AssertNotNull(clusterResourceGroup, nameof(clusterResourceGroup));
+            if (clusterSize == null)
+            {
+                throw new ArgumentNullException(nameof(clusterSize));
+            }
+            if (timeToLive == null)
+            {
+                throw new ArgumentNullException(nameof(timeToLive));
+            }
+            if (version == null)
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
+            if (hostSubscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(hostSubscriptionId));
+            }
+            if (tenant == null)
+            {
+                throw new ArgumentNullException(nameof(tenant));
+            }
+            if (clusterResourceGroup == null)
+            {
+                throw new ArgumentNullException(nameof(clusterResourceGroup));
+            }
 
             ClusterSize = clusterSize;
             TimeToLive = timeToLive;
@@ -45,7 +66,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "HDInsightOnDemand";
         }
 
-        /// <summary> Initializes a new instance of HDInsightOnDemandLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightOnDemandLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

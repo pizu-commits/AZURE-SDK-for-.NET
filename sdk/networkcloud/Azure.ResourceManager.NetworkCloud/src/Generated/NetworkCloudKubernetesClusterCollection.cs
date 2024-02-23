@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.NetworkCloud
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NetworkCloudKubernetesClusterResource" /> and their operations.
-    /// Each <see cref="NetworkCloudKubernetesClusterResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="NetworkCloudKubernetesClusterCollection" /> instance call the GetNetworkCloudKubernetesClusters method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="NetworkCloudKubernetesClusterResource"/> and their operations.
+    /// Each <see cref="NetworkCloudKubernetesClusterResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="NetworkCloudKubernetesClusterCollection"/> instance call the GetNetworkCloudKubernetesClusters method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class NetworkCloudKubernetesClusterCollection : ArmCollection, IEnumerable<NetworkCloudKubernetesClusterResource>, IAsyncEnumerable<NetworkCloudKubernetesClusterResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<NetworkCloudKubernetesClusterResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string kubernetesClusterName, NetworkCloudKubernetesClusterData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<NetworkCloudKubernetesClusterResource> CreateOrUpdate(WaitUntil waitUntil, string kubernetesClusterName, NetworkCloudKubernetesClusterData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
         public virtual async Task<Response<NetworkCloudKubernetesClusterResource>> GetAsync(string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
         public virtual Response<NetworkCloudKubernetesClusterResource> Get(string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NetworkCloudKubernetesClusterResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NetworkCloudKubernetesClusterResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NetworkCloudKubernetesClusterResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudKubernetesClusterKubernetesClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudKubernetesClusterKubernetesClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudKubernetesClusterResource(Client, NetworkCloudKubernetesClusterData.DeserializeNetworkCloudKubernetesClusterData(e)), _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics, Pipeline, "NetworkCloudKubernetesClusterCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudKubernetesClusterResource(Client, NetworkCloudKubernetesClusterData.DeserializeNetworkCloudKubernetesClusterData(e)), _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics, Pipeline, "NetworkCloudKubernetesClusterCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NetworkCloudKubernetesClusterResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NetworkCloudKubernetesClusterResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NetworkCloudKubernetesClusterResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudKubernetesClusterKubernetesClustersRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudKubernetesClusterKubernetesClustersRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudKubernetesClusterResource(Client, NetworkCloudKubernetesClusterData.DeserializeNetworkCloudKubernetesClusterData(e)), _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics, Pipeline, "NetworkCloudKubernetesClusterCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudKubernetesClusterResource(Client, NetworkCloudKubernetesClusterData.DeserializeNetworkCloudKubernetesClusterData(e)), _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics, Pipeline, "NetworkCloudKubernetesClusterCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>KubernetesClusters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
         public virtual Response<bool> Exists(string kubernetesClusterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(kubernetesClusterName, nameof(kubernetesClusterName));
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
 
             using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 var response = _networkCloudKubernetesClusterKubernetesClustersRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NetworkCloudKubernetesClusterResource>> GetIfExistsAsync(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
+
+            using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _networkCloudKubernetesClusterKubernetesClustersRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudKubernetesClusterResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudKubernetesClusterResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>KubernetesClusters_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudKubernetesClusterResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kubernetesClusterName"> The name of the Kubernetes cluster. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="kubernetesClusterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="kubernetesClusterName"/> is null. </exception>
+        public virtual NullableResponse<NetworkCloudKubernetesClusterResource> GetIfExists(string kubernetesClusterName, CancellationToken cancellationToken = default)
+        {
+            if (kubernetesClusterName == null)
+            {
+                throw new ArgumentNullException(nameof(kubernetesClusterName));
+            }
+            if (kubernetesClusterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(kubernetesClusterName));
+            }
+
+            using var scope = _networkCloudKubernetesClusterKubernetesClustersClientDiagnostics.CreateScope("NetworkCloudKubernetesClusterCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _networkCloudKubernetesClusterKubernetesClustersRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, kubernetesClusterName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudKubernetesClusterResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudKubernetesClusterResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

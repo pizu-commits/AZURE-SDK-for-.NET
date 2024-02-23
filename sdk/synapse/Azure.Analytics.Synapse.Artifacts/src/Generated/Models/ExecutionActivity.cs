@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
@@ -18,17 +17,20 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// </summary>
     public partial class ExecutionActivity : Activity
     {
-        /// <summary> Initializes a new instance of ExecutionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ExecutionActivity(string name) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Type = "Execution";
         }
 
-        /// <summary> Initializes a new instance of ExecutionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

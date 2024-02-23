@@ -17,9 +17,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Logic
 {
     /// <summary>
-    /// A class representing a collection of <see cref="LogicWorkflowRunOperationResource" /> and their operations.
-    /// Each <see cref="LogicWorkflowRunOperationResource" /> in the collection will belong to the same instance of <see cref="LogicWorkflowRunResource" />.
-    /// To get a <see cref="LogicWorkflowRunOperationCollection" /> instance call the GetLogicWorkflowRunOperations method from an instance of <see cref="LogicWorkflowRunResource" />.
+    /// A class representing a collection of <see cref="LogicWorkflowRunOperationResource"/> and their operations.
+    /// Each <see cref="LogicWorkflowRunOperationResource"/> in the collection will belong to the same instance of <see cref="LogicWorkflowRunResource"/>.
+    /// To get a <see cref="LogicWorkflowRunOperationCollection"/> instance call the GetLogicWorkflowRunOperations method from an instance of <see cref="LogicWorkflowRunResource"/>.
     /// </summary>
     public partial class LogicWorkflowRunOperationCollection : ArmCollection
     {
@@ -61,6 +61,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunOperations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The workflow operation id. </param>
@@ -69,7 +77,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual async Task<Response<LogicWorkflowRunOperationResource>> GetAsync(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.Get");
             scope.Start();
@@ -98,6 +113,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunOperations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The workflow operation id. </param>
@@ -106,7 +129,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual Response<LogicWorkflowRunOperationResource> Get(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.Get");
             scope.Start();
@@ -135,6 +165,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunOperations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The workflow operation id. </param>
@@ -143,7 +181,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.Exists");
             scope.Start();
@@ -170,6 +215,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunOperations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The workflow operation id. </param>
@@ -178,7 +231,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual Response<bool> Exists(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.Exists");
             scope.Start();
@@ -186,6 +246,110 @@ namespace Azure.ResourceManager.Logic
             {
                 var response = _logicWorkflowRunOperationWorkflowRunOperationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, operationId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/operations/{operationId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkflowRunOperations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="operationId"> The workflow operation id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        public virtual async Task<NullableResponse<LogicWorkflowRunOperationResource>> GetIfExistsAsync(string operationId, CancellationToken cancellationToken = default)
+        {
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
+
+            using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _logicWorkflowRunOperationWorkflowRunOperationsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, operationId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<LogicWorkflowRunOperationResource>(response.GetRawResponse());
+                return Response.FromValue(new LogicWorkflowRunOperationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/operations/{operationId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkflowRunOperations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunOperationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="operationId"> The workflow operation id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        public virtual NullableResponse<LogicWorkflowRunOperationResource> GetIfExists(string operationId, CancellationToken cancellationToken = default)
+        {
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
+
+            using var scope = _logicWorkflowRunOperationWorkflowRunOperationsClientDiagnostics.CreateScope("LogicWorkflowRunOperationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _logicWorkflowRunOperationWorkflowRunOperationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, operationId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<LogicWorkflowRunOperationResource>(response.GetRawResponse());
+                return Response.FromValue(new LogicWorkflowRunOperationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

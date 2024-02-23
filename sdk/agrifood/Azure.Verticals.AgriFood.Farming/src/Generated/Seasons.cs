@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -69,7 +70,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='GetSeasonAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetSeasonAsync(string seasonId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.GetSeason");
             scope.Start();
@@ -104,7 +112,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='GetSeason(string,RequestContext)']/*" />
         public virtual Response GetSeason(string seasonId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.GetSeason");
             scope.Start();
@@ -140,8 +155,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string seasonId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.CreateOrUpdate");
             scope.Start();
@@ -177,8 +202,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='CreateOrUpdate(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string seasonId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.CreateOrUpdate");
             scope.Start();
@@ -213,7 +248,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='DeleteAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string seasonId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.Delete");
             scope.Start();
@@ -248,7 +290,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Seasons.xml" path="doc/members/member[@name='Delete(string,RequestContext)']/*" />
         public virtual Response Delete(string seasonId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(seasonId, nameof(seasonId));
+            if (seasonId == null)
+            {
+                throw new ArgumentNullException(nameof(seasonId));
+            }
+            if (seasonId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(seasonId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Seasons.Delete");
             scope.Start();
@@ -303,7 +352,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSeasonsRequest(minStartDateTime, maxStartDateTime, minEndDateTime, maxEndDateTime, years, seasonIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSeasonsNextPageRequest(nextLink, minStartDateTime, maxStartDateTime, minEndDateTime, maxEndDateTime, years, seasonIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Seasons.GetSeasons", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Seasons.GetSeasons", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -345,7 +394,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSeasonsRequest(minStartDateTime, maxStartDateTime, minEndDateTime, maxEndDateTime, years, seasonIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSeasonsNextPageRequest(nextLink, minStartDateTime, maxStartDateTime, minEndDateTime, maxEndDateTime, years, seasonIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Seasons.GetSeasons", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Seasons.GetSeasons", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetSeasonsRequest(DateTimeOffset? minStartDateTime, DateTimeOffset? maxStartDateTime, DateTimeOffset? minEndDateTime, DateTimeOffset? maxEndDateTime, IEnumerable<int> years, IEnumerable<string> seasonIds, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)

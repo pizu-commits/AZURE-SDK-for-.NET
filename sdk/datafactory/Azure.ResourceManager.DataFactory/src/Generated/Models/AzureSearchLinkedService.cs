@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Linked service for Windows Azure Search Service. </summary>
     public partial class AzureSearchLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AzureSearchLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureSearchLinkedService"/>. </summary>
         /// <param name="uri"> URL for Azure Search service. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         public AzureSearchLinkedService(DataFactoryElement<string> uri)
         {
-            Argument.AssertNotNull(uri, nameof(uri));
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
 
             Uri = uri;
             LinkedServiceType = "AzureSearch";
         }
 
-        /// <summary> Initializes a new instance of AzureSearchLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureSearchLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -42,6 +44,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Key = key;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AzureSearch";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureSearchLinkedService"/> for deserialization. </summary>
+        internal AzureSearchLinkedService()
+        {
         }
 
         /// <summary> URL for Azure Search service. Type: string (or Expression with resultType string). </summary>

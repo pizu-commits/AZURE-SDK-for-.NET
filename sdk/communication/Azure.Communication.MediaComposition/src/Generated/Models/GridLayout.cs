@@ -9,21 +9,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.Communication.MediaComposition.Models;
-using Azure.Core;
 
 namespace Azure.Communication.MediaComposition
 {
     /// <summary> Configure the grid layout. </summary>
     public partial class GridLayout : MediaCompositionLayout
     {
-        /// <summary> Initializes a new instance of GridLayout. </summary>
+        /// <summary> Initializes a new instance of <see cref="GridLayout"/>. </summary>
         /// <param name="rows"> Number of rows. </param>
         /// <param name="columns"> Number of columns. </param>
         /// <param name="inputIds"> Input ids to be included in the layout. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="inputIds"/> is null. </exception>
         public GridLayout(int rows, int columns, IEnumerable<IList<string>> inputIds)
         {
-            Argument.AssertNotNull(inputIds, nameof(inputIds));
+            if (inputIds == null)
+            {
+                throw new ArgumentNullException(nameof(inputIds));
+            }
 
             Rows = rows;
             Columns = columns;
@@ -31,7 +33,7 @@ namespace Azure.Communication.MediaComposition
             Kind = LayoutType.Grid;
         }
 
-        /// <summary> Initializes a new instance of GridLayout. </summary>
+        /// <summary> Initializes a new instance of <see cref="GridLayout"/>. </summary>
         /// <param name="kind"> Kind of layout. </param>
         /// <param name="resolution"> The dimensions of the scene or objects in the scene. </param>
         /// <param name="placeholderImageUri"> Set global placeholder image. </param>

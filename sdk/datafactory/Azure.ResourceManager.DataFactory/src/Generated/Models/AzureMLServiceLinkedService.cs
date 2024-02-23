@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,16 +14,25 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Azure ML Service linked service. </summary>
     public partial class AzureMLServiceLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AzureMLServiceLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMLServiceLinkedService"/>. </summary>
         /// <param name="subscriptionId"> Azure ML Service workspace subscription ID. Type: string (or Expression with resultType string). </param>
         /// <param name="resourceGroupName"> Azure ML Service workspace resource group name. Type: string (or Expression with resultType string). </param>
         /// <param name="mlWorkspaceName"> Azure ML Service workspace name. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="mlWorkspaceName"/> is null. </exception>
         public AzureMLServiceLinkedService(DataFactoryElement<string> subscriptionId, DataFactoryElement<string> resourceGroupName, DataFactoryElement<string> mlWorkspaceName)
         {
-            Argument.AssertNotNull(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNull(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNull(mlWorkspaceName, nameof(mlWorkspaceName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (mlWorkspaceName == null)
+            {
+                throw new ArgumentNullException(nameof(mlWorkspaceName));
+            }
 
             SubscriptionId = subscriptionId;
             ResourceGroupName = resourceGroupName;
@@ -32,7 +40,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "AzureMLService";
         }
 
-        /// <summary> Initializes a new instance of AzureMLServiceLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMLServiceLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -58,6 +66,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Tenant = tenant;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AzureMLService";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureMLServiceLinkedService"/> for deserialization. </summary>
+        internal AzureMLServiceLinkedService()
+        {
         }
 
         /// <summary> Azure ML Service workspace subscription ID. Type: string (or Expression with resultType string). </summary>

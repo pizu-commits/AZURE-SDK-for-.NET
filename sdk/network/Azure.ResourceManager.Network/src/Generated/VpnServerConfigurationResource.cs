@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.Network
 {
     /// <summary>
     /// A Class representing a VpnServerConfiguration along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="VpnServerConfigurationResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetVpnServerConfigurationResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetVpnServerConfiguration method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="VpnServerConfigurationResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetVpnServerConfigurationResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetVpnServerConfiguration method.
     /// </summary>
     public partial class VpnServerConfigurationResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="VpnServerConfigurationResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="vpnServerConfigurationName"> The vpnServerConfigurationName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string vpnServerConfigurationName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnServerConfigurations/{vpnServerConfigurationName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.Network
         private readonly VpnServerConfigurationsRestOperations _vpnServerConfigurationRestClient;
         private readonly VpnServerConfigurationData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Network/vpnServerConfigurations";
+
         /// <summary> Initializes a new instance of the <see cref="VpnServerConfigurationResource"/> class for mocking. </summary>
         protected VpnServerConfigurationResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "VpnServerConfigurationResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="VpnServerConfigurationResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal VpnServerConfigurationResource(ArmClient client, VpnServerConfigurationData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.Network
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Network/vpnServerConfigurations";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -93,7 +96,7 @@ namespace Azure.ResourceManager.Network
         /// <returns> An object representing collection of VpnServerConfigurationPolicyGroupResources and their operations over a VpnServerConfigurationPolicyGroupResource. </returns>
         public virtual VpnServerConfigurationPolicyGroupCollection GetVpnServerConfigurationPolicyGroups()
         {
-            return GetCachedClient(Client => new VpnServerConfigurationPolicyGroupCollection(Client, Id));
+            return GetCachedClient(client => new VpnServerConfigurationPolicyGroupCollection(client, Id));
         }
 
         /// <summary>
@@ -107,12 +110,20 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ConfigurationPolicyGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationPolicyGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationPolicyGroupName"> The name of the ConfigurationPolicyGroup being retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="configurationPolicyGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="configurationPolicyGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="configurationPolicyGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<VpnServerConfigurationPolicyGroupResource>> GetVpnServerConfigurationPolicyGroupAsync(string configurationPolicyGroupName, CancellationToken cancellationToken = default)
         {
@@ -130,12 +141,20 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ConfigurationPolicyGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationPolicyGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationPolicyGroupName"> The name of the ConfigurationPolicyGroup being retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="configurationPolicyGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="configurationPolicyGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="configurationPolicyGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<VpnServerConfigurationPolicyGroupResource> GetVpnServerConfigurationPolicyGroup(string configurationPolicyGroupName, CancellationToken cancellationToken = default)
         {
@@ -152,6 +171,14 @@ namespace Azure.ResourceManager.Network
         /// <item>
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -185,6 +212,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -216,6 +251,14 @@ namespace Azure.ResourceManager.Network
         /// <item>
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -251,6 +294,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -285,6 +336,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_UpdateTags</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vpnServerConfigurationParameters"> Parameters supplied to update VpnServerConfiguration tags. </param>
@@ -292,7 +351,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="vpnServerConfigurationParameters"/> is null. </exception>
         public virtual async Task<Response<VpnServerConfigurationResource>> UpdateAsync(NetworkTagsObject vpnServerConfigurationParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(vpnServerConfigurationParameters, nameof(vpnServerConfigurationParameters));
+            if (vpnServerConfigurationParameters == null)
+            {
+                throw new ArgumentNullException(nameof(vpnServerConfigurationParameters));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.Update");
             scope.Start();
@@ -319,6 +381,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_UpdateTags</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vpnServerConfigurationParameters"> Parameters supplied to update VpnServerConfiguration tags. </param>
@@ -326,7 +396,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="vpnServerConfigurationParameters"/> is null. </exception>
         public virtual Response<VpnServerConfigurationResource> Update(NetworkTagsObject vpnServerConfigurationParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(vpnServerConfigurationParameters, nameof(vpnServerConfigurationParameters));
+            if (vpnServerConfigurationParameters == null)
+            {
+                throw new ArgumentNullException(nameof(vpnServerConfigurationParameters));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.Update");
             scope.Start();
@@ -353,6 +426,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -361,8 +442,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<VpnServerConfigurationResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.AddTag");
             scope.Start();
@@ -407,6 +494,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -415,8 +510,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<VpnServerConfigurationResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.AddTag");
             scope.Start();
@@ -461,6 +562,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -468,7 +577,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<VpnServerConfigurationResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.SetTags");
             scope.Start();
@@ -510,6 +622,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -517,7 +637,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<VpnServerConfigurationResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.SetTags");
             scope.Start();
@@ -559,6 +682,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -566,7 +697,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<VpnServerConfigurationResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.RemoveTag");
             scope.Start();
@@ -611,6 +745,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>VpnServerConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VpnServerConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -618,7 +760,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<VpnServerConfigurationResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _vpnServerConfigurationClientDiagnostics.CreateScope("VpnServerConfigurationResource.RemoveTag");
             scope.Start();

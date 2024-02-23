@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.IotHub.Models;
 namespace Azure.ResourceManager.IotHub
 {
     /// <summary>
-    /// A class representing a collection of <see cref="EventHubConsumerGroupInfoResource" /> and their operations.
-    /// Each <see cref="EventHubConsumerGroupInfoResource" /> in the collection will belong to the same instance of <see cref="IotHubDescriptionResource" />.
-    /// To get an <see cref="EventHubConsumerGroupInfoCollection" /> instance call the GetEventHubConsumerGroupInfos method from an instance of <see cref="IotHubDescriptionResource" />.
+    /// A class representing a collection of <see cref="EventHubConsumerGroupInfoResource"/> and their operations.
+    /// Each <see cref="EventHubConsumerGroupInfoResource"/> in the collection will belong to the same instance of <see cref="IotHubDescriptionResource"/>.
+    /// To get an <see cref="EventHubConsumerGroupInfoCollection"/> instance call the GetEventHubConsumerGroupInfos method from an instance of <see cref="IotHubDescriptionResource"/>.
     /// </summary>
     public partial class EventHubConsumerGroupInfoCollection : ArmCollection, IEnumerable<EventHubConsumerGroupInfoResource>, IAsyncEnumerable<EventHubConsumerGroupInfoResource>
     {
@@ -69,6 +70,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_CreateEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -79,8 +88,18 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<EventHubConsumerGroupInfoResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string name, EventHubConsumerGroupInfoCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
-            Argument.AssertNotNull(content, nameof(content));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.CreateOrUpdate");
             scope.Start();
@@ -110,6 +129,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_CreateEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -120,8 +147,18 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<EventHubConsumerGroupInfoResource> CreateOrUpdate(WaitUntil waitUntil, string name, EventHubConsumerGroupInfoCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
-            Argument.AssertNotNull(content, nameof(content));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.CreateOrUpdate");
             scope.Start();
@@ -151,6 +188,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_GetEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the consumer group to retrieve. </param>
@@ -159,7 +204,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual async Task<Response<EventHubConsumerGroupInfoResource>> GetAsync(string name, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.Get");
             scope.Start();
@@ -188,6 +240,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_GetEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the consumer group to retrieve. </param>
@@ -196,7 +256,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual Response<EventHubConsumerGroupInfoResource> Get(string name, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.Get");
             scope.Start();
@@ -225,15 +292,23 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_ListEventHubConsumerGroups</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="EventHubConsumerGroupInfoResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="EventHubConsumerGroupInfoResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<EventHubConsumerGroupInfoResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _eventHubConsumerGroupInfoIotHubResourceRestClient.CreateListEventHubConsumerGroupsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _eventHubConsumerGroupInfoIotHubResourceRestClient.CreateListEventHubConsumerGroupsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new EventHubConsumerGroupInfoResource(Client, EventHubConsumerGroupInfoData.DeserializeEventHubConsumerGroupInfoData(e)), _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics, Pipeline, "EventHubConsumerGroupInfoCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new EventHubConsumerGroupInfoResource(Client, EventHubConsumerGroupInfoData.DeserializeEventHubConsumerGroupInfoData(e)), _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics, Pipeline, "EventHubConsumerGroupInfoCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -247,15 +322,23 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_ListEventHubConsumerGroups</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="EventHubConsumerGroupInfoResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="EventHubConsumerGroupInfoResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<EventHubConsumerGroupInfoResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _eventHubConsumerGroupInfoIotHubResourceRestClient.CreateListEventHubConsumerGroupsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _eventHubConsumerGroupInfoIotHubResourceRestClient.CreateListEventHubConsumerGroupsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new EventHubConsumerGroupInfoResource(Client, EventHubConsumerGroupInfoData.DeserializeEventHubConsumerGroupInfoData(e)), _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics, Pipeline, "EventHubConsumerGroupInfoCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new EventHubConsumerGroupInfoResource(Client, EventHubConsumerGroupInfoData.DeserializeEventHubConsumerGroupInfoData(e)), _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics, Pipeline, "EventHubConsumerGroupInfoCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -269,6 +352,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_GetEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the consumer group to retrieve. </param>
@@ -277,7 +368,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string name, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.Exists");
             scope.Start();
@@ -304,6 +402,14 @@ namespace Azure.ResourceManager.IotHub
         /// <term>Operation Id</term>
         /// <description>IotHubResource_GetEventHubConsumerGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> The name of the consumer group to retrieve. </param>
@@ -312,7 +418,14 @@ namespace Azure.ResourceManager.IotHub
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public virtual Response<bool> Exists(string name, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
 
             using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.Exists");
             scope.Start();
@@ -320,6 +433,110 @@ namespace Azure.ResourceManager.IotHub
             {
                 var response = _eventHubConsumerGroupInfoIotHubResourceRestClient.GetEventHubConsumerGroup(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName, name, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IotHubResource_GetEventHubConsumerGroup</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> The name of the consumer group to retrieve. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        public virtual async Task<NullableResponse<EventHubConsumerGroupInfoResource>> GetIfExistsAsync(string name, CancellationToken cancellationToken = default)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+
+            using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _eventHubConsumerGroupInfoIotHubResourceRestClient.GetEventHubConsumerGroupAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName, name, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<EventHubConsumerGroupInfoResource>(response.GetRawResponse());
+                return Response.FromValue(new EventHubConsumerGroupInfoResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IotHubResource_GetEventHubConsumerGroup</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-30</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubConsumerGroupInfoResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> The name of the consumer group to retrieve. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        public virtual NullableResponse<EventHubConsumerGroupInfoResource> GetIfExists(string name, CancellationToken cancellationToken = default)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (name.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(name));
+            }
+
+            using var scope = _eventHubConsumerGroupInfoIotHubResourceClientDiagnostics.CreateScope("EventHubConsumerGroupInfoCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _eventHubConsumerGroupInfoIotHubResourceRestClient.GetEventHubConsumerGroup(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, _eventHubEndpointName, name, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<EventHubConsumerGroupInfoResource>(response.GetRawResponse());
+                return Response.FromValue(new EventHubConsumerGroupInfoResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

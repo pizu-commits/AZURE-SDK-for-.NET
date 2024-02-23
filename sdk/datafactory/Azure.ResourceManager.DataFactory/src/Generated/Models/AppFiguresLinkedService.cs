@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,16 +14,25 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Linked service for AppFigures. </summary>
     public partial class AppFiguresLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AppFiguresLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AppFiguresLinkedService"/>. </summary>
         /// <param name="userName"> The username of the Appfigures source. Type: string (or Expression with resultType string). </param>
         /// <param name="password"> The password of the AppFigures source. </param>
         /// <param name="clientKey"> The client key for the AppFigures source. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="userName"/>, <paramref name="password"/> or <paramref name="clientKey"/> is null. </exception>
         public AppFiguresLinkedService(DataFactoryElement<string> userName, DataFactorySecretBaseDefinition password, DataFactorySecretBaseDefinition clientKey)
         {
-            Argument.AssertNotNull(userName, nameof(userName));
-            Argument.AssertNotNull(password, nameof(password));
-            Argument.AssertNotNull(clientKey, nameof(clientKey));
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
+            if (clientKey == null)
+            {
+                throw new ArgumentNullException(nameof(clientKey));
+            }
 
             UserName = userName;
             Password = password;
@@ -32,7 +40,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "AppFigures";
         }
 
-        /// <summary> Initializes a new instance of AppFiguresLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AppFiguresLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -48,6 +56,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Password = password;
             ClientKey = clientKey;
             LinkedServiceType = linkedServiceType ?? "AppFigures";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppFiguresLinkedService"/> for deserialization. </summary>
+        internal AppFiguresLinkedService()
+        {
         }
 
         /// <summary> The username of the Appfigures source. Type: string (or Expression with resultType string). </summary>

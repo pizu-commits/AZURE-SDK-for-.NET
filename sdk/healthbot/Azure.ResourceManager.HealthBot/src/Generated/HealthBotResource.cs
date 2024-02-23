@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.HealthBot
 {
     /// <summary>
     /// A Class representing a HealthBot along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="HealthBotResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetHealthBotResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetHealthBot method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="HealthBotResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetHealthBotResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetHealthBot method.
     /// </summary>
     public partial class HealthBotResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="HealthBotResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="botName"> The botName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string botName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.HealthBot
         private readonly BotsRestOperations _healthBotBotsRestClient;
         private readonly HealthBotData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.HealthBot/healthBots";
+
         /// <summary> Initializes a new instance of the <see cref="HealthBotResource"/> class for mocking. </summary>
         protected HealthBotResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "HealthBotResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="HealthBotResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal HealthBotResource(ArmClient client, HealthBotData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.HealthBot
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.HealthBot/healthBots";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -100,6 +103,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -132,6 +143,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -163,6 +182,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Bots_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -198,6 +225,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -232,6 +267,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The parameters to provide for the required Azure Health Bot. </param>
@@ -239,7 +282,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<HealthBotResource>> UpdateAsync(HealthBotPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.Update");
             scope.Start();
@@ -266,6 +312,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The parameters to provide for the required Azure Health Bot. </param>
@@ -273,7 +327,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<HealthBotResource> Update(HealthBotPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.Update");
             scope.Start();
@@ -300,6 +357,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -308,8 +373,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<HealthBotResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.AddTag");
             scope.Start();
@@ -354,6 +425,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -362,8 +441,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<HealthBotResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.AddTag");
             scope.Start();
@@ -408,6 +493,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -415,7 +508,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<HealthBotResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.SetTags");
             scope.Start();
@@ -457,6 +553,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -464,7 +568,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<HealthBotResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.SetTags");
             scope.Start();
@@ -506,6 +613,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -513,7 +628,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<HealthBotResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.RemoveTag");
             scope.Start();
@@ -558,6 +676,14 @@ namespace Azure.ResourceManager.HealthBot
         /// <term>Operation Id</term>
         /// <description>Bots_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-24</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HealthBotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -565,7 +691,10 @@ namespace Azure.ResourceManager.HealthBot
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<HealthBotResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _healthBotBotsClientDiagnostics.CreateScope("HealthBotResource.RemoveTag");
             scope.Start();

@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.AppConfiguration
 {
     /// <summary>
     /// A Class representing an AppConfigurationKeyValue along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="AppConfigurationKeyValueResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetAppConfigurationKeyValueResource method.
-    /// Otherwise you can get one from its parent resource <see cref="AppConfigurationStoreResource" /> using the GetAppConfigurationKeyValue method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="AppConfigurationKeyValueResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetAppConfigurationKeyValueResource method.
+    /// Otherwise you can get one from its parent resource <see cref="AppConfigurationStoreResource"/> using the GetAppConfigurationKeyValue method.
     /// </summary>
     public partial class AppConfigurationKeyValueResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="AppConfigurationKeyValueResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="configStoreName"> The configStoreName. </param>
+        /// <param name="keyValueName"> The keyValueName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string configStoreName, string keyValueName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/keyValues/{keyValueName}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.AppConfiguration
         private readonly KeyValuesRestOperations _appConfigurationKeyValueKeyValuesRestClient;
         private readonly AppConfigurationKeyValueData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.AppConfiguration/configurationStores/keyValues";
+
         /// <summary> Initializes a new instance of the <see cref="AppConfigurationKeyValueResource"/> class for mocking. </summary>
         protected AppConfigurationKeyValueResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "AppConfigurationKeyValueResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="AppConfigurationKeyValueResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal AppConfigurationKeyValueResource(ArmClient client, AppConfigurationKeyValueData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.AppConfiguration
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.AppConfiguration/configurationStores/keyValues";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -88,7 +92,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Gets the properties of the specified key-value.
+        /// Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -97,6 +101,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <item>
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -120,7 +132,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Gets the properties of the specified key-value.
+        /// Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -129,6 +141,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <item>
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -152,7 +172,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Deletes a key-value.
+        /// Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <item>
         /// <term>Operation Id</term>
         /// <description>KeyValues_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -186,7 +214,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Deletes a key-value.
+        /// Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -195,6 +223,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <item>
         /// <term>Operation Id</term>
         /// <description>KeyValues_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -220,7 +256,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Creates a key-value.
+        /// Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -230,6 +266,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -238,7 +282,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AppConfigurationKeyValueResource>> UpdateAsync(WaitUntil waitUntil, AppConfigurationKeyValueData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.Update");
             scope.Start();
@@ -258,7 +305,7 @@ namespace Azure.ResourceManager.AppConfiguration
         }
 
         /// <summary>
-        /// Creates a key-value.
+        /// Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other scenarios involving App Configuration key-values the data plane API should be used instead.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -268,6 +315,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -276,7 +331,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AppConfigurationKeyValueResource> Update(WaitUntil waitUntil, AppConfigurationKeyValueData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.Update");
             scope.Start();
@@ -306,6 +364,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -314,8 +380,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<AppConfigurationKeyValueResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.AddTag");
             scope.Start();
@@ -355,6 +427,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -363,8 +443,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<AppConfigurationKeyValueResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.AddTag");
             scope.Start();
@@ -404,6 +490,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -411,7 +505,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<AppConfigurationKeyValueResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.SetTags");
             scope.Start();
@@ -452,6 +549,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -459,7 +564,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<AppConfigurationKeyValueResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.SetTags");
             scope.Start();
@@ -500,6 +608,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -507,7 +623,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<AppConfigurationKeyValueResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.RemoveTag");
             scope.Start();
@@ -547,6 +666,14 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <term>Operation Id</term>
         /// <description>KeyValues_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppConfigurationKeyValueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -554,7 +681,10 @@ namespace Azure.ResourceManager.AppConfiguration
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<AppConfigurationKeyValueResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _appConfigurationKeyValueKeyValuesClientDiagnostics.CreateScope("AppConfigurationKeyValueResource.RemoveTag");
             scope.Start();

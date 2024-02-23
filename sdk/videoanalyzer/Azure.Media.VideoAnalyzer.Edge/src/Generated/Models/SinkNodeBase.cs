@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -19,20 +18,26 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     public abstract partial class SinkNodeBase
     {
-        /// <summary> Initializes a new instance of SinkNodeBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="SinkNodeBase"/>. </summary>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="inputs"/> is null. </exception>
         protected SinkNodeBase(string name, IEnumerable<NodeInput> inputs)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(inputs, nameof(inputs));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (inputs == null)
+            {
+                throw new ArgumentNullException(nameof(inputs));
+            }
 
             Name = name;
             Inputs = inputs.ToList();
         }
 
-        /// <summary> Initializes a new instance of SinkNodeBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="SinkNodeBase"/>. </summary>
         /// <param name="type"> Type discriminator for the derived types. </param>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>

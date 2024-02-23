@@ -20,13 +20,17 @@ namespace Azure.ResourceManager.CosmosDB
 {
     /// <summary>
     /// A Class representing a CosmosDBSqlDatabaseThroughputSetting along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="CosmosDBSqlDatabaseThroughputSettingResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetCosmosDBSqlDatabaseThroughputSettingResource method.
-    /// Otherwise you can get one from its parent resource <see cref="CosmosDBSqlDatabaseResource" /> using the GetCosmosDBSqlDatabaseThroughputSetting method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="CosmosDBSqlDatabaseThroughputSettingResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetCosmosDBSqlDatabaseThroughputSettingResource method.
+    /// Otherwise you can get one from its parent resource <see cref="CosmosDBSqlDatabaseResource"/> using the GetCosmosDBSqlDatabaseThroughputSetting method.
     /// </summary>
     public partial class CosmosDBSqlDatabaseThroughputSettingResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="CosmosDBSqlDatabaseThroughputSettingResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="accountName"> The accountName. </param>
+        /// <param name="databaseName"> The databaseName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string accountName, string databaseName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default";
@@ -37,12 +41,15 @@ namespace Azure.ResourceManager.CosmosDB
         private readonly SqlResourcesRestOperations _cosmosDBSqlDatabaseThroughputSettingSqlResourcesRestClient;
         private readonly ThroughputSettingData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/throughputSettings";
+
         /// <summary> Initializes a new instance of the <see cref="CosmosDBSqlDatabaseThroughputSettingResource"/> class for mocking. </summary>
         protected CosmosDBSqlDatabaseThroughputSettingResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "CosmosDBSqlDatabaseThroughputSettingResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="CosmosDBSqlDatabaseThroughputSettingResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal CosmosDBSqlDatabaseThroughputSettingResource(ArmClient client, ThroughputSettingData data) : this(client, data.Id)
@@ -63,9 +70,6 @@ namespace Azure.ResourceManager.CosmosDB
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/throughputSettings";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -99,6 +103,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +142,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -163,6 +183,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_UpdateSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -171,7 +199,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<CosmosDBSqlDatabaseThroughputSettingResource>> CreateOrUpdateAsync(WaitUntil waitUntil, ThroughputSettingsUpdateData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.CreateOrUpdate");
             scope.Start();
@@ -201,6 +232,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_UpdateSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -209,7 +248,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<CosmosDBSqlDatabaseThroughputSettingResource> CreateOrUpdate(WaitUntil waitUntil, ThroughputSettingsUpdateData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.CreateOrUpdate");
             scope.Start();
@@ -238,6 +280,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SqlResources_MigrateSqlDatabaseToAutoscale</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -273,6 +323,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_MigrateSqlDatabaseToAutoscale</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -306,6 +364,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SqlResources_MigrateSqlDatabaseToManualThroughput</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -341,6 +407,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_MigrateSqlDatabaseToManualThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -375,6 +449,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_SqlDatabaseRetrieveThroughputDistribution</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -383,7 +465,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="retrieveThroughputParameters"/> is null. </exception>
         public virtual async Task<ArmOperation<PhysicalPartitionThroughputInfoResult>> SqlDatabaseRetrieveThroughputDistributionAsync(WaitUntil waitUntil, RetrieveThroughputParameters retrieveThroughputParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(retrieveThroughputParameters, nameof(retrieveThroughputParameters));
+            if (retrieveThroughputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(retrieveThroughputParameters));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SqlDatabaseRetrieveThroughputDistribution");
             scope.Start();
@@ -413,6 +498,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_SqlDatabaseRetrieveThroughputDistribution</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -421,7 +514,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="retrieveThroughputParameters"/> is null. </exception>
         public virtual ArmOperation<PhysicalPartitionThroughputInfoResult> SqlDatabaseRetrieveThroughputDistribution(WaitUntil waitUntil, RetrieveThroughputParameters retrieveThroughputParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(retrieveThroughputParameters, nameof(retrieveThroughputParameters));
+            if (retrieveThroughputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(retrieveThroughputParameters));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SqlDatabaseRetrieveThroughputDistribution");
             scope.Start();
@@ -451,6 +547,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_SqlDatabaseRedistributeThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -459,7 +563,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="redistributeThroughputParameters"/> is null. </exception>
         public virtual async Task<ArmOperation<PhysicalPartitionThroughputInfoResult>> SqlDatabaseRedistributeThroughputAsync(WaitUntil waitUntil, RedistributeThroughputParameters redistributeThroughputParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(redistributeThroughputParameters, nameof(redistributeThroughputParameters));
+            if (redistributeThroughputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(redistributeThroughputParameters));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SqlDatabaseRedistributeThroughput");
             scope.Start();
@@ -489,6 +596,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_SqlDatabaseRedistributeThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -497,7 +612,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="redistributeThroughputParameters"/> is null. </exception>
         public virtual ArmOperation<PhysicalPartitionThroughputInfoResult> SqlDatabaseRedistributeThroughput(WaitUntil waitUntil, RedistributeThroughputParameters redistributeThroughputParameters, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(redistributeThroughputParameters, nameof(redistributeThroughputParameters));
+            if (redistributeThroughputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(redistributeThroughputParameters));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SqlDatabaseRedistributeThroughput");
             scope.Start();
@@ -527,6 +645,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -535,8 +661,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<CosmosDBSqlDatabaseThroughputSettingResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.AddTag");
             scope.Start();
@@ -581,6 +713,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -589,8 +729,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<CosmosDBSqlDatabaseThroughputSettingResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.AddTag");
             scope.Start();
@@ -635,6 +781,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -642,7 +796,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<CosmosDBSqlDatabaseThroughputSettingResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SetTags");
             scope.Start();
@@ -684,6 +841,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -691,7 +856,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<CosmosDBSqlDatabaseThroughputSettingResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.SetTags");
             scope.Start();
@@ -733,6 +901,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -740,7 +916,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<CosmosDBSqlDatabaseThroughputSettingResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.RemoveTag");
             scope.Start();
@@ -785,6 +964,14 @@ namespace Azure.ResourceManager.CosmosDB
         /// <term>Operation Id</term>
         /// <description>SqlResources_GetSqlDatabaseThroughput</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CosmosDBSqlDatabaseThroughputSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -792,7 +979,10 @@ namespace Azure.ResourceManager.CosmosDB
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<CosmosDBSqlDatabaseThroughputSettingResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _cosmosDBSqlDatabaseThroughputSettingSqlResourcesClientDiagnostics.CreateScope("CosmosDBSqlDatabaseThroughputSettingResource.RemoveTag");
             scope.Start();

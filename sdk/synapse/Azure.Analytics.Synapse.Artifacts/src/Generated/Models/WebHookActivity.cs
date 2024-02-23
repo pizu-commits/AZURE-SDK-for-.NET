@@ -7,29 +7,34 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> WebHook activity. </summary>
     public partial class WebHookActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of WebHookActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebHookActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="method"> Rest API method for target endpoint. </param>
         /// <param name="url"> WebHook activity target endpoint and path. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="url"/> is null. </exception>
         public WebHookActivity(string name, WebHookActivityMethod method, object url) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(url, nameof(url));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
 
             Method = method;
             Url = url;
             Type = "WebHook";
         }
 
-        /// <summary> Initializes a new instance of WebHookActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebHookActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

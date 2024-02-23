@@ -6,19 +6,21 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> The MetastoreUpdateObject. </summary>
     public partial class MetastoreUpdateObject
     {
-        /// <summary> Initializes a new instance of MetastoreUpdateObject. </summary>
+        /// <summary> Initializes a new instance of <see cref="MetastoreUpdateObject"/>. </summary>
         /// <param name="inputFolder"> The input folder containing CDM files. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="inputFolder"/> is null. </exception>
         public MetastoreUpdateObject(string inputFolder)
         {
-            Argument.AssertNotNull(inputFolder, nameof(inputFolder));
+            if (inputFolder == null)
+            {
+                throw new ArgumentNullException(nameof(inputFolder));
+            }
 
             InputFolder = inputFolder;
         }

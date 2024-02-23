@@ -6,21 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Legacy
 {
     /// <summary> The DocumentError. </summary>
     internal partial class DocumentError
     {
-        /// <summary> Initializes a new instance of DocumentError. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentError"/>. </summary>
         /// <param name="id"> Document Id. </param>
         /// <param name="error"> Document Error. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="error"/> is null. </exception>
         internal DocumentError(string id, TextAnalyticsError error)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(error, nameof(error));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (error == null)
+            {
+                throw new ArgumentNullException(nameof(error));
+            }
 
             Id = id;
             Error = error;

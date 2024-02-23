@@ -6,15 +6,25 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
+using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.Logic.Models
 {
-    public partial class ArtifactContentProperties : IUtf8JsonSerializable
+    public partial class ArtifactContentProperties : IUtf8JsonSerializable, IJsonModel<ArtifactContentProperties>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<ArtifactContentProperties>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<ArtifactContentProperties>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ArtifactContentProperties>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ArtifactContentProperties)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(Content))
             {
@@ -22,7 +32,10 @@ namespace Azure.ResourceManager.Logic.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Content);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Content.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Content))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(ContentType))
@@ -51,14 +64,46 @@ namespace Azure.ResourceManager.Logic.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Metadata);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Metadata.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Metadata))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
             }
             writer.WriteEndObject();
         }
 
-        internal static ArtifactContentProperties DeserializeArtifactContentProperties(JsonElement element)
+        ArtifactContentProperties IJsonModel<ArtifactContentProperties>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ArtifactContentProperties>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ArtifactContentProperties)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeArtifactContentProperties(document.RootElement, options);
+        }
+
+        internal static ArtifactContentProperties DeserializeArtifactContentProperties(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -69,6 +114,8 @@ namespace Azure.ResourceManager.Logic.Models
             Optional<DateTimeOffset> createdTime = default;
             Optional<DateTimeOffset> changedTime = default;
             Optional<BinaryData> metadata = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("content"u8))
@@ -95,7 +142,7 @@ namespace Azure.ResourceManager.Logic.Models
                     {
                         continue;
                     }
-                    contentLink = LogicContentLink.DeserializeLogicContentLink(property.Value);
+                    contentLink = LogicContentLink.DeserializeLogicContentLink(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("createdTime"u8))
@@ -125,8 +172,44 @@ namespace Azure.ResourceManager.Logic.Models
                     metadata = BinaryData.FromString(property.Value.GetRawText());
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new ArtifactContentProperties(Optional.ToNullable(createdTime), Optional.ToNullable(changedTime), metadata.Value, content.Value, Optional.ToNullable(contentType), contentLink.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new ArtifactContentProperties(Optional.ToNullable(createdTime), Optional.ToNullable(changedTime), metadata.Value, serializedAdditionalRawData, content.Value, Optional.ToNullable(contentType), contentLink.Value);
         }
+
+        BinaryData IPersistableModel<ArtifactContentProperties>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ArtifactContentProperties>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(ArtifactContentProperties)} does not support '{options.Format}' format.");
+            }
+        }
+
+        ArtifactContentProperties IPersistableModel<ArtifactContentProperties>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ArtifactContentProperties>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeArtifactContentProperties(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(ArtifactContentProperties)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<ArtifactContentProperties>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

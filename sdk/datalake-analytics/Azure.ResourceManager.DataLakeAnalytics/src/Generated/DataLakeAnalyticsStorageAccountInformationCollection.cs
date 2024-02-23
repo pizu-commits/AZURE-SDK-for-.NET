@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.DataLakeAnalytics.Models;
 namespace Azure.ResourceManager.DataLakeAnalytics
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource" /> and their operations.
-    /// Each <see cref="DataLakeAnalyticsStorageAccountInformationResource" /> in the collection will belong to the same instance of <see cref="DataLakeAnalyticsAccountResource" />.
-    /// To get a <see cref="DataLakeAnalyticsStorageAccountInformationCollection" /> instance call the GetDataLakeAnalyticsStorageAccountInformation method from an instance of <see cref="DataLakeAnalyticsAccountResource" />.
+    /// A class representing a collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource"/> and their operations.
+    /// Each <see cref="DataLakeAnalyticsStorageAccountInformationResource"/> in the collection will belong to the same instance of <see cref="DataLakeAnalyticsAccountResource"/>.
+    /// To get a <see cref="DataLakeAnalyticsStorageAccountInformationCollection"/> instance call the GetDataLakeAnalyticsStorageAccountInformation method from an instance of <see cref="DataLakeAnalyticsAccountResource"/>.
     /// </summary>
     public partial class DataLakeAnalyticsStorageAccountInformationCollection : ArmCollection, IEnumerable<DataLakeAnalyticsStorageAccountInformationResource>, IAsyncEnumerable<DataLakeAnalyticsStorageAccountInformationResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Add</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation> CreateOrUpdateAsync(WaitUntil waitUntil, string storageAccountName, DataLakeAnalyticsStorageAccountInformationCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Add</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation CreateOrUpdate(WaitUntil waitUntil, string storageAccountName, DataLakeAnalyticsStorageAccountInformationCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
         public virtual async Task<Response<DataLakeAnalyticsStorageAccountInformationResource>> GetAsync(string storageAccountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
         public virtual Response<DataLakeAnalyticsStorageAccountInformationResource> Get(string storageAccountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.Get");
             scope.Start();
@@ -220,18 +287,26 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_ListByAccount</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="options"> A property bag which contains all the parameters of this method except the LRO qualifier and request context parameter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DataLakeAnalyticsStorageAccountInformationResource> GetAllAsync(DataLakeAnalyticsStorageAccountInformationCollectionGetAllOptions options, CancellationToken cancellationToken = default)
         {
             options ??= new DataLakeAnalyticsStorageAccountInformationCollectionGetAllOptions();
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.CreateListByAccountRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, options.Filter, options.Top, options.Skip, options.Select, options.Orderby, options.Count);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.CreateListByAccountNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, options.Filter, options.Top, options.Skip, options.Select, options.Orderby, options.Count);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DataLakeAnalyticsStorageAccountInformationResource(Client, DataLakeAnalyticsStorageAccountInformationData.DeserializeDataLakeAnalyticsStorageAccountInformationData(e)), _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics, Pipeline, "DataLakeAnalyticsStorageAccountInformationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DataLakeAnalyticsStorageAccountInformationResource(Client, DataLakeAnalyticsStorageAccountInformationData.DeserializeDataLakeAnalyticsStorageAccountInformationData(e)), _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics, Pipeline, "DataLakeAnalyticsStorageAccountInformationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -245,18 +320,26 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_ListByAccount</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="options"> A property bag which contains all the parameters of this method except the LRO qualifier and request context parameter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DataLakeAnalyticsStorageAccountInformationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DataLakeAnalyticsStorageAccountInformationResource> GetAll(DataLakeAnalyticsStorageAccountInformationCollectionGetAllOptions options, CancellationToken cancellationToken = default)
         {
             options ??= new DataLakeAnalyticsStorageAccountInformationCollectionGetAllOptions();
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.CreateListByAccountRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, options.Filter, options.Top, options.Skip, options.Select, options.Orderby, options.Count);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.CreateListByAccountNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, options.Filter, options.Top, options.Skip, options.Select, options.Orderby, options.Count);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DataLakeAnalyticsStorageAccountInformationResource(Client, DataLakeAnalyticsStorageAccountInformationData.DeserializeDataLakeAnalyticsStorageAccountInformationData(e)), _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics, Pipeline, "DataLakeAnalyticsStorageAccountInformationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DataLakeAnalyticsStorageAccountInformationResource(Client, DataLakeAnalyticsStorageAccountInformationData.DeserializeDataLakeAnalyticsStorageAccountInformationData(e)), _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics, Pipeline, "DataLakeAnalyticsStorageAccountInformationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -270,6 +353,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
@@ -278,7 +369,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string storageAccountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.Exists");
             scope.Start();
@@ -305,6 +403,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <term>Operation Id</term>
         /// <description>StorageAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
@@ -313,7 +419,14 @@ namespace Azure.ResourceManager.DataLakeAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
         public virtual Response<bool> Exists(string storageAccountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageAccountName, nameof(storageAccountName));
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
 
             using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.Exists");
             scope.Start();
@@ -321,6 +434,110 @@ namespace Azure.ResourceManager.DataLakeAnalytics
             {
                 var response = _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageAccountName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAccounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageAccountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DataLakeAnalyticsStorageAccountInformationResource>> GetIfExistsAsync(string storageAccountName, CancellationToken cancellationToken = default)
+        {
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
+
+            using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageAccountName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DataLakeAnalyticsStorageAccountInformationResource>(response.GetRawResponse());
+                return Response.FromValue(new DataLakeAnalyticsStorageAccountInformationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAccounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2016-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DataLakeAnalyticsStorageAccountInformationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageAccountName"> The name of the Azure Storage account for which to retrieve the details. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageAccountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageAccountName"/> is null. </exception>
+        public virtual NullableResponse<DataLakeAnalyticsStorageAccountInformationResource> GetIfExists(string storageAccountName, CancellationToken cancellationToken = default)
+        {
+            if (storageAccountName == null)
+            {
+                throw new ArgumentNullException(nameof(storageAccountName));
+            }
+            if (storageAccountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageAccountName));
+            }
+
+            using var scope = _dataLakeAnalyticsStorageAccountInformationStorageAccountsClientDiagnostics.CreateScope("DataLakeAnalyticsStorageAccountInformationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _dataLakeAnalyticsStorageAccountInformationStorageAccountsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageAccountName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DataLakeAnalyticsStorageAccountInformationResource>(response.GetRawResponse());
+                return Response.FromValue(new DataLakeAnalyticsStorageAccountInformationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

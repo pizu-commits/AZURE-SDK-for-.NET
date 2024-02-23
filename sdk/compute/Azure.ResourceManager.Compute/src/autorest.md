@@ -10,12 +10,16 @@ Run `dotnet build /t:GenerateCode` to generate code.
 azure-arm: true
 library-name: Compute
 namespace: Azure.ResourceManager.Compute
-require: https://github.com/Azure/azure-rest-api-specs/blob/f31a209b4013a8661200718a9e441efee4f379c3/specification/compute/resource-manager/readme.md
+require: https://github.com/Azure/azure-rest-api-specs/blob/f715b7fee5e648d06b17467b08473f6cbeee84e0/specification/compute/resource-manager/readme.md
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
+sample-gen:
+  output-folder: $(this-folder)/../samples/Generated
+  clear-output-folder: true
 skip-csproj: true
 modelerfour:
   flatten-payloads: false
+use-model-reader-writer: true
 
 update-required-copy:
   GalleryImage: OSType
@@ -32,7 +36,7 @@ keep-plural-enums:
 - IntervalInMins
 - VmGuestPatchClassificationForWindows # we have this because the generator will change windows to window which does not make sense
 
-rename-rules:
+acronym-mapping:
   CPU: Cpu
   CPUs: Cpus
   Os: OS
@@ -160,6 +164,7 @@ rename-mapping:
   DiskRestorePoint.properties.sourceResourceLocation: -|azure-location
   Encryption: DiskEncryption
   Encryption.diskEncryptionSetId: -|arm-id
+  Encryption.type: EncryptionType
   CreationData: DiskCreationData
   CreationData.storageAccountId: -|arm-id
   CreationData.sourceResourceId: -|arm-id
@@ -267,6 +272,11 @@ rename-mapping:
   CommunityGalleryImage.properties.identifier: ImageIdentifier
   GalleryTargetExtendedLocation.storageAccountType: GalleryStorageAccountType
   FileFormat: DiskImageFileFormat
+  CreationData.elasticSanResourceId: -|arm-id
+  NetworkInterfaceAuxiliarySku: ComputeNetworkInterfaceAuxiliarySku
+  NetworkInterfaceAuxiliaryMode: ComputeNetworkInterfaceAuxiliaryMode
+  CommunityGalleryInfo.publisherUri: PublisherUriString
+  GalleryArtifactVersionFullSource.virtualMachineId: -|arm-id
 
 directive:
 # copy the systemData from common-types here so that it will be automatically replaced
@@ -369,4 +379,5 @@ directive:
   - from: restorePoint.json
     where: $.definitions.RestorePointSourceVMStorageProfile.properties.dataDisks
     transform: $["x-ms-client-name"] = "DataDiskList";
+    
 ```

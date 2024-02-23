@@ -15,7 +15,7 @@ namespace Azure.AI.TextAnalytics.Models
     /// <summary> The HealthcareEntity. </summary>
     internal partial class HealthcareEntityInternal
     {
-        /// <summary> Initializes a new instance of HealthcareEntityInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="HealthcareEntityInternal"/>. </summary>
         /// <param name="text"> Entity text as appears in the request. </param>
         /// <param name="category"> Healthcare Entity Category. </param>
         /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
@@ -24,7 +24,10 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public HealthcareEntityInternal(string text, HealthcareEntityCategory category, int offset, int length, double confidenceScore)
         {
-            Argument.AssertNotNull(text, nameof(text));
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
 
             Text = text;
             Category = category;
@@ -34,7 +37,7 @@ namespace Azure.AI.TextAnalytics.Models
             Links = new ChangeTrackingList<EntityDataSource>();
         }
 
-        /// <summary> Initializes a new instance of HealthcareEntityInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="HealthcareEntityInternal"/>. </summary>
         /// <param name="text"> Entity text as appears in the request. </param>
         /// <param name="category"> Healthcare Entity Category. </param>
         /// <param name="subcategory"> (Optional) Entity sub type. </param>

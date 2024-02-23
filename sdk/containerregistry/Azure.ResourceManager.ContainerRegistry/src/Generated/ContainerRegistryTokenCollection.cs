@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ContainerRegistry
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerRegistryTokenResource" /> and their operations.
-    /// Each <see cref="ContainerRegistryTokenResource" /> in the collection will belong to the same instance of <see cref="ContainerRegistryResource" />.
-    /// To get a <see cref="ContainerRegistryTokenCollection" /> instance call the GetContainerRegistryTokens method from an instance of <see cref="ContainerRegistryResource" />.
+    /// A class representing a collection of <see cref="ContainerRegistryTokenResource"/> and their operations.
+    /// Each <see cref="ContainerRegistryTokenResource"/> in the collection will belong to the same instance of <see cref="ContainerRegistryResource"/>.
+    /// To get a <see cref="ContainerRegistryTokenCollection"/> instance call the GetContainerRegistryTokens method from an instance of <see cref="ContainerRegistryResource"/>.
     /// </summary>
     public partial class ContainerRegistryTokenCollection : ArmCollection, IEnumerable<ContainerRegistryTokenResource>, IAsyncEnumerable<ContainerRegistryTokenResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerRegistryTokenResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string tokenName, ContainerRegistryTokenData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerRegistryTokenResource> CreateOrUpdate(WaitUntil waitUntil, string tokenName, ContainerRegistryTokenData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tokenName"> The name of the token. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
         public virtual async Task<Response<ContainerRegistryTokenResource>> GetAsync(string tokenName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tokenName"> The name of the token. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
         public virtual Response<ContainerRegistryTokenResource> Get(string tokenName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerRegistryTokenResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerRegistryTokenResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerRegistryTokenResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryTokenTokensRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryTokenTokensRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTokenResource(Client, ContainerRegistryTokenData.DeserializeContainerRegistryTokenData(e)), _containerRegistryTokenTokensClientDiagnostics, Pipeline, "ContainerRegistryTokenCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTokenResource(Client, ContainerRegistryTokenData.DeserializeContainerRegistryTokenData(e)), _containerRegistryTokenTokensClientDiagnostics, Pipeline, "ContainerRegistryTokenCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerRegistryTokenResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerRegistryTokenResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerRegistryTokenResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryTokenTokensRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryTokenTokensRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTokenResource(Client, ContainerRegistryTokenData.DeserializeContainerRegistryTokenData(e)), _containerRegistryTokenTokensClientDiagnostics, Pipeline, "ContainerRegistryTokenCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTokenResource(Client, ContainerRegistryTokenData.DeserializeContainerRegistryTokenData(e)), _containerRegistryTokenTokensClientDiagnostics, Pipeline, "ContainerRegistryTokenCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tokenName"> The name of the token. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string tokenName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Tokens_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tokenName"> The name of the token. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
         public virtual Response<bool> Exists(string tokenName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tokenName, nameof(tokenName));
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
 
             using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.ContainerRegistry
             {
                 var response = _containerRegistryTokenTokensRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, tokenName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/tokens/{tokenName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Tokens_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="tokenName"> The name of the token. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="tokenName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerRegistryTokenResource>> GetIfExistsAsync(string tokenName, CancellationToken cancellationToken = default)
+        {
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
+
+            using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerRegistryTokenTokensRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, tokenName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryTokenResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryTokenResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/tokens/{tokenName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Tokens_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTokenResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="tokenName"> The name of the token. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="tokenName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tokenName"/> is null. </exception>
+        public virtual NullableResponse<ContainerRegistryTokenResource> GetIfExists(string tokenName, CancellationToken cancellationToken = default)
+        {
+            if (tokenName == null)
+            {
+                throw new ArgumentNullException(nameof(tokenName));
+            }
+            if (tokenName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tokenName));
+            }
+
+            using var scope = _containerRegistryTokenTokensClientDiagnostics.CreateScope("ContainerRegistryTokenCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerRegistryTokenTokensRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, tokenName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryTokenResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryTokenResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

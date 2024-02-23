@@ -7,21 +7,26 @@
 
 using System;
 using Azure.Communication;
-using Azure.Core;
 
 namespace Azure.Communication.CallingServer
 {
     /// <summary> The request payload for redirecting the call. </summary>
     internal partial class RedirectCallRequestInternal
     {
-        /// <summary> Initializes a new instance of RedirectCallRequestInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="RedirectCallRequestInternal"/>. </summary>
         /// <param name="incomingCallContext"> The context associated with the call. </param>
         /// <param name="target"> The target identity to redirect the call to. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="incomingCallContext"/> or <paramref name="target"/> is null. </exception>
         public RedirectCallRequestInternal(string incomingCallContext, CommunicationIdentifierModel target)
         {
-            Argument.AssertNotNull(incomingCallContext, nameof(incomingCallContext));
-            Argument.AssertNotNull(target, nameof(target));
+            if (incomingCallContext == null)
+            {
+                throw new ArgumentNullException(nameof(incomingCallContext));
+            }
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
 
             IncomingCallContext = incomingCallContext;
             Target = target;

@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> AmazonRdsForOracle database. </summary>
     public partial class AmazonRdsForOracleLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AmazonRdsForOracleLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonRdsForOracleLinkedService"/>. </summary>
         /// <param name="connectionString"> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="connectionString"/> is null. </exception>
         public AmazonRdsForOracleLinkedService(DataFactoryElement<string> connectionString)
         {
-            Argument.AssertNotNull(connectionString, nameof(connectionString));
+            if (connectionString == null)
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
 
             ConnectionString = connectionString;
             LinkedServiceType = "AmazonRdsForOracle";
         }
 
-        /// <summary> Initializes a new instance of AmazonRdsForOracleLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonRdsForOracleLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -42,6 +44,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Password = password;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AmazonRdsForOracle";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AmazonRdsForOracleLinkedService"/> for deserialization. </summary>
+        internal AmazonRdsForOracleLinkedService()
+        {
         }
 
         /// <summary> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </summary>

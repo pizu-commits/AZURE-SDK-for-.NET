@@ -8,24 +8,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.AI.MetricsAdvisor.Models
 {
     /// <summary> The SeriesResultList. </summary>
     internal partial class SeriesResultList
     {
-        /// <summary> Initializes a new instance of SeriesResultList. </summary>
+        /// <summary> Initializes a new instance of <see cref="SeriesResultList"/>. </summary>
         /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal SeriesResultList(IEnumerable<MetricEnrichedSeriesData> value)
         {
-            Argument.AssertNotNull(value, nameof(value));
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             Value = value.ToList();
         }
 
-        /// <summary> Initializes a new instance of SeriesResultList. </summary>
+        /// <summary> Initializes a new instance of <see cref="SeriesResultList"/>. </summary>
         /// <param name="value"></param>
         internal SeriesResultList(IReadOnlyList<MetricEnrichedSeriesData> value)
         {

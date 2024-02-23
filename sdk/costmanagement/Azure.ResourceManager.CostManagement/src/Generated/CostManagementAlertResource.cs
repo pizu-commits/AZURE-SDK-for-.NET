@@ -19,13 +19,15 @@ namespace Azure.ResourceManager.CostManagement
 {
     /// <summary>
     /// A Class representing a CostManagementAlert along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="CostManagementAlertResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetCostManagementAlertResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ArmResource" /> using the GetCostManagementAlert method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="CostManagementAlertResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetCostManagementAlertResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ArmResource"/> using the GetCostManagementAlert method.
     /// </summary>
     public partial class CostManagementAlertResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="CostManagementAlertResource"/> instance. </summary>
+        /// <param name="scope"> The scope. </param>
+        /// <param name="alertId"> The alertId. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string scope, string alertId)
         {
             var resourceId = $"{scope}/providers/Microsoft.CostManagement/alerts/{alertId}";
@@ -36,12 +38,15 @@ namespace Azure.ResourceManager.CostManagement
         private readonly AlertsRestOperations _costManagementAlertAlertsRestClient;
         private readonly CostManagementAlertData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.CostManagement/alerts";
+
         /// <summary> Initializes a new instance of the <see cref="CostManagementAlertResource"/> class for mocking. </summary>
         protected CostManagementAlertResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "CostManagementAlertResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="CostManagementAlertResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal CostManagementAlertResource(ArmClient client, CostManagementAlertData data) : this(client, data.Id)
@@ -62,9 +67,6 @@ namespace Azure.ResourceManager.CostManagement
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.CostManagement/alerts";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +100,14 @@ namespace Azure.ResourceManager.CostManagement
         /// <term>Operation Id</term>
         /// <description>Alerts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CostManagementAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -129,6 +139,14 @@ namespace Azure.ResourceManager.CostManagement
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Alerts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CostManagementAlertResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -162,6 +180,14 @@ namespace Azure.ResourceManager.CostManagement
         /// <term>Operation Id</term>
         /// <description>Alerts_Dismiss</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CostManagementAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Parameters supplied to the Dismiss Alert operation. </param>
@@ -169,7 +195,10 @@ namespace Azure.ResourceManager.CostManagement
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<CostManagementAlertResource>> UpdateAsync(CostManagementAlertPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _costManagementAlertAlertsClientDiagnostics.CreateScope("CostManagementAlertResource.Update");
             scope.Start();
@@ -196,6 +225,14 @@ namespace Azure.ResourceManager.CostManagement
         /// <term>Operation Id</term>
         /// <description>Alerts_Dismiss</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CostManagementAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Parameters supplied to the Dismiss Alert operation. </param>
@@ -203,7 +240,10 @@ namespace Azure.ResourceManager.CostManagement
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<CostManagementAlertResource> Update(CostManagementAlertPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _costManagementAlertAlertsClientDiagnostics.CreateScope("CostManagementAlertResource.Update");
             scope.Start();

@@ -15,21 +15,27 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis
     /// <summary> A paragraph object consisting with contiguous lines generally with common alignment and spacing. </summary>
     public partial class DocumentParagraph
     {
-        /// <summary> Initializes a new instance of DocumentParagraph. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentParagraph"/>. </summary>
         /// <param name="content"> Concatenated content of the paragraph in reading order. </param>
         /// <param name="spans"> Location of the paragraph in the reading order concatenated content. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentParagraph(string content, IEnumerable<DocumentSpan> spans)
         {
-            Argument.AssertNotNull(content, nameof(content));
-            Argument.AssertNotNull(spans, nameof(spans));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+            if (spans == null)
+            {
+                throw new ArgumentNullException(nameof(spans));
+            }
 
             Content = content;
             BoundingRegions = new ChangeTrackingList<BoundingRegion>();
             Spans = spans.ToList();
         }
 
-        /// <summary> Initializes a new instance of DocumentParagraph. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentParagraph"/>. </summary>
         /// <param name="role"> Semantic role of the paragraph. </param>
         /// <param name="content"> Concatenated content of the paragraph in reading order. </param>
         /// <param name="boundingRegions"> Bounding regions covering the paragraph. </param>

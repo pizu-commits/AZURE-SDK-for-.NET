@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.ServiceBus
 {
     /// <summary>
     /// A Class representing a ServiceBusNamespaceAuthorizationRule along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="ServiceBusNamespaceAuthorizationRuleResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetServiceBusNamespaceAuthorizationRuleResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ServiceBusNamespaceResource" /> using the GetServiceBusNamespaceAuthorizationRule method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="ServiceBusNamespaceAuthorizationRuleResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetServiceBusNamespaceAuthorizationRuleResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ServiceBusNamespaceResource"/> using the GetServiceBusNamespaceAuthorizationRule method.
     /// </summary>
     public partial class ServiceBusNamespaceAuthorizationRuleResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="ServiceBusNamespaceAuthorizationRuleResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="namespaceName"> The namespaceName. </param>
+        /// <param name="authorizationRuleName"> The authorizationRuleName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string namespaceName, string authorizationRuleName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.ServiceBus
         private readonly NamespaceAuthorizationRulesRestOperations _serviceBusNamespaceAuthorizationRuleNamespaceAuthorizationRulesRestClient;
         private readonly ServiceBusAuthorizationRuleData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.ServiceBus/namespaces/AuthorizationRules";
+
         /// <summary> Initializes a new instance of the <see cref="ServiceBusNamespaceAuthorizationRuleResource"/> class for mocking. </summary>
         protected ServiceBusNamespaceAuthorizationRuleResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "ServiceBusNamespaceAuthorizationRuleResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="ServiceBusNamespaceAuthorizationRuleResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal ServiceBusNamespaceAuthorizationRuleResource(ArmClient client, ServiceBusAuthorizationRuleData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.ServiceBus
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.ServiceBus/namespaces/AuthorizationRules";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +102,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +142,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <item>
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -196,6 +224,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -230,6 +266,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -238,7 +282,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ServiceBusNamespaceAuthorizationRuleResource>> UpdateAsync(WaitUntil waitUntil, ServiceBusAuthorizationRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _serviceBusNamespaceAuthorizationRuleNamespaceAuthorizationRulesClientDiagnostics.CreateScope("ServiceBusNamespaceAuthorizationRuleResource.Update");
             scope.Start();
@@ -268,6 +315,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -276,7 +331,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ServiceBusNamespaceAuthorizationRuleResource> Update(WaitUntil waitUntil, ServiceBusAuthorizationRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _serviceBusNamespaceAuthorizationRuleNamespaceAuthorizationRulesClientDiagnostics.CreateScope("ServiceBusNamespaceAuthorizationRuleResource.Update");
             scope.Start();
@@ -305,6 +363,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <item>
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_ListKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -336,6 +402,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_ListKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -366,6 +440,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Parameters supplied to regenerate the authorization rule. </param>
@@ -373,7 +455,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<ServiceBusAccessKeys>> RegenerateKeysAsync(ServiceBusRegenerateAccessKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _serviceBusNamespaceAuthorizationRuleNamespaceAuthorizationRulesClientDiagnostics.CreateScope("ServiceBusNamespaceAuthorizationRuleResource.RegenerateKeys");
             scope.Start();
@@ -400,6 +485,14 @@ namespace Azure.ResourceManager.ServiceBus
         /// <term>Operation Id</term>
         /// <description>NamespaceAuthorizationRules_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceBusNamespaceAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Parameters supplied to regenerate the authorization rule. </param>
@@ -407,7 +500,10 @@ namespace Azure.ResourceManager.ServiceBus
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<ServiceBusAccessKeys> RegenerateKeys(ServiceBusRegenerateAccessKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _serviceBusNamespaceAuthorizationRuleNamespaceAuthorizationRulesClientDiagnostics.CreateScope("ServiceBusNamespaceAuthorizationRuleResource.RegenerateKeys");
             scope.Start();

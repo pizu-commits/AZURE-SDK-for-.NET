@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Synapse
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource" /> and their operations.
-    /// Each <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource" /> in the collection will belong to the same instance of <see cref="SynapsePrivateLinkHubResource" />.
-    /// To get a <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubCollection" /> instance call the GetSynapsePrivateEndpointConnectionForPrivateLinkHubs method from an instance of <see cref="SynapsePrivateLinkHubResource" />.
+    /// A class representing a collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/> and their operations.
+    /// Each <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/> in the collection will belong to the same instance of <see cref="SynapsePrivateLinkHubResource"/>.
+    /// To get a <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubCollection"/> instance call the GetSynapsePrivateEndpointConnectionForPrivateLinkHubs method from an instance of <see cref="SynapsePrivateLinkHubResource"/>.
     /// </summary>
     public partial class SynapsePrivateEndpointConnectionForPrivateLinkHubCollection : ArmCollection, IEnumerable<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>, IAsyncEnumerable<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
         public virtual async Task<Response<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>> GetAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionName, nameof(privateEndpointConnectionName));
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
 
             using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
         public virtual Response<SynapsePrivateEndpointConnectionForPrivateLinkHubResource> Get(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionName, nameof(privateEndpointConnectionName));
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
 
             using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SynapsePrivateEndpointConnectionForPrivateLinkHubResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, SynapsePrivateEndpointConnectionForPrivateLinkHubData.DeserializeSynapsePrivateEndpointConnectionForPrivateLinkHubData(e)), _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics, Pipeline, "SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, SynapsePrivateEndpointConnectionForPrivateLinkHubData.DeserializeSynapsePrivateEndpointConnectionForPrivateLinkHubData(e)), _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics, Pipeline, "SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SynapsePrivateEndpointConnectionForPrivateLinkHubResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, SynapsePrivateEndpointConnectionForPrivateLinkHubData.DeserializeSynapsePrivateEndpointConnectionForPrivateLinkHubData(e)), _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics, Pipeline, "SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, SynapsePrivateEndpointConnectionForPrivateLinkHubData.DeserializeSynapsePrivateEndpointConnectionForPrivateLinkHubData(e)), _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics, Pipeline, "SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionName, nameof(privateEndpointConnectionName));
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
 
             using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
         public virtual Response<bool> Exists(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionName, nameof(privateEndpointConnectionName));
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
 
             using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.Synapse
             {
                 var response = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateEndpointConnectionName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}/privateEndpointConnections/{privateEndpointConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>> GetIfExistsAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
+
+            using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateEndpointConnectionName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/privateLinkHubs/{privateLinkHubName}/privateEndpointConnections/{privateEndpointConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateEndpointConnectionsPrivateLinkHub_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapsePrivateEndpointConnectionForPrivateLinkHubResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="privateEndpointConnectionName"> Name of the privateEndpointConnection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        public virtual NullableResponse<SynapsePrivateEndpointConnectionForPrivateLinkHubResource> GetIfExists(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (privateEndpointConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionName));
+            }
+            if (privateEndpointConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionName));
+            }
+
+            using var scope = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubClientDiagnostics.CreateScope("SynapsePrivateEndpointConnectionForPrivateLinkHubCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _synapsePrivateEndpointConnectionForPrivateLinkHubPrivateEndpointConnectionsPrivateLinkHubRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateEndpointConnectionName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapsePrivateEndpointConnectionForPrivateLinkHubResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapsePrivateEndpointConnectionForPrivateLinkHubResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

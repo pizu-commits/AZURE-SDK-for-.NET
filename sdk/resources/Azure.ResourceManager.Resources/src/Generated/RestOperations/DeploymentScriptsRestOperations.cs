@@ -62,7 +62,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Creates a deployment script. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="data"> Deployment script supplied to the operation. </param>
@@ -71,10 +71,34 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> CreateAsync(string subscriptionId, string resourceGroupName, string scriptName, ArmDeploymentScriptData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, resourceGroupName, scriptName, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -89,7 +113,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Creates a deployment script. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="data"> Deployment script supplied to the operation. </param>
@@ -98,10 +122,34 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Create(string subscriptionId, string resourceGroupName, string scriptName, ArmDeploymentScriptData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, resourceGroupName, scriptName, data);
             _pipeline.Send(message, cancellationToken);
@@ -140,7 +188,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Updates deployment script tags with specified values. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="patch"> Deployment script resource with the tags to be updated. </param>
@@ -149,10 +197,34 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptData>> UpdateAsync(string subscriptionId, string resourceGroupName, string scriptName, ArmDeploymentScriptPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, scriptName, patch);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -171,7 +243,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Updates deployment script tags with specified values. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="patch"> Deployment script resource with the tags to be updated. </param>
@@ -180,10 +252,34 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptData> Update(string subscriptionId, string resourceGroupName, string scriptName, ArmDeploymentScriptPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, scriptName, patch);
             _pipeline.Send(message, cancellationToken);
@@ -222,7 +318,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets a deployment script with a given name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -230,9 +326,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptData>> GetAsync(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, scriptName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -253,7 +370,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets a deployment script with a given name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -261,9 +378,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptData> Get(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, scriptName);
             _pipeline.Send(message, cancellationToken);
@@ -304,7 +442,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Deletes a deployment script. When operation completes, status code 200 returned without content. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -312,9 +450,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, scriptName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -329,7 +488,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Deletes a deployment script. When operation completes, status code 200 returned without content. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -337,9 +496,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Delete(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, scriptName);
             _pipeline.Send(message, cancellationToken);
@@ -371,13 +551,20 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Lists all deployment scripts for a given subscription. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptListResult>> ListBySubscriptionAsync(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionRequest(subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -396,13 +583,20 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Lists all deployment scripts for a given subscription. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptListResult> ListBySubscription(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionRequest(subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -442,7 +636,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets deployment script logs for a given deployment script name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -450,9 +644,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ScriptLogsList>> GetLogsAsync(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetLogsRequest(subscriptionId, resourceGroupName, scriptName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -471,7 +686,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets deployment script logs for a given deployment script name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -479,9 +694,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ScriptLogsList> GetLogs(string subscriptionId, string resourceGroupName, string scriptName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetLogsRequest(subscriptionId, resourceGroupName, scriptName);
             _pipeline.Send(message, cancellationToken);
@@ -525,7 +761,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets deployment script logs for a given deployment script name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="tail"> The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb. </param>
@@ -534,9 +770,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ScriptLogData>> GetLogsDefaultAsync(string subscriptionId, string resourceGroupName, string scriptName, int? tail = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetLogsDefaultRequest(subscriptionId, resourceGroupName, scriptName, tail);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -557,7 +814,7 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Gets deployment script logs for a given deployment script name. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="scriptName"> Name of the deployment script. </param>
         /// <param name="tail"> The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb. </param>
@@ -566,9 +823,30 @@ namespace Azure.ResourceManager.Resources
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="scriptName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ScriptLogData> GetLogsDefault(string subscriptionId, string resourceGroupName, string scriptName, int? tail = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(scriptName, nameof(scriptName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (scriptName == null)
+            {
+                throw new ArgumentNullException(nameof(scriptName));
+            }
+            if (scriptName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scriptName));
+            }
 
             using var message = CreateGetLogsDefaultRequest(subscriptionId, resourceGroupName, scriptName, tail);
             _pipeline.Send(message, cancellationToken);
@@ -608,15 +886,29 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Lists deployments scripts. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptListResult>> ListByResourceGroupAsync(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -635,15 +927,29 @@ namespace Azure.ResourceManager.Resources
         }
 
         /// <summary> Lists deployments scripts. </summary>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptListResult> ListByResourceGroup(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);
@@ -677,14 +983,24 @@ namespace Azure.ResourceManager.Resources
 
         /// <summary> Lists all deployment scripts for a given subscription. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptListResult>> ListBySubscriptionNextPageAsync(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionNextPageRequest(nextLink, subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -704,14 +1020,24 @@ namespace Azure.ResourceManager.Resources
 
         /// <summary> Lists all deployment scripts for a given subscription. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptListResult> ListBySubscriptionNextPage(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListBySubscriptionNextPageRequest(nextLink, subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -745,16 +1071,33 @@ namespace Azure.ResourceManager.Resources
 
         /// <summary> Lists deployments scripts. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ArmDeploymentScriptListResult>> ListByResourceGroupNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -774,16 +1117,33 @@ namespace Azure.ResourceManager.Resources
 
         /// <summary> Lists deployments scripts. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The Microsoft Azure subscription ID. </param>
+        /// <param name="subscriptionId"> Subscription Id which forms part of the URI for every service call. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ArmDeploymentScriptListResult> ListByResourceGroupNextPage(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);

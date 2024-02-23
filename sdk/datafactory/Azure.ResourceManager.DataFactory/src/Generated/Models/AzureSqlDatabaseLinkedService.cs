@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Microsoft Azure SQL Database linked service. </summary>
     public partial class AzureSqlDatabaseLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AzureSqlDatabaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureSqlDatabaseLinkedService"/>. </summary>
         /// <param name="connectionString"> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="connectionString"/> is null. </exception>
         public AzureSqlDatabaseLinkedService(DataFactoryElement<string> connectionString)
         {
-            Argument.AssertNotNull(connectionString, nameof(connectionString));
+            if (connectionString == null)
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
 
             ConnectionString = connectionString;
             LinkedServiceType = "AzureSqlDatabase";
         }
 
-        /// <summary> Initializes a new instance of AzureSqlDatabaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureSqlDatabaseLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -54,6 +56,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             AlwaysEncryptedSettings = alwaysEncryptedSettings;
             Credential = credential;
             LinkedServiceType = linkedServiceType ?? "AzureSqlDatabase";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureSqlDatabaseLinkedService"/> for deserialization. </summary>
+        internal AzureSqlDatabaseLinkedService()
+        {
         }
 
         /// <summary> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </summary>

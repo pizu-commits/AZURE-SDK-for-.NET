@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The Entity. </summary>
     internal partial class Entity
     {
-        /// <summary> Initializes a new instance of Entity. </summary>
+        /// <summary> Initializes a new instance of <see cref="Entity"/>. </summary>
         /// <param name="text"> Entity text as appears in the request. </param>
         /// <param name="category"> Entity type. </param>
         /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
@@ -22,8 +21,14 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> or <paramref name="category"/> is null. </exception>
         public Entity(string text, string category, int offset, int length, double confidenceScore)
         {
-            Argument.AssertNotNull(text, nameof(text));
-            Argument.AssertNotNull(category, nameof(category));
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            if (category == null)
+            {
+                throw new ArgumentNullException(nameof(category));
+            }
 
             Text = text;
             Category = category;
@@ -32,7 +37,7 @@ namespace Azure.AI.TextAnalytics.Models
             ConfidenceScore = confidenceScore;
         }
 
-        /// <summary> Initializes a new instance of Entity. </summary>
+        /// <summary> Initializes a new instance of <see cref="Entity"/>. </summary>
         /// <param name="text"> Entity text as appears in the request. </param>
         /// <param name="category"> Entity type. </param>
         /// <param name="subcategory"> (Optional) Entity sub type. </param>

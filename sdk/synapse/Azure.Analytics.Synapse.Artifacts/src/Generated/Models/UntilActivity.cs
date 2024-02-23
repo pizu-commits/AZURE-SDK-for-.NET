@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> This activity executes inner activities until the specified boolean expression results to true or timeout is reached, whichever is earlier. </summary>
     public partial class UntilActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of UntilActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="UntilActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="expression"> An expression that would evaluate to Boolean. The loop will continue until this expression evaluates to true. </param>
         /// <param name="activities">
@@ -26,16 +25,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="expression"/> or <paramref name="activities"/> is null. </exception>
         public UntilActivity(string name, Expression expression, IEnumerable<Activity> activities) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(expression, nameof(expression));
-            Argument.AssertNotNull(activities, nameof(activities));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (expression == null)
+            {
+                throw new ArgumentNullException(nameof(expression));
+            }
+            if (activities == null)
+            {
+                throw new ArgumentNullException(nameof(activities));
+            }
 
             Expression = expression;
             Activities = activities.ToList();
             Type = "Until";
         }
 
-        /// <summary> Initializes a new instance of UntilActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="UntilActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

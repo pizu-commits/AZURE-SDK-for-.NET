@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.NetworkCloud
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NetworkCloudCloudServicesNetworkResource" /> and their operations.
-    /// Each <see cref="NetworkCloudCloudServicesNetworkResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="NetworkCloudCloudServicesNetworkCollection" /> instance call the GetNetworkCloudCloudServicesNetworks method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="NetworkCloudCloudServicesNetworkResource"/> and their operations.
+    /// Each <see cref="NetworkCloudCloudServicesNetworkResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="NetworkCloudCloudServicesNetworkCollection"/> instance call the GetNetworkCloudCloudServicesNetworks method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class NetworkCloudCloudServicesNetworkCollection : ArmCollection, IEnumerable<NetworkCloudCloudServicesNetworkResource>, IAsyncEnumerable<NetworkCloudCloudServicesNetworkResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<NetworkCloudCloudServicesNetworkResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string cloudServicesNetworkName, NetworkCloudCloudServicesNetworkData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<NetworkCloudCloudServicesNetworkResource> CreateOrUpdate(WaitUntil waitUntil, string cloudServicesNetworkName, NetworkCloudCloudServicesNetworkData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
         public virtual async Task<Response<NetworkCloudCloudServicesNetworkResource>> GetAsync(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
         public virtual Response<NetworkCloudCloudServicesNetworkResource> Get(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NetworkCloudCloudServicesNetworkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NetworkCloudCloudServicesNetworkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NetworkCloudCloudServicesNetworkResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudCloudServicesNetworkResource(Client, NetworkCloudCloudServicesNetworkData.DeserializeNetworkCloudCloudServicesNetworkData(e)), _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics, Pipeline, "NetworkCloudCloudServicesNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudCloudServicesNetworkResource(Client, NetworkCloudCloudServicesNetworkData.DeserializeNetworkCloudCloudServicesNetworkData(e)), _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics, Pipeline, "NetworkCloudCloudServicesNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NetworkCloudCloudServicesNetworkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NetworkCloudCloudServicesNetworkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NetworkCloudCloudServicesNetworkResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudCloudServicesNetworkResource(Client, NetworkCloudCloudServicesNetworkData.DeserializeNetworkCloudCloudServicesNetworkData(e)), _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics, Pipeline, "NetworkCloudCloudServicesNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudCloudServicesNetworkResource(Client, NetworkCloudCloudServicesNetworkData.DeserializeNetworkCloudCloudServicesNetworkData(e)), _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics, Pipeline, "NetworkCloudCloudServicesNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>CloudServicesNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
         public virtual Response<bool> Exists(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(cloudServicesNetworkName, nameof(cloudServicesNetworkName));
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
 
             using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 var response = _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NetworkCloudCloudServicesNetworkResource>> GetIfExistsAsync(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
+
+            using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudCloudServicesNetworkResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudCloudServicesNetworkResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CloudServicesNetworks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudCloudServicesNetworkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cloudServicesNetworkName"> The name of the cloud services network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="cloudServicesNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="cloudServicesNetworkName"/> is null. </exception>
+        public virtual NullableResponse<NetworkCloudCloudServicesNetworkResource> GetIfExists(string cloudServicesNetworkName, CancellationToken cancellationToken = default)
+        {
+            if (cloudServicesNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(cloudServicesNetworkName));
+            }
+            if (cloudServicesNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cloudServicesNetworkName));
+            }
+
+            using var scope = _networkCloudCloudServicesNetworkCloudServicesNetworksClientDiagnostics.CreateScope("NetworkCloudCloudServicesNetworkCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _networkCloudCloudServicesNetworkCloudServicesNetworksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, cloudServicesNetworkName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudCloudServicesNetworkResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudCloudServicesNetworkResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

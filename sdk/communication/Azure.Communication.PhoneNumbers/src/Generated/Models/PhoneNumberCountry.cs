@@ -6,21 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.PhoneNumbers
 {
     /// <summary> Represents a country. </summary>
     public partial class PhoneNumberCountry
     {
-        /// <summary> Initializes a new instance of PhoneNumberCountry. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoneNumberCountry"/>. </summary>
         /// <param name="localizedName"> Represents the name of the country. </param>
         /// <param name="countryCode"> Represents the abbreviated name of the country. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="localizedName"/> or <paramref name="countryCode"/> is null. </exception>
         internal PhoneNumberCountry(string localizedName, string countryCode)
         {
-            Argument.AssertNotNull(localizedName, nameof(localizedName));
-            Argument.AssertNotNull(countryCode, nameof(countryCode));
+            if (localizedName == null)
+            {
+                throw new ArgumentNullException(nameof(localizedName));
+            }
+            if (countryCode == null)
+            {
+                throw new ArgumentNullException(nameof(countryCode));
+            }
 
             LocalizedName = localizedName;
             CountryCode = countryCode;

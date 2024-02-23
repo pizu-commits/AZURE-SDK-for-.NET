@@ -15,24 +15,33 @@ namespace Azure.ResourceManager.AlertsManagement.Models
     /// <summary> Add action groups to alert processing rule. </summary>
     public partial class AlertProcessingRuleAddGroupsAction : AlertProcessingRuleAction
     {
-        /// <summary> Initializes a new instance of AlertProcessingRuleAddGroupsAction. </summary>
+        /// <summary> Initializes a new instance of <see cref="AlertProcessingRuleAddGroupsAction"/>. </summary>
         /// <param name="actionGroupIds"> List of action group Ids to add to alert processing rule. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="actionGroupIds"/> is null. </exception>
         public AlertProcessingRuleAddGroupsAction(IEnumerable<ResourceIdentifier> actionGroupIds)
         {
-            Argument.AssertNotNull(actionGroupIds, nameof(actionGroupIds));
+            if (actionGroupIds == null)
+            {
+                throw new ArgumentNullException(nameof(actionGroupIds));
+            }
 
             ActionGroupIds = actionGroupIds.ToList();
             ActionType = AlertProcessingRuleActionType.AddActionGroups;
         }
 
-        /// <summary> Initializes a new instance of AlertProcessingRuleAddGroupsAction. </summary>
+        /// <summary> Initializes a new instance of <see cref="AlertProcessingRuleAddGroupsAction"/>. </summary>
         /// <param name="actionType"> Action that should be applied. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="actionGroupIds"> List of action group Ids to add to alert processing rule. </param>
-        internal AlertProcessingRuleAddGroupsAction(AlertProcessingRuleActionType actionType, IList<ResourceIdentifier> actionGroupIds) : base(actionType)
+        internal AlertProcessingRuleAddGroupsAction(AlertProcessingRuleActionType actionType, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<ResourceIdentifier> actionGroupIds) : base(actionType, serializedAdditionalRawData)
         {
             ActionGroupIds = actionGroupIds;
             ActionType = actionType;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AlertProcessingRuleAddGroupsAction"/> for deserialization. </summary>
+        internal AlertProcessingRuleAddGroupsAction()
+        {
         }
 
         /// <summary> List of action group Ids to add to alert processing rule. </summary>

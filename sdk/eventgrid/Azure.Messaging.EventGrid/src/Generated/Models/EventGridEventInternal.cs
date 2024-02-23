@@ -7,14 +7,13 @@
 
 using System;
 using System.Text.Json;
-using Azure.Core;
 
 namespace Azure.Messaging.EventGrid.Models
 {
     /// <summary> Properties of an event published to an Event Grid topic using the EventGrid Schema. </summary>
     internal partial class EventGridEventInternal
     {
-        /// <summary> Initializes a new instance of EventGridEventInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="EventGridEventInternal"/>. </summary>
         /// <param name="id"> An unique identifier for the event. </param>
         /// <param name="subject"> A resource path relative to the topic path. </param>
         /// <param name="data"> Event data specific to the event type. </param>
@@ -24,10 +23,22 @@ namespace Azure.Messaging.EventGrid.Models
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="subject"/>, <paramref name="eventType"/> or <paramref name="dataVersion"/> is null. </exception>
         public EventGridEventInternal(string id, string subject, JsonElement data, string eventType, DateTimeOffset eventTime, string dataVersion)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(subject, nameof(subject));
-            Argument.AssertNotNull(eventType, nameof(eventType));
-            Argument.AssertNotNull(dataVersion, nameof(dataVersion));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (subject == null)
+            {
+                throw new ArgumentNullException(nameof(subject));
+            }
+            if (eventType == null)
+            {
+                throw new ArgumentNullException(nameof(eventType));
+            }
+            if (dataVersion == null)
+            {
+                throw new ArgumentNullException(nameof(dataVersion));
+            }
 
             Id = id;
             Subject = subject;
@@ -37,7 +48,7 @@ namespace Azure.Messaging.EventGrid.Models
             DataVersion = dataVersion;
         }
 
-        /// <summary> Initializes a new instance of EventGridEventInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="EventGridEventInternal"/>. </summary>
         /// <param name="id"> An unique identifier for the event. </param>
         /// <param name="topic"> The resource path of the event source. </param>
         /// <param name="subject"> A resource path relative to the topic path. </param>

@@ -6,19 +6,21 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.Chat
 {
     /// <summary> The Communication Services error. </summary>
     internal partial class ChatErrorResponse
     {
-        /// <summary> Initializes a new instance of ChatErrorResponse. </summary>
+        /// <summary> Initializes a new instance of <see cref="ChatErrorResponse"/>. </summary>
         /// <param name="error"> The Communication Services error. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/> is null. </exception>
         internal ChatErrorResponse(ChatError error)
         {
-            Argument.AssertNotNull(error, nameof(error));
+            if (error == null)
+            {
+                throw new ArgumentNullException(nameof(error));
+            }
 
             Error = error;
         }

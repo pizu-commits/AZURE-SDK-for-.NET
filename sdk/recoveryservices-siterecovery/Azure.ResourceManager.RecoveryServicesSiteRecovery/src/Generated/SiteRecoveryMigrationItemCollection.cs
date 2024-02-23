@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.RecoveryServicesSiteRecovery.Models;
 namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteRecoveryMigrationItemResource" /> and their operations.
-    /// Each <see cref="SiteRecoveryMigrationItemResource" /> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource" />.
-    /// To get a <see cref="SiteRecoveryMigrationItemCollection" /> instance call the GetSiteRecoveryMigrationItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource" />.
+    /// A class representing a collection of <see cref="SiteRecoveryMigrationItemResource"/> and their operations.
+    /// Each <see cref="SiteRecoveryMigrationItemResource"/> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
+    /// To get a <see cref="SiteRecoveryMigrationItemCollection"/> instance call the GetSiteRecoveryMigrationItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
     /// </summary>
     public partial class SiteRecoveryMigrationItemCollection : ArmCollection, IEnumerable<SiteRecoveryMigrationItemResource>, IAsyncEnumerable<SiteRecoveryMigrationItemResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<SiteRecoveryMigrationItemResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string migrationItemName, SiteRecoveryMigrationItemCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<SiteRecoveryMigrationItemResource> CreateOrUpdate(WaitUntil waitUntil, string migrationItemName, SiteRecoveryMigrationItemCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="migrationItemName"> Migration item name. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
         public virtual async Task<Response<SiteRecoveryMigrationItemResource>> GetAsync(string migrationItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="migrationItemName"> Migration item name. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
         public virtual Response<SiteRecoveryMigrationItemResource> Get(string migrationItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.Get");
             scope.Start();
@@ -220,18 +287,26 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skipToken"> The pagination token. </param>
         /// <param name="takeToken"> The page size. </param>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SiteRecoveryMigrationItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SiteRecoveryMigrationItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SiteRecoveryMigrationItemResource> GetAllAsync(string skipToken = null, string takeToken = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, skipToken, takeToken, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, skipToken, takeToken, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryMigrationItemResource(Client, SiteRecoveryMigrationItemData.DeserializeSiteRecoveryMigrationItemData(e)), _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics, Pipeline, "SiteRecoveryMigrationItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryMigrationItemResource(Client, SiteRecoveryMigrationItemData.DeserializeSiteRecoveryMigrationItemData(e)), _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics, Pipeline, "SiteRecoveryMigrationItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -245,18 +320,26 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skipToken"> The pagination token. </param>
         /// <param name="takeToken"> The page size. </param>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SiteRecoveryMigrationItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SiteRecoveryMigrationItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SiteRecoveryMigrationItemResource> GetAll(string skipToken = null, string takeToken = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, skipToken, takeToken, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, skipToken, takeToken, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryMigrationItemResource(Client, SiteRecoveryMigrationItemData.DeserializeSiteRecoveryMigrationItemData(e)), _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics, Pipeline, "SiteRecoveryMigrationItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryMigrationItemResource(Client, SiteRecoveryMigrationItemData.DeserializeSiteRecoveryMigrationItemData(e)), _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics, Pipeline, "SiteRecoveryMigrationItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -270,6 +353,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="migrationItemName"> Migration item name. </param>
@@ -278,7 +369,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string migrationItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.Exists");
             scope.Start();
@@ -305,6 +403,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationMigrationItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="migrationItemName"> Migration item name. </param>
@@ -313,7 +419,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
         public virtual Response<bool> Exists(string migrationItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(migrationItemName, nameof(migrationItemName));
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
 
             using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.Exists");
             scope.Start();
@@ -321,6 +434,110 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
             {
                 var response = _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, migrationItemName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationMigrationItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="migrationItemName"> Migration item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="migrationItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteRecoveryMigrationItemResource>> GetIfExistsAsync(string migrationItemName, CancellationToken cancellationToken = default)
+        {
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
+
+            using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, migrationItemName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteRecoveryMigrationItemResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteRecoveryMigrationItemResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationMigrationItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryMigrationItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="migrationItemName"> Migration item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="migrationItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="migrationItemName"/> is null. </exception>
+        public virtual NullableResponse<SiteRecoveryMigrationItemResource> GetIfExists(string migrationItemName, CancellationToken cancellationToken = default)
+        {
+            if (migrationItemName == null)
+            {
+                throw new ArgumentNullException(nameof(migrationItemName));
+            }
+            if (migrationItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(migrationItemName));
+            }
+
+            using var scope = _siteRecoveryMigrationItemReplicationMigrationItemsClientDiagnostics.CreateScope("SiteRecoveryMigrationItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteRecoveryMigrationItemReplicationMigrationItemsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, migrationItemName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteRecoveryMigrationItemResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteRecoveryMigrationItemResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

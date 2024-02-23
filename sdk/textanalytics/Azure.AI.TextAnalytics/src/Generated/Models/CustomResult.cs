@@ -9,30 +9,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The CustomResult. </summary>
     internal partial class CustomResult
     {
-        /// <summary> Initializes a new instance of CustomResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomResult"/>. </summary>
         /// <param name="errors"> Errors by document id. </param>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="errors"/>, <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public CustomResult(IEnumerable<DocumentError> errors, string projectName, string deploymentName)
         {
-            Argument.AssertNotNull(errors, nameof(errors));
-            Argument.AssertNotNull(projectName, nameof(projectName));
-            Argument.AssertNotNull(deploymentName, nameof(deploymentName));
+            if (errors == null)
+            {
+                throw new ArgumentNullException(nameof(errors));
+            }
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
 
             Errors = errors.ToList();
             ProjectName = projectName;
             DeploymentName = deploymentName;
         }
 
-        /// <summary> Initializes a new instance of CustomResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomResult"/>. </summary>
         /// <param name="errors"> Errors by document id. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the request payload. </param>
         /// <param name="projectName"> This field indicates the project name for the model. </param>

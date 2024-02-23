@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.Automanage
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AutomanageBestPracticeResource" /> and their operations.
-    /// Each <see cref="AutomanageBestPracticeResource" /> in the collection will belong to the same instance of <see cref="TenantResource" />.
-    /// To get an <see cref="AutomanageBestPracticeCollection" /> instance call the GetAutomanageBestPractices method from an instance of <see cref="TenantResource" />.
+    /// A class representing a collection of <see cref="AutomanageBestPracticeResource"/> and their operations.
+    /// Each <see cref="AutomanageBestPracticeResource"/> in the collection will belong to the same instance of <see cref="TenantResource"/>.
+    /// To get an <see cref="AutomanageBestPracticeCollection"/> instance call the GetAutomanageBestPractices method from an instance of <see cref="TenantResource"/>.
     /// </summary>
     public partial class AutomanageBestPracticeCollection : ArmCollection, IEnumerable<AutomanageBestPracticeResource>, IAsyncEnumerable<AutomanageBestPracticeResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="bestPracticeName"> The Automanage best practice name. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
         public virtual async Task<Response<AutomanageBestPracticeResource>> GetAsync(string bestPracticeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(bestPracticeName, nameof(bestPracticeName));
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
 
             using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.Get");
             scope.Start();
@@ -101,6 +117,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="bestPracticeName"> The Automanage best practice name. </param>
@@ -109,7 +133,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
         public virtual Response<AutomanageBestPracticeResource> Get(string bestPracticeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(bestPracticeName, nameof(bestPracticeName));
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
 
             using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.Get");
             scope.Start();
@@ -138,14 +169,22 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_ListByTenant</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AutomanageBestPracticeResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AutomanageBestPracticeResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AutomanageBestPracticeResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automanageBestPracticeBestPracticesRestClient.CreateListByTenantRequest();
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new AutomanageBestPracticeResource(Client, AutomanageBestPracticeData.DeserializeAutomanageBestPracticeData(e)), _automanageBestPracticeBestPracticesClientDiagnostics, Pipeline, "AutomanageBestPracticeCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new AutomanageBestPracticeResource(Client, AutomanageBestPracticeData.DeserializeAutomanageBestPracticeData(e)), _automanageBestPracticeBestPracticesClientDiagnostics, Pipeline, "AutomanageBestPracticeCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -159,14 +198,22 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_ListByTenant</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AutomanageBestPracticeResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AutomanageBestPracticeResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AutomanageBestPracticeResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automanageBestPracticeBestPracticesRestClient.CreateListByTenantRequest();
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new AutomanageBestPracticeResource(Client, AutomanageBestPracticeData.DeserializeAutomanageBestPracticeData(e)), _automanageBestPracticeBestPracticesClientDiagnostics, Pipeline, "AutomanageBestPracticeCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new AutomanageBestPracticeResource(Client, AutomanageBestPracticeData.DeserializeAutomanageBestPracticeData(e)), _automanageBestPracticeBestPracticesClientDiagnostics, Pipeline, "AutomanageBestPracticeCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -180,6 +227,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="bestPracticeName"> The Automanage best practice name. </param>
@@ -188,7 +243,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string bestPracticeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(bestPracticeName, nameof(bestPracticeName));
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
 
             using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.Exists");
             scope.Start();
@@ -215,6 +277,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>BestPractices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="bestPracticeName"> The Automanage best practice name. </param>
@@ -223,7 +293,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
         public virtual Response<bool> Exists(string bestPracticeName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(bestPracticeName, nameof(bestPracticeName));
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
 
             using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.Exists");
             scope.Start();
@@ -231,6 +308,110 @@ namespace Azure.ResourceManager.Automanage
             {
                 var response = _automanageBestPracticeBestPracticesRestClient.Get(bestPracticeName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Automanage/bestPractices/{bestPracticeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BestPractices_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="bestPracticeName"> The Automanage best practice name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bestPracticeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AutomanageBestPracticeResource>> GetIfExistsAsync(string bestPracticeName, CancellationToken cancellationToken = default)
+        {
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
+
+            using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _automanageBestPracticeBestPracticesRestClient.GetAsync(bestPracticeName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomanageBestPracticeResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomanageBestPracticeResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Automanage/bestPractices/{bestPracticeName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>BestPractices_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageBestPracticeResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="bestPracticeName"> The Automanage best practice name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="bestPracticeName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="bestPracticeName"/> is null. </exception>
+        public virtual NullableResponse<AutomanageBestPracticeResource> GetIfExists(string bestPracticeName, CancellationToken cancellationToken = default)
+        {
+            if (bestPracticeName == null)
+            {
+                throw new ArgumentNullException(nameof(bestPracticeName));
+            }
+            if (bestPracticeName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(bestPracticeName));
+            }
+
+            using var scope = _automanageBestPracticeBestPracticesClientDiagnostics.CreateScope("AutomanageBestPracticeCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _automanageBestPracticeBestPracticesRestClient.Get(bestPracticeName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomanageBestPracticeResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomanageBestPracticeResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

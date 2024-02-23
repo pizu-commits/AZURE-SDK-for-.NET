@@ -14,7 +14,7 @@ namespace Azure.Security.Attestation
     /// <summary> The JsonWebKey. </summary>
     internal partial class JsonWebKey
     {
-        /// <summary> Initializes a new instance of JsonWebKey. </summary>
+        /// <summary> Initializes a new instance of <see cref="JsonWebKey"/>. </summary>
         /// <param name="kty">
         /// The "kty" (key type) parameter identifies the cryptographic algorithm
         /// family used with the key, such as "RSA" or "EC". "kty" values should
@@ -25,13 +25,16 @@ namespace Azure.Security.Attestation
         /// <exception cref="ArgumentNullException"> <paramref name="kty"/> is null. </exception>
         public JsonWebKey(string kty)
         {
-            Argument.AssertNotNull(kty, nameof(kty));
+            if (kty == null)
+            {
+                throw new ArgumentNullException(nameof(kty));
+            }
 
             Kty = kty;
             X5C = new ChangeTrackingList<string>();
         }
 
-        /// <summary> Initializes a new instance of JsonWebKey. </summary>
+        /// <summary> Initializes a new instance of <see cref="JsonWebKey"/>. </summary>
         /// <param name="alg">
         /// The "alg" (algorithm) parameter identifies the algorithm intended for
         /// use with the key.  The values used should either be registered in the

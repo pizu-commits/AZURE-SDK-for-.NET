@@ -14,20 +14,23 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Credential reference type. </summary>
     public partial class CredentialReference
     {
-        /// <summary> Initializes a new instance of CredentialReference. </summary>
+        /// <summary> Initializes a new instance of <see cref="CredentialReference"/>. </summary>
         /// <param name="type"> Credential reference type. </param>
         /// <param name="referenceName"> Reference credential name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="referenceName"/> is null. </exception>
         public CredentialReference(CredentialReferenceType type, string referenceName)
         {
-            Argument.AssertNotNull(referenceName, nameof(referenceName));
+            if (referenceName == null)
+            {
+                throw new ArgumentNullException(nameof(referenceName));
+            }
 
             Type = type;
             ReferenceName = referenceName;
             AdditionalProperties = new ChangeTrackingDictionary<string, object>();
         }
 
-        /// <summary> Initializes a new instance of CredentialReference. </summary>
+        /// <summary> Initializes a new instance of <see cref="CredentialReference"/>. </summary>
         /// <param name="type"> Credential reference type. </param>
         /// <param name="referenceName"> Reference credential name. </param>
         /// <param name="additionalProperties"> Additional Properties. </param>

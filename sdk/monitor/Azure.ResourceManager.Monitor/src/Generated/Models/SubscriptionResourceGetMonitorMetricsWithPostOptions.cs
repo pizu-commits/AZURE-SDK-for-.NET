@@ -6,21 +6,28 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.ResourceManager.Monitor.Models
 {
     /// <summary> The SubscriptionResourceGetMonitorMetricsWithPostOptions. </summary>
     public partial class SubscriptionResourceGetMonitorMetricsWithPostOptions
     {
-        /// <summary> Initializes a new instance of SubscriptionResourceGetMonitorMetricsWithPostOptions. </summary>
+        /// <summary> Initializes a new instance of <see cref="SubscriptionResourceGetMonitorMetricsWithPostOptions"/>. </summary>
         /// <param name="region"> The region where the metrics you want reside. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="region"/> is null. </exception>
         public SubscriptionResourceGetMonitorMetricsWithPostOptions(string region)
         {
-            Argument.AssertNotNull(region, nameof(region));
+            if (region == null)
+            {
+                throw new ArgumentNullException(nameof(region));
+            }
 
             Region = region;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SubscriptionResourceGetMonitorMetricsWithPostOptions"/> for deserialization. </summary>
+        internal SubscriptionResourceGetMonitorMetricsWithPostOptions()
+        {
         }
 
         /// <summary> The region where the metrics you want reside. </summary>

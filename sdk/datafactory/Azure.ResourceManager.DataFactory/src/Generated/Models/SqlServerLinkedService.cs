@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> SQL Server linked service. </summary>
     public partial class SqlServerLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of SqlServerLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerLinkedService"/>. </summary>
         /// <param name="connectionString"> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="connectionString"/> is null. </exception>
         public SqlServerLinkedService(DataFactoryElement<string> connectionString)
         {
-            Argument.AssertNotNull(connectionString, nameof(connectionString));
+            if (connectionString == null)
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
 
             ConnectionString = connectionString;
             LinkedServiceType = "SqlServer";
         }
 
-        /// <summary> Initializes a new instance of SqlServerLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -46,6 +48,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             EncryptedCredential = encryptedCredential;
             AlwaysEncryptedSettings = alwaysEncryptedSettings;
             LinkedServiceType = linkedServiceType ?? "SqlServer";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SqlServerLinkedService"/> for deserialization. </summary>
+        internal SqlServerLinkedService()
+        {
         }
 
         /// <summary> The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. </summary>

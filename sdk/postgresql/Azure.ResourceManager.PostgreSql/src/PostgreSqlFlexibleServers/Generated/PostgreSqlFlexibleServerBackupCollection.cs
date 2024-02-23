@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.PostgreSql.FlexibleServers
 {
     /// <summary>
-    /// A class representing a collection of <see cref="PostgreSqlFlexibleServerBackupResource" /> and their operations.
-    /// Each <see cref="PostgreSqlFlexibleServerBackupResource" /> in the collection will belong to the same instance of <see cref="PostgreSqlFlexibleServerResource" />.
-    /// To get a <see cref="PostgreSqlFlexibleServerBackupCollection" /> instance call the GetPostgreSqlFlexibleServerBackups method from an instance of <see cref="PostgreSqlFlexibleServerResource" />.
+    /// A class representing a collection of <see cref="PostgreSqlFlexibleServerBackupResource"/> and their operations.
+    /// Each <see cref="PostgreSqlFlexibleServerBackupResource"/> in the collection will belong to the same instance of <see cref="PostgreSqlFlexibleServerResource"/>.
+    /// To get a <see cref="PostgreSqlFlexibleServerBackupCollection"/> instance call the GetPostgreSqlFlexibleServerBackups method from an instance of <see cref="PostgreSqlFlexibleServerResource"/>.
     /// </summary>
     public partial class PostgreSqlFlexibleServerBackupCollection : ArmCollection, IEnumerable<PostgreSqlFlexibleServerBackupResource>, IAsyncEnumerable<PostgreSqlFlexibleServerBackupResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupName"> The name of the backup. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
         public virtual async Task<Response<PostgreSqlFlexibleServerBackupResource>> GetAsync(string backupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupName, nameof(backupName));
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
 
             using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupName"> The name of the backup. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
         public virtual Response<PostgreSqlFlexibleServerBackupResource> Get(string backupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupName, nameof(backupName));
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
 
             using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PostgreSqlFlexibleServerBackupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PostgreSqlFlexibleServerBackupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PostgreSqlFlexibleServerBackupResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _postgreSqlFlexibleServerBackupBackupsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _postgreSqlFlexibleServerBackupBackupsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PostgreSqlFlexibleServerBackupResource(Client, PostgreSqlFlexibleServerBackupData.DeserializePostgreSqlFlexibleServerBackupData(e)), _postgreSqlFlexibleServerBackupBackupsClientDiagnostics, Pipeline, "PostgreSqlFlexibleServerBackupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PostgreSqlFlexibleServerBackupResource(Client, PostgreSqlFlexibleServerBackupData.DeserializePostgreSqlFlexibleServerBackupData(e)), _postgreSqlFlexibleServerBackupBackupsClientDiagnostics, Pipeline, "PostgreSqlFlexibleServerBackupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PostgreSqlFlexibleServerBackupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PostgreSqlFlexibleServerBackupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PostgreSqlFlexibleServerBackupResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _postgreSqlFlexibleServerBackupBackupsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _postgreSqlFlexibleServerBackupBackupsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PostgreSqlFlexibleServerBackupResource(Client, PostgreSqlFlexibleServerBackupData.DeserializePostgreSqlFlexibleServerBackupData(e)), _postgreSqlFlexibleServerBackupBackupsClientDiagnostics, Pipeline, "PostgreSqlFlexibleServerBackupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PostgreSqlFlexibleServerBackupResource(Client, PostgreSqlFlexibleServerBackupData.DeserializePostgreSqlFlexibleServerBackupData(e)), _postgreSqlFlexibleServerBackupBackupsClientDiagnostics, Pipeline, "PostgreSqlFlexibleServerBackupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupName"> The name of the backup. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string backupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupName, nameof(backupName));
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
 
             using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <term>Operation Id</term>
         /// <description>Backups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupName"> The name of the backup. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
         /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
         public virtual Response<bool> Exists(string backupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupName, nameof(backupName));
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
 
             using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.PostgreSql.FlexibleServers
             {
                 var response = _postgreSqlFlexibleServerBackupBackupsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, backupName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Backups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="backupName"> The name of the backup. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="backupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
+        public virtual async Task<NullableResponse<PostgreSqlFlexibleServerBackupResource>> GetIfExistsAsync(string backupName, CancellationToken cancellationToken = default)
+        {
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
+
+            using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _postgreSqlFlexibleServerBackupBackupsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, backupName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<PostgreSqlFlexibleServerBackupResource>(response.GetRawResponse());
+                return Response.FromValue(new PostgreSqlFlexibleServerBackupResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Backups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-03-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PostgreSqlFlexibleServerBackupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="backupName"> The name of the backup. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="backupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="backupName"/> is null. </exception>
+        public virtual NullableResponse<PostgreSqlFlexibleServerBackupResource> GetIfExists(string backupName, CancellationToken cancellationToken = default)
+        {
+            if (backupName == null)
+            {
+                throw new ArgumentNullException(nameof(backupName));
+            }
+            if (backupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupName));
+            }
+
+            using var scope = _postgreSqlFlexibleServerBackupBackupsClientDiagnostics.CreateScope("PostgreSqlFlexibleServerBackupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _postgreSqlFlexibleServerBackupBackupsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, backupName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<PostgreSqlFlexibleServerBackupResource>(response.GetRawResponse());
+                return Response.FromValue(new PostgreSqlFlexibleServerBackupResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

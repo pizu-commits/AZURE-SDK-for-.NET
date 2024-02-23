@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,17 +14,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> The Teradata database dataset. </summary>
     public partial class TeradataTableDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of TeradataTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="TeradataTableDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
         public TeradataTableDataset(DataFactoryLinkedServiceReference linkedServiceName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
 
             DatasetType = "TeradataTable";
         }
 
-        /// <summary> Initializes a new instance of TeradataTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="TeradataTableDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -42,6 +44,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Database = database;
             Table = table;
             DatasetType = datasetType ?? "TeradataTable";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="TeradataTableDataset"/> for deserialization. </summary>
+        internal TeradataTableDataset()
+        {
         }
 
         /// <summary> The database name of Teradata. Type: string (or Expression with resultType string). </summary>

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Sql.Models;
 namespace Azure.ResourceManager.Sql
 {
     /// <summary>
-    /// A class representing a collection of <see cref="LongTermRetentionPolicyResource" /> and their operations.
-    /// Each <see cref="LongTermRetentionPolicyResource" /> in the collection will belong to the same instance of <see cref="SqlDatabaseResource" />.
-    /// To get a <see cref="LongTermRetentionPolicyCollection" /> instance call the GetLongTermRetentionPolicies method from an instance of <see cref="SqlDatabaseResource" />.
+    /// A class representing a collection of <see cref="LongTermRetentionPolicyResource"/> and their operations.
+    /// Each <see cref="LongTermRetentionPolicyResource"/> in the collection will belong to the same instance of <see cref="SqlDatabaseResource"/>.
+    /// To get a <see cref="LongTermRetentionPolicyCollection"/> instance call the GetLongTermRetentionPolicies method from an instance of <see cref="SqlDatabaseResource"/>.
     /// </summary>
     public partial class LongTermRetentionPolicyCollection : ArmCollection, IEnumerable<LongTermRetentionPolicyResource>, IAsyncEnumerable<LongTermRetentionPolicyResource>
     {
@@ -54,7 +55,7 @@ namespace Azure.ResourceManager.Sql
         }
 
         /// <summary>
-        /// Sets a database's long term retention policy.
+        /// Set or update a database's long term retention policy.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_CreateOrUpdate</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -73,7 +82,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<LongTermRetentionPolicyResource>> CreateOrUpdateAsync(WaitUntil waitUntil, LongTermRetentionPolicyName policyName, LongTermRetentionPolicyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _longTermRetentionPolicyClientDiagnostics.CreateScope("LongTermRetentionPolicyCollection.CreateOrUpdate");
             scope.Start();
@@ -93,7 +105,7 @@ namespace Azure.ResourceManager.Sql
         }
 
         /// <summary>
-        /// Sets a database's long term retention policy.
+        /// Set or update a database's long term retention policy.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
@@ -102,6 +114,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_CreateOrUpdate</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -112,7 +132,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<LongTermRetentionPolicyResource> CreateOrUpdate(WaitUntil waitUntil, LongTermRetentionPolicyName policyName, LongTermRetentionPolicyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _longTermRetentionPolicyClientDiagnostics.CreateScope("LongTermRetentionPolicyCollection.CreateOrUpdate");
             scope.Start();
@@ -141,6 +164,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -175,6 +206,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="policyName"> The policy name. Should always be Default. </param>
@@ -208,15 +247,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_ListByDatabase</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="LongTermRetentionPolicyResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="LongTermRetentionPolicyResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<LongTermRetentionPolicyResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _longTermRetentionPolicyRestClient.CreateListByDatabaseRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _longTermRetentionPolicyRestClient.CreateListByDatabaseNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LongTermRetentionPolicyResource(Client, LongTermRetentionPolicyData.DeserializeLongTermRetentionPolicyData(e)), _longTermRetentionPolicyClientDiagnostics, Pipeline, "LongTermRetentionPolicyCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LongTermRetentionPolicyResource(Client, LongTermRetentionPolicyData.DeserializeLongTermRetentionPolicyData(e)), _longTermRetentionPolicyClientDiagnostics, Pipeline, "LongTermRetentionPolicyCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -230,15 +277,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_ListByDatabase</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="LongTermRetentionPolicyResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="LongTermRetentionPolicyResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<LongTermRetentionPolicyResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _longTermRetentionPolicyRestClient.CreateListByDatabaseRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _longTermRetentionPolicyRestClient.CreateListByDatabaseNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LongTermRetentionPolicyResource(Client, LongTermRetentionPolicyData.DeserializeLongTermRetentionPolicyData(e)), _longTermRetentionPolicyClientDiagnostics, Pipeline, "LongTermRetentionPolicyCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LongTermRetentionPolicyResource(Client, LongTermRetentionPolicyData.DeserializeLongTermRetentionPolicyData(e)), _longTermRetentionPolicyClientDiagnostics, Pipeline, "LongTermRetentionPolicyCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -251,6 +306,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -283,6 +346,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>LongTermRetentionPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="policyName"> The policy name. Should always be Default. </param>
@@ -295,6 +366,88 @@ namespace Azure.ResourceManager.Sql
             {
                 var response = _longTermRetentionPolicyRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, policyName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupLongTermRetentionPolicies/{policyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LongTermRetentionPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="policyName"> The policy name. Should always be Default. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<NullableResponse<LongTermRetentionPolicyResource>> GetIfExistsAsync(LongTermRetentionPolicyName policyName, CancellationToken cancellationToken = default)
+        {
+            using var scope = _longTermRetentionPolicyClientDiagnostics.CreateScope("LongTermRetentionPolicyCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _longTermRetentionPolicyRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, policyName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<LongTermRetentionPolicyResource>(response.GetRawResponse());
+                return Response.FromValue(new LongTermRetentionPolicyResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupLongTermRetentionPolicies/{policyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LongTermRetentionPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LongTermRetentionPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="policyName"> The policy name. Should always be Default. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual NullableResponse<LongTermRetentionPolicyResource> GetIfExists(LongTermRetentionPolicyName policyName, CancellationToken cancellationToken = default)
+        {
+            using var scope = _longTermRetentionPolicyClientDiagnostics.CreateScope("LongTermRetentionPolicyCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _longTermRetentionPolicyRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, policyName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<LongTermRetentionPolicyResource>(response.GetRawResponse());
+                return Response.FromValue(new LongTermRetentionPolicyResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

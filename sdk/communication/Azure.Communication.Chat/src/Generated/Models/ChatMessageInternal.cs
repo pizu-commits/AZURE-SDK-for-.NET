@@ -15,7 +15,7 @@ namespace Azure.Communication.Chat
     /// <summary> Chat message. </summary>
     internal partial class ChatMessageInternal
     {
-        /// <summary> Initializes a new instance of ChatMessageInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="ChatMessageInternal"/>. </summary>
         /// <param name="id"> The id of the chat message. This id is server generated. </param>
         /// <param name="type"> The chat message type. </param>
         /// <param name="sequenceId"> Sequence of the chat message in the conversation. </param>
@@ -24,9 +24,18 @@ namespace Azure.Communication.Chat
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="sequenceId"/> or <paramref name="version"/> is null. </exception>
         internal ChatMessageInternal(string id, ChatMessageType type, string sequenceId, string version, DateTimeOffset createdOn)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(sequenceId, nameof(sequenceId));
-            Argument.AssertNotNull(version, nameof(version));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (sequenceId == null)
+            {
+                throw new ArgumentNullException(nameof(sequenceId));
+            }
+            if (version == null)
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
 
             Id = id;
             Type = type;
@@ -36,7 +45,7 @@ namespace Azure.Communication.Chat
             Metadata = new ChangeTrackingDictionary<string, string>();
         }
 
-        /// <summary> Initializes a new instance of ChatMessageInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="ChatMessageInternal"/>. </summary>
         /// <param name="id"> The id of the chat message. This id is server generated. </param>
         /// <param name="type"> The chat message type. </param>
         /// <param name="sequenceId"> Sequence of the chat message in the conversation. </param>

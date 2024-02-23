@@ -14,16 +14,57 @@ namespace Azure.ResourceManager.Batch.Models
     /// <summary> The configuration for virtual machine extensions. </summary>
     public partial class BatchVmExtension
     {
-        /// <summary> Initializes a new instance of BatchVmExtension. </summary>
+        /// <summary>
+        /// Keeps track of any properties unknown to the library.
+        /// <para>
+        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// </para>
+        /// <para>
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson("foo")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("\"foo\"")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson(new { key = "value" })</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("{\"key\": \"value\"}")</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+
+        /// <summary> Initializes a new instance of <see cref="BatchVmExtension"/>. </summary>
         /// <param name="name"> The name of the virtual machine extension. </param>
         /// <param name="publisher"> The name of the extension handler publisher. </param>
         /// <param name="extensionType"> The type of the extensions. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="publisher"/> or <paramref name="extensionType"/> is null. </exception>
         public BatchVmExtension(string name, string publisher, string extensionType)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(publisher, nameof(publisher));
-            Argument.AssertNotNull(extensionType, nameof(extensionType));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (publisher == null)
+            {
+                throw new ArgumentNullException(nameof(publisher));
+            }
+            if (extensionType == null)
+            {
+                throw new ArgumentNullException(nameof(extensionType));
+            }
 
             Name = name;
             Publisher = publisher;
@@ -31,7 +72,7 @@ namespace Azure.ResourceManager.Batch.Models
             ProvisionAfterExtensions = new ChangeTrackingList<string>();
         }
 
-        /// <summary> Initializes a new instance of BatchVmExtension. </summary>
+        /// <summary> Initializes a new instance of <see cref="BatchVmExtension"/>. </summary>
         /// <param name="name"> The name of the virtual machine extension. </param>
         /// <param name="publisher"> The name of the extension handler publisher. </param>
         /// <param name="extensionType"> The type of the extensions. </param>
@@ -41,7 +82,8 @@ namespace Azure.ResourceManager.Batch.Models
         /// <param name="settings"> JSON formatted public settings for the extension. </param>
         /// <param name="protectedSettings"> The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. </param>
         /// <param name="provisionAfterExtensions"> Collection of extension names after which this extension needs to be provisioned. </param>
-        internal BatchVmExtension(string name, string publisher, string extensionType, string typeHandlerVersion, bool? autoUpgradeMinorVersion, bool? enableAutomaticUpgrade, BinaryData settings, BinaryData protectedSettings, IList<string> provisionAfterExtensions)
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
+        internal BatchVmExtension(string name, string publisher, string extensionType, string typeHandlerVersion, bool? autoUpgradeMinorVersion, bool? enableAutomaticUpgrade, BinaryData settings, BinaryData protectedSettings, IList<string> provisionAfterExtensions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Name = name;
             Publisher = publisher;
@@ -52,6 +94,12 @@ namespace Azure.ResourceManager.Batch.Models
             Settings = settings;
             ProtectedSettings = protectedSettings;
             ProvisionAfterExtensions = provisionAfterExtensions;
+            _serializedAdditionalRawData = serializedAdditionalRawData;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="BatchVmExtension"/> for deserialization. </summary>
+        internal BatchVmExtension()
+        {
         }
 
         /// <summary> The name of the virtual machine extension. </summary>
@@ -72,7 +120,7 @@ namespace Azure.ResourceManager.Batch.Models
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:
@@ -103,7 +151,7 @@ namespace Azure.ResourceManager.Batch.Models
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:

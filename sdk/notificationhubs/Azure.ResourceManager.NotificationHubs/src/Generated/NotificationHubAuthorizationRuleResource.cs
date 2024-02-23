@@ -19,13 +19,18 @@ namespace Azure.ResourceManager.NotificationHubs
 {
     /// <summary>
     /// A Class representing a NotificationHubAuthorizationRule along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="NotificationHubAuthorizationRuleResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetNotificationHubAuthorizationRuleResource method.
-    /// Otherwise you can get one from its parent resource <see cref="NotificationHubResource" /> using the GetNotificationHubAuthorizationRule method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="NotificationHubAuthorizationRuleResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetNotificationHubAuthorizationRuleResource method.
+    /// Otherwise you can get one from its parent resource <see cref="NotificationHubResource"/> using the GetNotificationHubAuthorizationRule method.
     /// </summary>
     public partial class NotificationHubAuthorizationRuleResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="NotificationHubAuthorizationRuleResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="namespaceName"> The namespaceName. </param>
+        /// <param name="notificationHubName"> The notificationHubName. </param>
+        /// <param name="authorizationRuleName"> The authorizationRuleName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string namespaceName, string notificationHubName, string authorizationRuleName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}";
@@ -36,12 +41,15 @@ namespace Azure.ResourceManager.NotificationHubs
         private readonly NotificationHubsRestOperations _notificationHubAuthorizationRuleNotificationHubsRestClient;
         private readonly NotificationHubAuthorizationRuleData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.NotificationHubs/namespaces/notificationHubs/AuthorizationRules";
+
         /// <summary> Initializes a new instance of the <see cref="NotificationHubAuthorizationRuleResource"/> class for mocking. </summary>
         protected NotificationHubAuthorizationRuleResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "NotificationHubAuthorizationRuleResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="NotificationHubAuthorizationRuleResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal NotificationHubAuthorizationRuleResource(ArmClient client, NotificationHubAuthorizationRuleData data) : this(client, data.Id)
@@ -62,9 +70,6 @@ namespace Azure.ResourceManager.NotificationHubs
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.NotificationHubs/namespaces/notificationHubs/AuthorizationRules";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +103,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_GetAuthorizationRule</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +143,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_GetAuthorizationRule</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -161,6 +182,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <item>
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_DeleteAuthorizationRule</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -196,6 +225,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_DeleteAuthorizationRule</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -230,6 +267,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_CreateOrUpdateAuthorizationRule</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -238,7 +283,10 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<NotificationHubAuthorizationRuleResource>> UpdateAsync(WaitUntil waitUntil, SharedAccessAuthorizationRuleCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _notificationHubAuthorizationRuleNotificationHubsClientDiagnostics.CreateScope("NotificationHubAuthorizationRuleResource.Update");
             scope.Start();
@@ -268,6 +316,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_CreateOrUpdateAuthorizationRule</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -276,7 +332,10 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<NotificationHubAuthorizationRuleResource> Update(WaitUntil waitUntil, SharedAccessAuthorizationRuleCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _notificationHubAuthorizationRuleNotificationHubsClientDiagnostics.CreateScope("NotificationHubAuthorizationRuleResource.Update");
             scope.Start();
@@ -305,6 +364,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <item>
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_ListKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -336,6 +403,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_ListKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -366,6 +441,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="notificationHubPolicyKey"> Parameters supplied to regenerate the NotificationHub Authorization Rule Key. </param>
@@ -373,7 +456,10 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <exception cref="ArgumentNullException"> <paramref name="notificationHubPolicyKey"/> is null. </exception>
         public virtual async Task<Response<NotificationHubResourceKeys>> RegenerateKeysAsync(NotificationHubPolicyKey notificationHubPolicyKey, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(notificationHubPolicyKey, nameof(notificationHubPolicyKey));
+            if (notificationHubPolicyKey == null)
+            {
+                throw new ArgumentNullException(nameof(notificationHubPolicyKey));
+            }
 
             using var scope = _notificationHubAuthorizationRuleNotificationHubsClientDiagnostics.CreateScope("NotificationHubAuthorizationRuleResource.RegenerateKeys");
             scope.Start();
@@ -400,6 +486,14 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <term>Operation Id</term>
         /// <description>NotificationHubs_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NotificationHubAuthorizationRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="notificationHubPolicyKey"> Parameters supplied to regenerate the NotificationHub Authorization Rule Key. </param>
@@ -407,7 +501,10 @@ namespace Azure.ResourceManager.NotificationHubs
         /// <exception cref="ArgumentNullException"> <paramref name="notificationHubPolicyKey"/> is null. </exception>
         public virtual Response<NotificationHubResourceKeys> RegenerateKeys(NotificationHubPolicyKey notificationHubPolicyKey, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(notificationHubPolicyKey, nameof(notificationHubPolicyKey));
+            if (notificationHubPolicyKey == null)
+            {
+                throw new ArgumentNullException(nameof(notificationHubPolicyKey));
+            }
 
             using var scope = _notificationHubAuthorizationRuleNotificationHubsClientDiagnostics.CreateScope("NotificationHubAuthorizationRuleResource.RegenerateKeys");
             scope.Start();

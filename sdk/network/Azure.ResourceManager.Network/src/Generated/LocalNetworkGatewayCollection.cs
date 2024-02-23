@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.Network
 {
     /// <summary>
-    /// A class representing a collection of <see cref="LocalNetworkGatewayResource" /> and their operations.
-    /// Each <see cref="LocalNetworkGatewayResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="LocalNetworkGatewayCollection" /> instance call the GetLocalNetworkGateways method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="LocalNetworkGatewayResource"/> and their operations.
+    /// Each <see cref="LocalNetworkGatewayResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="LocalNetworkGatewayCollection"/> instance call the GetLocalNetworkGateways method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class LocalNetworkGatewayCollection : ArmCollection, IEnumerable<LocalNetworkGatewayResource>, IAsyncEnumerable<LocalNetworkGatewayResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<LocalNetworkGatewayResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string localNetworkGatewayName, LocalNetworkGatewayData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<LocalNetworkGatewayResource> CreateOrUpdate(WaitUntil waitUntil, string localNetworkGatewayName, LocalNetworkGatewayData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
         public virtual async Task<Response<LocalNetworkGatewayResource>> GetAsync(string localNetworkGatewayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
         public virtual Response<LocalNetworkGatewayResource> Get(string localNetworkGatewayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="LocalNetworkGatewayResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="LocalNetworkGatewayResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<LocalNetworkGatewayResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _localNetworkGatewayRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _localNetworkGatewayRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LocalNetworkGatewayResource(Client, LocalNetworkGatewayData.DeserializeLocalNetworkGatewayData(e)), _localNetworkGatewayClientDiagnostics, Pipeline, "LocalNetworkGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LocalNetworkGatewayResource(Client, LocalNetworkGatewayData.DeserializeLocalNetworkGatewayData(e)), _localNetworkGatewayClientDiagnostics, Pipeline, "LocalNetworkGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="LocalNetworkGatewayResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="LocalNetworkGatewayResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<LocalNetworkGatewayResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _localNetworkGatewayRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _localNetworkGatewayRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LocalNetworkGatewayResource(Client, LocalNetworkGatewayData.DeserializeLocalNetworkGatewayData(e)), _localNetworkGatewayClientDiagnostics, Pipeline, "LocalNetworkGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LocalNetworkGatewayResource(Client, LocalNetworkGatewayData.DeserializeLocalNetworkGatewayData(e)), _localNetworkGatewayClientDiagnostics, Pipeline, "LocalNetworkGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string localNetworkGatewayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>LocalNetworkGateways_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
         public virtual Response<bool> Exists(string localNetworkGatewayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(localNetworkGatewayName, nameof(localNetworkGatewayName));
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
 
             using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.Network
             {
                 var response = _localNetworkGatewayRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, localNetworkGatewayName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/localNetworkGateways/{localNetworkGatewayName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LocalNetworkGateways_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="localNetworkGatewayName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
+        public virtual async Task<NullableResponse<LocalNetworkGatewayResource>> GetIfExistsAsync(string localNetworkGatewayName, CancellationToken cancellationToken = default)
+        {
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
+
+            using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _localNetworkGatewayRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, localNetworkGatewayName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<LocalNetworkGatewayResource>(response.GetRawResponse());
+                return Response.FromValue(new LocalNetworkGatewayResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/localNetworkGateways/{localNetworkGatewayName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LocalNetworkGateways_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LocalNetworkGatewayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="localNetworkGatewayName"> The name of the local network gateway. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="localNetworkGatewayName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="localNetworkGatewayName"/> is null. </exception>
+        public virtual NullableResponse<LocalNetworkGatewayResource> GetIfExists(string localNetworkGatewayName, CancellationToken cancellationToken = default)
+        {
+            if (localNetworkGatewayName == null)
+            {
+                throw new ArgumentNullException(nameof(localNetworkGatewayName));
+            }
+            if (localNetworkGatewayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(localNetworkGatewayName));
+            }
+
+            using var scope = _localNetworkGatewayClientDiagnostics.CreateScope("LocalNetworkGatewayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _localNetworkGatewayRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, localNetworkGatewayName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<LocalNetworkGatewayResource>(response.GetRawResponse());
+                return Response.FromValue(new LocalNetworkGatewayResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -6,17 +6,31 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.RecoveryServicesBackup.Models
 {
-    public partial class VmWorkloadSapHanaDBInstanceProtectedItem : IUtf8JsonSerializable
+    public partial class VmWorkloadSapHanaDBInstanceProtectedItem : IUtf8JsonSerializable, IJsonModel<VmWorkloadSapHanaDBInstanceProtectedItem>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<VmWorkloadSapHanaDBInstanceProtectedItem>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<VmWorkloadSapHanaDBInstanceProtectedItem>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(VmWorkloadSapHanaDBInstanceProtectedItem)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
+            if (options.Format != "W" && Optional.IsDefined(FriendlyName))
+            {
+                writer.WritePropertyName("friendlyName"u8);
+                writer.WriteStringValue(FriendlyName);
+            }
             if (Optional.IsDefined(ServerName))
             {
                 writer.WritePropertyName("serverName"u8);
@@ -31,6 +45,11 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
             {
                 writer.WritePropertyName("parentType"u8);
                 writer.WriteStringValue(ParentType);
+            }
+            if (options.Format != "W" && Optional.IsDefined(ProtectionStatus))
+            {
+                writer.WritePropertyName("protectionStatus"u8);
+                writer.WriteStringValue(ProtectionStatus);
             }
             if (Optional.IsDefined(ProtectionState))
             {
@@ -78,8 +97,28 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                 }
                 writer.WriteEndObject();
             }
+            if (Optional.IsCollectionDefined(NodesList))
+            {
+                writer.WritePropertyName("nodesList"u8);
+                writer.WriteStartArray();
+                foreach (var item in NodesList)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
+            }
             writer.WritePropertyName("protectedItemType"u8);
             writer.WriteStringValue(ProtectedItemType);
+            if (options.Format != "W" && Optional.IsDefined(BackupManagementType))
+            {
+                writer.WritePropertyName("backupManagementType"u8);
+                writer.WriteStringValue(BackupManagementType.Value.ToString());
+            }
+            if (options.Format != "W" && Optional.IsDefined(WorkloadType))
+            {
+                writer.WritePropertyName("workloadType"u8);
+                writer.WriteStringValue(WorkloadType.Value.ToString());
+            }
             if (Optional.IsDefined(ContainerName))
             {
                 writer.WritePropertyName("containerName"u8);
@@ -155,16 +194,50 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                 writer.WritePropertyName("policyName"u8);
                 writer.WriteStringValue(PolicyName);
             }
-            if (Optional.IsDefined(SoftDeleteRetentionPeriod))
+            if (Optional.IsDefined(SoftDeleteRetentionPeriodInDays))
             {
-                writer.WritePropertyName("softDeleteRetentionPeriod"u8);
-                writer.WriteNumberValue(SoftDeleteRetentionPeriod.Value);
+                writer.WritePropertyName("softDeleteRetentionPeriodInDays"u8);
+                writer.WriteNumberValue(SoftDeleteRetentionPeriodInDays.Value);
+            }
+            if (options.Format != "W" && Optional.IsDefined(VaultId))
+            {
+                writer.WritePropertyName("vaultId"u8);
+                writer.WriteStringValue(VaultId);
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
             }
             writer.WriteEndObject();
         }
 
-        internal static VmWorkloadSapHanaDBInstanceProtectedItem DeserializeVmWorkloadSapHanaDBInstanceProtectedItem(JsonElement element)
+        VmWorkloadSapHanaDBInstanceProtectedItem IJsonModel<VmWorkloadSapHanaDBInstanceProtectedItem>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(VmWorkloadSapHanaDBInstanceProtectedItem)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeVmWorkloadSapHanaDBInstanceProtectedItem(document.RootElement, options);
+        }
+
+        internal static VmWorkloadSapHanaDBInstanceProtectedItem DeserializeVmWorkloadSapHanaDBInstanceProtectedItem(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -182,6 +255,7 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
             Optional<VmWorkloadProtectedItemHealthStatus> protectedItemHealthStatus = default;
             Optional<VmWorkloadProtectedItemExtendedInfo> extendedInfo = default;
             Optional<IDictionary<string, KpiResourceHealthDetails>> kpisHealths = default;
+            Optional<IList<DistributedNodesInfo>> nodesList = default;
             string protectedItemType = default;
             Optional<BackupManagementType> backupManagementType = default;
             Optional<BackupDataSourceType> workloadType = default;
@@ -199,7 +273,10 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
             Optional<IList<string>> resourceGuardOperationRequests = default;
             Optional<bool> isArchiveEnabled = default;
             Optional<string> policyName = default;
-            Optional<int> softDeleteRetentionPeriod = default;
+            Optional<int> softDeleteRetentionPeriodInDays = default;
+            Optional<string> vaultId = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("friendlyName"u8))
@@ -260,7 +337,7 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                     {
                         continue;
                     }
-                    lastBackupErrorDetail = BackupErrorDetail.DeserializeBackupErrorDetail(property.Value);
+                    lastBackupErrorDetail = BackupErrorDetail.DeserializeBackupErrorDetail(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("protectedItemDataSourceId"u8))
@@ -283,7 +360,7 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                     {
                         continue;
                     }
-                    extendedInfo = VmWorkloadProtectedItemExtendedInfo.DeserializeVmWorkloadProtectedItemExtendedInfo(property.Value);
+                    extendedInfo = VmWorkloadProtectedItemExtendedInfo.DeserializeVmWorkloadProtectedItemExtendedInfo(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("kpisHealths"u8))
@@ -295,9 +372,23 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                     Dictionary<string, KpiResourceHealthDetails> dictionary = new Dictionary<string, KpiResourceHealthDetails>();
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
-                        dictionary.Add(property0.Name, KpiResourceHealthDetails.DeserializeKpiResourceHealthDetails(property0.Value));
+                        dictionary.Add(property0.Name, KpiResourceHealthDetails.DeserializeKpiResourceHealthDetails(property0.Value, options));
                     }
                     kpisHealths = dictionary;
+                    continue;
+                }
+                if (property.NameEquals("nodesList"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<DistributedNodesInfo> array = new List<DistributedNodesInfo>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(DistributedNodesInfo.DeserializeDistributedNodesInfo(item, options));
+                    }
+                    nodesList = array;
                     continue;
                 }
                 if (property.NameEquals("protectedItemType"u8))
@@ -438,17 +529,58 @@ namespace Azure.ResourceManager.RecoveryServicesBackup.Models
                     policyName = property.Value.GetString();
                     continue;
                 }
-                if (property.NameEquals("softDeleteRetentionPeriod"u8))
+                if (property.NameEquals("softDeleteRetentionPeriodInDays"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
                         continue;
                     }
-                    softDeleteRetentionPeriod = property.Value.GetInt32();
+                    softDeleteRetentionPeriodInDays = property.Value.GetInt32();
                     continue;
                 }
+                if (property.NameEquals("vaultId"u8))
+                {
+                    vaultId = property.Value.GetString();
+                    continue;
+                }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new VmWorkloadSapHanaDBInstanceProtectedItem(protectedItemType, Optional.ToNullable(backupManagementType), Optional.ToNullable(workloadType), containerName.Value, sourceResourceId.Value, policyId.Value, Optional.ToNullable(lastRecoveryPoint), backupSetName.Value, Optional.ToNullable(createMode), Optional.ToNullable(deferredDeleteTimeInUTC), Optional.ToNullable(isScheduledForDeferredDelete), deferredDeleteTimeRemaining.Value, Optional.ToNullable(isDeferredDeleteScheduleUpcoming), Optional.ToNullable(isRehydrate), Optional.ToList(resourceGuardOperationRequests), Optional.ToNullable(isArchiveEnabled), policyName.Value, Optional.ToNullable(softDeleteRetentionPeriod), friendlyName.Value, serverName.Value, parentName.Value, parentType.Value, protectionStatus.Value, Optional.ToNullable(protectionState), Optional.ToNullable(lastBackupStatus), Optional.ToNullable(lastBackupTime), lastBackupErrorDetail.Value, protectedItemDataSourceId.Value, Optional.ToNullable(protectedItemHealthStatus), extendedInfo.Value, Optional.ToDictionary(kpisHealths));
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new VmWorkloadSapHanaDBInstanceProtectedItem(protectedItemType, Optional.ToNullable(backupManagementType), Optional.ToNullable(workloadType), containerName.Value, sourceResourceId.Value, policyId.Value, Optional.ToNullable(lastRecoveryPoint), backupSetName.Value, Optional.ToNullable(createMode), Optional.ToNullable(deferredDeleteTimeInUTC), Optional.ToNullable(isScheduledForDeferredDelete), deferredDeleteTimeRemaining.Value, Optional.ToNullable(isDeferredDeleteScheduleUpcoming), Optional.ToNullable(isRehydrate), Optional.ToList(resourceGuardOperationRequests), Optional.ToNullable(isArchiveEnabled), policyName.Value, Optional.ToNullable(softDeleteRetentionPeriodInDays), vaultId.Value, serializedAdditionalRawData, friendlyName.Value, serverName.Value, parentName.Value, parentType.Value, protectionStatus.Value, Optional.ToNullable(protectionState), Optional.ToNullable(lastBackupStatus), Optional.ToNullable(lastBackupTime), lastBackupErrorDetail.Value, protectedItemDataSourceId.Value, Optional.ToNullable(protectedItemHealthStatus), extendedInfo.Value, Optional.ToDictionary(kpisHealths), Optional.ToList(nodesList));
         }
+
+        BinaryData IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(VmWorkloadSapHanaDBInstanceProtectedItem)} does not support '{options.Format}' format.");
+            }
+        }
+
+        VmWorkloadSapHanaDBInstanceProtectedItem IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeVmWorkloadSapHanaDBInstanceProtectedItem(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(VmWorkloadSapHanaDBInstanceProtectedItem)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<VmWorkloadSapHanaDBInstanceProtectedItem>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

@@ -17,9 +17,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteSlotConfigSnapshotResource" /> and their operations.
-    /// Each <see cref="SiteSlotConfigSnapshotResource" /> in the collection will belong to the same instance of <see cref="WebSiteSlotConfigResource" />.
-    /// To get a <see cref="SiteSlotConfigSnapshotCollection" /> instance call the GetSiteSlotConfigSnapshots method from an instance of <see cref="WebSiteSlotConfigResource" />.
+    /// A class representing a collection of <see cref="SiteSlotConfigSnapshotResource"/> and their operations.
+    /// Each <see cref="SiteSlotConfigSnapshotResource"/> in the collection will belong to the same instance of <see cref="WebSiteSlotConfigResource"/>.
+    /// To get a <see cref="SiteSlotConfigSnapshotCollection"/> instance call the GetSiteSlotConfigSnapshots method from an instance of <see cref="WebSiteSlotConfigResource"/>.
     /// </summary>
     public partial class SiteSlotConfigSnapshotCollection : ArmCollection
     {
@@ -61,6 +61,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetConfigurationSnapshotSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotId"> The ID of the snapshot to read. </param>
@@ -69,7 +77,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
         public virtual async Task<Response<SiteSlotConfigSnapshotResource>> GetAsync(string snapshotId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotId, nameof(snapshotId));
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
 
             using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.Get");
             scope.Start();
@@ -98,6 +113,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetConfigurationSnapshotSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotId"> The ID of the snapshot to read. </param>
@@ -106,7 +129,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
         public virtual Response<SiteSlotConfigSnapshotResource> Get(string snapshotId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotId, nameof(snapshotId));
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
 
             using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.Get");
             scope.Start();
@@ -135,6 +165,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetConfigurationSnapshotSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotId"> The ID of the snapshot to read. </param>
@@ -143,7 +181,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string snapshotId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotId, nameof(snapshotId));
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
 
             using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.Exists");
             scope.Start();
@@ -170,6 +215,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetConfigurationSnapshotSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotId"> The ID of the snapshot to read. </param>
@@ -178,7 +231,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
         public virtual Response<bool> Exists(string snapshotId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotId, nameof(snapshotId));
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
 
             using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.Exists");
             scope.Start();
@@ -186,6 +246,110 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _siteSlotConfigSnapshotWebAppsRestClient.GetConfigurationSnapshotSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, snapshotId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web/snapshots/{snapshotId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetConfigurationSnapshotSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="snapshotId"> The ID of the snapshot to read. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="snapshotId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteSlotConfigSnapshotResource>> GetIfExistsAsync(string snapshotId, CancellationToken cancellationToken = default)
+        {
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
+
+            using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteSlotConfigSnapshotWebAppsRestClient.GetConfigurationSnapshotSlotAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, snapshotId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotConfigSnapshotResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotConfigSnapshotResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web/snapshots/{snapshotId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetConfigurationSnapshotSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotConfigSnapshotResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="snapshotId"> The ID of the snapshot to read. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="snapshotId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="snapshotId"/> is null. </exception>
+        public virtual NullableResponse<SiteSlotConfigSnapshotResource> GetIfExists(string snapshotId, CancellationToken cancellationToken = default)
+        {
+            if (snapshotId == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotId));
+            }
+            if (snapshotId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotId));
+            }
+
+            using var scope = _siteSlotConfigSnapshotWebAppsClientDiagnostics.CreateScope("SiteSlotConfigSnapshotCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteSlotConfigSnapshotWebAppsRestClient.GetConfigurationSnapshotSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, snapshotId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotConfigSnapshotResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotConfigSnapshotResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

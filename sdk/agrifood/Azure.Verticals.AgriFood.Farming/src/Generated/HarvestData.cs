@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -69,7 +70,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetCascadeDeleteJobDetailsAsync(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -104,7 +112,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetails(string,RequestContext)']/*" />
         public virtual Response GetCascadeDeleteJobDetails(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -140,8 +155,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetHarvestDataAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetHarvestDataAsync(string partyId, string harvestDataId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.GetHarvestData");
             scope.Start();
@@ -177,8 +206,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetHarvestData(string,string,RequestContext)']/*" />
         public virtual Response GetHarvestData(string partyId, string harvestDataId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.GetHarvestData");
             scope.Start();
@@ -215,9 +258,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string partyId, string harvestDataId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.CreateOrUpdate");
             scope.Start();
@@ -254,9 +314,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='CreateOrUpdate(string,string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string partyId, string harvestDataId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.CreateOrUpdate");
             scope.Start();
@@ -292,8 +369,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='DeleteAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string partyId, string harvestDataId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.Delete");
             scope.Start();
@@ -329,8 +420,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='Delete(string,string,RequestContext)']/*" />
         public virtual Response Delete(string partyId, string harvestDataId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(harvestDataId, nameof(harvestDataId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
+            if (harvestDataId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.Delete");
             scope.Start();
@@ -402,7 +507,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllHarvestDataRequest(minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, harvestDataIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllHarvestDataNextPageRequest(nextLink, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, harvestDataIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestData", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestData", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -461,7 +566,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllHarvestDataRequest(minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, harvestDataIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllHarvestDataNextPageRequest(nextLink, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, harvestDataIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestData", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestData", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -521,11 +626,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetAllHarvestDataByPartyIdAsync(string,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,double?,double?,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetAllHarvestDataByPartyIdAsync(string partyId, double? minTotalYield, double? maxTotalYield, double? minAvgYield, double? maxAvgYield, double? minTotalWetMass, double? maxTotalWetMass, double? minAvgWetMass, double? maxAvgWetMass, double? minAvgMoisture, double? maxAvgMoisture, double? minAvgSpeed, double? maxAvgSpeed, IEnumerable<string> sources, IEnumerable<string> associatedBoundaryIds, DateTimeOffset? minOperationStartDateTime, DateTimeOffset? maxOperationStartDateTime, DateTimeOffset? minOperationEndDateTime, DateTimeOffset? maxOperationEndDateTime, DateTimeOffset? minOperationModifiedDateTime, DateTimeOffset? maxOperationModifiedDateTime, double? minArea, double? maxArea, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllHarvestDataByPartyIdRequest(partyId, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllHarvestDataByPartyIdNextPageRequest(nextLink, partyId, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestDataByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestDataByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -585,11 +697,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='GetAllHarvestDataByPartyId(string,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,double?,IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,double?,double?,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetAllHarvestDataByPartyId(string partyId, double? minTotalYield, double? maxTotalYield, double? minAvgYield, double? maxAvgYield, double? minTotalWetMass, double? maxTotalWetMass, double? minAvgWetMass, double? maxAvgWetMass, double? minAvgMoisture, double? maxAvgMoisture, double? minAvgSpeed, double? maxAvgSpeed, IEnumerable<string> sources, IEnumerable<string> associatedBoundaryIds, DateTimeOffset? minOperationStartDateTime, DateTimeOffset? maxOperationStartDateTime, DateTimeOffset? minOperationEndDateTime, DateTimeOffset? maxOperationEndDateTime, DateTimeOffset? minOperationModifiedDateTime, DateTimeOffset? maxOperationModifiedDateTime, double? minArea, double? maxArea, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllHarvestDataByPartyIdRequest(partyId, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllHarvestDataByPartyIdNextPageRequest(nextLink, partyId, minTotalYield, maxTotalYield, minAvgYield, maxAvgYield, minTotalWetMass, maxTotalWetMass, minAvgWetMass, maxAvgWetMass, minAvgMoisture, maxAvgMoisture, minAvgSpeed, maxAvgSpeed, sources, associatedBoundaryIds, minOperationStartDateTime, maxOperationStartDateTime, minOperationEndDateTime, maxOperationEndDateTime, minOperationModifiedDateTime, maxOperationModifiedDateTime, minArea, maxArea, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestDataByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "HarvestData.GetAllHarvestDataByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -614,9 +733,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='CreateCascadeDeleteJobAsync(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> CreateCascadeDeleteJobAsync(WaitUntil waitUntil, string jobId, string partyId, string harvestDataId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(harvestDataId, nameof(harvestDataId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.CreateCascadeDeleteJob");
             scope.Start();
@@ -654,9 +786,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/HarvestData.xml" path="doc/members/member[@name='CreateCascadeDeleteJob(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> CreateCascadeDeleteJob(WaitUntil waitUntil, string jobId, string partyId, string harvestDataId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(harvestDataId, nameof(harvestDataId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (harvestDataId == null)
+            {
+                throw new ArgumentNullException(nameof(harvestDataId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("HarvestData.CreateCascadeDeleteJob");
             scope.Start();

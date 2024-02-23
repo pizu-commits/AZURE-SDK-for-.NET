@@ -6,25 +6,27 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The LanguageDetectionTaskResult. </summary>
     internal partial class LanguageDetectionTaskResult : AnalyzeTextTaskResult
     {
-        /// <summary> Initializes a new instance of LanguageDetectionTaskResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="LanguageDetectionTaskResult"/>. </summary>
         /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal LanguageDetectionTaskResult(LanguageDetectionResult results)
         {
-            Argument.AssertNotNull(results, nameof(results));
+            if (results == null)
+            {
+                throw new ArgumentNullException(nameof(results));
+            }
 
             Results = results;
             Kind = AnalyzeTextTaskResultsKind.LanguageDetectionResults;
         }
 
-        /// <summary> Initializes a new instance of LanguageDetectionTaskResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="LanguageDetectionTaskResult"/>. </summary>
         /// <param name="kind"> Enumeration of supported Text Analysis task results. </param>
         /// <param name="results"></param>
         internal LanguageDetectionTaskResult(AnalyzeTextTaskResultsKind kind, LanguageDetectionResult results) : base(kind)

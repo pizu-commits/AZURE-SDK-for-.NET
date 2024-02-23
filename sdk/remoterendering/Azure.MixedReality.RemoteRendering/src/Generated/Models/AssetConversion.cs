@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.MixedReality.RemoteRendering
 {
     /// <summary> The properties of the conversion. </summary>
     public partial class AssetConversion
     {
-        /// <summary> Initializes a new instance of AssetConversion. </summary>
+        /// <summary> Initializes a new instance of <see cref="AssetConversion"/>. </summary>
         /// <param name="conversionId"> The ID of the conversion supplied when the conversion was created. </param>
         /// <param name="options"> Conversion settings describe the origin of input files and destination of output files. </param>
         /// <param name="error"> The error object containing details about the conversion failure. </param>
@@ -22,8 +21,14 @@ namespace Azure.MixedReality.RemoteRendering
         /// <exception cref="ArgumentNullException"> <paramref name="conversionId"/> or <paramref name="options"/> is null. </exception>
         internal AssetConversion(string conversionId, AssetConversionOptions options, RemoteRenderingServiceError error, AssetConversionStatus status, DateTimeOffset createdOn)
         {
-            Argument.AssertNotNull(conversionId, nameof(conversionId));
-            Argument.AssertNotNull(options, nameof(options));
+            if (conversionId == null)
+            {
+                throw new ArgumentNullException(nameof(conversionId));
+            }
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
 
             ConversionId = conversionId;
             Options = options;
@@ -32,7 +37,7 @@ namespace Azure.MixedReality.RemoteRendering
             CreatedOn = createdOn;
         }
 
-        /// <summary> Initializes a new instance of AssetConversion. </summary>
+        /// <summary> Initializes a new instance of <see cref="AssetConversion"/>. </summary>
         /// <param name="conversionId"> The ID of the conversion supplied when the conversion was created. </param>
         /// <param name="options"> Conversion settings describe the origin of input files and destination of output files. </param>
         /// <param name="output"> Information about the output of a successful conversion. Only present when the status of the conversion is 'Succeeded'. </param>

@@ -14,6 +14,7 @@ clear-output-folder: true
 skip-csproj: true
 modelerfour:
   flatten-payloads: false
+use-model-reader-writer: true
 
 rename-mapping:
   SignalRResource: SignalR
@@ -68,7 +69,7 @@ format-by-name-rules:
 override-operation-name:
   SignalR_CheckNameAvailability: CheckSignalRNameAvailability
 
-rename-rules:
+acronym-mapping:
   CPU: Cpu
   CPUs: Cpus
   Os: OS

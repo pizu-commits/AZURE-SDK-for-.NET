@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.Network
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ExpressRoutePortsLocationResource" /> and their operations.
-    /// Each <see cref="ExpressRoutePortsLocationResource" /> in the collection will belong to the same instance of <see cref="SubscriptionResource" />.
-    /// To get an <see cref="ExpressRoutePortsLocationCollection" /> instance call the GetExpressRoutePortsLocations method from an instance of <see cref="SubscriptionResource" />.
+    /// A class representing a collection of <see cref="ExpressRoutePortsLocationResource"/> and their operations.
+    /// Each <see cref="ExpressRoutePortsLocationResource"/> in the collection will belong to the same instance of <see cref="SubscriptionResource"/>.
+    /// To get an <see cref="ExpressRoutePortsLocationCollection"/> instance call the GetExpressRoutePortsLocations method from an instance of <see cref="SubscriptionResource"/>.
     /// </summary>
     public partial class ExpressRoutePortsLocationCollection : ArmCollection, IEnumerable<ExpressRoutePortsLocationResource>, IAsyncEnumerable<ExpressRoutePortsLocationResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
         public virtual async Task<Response<ExpressRoutePortsLocationResource>> GetAsync(string locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(locationName, nameof(locationName));
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
 
             using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.Get");
             scope.Start();
@@ -101,6 +117,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
@@ -109,7 +133,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
         public virtual Response<ExpressRoutePortsLocationResource> Get(string locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(locationName, nameof(locationName));
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
 
             using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.Get");
             scope.Start();
@@ -138,15 +169,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ExpressRoutePortsLocationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ExpressRoutePortsLocationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ExpressRoutePortsLocationResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _expressRoutePortsLocationRestClient.CreateListRequest(Id.SubscriptionId);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _expressRoutePortsLocationRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ExpressRoutePortsLocationResource(Client, ExpressRoutePortsLocationData.DeserializeExpressRoutePortsLocationData(e)), _expressRoutePortsLocationClientDiagnostics, Pipeline, "ExpressRoutePortsLocationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ExpressRoutePortsLocationResource(Client, ExpressRoutePortsLocationData.DeserializeExpressRoutePortsLocationData(e)), _expressRoutePortsLocationClientDiagnostics, Pipeline, "ExpressRoutePortsLocationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -160,15 +199,23 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ExpressRoutePortsLocationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ExpressRoutePortsLocationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ExpressRoutePortsLocationResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _expressRoutePortsLocationRestClient.CreateListRequest(Id.SubscriptionId);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _expressRoutePortsLocationRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ExpressRoutePortsLocationResource(Client, ExpressRoutePortsLocationData.DeserializeExpressRoutePortsLocationData(e)), _expressRoutePortsLocationClientDiagnostics, Pipeline, "ExpressRoutePortsLocationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ExpressRoutePortsLocationResource(Client, ExpressRoutePortsLocationData.DeserializeExpressRoutePortsLocationData(e)), _expressRoutePortsLocationClientDiagnostics, Pipeline, "ExpressRoutePortsLocationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -182,6 +229,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
@@ -190,7 +245,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(locationName, nameof(locationName));
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
 
             using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.Exists");
             scope.Start();
@@ -217,6 +279,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ExpressRoutePortsLocations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
@@ -225,7 +295,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
         public virtual Response<bool> Exists(string locationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(locationName, nameof(locationName));
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
 
             using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.Exists");
             scope.Start();
@@ -233,6 +310,110 @@ namespace Azure.ResourceManager.Network
             {
                 var response = _expressRoutePortsLocationRestClient.Get(Id.SubscriptionId, locationName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.Network/ExpressRoutePortsLocations/{locationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ExpressRoutePortsLocations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="locationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ExpressRoutePortsLocationResource>> GetIfExistsAsync(string locationName, CancellationToken cancellationToken = default)
+        {
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
+
+            using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _expressRoutePortsLocationRestClient.GetAsync(Id.SubscriptionId, locationName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ExpressRoutePortsLocationResource>(response.GetRawResponse());
+                return Response.FromValue(new ExpressRoutePortsLocationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.Network/ExpressRoutePortsLocations/{locationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ExpressRoutePortsLocations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExpressRoutePortsLocationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="locationName"> Name of the requested ExpressRoutePort peering location. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="locationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="locationName"/> is null. </exception>
+        public virtual NullableResponse<ExpressRoutePortsLocationResource> GetIfExists(string locationName, CancellationToken cancellationToken = default)
+        {
+            if (locationName == null)
+            {
+                throw new ArgumentNullException(nameof(locationName));
+            }
+            if (locationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(locationName));
+            }
+
+            using var scope = _expressRoutePortsLocationClientDiagnostics.CreateScope("ExpressRoutePortsLocationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _expressRoutePortsLocationRestClient.Get(Id.SubscriptionId, locationName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ExpressRoutePortsLocationResource>(response.GetRawResponse());
+                return Response.FromValue(new ExpressRoutePortsLocationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

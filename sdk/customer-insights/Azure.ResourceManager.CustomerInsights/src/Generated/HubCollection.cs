@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.CustomerInsights
 {
     /// <summary>
-    /// A class representing a collection of <see cref="HubResource" /> and their operations.
-    /// Each <see cref="HubResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="HubCollection" /> instance call the GetHubs method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="HubResource"/> and their operations.
+    /// Each <see cref="HubResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="HubCollection"/> instance call the GetHubs method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class HubCollection : ArmCollection, IEnumerable<HubResource>, IAsyncEnumerable<HubResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<HubResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string hubName, HubData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<HubResource> CreateOrUpdate(WaitUntil waitUntil, string hubName, HubData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hubName"> The name of the hub. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
         public virtual async Task<Response<HubResource>> GetAsync(string hubName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hubName"> The name of the hub. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
         public virtual Response<HubResource> Get(string hubName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="HubResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="HubResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<HubResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _hubRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _hubRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new HubResource(Client, HubData.DeserializeHubData(e)), _hubClientDiagnostics, Pipeline, "HubCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new HubResource(Client, HubData.DeserializeHubData(e)), _hubClientDiagnostics, Pipeline, "HubCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="HubResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="HubResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<HubResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _hubRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _hubRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new HubResource(Client, HubData.DeserializeHubData(e)), _hubClientDiagnostics, Pipeline, "HubCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new HubResource(Client, HubData.DeserializeHubData(e)), _hubClientDiagnostics, Pipeline, "HubCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hubName"> The name of the hub. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string hubName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <term>Operation Id</term>
         /// <description>Hubs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hubName"> The name of the hub. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.CustomerInsights
         /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
         public virtual Response<bool> Exists(string hubName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hubName, nameof(hubName));
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
 
             using var scope = _hubClientDiagnostics.CreateScope("HubCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.CustomerInsights
             {
                 var response = _hubRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, hubName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Hubs_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="hubName"> The name of the hub. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="hubName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
+        public virtual async Task<NullableResponse<HubResource>> GetIfExistsAsync(string hubName, CancellationToken cancellationToken = default)
+        {
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
+
+            using var scope = _hubClientDiagnostics.CreateScope("HubCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _hubRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, hubName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<HubResource>(response.GetRawResponse());
+                return Response.FromValue(new HubResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Hubs_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-04-26</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HubResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="hubName"> The name of the hub. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="hubName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="hubName"/> is null. </exception>
+        public virtual NullableResponse<HubResource> GetIfExists(string hubName, CancellationToken cancellationToken = default)
+        {
+            if (hubName == null)
+            {
+                throw new ArgumentNullException(nameof(hubName));
+            }
+            if (hubName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hubName));
+            }
+
+            using var scope = _hubClientDiagnostics.CreateScope("HubCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _hubRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, hubName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<HubResource>(response.GetRawResponse());
+                return Response.FromValue(new HubResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

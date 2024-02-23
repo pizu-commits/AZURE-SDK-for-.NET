@@ -20,13 +20,17 @@ namespace Azure.ResourceManager.Logic
 {
     /// <summary>
     /// A Class representing an IntegrationAccountAssemblyDefinition along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="IntegrationAccountAssemblyDefinitionResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetIntegrationAccountAssemblyDefinitionResource method.
-    /// Otherwise you can get one from its parent resource <see cref="IntegrationAccountResource" /> using the GetIntegrationAccountAssemblyDefinition method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="IntegrationAccountAssemblyDefinitionResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetIntegrationAccountAssemblyDefinitionResource method.
+    /// Otherwise you can get one from its parent resource <see cref="IntegrationAccountResource"/> using the GetIntegrationAccountAssemblyDefinition method.
     /// </summary>
     public partial class IntegrationAccountAssemblyDefinitionResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="IntegrationAccountAssemblyDefinitionResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="integrationAccountName"> The integrationAccountName. </param>
+        /// <param name="assemblyArtifactName"> The assemblyArtifactName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string integrationAccountName, string assemblyArtifactName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/assemblies/{assemblyArtifactName}";
@@ -37,12 +41,15 @@ namespace Azure.ResourceManager.Logic
         private readonly IntegrationAccountAssembliesRestOperations _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesRestClient;
         private readonly IntegrationAccountAssemblyDefinitionData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Logic/integrationAccounts/assemblies";
+
         /// <summary> Initializes a new instance of the <see cref="IntegrationAccountAssemblyDefinitionResource"/> class for mocking. </summary>
         protected IntegrationAccountAssemblyDefinitionResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "IntegrationAccountAssemblyDefinitionResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="IntegrationAccountAssemblyDefinitionResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal IntegrationAccountAssemblyDefinitionResource(ArmClient client, IntegrationAccountAssemblyDefinitionData data) : this(client, data.Id)
@@ -63,9 +70,6 @@ namespace Azure.ResourceManager.Logic
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Logic/integrationAccounts/assemblies";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -99,6 +103,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -131,6 +143,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -162,6 +182,14 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -197,6 +225,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -231,6 +267,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -239,7 +283,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<IntegrationAccountAssemblyDefinitionResource>> UpdateAsync(WaitUntil waitUntil, IntegrationAccountAssemblyDefinitionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.Update");
             scope.Start();
@@ -269,6 +316,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -277,7 +332,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<IntegrationAccountAssemblyDefinitionResource> Update(WaitUntil waitUntil, IntegrationAccountAssemblyDefinitionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.Update");
             scope.Start();
@@ -306,6 +364,14 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_ListContentCallbackUrl</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -337,6 +403,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_ListContentCallbackUrl</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -367,6 +441,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -375,8 +457,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<IntegrationAccountAssemblyDefinitionResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.AddTag");
             scope.Start();
@@ -416,6 +504,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -424,8 +520,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<IntegrationAccountAssemblyDefinitionResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.AddTag");
             scope.Start();
@@ -465,6 +567,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -472,7 +582,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<IntegrationAccountAssemblyDefinitionResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.SetTags");
             scope.Start();
@@ -513,6 +626,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -520,7 +641,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<IntegrationAccountAssemblyDefinitionResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.SetTags");
             scope.Start();
@@ -561,6 +685,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -568,7 +700,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<IntegrationAccountAssemblyDefinitionResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.RemoveTag");
             scope.Start();
@@ -608,6 +743,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAssemblies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAssemblyDefinitionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -615,7 +758,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<IntegrationAccountAssemblyDefinitionResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _integrationAccountAssemblyDefinitionIntegrationAccountAssembliesClientDiagnostics.CreateScope("IntegrationAccountAssemblyDefinitionResource.RemoveTag");
             scope.Start();

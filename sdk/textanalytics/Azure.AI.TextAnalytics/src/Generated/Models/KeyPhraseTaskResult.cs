@@ -6,25 +6,27 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The KeyPhraseTaskResult. </summary>
     internal partial class KeyPhraseTaskResult : AnalyzeTextTaskResult
     {
-        /// <summary> Initializes a new instance of KeyPhraseTaskResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="KeyPhraseTaskResult"/>. </summary>
         /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal KeyPhraseTaskResult(KeyPhraseResult results)
         {
-            Argument.AssertNotNull(results, nameof(results));
+            if (results == null)
+            {
+                throw new ArgumentNullException(nameof(results));
+            }
 
             Results = results;
             Kind = AnalyzeTextTaskResultsKind.KeyPhraseExtractionResults;
         }
 
-        /// <summary> Initializes a new instance of KeyPhraseTaskResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="KeyPhraseTaskResult"/>. </summary>
         /// <param name="kind"> Enumeration of supported Text Analysis task results. </param>
         /// <param name="results"></param>
         internal KeyPhraseTaskResult(AnalyzeTextTaskResultsKind kind, KeyPhraseResult results) : base(kind)

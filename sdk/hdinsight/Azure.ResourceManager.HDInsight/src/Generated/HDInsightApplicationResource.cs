@@ -20,13 +20,17 @@ namespace Azure.ResourceManager.HDInsight
 {
     /// <summary>
     /// A Class representing a HDInsightApplication along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="HDInsightApplicationResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetHDInsightApplicationResource method.
-    /// Otherwise you can get one from its parent resource <see cref="HDInsightClusterResource" /> using the GetHDInsightApplication method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="HDInsightApplicationResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetHDInsightApplicationResource method.
+    /// Otherwise you can get one from its parent resource <see cref="HDInsightClusterResource"/> using the GetHDInsightApplication method.
     /// </summary>
     public partial class HDInsightApplicationResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="HDInsightApplicationResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="clusterName"> The clusterName. </param>
+        /// <param name="applicationName"> The applicationName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string clusterName, string applicationName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}";
@@ -37,12 +41,15 @@ namespace Azure.ResourceManager.HDInsight
         private readonly ApplicationsRestOperations _hdInsightApplicationApplicationsRestClient;
         private readonly HDInsightApplicationData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.HDInsight/clusters/applications";
+
         /// <summary> Initializes a new instance of the <see cref="HDInsightApplicationResource"/> class for mocking. </summary>
         protected HDInsightApplicationResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "HDInsightApplicationResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="HDInsightApplicationResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal HDInsightApplicationResource(ArmClient client, HDInsightApplicationData data) : this(client, data.Id)
@@ -63,9 +70,6 @@ namespace Azure.ResourceManager.HDInsight
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.HDInsight/clusters/applications";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -99,6 +103,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -131,6 +143,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -162,6 +182,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Applications_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -197,6 +225,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -231,6 +267,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -239,7 +283,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<HDInsightApplicationResource>> UpdateAsync(WaitUntil waitUntil, HDInsightApplicationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.Update");
             scope.Start();
@@ -269,6 +316,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -277,7 +332,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<HDInsightApplicationResource> Update(WaitUntil waitUntil, HDInsightApplicationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.Update");
             scope.Start();
@@ -307,6 +365,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_GetAzureAsyncOperationStatus</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The long running operation id. </param>
@@ -315,7 +381,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual async Task<Response<HDInsightAsyncOperationResult>> GetAzureAsyncOperationStatusAsync(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.GetAzureAsyncOperationStatus");
             scope.Start();
@@ -342,6 +415,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_GetAzureAsyncOperationStatus</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="operationId"> The long running operation id. </param>
@@ -350,7 +431,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         public virtual Response<HDInsightAsyncOperationResult> GetAzureAsyncOperationStatus(string operationId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+            if (operationId == null)
+            {
+                throw new ArgumentNullException(nameof(operationId));
+            }
+            if (operationId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(operationId));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.GetAzureAsyncOperationStatus");
             scope.Start();
@@ -377,6 +465,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -385,8 +481,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<HDInsightApplicationResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.AddTag");
             scope.Start();
@@ -426,6 +528,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -434,8 +544,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<HDInsightApplicationResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.AddTag");
             scope.Start();
@@ -475,6 +591,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -482,7 +606,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<HDInsightApplicationResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.SetTags");
             scope.Start();
@@ -523,6 +650,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -530,7 +665,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<HDInsightApplicationResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.SetTags");
             scope.Start();
@@ -571,6 +709,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -578,7 +724,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<HDInsightApplicationResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.RemoveTag");
             scope.Start();
@@ -618,6 +767,14 @@ namespace Azure.ResourceManager.HDInsight
         /// <term>Operation Id</term>
         /// <description>Applications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HDInsightApplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -625,7 +782,10 @@ namespace Azure.ResourceManager.HDInsight
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<HDInsightApplicationResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _hdInsightApplicationApplicationsClientDiagnostics.CreateScope("HDInsightApplicationResource.RemoveTag");
             scope.Start();

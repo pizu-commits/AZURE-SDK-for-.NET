@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.SecurityInsights
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SecurityMLAnalyticsSettingResource" /> and their operations.
-    /// Each <see cref="SecurityMLAnalyticsSettingResource" /> in the collection will belong to the same instance of <see cref="OperationalInsightsWorkspaceSecurityInsightsResource" />.
-    /// To get a <see cref="SecurityMLAnalyticsSettingCollection" /> instance call the GetSecurityMLAnalyticsSettings method from an instance of <see cref="OperationalInsightsWorkspaceSecurityInsightsResource" />.
+    /// A class representing a collection of <see cref="SecurityMLAnalyticsSettingResource"/> and their operations.
+    /// Each <see cref="SecurityMLAnalyticsSettingResource"/> in the collection will belong to the same instance of <see cref="OperationalInsightsWorkspaceSecurityInsightsResource"/>.
+    /// To get a <see cref="SecurityMLAnalyticsSettingCollection"/> instance call the GetSecurityMLAnalyticsSettings method from an instance of <see cref="OperationalInsightsWorkspaceSecurityInsightsResource"/>.
     /// </summary>
     public partial class SecurityMLAnalyticsSettingCollection : ArmCollection, IEnumerable<SecurityMLAnalyticsSettingResource>, IAsyncEnumerable<SecurityMLAnalyticsSettingResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<SecurityMLAnalyticsSettingResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string settingsResourceName, SecurityMLAnalyticsSettingData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<SecurityMLAnalyticsSettingResource> CreateOrUpdate(WaitUntil waitUntil, string settingsResourceName, SecurityMLAnalyticsSettingData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
         public virtual async Task<Response<SecurityMLAnalyticsSettingResource>> GetAsync(string settingsResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
         public virtual Response<SecurityMLAnalyticsSettingResource> Get(string settingsResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SecurityMLAnalyticsSettingResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SecurityMLAnalyticsSettingResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SecurityMLAnalyticsSettingResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _securityMLAnalyticsSettingRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _securityMLAnalyticsSettingRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SecurityMLAnalyticsSettingResource(Client, SecurityMLAnalyticsSettingData.DeserializeSecurityMLAnalyticsSettingData(e)), _securityMLAnalyticsSettingClientDiagnostics, Pipeline, "SecurityMLAnalyticsSettingCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SecurityMLAnalyticsSettingResource(Client, SecurityMLAnalyticsSettingData.DeserializeSecurityMLAnalyticsSettingData(e)), _securityMLAnalyticsSettingClientDiagnostics, Pipeline, "SecurityMLAnalyticsSettingCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SecurityMLAnalyticsSettingResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SecurityMLAnalyticsSettingResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SecurityMLAnalyticsSettingResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _securityMLAnalyticsSettingRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _securityMLAnalyticsSettingRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SecurityMLAnalyticsSettingResource(Client, SecurityMLAnalyticsSettingData.DeserializeSecurityMLAnalyticsSettingData(e)), _securityMLAnalyticsSettingClientDiagnostics, Pipeline, "SecurityMLAnalyticsSettingCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SecurityMLAnalyticsSettingResource(Client, SecurityMLAnalyticsSettingData.DeserializeSecurityMLAnalyticsSettingData(e)), _securityMLAnalyticsSettingClientDiagnostics, Pipeline, "SecurityMLAnalyticsSettingCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string settingsResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <term>Operation Id</term>
         /// <description>SecurityMLAnalyticsSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
         public virtual Response<bool> Exists(string settingsResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(settingsResourceName, nameof(settingsResourceName));
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
 
             using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.SecurityInsights
             {
                 var response = _securityMLAnalyticsSettingRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, settingsResourceName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SecurityMLAnalyticsSettings_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="settingsResourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SecurityMLAnalyticsSettingResource>> GetIfExistsAsync(string settingsResourceName, CancellationToken cancellationToken = default)
+        {
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
+
+            using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _securityMLAnalyticsSettingRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, settingsResourceName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SecurityMLAnalyticsSettingResource>(response.GetRawResponse());
+                return Response.FromValue(new SecurityMLAnalyticsSettingResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SecurityMLAnalyticsSettings_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityMLAnalyticsSettingResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="settingsResourceName"> Security ML Analytics Settings resource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="settingsResourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="settingsResourceName"/> is null. </exception>
+        public virtual NullableResponse<SecurityMLAnalyticsSettingResource> GetIfExists(string settingsResourceName, CancellationToken cancellationToken = default)
+        {
+            if (settingsResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(settingsResourceName));
+            }
+            if (settingsResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(settingsResourceName));
+            }
+
+            using var scope = _securityMLAnalyticsSettingClientDiagnostics.CreateScope("SecurityMLAnalyticsSettingCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _securityMLAnalyticsSettingRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, settingsResourceName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SecurityMLAnalyticsSettingResource>(response.GetRawResponse());
+                return Response.FromValue(new SecurityMLAnalyticsSettingResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

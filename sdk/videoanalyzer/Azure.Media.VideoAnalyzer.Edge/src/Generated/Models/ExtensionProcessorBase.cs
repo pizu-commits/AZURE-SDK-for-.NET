@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -18,7 +17,7 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     public partial class ExtensionProcessorBase : ProcessorNodeBase
     {
-        /// <summary> Initializes a new instance of ExtensionProcessorBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExtensionProcessorBase"/>. </summary>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>
         /// <param name="endpoint">
@@ -30,17 +29,29 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="inputs"/>, <paramref name="endpoint"/> or <paramref name="image"/> is null. </exception>
         public ExtensionProcessorBase(string name, IEnumerable<NodeInput> inputs, EndpointBase endpoint, ImageProperties image) : base(name, inputs)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(inputs, nameof(inputs));
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(image, nameof(image));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (inputs == null)
+            {
+                throw new ArgumentNullException(nameof(inputs));
+            }
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (image == null)
+            {
+                throw new ArgumentNullException(nameof(image));
+            }
 
             Endpoint = endpoint;
             Image = image;
             Type = "#Microsoft.VideoAnalyzer.ExtensionProcessorBase";
         }
 
-        /// <summary> Initializes a new instance of ExtensionProcessorBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExtensionProcessorBase"/>. </summary>
         /// <param name="type"> Type discriminator for the derived types. </param>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>

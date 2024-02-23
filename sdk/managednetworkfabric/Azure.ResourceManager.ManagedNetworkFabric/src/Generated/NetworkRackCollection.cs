@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.ManagedNetworkFabric
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NetworkRackResource" /> and their operations.
-    /// Each <see cref="NetworkRackResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="NetworkRackCollection" /> instance call the GetNetworkRacks method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="NetworkRackResource"/> and their operations.
+    /// Each <see cref="NetworkRackResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="NetworkRackCollection"/> instance call the GetNetworkRacks method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class NetworkRackCollection : ArmCollection, IEnumerable<NetworkRackResource>, IAsyncEnumerable<NetworkRackResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<NetworkRackResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string networkRackName, NetworkRackData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<NetworkRackResource> CreateOrUpdate(WaitUntil waitUntil, string networkRackName, NetworkRackData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkRackName"> Name of the Network Rack. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
         public virtual async Task<Response<NetworkRackResource>> GetAsync(string networkRackName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkRackName"> Name of the Network Rack. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
         public virtual Response<NetworkRackResource> Get(string networkRackName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NetworkRackResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NetworkRackResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NetworkRackResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkRackRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkRackRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkRackResource(Client, NetworkRackData.DeserializeNetworkRackData(e)), _networkRackClientDiagnostics, Pipeline, "NetworkRackCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkRackResource(Client, NetworkRackData.DeserializeNetworkRackData(e)), _networkRackClientDiagnostics, Pipeline, "NetworkRackCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NetworkRackResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NetworkRackResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NetworkRackResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkRackRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkRackRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkRackResource(Client, NetworkRackData.DeserializeNetworkRackData(e)), _networkRackClientDiagnostics, Pipeline, "NetworkRackCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkRackResource(Client, NetworkRackData.DeserializeNetworkRackData(e)), _networkRackClientDiagnostics, Pipeline, "NetworkRackCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkRackName"> Name of the Network Rack. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string networkRackName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <term>Operation Id</term>
         /// <description>NetworkRacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkRackName"> Name of the Network Rack. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
         /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
         public virtual Response<bool> Exists(string networkRackName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkRackName, nameof(networkRackName));
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
 
             using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.ManagedNetworkFabric
             {
                 var response = _networkRackRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, networkRackName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkRacks/{networkRackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>NetworkRacks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkRackName"> Name of the Network Rack. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkRackName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NetworkRackResource>> GetIfExistsAsync(string networkRackName, CancellationToken cancellationToken = default)
+        {
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
+
+            using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _networkRackRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, networkRackName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkRackResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkRackResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkRacks/{networkRackName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>NetworkRacks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkRackResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkRackName"> Name of the Network Rack. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkRackName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkRackName"/> is null. </exception>
+        public virtual NullableResponse<NetworkRackResource> GetIfExists(string networkRackName, CancellationToken cancellationToken = default)
+        {
+            if (networkRackName == null)
+            {
+                throw new ArgumentNullException(nameof(networkRackName));
+            }
+            if (networkRackName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkRackName));
+            }
+
+            using var scope = _networkRackClientDiagnostics.CreateScope("NetworkRackCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _networkRackRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, networkRackName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkRackResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkRackResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

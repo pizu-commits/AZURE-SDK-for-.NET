@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> A single Amazon Simple Storage Service (S3) object or a set of S3 objects. </summary>
     public partial class AmazonS3Dataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of AmazonS3Dataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonS3Dataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <param name="bucketName"> The name of the Amazon S3 bucket. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> or <paramref name="bucketName"/> is null. </exception>
         public AmazonS3Dataset(DataFactoryLinkedServiceReference linkedServiceName, DataFactoryElement<string> bucketName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
-            Argument.AssertNotNull(bucketName, nameof(bucketName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
+            if (bucketName == null)
+            {
+                throw new ArgumentNullException(nameof(bucketName));
+            }
 
             BucketName = bucketName;
             DatasetType = "AmazonS3Object";
         }
 
-        /// <summary> Initializes a new instance of AmazonS3Dataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonS3Dataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -61,6 +66,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Format = format;
             Compression = compression;
             DatasetType = datasetType ?? "AmazonS3Object";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AmazonS3Dataset"/> for deserialization. </summary>
+        internal AmazonS3Dataset()
+        {
         }
 
         /// <summary> The name of the Amazon S3 bucket. Type: string (or Expression with resultType string). </summary>

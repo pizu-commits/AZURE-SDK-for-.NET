@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.ResourceManager.ServiceFabricManagedClusters.Models
 {
     /// <summary> The properties of a stateless service resource. </summary>
     public partial class StatelessServiceProperties : ManagedServiceProperties
     {
-        /// <summary> Initializes a new instance of StatelessServiceProperties. </summary>
+        /// <summary> Initializes a new instance of <see cref="StatelessServiceProperties"/>. </summary>
         /// <param name="serviceTypeName"> The name of the service type. </param>
         /// <param name="partitionDescription">
         /// Describes how the service is partitioned.
@@ -25,14 +24,20 @@ namespace Azure.ResourceManager.ServiceFabricManagedClusters.Models
         /// <exception cref="ArgumentNullException"> <paramref name="serviceTypeName"/> or <paramref name="partitionDescription"/> is null. </exception>
         public StatelessServiceProperties(string serviceTypeName, ManagedServicePartitionScheme partitionDescription, int instanceCount) : base(serviceTypeName, partitionDescription)
         {
-            Argument.AssertNotNull(serviceTypeName, nameof(serviceTypeName));
-            Argument.AssertNotNull(partitionDescription, nameof(partitionDescription));
+            if (serviceTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(serviceTypeName));
+            }
+            if (partitionDescription == null)
+            {
+                throw new ArgumentNullException(nameof(partitionDescription));
+            }
 
             InstanceCount = instanceCount;
             ServiceKind = ServiceKind.Stateless;
         }
 
-        /// <summary> Initializes a new instance of StatelessServiceProperties. </summary>
+        /// <summary> Initializes a new instance of <see cref="StatelessServiceProperties"/>. </summary>
         /// <param name="placementConstraints"> The placement constraints as a string. Placement constraints are boolean expressions on node properties and allow for restricting a service to particular nodes based on the service requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor == blue)". </param>
         /// <param name="correlationScheme"> A list that describes the correlation of the service with other services. </param>
         /// <param name="serviceLoadMetrics"> The service load metrics is given as an array of ServiceLoadMetric objects. </param>
@@ -43,6 +48,7 @@ namespace Azure.ResourceManager.ServiceFabricManagedClusters.Models
         /// </param>
         /// <param name="defaultMoveCost"> Specifies the move cost for the service. </param>
         /// <param name="scalingPolicies"> Scaling policies for this service. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="provisioningState"> The current deployment or provisioning state, which only appears in the response. </param>
         /// <param name="serviceKind"> The kind of service (Stateless or Stateful). </param>
         /// <param name="serviceTypeName"> The name of the service type. </param>
@@ -61,12 +67,17 @@ namespace Azure.ResourceManager.ServiceFabricManagedClusters.Models
         /// <param name="instanceCount"> The instance count. </param>
         /// <param name="minInstanceCount"> MinInstanceCount is the minimum number of instances that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node. The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ). Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service. </param>
         /// <param name="minInstancePercentage"> MinInstancePercentage is the minimum percentage of InstanceCount that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node. The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ). Note, if InstanceCount is set to -1, during MinInstancePercentage computation, -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service. </param>
-        internal StatelessServiceProperties(string placementConstraints, IList<ManagedServiceCorrelation> correlationScheme, IList<ManagedServiceLoadMetric> serviceLoadMetrics, IList<ManagedServicePlacementPolicy> servicePlacementPolicies, ServiceFabricManagedServiceMoveCost? defaultMoveCost, IList<ManagedServiceScalingPolicy> scalingPolicies, string provisioningState, ServiceKind serviceKind, string serviceTypeName, ManagedServicePartitionScheme partitionDescription, ManagedServicePackageActivationMode? servicePackageActivationMode, string serviceDnsName, int instanceCount, int? minInstanceCount, int? minInstancePercentage) : base(placementConstraints, correlationScheme, serviceLoadMetrics, servicePlacementPolicies, defaultMoveCost, scalingPolicies, provisioningState, serviceKind, serviceTypeName, partitionDescription, servicePackageActivationMode, serviceDnsName)
+        internal StatelessServiceProperties(string placementConstraints, IList<ManagedServiceCorrelation> correlationScheme, IList<ManagedServiceLoadMetric> serviceLoadMetrics, IList<ManagedServicePlacementPolicy> servicePlacementPolicies, ServiceFabricManagedServiceMoveCost? defaultMoveCost, IList<ManagedServiceScalingPolicy> scalingPolicies, IDictionary<string, BinaryData> serializedAdditionalRawData, string provisioningState, ServiceKind serviceKind, string serviceTypeName, ManagedServicePartitionScheme partitionDescription, ManagedServicePackageActivationMode? servicePackageActivationMode, string serviceDnsName, int instanceCount, int? minInstanceCount, int? minInstancePercentage) : base(placementConstraints, correlationScheme, serviceLoadMetrics, servicePlacementPolicies, defaultMoveCost, scalingPolicies, serializedAdditionalRawData, provisioningState, serviceKind, serviceTypeName, partitionDescription, servicePackageActivationMode, serviceDnsName)
         {
             InstanceCount = instanceCount;
             MinInstanceCount = minInstanceCount;
             MinInstancePercentage = minInstancePercentage;
             ServiceKind = serviceKind;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="StatelessServiceProperties"/> for deserialization. </summary>
+        internal StatelessServiceProperties()
+        {
         }
 
         /// <summary> The instance count. </summary>

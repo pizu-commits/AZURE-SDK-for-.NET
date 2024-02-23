@@ -18,9 +18,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.EdgeOrder
 {
     /// <summary>
-    /// A class representing a collection of <see cref="EdgeOrderResource" /> and their operations.
-    /// Each <see cref="EdgeOrderResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get an <see cref="EdgeOrderCollection" /> instance call the GetEdgeOrders method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="EdgeOrderResource"/> and their operations.
+    /// Each <see cref="EdgeOrderResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get an <see cref="EdgeOrderCollection"/> instance call the GetEdgeOrders method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class EdgeOrderCollection : ArmCollection
     {
@@ -62,6 +62,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <term>Operation Id</term>
         /// <description>GetOrderByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="location"> The name of Azure region. </param>
@@ -71,7 +79,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
         public virtual async Task<Response<EdgeOrderResource>> GetAsync(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(orderName, nameof(orderName));
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
 
             using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.Get");
             scope.Start();
@@ -100,6 +115,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <term>Operation Id</term>
         /// <description>GetOrderByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="location"> The name of Azure region. </param>
@@ -109,7 +132,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
         public virtual Response<EdgeOrderResource> Get(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(orderName, nameof(orderName));
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
 
             using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.Get");
             scope.Start();
@@ -138,6 +168,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <term>Operation Id</term>
         /// <description>GetOrderByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="location"> The name of Azure region. </param>
@@ -147,7 +185,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(orderName, nameof(orderName));
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
 
             using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.Exists");
             scope.Start();
@@ -174,6 +219,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <term>Operation Id</term>
         /// <description>GetOrderByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="location"> The name of Azure region. </param>
@@ -183,7 +236,14 @@ namespace Azure.ResourceManager.EdgeOrder
         /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
         public virtual Response<bool> Exists(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(orderName, nameof(orderName));
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
 
             using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.Exists");
             scope.Start();
@@ -191,6 +251,112 @@ namespace Azure.ResourceManager.EdgeOrder
             {
                 var response = _edgeOrderRestClient.GetOrderByName(Id.SubscriptionId, Id.ResourceGroupName, location, orderName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/locations/{location}/orders/{orderName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>GetOrderByName</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="orderName"> The name of the order. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="orderName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
+        public virtual async Task<NullableResponse<EdgeOrderResource>> GetIfExistsAsync(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
+        {
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
+
+            using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _edgeOrderRestClient.GetOrderByNameAsync(Id.SubscriptionId, Id.ResourceGroupName, location, orderName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<EdgeOrderResource>(response.GetRawResponse());
+                return Response.FromValue(new EdgeOrderResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/locations/{location}/orders/{orderName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>GetOrderByName</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EdgeOrderResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="orderName"> The name of the order. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="orderName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="orderName"/> is null. </exception>
+        public virtual NullableResponse<EdgeOrderResource> GetIfExists(AzureLocation location, string orderName, CancellationToken cancellationToken = default)
+        {
+            if (orderName == null)
+            {
+                throw new ArgumentNullException(nameof(orderName));
+            }
+            if (orderName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(orderName));
+            }
+
+            using var scope = _edgeOrderClientDiagnostics.CreateScope("EdgeOrderCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _edgeOrderRestClient.GetOrderByName(Id.SubscriptionId, Id.ResourceGroupName, location, orderName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<EdgeOrderResource>(response.GetRawResponse());
+                return Response.FromValue(new EdgeOrderResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

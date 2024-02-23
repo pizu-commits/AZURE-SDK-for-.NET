@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using Azure.Core;
 
 namespace Azure.ResourceManager.SecurityCenter.Models
@@ -17,7 +18,7 @@ namespace Azure.ResourceManager.SecurityCenter.Models
     /// </summary>
     public partial class OnPremiseResourceDetails : SecurityCenterResourceDetails
     {
-        /// <summary> Initializes a new instance of OnPremiseResourceDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="OnPremiseResourceDetails"/>. </summary>
         /// <param name="workspaceId"> Azure resource Id of the workspace the machine is attached to. </param>
         /// <param name="vmUuid"> The unique Id of the machine. </param>
         /// <param name="sourceComputerId"> The oms agent Id installed on the machine. </param>
@@ -25,30 +26,45 @@ namespace Azure.ResourceManager.SecurityCenter.Models
         /// <exception cref="ArgumentNullException"> <paramref name="workspaceId"/>, <paramref name="sourceComputerId"/> or <paramref name="machineName"/> is null. </exception>
         public OnPremiseResourceDetails(ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName)
         {
-            Argument.AssertNotNull(workspaceId, nameof(workspaceId));
-            Argument.AssertNotNull(sourceComputerId, nameof(sourceComputerId));
-            Argument.AssertNotNull(machineName, nameof(machineName));
+            if (workspaceId == null)
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            if (sourceComputerId == null)
+            {
+                throw new ArgumentNullException(nameof(sourceComputerId));
+            }
+            if (machineName == null)
+            {
+                throw new ArgumentNullException(nameof(machineName));
+            }
 
             WorkspaceId = workspaceId;
             VmUuid = vmUuid;
             SourceComputerId = sourceComputerId;
             MachineName = machineName;
-            Source = Source.OnPremise;
+            Source = HealthReportSource.OnPremise;
         }
 
-        /// <summary> Initializes a new instance of OnPremiseResourceDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="OnPremiseResourceDetails"/>. </summary>
         /// <param name="source"> The platform where the assessed resource resides. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="workspaceId"> Azure resource Id of the workspace the machine is attached to. </param>
         /// <param name="vmUuid"> The unique Id of the machine. </param>
         /// <param name="sourceComputerId"> The oms agent Id installed on the machine. </param>
         /// <param name="machineName"> The name of the machine. </param>
-        internal OnPremiseResourceDetails(Source source, ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName) : base(source)
+        internal OnPremiseResourceDetails(HealthReportSource source, IDictionary<string, BinaryData> serializedAdditionalRawData, ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName) : base(source, serializedAdditionalRawData)
         {
             WorkspaceId = workspaceId;
             VmUuid = vmUuid;
             SourceComputerId = sourceComputerId;
             MachineName = machineName;
             Source = source;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="OnPremiseResourceDetails"/> for deserialization. </summary>
+        internal OnPremiseResourceDetails()
+        {
         }
 
         /// <summary> Azure resource Id of the workspace the machine is attached to. </summary>

@@ -7,27 +7,29 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Impala server linked service. </summary>
     public partial class ImpalaLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of ImpalaLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ImpalaLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Impala server. (i.e. 192.168.222.160). </param>
         /// <param name="authenticationType"> The authentication type to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public ImpalaLinkedService(object host, ImpalaAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             AuthenticationType = authenticationType;
             Type = "Impala";
         }
 
-        /// <summary> Initializes a new instance of ImpalaLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ImpalaLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

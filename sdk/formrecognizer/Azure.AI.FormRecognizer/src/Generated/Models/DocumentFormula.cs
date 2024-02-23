@@ -14,7 +14,7 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis
     /// <summary> A formula object. </summary>
     public partial class DocumentFormula
     {
-        /// <summary> Initializes a new instance of DocumentFormula. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentFormula"/>. </summary>
         /// <param name="kind"> Formula kind. </param>
         /// <param name="value"> LaTex expression describing the formula. </param>
         /// <param name="span"> Location of the formula in the reading order concatenated content. </param>
@@ -22,7 +22,10 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal DocumentFormula(DocumentFormulaKind kind, string value, DocumentSpan span, float confidence)
         {
-            Argument.AssertNotNull(value, nameof(value));
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             Kind = kind;
             Value = value;
@@ -31,7 +34,7 @@ namespace Azure.AI.FormRecognizer.DocumentAnalysis
             Confidence = confidence;
         }
 
-        /// <summary> Initializes a new instance of DocumentFormula. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentFormula"/>. </summary>
         /// <param name="kind"> Formula kind. </param>
         /// <param name="value"> LaTex expression describing the formula. </param>
         /// <param name="polygon"> Bounding polygon of the formula. </param>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
 using Azure.ResourceManager;
+using Azure.ResourceManager.Cdn.Mocking;
 using Azure.ResourceManager.Cdn.Models;
 using Azure.ResourceManager.Resources;
 
@@ -19,344 +20,374 @@ namespace Azure.ResourceManager.Cdn
     /// <summary> A class to add extension methods to Azure.ResourceManager.Cdn. </summary>
     public static partial class CdnExtensions
     {
-        private static ResourceGroupResourceExtensionClient GetResourceGroupResourceExtensionClient(ArmResource resource)
+        private static MockableCdnArmClient GetMockableCdnArmClient(ArmClient client)
         {
-            return resource.GetCachedClient(client =>
-            {
-                return new ResourceGroupResourceExtensionClient(client, resource.Id);
-            });
+            return client.GetCachedClient(client0 => new MockableCdnArmClient(client0));
         }
 
-        private static ResourceGroupResourceExtensionClient GetResourceGroupResourceExtensionClient(ArmClient client, ResourceIdentifier scope)
+        private static MockableCdnResourceGroupResource GetMockableCdnResourceGroupResource(ArmResource resource)
         {
-            return client.GetResourceClient(() =>
-            {
-                return new ResourceGroupResourceExtensionClient(client, scope);
-            });
+            return resource.GetCachedClient(client => new MockableCdnResourceGroupResource(client, resource.Id));
         }
 
-        private static SubscriptionResourceExtensionClient GetSubscriptionResourceExtensionClient(ArmResource resource)
+        private static MockableCdnSubscriptionResource GetMockableCdnSubscriptionResource(ArmResource resource)
         {
-            return resource.GetCachedClient(client =>
-            {
-                return new SubscriptionResourceExtensionClient(client, resource.Id);
-            });
+            return resource.GetCachedClient(client => new MockableCdnSubscriptionResource(client, resource.Id));
         }
 
-        private static SubscriptionResourceExtensionClient GetSubscriptionResourceExtensionClient(ArmClient client, ResourceIdentifier scope)
+        private static MockableCdnTenantResource GetMockableCdnTenantResource(ArmResource resource)
         {
-            return client.GetResourceClient(() =>
-            {
-                return new SubscriptionResourceExtensionClient(client, scope);
-            });
+            return resource.GetCachedClient(client => new MockableCdnTenantResource(client, resource.Id));
         }
 
-        private static TenantResourceExtensionClient GetTenantResourceExtensionClient(ArmResource resource)
-        {
-            return resource.GetCachedClient(client =>
-            {
-                return new TenantResourceExtensionClient(client, resource.Id);
-            });
-        }
-
-        private static TenantResourceExtensionClient GetTenantResourceExtensionClient(ArmClient client, ResourceIdentifier scope)
-        {
-            return client.GetResourceClient(() =>
-            {
-                return new TenantResourceExtensionClient(client, scope);
-            });
-        }
-        #region FrontDoorCustomDomainResource
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorCustomDomainResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorCustomDomainResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorCustomDomainResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorCustomDomainResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorCustomDomainResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorCustomDomainResource"/> object. </returns>
         public static FrontDoorCustomDomainResource GetFrontDoorCustomDomainResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorCustomDomainResource.ValidateResourceId(id);
-                return new FrontDoorCustomDomainResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorEndpointResource
+            return GetMockableCdnArmClient(client).GetFrontDoorCustomDomainResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorEndpointResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorEndpointResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorEndpointResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorEndpointResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorEndpointResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorEndpointResource"/> object. </returns>
         public static FrontDoorEndpointResource GetFrontDoorEndpointResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorEndpointResource.ValidateResourceId(id);
-                return new FrontDoorEndpointResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorOriginGroupResource
+            return GetMockableCdnArmClient(client).GetFrontDoorEndpointResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorOriginGroupResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorOriginGroupResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorOriginGroupResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorOriginGroupResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorOriginGroupResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorOriginGroupResource"/> object. </returns>
         public static FrontDoorOriginGroupResource GetFrontDoorOriginGroupResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorOriginGroupResource.ValidateResourceId(id);
-                return new FrontDoorOriginGroupResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorOriginResource
+            return GetMockableCdnArmClient(client).GetFrontDoorOriginGroupResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorOriginResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorOriginResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorOriginResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorOriginResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorOriginResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorOriginResource"/> object. </returns>
         public static FrontDoorOriginResource GetFrontDoorOriginResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorOriginResource.ValidateResourceId(id);
-                return new FrontDoorOriginResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorRouteResource
+            return GetMockableCdnArmClient(client).GetFrontDoorOriginResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorRouteResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorRouteResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorRouteResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorRouteResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorRouteResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorRouteResource"/> object. </returns>
         public static FrontDoorRouteResource GetFrontDoorRouteResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorRouteResource.ValidateResourceId(id);
-                return new FrontDoorRouteResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorRuleSetResource
+            return GetMockableCdnArmClient(client).GetFrontDoorRouteResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorRuleSetResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorRuleSetResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorRuleSetResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorRuleSetResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorRuleSetResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorRuleSetResource"/> object. </returns>
         public static FrontDoorRuleSetResource GetFrontDoorRuleSetResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorRuleSetResource.ValidateResourceId(id);
-                return new FrontDoorRuleSetResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorRuleResource
+            return GetMockableCdnArmClient(client).GetFrontDoorRuleSetResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorRuleResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorRuleResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorRuleResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorRuleResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorRuleResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorRuleResource"/> object. </returns>
         public static FrontDoorRuleResource GetFrontDoorRuleResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorRuleResource.ValidateResourceId(id);
-                return new FrontDoorRuleResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorSecurityPolicyResource
+            return GetMockableCdnArmClient(client).GetFrontDoorRuleResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorSecurityPolicyResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorSecurityPolicyResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorSecurityPolicyResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorSecurityPolicyResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorSecurityPolicyResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorSecurityPolicyResource"/> object. </returns>
         public static FrontDoorSecurityPolicyResource GetFrontDoorSecurityPolicyResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorSecurityPolicyResource.ValidateResourceId(id);
-                return new FrontDoorSecurityPolicyResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region FrontDoorSecretResource
+            return GetMockableCdnArmClient(client).GetFrontDoorSecurityPolicyResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="FrontDoorSecretResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="FrontDoorSecretResource.CreateResourceIdentifier" /> to create a <see cref="FrontDoorSecretResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetFrontDoorSecretResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="FrontDoorSecretResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="FrontDoorSecretResource"/> object. </returns>
         public static FrontDoorSecretResource GetFrontDoorSecretResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                FrontDoorSecretResource.ValidateResourceId(id);
-                return new FrontDoorSecretResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region ProfileResource
+            return GetMockableCdnArmClient(client).GetFrontDoorSecretResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="ProfileResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="ProfileResource.CreateResourceIdentifier" /> to create a <see cref="ProfileResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetProfileResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="ProfileResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="ProfileResource"/> object. </returns>
         public static ProfileResource GetProfileResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                ProfileResource.ValidateResourceId(id);
-                return new ProfileResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region CdnEndpointResource
+            return GetMockableCdnArmClient(client).GetProfileResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="CdnEndpointResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CdnEndpointResource.CreateResourceIdentifier" /> to create a <see cref="CdnEndpointResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetCdnEndpointResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CdnEndpointResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CdnEndpointResource"/> object. </returns>
         public static CdnEndpointResource GetCdnEndpointResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                CdnEndpointResource.ValidateResourceId(id);
-                return new CdnEndpointResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region CdnOriginResource
+            return GetMockableCdnArmClient(client).GetCdnEndpointResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="CdnOriginResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CdnOriginResource.CreateResourceIdentifier" /> to create a <see cref="CdnOriginResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetCdnOriginResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CdnOriginResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CdnOriginResource"/> object. </returns>
         public static CdnOriginResource GetCdnOriginResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                CdnOriginResource.ValidateResourceId(id);
-                return new CdnOriginResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region CdnOriginGroupResource
+            return GetMockableCdnArmClient(client).GetCdnOriginResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="CdnOriginGroupResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CdnOriginGroupResource.CreateResourceIdentifier" /> to create a <see cref="CdnOriginGroupResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetCdnOriginGroupResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CdnOriginGroupResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CdnOriginGroupResource"/> object. </returns>
         public static CdnOriginGroupResource GetCdnOriginGroupResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                CdnOriginGroupResource.ValidateResourceId(id);
-                return new CdnOriginGroupResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region CdnCustomDomainResource
+            return GetMockableCdnArmClient(client).GetCdnOriginGroupResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="CdnCustomDomainResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CdnCustomDomainResource.CreateResourceIdentifier" /> to create a <see cref="CdnCustomDomainResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetCdnCustomDomainResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CdnCustomDomainResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CdnCustomDomainResource"/> object. </returns>
         public static CdnCustomDomainResource GetCdnCustomDomainResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                CdnCustomDomainResource.ValidateResourceId(id);
-                return new CdnCustomDomainResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        #region CdnWebApplicationFirewallPolicyResource
+            return GetMockableCdnArmClient(client).GetCdnCustomDomainResource(id);
+        }
+
         /// <summary>
         /// Gets an object representing a <see cref="CdnWebApplicationFirewallPolicyResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CdnWebApplicationFirewallPolicyResource.CreateResourceIdentifier" /> to create a <see cref="CdnWebApplicationFirewallPolicyResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnArmClient.GetCdnWebApplicationFirewallPolicyResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CdnWebApplicationFirewallPolicyResource" /> object. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CdnWebApplicationFirewallPolicyResource"/> object. </returns>
         public static CdnWebApplicationFirewallPolicyResource GetCdnWebApplicationFirewallPolicyResource(this ArmClient client, ResourceIdentifier id)
         {
-            return client.GetResourceClient(() =>
+            if (client == null)
             {
-                CdnWebApplicationFirewallPolicyResource.ValidateResourceId(id);
-                return new CdnWebApplicationFirewallPolicyResource(client, id);
+                throw new ArgumentNullException(nameof(client));
             }
-            );
-        }
-        #endregion
 
-        /// <summary> Gets a collection of ProfileResources in the ResourceGroupResource. </summary>
+            return GetMockableCdnArmClient(client).GetCdnWebApplicationFirewallPolicyResource(id);
+        }
+
+        /// <summary>
+        /// Gets a collection of ProfileResources in the ResourceGroupResource.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetProfiles()"/> instead.</description>
+        /// </item>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> is null. </exception>
         /// <returns> An object representing collection of ProfileResources and their operations over a ProfileResource. </returns>
         public static ProfileCollection GetProfiles(this ResourceGroupResource resourceGroupResource)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetProfiles();
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return GetMockableCdnResourceGroupResource(resourceGroupResource).GetProfiles();
         }
 
         /// <summary>
@@ -370,17 +401,34 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Profiles_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ProfileResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetProfileAsync(string,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="profileName"> Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="profileName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="profileName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="profileName"/> is null. </exception>
         [ForwardsClientCalls]
         public static async Task<Response<ProfileResource>> GetProfileAsync(this ResourceGroupResource resourceGroupResource, string profileName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetProfiles().GetAsync(profileName, cancellationToken).ConfigureAwait(false);
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return await GetMockableCdnResourceGroupResource(resourceGroupResource).GetProfileAsync(profileName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -394,25 +442,54 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Profiles_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ProfileResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetProfile(string,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="profileName"> Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="profileName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="profileName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="profileName"/> is null. </exception>
         [ForwardsClientCalls]
         public static Response<ProfileResource> GetProfile(this ResourceGroupResource resourceGroupResource, string profileName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetProfiles().Get(profileName, cancellationToken);
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return GetMockableCdnResourceGroupResource(resourceGroupResource).GetProfile(profileName, cancellationToken);
         }
 
-        /// <summary> Gets a collection of CdnWebApplicationFirewallPolicyResources in the ResourceGroupResource. </summary>
+        /// <summary>
+        /// Gets a collection of CdnWebApplicationFirewallPolicyResources in the ResourceGroupResource.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetCdnWebApplicationFirewallPolicies()"/> instead.</description>
+        /// </item>
+        /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> is null. </exception>
         /// <returns> An object representing collection of CdnWebApplicationFirewallPolicyResources and their operations over a CdnWebApplicationFirewallPolicyResource. </returns>
         public static CdnWebApplicationFirewallPolicyCollection GetCdnWebApplicationFirewallPolicies(this ResourceGroupResource resourceGroupResource)
         {
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).GetCdnWebApplicationFirewallPolicies();
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return GetMockableCdnResourceGroupResource(resourceGroupResource).GetCdnWebApplicationFirewallPolicies();
         }
 
         /// <summary>
@@ -426,17 +503,34 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Policies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CdnWebApplicationFirewallPolicyResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetCdnWebApplicationFirewallPolicyAsync(string,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="policyName"> The name of the CdnWebApplicationFirewallPolicy. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="policyName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="policyName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="policyName"/> is null. </exception>
         [ForwardsClientCalls]
         public static async Task<Response<CdnWebApplicationFirewallPolicyResource>> GetCdnWebApplicationFirewallPolicyAsync(this ResourceGroupResource resourceGroupResource, string policyName, CancellationToken cancellationToken = default)
         {
-            return await resourceGroupResource.GetCdnWebApplicationFirewallPolicies().GetAsync(policyName, cancellationToken).ConfigureAwait(false);
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return await GetMockableCdnResourceGroupResource(resourceGroupResource).GetCdnWebApplicationFirewallPolicyAsync(policyName, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -450,17 +544,34 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Policies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CdnWebApplicationFirewallPolicyResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.GetCdnWebApplicationFirewallPolicy(string,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="policyName"> The name of the CdnWebApplicationFirewallPolicy. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="policyName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="policyName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="policyName"/> is null. </exception>
         [ForwardsClientCalls]
         public static Response<CdnWebApplicationFirewallPolicyResource> GetCdnWebApplicationFirewallPolicy(this ResourceGroupResource resourceGroupResource, string policyName, CancellationToken cancellationToken = default)
         {
-            return resourceGroupResource.GetCdnWebApplicationFirewallPolicies().Get(policyName, cancellationToken);
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
+
+            return GetMockableCdnResourceGroupResource(resourceGroupResource).GetCdnWebApplicationFirewallPolicy(policyName, cancellationToken);
         }
 
         /// <summary>
@@ -474,17 +585,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckEndpointNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.CheckEndpointNameAvailability(EndpointNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="content"/> is null. </exception>
         public static async Task<Response<EndpointNameAvailabilityResult>> CheckEndpointNameAvailabilityAsync(this ResourceGroupResource resourceGroupResource, EndpointNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
 
-            return await GetResourceGroupResourceExtensionClient(resourceGroupResource).CheckEndpointNameAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
+            return await GetMockableCdnResourceGroupResource(resourceGroupResource).CheckEndpointNameAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -498,17 +620,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckEndpointNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnResourceGroupResource.CheckEndpointNameAvailability(EndpointNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="content"/> is null. </exception>
         public static Response<EndpointNameAvailabilityResult> CheckEndpointNameAvailability(this ResourceGroupResource resourceGroupResource, EndpointNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (resourceGroupResource == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupResource));
+            }
 
-            return GetResourceGroupResourceExtensionClient(resourceGroupResource).CheckEndpointNameAvailability(content, cancellationToken);
+            return GetMockableCdnResourceGroupResource(resourceGroupResource).CheckEndpointNameAvailability(content, cancellationToken);
         }
 
         /// <summary>
@@ -522,17 +655,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckNameAvailabilityWithSubscription</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.CheckCdnNameAvailabilityWithSubscription(CdnNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static async Task<Response<CdnNameAvailabilityResult>> CheckCdnNameAvailabilityWithSubscriptionAsync(this SubscriptionResource subscriptionResource, CdnNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
 
-            return await GetSubscriptionResourceExtensionClient(subscriptionResource).CheckCdnNameAvailabilityWithSubscriptionAsync(content, cancellationToken).ConfigureAwait(false);
+            return await GetMockableCdnSubscriptionResource(subscriptionResource).CheckCdnNameAvailabilityWithSubscriptionAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -546,17 +690,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckNameAvailabilityWithSubscription</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.CheckCdnNameAvailabilityWithSubscription(CdnNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static Response<CdnNameAvailabilityResult> CheckCdnNameAvailabilityWithSubscription(this SubscriptionResource subscriptionResource, CdnNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
 
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).CheckCdnNameAvailabilityWithSubscription(content, cancellationToken);
+            return GetMockableCdnSubscriptionResource(subscriptionResource).CheckCdnNameAvailabilityWithSubscription(content, cancellationToken);
         }
 
         /// <summary>
@@ -570,17 +725,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ValidateProbe</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.ValidateProbe(ValidateProbeContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static async Task<Response<ValidateProbeResult>> ValidateProbeAsync(this SubscriptionResource subscriptionResource, ValidateProbeContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
 
-            return await GetSubscriptionResourceExtensionClient(subscriptionResource).ValidateProbeAsync(content, cancellationToken).ConfigureAwait(false);
+            return await GetMockableCdnSubscriptionResource(subscriptionResource).ValidateProbeAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -594,17 +760,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ValidateProbe</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.ValidateProbe(ValidateProbeContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static Response<ValidateProbeResult> ValidateProbe(this SubscriptionResource subscriptionResource, ValidateProbeContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
 
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).ValidateProbe(content, cancellationToken);
+            return GetMockableCdnSubscriptionResource(subscriptionResource).ValidateProbe(content, cancellationToken);
         }
 
         /// <summary>
@@ -618,14 +795,32 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Profiles_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ProfileResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetProfiles(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ProfileResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ProfileResource"/> that may take multiple service requests to iterate over. </returns>
         public static AsyncPageable<ProfileResource> GetProfilesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetProfilesAsync(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetProfilesAsync(cancellationToken);
         }
 
         /// <summary>
@@ -639,14 +834,32 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>Profiles_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ProfileResource"/></description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetProfiles(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ProfileResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="ProfileResource"/> that may take multiple service requests to iterate over. </returns>
         public static Pageable<ProfileResource> GetProfiles(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetProfiles(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetProfiles(cancellationToken);
         }
 
         /// <summary>
@@ -660,14 +873,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ResourceUsage_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetResourceUsages(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CdnUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="CdnUsage"/> that may take multiple service requests to iterate over. </returns>
         public static AsyncPageable<CdnUsage> GetResourceUsagesAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetResourceUsagesAsync(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetResourceUsagesAsync(cancellationToken);
         }
 
         /// <summary>
@@ -681,14 +908,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ResourceUsage_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetResourceUsages(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CdnUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="CdnUsage"/> that may take multiple service requests to iterate over. </returns>
         public static Pageable<CdnUsage> GetResourceUsages(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetResourceUsages(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetResourceUsages(cancellationToken);
         }
 
         /// <summary>
@@ -702,14 +943,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ManagedRuleSets_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetManagedRuleSets(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ManagedRuleSetDefinition" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ManagedRuleSetDefinition"/> that may take multiple service requests to iterate over. </returns>
         public static AsyncPageable<ManagedRuleSetDefinition> GetManagedRuleSetsAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetManagedRuleSetsAsync(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetManagedRuleSetsAsync(cancellationToken);
         }
 
         /// <summary>
@@ -723,14 +978,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>ManagedRuleSets_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnSubscriptionResource.GetManagedRuleSets(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ManagedRuleSetDefinition" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="ManagedRuleSetDefinition"/> that may take multiple service requests to iterate over. </returns>
         public static Pageable<ManagedRuleSetDefinition> GetManagedRuleSets(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
         {
-            return GetSubscriptionResourceExtensionClient(subscriptionResource).GetManagedRuleSets(cancellationToken);
+            if (subscriptionResource == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionResource));
+            }
+
+            return GetMockableCdnSubscriptionResource(subscriptionResource).GetManagedRuleSets(cancellationToken);
         }
 
         /// <summary>
@@ -744,17 +1013,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnTenantResource.CheckCdnNameAvailability(CdnNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="tenantResource"> The <see cref="TenantResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tenantResource"/> or <paramref name="content"/> is null. </exception>
         public static async Task<Response<CdnNameAvailabilityResult>> CheckCdnNameAvailabilityAsync(this TenantResource tenantResource, CdnNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (tenantResource == null)
+            {
+                throw new ArgumentNullException(nameof(tenantResource));
+            }
 
-            return await GetTenantResourceExtensionClient(tenantResource).CheckCdnNameAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
+            return await GetMockableCdnTenantResource(tenantResource).CheckCdnNameAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -768,17 +1048,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>CheckNameAvailability</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnTenantResource.CheckCdnNameAvailability(CdnNameAvailabilityContent,CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="tenantResource"> The <see cref="TenantResource" /> instance the method will execute against. </param>
         /// <param name="content"> Input to check. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tenantResource"/> or <paramref name="content"/> is null. </exception>
         public static Response<CdnNameAvailabilityResult> CheckCdnNameAvailability(this TenantResource tenantResource, CdnNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (tenantResource == null)
+            {
+                throw new ArgumentNullException(nameof(tenantResource));
+            }
 
-            return GetTenantResourceExtensionClient(tenantResource).CheckCdnNameAvailability(content, cancellationToken);
+            return GetMockableCdnTenantResource(tenantResource).CheckCdnNameAvailability(content, cancellationToken);
         }
 
         /// <summary>
@@ -792,14 +1083,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>EdgeNodes_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnTenantResource.GetEdgeNodes(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="tenantResource"> The <see cref="TenantResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="EdgeNode" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="tenantResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="EdgeNode"/> that may take multiple service requests to iterate over. </returns>
         public static AsyncPageable<EdgeNode> GetEdgeNodesAsync(this TenantResource tenantResource, CancellationToken cancellationToken = default)
         {
-            return GetTenantResourceExtensionClient(tenantResource).GetEdgeNodesAsync(cancellationToken);
+            if (tenantResource == null)
+            {
+                throw new ArgumentNullException(nameof(tenantResource));
+            }
+
+            return GetMockableCdnTenantResource(tenantResource).GetEdgeNodesAsync(cancellationToken);
         }
 
         /// <summary>
@@ -813,14 +1118,28 @@ namespace Azure.ResourceManager.Cdn
         /// <term>Operation Id</term>
         /// <description>EdgeNodes_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
         /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCdnTenantResource.GetEdgeNodes(CancellationToken)"/> instead.</description>
+        /// </item>
         /// </summary>
         /// <param name="tenantResource"> The <see cref="TenantResource" /> instance the method will execute against. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="EdgeNode" /> that may take multiple service requests to iterate over. </returns>
+        /// <exception cref="ArgumentNullException"> <paramref name="tenantResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="EdgeNode"/> that may take multiple service requests to iterate over. </returns>
         public static Pageable<EdgeNode> GetEdgeNodes(this TenantResource tenantResource, CancellationToken cancellationToken = default)
         {
-            return GetTenantResourceExtensionClient(tenantResource).GetEdgeNodes(cancellationToken);
+            if (tenantResource == null)
+            {
+                throw new ArgumentNullException(nameof(tenantResource));
+            }
+
+            return GetMockableCdnTenantResource(tenantResource).GetEdgeNodes(cancellationToken);
         }
     }
 }

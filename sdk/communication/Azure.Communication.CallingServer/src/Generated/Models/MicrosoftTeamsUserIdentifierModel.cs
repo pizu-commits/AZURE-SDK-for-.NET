@@ -6,24 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication
 {
     /// <summary> The MicrosoftTeamsUserIdentifierModel. </summary>
     internal partial class MicrosoftTeamsUserIdentifierModel
     {
-        /// <summary> Initializes a new instance of MicrosoftTeamsUserIdentifierModel. </summary>
+        /// <summary> Initializes a new instance of <see cref="MicrosoftTeamsUserIdentifierModel"/>. </summary>
         /// <param name="userId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
         public MicrosoftTeamsUserIdentifierModel(string userId)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             UserId = userId;
         }
 
-        /// <summary> Initializes a new instance of MicrosoftTeamsUserIdentifierModel. </summary>
+        /// <summary> Initializes a new instance of <see cref="MicrosoftTeamsUserIdentifierModel"/>. </summary>
         /// <param name="userId"></param>
         /// <param name="isAnonymous"></param>
         /// <param name="cloud"></param>

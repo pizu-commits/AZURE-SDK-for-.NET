@@ -18,13 +18,16 @@ namespace Azure.ResourceManager.Network
 {
     /// <summary>
     /// A Class representing a PolicySignaturesOverridesForIdps along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="PolicySignaturesOverridesForIdpsResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetPolicySignaturesOverridesForIdpsResource method.
-    /// Otherwise you can get one from its parent resource <see cref="FirewallPolicyResource" /> using the GetPolicySignaturesOverridesForIdps method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="PolicySignaturesOverridesForIdpsResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetPolicySignaturesOverridesForIdpsResource method.
+    /// Otherwise you can get one from its parent resource <see cref="FirewallPolicyResource"/> using the GetPolicySignaturesOverridesForIdps method.
     /// </summary>
     public partial class PolicySignaturesOverridesForIdpsResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="PolicySignaturesOverridesForIdpsResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="firewallPolicyName"> The firewallPolicyName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string firewallPolicyName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}/signatureOverrides/default";
@@ -35,12 +38,15 @@ namespace Azure.ResourceManager.Network
         private readonly FirewallPolicyIdpsSignaturesOverridesRestOperations _policySignaturesOverridesForIdpsFirewallPolicyIdpsSignaturesOverridesRestClient;
         private readonly PolicySignaturesOverridesForIdpsData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Network/firewallPolicies/signatureOverrides";
+
         /// <summary> Initializes a new instance of the <see cref="PolicySignaturesOverridesForIdpsResource"/> class for mocking. </summary>
         protected PolicySignaturesOverridesForIdpsResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "PolicySignaturesOverridesForIdpsResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="PolicySignaturesOverridesForIdpsResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal PolicySignaturesOverridesForIdpsResource(ArmClient client, PolicySignaturesOverridesForIdpsData data) : this(client, data.Id)
@@ -61,9 +67,6 @@ namespace Azure.ResourceManager.Network
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Network/firewallPolicies/signatureOverrides";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +100,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +139,14 @@ namespace Azure.ResourceManager.Network
         /// <item>
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +180,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Patch</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Will contain all properties of the object to put. </param>
@@ -168,7 +195,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<PolicySignaturesOverridesForIdpsResource>> UpdateAsync(PolicySignaturesOverridesForIdpsData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _policySignaturesOverridesForIdpsFirewallPolicyIdpsSignaturesOverridesClientDiagnostics.CreateScope("PolicySignaturesOverridesForIdpsResource.Update");
             scope.Start();
@@ -195,6 +225,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Patch</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Will contain all properties of the object to put. </param>
@@ -202,7 +240,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<PolicySignaturesOverridesForIdpsResource> Update(PolicySignaturesOverridesForIdpsData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _policySignaturesOverridesForIdpsFirewallPolicyIdpsSignaturesOverridesClientDiagnostics.CreateScope("PolicySignaturesOverridesForIdpsResource.Update");
             scope.Start();
@@ -229,6 +270,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Put</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -237,7 +286,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<PolicySignaturesOverridesForIdpsResource>> CreateOrUpdateAsync(WaitUntil waitUntil, PolicySignaturesOverridesForIdpsData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _policySignaturesOverridesForIdpsFirewallPolicyIdpsSignaturesOverridesClientDiagnostics.CreateScope("PolicySignaturesOverridesForIdpsResource.CreateOrUpdate");
             scope.Start();
@@ -267,6 +319,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>FirewallPolicyIdpsSignaturesOverrides_Put</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PolicySignaturesOverridesForIdpsResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -275,7 +335,10 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<PolicySignaturesOverridesForIdpsResource> CreateOrUpdate(WaitUntil waitUntil, PolicySignaturesOverridesForIdpsData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _policySignaturesOverridesForIdpsFirewallPolicyIdpsSignaturesOverridesClientDiagnostics.CreateScope("PolicySignaturesOverridesForIdpsResource.CreateOrUpdate");
             scope.Start();

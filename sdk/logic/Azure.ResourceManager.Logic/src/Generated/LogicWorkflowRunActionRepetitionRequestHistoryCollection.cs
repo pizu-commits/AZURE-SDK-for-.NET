@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Logic
 {
     /// <summary>
-    /// A class representing a collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource" /> and their operations.
-    /// Each <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource" /> in the collection will belong to the same instance of <see cref="LogicWorkflowRunActionRepetitionResource" />.
-    /// To get a <see cref="LogicWorkflowRunActionRepetitionRequestHistoryCollection" /> instance call the GetLogicWorkflowRunActionRepetitionRequestHistories method from an instance of <see cref="LogicWorkflowRunActionRepetitionResource" />.
+    /// A class representing a collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/> and their operations.
+    /// Each <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/> in the collection will belong to the same instance of <see cref="LogicWorkflowRunActionRepetitionResource"/>.
+    /// To get a <see cref="LogicWorkflowRunActionRepetitionRequestHistoryCollection"/> instance call the GetLogicWorkflowRunActionRepetitionRequestHistories method from an instance of <see cref="LogicWorkflowRunActionRepetitionResource"/>.
     /// </summary>
     public partial class LogicWorkflowRunActionRepetitionRequestHistoryCollection : ArmCollection, IEnumerable<LogicWorkflowRunActionRepetitionRequestHistoryResource>, IAsyncEnumerable<LogicWorkflowRunActionRepetitionRequestHistoryResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestHistoryName"> The request history name. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
         public virtual async Task<Response<LogicWorkflowRunActionRepetitionRequestHistoryResource>> GetAsync(string requestHistoryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(requestHistoryName, nameof(requestHistoryName));
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
 
             using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestHistoryName"> The request history name. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
         public virtual Response<LogicWorkflowRunActionRepetitionRequestHistoryResource> Get(string requestHistoryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(requestHistoryName, nameof(requestHistoryName));
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
 
             using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<LogicWorkflowRunActionRepetitionRequestHistoryResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, LogicWorkflowRequestHistoryData.DeserializeLogicWorkflowRequestHistoryData(e)), _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics, Pipeline, "LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, LogicWorkflowRequestHistoryData.DeserializeLogicWorkflowRequestHistoryData(e)), _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics, Pipeline, "LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<LogicWorkflowRunActionRepetitionRequestHistoryResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, LogicWorkflowRequestHistoryData.DeserializeLogicWorkflowRequestHistoryData(e)), _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics, Pipeline, "LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, LogicWorkflowRequestHistoryData.DeserializeLogicWorkflowRequestHistoryData(e)), _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics, Pipeline, "LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestHistoryName"> The request history name. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string requestHistoryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(requestHistoryName, nameof(requestHistoryName));
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
 
             using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestHistoryName"> The request history name. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
         public virtual Response<bool> Exists(string requestHistoryName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(requestHistoryName, nameof(requestHistoryName));
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
 
             using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.Logic
             {
                 var response = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, requestHistoryName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories/{requestHistoryName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="requestHistoryName"> The request history name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="requestHistoryName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
+        public virtual async Task<NullableResponse<LogicWorkflowRunActionRepetitionRequestHistoryResource>> GetIfExistsAsync(string requestHistoryName, CancellationToken cancellationToken = default)
+        {
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
+
+            using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, requestHistoryName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<LogicWorkflowRunActionRepetitionRequestHistoryResource>(response.GetRawResponse());
+                return Response.FromValue(new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories/{requestHistoryName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkflowRunActionRepetitionsRequestHistories_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogicWorkflowRunActionRepetitionRequestHistoryResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="requestHistoryName"> The request history name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="requestHistoryName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="requestHistoryName"/> is null. </exception>
+        public virtual NullableResponse<LogicWorkflowRunActionRepetitionRequestHistoryResource> GetIfExists(string requestHistoryName, CancellationToken cancellationToken = default)
+        {
+            if (requestHistoryName == null)
+            {
+                throw new ArgumentNullException(nameof(requestHistoryName));
+            }
+            if (requestHistoryName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(requestHistoryName));
+            }
+
+            using var scope = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesClientDiagnostics.CreateScope("LogicWorkflowRunActionRepetitionRequestHistoryCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _logicWorkflowRunActionRepetitionRequestHistoryWorkflowRunActionRepetitionsRequestHistoriesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Parent.Name, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, requestHistoryName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<LogicWorkflowRunActionRepetitionRequestHistoryResource>(response.GetRawResponse());
+                return Response.FromValue(new LogicWorkflowRunActionRepetitionRequestHistoryResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

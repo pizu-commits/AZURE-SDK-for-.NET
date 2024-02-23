@@ -6,31 +6,40 @@
 #nullable disable
 
 using System;
-using Azure.Core;
+using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Cdn.Models
 {
     /// <summary> Defines the RequestHeader condition for the delivery rule. </summary>
     public partial class DeliveryRuleRequestHeaderCondition : DeliveryRuleCondition
     {
-        /// <summary> Initializes a new instance of DeliveryRuleRequestHeaderCondition. </summary>
+        /// <summary> Initializes a new instance of <see cref="DeliveryRuleRequestHeaderCondition"/>. </summary>
         /// <param name="properties"> Defines the parameters for the condition. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="properties"/> is null. </exception>
         public DeliveryRuleRequestHeaderCondition(RequestHeaderMatchCondition properties)
         {
-            Argument.AssertNotNull(properties, nameof(properties));
+            if (properties == null)
+            {
+                throw new ArgumentNullException(nameof(properties));
+            }
 
             Properties = properties;
             Name = MatchVariable.RequestHeader;
         }
 
-        /// <summary> Initializes a new instance of DeliveryRuleRequestHeaderCondition. </summary>
+        /// <summary> Initializes a new instance of <see cref="DeliveryRuleRequestHeaderCondition"/>. </summary>
         /// <param name="name"> The name of the condition for the delivery rule. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="properties"> Defines the parameters for the condition. </param>
-        internal DeliveryRuleRequestHeaderCondition(MatchVariable name, RequestHeaderMatchCondition properties) : base(name)
+        internal DeliveryRuleRequestHeaderCondition(MatchVariable name, IDictionary<string, BinaryData> serializedAdditionalRawData, RequestHeaderMatchCondition properties) : base(name, serializedAdditionalRawData)
         {
             Properties = properties;
             Name = name;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="DeliveryRuleRequestHeaderCondition"/> for deserialization. </summary>
+        internal DeliveryRuleRequestHeaderCondition()
+        {
         }
 
         /// <summary> Defines the parameters for the condition. </summary>

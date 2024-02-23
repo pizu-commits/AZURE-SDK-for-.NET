@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> The MongoDB database dataset. </summary>
     public partial class MongoDBV2CollectionDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of MongoDBV2CollectionDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="MongoDBV2CollectionDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <param name="collection"> The collection name of the MongoDB database. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> or <paramref name="collection"/> is null. </exception>
         public MongoDBV2CollectionDataset(DataFactoryLinkedServiceReference linkedServiceName, DataFactoryElement<string> collection) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
-            Argument.AssertNotNull(collection, nameof(collection));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
 
             Collection = collection;
             DatasetType = "MongoDbV2Collection";
         }
 
-        /// <summary> Initializes a new instance of MongoDBV2CollectionDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="MongoDBV2CollectionDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -43,6 +48,11 @@ namespace Azure.ResourceManager.DataFactory.Models
         {
             Collection = collection;
             DatasetType = datasetType ?? "MongoDbV2Collection";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="MongoDBV2CollectionDataset"/> for deserialization. </summary>
+        internal MongoDBV2CollectionDataset()
+        {
         }
 
         /// <summary> The collection name of the MongoDB database. Type: string (or Expression with resultType string). </summary>

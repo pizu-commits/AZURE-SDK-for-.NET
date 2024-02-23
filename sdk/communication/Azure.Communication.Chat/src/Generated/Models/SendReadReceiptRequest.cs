@@ -6,19 +6,21 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.Chat
 {
     /// <summary> Request payload for sending a read receipt. </summary>
     internal partial class SendReadReceiptRequest
     {
-        /// <summary> Initializes a new instance of SendReadReceiptRequest. </summary>
+        /// <summary> Initializes a new instance of <see cref="SendReadReceiptRequest"/>. </summary>
         /// <param name="chatMessageId"> Id of the latest chat message read by the user. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="chatMessageId"/> is null. </exception>
         public SendReadReceiptRequest(string chatMessageId)
         {
-            Argument.AssertNotNull(chatMessageId, nameof(chatMessageId));
+            if (chatMessageId == null)
+            {
+                throw new ArgumentNullException(nameof(chatMessageId));
+            }
 
             ChatMessageId = chatMessageId;
         }

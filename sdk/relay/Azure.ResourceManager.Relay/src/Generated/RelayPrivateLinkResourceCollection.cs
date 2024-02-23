@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Relay
 {
     /// <summary>
-    /// A class representing a collection of <see cref="RelayPrivateLinkResource" /> and their operations.
-    /// Each <see cref="RelayPrivateLinkResource" /> in the collection will belong to the same instance of <see cref="RelayNamespaceResource" />.
-    /// To get a <see cref="RelayPrivateLinkResourceCollection" /> instance call the GetRelayPrivateLinkResources method from an instance of <see cref="RelayNamespaceResource" />.
+    /// A class representing a collection of <see cref="RelayPrivateLinkResource"/> and their operations.
+    /// Each <see cref="RelayPrivateLinkResource"/> in the collection will belong to the same instance of <see cref="RelayNamespaceResource"/>.
+    /// To get a <see cref="RelayPrivateLinkResourceCollection"/> instance call the GetRelayPrivateLinkResources method from an instance of <see cref="RelayNamespaceResource"/>.
     /// </summary>
     public partial class RelayPrivateLinkResourceCollection : ArmCollection, IEnumerable<RelayPrivateLinkResource>, IAsyncEnumerable<RelayPrivateLinkResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.Relay
         /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
         public virtual async Task<Response<RelayPrivateLinkResource>> GetAsync(string privateLinkResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateLinkResourceName, nameof(privateLinkResourceName));
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
 
             using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.Relay
         /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
         public virtual Response<RelayPrivateLinkResource> Get(string privateLinkResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateLinkResourceName, nameof(privateLinkResourceName));
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
 
             using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -137,14 +168,22 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RelayPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="RelayPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<RelayPrivateLinkResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _relayPrivateLinkResourcePrivateLinkResourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new RelayPrivateLinkResource(Client, RelayPrivateLinkResourceData.DeserializeRelayPrivateLinkResourceData(e)), _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "RelayPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new RelayPrivateLinkResource(Client, RelayPrivateLinkResourceData.DeserializeRelayPrivateLinkResourceData(e)), _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "RelayPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -158,14 +197,22 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RelayPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="RelayPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<RelayPrivateLinkResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _relayPrivateLinkResourcePrivateLinkResourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new RelayPrivateLinkResource(Client, RelayPrivateLinkResourceData.DeserializeRelayPrivateLinkResourceData(e)), _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "RelayPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new RelayPrivateLinkResource(Client, RelayPrivateLinkResourceData.DeserializeRelayPrivateLinkResourceData(e)), _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "RelayPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -179,6 +226,14 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
@@ -187,7 +242,14 @@ namespace Azure.ResourceManager.Relay
         /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string privateLinkResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateLinkResourceName, nameof(privateLinkResourceName));
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
 
             using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -214,6 +276,14 @@ namespace Azure.ResourceManager.Relay
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
@@ -222,7 +292,14 @@ namespace Azure.ResourceManager.Relay
         /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
         public virtual Response<bool> Exists(string privateLinkResourceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(privateLinkResourceName, nameof(privateLinkResourceName));
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
 
             using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -230,6 +307,110 @@ namespace Azure.ResourceManager.Relay
             {
                 var response = _relayPrivateLinkResourcePrivateLinkResourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateLinkResourceName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources/{privateLinkResourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinkResources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="privateLinkResourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
+        public virtual async Task<NullableResponse<RelayPrivateLinkResource>> GetIfExistsAsync(string privateLinkResourceName, CancellationToken cancellationToken = default)
+        {
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
+
+            using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _relayPrivateLinkResourcePrivateLinkResourcesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateLinkResourceName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<RelayPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new RelayPrivateLinkResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources/{privateLinkResourceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinkResources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RelayPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="privateLinkResourceName"> The PrivateLinkResource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="privateLinkResourceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="privateLinkResourceName"/> is null. </exception>
+        public virtual NullableResponse<RelayPrivateLinkResource> GetIfExists(string privateLinkResourceName, CancellationToken cancellationToken = default)
+        {
+            if (privateLinkResourceName == null)
+            {
+                throw new ArgumentNullException(nameof(privateLinkResourceName));
+            }
+            if (privateLinkResourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateLinkResourceName));
+            }
+
+            using var scope = _relayPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("RelayPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _relayPrivateLinkResourcePrivateLinkResourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, privateLinkResourceName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<RelayPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new RelayPrivateLinkResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

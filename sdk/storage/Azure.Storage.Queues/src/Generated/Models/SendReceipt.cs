@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Storage.Queues.Models
 {
     /// <summary> The object returned in the QueueMessageList array when calling Put Message on a Queue. </summary>
     public partial class SendReceipt
     {
-        /// <summary> Initializes a new instance of SendReceipt. </summary>
+        /// <summary> Initializes a new instance of <see cref="SendReceipt"/>. </summary>
         /// <param name="messageId"> The Id of the Message. </param>
         /// <param name="insertionTime"> The time the Message was inserted into the Queue. </param>
         /// <param name="expirationTime"> The time that the Message will expire and be automatically deleted. </param>
@@ -22,8 +21,14 @@ namespace Azure.Storage.Queues.Models
         /// <exception cref="ArgumentNullException"> <paramref name="messageId"/> or <paramref name="popReceipt"/> is null. </exception>
         internal SendReceipt(string messageId, DateTimeOffset insertionTime, DateTimeOffset expirationTime, string popReceipt, DateTimeOffset timeNextVisible)
         {
-            Argument.AssertNotNull(messageId, nameof(messageId));
-            Argument.AssertNotNull(popReceipt, nameof(popReceipt));
+            if (messageId == null)
+            {
+                throw new ArgumentNullException(nameof(messageId));
+            }
+            if (popReceipt == null)
+            {
+                throw new ArgumentNullException(nameof(popReceipt));
+            }
 
             MessageId = messageId;
             InsertionTime = insertionTime;

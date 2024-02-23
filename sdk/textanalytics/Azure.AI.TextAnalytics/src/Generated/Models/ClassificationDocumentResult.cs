@@ -9,28 +9,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The ClassificationDocumentResult. </summary>
     internal partial class ClassificationDocumentResult : DocumentResult
     {
-        /// <summary> Initializes a new instance of ClassificationDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="ClassificationDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="class"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/> or <paramref name="class"/> is null. </exception>
         public ClassificationDocumentResult(string id, IEnumerable<DocumentWarning> warnings, IEnumerable<ClassificationResult> @class) : base(id, warnings)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(warnings, nameof(warnings));
-            Argument.AssertNotNull(@class, nameof(@class));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
+            if (@class == null)
+            {
+                throw new ArgumentNullException(nameof(@class));
+            }
 
             Class = @class.ToList();
         }
 
-        /// <summary> Initializes a new instance of ClassificationDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="ClassificationDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>

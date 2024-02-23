@@ -6,7 +6,7 @@
 #nullable disable
 
 using System;
-using Azure.Core;
+using System.Collections.Generic;
 
 namespace Azure.ResourceManager.DataLakeAnalytics.Models
 {
@@ -16,7 +16,39 @@ namespace Azure.ResourceManager.DataLakeAnalytics.Models
     /// </summary>
     public partial class DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent
     {
-        /// <summary> Initializes a new instance of DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent. </summary>
+        /// <summary>
+        /// Keeps track of any properties unknown to the library.
+        /// <para>
+        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// </para>
+        /// <para>
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson("foo")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("\"foo\"")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson(new { key = "value" })</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("{\"key\": \"value\"}")</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+
+        /// <summary> Initializes a new instance of <see cref="DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent"/>. </summary>
         /// <param name="name">
         /// The unique name of the Data Lake Store account to add.
         /// Serialized Name: AddDataLakeStoreWithAccountParameters.name
@@ -24,9 +56,34 @@ namespace Azure.ResourceManager.DataLakeAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent"/>. </summary>
+        /// <param name="name">
+        /// The unique name of the Data Lake Store account to add.
+        /// Serialized Name: AddDataLakeStoreWithAccountParameters.name
+        /// </param>
+        /// <param name="suffix">
+        /// The optional suffix for the Data Lake Store account.
+        /// Serialized Name: AddDataLakeStoreWithAccountParameters.properties.suffix
+        /// </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
+        internal DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent(string name, string suffix, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        {
+            Name = name;
+            Suffix = suffix;
+            _serializedAdditionalRawData = serializedAdditionalRawData;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent"/> for deserialization. </summary>
+        internal DataLakeStoreForDataLakeAnalyticsAccountCreateOrUpdateContent()
+        {
         }
 
         /// <summary>

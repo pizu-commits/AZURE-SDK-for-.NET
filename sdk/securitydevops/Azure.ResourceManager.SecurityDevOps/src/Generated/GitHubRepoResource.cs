@@ -18,13 +18,18 @@ namespace Azure.ResourceManager.SecurityDevOps
 {
     /// <summary>
     /// A Class representing a GitHubRepo along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="GitHubRepoResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetGitHubRepoResource method.
-    /// Otherwise you can get one from its parent resource <see cref="GitHubOwnerResource" /> using the GetGitHubRepo method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="GitHubRepoResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetGitHubRepoResource method.
+    /// Otherwise you can get one from its parent resource <see cref="GitHubOwnerResource"/> using the GetGitHubRepo method.
     /// </summary>
     public partial class GitHubRepoResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="GitHubRepoResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="gitHubConnectorName"> The gitHubConnectorName. </param>
+        /// <param name="gitHubOwnerName"> The gitHubOwnerName. </param>
+        /// <param name="gitHubRepoName"> The gitHubRepoName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string gitHubConnectorName, string gitHubOwnerName, string gitHubRepoName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}";
@@ -35,12 +40,15 @@ namespace Azure.ResourceManager.SecurityDevOps
         private readonly GitHubRepoRestOperations _gitHubRepoRestClient;
         private readonly GitHubRepoData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.SecurityDevOps/gitHubConnectors/owners/repos";
+
         /// <summary> Initializes a new instance of the <see cref="GitHubRepoResource"/> class for mocking. </summary>
         protected GitHubRepoResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "GitHubRepoResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="GitHubRepoResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal GitHubRepoResource(ArmClient client, GitHubRepoData data) : this(client, data.Id)
@@ -61,9 +69,6 @@ namespace Azure.ResourceManager.SecurityDevOps
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.SecurityDevOps/gitHubConnectors/owners/repos";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +102,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>GitHubRepo_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="GitHubRepoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +141,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>GitHubRepo_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="GitHubRepoResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +182,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>GitHubRepo_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="GitHubRepoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -169,7 +198,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<GitHubRepoResource>> UpdateAsync(WaitUntil waitUntil, GitHubRepoData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _gitHubRepoClientDiagnostics.CreateScope("GitHubRepoResource.Update");
             scope.Start();
@@ -199,6 +231,14 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <term>Operation Id</term>
         /// <description>GitHubRepo_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="GitHubRepoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -207,7 +247,10 @@ namespace Azure.ResourceManager.SecurityDevOps
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<GitHubRepoResource> Update(WaitUntil waitUntil, GitHubRepoData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _gitHubRepoClientDiagnostics.CreateScope("GitHubRepoResource.Update");
             scope.Start();

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.StorageCache
 {
     /// <summary>
-    /// A class representing a collection of <see cref="StorageTargetResource" /> and their operations.
-    /// Each <see cref="StorageTargetResource" /> in the collection will belong to the same instance of <see cref="StorageCacheResource" />.
-    /// To get a <see cref="StorageTargetCollection" /> instance call the GetStorageTargets method from an instance of <see cref="StorageCacheResource" />.
+    /// A class representing a collection of <see cref="StorageTargetResource"/> and their operations.
+    /// Each <see cref="StorageTargetResource"/> in the collection will belong to the same instance of <see cref="StorageCacheResource"/>.
+    /// To get a <see cref="StorageTargetCollection"/> instance call the GetStorageTargets method from an instance of <see cref="StorageCacheResource"/>.
     /// </summary>
     public partial class StorageTargetCollection : ArmCollection, IEnumerable<StorageTargetResource>, IAsyncEnumerable<StorageTargetResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<StorageTargetResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string storageTargetName, StorageTargetData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<StorageTargetResource> CreateOrUpdate(WaitUntil waitUntil, string storageTargetName, StorageTargetData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageTargetName"> Name of Storage Target. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
         public virtual async Task<Response<StorageTargetResource>> GetAsync(string storageTargetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageTargetName"> Name of Storage Target. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
         public virtual Response<StorageTargetResource> Get(string storageTargetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_ListByCache</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StorageTargetResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="StorageTargetResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<StorageTargetResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _storageTargetRestClient.CreateListByCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _storageTargetRestClient.CreateListByCacheNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StorageTargetResource(Client, StorageTargetData.DeserializeStorageTargetData(e)), _storageTargetClientDiagnostics, Pipeline, "StorageTargetCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StorageTargetResource(Client, StorageTargetData.DeserializeStorageTargetData(e)), _storageTargetClientDiagnostics, Pipeline, "StorageTargetCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_ListByCache</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StorageTargetResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="StorageTargetResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<StorageTargetResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _storageTargetRestClient.CreateListByCacheRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _storageTargetRestClient.CreateListByCacheNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StorageTargetResource(Client, StorageTargetData.DeserializeStorageTargetData(e)), _storageTargetClientDiagnostics, Pipeline, "StorageTargetCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StorageTargetResource(Client, StorageTargetData.DeserializeStorageTargetData(e)), _storageTargetClientDiagnostics, Pipeline, "StorageTargetCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageTargetName"> Name of Storage Target. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string storageTargetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <term>Operation Id</term>
         /// <description>StorageTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageTargetName"> Name of Storage Target. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.StorageCache
         /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
         public virtual Response<bool> Exists(string storageTargetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageTargetName, nameof(storageTargetName));
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
 
             using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.StorageCache
             {
                 var response = _storageTargetRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageTargetName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageTargets_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageTargetName"> Name of Storage Target. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageTargetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
+        public virtual async Task<NullableResponse<StorageTargetResource>> GetIfExistsAsync(string storageTargetName, CancellationToken cancellationToken = default)
+        {
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
+
+            using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _storageTargetRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageTargetName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<StorageTargetResource>(response.GetRawResponse());
+                return Response.FromValue(new StorageTargetResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageTargets_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StorageTargetResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageTargetName"> Name of Storage Target. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageTargetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageTargetName"/> is null. </exception>
+        public virtual NullableResponse<StorageTargetResource> GetIfExists(string storageTargetName, CancellationToken cancellationToken = default)
+        {
+            if (storageTargetName == null)
+            {
+                throw new ArgumentNullException(nameof(storageTargetName));
+            }
+            if (storageTargetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageTargetName));
+            }
+
+            using var scope = _storageTargetClientDiagnostics.CreateScope("StorageTargetCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _storageTargetRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, storageTargetName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<StorageTargetResource>(response.GetRawResponse());
+                return Response.FromValue(new StorageTargetResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

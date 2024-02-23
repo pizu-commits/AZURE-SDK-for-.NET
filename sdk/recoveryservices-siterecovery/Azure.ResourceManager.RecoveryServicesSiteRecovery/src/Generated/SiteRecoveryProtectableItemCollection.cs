@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteRecoveryProtectableItemResource" /> and their operations.
-    /// Each <see cref="SiteRecoveryProtectableItemResource" /> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource" />.
-    /// To get a <see cref="SiteRecoveryProtectableItemCollection" /> instance call the GetSiteRecoveryProtectableItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource" />.
+    /// A class representing a collection of <see cref="SiteRecoveryProtectableItemResource"/> and their operations.
+    /// Each <see cref="SiteRecoveryProtectableItemResource"/> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
+    /// To get a <see cref="SiteRecoveryProtectableItemCollection"/> instance call the GetSiteRecoveryProtectableItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
     /// </summary>
     public partial class SiteRecoveryProtectableItemCollection : ArmCollection, IEnumerable<SiteRecoveryProtectableItemResource>, IAsyncEnumerable<SiteRecoveryProtectableItemResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="protectableItemName"> Protectable item name. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
         public virtual async Task<Response<SiteRecoveryProtectableItemResource>> GetAsync(string protectableItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(protectableItemName, nameof(protectableItemName));
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
 
             using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="protectableItemName"> Protectable item name. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
         public virtual Response<SiteRecoveryProtectableItemResource> Get(string protectableItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(protectableItemName, nameof(protectableItemName));
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
 
             using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.Get");
             scope.Start();
@@ -137,18 +168,26 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="take"> take OData query parameter. </param>
         /// <param name="skipToken"> skipToken OData query parameter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SiteRecoveryProtectableItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SiteRecoveryProtectableItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SiteRecoveryProtectableItemResource> GetAllAsync(string filter = null, string take = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, take, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, take, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryProtectableItemResource(Client, SiteRecoveryProtectableItemData.DeserializeSiteRecoveryProtectableItemData(e)), _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics, Pipeline, "SiteRecoveryProtectableItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryProtectableItemResource(Client, SiteRecoveryProtectableItemData.DeserializeSiteRecoveryProtectableItemData(e)), _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics, Pipeline, "SiteRecoveryProtectableItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -162,18 +201,26 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="take"> take OData query parameter. </param>
         /// <param name="skipToken"> skipToken OData query parameter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SiteRecoveryProtectableItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SiteRecoveryProtectableItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SiteRecoveryProtectableItemResource> GetAll(string filter = null, string take = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, take, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, take, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryProtectableItemResource(Client, SiteRecoveryProtectableItemData.DeserializeSiteRecoveryProtectableItemData(e)), _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics, Pipeline, "SiteRecoveryProtectableItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteRecoveryProtectableItemResource(Client, SiteRecoveryProtectableItemData.DeserializeSiteRecoveryProtectableItemData(e)), _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics, Pipeline, "SiteRecoveryProtectableItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -187,6 +234,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="protectableItemName"> Protectable item name. </param>
@@ -195,7 +250,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string protectableItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(protectableItemName, nameof(protectableItemName));
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
 
             using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.Exists");
             scope.Start();
@@ -222,6 +284,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectableItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="protectableItemName"> Protectable item name. </param>
@@ -230,7 +300,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
         public virtual Response<bool> Exists(string protectableItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(protectableItemName, nameof(protectableItemName));
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
 
             using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.Exists");
             scope.Start();
@@ -238,6 +315,110 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
             {
                 var response = _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, protectableItemName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectableItems/{protectableItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationProtectableItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="protectableItemName"> Protectable item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="protectableItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteRecoveryProtectableItemResource>> GetIfExistsAsync(string protectableItemName, CancellationToken cancellationToken = default)
+        {
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
+
+            using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, protectableItemName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteRecoveryProtectableItemResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteRecoveryProtectableItemResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectableItems/{protectableItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationProtectableItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteRecoveryProtectableItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="protectableItemName"> Protectable item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="protectableItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="protectableItemName"/> is null. </exception>
+        public virtual NullableResponse<SiteRecoveryProtectableItemResource> GetIfExists(string protectableItemName, CancellationToken cancellationToken = default)
+        {
+            if (protectableItemName == null)
+            {
+                throw new ArgumentNullException(nameof(protectableItemName));
+            }
+            if (protectableItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(protectableItemName));
+            }
+
+            using var scope = _siteRecoveryProtectableItemReplicationProtectableItemsClientDiagnostics.CreateScope("SiteRecoveryProtectableItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteRecoveryProtectableItemReplicationProtectableItemsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, protectableItemName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteRecoveryProtectableItemResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteRecoveryProtectableItemResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

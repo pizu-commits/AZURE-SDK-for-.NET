@@ -14,12 +14,15 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Azure Databricks linked service. </summary>
     public partial class AzureDatabricksLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of AzureDatabricksLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDatabricksLinkedService"/>. </summary>
         /// <param name="domain"> &lt;REGION&gt;.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="domain"/> is null. </exception>
         public AzureDatabricksLinkedService(object domain)
         {
-            Argument.AssertNotNull(domain, nameof(domain));
+            if (domain == null)
+            {
+                throw new ArgumentNullException(nameof(domain));
+            }
 
             Domain = domain;
             NewClusterSparkConf = new ChangeTrackingDictionary<string, object>();
@@ -28,7 +31,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "AzureDatabricks";
         }
 
-        /// <summary> Initializes a new instance of AzureDatabricksLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDatabricksLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

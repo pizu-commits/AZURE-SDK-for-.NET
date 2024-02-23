@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.AI.Language.QuestionAnswering;
 using Azure.Core;
@@ -50,8 +51,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
         public QuestionAnsweringAuthoringClient(Uri endpoint, AzureKeyCredential credential, QuestionAnsweringClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new QuestionAnsweringClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -80,7 +87,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetProjectDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetProjectDetailsAsync(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetProjectDetails");
             scope.Start();
@@ -115,7 +129,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetProjectDetails(string,RequestContext)']/*" />
         public virtual Response GetProjectDetails(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetProjectDetails");
             scope.Start();
@@ -151,8 +172,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='CreateProjectAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateProjectAsync(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.CreateProject");
             scope.Start();
@@ -188,8 +219,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='CreateProject(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateProject(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.CreateProject");
             scope.Start();
@@ -224,7 +265,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeleteStatusAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeleteStatusAsync(string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetDeleteStatus");
             scope.Start();
@@ -259,7 +307,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeleteStatus(string,RequestContext)']/*" />
         public virtual Response GetDeleteStatus(string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetDeleteStatus");
             scope.Start();
@@ -295,8 +350,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetExportStatusAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetExportStatusAsync(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetExportStatus");
             scope.Start();
@@ -332,8 +401,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetExportStatus(string,string,RequestContext)']/*" />
         public virtual Response GetExportStatus(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetExportStatus");
             scope.Start();
@@ -369,8 +452,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetImportStatusAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetImportStatusAsync(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetImportStatus");
             scope.Start();
@@ -406,8 +503,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetImportStatus(string,string,RequestContext)']/*" />
         public virtual Response GetImportStatus(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetImportStatus");
             scope.Start();
@@ -444,9 +555,30 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeployStatusAsync(string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetDeployStatusAsync(string projectName, string deploymentName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetDeployStatus");
             scope.Start();
@@ -483,9 +615,30 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeployStatus(string,string,string,RequestContext)']/*" />
         public virtual Response GetDeployStatus(string projectName, string deploymentName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetDeployStatus");
             scope.Start();
@@ -521,8 +674,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateSynonymsAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> UpdateSynonymsAsync(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateSynonyms");
             scope.Start();
@@ -558,8 +721,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateSynonyms(string,RequestContent,RequestContext)']/*" />
         public virtual Response UpdateSynonyms(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateSynonyms");
             scope.Start();
@@ -595,8 +768,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetUpdateSourcesStatusAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetUpdateSourcesStatusAsync(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetUpdateSourcesStatus");
             scope.Start();
@@ -632,8 +819,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetUpdateSourcesStatus(string,string,RequestContext)']/*" />
         public virtual Response GetUpdateSourcesStatus(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetUpdateSourcesStatus");
             scope.Start();
@@ -669,8 +870,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetUpdateQnasStatusAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetUpdateQnasStatusAsync(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetUpdateQnasStatus");
             scope.Start();
@@ -706,8 +921,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetUpdateQnasStatus(string,string,RequestContext)']/*" />
         public virtual Response GetUpdateQnasStatus(string projectName, string jobId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.GetUpdateQnasStatus");
             scope.Start();
@@ -743,8 +972,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='AddFeedbackAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> AddFeedbackAsync(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.AddFeedback");
             scope.Start();
@@ -780,8 +1019,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='AddFeedback(string,RequestContent,RequestContext)']/*" />
         public virtual Response AddFeedback(string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.AddFeedback");
             scope.Start();
@@ -815,7 +1064,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetProjectsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetProjectsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetProjects", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetProjects", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -836,7 +1085,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetProjectsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetProjectsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetProjects", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetProjects", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -858,11 +1107,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeploymentsAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetDeploymentsAsync(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetDeployments", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetDeployments", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -884,11 +1140,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetDeployments(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetDeployments(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDeploymentsRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDeploymentsNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetDeployments", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetDeployments", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -910,11 +1173,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetSynonymsAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetSynonymsAsync(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSynonymsRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSynonymsNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSynonyms", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSynonyms", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -936,11 +1206,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetSynonyms(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetSynonyms(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSynonymsRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSynonymsNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSynonyms", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSynonyms", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -962,11 +1239,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetSourcesAsync(string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetSourcesAsync(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSourcesRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSourcesNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSources", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -988,11 +1272,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetSources(string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetSources(string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSourcesRequest(projectName, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSourcesNextPageRequest(nextLink, projectName, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetSources", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -1015,11 +1306,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetQnasAsync(string,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetQnasAsync(string projectName, string source = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetQnasRequest(projectName, source, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetQnasNextPageRequest(nextLink, projectName, source, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetQnas", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetQnas", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -1042,11 +1340,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='GetQnas(string,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetQnas(string projectName, string source = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetQnasRequest(projectName, source, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetQnasNextPageRequest(nextLink, projectName, source, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetQnas", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "QuestionAnsweringAuthoringClient.GetQnas", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -1069,7 +1374,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='DeleteProjectAsync(WaitUntil,string,RequestContext)']/*" />
         public virtual async Task<Operation> DeleteProjectAsync(WaitUntil waitUntil, string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.DeleteProject");
             scope.Start();
@@ -1105,7 +1417,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='DeleteProject(WaitUntil,string,RequestContext)']/*" />
         public virtual Operation DeleteProject(WaitUntil waitUntil, string projectName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.DeleteProject");
             scope.Start();
@@ -1143,7 +1462,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='ExportAsync(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> ExportAsync(WaitUntil waitUntil, string projectName, string format = null, string assetKind = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.Export");
             scope.Start();
@@ -1181,7 +1507,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='Export(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> Export(WaitUntil waitUntil, string projectName, string format = null, string assetKind = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.Export");
             scope.Start();
@@ -1220,7 +1553,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='ImportAsync(WaitUntil,string,RequestContent,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> ImportAsync(WaitUntil waitUntil, string projectName, RequestContent content, string format = null, string assetKind = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.Import");
             scope.Start();
@@ -1259,7 +1599,14 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='Import(WaitUntil,string,RequestContent,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> Import(WaitUntil waitUntil, string projectName, RequestContent content, string format = null, string assetKind = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.Import");
             scope.Start();
@@ -1296,8 +1643,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='DeployProjectAsync(WaitUntil,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> DeployProjectAsync(WaitUntil waitUntil, string projectName, string deploymentName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.DeployProject");
             scope.Start();
@@ -1334,8 +1695,22 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='DeployProject(WaitUntil,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> DeployProject(WaitUntil waitUntil, string projectName, string deploymentName, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.DeployProject");
             scope.Start();
@@ -1372,8 +1747,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateSourcesAsync(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Operation<AsyncPageable<BinaryData>>> UpdateSourcesAsync(WaitUntil waitUntil, string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateSources");
             scope.Start();
@@ -1381,7 +1766,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
             {
                 HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateUpdateSourcesNextPageRequest(nextLink, projectName, content, context);
                 using HttpMessage message = CreateUpdateSourcesRequest(projectName, content, context);
-                return await PageableHelpers.CreateAsyncPageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateSources", "value", "nextLink", context).ConfigureAwait(false);
+                return await GeneratorPageableHelpers.CreateAsyncPageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateSources", "value", "nextLink", context).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -1411,8 +1796,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateSources(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual Operation<Pageable<BinaryData>> UpdateSources(WaitUntil waitUntil, string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateSources");
             scope.Start();
@@ -1420,7 +1815,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
             {
                 HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateUpdateSourcesNextPageRequest(nextLink, projectName, content, context);
                 using HttpMessage message = CreateUpdateSourcesRequest(projectName, content, context);
-                return PageableHelpers.CreatePageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateSources", "value", "nextLink", context);
+                return GeneratorPageableHelpers.CreatePageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateSources", "value", "nextLink", context);
             }
             catch (Exception e)
             {
@@ -1450,8 +1845,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateQnasAsync(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Operation<AsyncPageable<BinaryData>>> UpdateQnasAsync(WaitUntil waitUntil, string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateQnas");
             scope.Start();
@@ -1459,7 +1864,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
             {
                 HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateUpdateQnasNextPageRequest(nextLink, projectName, content, context);
                 using HttpMessage message = CreateUpdateQnasRequest(projectName, content, context);
-                return await PageableHelpers.CreateAsyncPageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateQnas", "value", "nextLink", context).ConfigureAwait(false);
+                return await GeneratorPageableHelpers.CreateAsyncPageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateQnas", "value", "nextLink", context).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -1489,8 +1894,18 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
         /// <include file="Docs/QuestionAnsweringAuthoringClient.xml" path="doc/members/member[@name='UpdateQnas(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual Operation<Pageable<BinaryData>> UpdateQnas(WaitUntil waitUntil, string projectName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (projectName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(projectName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("QuestionAnsweringAuthoringClient.UpdateQnas");
             scope.Start();
@@ -1498,7 +1913,7 @@ namespace Azure.AI.Language.QuestionAnswering.Authoring
             {
                 HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateUpdateQnasNextPageRequest(nextLink, projectName, content, context);
                 using HttpMessage message = CreateUpdateQnasRequest(projectName, content, context);
-                return PageableHelpers.CreatePageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateQnas", "value", "nextLink", context);
+                return GeneratorPageableHelpers.CreatePageable(waitUntil, message, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, OperationFinalStateVia.Location, "QuestionAnsweringAuthoringClient.UpdateQnas", "value", "nextLink", context);
             }
             catch (Exception e)
             {

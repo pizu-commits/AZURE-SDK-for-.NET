@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.MixedReality
 {
     /// <summary>
-    /// A class representing a collection of <see cref="RemoteRenderingAccountResource" /> and their operations.
-    /// Each <see cref="RemoteRenderingAccountResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="RemoteRenderingAccountCollection" /> instance call the GetRemoteRenderingAccounts method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="RemoteRenderingAccountResource"/> and their operations.
+    /// Each <see cref="RemoteRenderingAccountResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="RemoteRenderingAccountCollection"/> instance call the GetRemoteRenderingAccounts method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class RemoteRenderingAccountCollection : ArmCollection, IEnumerable<RemoteRenderingAccountResource>, IAsyncEnumerable<RemoteRenderingAccountResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<RemoteRenderingAccountResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string accountName, RemoteRenderingAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<RemoteRenderingAccountResource> CreateOrUpdate(WaitUntil waitUntil, string accountName, RemoteRenderingAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> Name of an Mixed Reality Account. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual async Task<Response<RemoteRenderingAccountResource>> GetAsync(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> Name of an Mixed Reality Account. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual Response<RemoteRenderingAccountResource> Get(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="RemoteRenderingAccountResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="RemoteRenderingAccountResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<RemoteRenderingAccountResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _remoteRenderingAccountRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _remoteRenderingAccountRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new RemoteRenderingAccountResource(Client, RemoteRenderingAccountData.DeserializeRemoteRenderingAccountData(e)), _remoteRenderingAccountClientDiagnostics, Pipeline, "RemoteRenderingAccountCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new RemoteRenderingAccountResource(Client, RemoteRenderingAccountData.DeserializeRemoteRenderingAccountData(e)), _remoteRenderingAccountClientDiagnostics, Pipeline, "RemoteRenderingAccountCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="RemoteRenderingAccountResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="RemoteRenderingAccountResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<RemoteRenderingAccountResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _remoteRenderingAccountRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _remoteRenderingAccountRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new RemoteRenderingAccountResource(Client, RemoteRenderingAccountData.DeserializeRemoteRenderingAccountData(e)), _remoteRenderingAccountClientDiagnostics, Pipeline, "RemoteRenderingAccountCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new RemoteRenderingAccountResource(Client, RemoteRenderingAccountData.DeserializeRemoteRenderingAccountData(e)), _remoteRenderingAccountClientDiagnostics, Pipeline, "RemoteRenderingAccountCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> Name of an Mixed Reality Account. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>RemoteRenderingAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="accountName"> Name of an Mixed Reality Account. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
         public virtual Response<bool> Exists(string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.MixedReality
             {
                 var response = _remoteRenderingAccountRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RemoteRenderingAccounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accountName"> Name of an Mixed Reality Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
+        public virtual async Task<NullableResponse<RemoteRenderingAccountResource>> GetIfExistsAsync(string accountName, CancellationToken cancellationToken = default)
+        {
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+
+            using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _remoteRenderingAccountRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<RemoteRenderingAccountResource>(response.GetRawResponse());
+                return Response.FromValue(new RemoteRenderingAccountResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RemoteRenderingAccounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RemoteRenderingAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="accountName"> Name of an Mixed Reality Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> is null. </exception>
+        public virtual NullableResponse<RemoteRenderingAccountResource> GetIfExists(string accountName, CancellationToken cancellationToken = default)
+        {
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+
+            using var scope = _remoteRenderingAccountClientDiagnostics.CreateScope("RemoteRenderingAccountCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _remoteRenderingAccountRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, accountName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<RemoteRenderingAccountResource>(response.GetRawResponse());
+                return Response.FromValue(new RemoteRenderingAccountResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

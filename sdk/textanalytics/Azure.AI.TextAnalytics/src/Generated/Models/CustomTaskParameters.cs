@@ -6,27 +6,32 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> Parameters object for a text analysis task using custom models. </summary>
     internal partial class CustomTaskParameters : TaskParameters
     {
-        /// <summary> Initializes a new instance of CustomTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomTaskParameters"/>. </summary>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public CustomTaskParameters(string projectName, string deploymentName)
         {
-            Argument.AssertNotNull(projectName, nameof(projectName));
-            Argument.AssertNotNull(deploymentName, nameof(deploymentName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
 
             ProjectName = projectName;
             DeploymentName = deploymentName;
         }
 
-        /// <summary> Initializes a new instance of CustomTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomTaskParameters"/>. </summary>
         /// <param name="loggingOptOut"></param>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>

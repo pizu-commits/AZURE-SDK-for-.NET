@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.NewRelicObservability
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NewRelicObservabilityTagRuleResource" /> and their operations.
-    /// Each <see cref="NewRelicObservabilityTagRuleResource" /> in the collection will belong to the same instance of <see cref="NewRelicMonitorResource" />.
-    /// To get a <see cref="NewRelicObservabilityTagRuleCollection" /> instance call the GetNewRelicObservabilityTagRules method from an instance of <see cref="NewRelicMonitorResource" />.
+    /// A class representing a collection of <see cref="NewRelicObservabilityTagRuleResource"/> and their operations.
+    /// Each <see cref="NewRelicObservabilityTagRuleResource"/> in the collection will belong to the same instance of <see cref="NewRelicMonitorResource"/>.
+    /// To get a <see cref="NewRelicObservabilityTagRuleCollection"/> instance call the GetNewRelicObservabilityTagRules method from an instance of <see cref="NewRelicMonitorResource"/>.
     /// </summary>
     public partial class NewRelicObservabilityTagRuleCollection : ArmCollection, IEnumerable<NewRelicObservabilityTagRuleResource>, IAsyncEnumerable<NewRelicObservabilityTagRuleResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<NewRelicObservabilityTagRuleResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string ruleSetName, NewRelicObservabilityTagRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<NewRelicObservabilityTagRuleResource> CreateOrUpdate(WaitUntil waitUntil, string ruleSetName, NewRelicObservabilityTagRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleSetName"> Name of the TagRule. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
         public virtual async Task<Response<NewRelicObservabilityTagRuleResource>> GetAsync(string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleSetName"> Name of the TagRule. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
         public virtual Response<NewRelicObservabilityTagRuleResource> Get(string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_ListByNewRelicMonitorResource</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NewRelicObservabilityTagRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NewRelicObservabilityTagRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NewRelicObservabilityTagRuleResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _newRelicObservabilityTagRuleTagRulesRestClient.CreateListByNewRelicMonitorResourceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _newRelicObservabilityTagRuleTagRulesRestClient.CreateListByNewRelicMonitorResourceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NewRelicObservabilityTagRuleResource(Client, NewRelicObservabilityTagRuleData.DeserializeNewRelicObservabilityTagRuleData(e)), _newRelicObservabilityTagRuleTagRulesClientDiagnostics, Pipeline, "NewRelicObservabilityTagRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NewRelicObservabilityTagRuleResource(Client, NewRelicObservabilityTagRuleData.DeserializeNewRelicObservabilityTagRuleData(e)), _newRelicObservabilityTagRuleTagRulesClientDiagnostics, Pipeline, "NewRelicObservabilityTagRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_ListByNewRelicMonitorResource</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NewRelicObservabilityTagRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NewRelicObservabilityTagRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NewRelicObservabilityTagRuleResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _newRelicObservabilityTagRuleTagRulesRestClient.CreateListByNewRelicMonitorResourceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _newRelicObservabilityTagRuleTagRulesRestClient.CreateListByNewRelicMonitorResourceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NewRelicObservabilityTagRuleResource(Client, NewRelicObservabilityTagRuleData.DeserializeNewRelicObservabilityTagRuleData(e)), _newRelicObservabilityTagRuleTagRulesClientDiagnostics, Pipeline, "NewRelicObservabilityTagRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NewRelicObservabilityTagRuleResource(Client, NewRelicObservabilityTagRuleData.DeserializeNewRelicObservabilityTagRuleData(e)), _newRelicObservabilityTagRuleTagRulesClientDiagnostics, Pipeline, "NewRelicObservabilityTagRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleSetName"> Name of the TagRule. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <term>Operation Id</term>
         /// <description>TagRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="ruleSetName"> Name of the TagRule. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.NewRelicObservability
         /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
         public virtual Response<bool> Exists(string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.NewRelicObservability
             {
                 var response = _newRelicObservabilityTagRuleTagRulesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, ruleSetName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/NewRelic.Observability/monitors/{monitorName}/tagRules/{ruleSetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TagRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="ruleSetName"> Name of the TagRule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NewRelicObservabilityTagRuleResource>> GetIfExistsAsync(string ruleSetName, CancellationToken cancellationToken = default)
+        {
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+
+            using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _newRelicObservabilityTagRuleTagRulesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, ruleSetName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NewRelicObservabilityTagRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new NewRelicObservabilityTagRuleResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/NewRelic.Observability/monitors/{monitorName}/tagRules/{ruleSetName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TagRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NewRelicObservabilityTagRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="ruleSetName"> Name of the TagRule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="ruleSetName"/> is null. </exception>
+        public virtual NullableResponse<NewRelicObservabilityTagRuleResource> GetIfExists(string ruleSetName, CancellationToken cancellationToken = default)
+        {
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+
+            using var scope = _newRelicObservabilityTagRuleTagRulesClientDiagnostics.CreateScope("NewRelicObservabilityTagRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _newRelicObservabilityTagRuleTagRulesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, ruleSetName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NewRelicObservabilityTagRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new NewRelicObservabilityTagRuleResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

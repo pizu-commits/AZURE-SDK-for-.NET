@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Sap Business Warehouse Open Hub Destination Table properties. </summary>
     public partial class SapOpenHubTableDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of SapOpenHubTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapOpenHubTableDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <param name="openHubDestinationName"> The name of the Open Hub Destination with destination type as Database Table. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> or <paramref name="openHubDestinationName"/> is null. </exception>
         public SapOpenHubTableDataset(DataFactoryLinkedServiceReference linkedServiceName, DataFactoryElement<string> openHubDestinationName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
-            Argument.AssertNotNull(openHubDestinationName, nameof(openHubDestinationName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
+            if (openHubDestinationName == null)
+            {
+                throw new ArgumentNullException(nameof(openHubDestinationName));
+            }
 
             OpenHubDestinationName = openHubDestinationName;
             DatasetType = "SapOpenHubTable";
         }
 
-        /// <summary> Initializes a new instance of SapOpenHubTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapOpenHubTableDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -47,6 +52,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ExcludeLastRequest = excludeLastRequest;
             BaseRequestId = baseRequestId;
             DatasetType = datasetType ?? "SapOpenHubTable";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SapOpenHubTableDataset"/> for deserialization. </summary>
+        internal SapOpenHubTableDataset()
+        {
         }
 
         /// <summary> The name of the Open Hub Destination with destination type as Database Table. Type: string (or Expression with resultType string). </summary>

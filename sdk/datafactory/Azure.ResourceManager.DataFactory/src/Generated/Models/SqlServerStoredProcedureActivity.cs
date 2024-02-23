@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> SQL stored procedure activity type. </summary>
     public partial class SqlServerStoredProcedureActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of SqlServerStoredProcedureActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerStoredProcedureActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="storedProcedureName"> Stored procedure name. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="storedProcedureName"/> is null. </exception>
         public SqlServerStoredProcedureActivity(string name, DataFactoryElement<string> storedProcedureName) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(storedProcedureName, nameof(storedProcedureName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (storedProcedureName == null)
+            {
+                throw new ArgumentNullException(nameof(storedProcedureName));
+            }
 
             StoredProcedureName = storedProcedureName;
             ActivityType = "SqlServerStoredProcedure";
         }
 
-        /// <summary> Initializes a new instance of SqlServerStoredProcedureActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerStoredProcedureActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -48,6 +53,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = activityType ?? "SqlServerStoredProcedure";
         }
 
+        /// <summary> Initializes a new instance of <see cref="SqlServerStoredProcedureActivity"/> for deserialization. </summary>
+        internal SqlServerStoredProcedureActivity()
+        {
+        }
+
         /// <summary> Stored procedure name. Type: string (or Expression with resultType string). </summary>
         public DataFactoryElement<string> StoredProcedureName { get; set; }
         /// <summary>
@@ -56,7 +66,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:

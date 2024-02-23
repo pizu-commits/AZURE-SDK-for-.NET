@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -48,8 +49,14 @@ namespace Azure.Analytics.Purview.Sharing
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
         public ShareResourcesClient(Uri endpoint, TokenCredential credential, PurviewShareClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new PurviewShareClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -79,7 +86,7 @@ namespace Azure.Analytics.Purview.Sharing
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllShareResourcesRequest(filter, orderby, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllShareResourcesNextPageRequest(nextLink, filter, orderby, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ShareResourcesClient.GetAllShareResources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ShareResourcesClient.GetAllShareResources", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -102,7 +109,7 @@ namespace Azure.Analytics.Purview.Sharing
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetAllShareResourcesRequest(filter, orderby, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetAllShareResourcesNextPageRequest(nextLink, filter, orderby, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ShareResourcesClient.GetAllShareResources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ShareResourcesClient.GetAllShareResources", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetAllShareResourcesRequest(string filter, string orderby, RequestContext context)

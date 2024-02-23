@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
 {
     /// <summary>
     /// A Class representing a VMwareHost along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="VMwareHostResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetVMwareHostResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetVMwareHost method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="VMwareHostResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetVMwareHostResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetVMwareHost method.
     /// </summary>
     public partial class VMwareHostResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="VMwareHostResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="hostName"> The hostName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string hostName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/hosts/{hostName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         private readonly HostsRestOperations _vMwareHostHostsRestClient;
         private readonly VMwareHostData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.ConnectedVMwarevSphere/hosts";
+
         /// <summary> Initializes a new instance of the <see cref="VMwareHostResource"/> class for mocking. </summary>
         protected VMwareHostResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "VMwareHostResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="VMwareHostResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal VMwareHostResource(ArmClient client, VMwareHostData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.ConnectedVMwarevSphere/hosts";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -100,6 +103,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -132,6 +143,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -163,6 +182,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Hosts_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -199,6 +226,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -234,20 +269,31 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> Resource properties to update. </param>
+        /// <param name="content"> Resource properties to update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
-        public virtual async Task<Response<VMwareHostResource>> UpdateAsync(ResourcePatch patch, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        public virtual async Task<Response<VMwareHostResource>> UpdateAsync(VMwareResourcePatchContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.Update");
             scope.Start();
             try
             {
-                var response = await _vMwareHostHostsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, patch, cancellationToken).ConfigureAwait(false);
+                var response = await _vMwareHostHostsRestClient.UpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, content, cancellationToken).ConfigureAwait(false);
                 return Response.FromValue(new VMwareHostResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
@@ -268,20 +314,31 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> Resource properties to update. </param>
+        /// <param name="content"> Resource properties to update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
-        public virtual Response<VMwareHostResource> Update(ResourcePatch patch, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
+        public virtual Response<VMwareHostResource> Update(VMwareResourcePatchContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.Update");
             scope.Start();
             try
             {
-                var response = _vMwareHostHostsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, patch, cancellationToken);
+                var response = _vMwareHostHostsRestClient.Update(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, content, cancellationToken);
                 return Response.FromValue(new VMwareHostResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
@@ -302,6 +359,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -310,8 +375,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<VMwareHostResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.AddTag");
             scope.Start();
@@ -328,7 +399,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = (await GetAsync(cancellationToken: cancellationToken).ConfigureAwait(false)).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     foreach (var tag in current.Tags)
                     {
                         patch.Tags.Add(tag);
@@ -356,6 +427,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -364,8 +443,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<VMwareHostResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.AddTag");
             scope.Start();
@@ -382,7 +467,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = Get(cancellationToken: cancellationToken).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     foreach (var tag in current.Tags)
                     {
                         patch.Tags.Add(tag);
@@ -410,6 +495,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -417,7 +510,10 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<VMwareHostResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.SetTags");
             scope.Start();
@@ -435,7 +531,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = (await GetAsync(cancellationToken: cancellationToken).ConfigureAwait(false)).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     patch.Tags.ReplaceWith(tags);
                     var result = await UpdateAsync(patch, cancellationToken: cancellationToken).ConfigureAwait(false);
                     return result;
@@ -459,6 +555,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -466,7 +570,10 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<VMwareHostResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.SetTags");
             scope.Start();
@@ -484,7 +591,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = Get(cancellationToken: cancellationToken).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     patch.Tags.ReplaceWith(tags);
                     var result = Update(patch, cancellationToken: cancellationToken);
                     return result;
@@ -508,6 +615,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -515,7 +630,10 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<VMwareHostResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.RemoveTag");
             scope.Start();
@@ -532,7 +650,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = (await GetAsync(cancellationToken: cancellationToken).ConfigureAwait(false)).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     foreach (var tag in current.Tags)
                     {
                         patch.Tags.Add(tag);
@@ -560,6 +678,14 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <term>Operation Id</term>
         /// <description>Hosts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="VMwareHostResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -567,7 +693,10 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<VMwareHostResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _vMwareHostHostsClientDiagnostics.CreateScope("VMwareHostResource.RemoveTag");
             scope.Start();
@@ -584,7 +713,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
                 else
                 {
                     var current = Get(cancellationToken: cancellationToken).Value.Data;
-                    var patch = new ResourcePatch();
+                    var patch = new VMwareResourcePatchContent();
                     foreach (var tag in current.Tags)
                     {
                         patch.Tags.Add(tag);

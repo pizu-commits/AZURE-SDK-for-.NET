@@ -15,14 +15,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> DatabricksSparkJar activity. </summary>
     public partial class DatabricksSparkJarActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of DatabricksSparkJarActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="DatabricksSparkJarActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="mainClassName"> The full name of the class containing the main method to be executed. This class must be contained in a JAR provided as a library. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="mainClassName"/> is null. </exception>
         public DatabricksSparkJarActivity(string name, DataFactoryElement<string> mainClassName) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(mainClassName, nameof(mainClassName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (mainClassName == null)
+            {
+                throw new ArgumentNullException(nameof(mainClassName));
+            }
 
             MainClassName = mainClassName;
             Parameters = new ChangeTrackingList<BinaryData>();
@@ -30,7 +36,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = "DatabricksSparkJar";
         }
 
-        /// <summary> Initializes a new instance of DatabricksSparkJarActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="DatabricksSparkJarActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -52,6 +58,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = activityType ?? "DatabricksSparkJar";
         }
 
+        /// <summary> Initializes a new instance of <see cref="DatabricksSparkJarActivity"/> for deserialization. </summary>
+        internal DatabricksSparkJarActivity()
+        {
+        }
+
         /// <summary> The full name of the class containing the main method to be executed. This class must be contained in a JAR provided as a library. Type: string (or Expression with resultType string). </summary>
         public DataFactoryElement<string> MainClassName { get; set; }
         /// <summary>
@@ -60,7 +71,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:

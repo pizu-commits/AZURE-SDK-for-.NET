@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -69,7 +70,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='GetCropProductAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetCropProductAsync(string cropProductId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.GetCropProduct");
             scope.Start();
@@ -104,7 +112,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='GetCropProduct(string,RequestContext)']/*" />
         public virtual Response GetCropProduct(string cropProductId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.GetCropProduct");
             scope.Start();
@@ -140,8 +155,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string cropProductId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.CreateOrUpdate");
             scope.Start();
@@ -177,8 +202,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='CreateOrUpdate(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string cropProductId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.CreateOrUpdate");
             scope.Start();
@@ -213,7 +248,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='DeleteAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string cropProductId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.Delete");
             scope.Start();
@@ -248,7 +290,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/CropProducts.xml" path="doc/members/member[@name='Delete(string,RequestContext)']/*" />
         public virtual Response Delete(string cropProductId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(cropProductId, nameof(cropProductId));
+            if (cropProductId == null)
+            {
+                throw new ArgumentNullException(nameof(cropProductId));
+            }
+            if (cropProductId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(cropProductId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("CropProducts.Delete");
             scope.Start();
@@ -302,7 +351,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCropProductsRequest(cropIds, brands, products, traits, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCropProductsNextPageRequest(nextLink, cropIds, brands, products, traits, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "CropProducts.GetCropProducts", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "CropProducts.GetCropProducts", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -343,7 +392,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCropProductsRequest(cropIds, brands, products, traits, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCropProductsNextPageRequest(nextLink, cropIds, brands, products, traits, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "CropProducts.GetCropProducts", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "CropProducts.GetCropProducts", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetCropProductsRequest(IEnumerable<string> cropIds, IEnumerable<string> brands, IEnumerable<string> products, IEnumerable<string> traits, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)

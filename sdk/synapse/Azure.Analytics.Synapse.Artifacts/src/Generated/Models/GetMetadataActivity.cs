@@ -14,21 +14,27 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Activity to get metadata of dataset. </summary>
     public partial class GetMetadataActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of GetMetadataActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="GetMetadataActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="dataset"> GetMetadata activity dataset reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="dataset"/> is null. </exception>
         public GetMetadataActivity(string name, DatasetReference dataset) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(dataset, nameof(dataset));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (dataset == null)
+            {
+                throw new ArgumentNullException(nameof(dataset));
+            }
 
             Dataset = dataset;
             FieldList = new ChangeTrackingList<object>();
             Type = "GetMetadata";
         }
 
-        /// <summary> Initializes a new instance of GetMetadataActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="GetMetadataActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

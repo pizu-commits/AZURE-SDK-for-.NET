@@ -8,28 +8,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.ResourceManager.DataFactory.Models
 {
     /// <summary> Trigger that runs every time a Blob event occurs. </summary>
     public partial class DataFactoryBlobEventsTrigger : MultiplePipelineTrigger
     {
-        /// <summary> Initializes a new instance of DataFactoryBlobEventsTrigger. </summary>
+        /// <summary> Initializes a new instance of <see cref="DataFactoryBlobEventsTrigger"/>. </summary>
         /// <param name="events"> The type of events that cause this trigger to fire. </param>
         /// <param name="scope"> The ARM resource ID of the Storage Account. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="events"/> or <paramref name="scope"/> is null. </exception>
         public DataFactoryBlobEventsTrigger(IEnumerable<DataFactoryBlobEventType> events, string scope)
         {
-            Argument.AssertNotNull(events, nameof(events));
-            Argument.AssertNotNull(scope, nameof(scope));
+            if (events == null)
+            {
+                throw new ArgumentNullException(nameof(events));
+            }
+            if (scope == null)
+            {
+                throw new ArgumentNullException(nameof(scope));
+            }
 
             Events = events.ToList();
             Scope = scope;
             TriggerType = "BlobEventsTrigger";
         }
 
-        /// <summary> Initializes a new instance of DataFactoryBlobEventsTrigger. </summary>
+        /// <summary> Initializes a new instance of <see cref="DataFactoryBlobEventsTrigger"/>. </summary>
         /// <param name="triggerType"> Trigger type. </param>
         /// <param name="description"> Trigger description. </param>
         /// <param name="runtimeState"> Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. </param>
@@ -49,6 +54,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Events = events;
             Scope = scope;
             TriggerType = triggerType ?? "BlobEventsTrigger";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="DataFactoryBlobEventsTrigger"/> for deserialization. </summary>
+        internal DataFactoryBlobEventsTrigger()
+        {
         }
 
         /// <summary> The blob path must begin with the pattern provided for trigger to fire. For example, '/records/blobs/december/' will only fire the trigger for blobs in the december folder under the records container. At least one of these must be provided: blobPathBeginsWith, blobPathEndsWith. </summary>

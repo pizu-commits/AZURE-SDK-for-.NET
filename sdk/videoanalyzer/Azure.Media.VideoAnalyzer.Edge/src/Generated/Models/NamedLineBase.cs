@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -17,17 +16,20 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     public abstract partial class NamedLineBase
     {
-        /// <summary> Initializes a new instance of NamedLineBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="NamedLineBase"/>. </summary>
         /// <param name="name"> Line name. Must be unique within the node. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         protected NamedLineBase(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
         }
 
-        /// <summary> Initializes a new instance of NamedLineBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="NamedLineBase"/>. </summary>
         /// <param name="type"> The Type discriminator for the derived types. </param>
         /// <param name="name"> Line name. Must be unique within the node. </param>
         internal NamedLineBase(string type, string name)

@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Azure Data Explorer command activity. </summary>
     public partial class AzureDataExplorerCommandActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of AzureDataExplorerCommandActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataExplorerCommandActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="command"> A control command, according to the Azure Data Explorer command syntax. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="command"/> is null. </exception>
         public AzureDataExplorerCommandActivity(string name, DataFactoryElement<string> command) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(command, nameof(command));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
 
             Command = command;
             ActivityType = "AzureDataExplorerCommand";
         }
 
-        /// <summary> Initializes a new instance of AzureDataExplorerCommandActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataExplorerCommandActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -46,6 +51,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Command = command;
             CommandTimeout = commandTimeout;
             ActivityType = activityType ?? "AzureDataExplorerCommand";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureDataExplorerCommandActivity"/> for deserialization. </summary>
+        internal AzureDataExplorerCommandActivity()
+        {
         }
 
         /// <summary> A control command, according to the Azure Data Explorer command syntax. Type: string (or Expression with resultType string). </summary>

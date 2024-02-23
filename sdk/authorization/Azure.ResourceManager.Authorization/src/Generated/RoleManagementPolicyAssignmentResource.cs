@@ -18,13 +18,15 @@ namespace Azure.ResourceManager.Authorization
 {
     /// <summary>
     /// A Class representing a RoleManagementPolicyAssignment along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="RoleManagementPolicyAssignmentResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetRoleManagementPolicyAssignmentResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ArmResource" /> using the GetRoleManagementPolicyAssignment method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="RoleManagementPolicyAssignmentResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetRoleManagementPolicyAssignmentResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ArmResource"/> using the GetRoleManagementPolicyAssignment method.
     /// </summary>
     public partial class RoleManagementPolicyAssignmentResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="RoleManagementPolicyAssignmentResource"/> instance. </summary>
+        /// <param name="scope"> The scope. </param>
+        /// <param name="roleManagementPolicyAssignmentName"> The roleManagementPolicyAssignmentName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string scope, string roleManagementPolicyAssignmentName)
         {
             var resourceId = $"{scope}/providers/Microsoft.Authorization/roleManagementPolicyAssignments/{roleManagementPolicyAssignmentName}";
@@ -35,12 +37,15 @@ namespace Azure.ResourceManager.Authorization
         private readonly RoleManagementPolicyAssignmentsRestOperations _roleManagementPolicyAssignmentRestClient;
         private readonly RoleManagementPolicyAssignmentData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Authorization/roleManagementPolicyAssignments";
+
         /// <summary> Initializes a new instance of the <see cref="RoleManagementPolicyAssignmentResource"/> class for mocking. </summary>
         protected RoleManagementPolicyAssignmentResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "RoleManagementPolicyAssignmentResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="RoleManagementPolicyAssignmentResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal RoleManagementPolicyAssignmentResource(ArmClient client, RoleManagementPolicyAssignmentData data) : this(client, data.Id)
@@ -61,9 +66,6 @@ namespace Azure.ResourceManager.Authorization
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Authorization/roleManagementPolicyAssignment";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +99,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleManagementPolicyAssignments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleManagementPolicyAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +138,14 @@ namespace Azure.ResourceManager.Authorization
         /// <item>
         /// <term>Operation Id</term>
         /// <description>RoleManagementPolicyAssignments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleManagementPolicyAssignmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +179,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleManagementPolicyAssignments_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleManagementPolicyAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -169,7 +195,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<RoleManagementPolicyAssignmentResource>> UpdateAsync(WaitUntil waitUntil, RoleManagementPolicyAssignmentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleManagementPolicyAssignmentClientDiagnostics.CreateScope("RoleManagementPolicyAssignmentResource.Update");
             scope.Start();
@@ -199,6 +228,14 @@ namespace Azure.ResourceManager.Authorization
         /// <term>Operation Id</term>
         /// <description>RoleManagementPolicyAssignments_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RoleManagementPolicyAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -207,7 +244,10 @@ namespace Azure.ResourceManager.Authorization
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<RoleManagementPolicyAssignmentResource> Update(WaitUntil waitUntil, RoleManagementPolicyAssignmentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _roleManagementPolicyAssignmentClientDiagnostics.CreateScope("RoleManagementPolicyAssignmentResource.Update");
             scope.Start();

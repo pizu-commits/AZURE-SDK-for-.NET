@@ -6,21 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> Contains details of errors encountered during a job execution. </summary>
     internal partial class DocumentError
     {
-        /// <summary> Initializes a new instance of DocumentError. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentError"/>. </summary>
         /// <param name="id"> The ID of the input document. </param>
         /// <param name="error"> Error encountered. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="error"/> is null. </exception>
         public DocumentError(string id, Error error)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(error, nameof(error));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (error == null)
+            {
+                throw new ArgumentNullException(nameof(error));
+            }
 
             Id = id;
             Error = error;

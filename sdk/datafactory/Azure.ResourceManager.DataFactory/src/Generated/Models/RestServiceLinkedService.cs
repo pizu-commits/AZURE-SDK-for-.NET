@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,23 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Rest Service linked service. </summary>
     public partial class RestServiceLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of RestServiceLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="RestServiceLinkedService"/>. </summary>
         /// <param name="uri"> The base URL of the REST service. Type: string (or Expression with resultType string). </param>
         /// <param name="authenticationType"> Type of authentication used to connect to the REST service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         public RestServiceLinkedService(DataFactoryElement<string> uri, RestServiceAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(uri, nameof(uri));
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
 
             Uri = uri;
             AuthenticationType = authenticationType;
             LinkedServiceType = "RestService";
         }
 
-        /// <summary> Initializes a new instance of RestServiceLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="RestServiceLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -74,6 +76,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Resource = resource;
             Scope = scope;
             LinkedServiceType = linkedServiceType ?? "RestService";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="RestServiceLinkedService"/> for deserialization. </summary>
+        internal RestServiceLinkedService()
+        {
         }
 
         /// <summary> The base URL of the REST service. Type: string (or Expression with resultType string). </summary>

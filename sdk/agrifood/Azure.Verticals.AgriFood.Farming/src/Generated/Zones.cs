@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -70,8 +71,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetZoneAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetZoneAsync(string partyId, string zoneId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.GetZone");
             scope.Start();
@@ -107,8 +122,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetZone(string,string,RequestContext)']/*" />
         public virtual Response GetZone(string partyId, string zoneId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.GetZone");
             scope.Start();
@@ -145,9 +174,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string partyId, string zoneId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.CreateOrUpdate");
             scope.Start();
@@ -184,9 +230,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='CreateOrUpdate(string,string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string partyId, string zoneId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.CreateOrUpdate");
             scope.Start();
@@ -222,8 +285,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='DeleteAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string partyId, string zoneId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.Delete");
             scope.Start();
@@ -259,8 +336,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='Delete(string,string,RequestContext)']/*" />
         public virtual Response Delete(string partyId, string zoneId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(zoneId, nameof(zoneId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
+            if (zoneId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.Delete");
             scope.Start();
@@ -295,7 +386,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetCascadeDeleteJobDetailsAsync(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -330,7 +428,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetails(string,RequestContext)']/*" />
         public virtual Response GetCascadeDeleteJobDetails(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -384,11 +489,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetZonesByPartyIdAsync(string,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetZonesByPartyIdAsync(string partyId, IEnumerable<string> types, IEnumerable<string> managementZoneIds, IEnumerable<string> sources, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetZonesByPartyIdRequest(partyId, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetZonesByPartyIdNextPageRequest(nextLink, partyId, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZonesByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZonesByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -429,11 +541,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='GetZonesByPartyId(string,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetZonesByPartyId(string partyId, IEnumerable<string> types, IEnumerable<string> managementZoneIds, IEnumerable<string> sources, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetZonesByPartyIdRequest(partyId, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetZonesByPartyIdNextPageRequest(nextLink, partyId, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZonesByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZonesByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -473,7 +592,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetZonesRequest(types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetZonesNextPageRequest(nextLink, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZones", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZones", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -513,7 +632,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetZonesRequest(types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetZonesNextPageRequest(nextLink, types, managementZoneIds, sources, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZones", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Zones.GetZones", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -538,9 +657,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='CreateCascadeDeleteJobAsync(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> CreateCascadeDeleteJobAsync(WaitUntil waitUntil, string jobId, string partyId, string zoneId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(zoneId, nameof(zoneId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.CreateCascadeDeleteJob");
             scope.Start();
@@ -578,9 +710,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Zones.xml" path="doc/members/member[@name='CreateCascadeDeleteJob(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> CreateCascadeDeleteJob(WaitUntil waitUntil, string jobId, string partyId, string zoneId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(zoneId, nameof(zoneId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (zoneId == null)
+            {
+                throw new ArgumentNullException(nameof(zoneId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Zones.CreateCascadeDeleteJob");
             scope.Start();

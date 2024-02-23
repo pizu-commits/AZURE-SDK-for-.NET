@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Automanage
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AutomanageConfigurationProfileVersionResource" /> and their operations.
-    /// Each <see cref="AutomanageConfigurationProfileVersionResource" /> in the collection will belong to the same instance of <see cref="AutomanageConfigurationProfileResource" />.
-    /// To get an <see cref="AutomanageConfigurationProfileVersionCollection" /> instance call the GetAutomanageConfigurationProfileVersions method from an instance of <see cref="AutomanageConfigurationProfileResource" />.
+    /// A class representing a collection of <see cref="AutomanageConfigurationProfileVersionResource"/> and their operations.
+    /// Each <see cref="AutomanageConfigurationProfileVersionResource"/> in the collection will belong to the same instance of <see cref="AutomanageConfigurationProfileResource"/>.
+    /// To get an <see cref="AutomanageConfigurationProfileVersionCollection"/> instance call the GetAutomanageConfigurationProfileVersions method from an instance of <see cref="AutomanageConfigurationProfileResource"/>.
     /// </summary>
     public partial class AutomanageConfigurationProfileVersionCollection : ArmCollection, IEnumerable<AutomanageConfigurationProfileVersionResource>, IAsyncEnumerable<AutomanageConfigurationProfileVersionResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AutomanageConfigurationProfileVersionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string versionName, AutomanageConfigurationProfileData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AutomanageConfigurationProfileVersionResource> CreateOrUpdate(WaitUntil waitUntil, string versionName, AutomanageConfigurationProfileData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="versionName"> The configuration profile version name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
         public virtual async Task<Response<AutomanageConfigurationProfileVersionResource>> GetAsync(string versionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="versionName"> The configuration profile version name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
         public virtual Response<AutomanageConfigurationProfileVersionResource> Get(string versionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.Get");
             scope.Start();
@@ -219,14 +286,22 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_ListChildResources</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AutomanageConfigurationProfileVersionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AutomanageConfigurationProfileVersionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AutomanageConfigurationProfileVersionResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automanageConfigurationProfileVersionConfigurationProfilesVersionsRestClient.CreateListChildResourcesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new AutomanageConfigurationProfileVersionResource(Client, AutomanageConfigurationProfileData.DeserializeAutomanageConfigurationProfileData(e)), _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics, Pipeline, "AutomanageConfigurationProfileVersionCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new AutomanageConfigurationProfileVersionResource(Client, AutomanageConfigurationProfileData.DeserializeAutomanageConfigurationProfileData(e)), _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics, Pipeline, "AutomanageConfigurationProfileVersionCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -240,14 +315,22 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_ListChildResources</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AutomanageConfigurationProfileVersionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AutomanageConfigurationProfileVersionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AutomanageConfigurationProfileVersionResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automanageConfigurationProfileVersionConfigurationProfilesVersionsRestClient.CreateListChildResourcesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new AutomanageConfigurationProfileVersionResource(Client, AutomanageConfigurationProfileData.DeserializeAutomanageConfigurationProfileData(e)), _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics, Pipeline, "AutomanageConfigurationProfileVersionCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new AutomanageConfigurationProfileVersionResource(Client, AutomanageConfigurationProfileData.DeserializeAutomanageConfigurationProfileData(e)), _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics, Pipeline, "AutomanageConfigurationProfileVersionCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -261,6 +344,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="versionName"> The configuration profile version name. </param>
@@ -269,7 +360,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string versionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.Exists");
             scope.Start();
@@ -296,6 +394,14 @@ namespace Azure.ResourceManager.Automanage
         /// <term>Operation Id</term>
         /// <description>ConfigurationProfilesVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="versionName"> The configuration profile version name. </param>
@@ -304,7 +410,14 @@ namespace Azure.ResourceManager.Automanage
         /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
         public virtual Response<bool> Exists(string versionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(versionName, nameof(versionName));
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
 
             using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.Exists");
             scope.Start();
@@ -312,6 +425,110 @@ namespace Azure.ResourceManager.Automanage
             {
                 var response = _automanageConfigurationProfileVersionConfigurationProfilesVersionsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, versionName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automanage/configurationProfiles/{configurationProfileName}/versions/{versionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConfigurationProfilesVersions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="versionName"> The configuration profile version name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="versionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AutomanageConfigurationProfileVersionResource>> GetIfExistsAsync(string versionName, CancellationToken cancellationToken = default)
+        {
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
+
+            using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _automanageConfigurationProfileVersionConfigurationProfilesVersionsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, versionName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomanageConfigurationProfileVersionResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomanageConfigurationProfileVersionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automanage/configurationProfiles/{configurationProfileName}/versions/{versionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConfigurationProfilesVersions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-05-04</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomanageConfigurationProfileVersionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="versionName"> The configuration profile version name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="versionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="versionName"/> is null. </exception>
+        public virtual NullableResponse<AutomanageConfigurationProfileVersionResource> GetIfExists(string versionName, CancellationToken cancellationToken = default)
+        {
+            if (versionName == null)
+            {
+                throw new ArgumentNullException(nameof(versionName));
+            }
+            if (versionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(versionName));
+            }
+
+            using var scope = _automanageConfigurationProfileVersionConfigurationProfilesVersionsClientDiagnostics.CreateScope("AutomanageConfigurationProfileVersionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _automanageConfigurationProfileVersionConfigurationProfilesVersionsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, versionName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomanageConfigurationProfileVersionResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomanageConfigurationProfileVersionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -52,6 +52,7 @@ namespace Azure.Communication.Chat
             /// </summary>
             V2023_07_01_preview = 3
             #pragma warning restore CA1707 // Identifiers should not contain underscores
+            V2023_11_07 = 3
         }
     }
 }

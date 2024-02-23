@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Lookup activity. </summary>
     public partial class LookupActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of LookupActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="LookupActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="source">
         /// Dataset-specific source properties, same as copy activity source.
@@ -25,16 +24,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="source"/> or <paramref name="dataset"/> is null. </exception>
         public LookupActivity(string name, CopySource source, DatasetReference dataset) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(source, nameof(source));
-            Argument.AssertNotNull(dataset, nameof(dataset));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (dataset == null)
+            {
+                throw new ArgumentNullException(nameof(dataset));
+            }
 
             Source = source;
             Dataset = dataset;
             Type = "Lookup";
         }
 
-        /// <summary> Initializes a new instance of LookupActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="LookupActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

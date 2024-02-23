@@ -7,27 +7,32 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Azure Data Explorer command activity. </summary>
     public partial class AzureDataExplorerCommandActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of AzureDataExplorerCommandActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataExplorerCommandActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="command"> A control command, according to the Azure Data Explorer command syntax. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="command"/> is null. </exception>
         public AzureDataExplorerCommandActivity(string name, object command) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(command, nameof(command));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
 
             Command = command;
             Type = "AzureDataExplorerCommand";
         }
 
-        /// <summary> Initializes a new instance of AzureDataExplorerCommandActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataExplorerCommandActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

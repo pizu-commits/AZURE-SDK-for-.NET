@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiReleaseResource" /> and their operations.
-    /// Each <see cref="ApiReleaseResource" /> in the collection will belong to the same instance of <see cref="ApiResource" />.
-    /// To get an <see cref="ApiReleaseCollection" /> instance call the GetApiReleases method from an instance of <see cref="ApiResource" />.
+    /// A class representing a collection of <see cref="ApiReleaseResource"/> and their operations.
+    /// Each <see cref="ApiReleaseResource"/> in the collection will belong to the same instance of <see cref="ApiResource"/>.
+    /// To get an <see cref="ApiReleaseCollection"/> instance call the GetApiReleases method from an instance of <see cref="ApiResource"/>.
     /// </summary>
     public partial class ApiReleaseCollection : ArmCollection, IEnumerable<ApiReleaseResource>, IAsyncEnumerable<ApiReleaseResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiReleaseResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string releaseId, ApiReleaseData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +143,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ApiReleaseResource> CreateOrUpdate(WaitUntil waitUntil, string releaseId, ApiReleaseData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
         public virtual async Task<Response<ApiReleaseResource>> GetAsync(string releaseId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
         public virtual Response<ApiReleaseResource> Get(string releaseId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.Get");
             scope.Start();
@@ -221,18 +288,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiReleaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiReleaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiReleaseResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiReleaseRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiReleaseRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiReleaseResource(Client, ApiReleaseData.DeserializeApiReleaseData(e)), _apiReleaseClientDiagnostics, Pipeline, "ApiReleaseCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiReleaseResource(Client, ApiReleaseData.DeserializeApiReleaseData(e)), _apiReleaseClientDiagnostics, Pipeline, "ApiReleaseCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -246,18 +321,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiReleaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiReleaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiReleaseResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiReleaseRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiReleaseRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiReleaseResource(Client, ApiReleaseData.DeserializeApiReleaseData(e)), _apiReleaseClientDiagnostics, Pipeline, "ApiReleaseCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiReleaseResource(Client, ApiReleaseData.DeserializeApiReleaseData(e)), _apiReleaseClientDiagnostics, Pipeline, "ApiReleaseCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -271,6 +354,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
@@ -279,7 +370,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string releaseId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.Exists");
             scope.Start();
@@ -306,6 +404,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiRelease_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
@@ -314,7 +420,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
         public virtual Response<bool> Exists(string releaseId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(releaseId, nameof(releaseId));
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
 
             using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.Exists");
             scope.Start();
@@ -322,6 +435,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiReleaseRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, releaseId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ApiRelease_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="releaseId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiReleaseResource>> GetIfExistsAsync(string releaseId, CancellationToken cancellationToken = default)
+        {
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
+
+            using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiReleaseRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, releaseId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiReleaseResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiReleaseResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ApiRelease_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiReleaseResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="releaseId"> Release identifier within an API. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="releaseId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="releaseId"/> is null. </exception>
+        public virtual NullableResponse<ApiReleaseResource> GetIfExists(string releaseId, CancellationToken cancellationToken = default)
+        {
+            if (releaseId == null)
+            {
+                throw new ArgumentNullException(nameof(releaseId));
+            }
+            if (releaseId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(releaseId));
+            }
+
+            using var scope = _apiReleaseClientDiagnostics.CreateScope("ApiReleaseCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiReleaseRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, releaseId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiReleaseResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiReleaseResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

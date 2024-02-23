@@ -6,24 +6,40 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.CallingServer
 {
     /// <summary> The request payload for answering the call. </summary>
     internal partial class AnswerCallRequestInternal
     {
-        /// <summary> Initializes a new instance of AnswerCallRequestInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="AnswerCallRequestInternal"/>. </summary>
         /// <param name="incomingCallContext"> The context associated with the call. </param>
         /// <param name="callbackUri"> The callback uri. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="incomingCallContext"/> or <paramref name="callbackUri"/> is null. </exception>
         public AnswerCallRequestInternal(string incomingCallContext, string callbackUri)
         {
-            Argument.AssertNotNull(incomingCallContext, nameof(incomingCallContext));
-            Argument.AssertNotNull(callbackUri, nameof(callbackUri));
+            if (incomingCallContext == null)
+            {
+                throw new ArgumentNullException(nameof(incomingCallContext));
+            }
+            if (callbackUri == null)
+            {
+                throw new ArgumentNullException(nameof(callbackUri));
+            }
 
             IncomingCallContext = incomingCallContext;
             CallbackUri = callbackUri;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AnswerCallRequestInternal"/>. </summary>
+        /// <param name="incomingCallContext"> The context associated with the call. </param>
+        /// <param name="callbackUri"> The callback uri. </param>
+        /// <param name="mediaStreamingConfiguration"> Media Streaming Configuration. </param>
+        internal AnswerCallRequestInternal(string incomingCallContext, string callbackUri, MediaStreamingOptionsInternal mediaStreamingConfiguration)
+        {
+            IncomingCallContext = incomingCallContext;
+            CallbackUri = callbackUri;
+            MediaStreamingConfiguration = mediaStreamingConfiguration;
         }
 
         /// <summary> The context associated with the call. </summary>

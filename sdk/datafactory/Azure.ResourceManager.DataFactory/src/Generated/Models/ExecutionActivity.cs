@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -19,17 +18,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// </summary>
     public partial class ExecutionActivity : PipelineActivity
     {
-        /// <summary> Initializes a new instance of ExecutionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ExecutionActivity(string name) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             ActivityType = "Execution";
         }
 
-        /// <summary> Initializes a new instance of ExecutionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -45,6 +47,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceName = linkedServiceName;
             Policy = policy;
             ActivityType = activityType ?? "Execution";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ExecutionActivity"/> for deserialization. </summary>
+        internal ExecutionActivity()
+        {
         }
 
         /// <summary> Linked service reference. </summary>

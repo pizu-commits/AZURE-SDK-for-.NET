@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,21 +14,27 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Jira Service linked service. </summary>
     public partial class JiraLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of JiraLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="JiraLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Jira service. (e.g. jira.example.com). </param>
         /// <param name="username"> The user name that you use to access Jira Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> or <paramref name="username"/> is null. </exception>
         public JiraLinkedService(DataFactoryElement<string> host, DataFactoryElement<string> username)
         {
-            Argument.AssertNotNull(host, nameof(host));
-            Argument.AssertNotNull(username, nameof(username));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (username == null)
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
 
             Host = host;
             Username = username;
             LinkedServiceType = "Jira";
         }
 
-        /// <summary> Initializes a new instance of JiraLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="JiraLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -55,6 +60,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             UsePeerVerification = usePeerVerification;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Jira";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="JiraLinkedService"/> for deserialization. </summary>
+        internal JiraLinkedService()
+        {
         }
 
         /// <summary> The IP address or host name of the Jira service. (e.g. jira.example.com). </summary>

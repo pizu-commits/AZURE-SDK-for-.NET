@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,7 +14,7 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Presto server linked service. </summary>
     public partial class PrestoLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of PrestoLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PrestoLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Presto server. (i.e. 192.168.222.160). </param>
         /// <param name="serverVersion"> The version of the Presto server. (i.e. 0.148-t). </param>
         /// <param name="catalog"> The catalog context for all request against the server. </param>
@@ -23,9 +22,18 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <exception cref="ArgumentNullException"> <paramref name="host"/>, <paramref name="serverVersion"/> or <paramref name="catalog"/> is null. </exception>
         public PrestoLinkedService(DataFactoryElement<string> host, DataFactoryElement<string> serverVersion, DataFactoryElement<string> catalog, PrestoAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
-            Argument.AssertNotNull(serverVersion, nameof(serverVersion));
-            Argument.AssertNotNull(catalog, nameof(catalog));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (serverVersion == null)
+            {
+                throw new ArgumentNullException(nameof(serverVersion));
+            }
+            if (catalog == null)
+            {
+                throw new ArgumentNullException(nameof(catalog));
+            }
 
             Host = host;
             ServerVersion = serverVersion;
@@ -34,7 +42,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "Presto";
         }
 
-        /// <summary> Initializes a new instance of PrestoLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PrestoLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -72,6 +80,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             TimeZoneId = timeZoneId;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Presto";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="PrestoLinkedService"/> for deserialization. </summary>
+        internal PrestoLinkedService()
+        {
         }
 
         /// <summary> The IP address or host name of the Presto server. (i.e. 192.168.222.160). </summary>

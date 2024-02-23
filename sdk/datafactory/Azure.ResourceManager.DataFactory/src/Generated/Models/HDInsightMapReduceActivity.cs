@@ -15,16 +15,25 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> HDInsight MapReduce activity type. </summary>
     public partial class HDInsightMapReduceActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of HDInsightMapReduceActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightMapReduceActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="className"> Class name. Type: string (or Expression with resultType string). </param>
         /// <param name="jarFilePath"> Jar path. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="className"/> or <paramref name="jarFilePath"/> is null. </exception>
         public HDInsightMapReduceActivity(string name, DataFactoryElement<string> className, DataFactoryElement<string> jarFilePath) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(className, nameof(className));
-            Argument.AssertNotNull(jarFilePath, nameof(jarFilePath));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (className == null)
+            {
+                throw new ArgumentNullException(nameof(className));
+            }
+            if (jarFilePath == null)
+            {
+                throw new ArgumentNullException(nameof(jarFilePath));
+            }
 
             StorageLinkedServices = new ChangeTrackingList<DataFactoryLinkedServiceReference>();
             Arguments = new ChangeTrackingList<BinaryData>();
@@ -35,7 +44,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = "HDInsightMapReduce";
         }
 
-        /// <summary> Initializes a new instance of HDInsightMapReduceActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightMapReduceActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -67,6 +76,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = activityType ?? "HDInsightMapReduce";
         }
 
+        /// <summary> Initializes a new instance of <see cref="HDInsightMapReduceActivity"/> for deserialization. </summary>
+        internal HDInsightMapReduceActivity()
+        {
+        }
+
         /// <summary> Storage linked service references. </summary>
         public IList<DataFactoryLinkedServiceReference> StorageLinkedServices { get; }
         /// <summary>
@@ -75,7 +89,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:
@@ -114,7 +128,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:
@@ -145,7 +159,7 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
-        /// To assign an already formated json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
         /// </para>
         /// <para>
         /// Examples:

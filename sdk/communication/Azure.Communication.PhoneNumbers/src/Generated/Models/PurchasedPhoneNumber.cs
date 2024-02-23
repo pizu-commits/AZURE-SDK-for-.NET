@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.PhoneNumbers
 {
     /// <summary> Represents a purchased phone number. </summary>
     public partial class PurchasedPhoneNumber
     {
-        /// <summary> Initializes a new instance of PurchasedPhoneNumber. </summary>
+        /// <summary> Initializes a new instance of <see cref="PurchasedPhoneNumber"/>. </summary>
         /// <param name="id"> The id of the phone number, e.g. 11234567890. </param>
         /// <param name="phoneNumber"> String of the E.164 format of the phone number, e.g. +11234567890. </param>
         /// <param name="countryCode"> The ISO 3166-2 code of the phone number's country, e.g. US. </param>
@@ -25,11 +24,26 @@ namespace Azure.Communication.PhoneNumbers
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="phoneNumber"/>, <paramref name="countryCode"/>, <paramref name="capabilities"/> or <paramref name="cost"/> is null. </exception>
         internal PurchasedPhoneNumber(string id, string phoneNumber, string countryCode, PhoneNumberType phoneNumberType, PhoneNumberCapabilities capabilities, PhoneNumberAssignmentType assignmentType, DateTimeOffset purchaseDate, PhoneNumberCost cost)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(phoneNumber, nameof(phoneNumber));
-            Argument.AssertNotNull(countryCode, nameof(countryCode));
-            Argument.AssertNotNull(capabilities, nameof(capabilities));
-            Argument.AssertNotNull(cost, nameof(cost));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (phoneNumber == null)
+            {
+                throw new ArgumentNullException(nameof(phoneNumber));
+            }
+            if (countryCode == null)
+            {
+                throw new ArgumentNullException(nameof(countryCode));
+            }
+            if (capabilities == null)
+            {
+                throw new ArgumentNullException(nameof(capabilities));
+            }
+            if (cost == null)
+            {
+                throw new ArgumentNullException(nameof(cost));
+            }
 
             Id = id;
             PhoneNumber = phoneNumber;

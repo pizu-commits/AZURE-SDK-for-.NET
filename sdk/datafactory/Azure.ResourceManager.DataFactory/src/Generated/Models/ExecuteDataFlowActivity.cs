@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Execute data flow activity. </summary>
     public partial class ExecuteDataFlowActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of ExecuteDataFlowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteDataFlowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="dataFlow"> Data flow reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="dataFlow"/> is null. </exception>
         public ExecuteDataFlowActivity(string name, DataFlowReference dataFlow) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(dataFlow, nameof(dataFlow));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (dataFlow == null)
+            {
+                throw new ArgumentNullException(nameof(dataFlow));
+            }
 
             DataFlow = dataFlow;
             ActivityType = "ExecuteDataFlow";
         }
 
-        /// <summary> Initializes a new instance of ExecuteDataFlowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteDataFlowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -58,6 +63,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             RunConcurrently = runConcurrently;
             SourceStagingConcurrency = sourceStagingConcurrency;
             ActivityType = activityType ?? "ExecuteDataFlow";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ExecuteDataFlowActivity"/> for deserialization. </summary>
+        internal ExecuteDataFlowActivity()
+        {
         }
 
         /// <summary> Data flow reference. </summary>

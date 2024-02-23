@@ -7,27 +7,32 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Execute data flow activity. </summary>
     public partial class ExecuteDataFlowActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of ExecuteDataFlowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteDataFlowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="dataflow"> Data flow reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="dataflow"/> is null. </exception>
         public ExecuteDataFlowActivity(string name, DataFlowReference dataflow) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(dataflow, nameof(dataflow));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (dataflow == null)
+            {
+                throw new ArgumentNullException(nameof(dataflow));
+            }
 
             Dataflow = dataflow;
             Type = "ExecuteDataFlow";
         }
 
-        /// <summary> Initializes a new instance of ExecuteDataFlowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteDataFlowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

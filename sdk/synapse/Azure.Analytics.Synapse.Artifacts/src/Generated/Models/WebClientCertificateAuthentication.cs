@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> A WebLinkedService that uses client certificate based authentication to communicate with an HTTP endpoint. This scheme follows mutual authentication; the server must also provide valid credentials to the client. </summary>
     public partial class WebClientCertificateAuthentication : WebLinkedServiceTypeProperties
     {
-        /// <summary> Initializes a new instance of WebClientCertificateAuthentication. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebClientCertificateAuthentication"/>. </summary>
         /// <param name="url"> The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). </param>
         /// <param name="pfx">
         /// Base64-encoded contents of a PFX file.
@@ -28,16 +27,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="url"/>, <paramref name="pfx"/> or <paramref name="password"/> is null. </exception>
         public WebClientCertificateAuthentication(object url, SecretBase pfx, SecretBase password) : base(url)
         {
-            Argument.AssertNotNull(url, nameof(url));
-            Argument.AssertNotNull(pfx, nameof(pfx));
-            Argument.AssertNotNull(password, nameof(password));
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+            if (pfx == null)
+            {
+                throw new ArgumentNullException(nameof(pfx));
+            }
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
 
             Pfx = pfx;
             Password = password;
             AuthenticationType = WebAuthenticationType.ClientCertificate;
         }
 
-        /// <summary> Initializes a new instance of WebClientCertificateAuthentication. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebClientCertificateAuthentication"/>. </summary>
         /// <param name="url"> The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). </param>
         /// <param name="authenticationType"> Type of authentication used to connect to the web table source. </param>
         /// <param name="pfx">

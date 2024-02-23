@@ -18,13 +18,17 @@ namespace Azure.ResourceManager.StreamAnalytics
 {
     /// <summary>
     /// A Class representing a StreamingJobTransformation along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="StreamingJobTransformationResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetStreamingJobTransformationResource method.
-    /// Otherwise you can get one from its parent resource <see cref="StreamingJobResource" /> using the GetStreamingJobTransformation method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="StreamingJobTransformationResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetStreamingJobTransformationResource method.
+    /// Otherwise you can get one from its parent resource <see cref="StreamingJobResource"/> using the GetStreamingJobTransformation method.
     /// </summary>
     public partial class StreamingJobTransformationResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="StreamingJobTransformationResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="jobName"> The jobName. </param>
+        /// <param name="transformationName"> The transformationName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string jobName, string transformationName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/transformations/{transformationName}";
@@ -35,12 +39,15 @@ namespace Azure.ResourceManager.StreamAnalytics
         private readonly TransformationsRestOperations _streamingJobTransformationTransformationsRestClient;
         private readonly StreamingJobTransformationData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.StreamAnalytics/streamingjobs/transformations";
+
         /// <summary> Initializes a new instance of the <see cref="StreamingJobTransformationResource"/> class for mocking. </summary>
         protected StreamingJobTransformationResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "StreamingJobTransformationResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="StreamingJobTransformationResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal StreamingJobTransformationResource(ArmClient client, StreamingJobTransformationData data) : this(client, data.Id)
@@ -61,9 +68,6 @@ namespace Azure.ResourceManager.StreamAnalytics
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.StreamAnalytics/streamingjobs/transformations";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +101,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +140,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> A Transformation object. The properties specified here will overwrite the corresponding properties in the existing transformation (ie. Those properties will be updated). Any properties that are set to null here will mean that the corresponding property in the existing transformation will remain the same and not change as a result of this PATCH operation. </param>
@@ -169,7 +197,10 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<StreamingJobTransformationResource>> UpdateAsync(StreamingJobTransformationData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationResource.Update");
             scope.Start();
@@ -196,6 +227,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> A Transformation object. The properties specified here will overwrite the corresponding properties in the existing transformation (ie. Those properties will be updated). Any properties that are set to null here will mean that the corresponding property in the existing transformation will remain the same and not change as a result of this PATCH operation. </param>
@@ -204,7 +243,10 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<StreamingJobTransformationResource> Update(StreamingJobTransformationData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationResource.Update");
             scope.Start();

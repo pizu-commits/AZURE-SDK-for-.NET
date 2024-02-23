@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2020-10-01-preview";
+            _apiVersion = apiVersion ?? "2023-10-01";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -71,10 +71,34 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> CreateAsync(string subscriptionId, string resourceGroupName, string datastoreName, VMwareDatastoreData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, resourceGroupName, datastoreName, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -98,10 +122,34 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Create(string subscriptionId, string resourceGroupName, string datastoreName, VMwareDatastoreData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, resourceGroupName, datastoreName, data);
             _pipeline.Send(message, cancellationToken);
@@ -144,9 +192,30 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<VMwareDatastoreData>> GetAsync(string subscriptionId, string resourceGroupName, string datastoreName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, datastoreName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -175,9 +244,30 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<VMwareDatastoreData> Get(string subscriptionId, string resourceGroupName, string datastoreName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, datastoreName);
             _pipeline.Send(message, cancellationToken);
@@ -197,7 +287,7 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             }
         }
 
-        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string datastoreName, ResourcePatch patch)
+        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string datastoreName, VMwareResourcePatchContent content)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -214,9 +304,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(patch);
-            request.Content = content;
+            var content0 = new Utf8JsonRequestContent();
+            content0.JsonWriter.WriteObjectValue(content);
+            request.Content = content0;
             _userAgent.Apply(message);
             return message;
         }
@@ -225,18 +315,42 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="subscriptionId"> The Subscription ID. </param>
         /// <param name="resourceGroupName"> The Resource Group Name. </param>
         /// <param name="datastoreName"> Name of the datastore. </param>
-        /// <param name="patch"> Resource properties to update. </param>
+        /// <param name="content"> Resource properties to update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="datastoreName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="datastoreName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<VMwareDatastoreData>> UpdateAsync(string subscriptionId, string resourceGroupName, string datastoreName, ResourcePatch patch, CancellationToken cancellationToken = default)
+        public async Task<Response<VMwareDatastoreData>> UpdateAsync(string subscriptionId, string resourceGroupName, string datastoreName, VMwareResourcePatchContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, datastoreName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, datastoreName, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
@@ -256,18 +370,42 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="subscriptionId"> The Subscription ID. </param>
         /// <param name="resourceGroupName"> The Resource Group Name. </param>
         /// <param name="datastoreName"> Name of the datastore. </param>
-        /// <param name="patch"> Resource properties to update. </param>
+        /// <param name="content"> Resource properties to update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="datastoreName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="datastoreName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<VMwareDatastoreData> Update(string subscriptionId, string resourceGroupName, string datastoreName, ResourcePatch patch, CancellationToken cancellationToken = default)
+        public Response<VMwareDatastoreData> Update(string subscriptionId, string resourceGroupName, string datastoreName, VMwareResourcePatchContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, datastoreName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, datastoreName, content);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
@@ -317,9 +455,30 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string datastoreName, bool? force = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, datastoreName, force);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -344,9 +503,30 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="datastoreName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Delete(string subscriptionId, string resourceGroupName, string datastoreName, bool? force = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(datastoreName, nameof(datastoreName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (datastoreName == null)
+            {
+                throw new ArgumentNullException(nameof(datastoreName));
+            }
+            if (datastoreName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(datastoreName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, datastoreName, force);
             _pipeline.Send(message, cancellationToken);
@@ -383,9 +563,16 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<DatastoresList>> ListAsync(string subscriptionId, CancellationToken cancellationToken = default)
+        public async Task<Response<VMwareDatastoreListResult>> ListAsync(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListRequest(subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -393,9 +580,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -408,9 +595,16 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<DatastoresList> List(string subscriptionId, CancellationToken cancellationToken = default)
+        public Response<VMwareDatastoreListResult> List(string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListRequest(subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -418,9 +612,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -453,10 +647,24 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<DatastoresList>> ListByResourceGroupAsync(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
+        public async Task<Response<VMwareDatastoreListResult>> ListByResourceGroupAsync(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -464,9 +672,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -480,10 +688,24 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<DatastoresList> ListByResourceGroup(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
+        public Response<VMwareDatastoreListResult> ListByResourceGroup(string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupRequest(subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);
@@ -491,9 +713,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -521,10 +743,20 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<DatastoresList>> ListNextPageAsync(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
+        public async Task<Response<VMwareDatastoreListResult>> ListNextPageAsync(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -532,9 +764,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -548,10 +780,20 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<DatastoresList> ListNextPage(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
+        public Response<VMwareDatastoreListResult> ListNextPage(string nextLink, string subscriptionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId);
             _pipeline.Send(message, cancellationToken);
@@ -559,9 +801,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -590,11 +832,28 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<DatastoresList>> ListByResourceGroupNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
+        public async Task<Response<VMwareDatastoreListResult>> ListByResourceGroupNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -602,9 +861,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -619,11 +878,28 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<DatastoresList> ListByResourceGroupNextPage(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
+        public Response<VMwareDatastoreListResult> ListByResourceGroupNextPage(string nextLink, string subscriptionId, string resourceGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
 
             using var message = CreateListByResourceGroupNextPageRequest(nextLink, subscriptionId, resourceGroupName);
             _pipeline.Send(message, cancellationToken);
@@ -631,9 +907,9 @@ namespace Azure.ResourceManager.ConnectedVMwarevSphere
             {
                 case 200:
                     {
-                        DatastoresList value = default;
+                        VMwareDatastoreListResult value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = DatastoresList.DeserializeDatastoresList(document.RootElement);
+                        value = VMwareDatastoreListResult.DeserializeVMwareDatastoreListResult(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:

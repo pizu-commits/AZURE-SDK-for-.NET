@@ -17,9 +17,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.StreamAnalytics
 {
     /// <summary>
-    /// A class representing a collection of <see cref="StreamingJobTransformationResource" /> and their operations.
-    /// Each <see cref="StreamingJobTransformationResource" /> in the collection will belong to the same instance of <see cref="StreamingJobResource" />.
-    /// To get a <see cref="StreamingJobTransformationCollection" /> instance call the GetStreamingJobTransformations method from an instance of <see cref="StreamingJobResource" />.
+    /// A class representing a collection of <see cref="StreamingJobTransformationResource"/> and their operations.
+    /// Each <see cref="StreamingJobTransformationResource"/> in the collection will belong to the same instance of <see cref="StreamingJobResource"/>.
+    /// To get a <see cref="StreamingJobTransformationCollection"/> instance call the GetStreamingJobTransformations method from an instance of <see cref="StreamingJobResource"/>.
     /// </summary>
     public partial class StreamingJobTransformationCollection : ArmCollection
     {
@@ -61,6 +61,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_CreateOrReplace</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +81,18 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<StreamingJobTransformationResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string transformationName, StreamingJobTransformationData data, string ifMatch = null, string ifNoneMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +122,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_CreateOrReplace</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +142,18 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<StreamingJobTransformationResource> CreateOrUpdate(WaitUntil waitUntil, string transformationName, StreamingJobTransformationData data, string ifMatch = null, string ifNoneMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +183,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="transformationName"> The name of the transformation. </param>
@@ -155,7 +199,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
         public virtual async Task<Response<StreamingJobTransformationResource>> GetAsync(string transformationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.Get");
             scope.Start();
@@ -184,6 +235,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="transformationName"> The name of the transformation. </param>
@@ -192,7 +251,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
         public virtual Response<StreamingJobTransformationResource> Get(string transformationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.Get");
             scope.Start();
@@ -221,6 +287,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="transformationName"> The name of the transformation. </param>
@@ -229,7 +303,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string transformationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.Exists");
             scope.Start();
@@ -256,6 +337,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Transformations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="transformationName"> The name of the transformation. </param>
@@ -264,7 +353,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
         public virtual Response<bool> Exists(string transformationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(transformationName, nameof(transformationName));
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
 
             using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.Exists");
             scope.Start();
@@ -272,6 +368,110 @@ namespace Azure.ResourceManager.StreamAnalytics
             {
                 var response = _streamingJobTransformationTransformationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, transformationName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/transformations/{transformationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Transformations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="transformationName"> The name of the transformation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="transformationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<StreamingJobTransformationResource>> GetIfExistsAsync(string transformationName, CancellationToken cancellationToken = default)
+        {
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
+
+            using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _streamingJobTransformationTransformationsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, transformationName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingJobTransformationResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingJobTransformationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/transformations/{transformationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Transformations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobTransformationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="transformationName"> The name of the transformation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="transformationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="transformationName"/> is null. </exception>
+        public virtual NullableResponse<StreamingJobTransformationResource> GetIfExists(string transformationName, CancellationToken cancellationToken = default)
+        {
+            if (transformationName == null)
+            {
+                throw new ArgumentNullException(nameof(transformationName));
+            }
+            if (transformationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transformationName));
+            }
+
+            using var scope = _streamingJobTransformationTransformationsClientDiagnostics.CreateScope("StreamingJobTransformationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _streamingJobTransformationTransformationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, transformationName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingJobTransformationResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingJobTransformationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

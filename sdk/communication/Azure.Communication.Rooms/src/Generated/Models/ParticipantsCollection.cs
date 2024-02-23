@@ -8,24 +8,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Communication.Rooms
 {
     /// <summary> A collection of participants in a room. </summary>
     internal partial class ParticipantsCollection
     {
-        /// <summary> Initializes a new instance of ParticipantsCollection. </summary>
+        /// <summary> Initializes a new instance of <see cref="ParticipantsCollection"/>. </summary>
         /// <param name="value"> A collection of participants. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal ParticipantsCollection(IEnumerable<RoomParticipant> value)
         {
-            Argument.AssertNotNull(value, nameof(value));
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             Value = value.ToList();
         }
 
-        /// <summary> Initializes a new instance of ParticipantsCollection. </summary>
+        /// <summary> Initializes a new instance of <see cref="ParticipantsCollection"/>. </summary>
         /// <param name="value"> A collection of participants. </param>
         /// <param name="nextLink"> If there are more participants that can be retrieved, the next link will be populated. </param>
         internal ParticipantsCollection(IReadOnlyList<RoomParticipant> value, string nextLink)

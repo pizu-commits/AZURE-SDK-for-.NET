@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiManagementOpenIdConnectProviderResource" /> and their operations.
-    /// Each <see cref="ApiManagementOpenIdConnectProviderResource" /> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource" />.
-    /// To get an <see cref="ApiManagementOpenIdConnectProviderCollection" /> instance call the GetApiManagementOpenIdConnectProviders method from an instance of <see cref="ApiManagementServiceResource" />.
+    /// A class representing a collection of <see cref="ApiManagementOpenIdConnectProviderResource"/> and their operations.
+    /// Each <see cref="ApiManagementOpenIdConnectProviderResource"/> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource"/>.
+    /// To get an <see cref="ApiManagementOpenIdConnectProviderCollection"/> instance call the GetApiManagementOpenIdConnectProviders method from an instance of <see cref="ApiManagementServiceResource"/>.
     /// </summary>
     public partial class ApiManagementOpenIdConnectProviderCollection : ArmCollection, IEnumerable<ApiManagementOpenIdConnectProviderResource>, IAsyncEnumerable<ApiManagementOpenIdConnectProviderResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiManagementOpenIdConnectProviderResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string openId, ApiManagementOpenIdConnectProviderData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +143,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ApiManagementOpenIdConnectProviderResource> CreateOrUpdate(WaitUntil waitUntil, string openId, ApiManagementOpenIdConnectProviderData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
         public virtual async Task<Response<ApiManagementOpenIdConnectProviderResource>> GetAsync(string openId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
         public virtual Response<ApiManagementOpenIdConnectProviderResource> Get(string openId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.Get");
             scope.Start();
@@ -221,18 +288,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| displayName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiManagementOpenIdConnectProviderResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiManagementOpenIdConnectProviderResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiManagementOpenIdConnectProviderResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementOpenIdConnectProviderResource(Client, ApiManagementOpenIdConnectProviderData.DeserializeApiManagementOpenIdConnectProviderData(e)), _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics, Pipeline, "ApiManagementOpenIdConnectProviderCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementOpenIdConnectProviderResource(Client, ApiManagementOpenIdConnectProviderData.DeserializeApiManagementOpenIdConnectProviderData(e)), _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics, Pipeline, "ApiManagementOpenIdConnectProviderCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -246,18 +321,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| displayName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiManagementOpenIdConnectProviderResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiManagementOpenIdConnectProviderResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiManagementOpenIdConnectProviderResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementOpenIdConnectProviderResource(Client, ApiManagementOpenIdConnectProviderData.DeserializeApiManagementOpenIdConnectProviderData(e)), _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics, Pipeline, "ApiManagementOpenIdConnectProviderCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementOpenIdConnectProviderResource(Client, ApiManagementOpenIdConnectProviderData.DeserializeApiManagementOpenIdConnectProviderData(e)), _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics, Pipeline, "ApiManagementOpenIdConnectProviderCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -271,6 +354,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
@@ -279,7 +370,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string openId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.Exists");
             scope.Start();
@@ -306,6 +404,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>OpenIdConnectProvider_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
@@ -314,7 +420,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
         public virtual Response<bool> Exists(string openId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(openId, nameof(openId));
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
 
             using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.Exists");
             scope.Start();
@@ -322,6 +435,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, openId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/openidConnectProviders/{opid}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>OpenIdConnectProvider_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="openId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiManagementOpenIdConnectProviderResource>> GetIfExistsAsync(string openId, CancellationToken cancellationToken = default)
+        {
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
+
+            using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, openId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementOpenIdConnectProviderResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementOpenIdConnectProviderResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/openidConnectProviders/{opid}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>OpenIdConnectProvider_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementOpenIdConnectProviderResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="openId"> Identifier of the OpenID Connect Provider. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="openId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="openId"/> is null. </exception>
+        public virtual NullableResponse<ApiManagementOpenIdConnectProviderResource> GetIfExists(string openId, CancellationToken cancellationToken = default)
+        {
+            if (openId == null)
+            {
+                throw new ArgumentNullException(nameof(openId));
+            }
+            if (openId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(openId));
+            }
+
+            using var scope = _apiManagementOpenIdConnectProviderOpenIdConnectProviderClientDiagnostics.CreateScope("ApiManagementOpenIdConnectProviderCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiManagementOpenIdConnectProviderOpenIdConnectProviderRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, openId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementOpenIdConnectProviderResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementOpenIdConnectProviderResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.MixedReality
 {
     /// <summary>
     /// A Class representing a SpatialAnchorsAccount along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="SpatialAnchorsAccountResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetSpatialAnchorsAccountResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetSpatialAnchorsAccount method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="SpatialAnchorsAccountResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetSpatialAnchorsAccountResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetSpatialAnchorsAccount method.
     /// </summary>
     public partial class SpatialAnchorsAccountResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="SpatialAnchorsAccountResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="accountName"> The accountName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string accountName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/spatialAnchorsAccounts/{accountName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.MixedReality
         private readonly SpatialAnchorsAccountsRestOperations _spatialAnchorsAccountRestClient;
         private readonly SpatialAnchorsAccountData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.MixedReality/spatialAnchorsAccounts";
+
         /// <summary> Initializes a new instance of the <see cref="SpatialAnchorsAccountResource"/> class for mocking. </summary>
         protected SpatialAnchorsAccountResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "SpatialAnchorsAccountResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="SpatialAnchorsAccountResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal SpatialAnchorsAccountResource(ArmClient client, SpatialAnchorsAccountData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.MixedReality
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.MixedReality/spatialAnchorsAccounts";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -100,6 +103,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -132,6 +143,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -163,6 +182,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -198,6 +225,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -232,6 +267,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Spatial Anchors Account parameter. </param>
@@ -239,7 +282,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<SpatialAnchorsAccountResource>> UpdateAsync(SpatialAnchorsAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.Update");
             scope.Start();
@@ -266,6 +312,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> Spatial Anchors Account parameter. </param>
@@ -273,7 +327,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<SpatialAnchorsAccountResource> Update(SpatialAnchorsAccountData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.Update");
             scope.Start();
@@ -299,6 +356,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_ListKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -330,6 +395,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_ListKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -360,6 +433,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Required information for key regeneration. </param>
@@ -367,7 +448,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<MixedRealityAccountKeys>> RegenerateKeysAsync(MixedRealityAccountKeyRegenerateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.RegenerateKeys");
             scope.Start();
@@ -394,6 +478,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Required information for key regeneration. </param>
@@ -401,7 +493,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<MixedRealityAccountKeys> RegenerateKeys(MixedRealityAccountKeyRegenerateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.RegenerateKeys");
             scope.Start();
@@ -428,6 +523,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -436,8 +539,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<SpatialAnchorsAccountResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.AddTag");
             scope.Start();
@@ -482,6 +591,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -490,8 +607,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<SpatialAnchorsAccountResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.AddTag");
             scope.Start();
@@ -536,6 +659,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -543,7 +674,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<SpatialAnchorsAccountResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.SetTags");
             scope.Start();
@@ -585,6 +719,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -592,7 +734,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<SpatialAnchorsAccountResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.SetTags");
             scope.Start();
@@ -634,6 +779,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -641,7 +794,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<SpatialAnchorsAccountResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.RemoveTag");
             scope.Start();
@@ -686,6 +842,14 @@ namespace Azure.ResourceManager.MixedReality
         /// <term>Operation Id</term>
         /// <description>SpatialAnchorsAccounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SpatialAnchorsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -693,7 +857,10 @@ namespace Azure.ResourceManager.MixedReality
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<SpatialAnchorsAccountResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _spatialAnchorsAccountClientDiagnostics.CreateScope("SpatialAnchorsAccountResource.RemoveTag");
             scope.Start();

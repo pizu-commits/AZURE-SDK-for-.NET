@@ -7,14 +7,13 @@
 
 using System;
 using Azure.Communication;
-using Azure.Core;
 
 namespace Azure.Communication.CallAutomation
 {
     /// <summary> Channel affinity for a participant. </summary>
     internal partial class ChannelAffinityInternal
     {
-        /// <summary> Initializes a new instance of ChannelAffinityInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="ChannelAffinityInternal"/>. </summary>
         /// <param name="participant">
         /// The identifier for the participant whose bitstream will be written to the channel
         /// represented by the channel number.
@@ -22,8 +21,23 @@ namespace Azure.Communication.CallAutomation
         /// <exception cref="ArgumentNullException"> <paramref name="participant"/> is null. </exception>
         public ChannelAffinityInternal(CommunicationIdentifierModel participant)
         {
-            Argument.AssertNotNull(participant, nameof(participant));
+            if (participant == null)
+            {
+                throw new ArgumentNullException(nameof(participant));
+            }
 
+            Participant = participant;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ChannelAffinityInternal"/>. </summary>
+        /// <param name="channel"> Channel number to which bitstream from a particular participant will be written. </param>
+        /// <param name="participant">
+        /// The identifier for the participant whose bitstream will be written to the channel
+        /// represented by the channel number.
+        /// </param>
+        internal ChannelAffinityInternal(int? channel, CommunicationIdentifierModel participant)
+        {
+            Channel = channel;
             Participant = participant;
         }
 

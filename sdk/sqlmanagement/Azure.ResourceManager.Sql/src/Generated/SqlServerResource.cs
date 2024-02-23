@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.Sql
 {
     /// <summary>
     /// A Class representing a SqlServer along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="SqlServerResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetSqlServerResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetSqlServer method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="SqlServerResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetSqlServerResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetSqlServer method.
     /// </summary>
     public partial class SqlServerResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="SqlServerResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="serverName"> The serverName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string serverName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}";
@@ -48,12 +52,15 @@ namespace Azure.ResourceManager.Sql
         private readonly DatabasesRestOperations _sqlDatabaseDatabasesRestClient;
         private readonly SqlServerData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Sql/servers";
+
         /// <summary> Initializes a new instance of the <see cref="SqlServerResource"/> class for mocking. </summary>
         protected SqlServerResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "SqlServerResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="SqlServerResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal SqlServerResource(ArmClient client, SqlServerData data) : this(client, data.Id)
@@ -87,9 +94,6 @@ namespace Azure.ResourceManager.Sql
 #endif
         }
 
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Sql/servers";
-
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
 
@@ -115,7 +119,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerCommunicationLinkResources and their operations over a SqlServerCommunicationLinkResource. </returns>
         public virtual SqlServerCommunicationLinkCollection GetSqlServerCommunicationLinks()
         {
-            return GetCachedClient(Client => new SqlServerCommunicationLinkCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerCommunicationLinkCollection(client, Id));
         }
 
         /// <summary>
@@ -129,12 +133,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerCommunicationLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerCommunicationLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="communicationLinkName"> The name of the server communication link. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="communicationLinkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="communicationLinkName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="communicationLinkName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerCommunicationLinkResource>> GetSqlServerCommunicationLinkAsync(string communicationLinkName, CancellationToken cancellationToken = default)
         {
@@ -152,12 +164,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerCommunicationLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerCommunicationLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="communicationLinkName"> The name of the server communication link. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="communicationLinkName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="communicationLinkName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="communicationLinkName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerCommunicationLinkResource> GetSqlServerCommunicationLink(string communicationLinkName, CancellationToken cancellationToken = default)
         {
@@ -168,7 +188,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of ServiceObjectiveResources and their operations over a ServiceObjectiveResource. </returns>
         public virtual ServiceObjectiveCollection GetServiceObjectives()
         {
-            return GetCachedClient(Client => new ServiceObjectiveCollection(Client, Id));
+            return GetCachedClient(client => new ServiceObjectiveCollection(client, Id));
         }
 
         /// <summary>
@@ -182,12 +202,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServiceObjectives_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceObjectiveResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="serviceObjectiveName"> The name of the service objective to retrieve. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="serviceObjectiveName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="serviceObjectiveName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="serviceObjectiveName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceObjectiveResource>> GetServiceObjectiveAsync(string serviceObjectiveName, CancellationToken cancellationToken = default)
         {
@@ -205,12 +233,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServiceObjectives_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceObjectiveResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="serviceObjectiveName"> The name of the service objective to retrieve. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="serviceObjectiveName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="serviceObjectiveName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="serviceObjectiveName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceObjectiveResource> GetServiceObjective(string serviceObjectiveName, CancellationToken cancellationToken = default)
         {
@@ -221,7 +257,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerAdvisorResources and their operations over a SqlServerAdvisorResource. </returns>
         public virtual SqlServerAdvisorCollection GetSqlServerAdvisors()
         {
-            return GetCachedClient(Client => new SqlServerAdvisorCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerAdvisorCollection(client, Id));
         }
 
         /// <summary>
@@ -235,12 +271,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerAdvisors_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAdvisorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="advisorName"> The name of the Server Advisor. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="advisorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="advisorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="advisorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerAdvisorResource>> GetSqlServerAdvisorAsync(string advisorName, CancellationToken cancellationToken = default)
         {
@@ -258,12 +302,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerAdvisors_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAdvisorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="advisorName"> The name of the Server Advisor. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="advisorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="advisorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="advisorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerAdvisorResource> GetSqlServerAdvisor(string advisorName, CancellationToken cancellationToken = default)
         {
@@ -274,7 +326,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of EncryptionProtectorResources and their operations over a EncryptionProtectorResource. </returns>
         public virtual EncryptionProtectorCollection GetEncryptionProtectors()
         {
-            return GetCachedClient(Client => new EncryptionProtectorCollection(Client, Id));
+            return GetCachedClient(client => new EncryptionProtectorCollection(client, Id));
         }
 
         /// <summary>
@@ -287,6 +339,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>EncryptionProtectors_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EncryptionProtectorResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -309,6 +369,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>EncryptionProtectors_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EncryptionProtectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="encryptionProtectorName"> The name of the encryption protector to be retrieved. </param>
@@ -323,7 +391,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlFirewallRuleResources and their operations over a SqlFirewallRuleResource. </returns>
         public virtual SqlFirewallRuleCollection GetSqlFirewallRules()
         {
-            return GetCachedClient(Client => new SqlFirewallRuleCollection(Client, Id));
+            return GetCachedClient(client => new SqlFirewallRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -337,12 +405,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="firewallRuleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="firewallRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlFirewallRuleResource>> GetSqlFirewallRuleAsync(string firewallRuleName, CancellationToken cancellationToken = default)
         {
@@ -360,12 +436,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="firewallRuleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="firewallRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlFirewallRuleResource> GetSqlFirewallRule(string firewallRuleName, CancellationToken cancellationToken = default)
         {
@@ -376,7 +460,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerJobAgentResources and their operations over a SqlServerJobAgentResource. </returns>
         public virtual SqlServerJobAgentCollection GetSqlServerJobAgents()
         {
-            return GetCachedClient(Client => new SqlServerJobAgentCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerJobAgentCollection(client, Id));
         }
 
         /// <summary>
@@ -390,12 +474,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>JobAgents_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerJobAgentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobAgentName"> The name of the job agent to be retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="jobAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="jobAgentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="jobAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerJobAgentResource>> GetSqlServerJobAgentAsync(string jobAgentName, CancellationToken cancellationToken = default)
         {
@@ -413,12 +505,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>JobAgents_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerJobAgentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobAgentName"> The name of the job agent to be retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="jobAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="jobAgentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="jobAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerJobAgentResource> GetSqlServerJobAgent(string jobAgentName, CancellationToken cancellationToken = default)
         {
@@ -429,7 +529,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlPrivateEndpointConnectionResources and their operations over a SqlPrivateEndpointConnectionResource. </returns>
         public virtual SqlPrivateEndpointConnectionCollection GetSqlPrivateEndpointConnections()
         {
-            return GetCachedClient(Client => new SqlPrivateEndpointConnectionCollection(Client, Id));
+            return GetCachedClient(client => new SqlPrivateEndpointConnectionCollection(client, Id));
         }
 
         /// <summary>
@@ -443,12 +543,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The name of the private endpoint connection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlPrivateEndpointConnectionResource>> GetSqlPrivateEndpointConnectionAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -466,12 +574,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>PrivateEndpointConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> The name of the private endpoint connection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlPrivateEndpointConnectionResource> GetSqlPrivateEndpointConnection(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -482,7 +598,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlPrivateLinkResources and their operations over a SqlPrivateLinkResource. </returns>
         public virtual SqlPrivateLinkResourceCollection GetSqlPrivateLinkResources()
         {
-            return GetCachedClient(Client => new SqlPrivateLinkResourceCollection(Client, Id));
+            return GetCachedClient(client => new SqlPrivateLinkResourceCollection(client, Id));
         }
 
         /// <summary>
@@ -496,12 +612,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupName"> The name of the private link resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlPrivateLinkResource>> GetSqlPrivateLinkResourceAsync(string groupName, CancellationToken cancellationToken = default)
         {
@@ -519,12 +643,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupName"> The name of the private link resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlPrivateLinkResource> GetSqlPrivateLinkResource(string groupName, CancellationToken cancellationToken = default)
         {
@@ -532,7 +664,7 @@ namespace Azure.ResourceManager.Sql
         }
 
         /// <summary> Gets an object representing a SqlServerAutomaticTuningResource along with the instance operations that can be performed on it in the SqlServer. </summary>
-        /// <returns> Returns a <see cref="SqlServerAutomaticTuningResource" /> object. </returns>
+        /// <returns> Returns a <see cref="SqlServerAutomaticTuningResource"/> object. </returns>
         public virtual SqlServerAutomaticTuningResource GetSqlServerAutomaticTuning()
         {
             return new SqlServerAutomaticTuningResource(Client, Id.AppendChildResource("automaticTuning", "current"));
@@ -542,7 +674,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerAzureADAdministratorResources and their operations over a SqlServerAzureADAdministratorResource. </returns>
         public virtual SqlServerAzureADAdministratorCollection GetSqlServerAzureADAdministrators()
         {
-            return GetCachedClient(Client => new SqlServerAzureADAdministratorCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerAzureADAdministratorCollection(client, Id));
         }
 
         /// <summary>
@@ -555,6 +687,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerAzureADAdministrators_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAzureADAdministratorResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -577,6 +717,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerAzureADAdministrators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAzureADAdministratorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="administratorName"> The name of server active directory administrator. </param>
@@ -591,7 +739,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerAzureADOnlyAuthenticationResources and their operations over a SqlServerAzureADOnlyAuthenticationResource. </returns>
         public virtual SqlServerAzureADOnlyAuthenticationCollection GetSqlServerAzureADOnlyAuthentications()
         {
-            return GetCachedClient(Client => new SqlServerAzureADOnlyAuthenticationCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerAzureADOnlyAuthenticationCollection(client, Id));
         }
 
         /// <summary>
@@ -604,6 +752,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerAzureADOnlyAuthentications_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAzureADOnlyAuthenticationResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -626,6 +782,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerAzureADOnlyAuthentications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerAzureADOnlyAuthenticationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="authenticationName"> The name of server azure active directory only authentication. </param>
@@ -640,7 +804,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerDevOpsAuditingSettingResources and their operations over a SqlServerDevOpsAuditingSettingResource. </returns>
         public virtual SqlServerDevOpsAuditingSettingCollection GetSqlServerDevOpsAuditingSettings()
         {
-            return GetCachedClient(Client => new SqlServerDevOpsAuditingSettingCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerDevOpsAuditingSettingCollection(client, Id));
         }
 
         /// <summary>
@@ -654,12 +818,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerDevOpsAuditSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDevOpsAuditingSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devOpsAuditingSettingsName"> The name of the devops audit settings. This should always be Default. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="devOpsAuditingSettingsName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="devOpsAuditingSettingsName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="devOpsAuditingSettingsName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerDevOpsAuditingSettingResource>> GetSqlServerDevOpsAuditingSettingAsync(string devOpsAuditingSettingsName, CancellationToken cancellationToken = default)
         {
@@ -677,12 +849,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerDevOpsAuditSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDevOpsAuditingSettingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devOpsAuditingSettingsName"> The name of the devops audit settings. This should always be Default. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="devOpsAuditingSettingsName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="devOpsAuditingSettingsName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="devOpsAuditingSettingsName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerDevOpsAuditingSettingResource> GetSqlServerDevOpsAuditingSetting(string devOpsAuditingSettingsName, CancellationToken cancellationToken = default)
         {
@@ -693,7 +873,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerDnsAliasResources and their operations over a SqlServerDnsAliasResource. </returns>
         public virtual SqlServerDnsAliasCollection GetSqlServerDnsAliases()
         {
-            return GetCachedClient(Client => new SqlServerDnsAliasCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerDnsAliasCollection(client, Id));
         }
 
         /// <summary>
@@ -707,12 +887,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerDnsAliases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDnsAliasResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="dnsAliasName"> The name of the server dns alias. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="dnsAliasName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="dnsAliasName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="dnsAliasName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerDnsAliasResource>> GetSqlServerDnsAliasAsync(string dnsAliasName, CancellationToken cancellationToken = default)
         {
@@ -730,12 +918,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerDnsAliases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDnsAliasResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="dnsAliasName"> The name of the server dns alias. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="dnsAliasName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="dnsAliasName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="dnsAliasName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerDnsAliasResource> GetSqlServerDnsAlias(string dnsAliasName, CancellationToken cancellationToken = default)
         {
@@ -746,7 +942,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerKeyResources and their operations over a SqlServerKeyResource. </returns>
         public virtual SqlServerKeyCollection GetSqlServerKeys()
         {
-            return GetCachedClient(Client => new SqlServerKeyCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerKeyCollection(client, Id));
         }
 
         /// <summary>
@@ -760,12 +956,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerKeys_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerKeyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="keyName"> The name of the server key to be retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="keyName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="keyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="keyName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerKeyResource>> GetSqlServerKeyAsync(string keyName, CancellationToken cancellationToken = default)
         {
@@ -783,12 +987,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerKeys_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerKeyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="keyName"> The name of the server key to be retrieved. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="keyName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="keyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="keyName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerKeyResource> GetSqlServerKey(string keyName, CancellationToken cancellationToken = default)
         {
@@ -799,7 +1011,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerSecurityAlertPolicyResources and their operations over a SqlServerSecurityAlertPolicyResource. </returns>
         public virtual SqlServerSecurityAlertPolicyCollection GetSqlServerSecurityAlertPolicies()
         {
-            return GetCachedClient(Client => new SqlServerSecurityAlertPolicyCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerSecurityAlertPolicyCollection(client, Id));
         }
 
         /// <summary>
@@ -812,6 +1024,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerSecurityAlertPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerSecurityAlertPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -834,6 +1054,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerSecurityAlertPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerSecurityAlertPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="securityAlertPolicyName"> The name of the security alert policy. </param>
@@ -848,7 +1076,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerVulnerabilityAssessmentResources and their operations over a SqlServerVulnerabilityAssessmentResource. </returns>
         public virtual SqlServerVulnerabilityAssessmentCollection GetSqlServerVulnerabilityAssessments()
         {
-            return GetCachedClient(Client => new SqlServerVulnerabilityAssessmentCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerVulnerabilityAssessmentCollection(client, Id));
         }
 
         /// <summary>
@@ -861,6 +1089,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerVulnerabilityAssessments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerVulnerabilityAssessmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -883,6 +1119,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerVulnerabilityAssessments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerVulnerabilityAssessmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vulnerabilityAssessmentName"> The name of the vulnerability assessment. </param>
@@ -897,7 +1141,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SyncAgentResources and their operations over a SyncAgentResource. </returns>
         public virtual SyncAgentCollection GetSyncAgents()
         {
-            return GetCachedClient(Client => new SyncAgentCollection(Client, Id));
+            return GetCachedClient(client => new SyncAgentCollection(client, Id));
         }
 
         /// <summary>
@@ -911,12 +1155,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>SyncAgents_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SyncAgentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="syncAgentName"> The name of the sync agent. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="syncAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="syncAgentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="syncAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SyncAgentResource>> GetSyncAgentAsync(string syncAgentName, CancellationToken cancellationToken = default)
         {
@@ -934,12 +1186,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>SyncAgents_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SyncAgentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="syncAgentName"> The name of the sync agent. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="syncAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="syncAgentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="syncAgentName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SyncAgentResource> GetSyncAgent(string syncAgentName, CancellationToken cancellationToken = default)
         {
@@ -950,7 +1210,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerVirtualNetworkRuleResources and their operations over a SqlServerVirtualNetworkRuleResource. </returns>
         public virtual SqlServerVirtualNetworkRuleCollection GetSqlServerVirtualNetworkRules()
         {
-            return GetCachedClient(Client => new SqlServerVirtualNetworkRuleCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerVirtualNetworkRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -964,12 +1224,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlServerVirtualNetworkRuleResource>> GetSqlServerVirtualNetworkRuleAsync(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
@@ -987,12 +1255,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlServerVirtualNetworkRuleResource> GetSqlServerVirtualNetworkRule(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
@@ -1003,7 +1279,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of OutboundFirewallRuleResources and their operations over a OutboundFirewallRuleResource. </returns>
         public virtual OutboundFirewallRuleCollection GetOutboundFirewallRules()
         {
-            return GetCachedClient(Client => new OutboundFirewallRuleCollection(Client, Id));
+            return GetCachedClient(client => new OutboundFirewallRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -1017,12 +1293,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>OutboundFirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="OutboundFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="outboundRuleFqdn"> The String to use. </param>
+        /// <param name="outboundRuleFqdn"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="outboundRuleFqdn"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="outboundRuleFqdn"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="outboundRuleFqdn"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<OutboundFirewallRuleResource>> GetOutboundFirewallRuleAsync(string outboundRuleFqdn, CancellationToken cancellationToken = default)
         {
@@ -1040,12 +1324,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>OutboundFirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="OutboundFirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="outboundRuleFqdn"> The String to use. </param>
+        /// <param name="outboundRuleFqdn"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="outboundRuleFqdn"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="outboundRuleFqdn"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="outboundRuleFqdn"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<OutboundFirewallRuleResource> GetOutboundFirewallRule(string outboundRuleFqdn, CancellationToken cancellationToken = default)
         {
@@ -1056,7 +1348,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerConnectionPolicyResources and their operations over a SqlServerConnectionPolicyResource. </returns>
         public virtual SqlServerConnectionPolicyCollection GetSqlServerConnectionPolicies()
         {
-            return GetCachedClient(Client => new SqlServerConnectionPolicyCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerConnectionPolicyCollection(client, Id));
         }
 
         /// <summary>
@@ -1069,6 +1361,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerConnectionPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerConnectionPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1091,6 +1391,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerConnectionPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerConnectionPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="connectionPolicyName"> The name of the connection policy. </param>
@@ -1105,7 +1413,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerBlobAuditingPolicyResources and their operations over a SqlServerBlobAuditingPolicyResource. </returns>
         public virtual SqlServerBlobAuditingPolicyCollection GetSqlServerBlobAuditingPolicies()
         {
-            return GetCachedClient(Client => new SqlServerBlobAuditingPolicyCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerBlobAuditingPolicyCollection(client, Id));
         }
 
         /// <summary>
@@ -1118,6 +1426,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerBlobAuditingPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerBlobAuditingPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1140,6 +1456,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerBlobAuditingPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerBlobAuditingPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="blobAuditingPolicyName"> The name of the blob auditing policy. </param>
@@ -1154,7 +1478,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of ExtendedServerBlobAuditingPolicyResources and their operations over a ExtendedServerBlobAuditingPolicyResource. </returns>
         public virtual ExtendedServerBlobAuditingPolicyCollection GetExtendedServerBlobAuditingPolicies()
         {
-            return GetCachedClient(Client => new ExtendedServerBlobAuditingPolicyCollection(Client, Id));
+            return GetCachedClient(client => new ExtendedServerBlobAuditingPolicyCollection(client, Id));
         }
 
         /// <summary>
@@ -1167,6 +1491,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ExtendedServerBlobAuditingPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtendedServerBlobAuditingPolicyResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1189,6 +1521,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ExtendedServerBlobAuditingPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtendedServerBlobAuditingPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="blobAuditingPolicyName"> The name of the blob auditing policy. </param>
@@ -1203,7 +1543,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of ServerAdvancedThreatProtectionResources and their operations over a ServerAdvancedThreatProtectionResource. </returns>
         public virtual ServerAdvancedThreatProtectionCollection GetServerAdvancedThreatProtections()
         {
-            return GetCachedClient(Client => new ServerAdvancedThreatProtectionCollection(Client, Id));
+            return GetCachedClient(client => new ServerAdvancedThreatProtectionCollection(client, Id));
         }
 
         /// <summary>
@@ -1216,6 +1556,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ServerAdvancedThreatProtectionSettings_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServerAdvancedThreatProtectionResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1238,6 +1586,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerAdvancedThreatProtectionSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServerAdvancedThreatProtectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="advancedThreatProtectionName"> The name of the Advanced Threat Protection state. </param>
@@ -1252,7 +1608,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlDatabaseResources and their operations over a SqlDatabaseResource. </returns>
         public virtual SqlDatabaseCollection GetSqlDatabases()
         {
-            return GetCachedClient(Client => new SqlDatabaseCollection(Client, Id));
+            return GetCachedClient(client => new SqlDatabaseCollection(client, Id));
         }
 
         /// <summary>
@@ -1266,14 +1622,22 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Databases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<SqlDatabaseResource>> GetSqlDatabaseAsync(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
@@ -1291,14 +1655,22 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Databases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<SqlDatabaseResource> GetSqlDatabase(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
@@ -1309,7 +1681,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of ElasticPoolResources and their operations over a ElasticPoolResource. </returns>
         public virtual ElasticPoolCollection GetElasticPools()
         {
-            return GetCachedClient(Client => new ElasticPoolCollection(Client, Id));
+            return GetCachedClient(client => new ElasticPoolCollection(client, Id));
         }
 
         /// <summary>
@@ -1323,12 +1695,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ElasticPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ElasticPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="elasticPoolName"> The name of the elastic pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="elasticPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="elasticPoolName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="elasticPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ElasticPoolResource>> GetElasticPoolAsync(string elasticPoolName, CancellationToken cancellationToken = default)
         {
@@ -1346,12 +1726,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ElasticPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ElasticPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="elasticPoolName"> The name of the elastic pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="elasticPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="elasticPoolName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="elasticPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ElasticPoolResource> GetElasticPool(string elasticPoolName, CancellationToken cancellationToken = default)
         {
@@ -1362,7 +1750,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of RecoverableDatabaseResources and their operations over a RecoverableDatabaseResource. </returns>
         public virtual RecoverableDatabaseCollection GetRecoverableDatabases()
         {
-            return GetCachedClient(Client => new RecoverableDatabaseCollection(Client, Id));
+            return GetCachedClient(client => new RecoverableDatabaseCollection(client, Id));
         }
 
         /// <summary>
@@ -1376,14 +1764,22 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<RecoverableDatabaseResource>> GetRecoverableDatabaseAsync(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
@@ -1401,14 +1797,22 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RecoverableDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecoverableDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="databaseName"> The name of the database. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="databaseName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="databaseName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<RecoverableDatabaseResource> GetRecoverableDatabase(string databaseName, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
@@ -1419,7 +1823,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of RestorableDroppedDatabaseResources and their operations over a RestorableDroppedDatabaseResource. </returns>
         public virtual RestorableDroppedDatabaseCollection GetRestorableDroppedDatabases()
         {
-            return GetCachedClient(Client => new RestorableDroppedDatabaseCollection(Client, Id));
+            return GetCachedClient(client => new RestorableDroppedDatabaseCollection(client, Id));
         }
 
         /// <summary>
@@ -1433,14 +1837,22 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RestorableDroppedDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RestorableDroppedDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="restorableDroppedDatabaseId"> The String to use. </param>
+        /// <param name="restorableDroppedDatabaseId"> The <see cref="string"/> to use. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="restorableDroppedDatabaseId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="restorableDroppedDatabaseId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="restorableDroppedDatabaseId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<RestorableDroppedDatabaseResource>> GetRestorableDroppedDatabaseAsync(string restorableDroppedDatabaseId, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
@@ -1458,78 +1870,33 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>RestorableDroppedDatabases_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-08-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RestorableDroppedDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="restorableDroppedDatabaseId"> The String to use. </param>
+        /// <param name="restorableDroppedDatabaseId"> The <see cref="string"/> to use. </param>
         /// <param name="expand"> The child resources to include in the response. </param>
         /// <param name="filter"> An OData filter expression that filters elements in the collection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="restorableDroppedDatabaseId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="restorableDroppedDatabaseId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="restorableDroppedDatabaseId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<RestorableDroppedDatabaseResource> GetRestorableDroppedDatabase(string restorableDroppedDatabaseId, string expand = null, string filter = null, CancellationToken cancellationToken = default)
         {
             return GetRestorableDroppedDatabases().Get(restorableDroppedDatabaseId, expand, filter, cancellationToken);
         }
 
-        /// <summary> Gets a collection of FailoverGroupResources in the SqlServer. </summary>
-        /// <returns> An object representing collection of FailoverGroupResources and their operations over a FailoverGroupResource. </returns>
-        public virtual FailoverGroupCollection GetFailoverGroups()
-        {
-            return GetCachedClient(Client => new FailoverGroupCollection(Client, Id));
-        }
-
-        /// <summary>
-        /// Gets a failover group.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>FailoverGroups_Get</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="failoverGroupName"> The name of the failover group. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public virtual async Task<Response<FailoverGroupResource>> GetFailoverGroupAsync(string failoverGroupName, CancellationToken cancellationToken = default)
-        {
-            return await GetFailoverGroups().GetAsync(failoverGroupName, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Gets a failover group.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>FailoverGroups_Get</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="failoverGroupName"> The name of the failover group. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
-        [ForwardsClientCalls]
-        public virtual Response<FailoverGroupResource> GetFailoverGroup(string failoverGroupName, CancellationToken cancellationToken = default)
-        {
-            return GetFailoverGroups().Get(failoverGroupName, cancellationToken);
-        }
-
         /// <summary> Gets a collection of IPv6FirewallRuleResources in the SqlServer. </summary>
         /// <returns> An object representing collection of IPv6FirewallRuleResources and their operations over a IPv6FirewallRuleResource. </returns>
         public virtual IPv6FirewallRuleCollection GetIPv6FirewallRules()
         {
-            return GetCachedClient(Client => new IPv6FirewallRuleCollection(Client, Id));
+            return GetCachedClient(client => new IPv6FirewallRuleCollection(client, Id));
         }
 
         /// <summary>
@@ -1543,12 +1910,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>IPv6FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IPv6FirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="firewallRuleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="firewallRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<IPv6FirewallRuleResource>> GetIPv6FirewallRuleAsync(string firewallRuleName, CancellationToken cancellationToken = default)
         {
@@ -1566,12 +1941,20 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>IPv6FirewallRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IPv6FirewallRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="firewallRuleName"> The name of the firewall rule. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="firewallRuleName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="firewallRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<IPv6FirewallRuleResource> GetIPv6FirewallRule(string firewallRuleName, CancellationToken cancellationToken = default)
         {
@@ -1582,7 +1965,7 @@ namespace Azure.ResourceManager.Sql
         /// <returns> An object representing collection of SqlServerSqlVulnerabilityAssessmentResources and their operations over a SqlServerSqlVulnerabilityAssessmentResource. </returns>
         public virtual SqlServerSqlVulnerabilityAssessmentCollection GetSqlServerSqlVulnerabilityAssessments()
         {
-            return GetCachedClient(Client => new SqlServerSqlVulnerabilityAssessmentCollection(Client, Id));
+            return GetCachedClient(client => new SqlServerSqlVulnerabilityAssessmentCollection(client, Id));
         }
 
         /// <summary>
@@ -1595,6 +1978,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SqlVulnerabilityAssessmentsSettings_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerSqlVulnerabilityAssessmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1617,6 +2008,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>SqlVulnerabilityAssessmentsSettings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerSqlVulnerabilityAssessmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="vulnerabilityAssessmentName"> The name of the SQL Vulnerability Assessment. </param>
@@ -1625,6 +2024,75 @@ namespace Azure.ResourceManager.Sql
         public virtual Response<SqlServerSqlVulnerabilityAssessmentResource> GetSqlServerSqlVulnerabilityAssessment(VulnerabilityAssessmentName vulnerabilityAssessmentName, CancellationToken cancellationToken = default)
         {
             return GetSqlServerSqlVulnerabilityAssessments().Get(vulnerabilityAssessmentName, cancellationToken);
+        }
+
+        /// <summary> Gets a collection of FailoverGroupResources in the SqlServer. </summary>
+        /// <returns> An object representing collection of FailoverGroupResources and their operations over a FailoverGroupResource. </returns>
+        public virtual FailoverGroupCollection GetFailoverGroups()
+        {
+            return GetCachedClient(client => new FailoverGroupCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Gets a failover group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>FailoverGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="failoverGroupName"> The name of the failover group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<FailoverGroupResource>> GetFailoverGroupAsync(string failoverGroupName, CancellationToken cancellationToken = default)
+        {
+            return await GetFailoverGroups().GetAsync(failoverGroupName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets a failover group.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>FailoverGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="failoverGroupName"> The name of the failover group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<FailoverGroupResource> GetFailoverGroup(string failoverGroupName, CancellationToken cancellationToken = default)
+        {
+            return GetFailoverGroups().Get(failoverGroupName, cancellationToken);
         }
 
         /// <summary>
@@ -1637,6 +2105,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1671,6 +2147,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expand"> The child resources to include in the response. </param>
@@ -1703,6 +2187,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Servers_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1738,6 +2230,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -1772,6 +2272,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -1780,7 +2288,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<SqlServerResource>> UpdateAsync(WaitUntil waitUntil, SqlServerPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.Update");
             scope.Start();
@@ -1810,6 +2321,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -1818,7 +2337,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<SqlServerResource> Update(WaitUntil waitUntil, SqlServerPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.Update");
             scope.Start();
@@ -1848,14 +2370,18 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerUsages_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SqlServerUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SqlServerUsage"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SqlServerUsage> GetServerUsagesAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _serverUsagesRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, SqlServerUsage.DeserializeSqlServerUsage, _serverUsagesClientDiagnostics, Pipeline, "SqlServerResource.GetServerUsages", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => SqlServerUsage.DeserializeSqlServerUsage(e), _serverUsagesClientDiagnostics, Pipeline, "SqlServerResource.GetServerUsages", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -1869,14 +2395,18 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerUsages_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2014-04-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SqlServerUsage" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SqlServerUsage"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SqlServerUsage> GetServerUsages(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _serverUsagesRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, SqlServerUsage.DeserializeSqlServerUsage, _serverUsagesClientDiagnostics, Pipeline, "SqlServerResource.GetServerUsages", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => SqlServerUsage.DeserializeSqlServerUsage(e), _serverUsagesClientDiagnostics, Pipeline, "SqlServerResource.GetServerUsages", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -1890,15 +2420,19 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerOperations_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ServerOperationData" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ServerOperationData"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ServerOperationData> GetServerOperationsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _serverOperationsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _serverOperationsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, ServerOperationData.DeserializeServerOperationData, _serverOperationsClientDiagnostics, Pipeline, "SqlServerResource.GetServerOperations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => ServerOperationData.DeserializeServerOperationData(e), _serverOperationsClientDiagnostics, Pipeline, "SqlServerResource.GetServerOperations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1912,15 +2446,19 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ServerOperations_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ServerOperationData" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ServerOperationData"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ServerOperationData> GetServerOperations(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _serverOperationsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _serverOperationsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, ServerOperationData.DeserializeServerOperationData, _serverOperationsClientDiagnostics, Pipeline, "SqlServerResource.GetServerOperations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => ServerOperationData.DeserializeServerOperationData(e), _serverOperationsClientDiagnostics, Pipeline, "SqlServerResource.GetServerOperations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1934,6 +2472,10 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>TdeCertificates_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -1942,7 +2484,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tdeCertificate"/> is null. </exception>
         public virtual async Task<ArmOperation> CreateTdeCertificateAsync(WaitUntil waitUntil, TdeCertificate tdeCertificate, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tdeCertificate, nameof(tdeCertificate));
+            if (tdeCertificate == null)
+            {
+                throw new ArgumentNullException(nameof(tdeCertificate));
+            }
 
             using var scope = _tdeCertificatesClientDiagnostics.CreateScope("SqlServerResource.CreateTdeCertificate");
             scope.Start();
@@ -1972,6 +2517,10 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>TdeCertificates_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -1980,7 +2529,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tdeCertificate"/> is null. </exception>
         public virtual ArmOperation CreateTdeCertificate(WaitUntil waitUntil, TdeCertificate tdeCertificate, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tdeCertificate, nameof(tdeCertificate));
+            if (tdeCertificate == null)
+            {
+                throw new ArgumentNullException(nameof(tdeCertificate));
+            }
 
             using var scope = _tdeCertificatesClientDiagnostics.CreateScope("SqlServerResource.CreateTdeCertificate");
             scope.Start();
@@ -2010,15 +2562,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ReplicationLinks_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDatabaseReplicationLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SqlServerDatabaseReplicationLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SqlServerDatabaseReplicationLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SqlServerDatabaseReplicationLinkResource> GetReplicationLinksAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _sqlServerDatabaseReplicationLinkReplicationLinksRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _sqlServerDatabaseReplicationLinkReplicationLinksRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SqlServerDatabaseReplicationLinkResource(Client, SqlServerDatabaseReplicationLinkData.DeserializeSqlServerDatabaseReplicationLinkData(e)), _sqlServerDatabaseReplicationLinkReplicationLinksClientDiagnostics, Pipeline, "SqlServerResource.GetReplicationLinks", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SqlServerDatabaseReplicationLinkResource(Client, SqlServerDatabaseReplicationLinkData.DeserializeSqlServerDatabaseReplicationLinkData(e)), _sqlServerDatabaseReplicationLinkReplicationLinksClientDiagnostics, Pipeline, "SqlServerResource.GetReplicationLinks", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -2032,15 +2592,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>ReplicationLinks_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerDatabaseReplicationLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SqlServerDatabaseReplicationLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SqlServerDatabaseReplicationLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SqlServerDatabaseReplicationLinkResource> GetReplicationLinks(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _sqlServerDatabaseReplicationLinkReplicationLinksRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _sqlServerDatabaseReplicationLinkReplicationLinksRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SqlServerDatabaseReplicationLinkResource(Client, SqlServerDatabaseReplicationLinkData.DeserializeSqlServerDatabaseReplicationLinkData(e)), _sqlServerDatabaseReplicationLinkReplicationLinksClientDiagnostics, Pipeline, "SqlServerResource.GetReplicationLinks", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SqlServerDatabaseReplicationLinkResource(Client, SqlServerDatabaseReplicationLinkData.DeserializeSqlServerDatabaseReplicationLinkData(e)), _sqlServerDatabaseReplicationLinkReplicationLinksClientDiagnostics, Pipeline, "SqlServerResource.GetReplicationLinks", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -2054,15 +2622,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Databases_ListInaccessibleByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SqlDatabaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SqlDatabaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SqlDatabaseResource> GetInaccessibleDatabasesAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _sqlDatabaseDatabasesRestClient.CreateListInaccessibleByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _sqlDatabaseDatabasesRestClient.CreateListInaccessibleByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SqlDatabaseResource(Client, SqlDatabaseData.DeserializeSqlDatabaseData(e)), _sqlDatabaseDatabasesClientDiagnostics, Pipeline, "SqlServerResource.GetInaccessibleDatabases", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SqlDatabaseResource(Client, SqlDatabaseData.DeserializeSqlDatabaseData(e)), _sqlDatabaseDatabasesClientDiagnostics, Pipeline, "SqlServerResource.GetInaccessibleDatabases", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -2076,15 +2652,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Databases_ListInaccessibleByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlDatabaseResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SqlDatabaseResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SqlDatabaseResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SqlDatabaseResource> GetInaccessibleDatabases(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _sqlDatabaseDatabasesRestClient.CreateListInaccessibleByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _sqlDatabaseDatabasesRestClient.CreateListInaccessibleByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SqlDatabaseResource(Client, SqlDatabaseData.DeserializeSqlDatabaseData(e)), _sqlDatabaseDatabasesClientDiagnostics, Pipeline, "SqlServerResource.GetInaccessibleDatabases", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SqlDatabaseResource(Client, SqlDatabaseData.DeserializeSqlDatabaseData(e)), _sqlDatabaseDatabasesClientDiagnostics, Pipeline, "SqlServerResource.GetInaccessibleDatabases", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -2098,6 +2682,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_ImportDatabase</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -2106,7 +2698,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseImportDefinition"/> is null. </exception>
         public virtual async Task<ArmOperation<ImportExportOperationResult>> ImportDatabaseAsync(WaitUntil waitUntil, DatabaseImportDefinition databaseImportDefinition, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(databaseImportDefinition, nameof(databaseImportDefinition));
+            if (databaseImportDefinition == null)
+            {
+                throw new ArgumentNullException(nameof(databaseImportDefinition));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.ImportDatabase");
             scope.Start();
@@ -2136,6 +2731,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_ImportDatabase</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -2144,7 +2747,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="databaseImportDefinition"/> is null. </exception>
         public virtual ArmOperation<ImportExportOperationResult> ImportDatabase(WaitUntil waitUntil, DatabaseImportDefinition databaseImportDefinition, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(databaseImportDefinition, nameof(databaseImportDefinition));
+            if (databaseImportDefinition == null)
+            {
+                throw new ArgumentNullException(nameof(databaseImportDefinition));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.ImportDatabase");
             scope.Start();
@@ -2173,6 +2779,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Servers_RefreshStatus</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -2208,6 +2822,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_RefreshStatus</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -2242,6 +2864,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -2250,8 +2880,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<SqlServerResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.AddTag");
             scope.Start();
@@ -2296,6 +2932,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -2304,8 +2948,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<SqlServerResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.AddTag");
             scope.Start();
@@ -2350,6 +3000,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -2357,7 +3015,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<SqlServerResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.SetTags");
             scope.Start();
@@ -2399,6 +3060,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -2406,7 +3075,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<SqlServerResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.SetTags");
             scope.Start();
@@ -2448,6 +3120,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -2455,7 +3135,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<SqlServerResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.RemoveTag");
             scope.Start();
@@ -2500,6 +3183,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>Servers_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SqlServerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -2507,7 +3198,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<SqlServerResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _sqlServerServersClientDiagnostics.CreateScope("SqlServerResource.RemoveTag");
             scope.Start();

@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Storage.Files.DataLake.Models
 {
     /// <summary> An Azure Storage blob. </summary>
     internal partial class BlobItemInternal
     {
-        /// <summary> Initializes a new instance of BlobItemInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobItemInternal"/>. </summary>
         /// <param name="name"></param>
         /// <param name="deleted"></param>
         /// <param name="snapshot"></param>
@@ -21,9 +20,18 @@ namespace Azure.Storage.Files.DataLake.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="snapshot"/> or <paramref name="properties"/> is null. </exception>
         internal BlobItemInternal(string name, bool deleted, string snapshot, BlobPropertiesInternal properties)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(snapshot, nameof(snapshot));
-            Argument.AssertNotNull(properties, nameof(properties));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (snapshot == null)
+            {
+                throw new ArgumentNullException(nameof(snapshot));
+            }
+            if (properties == null)
+            {
+                throw new ArgumentNullException(nameof(properties));
+            }
 
             Name = name;
             Deleted = deleted;
@@ -31,7 +39,7 @@ namespace Azure.Storage.Files.DataLake.Models
             Properties = properties;
         }
 
-        /// <summary> Initializes a new instance of BlobItemInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobItemInternal"/>. </summary>
         /// <param name="name"></param>
         /// <param name="deleted"></param>
         /// <param name="snapshot"></param>

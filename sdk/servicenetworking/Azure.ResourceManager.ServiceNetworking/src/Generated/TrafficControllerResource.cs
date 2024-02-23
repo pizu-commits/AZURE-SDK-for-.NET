@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.ServiceNetworking
 {
     /// <summary>
     /// A Class representing a TrafficController along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="TrafficControllerResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetTrafficControllerResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetTrafficController method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="TrafficControllerResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetTrafficControllerResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetTrafficController method.
     /// </summary>
     public partial class TrafficControllerResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="TrafficControllerResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="trafficControllerName"> The trafficControllerName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string trafficControllerName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceNetworking/trafficControllers/{trafficControllerName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.ServiceNetworking
         private readonly TrafficControllerInterfaceRestOperations _trafficControllerTrafficControllerInterfaceRestClient;
         private readonly TrafficControllerData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.ServiceNetworking/trafficControllers";
+
         /// <summary> Initializes a new instance of the <see cref="TrafficControllerResource"/> class for mocking. </summary>
         protected TrafficControllerResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "TrafficControllerResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="TrafficControllerResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal TrafficControllerResource(ArmClient client, TrafficControllerData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.ServiceNetworking
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.ServiceNetworking/trafficControllers";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -93,7 +96,7 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <returns> An object representing collection of AssociationResources and their operations over a AssociationResource. </returns>
         public virtual AssociationCollection GetAssociations()
         {
-            return GetCachedClient(Client => new AssociationCollection(Client, Id));
+            return GetCachedClient(client => new AssociationCollection(client, Id));
         }
 
         /// <summary>
@@ -107,12 +110,20 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>AssociationsInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AssociationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="associationName"> Name of Association. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="associationName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="associationName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="associationName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<AssociationResource>> GetAssociationAsync(string associationName, CancellationToken cancellationToken = default)
         {
@@ -130,12 +141,20 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>AssociationsInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AssociationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="associationName"> Name of Association. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="associationName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="associationName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="associationName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<AssociationResource> GetAssociation(string associationName, CancellationToken cancellationToken = default)
         {
@@ -146,7 +165,7 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <returns> An object representing collection of FrontendResources and their operations over a FrontendResource. </returns>
         public virtual FrontendCollection GetFrontends()
         {
-            return GetCachedClient(Client => new FrontendCollection(Client, Id));
+            return GetCachedClient(client => new FrontendCollection(client, Id));
         }
 
         /// <summary>
@@ -160,12 +179,20 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>FrontendsInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontendResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="frontendName"> Frontends. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="frontendName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="frontendName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="frontendName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<FrontendResource>> GetFrontendAsync(string frontendName, CancellationToken cancellationToken = default)
         {
@@ -183,12 +210,20 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>FrontendsInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FrontendResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="frontendName"> Frontends. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="frontendName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="frontendName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="frontendName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<FrontendResource> GetFrontend(string frontendName, CancellationToken cancellationToken = default)
         {
@@ -205,6 +240,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <item>
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -238,6 +281,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -269,6 +320,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <item>
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -304,6 +363,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -338,6 +405,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The resource properties to be updated. </param>
@@ -345,7 +420,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<TrafficControllerResource>> UpdateAsync(TrafficControllerPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.Update");
             scope.Start();
@@ -372,6 +450,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The resource properties to be updated. </param>
@@ -379,7 +465,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<TrafficControllerResource> Update(TrafficControllerPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.Update");
             scope.Start();
@@ -406,6 +495,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -414,8 +511,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<TrafficControllerResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.AddTag");
             scope.Start();
@@ -460,6 +563,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -468,8 +579,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<TrafficControllerResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.AddTag");
             scope.Start();
@@ -514,6 +631,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -521,7 +646,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<TrafficControllerResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.SetTags");
             scope.Start();
@@ -563,6 +691,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -570,7 +706,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<TrafficControllerResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.SetTags");
             scope.Start();
@@ -612,6 +751,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -619,7 +766,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<TrafficControllerResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.RemoveTag");
             scope.Start();
@@ -664,6 +814,14 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <term>Operation Id</term>
         /// <description>TrafficControllerInterface_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TrafficControllerResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -671,7 +829,10 @@ namespace Azure.ResourceManager.ServiceNetworking
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<TrafficControllerResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _trafficControllerTrafficControllerInterfaceClientDiagnostics.CreateScope("TrafficControllerResource.RemoveTag");
             scope.Start();

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.MobileNetwork
 {
     /// <summary>
-    /// A class representing a collection of <see cref="MobileNetworkResource" /> and their operations.
-    /// Each <see cref="MobileNetworkResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="MobileNetworkCollection" /> instance call the GetMobileNetworks method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="MobileNetworkResource"/> and their operations.
+    /// Each <see cref="MobileNetworkResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="MobileNetworkCollection"/> instance call the GetMobileNetworks method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class MobileNetworkCollection : ArmCollection, IEnumerable<MobileNetworkResource>, IAsyncEnumerable<MobileNetworkResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<MobileNetworkResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string mobileNetworkName, MobileNetworkData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<MobileNetworkResource> CreateOrUpdate(WaitUntil waitUntil, string mobileNetworkName, MobileNetworkData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="mobileNetworkName"> The name of the mobile network. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
         public virtual async Task<Response<MobileNetworkResource>> GetAsync(string mobileNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="mobileNetworkName"> The name of the mobile network. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
         public virtual Response<MobileNetworkResource> Get(string mobileNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="MobileNetworkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="MobileNetworkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<MobileNetworkResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mobileNetworkRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mobileNetworkRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MobileNetworkResource(Client, MobileNetworkData.DeserializeMobileNetworkData(e)), _mobileNetworkClientDiagnostics, Pipeline, "MobileNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MobileNetworkResource(Client, MobileNetworkData.DeserializeMobileNetworkData(e)), _mobileNetworkClientDiagnostics, Pipeline, "MobileNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="MobileNetworkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="MobileNetworkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<MobileNetworkResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mobileNetworkRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mobileNetworkRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MobileNetworkResource(Client, MobileNetworkData.DeserializeMobileNetworkData(e)), _mobileNetworkClientDiagnostics, Pipeline, "MobileNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MobileNetworkResource(Client, MobileNetworkData.DeserializeMobileNetworkData(e)), _mobileNetworkClientDiagnostics, Pipeline, "MobileNetworkCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="mobileNetworkName"> The name of the mobile network. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string mobileNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>MobileNetworks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="mobileNetworkName"> The name of the mobile network. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
         public virtual Response<bool> Exists(string mobileNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(mobileNetworkName, nameof(mobileNetworkName));
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
 
             using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.MobileNetwork
             {
                 var response = _mobileNetworkRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, mobileNetworkName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MobileNetworks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="mobileNetworkName"> The name of the mobile network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="mobileNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
+        public virtual async Task<NullableResponse<MobileNetworkResource>> GetIfExistsAsync(string mobileNetworkName, CancellationToken cancellationToken = default)
+        {
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
+
+            using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _mobileNetworkRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, mobileNetworkName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<MobileNetworkResource>(response.GetRawResponse());
+                return Response.FromValue(new MobileNetworkResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MobileNetworks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MobileNetworkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="mobileNetworkName"> The name of the mobile network. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="mobileNetworkName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="mobileNetworkName"/> is null. </exception>
+        public virtual NullableResponse<MobileNetworkResource> GetIfExists(string mobileNetworkName, CancellationToken cancellationToken = default)
+        {
+            if (mobileNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(mobileNetworkName));
+            }
+            if (mobileNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(mobileNetworkName));
+            }
+
+            using var scope = _mobileNetworkClientDiagnostics.CreateScope("MobileNetworkCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _mobileNetworkRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, mobileNetworkName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<MobileNetworkResource>(response.GetRawResponse());
+                return Response.FromValue(new MobileNetworkResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

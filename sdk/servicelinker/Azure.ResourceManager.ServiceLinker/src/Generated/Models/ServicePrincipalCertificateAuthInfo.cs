@@ -6,22 +6,28 @@
 #nullable disable
 
 using System;
-using Azure.Core;
+using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ServiceLinker.Models
 {
     /// <summary> The authentication info when authType is servicePrincipal certificate. </summary>
     public partial class ServicePrincipalCertificateAuthInfo : AuthBaseInfo
     {
-        /// <summary> Initializes a new instance of ServicePrincipalCertificateAuthInfo. </summary>
+        /// <summary> Initializes a new instance of <see cref="ServicePrincipalCertificateAuthInfo"/>. </summary>
         /// <param name="clientId"> Application clientId for servicePrincipal auth. </param>
         /// <param name="principalId"> Principal Id for servicePrincipal auth. </param>
         /// <param name="certificate"> ServicePrincipal certificate for servicePrincipal auth. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="clientId"/> or <paramref name="certificate"/> is null. </exception>
         public ServicePrincipalCertificateAuthInfo(string clientId, Guid principalId, string certificate)
         {
-            Argument.AssertNotNull(clientId, nameof(clientId));
-            Argument.AssertNotNull(certificate, nameof(certificate));
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
+            if (certificate == null)
+            {
+                throw new ArgumentNullException(nameof(certificate));
+            }
 
             ClientId = clientId;
             PrincipalId = principalId;
@@ -29,17 +35,23 @@ namespace Azure.ResourceManager.ServiceLinker.Models
             AuthType = LinkerAuthType.ServicePrincipalCertificate;
         }
 
-        /// <summary> Initializes a new instance of ServicePrincipalCertificateAuthInfo. </summary>
+        /// <summary> Initializes a new instance of <see cref="ServicePrincipalCertificateAuthInfo"/>. </summary>
         /// <param name="authType"> The authentication type. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="clientId"> Application clientId for servicePrincipal auth. </param>
         /// <param name="principalId"> Principal Id for servicePrincipal auth. </param>
         /// <param name="certificate"> ServicePrincipal certificate for servicePrincipal auth. </param>
-        internal ServicePrincipalCertificateAuthInfo(LinkerAuthType authType, string clientId, Guid principalId, string certificate) : base(authType)
+        internal ServicePrincipalCertificateAuthInfo(LinkerAuthType authType, IDictionary<string, BinaryData> serializedAdditionalRawData, string clientId, Guid principalId, string certificate) : base(authType, serializedAdditionalRawData)
         {
             ClientId = clientId;
             PrincipalId = principalId;
             Certificate = certificate;
             AuthType = authType;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ServicePrincipalCertificateAuthInfo"/> for deserialization. </summary>
+        internal ServicePrincipalCertificateAuthInfo()
+        {
         }
 
         /// <summary> Application clientId for servicePrincipal auth. </summary>

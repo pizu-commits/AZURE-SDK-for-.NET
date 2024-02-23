@@ -8,24 +8,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.AI.FormRecognizer.DocumentAnalysis
 {
     /// <summary> List document models response object. </summary>
     internal partial class GetDocumentModelsResponse
     {
-        /// <summary> Initializes a new instance of GetDocumentModelsResponse. </summary>
+        /// <summary> Initializes a new instance of <see cref="GetDocumentModelsResponse"/>. </summary>
         /// <param name="value"> List of document models. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal GetDocumentModelsResponse(IEnumerable<DocumentModelSummary> value)
         {
-            Argument.AssertNotNull(value, nameof(value));
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             Value = value.ToList();
         }
 
-        /// <summary> Initializes a new instance of GetDocumentModelsResponse. </summary>
+        /// <summary> Initializes a new instance of <see cref="GetDocumentModelsResponse"/>. </summary>
         /// <param name="value"> List of document models. </param>
         /// <param name="nextLink"> Link to the next page of document models. </param>
         internal GetDocumentModelsResponse(IReadOnlyList<DocumentModelSummary> value, Uri nextLink)

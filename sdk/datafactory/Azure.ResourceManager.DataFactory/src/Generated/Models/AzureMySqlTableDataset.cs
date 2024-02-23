@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,17 +14,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> The Azure MySQL database dataset. </summary>
     public partial class AzureMySqlTableDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of AzureMySqlTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMySqlTableDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> is null. </exception>
         public AzureMySqlTableDataset(DataFactoryLinkedServiceReference linkedServiceName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
 
             DatasetType = "AzureMySqlTable";
         }
 
-        /// <summary> Initializes a new instance of AzureMySqlTableDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMySqlTableDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -42,6 +44,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             TableName = tableName;
             Table = table;
             DatasetType = datasetType ?? "AzureMySqlTable";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureMySqlTableDataset"/> for deserialization. </summary>
+        internal AzureMySqlTableDataset()
+        {
         }
 
         /// <summary> The Azure MySQL database table name. Type: string (or Expression with resultType string). </summary>

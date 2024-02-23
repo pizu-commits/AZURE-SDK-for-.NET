@@ -15,14 +15,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Execute power query activity. </summary>
     public partial class ExecuteWranglingDataflowActivity : PipelineActivity
     {
-        /// <summary> Initializes a new instance of ExecuteWranglingDataflowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteWranglingDataflowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="dataFlow"> Data flow reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="dataFlow"/> is null. </exception>
         public ExecuteWranglingDataflowActivity(string name, DataFlowReference dataFlow) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(dataFlow, nameof(dataFlow));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (dataFlow == null)
+            {
+                throw new ArgumentNullException(nameof(dataFlow));
+            }
 
             DataFlow = dataFlow;
             Sinks = new ChangeTrackingDictionary<string, PowerQuerySink>();
@@ -30,7 +36,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = "ExecuteWranglingDataflow";
         }
 
-        /// <summary> Initializes a new instance of ExecuteWranglingDataflowActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecuteWranglingDataflowActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -64,6 +70,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Sinks = sinks;
             Queries = queries;
             ActivityType = activityType ?? "ExecuteWranglingDataflow";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ExecuteWranglingDataflowActivity"/> for deserialization. </summary>
+        internal ExecuteWranglingDataflowActivity()
+        {
         }
 
         /// <summary> Activity policy. </summary>

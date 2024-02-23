@@ -14,16 +14,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> HDInsight Spark activity. </summary>
     public partial class HDInsightSparkActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of HDInsightSparkActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightSparkActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="rootPath"> The root path in 'sparkJobLinkedService' for all the job’s files. Type: string (or Expression with resultType string). </param>
         /// <param name="entryFilePath"> The relative path to the root folder of the code/package to be executed. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="rootPath"/> or <paramref name="entryFilePath"/> is null. </exception>
         public HDInsightSparkActivity(string name, object rootPath, object entryFilePath) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(rootPath, nameof(rootPath));
-            Argument.AssertNotNull(entryFilePath, nameof(entryFilePath));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (rootPath == null)
+            {
+                throw new ArgumentNullException(nameof(rootPath));
+            }
+            if (entryFilePath == null)
+            {
+                throw new ArgumentNullException(nameof(entryFilePath));
+            }
 
             RootPath = rootPath;
             EntryFilePath = entryFilePath;
@@ -32,7 +41,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "HDInsightSpark";
         }
 
-        /// <summary> Initializes a new instance of HDInsightSparkActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightSparkActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

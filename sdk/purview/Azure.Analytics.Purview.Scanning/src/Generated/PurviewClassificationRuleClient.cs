@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -37,7 +38,7 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewClassificationRuleClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="classificationRuleName"> The String to use. </param>
+        /// <param name="classificationRuleName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="classificationRuleName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -47,16 +48,29 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewClassificationRuleClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="classificationRuleName"> The String to use. </param>
+        /// <param name="classificationRuleName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="classificationRuleName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationRuleName"/> is an empty string, and was expected to be non-empty. </exception>
         public PurviewClassificationRuleClient(Uri endpoint, string classificationRuleName, TokenCredential credential, PurviewScanningServiceClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNullOrEmpty(classificationRuleName, nameof(classificationRuleName));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (classificationRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(classificationRuleName));
+            }
+            if (classificationRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(classificationRuleName));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new PurviewScanningServiceClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -259,8 +273,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationRuleVersion"> The Int32 to use. </param>
-        /// <param name="action"> The ClassificationAction to use. Allowed values: "Keep" | "Delete". </param>
+        /// <param name="classificationRuleVersion"> The <see cref="int"/> to use. </param>
+        /// <param name="action"> The <see cref="string"/> to use. Allowed values: "Keep" | "Delete". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="action"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -268,7 +282,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewClassificationRuleClient.xml" path="doc/members/member[@name='TagVersionAsync(int,string,RequestContext)']/*" />
         public virtual async Task<Response> TagVersionAsync(int classificationRuleVersion, string action, RequestContext context)
         {
-            Argument.AssertNotNull(action, nameof(action));
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewClassificationRuleClient.TagVersion");
             scope.Start();
@@ -294,8 +311,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationRuleVersion"> The Int32 to use. </param>
-        /// <param name="action"> The ClassificationAction to use. Allowed values: "Keep" | "Delete". </param>
+        /// <param name="classificationRuleVersion"> The <see cref="int"/> to use. </param>
+        /// <param name="action"> The <see cref="string"/> to use. Allowed values: "Keep" | "Delete". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="action"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -303,7 +320,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewClassificationRuleClient.xml" path="doc/members/member[@name='TagVersion(int,string,RequestContext)']/*" />
         public virtual Response TagVersion(int classificationRuleVersion, string action, RequestContext context)
         {
-            Argument.AssertNotNull(action, nameof(action));
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewClassificationRuleClient.TagVersion");
             scope.Start();
@@ -337,7 +357,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewClassificationRuleClient.GetVersions", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewClassificationRuleClient.GetVersions", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -358,7 +378,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewClassificationRuleClient.GetVersions", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewClassificationRuleClient.GetVersions", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetPropertiesRequest(RequestContext context)

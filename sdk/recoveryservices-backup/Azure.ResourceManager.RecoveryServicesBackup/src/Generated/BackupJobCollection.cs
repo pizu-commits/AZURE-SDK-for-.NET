@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.RecoveryServicesBackup
 {
     /// <summary>
-    /// A class representing a collection of <see cref="BackupJobResource" /> and their operations.
-    /// Each <see cref="BackupJobResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="BackupJobCollection" /> instance call the GetBackupJobs method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="BackupJobResource"/> and their operations.
+    /// Each <see cref="BackupJobResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="BackupJobCollection"/> instance call the GetBackupJobs method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class BackupJobCollection : ArmCollection, IEnumerable<BackupJobResource>, IAsyncEnumerable<BackupJobResource>
     {
@@ -74,6 +75,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>JobDetails_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
@@ -82,7 +91,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
         public virtual async Task<Response<BackupJobResource>> GetAsync(string jobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
 
             using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.Get");
             scope.Start();
@@ -111,6 +127,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>JobDetails_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
@@ -119,7 +143,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
         public virtual Response<BackupJobResource> Get(string jobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
 
             using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.Get");
             scope.Start();
@@ -148,17 +179,25 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>BackupJobs_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="skipToken"> skipToken Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="BackupJobResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="BackupJobResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<BackupJobResource> GetAllAsync(string filter = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _backupJobRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, _vaultName, filter, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _backupJobRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, _vaultName, filter, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new BackupJobResource(Client, BackupJobData.DeserializeBackupJobData(e)), _backupJobClientDiagnostics, Pipeline, "BackupJobCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new BackupJobResource(Client, BackupJobData.DeserializeBackupJobData(e)), _backupJobClientDiagnostics, Pipeline, "BackupJobCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -172,17 +211,25 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>BackupJobs_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> OData filter options. </param>
         /// <param name="skipToken"> skipToken Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="BackupJobResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="BackupJobResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<BackupJobResource> GetAll(string filter = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _backupJobRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, _vaultName, filter, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _backupJobRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, _vaultName, filter, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new BackupJobResource(Client, BackupJobData.DeserializeBackupJobData(e)), _backupJobClientDiagnostics, Pipeline, "BackupJobCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new BackupJobResource(Client, BackupJobData.DeserializeBackupJobData(e)), _backupJobClientDiagnostics, Pipeline, "BackupJobCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -196,6 +243,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>JobDetails_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
@@ -204,7 +259,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string jobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
 
             using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.Exists");
             scope.Start();
@@ -231,6 +293,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <term>Operation Id</term>
         /// <description>JobDetails_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
@@ -239,7 +309,14 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
         /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
         public virtual Response<bool> Exists(string jobName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(jobName, nameof(jobName));
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
 
             using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.Exists");
             scope.Start();
@@ -247,6 +324,110 @@ namespace Azure.ResourceManager.RecoveryServicesBackup
             {
                 var response = _backupJobJobDetailsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, _vaultName, jobName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>JobDetails_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
+        public virtual async Task<NullableResponse<BackupJobResource>> GetIfExistsAsync(string jobName, CancellationToken cancellationToken = default)
+        {
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
+
+            using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _backupJobJobDetailsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, _vaultName, jobName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<BackupJobResource>(response.GetRawResponse());
+                return Response.FromValue(new BackupJobResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupJobs/{jobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>JobDetails_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BackupJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobName"> Name of the job whose details are to be fetched. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobName"/> is null. </exception>
+        public virtual NullableResponse<BackupJobResource> GetIfExists(string jobName, CancellationToken cancellationToken = default)
+        {
+            if (jobName == null)
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+            if (jobName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobName));
+            }
+
+            using var scope = _backupJobJobDetailsClientDiagnostics.CreateScope("BackupJobCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _backupJobJobDetailsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, _vaultName, jobName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<BackupJobResource>(response.GetRawResponse());
+                return Response.FromValue(new BackupJobResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

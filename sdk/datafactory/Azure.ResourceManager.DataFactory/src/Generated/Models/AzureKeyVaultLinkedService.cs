@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Azure Key Vault linked service. </summary>
     public partial class AzureKeyVaultLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AzureKeyVaultLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureKeyVaultLinkedService"/>. </summary>
         /// <param name="baseUri"> The base URL of the Azure Key Vault. e.g. https://myakv.vault.azure.net Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="baseUri"/> is null. </exception>
         public AzureKeyVaultLinkedService(DataFactoryElement<string> baseUri)
         {
-            Argument.AssertNotNull(baseUri, nameof(baseUri));
+            if (baseUri == null)
+            {
+                throw new ArgumentNullException(nameof(baseUri));
+            }
 
             BaseUri = baseUri;
             LinkedServiceType = "AzureKeyVault";
         }
 
-        /// <summary> Initializes a new instance of AzureKeyVaultLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureKeyVaultLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -40,6 +42,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             BaseUri = baseUri;
             Credential = credential;
             LinkedServiceType = linkedServiceType ?? "AzureKeyVault";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureKeyVaultLinkedService"/> for deserialization. </summary>
+        internal AzureKeyVaultLinkedService()
+        {
         }
 
         /// <summary> The base URL of the Azure Key Vault. e.g. https://myakv.vault.azure.net Type: string (or Expression with resultType string). </summary>

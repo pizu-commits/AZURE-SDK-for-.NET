@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,23 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> HBase server linked service. </summary>
     public partial class HBaseLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of HBaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HBaseLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the HBase server. (i.e. 192.168.222.160). </param>
         /// <param name="authenticationType"> The authentication mechanism to use to connect to the HBase server. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public HBaseLinkedService(DataFactoryElement<string> host, HBaseAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             AuthenticationType = authenticationType;
             LinkedServiceType = "HBase";
         }
 
-        /// <summary> Initializes a new instance of HBaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HBaseLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -60,6 +62,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             AllowSelfSignedServerCert = allowSelfSignedServerCert;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "HBase";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="HBaseLinkedService"/> for deserialization. </summary>
+        internal HBaseLinkedService()
+        {
         }
 
         /// <summary> The IP address or host name of the HBase server. (i.e. 192.168.222.160). </summary>

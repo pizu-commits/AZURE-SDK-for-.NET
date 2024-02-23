@@ -6,21 +6,34 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.Email
 {
     /// <summary> Content of the email. </summary>
     public partial class EmailContent
     {
-        /// <summary> Initializes a new instance of EmailContent. </summary>
+        /// <summary> Initializes a new instance of <see cref="EmailContent"/>. </summary>
         /// <param name="subject"> Subject of the email message. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subject"/> is null. </exception>
         public EmailContent(string subject)
         {
-            Argument.AssertNotNull(subject, nameof(subject));
+            if (subject == null)
+            {
+                throw new ArgumentNullException(nameof(subject));
+            }
 
             Subject = subject;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="EmailContent"/>. </summary>
+        /// <param name="subject"> Subject of the email message. </param>
+        /// <param name="plainText"> Plain text version of the email message. </param>
+        /// <param name="html"> Html version of the email message. </param>
+        internal EmailContent(string subject, string plainText, string html)
+        {
+            Subject = subject;
+            PlainText = plainText;
+            Html = html;
         }
 
         /// <summary> Subject of the email message. </summary>

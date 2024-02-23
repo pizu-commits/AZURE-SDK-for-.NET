@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.ContainerInstance
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerGroupResource" /> and their operations.
-    /// Each <see cref="ContainerGroupResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="ContainerGroupCollection" /> instance call the GetContainerGroups method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="ContainerGroupResource"/> and their operations.
+    /// Each <see cref="ContainerGroupResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="ContainerGroupCollection"/> instance call the GetContainerGroups method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class ContainerGroupCollection : ArmCollection, IEnumerable<ContainerGroupResource>, IAsyncEnumerable<ContainerGroupResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerGroupResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string containerGroupName, ContainerGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerGroupResource> CreateOrUpdate(WaitUntil waitUntil, string containerGroupName, ContainerGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="containerGroupName"> The name of the container group. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
         public virtual async Task<Response<ContainerGroupResource>> GetAsync(string containerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="containerGroupName"> The name of the container group. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
         public virtual Response<ContainerGroupResource> Get(string containerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerGroupResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerGroupRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerGroupRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerGroupResource(Client, ContainerGroupData.DeserializeContainerGroupData(e)), _containerGroupClientDiagnostics, Pipeline, "ContainerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerGroupResource(Client, ContainerGroupData.DeserializeContainerGroupData(e)), _containerGroupClientDiagnostics, Pipeline, "ContainerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerGroupResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerGroupRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerGroupRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerGroupResource(Client, ContainerGroupData.DeserializeContainerGroupData(e)), _containerGroupClientDiagnostics, Pipeline, "ContainerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerGroupResource(Client, ContainerGroupData.DeserializeContainerGroupData(e)), _containerGroupClientDiagnostics, Pipeline, "ContainerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="containerGroupName"> The name of the container group. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string containerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <term>Operation Id</term>
         /// <description>ContainerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="containerGroupName"> The name of the container group. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.ContainerInstance
         /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
         public virtual Response<bool> Exists(string containerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(containerGroupName, nameof(containerGroupName));
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
 
             using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.ContainerInstance
             {
                 var response = _containerGroupRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, containerGroupName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ContainerGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="containerGroupName"> The name of the container group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="containerGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerGroupResource>> GetIfExistsAsync(string containerGroupName, CancellationToken cancellationToken = default)
+        {
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
+
+            using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerGroupRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, containerGroupName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerGroupResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ContainerGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="containerGroupName"> The name of the container group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="containerGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="containerGroupName"/> is null. </exception>
+        public virtual NullableResponse<ContainerGroupResource> GetIfExists(string containerGroupName, CancellationToken cancellationToken = default)
+        {
+            if (containerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(containerGroupName));
+            }
+            if (containerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(containerGroupName));
+            }
+
+            using var scope = _containerGroupClientDiagnostics.CreateScope("ContainerGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerGroupRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, containerGroupName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerGroupResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

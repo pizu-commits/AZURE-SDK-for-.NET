@@ -14,15 +14,21 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Web activity. </summary>
     public partial class WebActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of WebActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="method"> Rest API method for target endpoint. </param>
         /// <param name="url"> Web activity target endpoint and path. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="url"/> is null. </exception>
         public WebActivity(string name, WebActivityMethod method, object url) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(url, nameof(url));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
 
             Method = method;
             Url = url;
@@ -31,7 +37,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "WebActivity";
         }
 
-        /// <summary> Initializes a new instance of WebActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

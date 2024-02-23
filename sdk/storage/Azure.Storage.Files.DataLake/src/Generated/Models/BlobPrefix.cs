@@ -6,19 +6,21 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Storage.Files.DataLake.Models
 {
     /// <summary> The BlobPrefix. </summary>
     internal partial class BlobPrefix
     {
-        /// <summary> Initializes a new instance of BlobPrefix. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobPrefix"/>. </summary>
         /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal BlobPrefix(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
         }

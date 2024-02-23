@@ -7,27 +7,32 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Azure ML Execute Pipeline activity. </summary>
     public partial class AzureMLExecutePipelineActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of AzureMLExecutePipelineActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMLExecutePipelineActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="mlPipelineId"> ID of the published Azure ML pipeline. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="mlPipelineId"/> is null. </exception>
         public AzureMLExecutePipelineActivity(string name, object mlPipelineId) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(mlPipelineId, nameof(mlPipelineId));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (mlPipelineId == null)
+            {
+                throw new ArgumentNullException(nameof(mlPipelineId));
+            }
 
             MlPipelineId = mlPipelineId;
             Type = "AzureMLExecutePipeline";
         }
 
-        /// <summary> Initializes a new instance of AzureMLExecutePipelineActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureMLExecutePipelineActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

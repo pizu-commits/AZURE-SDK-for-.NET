@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Search.Documents.Indexes.Models
 {
     /// <summary> Represents the result of an individual indexer execution. </summary>
     public partial class IndexerExecutionResult
     {
-        /// <summary> Initializes a new instance of IndexerExecutionResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="IndexerExecutionResult"/>. </summary>
         /// <param name="status"> The outcome of this indexer execution. </param>
         /// <param name="errors"> The item-level indexing errors. </param>
         /// <param name="warnings"> The item-level indexing warnings. </param>
@@ -24,8 +23,14 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <exception cref="ArgumentNullException"> <paramref name="errors"/> or <paramref name="warnings"/> is null. </exception>
         internal IndexerExecutionResult(IndexerExecutionStatus status, IEnumerable<SearchIndexerError> errors, IEnumerable<SearchIndexerWarning> warnings, int itemCount, int failedItemCount)
         {
-            Argument.AssertNotNull(errors, nameof(errors));
-            Argument.AssertNotNull(warnings, nameof(warnings));
+            if (errors == null)
+            {
+                throw new ArgumentNullException(nameof(errors));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
 
             Status = status;
             Errors = errors.ToList();
@@ -34,7 +39,7 @@ namespace Azure.Search.Documents.Indexes.Models
             FailedItemCount = failedItemCount;
         }
 
-        /// <summary> Initializes a new instance of IndexerExecutionResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="IndexerExecutionResult"/>. </summary>
         /// <param name="status"> The outcome of this indexer execution. </param>
         /// <param name="statusDetail"> The outcome of this indexer execution. </param>
         /// <param name="currentState"> All of the state that defines and dictates the indexer's current execution. </param>

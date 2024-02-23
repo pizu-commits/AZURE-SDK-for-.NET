@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
@@ -13,10 +14,18 @@ using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
 {
-    public partial class DataFactoryBlobSink : IUtf8JsonSerializable
+    public partial class DataFactoryBlobSink : IUtf8JsonSerializable, IJsonModel<DataFactoryBlobSink>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DataFactoryBlobSink>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<DataFactoryBlobSink>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<DataFactoryBlobSink>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(DataFactoryBlobSink)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(BlobWriterOverwriteFiles))
             {
@@ -39,7 +48,10 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(CopyBehavior);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(CopyBehavior.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(CopyBehavior))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsCollectionDefined(Metadata))
@@ -90,14 +102,31 @@ namespace Azure.ResourceManager.DataFactory.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
         }
 
-        internal static DataFactoryBlobSink DeserializeDataFactoryBlobSink(JsonElement element)
+        DataFactoryBlobSink IJsonModel<DataFactoryBlobSink>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<DataFactoryBlobSink>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(DataFactoryBlobSink)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeDataFactoryBlobSink(document.RootElement, options);
+        }
+
+        internal static DataFactoryBlobSink DeserializeDataFactoryBlobSink(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -163,7 +192,7 @@ namespace Azure.ResourceManager.DataFactory.Models
                     List<DataFactoryMetadataItemInfo> array = new List<DataFactoryMetadataItemInfo>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(DataFactoryMetadataItemInfo.DeserializeDataFactoryMetadataItemInfo(item));
+                        array.Add(DataFactoryMetadataItemInfo.DeserializeDataFactoryMetadataItemInfo(item, options));
                     }
                     metadata = array;
                     continue;
@@ -232,5 +261,36 @@ namespace Azure.ResourceManager.DataFactory.Models
             additionalProperties = additionalPropertiesDictionary;
             return new DataFactoryBlobSink(type, writeBatchSize.Value, writeBatchTimeout.Value, sinkRetryCount.Value, sinkRetryWait.Value, maxConcurrentConnections.Value, disableMetricsCollection.Value, additionalProperties, blobWriterOverwriteFiles.Value, blobWriterDateTimeFormat.Value, blobWriterAddHeader.Value, copyBehavior.Value, Optional.ToList(metadata));
         }
+
+        BinaryData IPersistableModel<DataFactoryBlobSink>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<DataFactoryBlobSink>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(DataFactoryBlobSink)} does not support '{options.Format}' format.");
+            }
+        }
+
+        DataFactoryBlobSink IPersistableModel<DataFactoryBlobSink>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<DataFactoryBlobSink>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeDataFactoryBlobSink(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(DataFactoryBlobSink)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<DataFactoryBlobSink>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

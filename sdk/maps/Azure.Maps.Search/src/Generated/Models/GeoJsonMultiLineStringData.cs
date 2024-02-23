@@ -8,24 +8,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Maps.Search.Models
 {
     /// <summary> The GeoJsonMultiLineStringData. </summary>
     public partial class GeoJsonMultiLineStringData
     {
-        /// <summary> Initializes a new instance of GeoJsonMultiLineStringData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonMultiLineStringData"/>. </summary>
         /// <param name="coordinates"> Coordinates for the `GeoJson MultiLineString` geometry. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="coordinates"/> is null. </exception>
         public GeoJsonMultiLineStringData(IEnumerable<IList<IList<double>>> coordinates)
         {
-            Argument.AssertNotNull(coordinates, nameof(coordinates));
+            if (coordinates == null)
+            {
+                throw new ArgumentNullException(nameof(coordinates));
+            }
 
             Coordinates = coordinates.ToList();
         }
 
-        /// <summary> Initializes a new instance of GeoJsonMultiLineStringData. </summary>
+        /// <summary> Initializes a new instance of <see cref="GeoJsonMultiLineStringData"/>. </summary>
         /// <param name="coordinates"> Coordinates for the `GeoJson MultiLineString` geometry. </param>
         internal GeoJsonMultiLineStringData(IList<IList<IList<double>>> coordinates)
         {

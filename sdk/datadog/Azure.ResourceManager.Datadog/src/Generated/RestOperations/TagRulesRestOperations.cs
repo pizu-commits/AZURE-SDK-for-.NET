@@ -67,9 +67,30 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="monitorName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<MonitoringTagRulesListResponse>> ListAsync(string subscriptionId, string resourceGroupName, string monitorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
 
             using var message = CreateListRequest(subscriptionId, resourceGroupName, monitorName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -96,9 +117,30 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="monitorName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<MonitoringTagRulesListResponse> List(string subscriptionId, string resourceGroupName, string monitorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
 
             using var message = CreateListRequest(subscriptionId, resourceGroupName, monitorName);
             _pipeline.Send(message, cancellationToken);
@@ -147,17 +189,48 @@ namespace Azure.ResourceManager.Datadog
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="monitorName"> Monitor resource name. </param>
         /// <param name="ruleSetName"> Rule set name. </param>
-        /// <param name="data"> The MonitoringTagRule to use. </param>
+        /// <param name="data"> The <see cref="MonitoringTagRuleData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/>, <paramref name="ruleSetName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/> or <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<MonitoringTagRuleData>> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string monitorName, string ruleSetName, MonitoringTagRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, monitorName, ruleSetName, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -180,17 +253,48 @@ namespace Azure.ResourceManager.Datadog
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="monitorName"> Monitor resource name. </param>
         /// <param name="ruleSetName"> Rule set name. </param>
-        /// <param name="data"> The MonitoringTagRule to use. </param>
+        /// <param name="data"> The <see cref="MonitoringTagRuleData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/>, <paramref name="ruleSetName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/> or <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<MonitoringTagRuleData> CreateOrUpdate(string subscriptionId, string resourceGroupName, string monitorName, string ruleSetName, MonitoringTagRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, monitorName, ruleSetName, data);
             _pipeline.Send(message, cancellationToken);
@@ -240,10 +344,38 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/> or <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<MonitoringTagRuleData>> GetAsync(string subscriptionId, string resourceGroupName, string monitorName, string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, monitorName, ruleSetName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -273,10 +405,38 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="monitorName"/> or <paramref name="ruleSetName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<MonitoringTagRuleData> Get(string subscriptionId, string resourceGroupName, string monitorName, string ruleSetName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
-            Argument.AssertNotNullOrEmpty(ruleSetName, nameof(ruleSetName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
+            if (ruleSetName == null)
+            {
+                throw new ArgumentNullException(nameof(ruleSetName));
+            }
+            if (ruleSetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleSetName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, monitorName, ruleSetName);
             _pipeline.Send(message, cancellationToken);
@@ -320,10 +480,34 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="monitorName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<MonitoringTagRulesListResponse>> ListNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string monitorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, resourceGroupName, monitorName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -351,10 +535,34 @@ namespace Azure.ResourceManager.Datadog
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="monitorName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<MonitoringTagRulesListResponse> ListNextPage(string nextLink, string subscriptionId, string resourceGroupName, string monitorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(monitorName, nameof(monitorName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (monitorName == null)
+            {
+                throw new ArgumentNullException(nameof(monitorName));
+            }
+            if (monitorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(monitorName));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, resourceGroupName, monitorName);
             _pipeline.Send(message, cancellationToken);

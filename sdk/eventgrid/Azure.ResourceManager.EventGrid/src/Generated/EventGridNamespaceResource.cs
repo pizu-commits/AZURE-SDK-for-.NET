@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.EventGrid
 {
     /// <summary>
     /// A Class representing an EventGridNamespace along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="EventGridNamespaceResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetEventGridNamespaceResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetEventGridNamespace method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="EventGridNamespaceResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetEventGridNamespaceResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetEventGridNamespace method.
     /// </summary>
     public partial class EventGridNamespaceResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="EventGridNamespaceResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="namespaceName"> The namespaceName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string namespaceName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/namespaces/{namespaceName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.EventGrid
         private readonly NamespacesRestOperations _eventGridNamespaceNamespacesRestClient;
         private readonly EventGridNamespaceData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.EventGrid/namespaces";
+
         /// <summary> Initializes a new instance of the <see cref="EventGridNamespaceResource"/> class for mocking. </summary>
         protected EventGridNamespaceResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "EventGridNamespaceResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="EventGridNamespaceResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal EventGridNamespaceResource(ArmClient client, EventGridNamespaceData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.EventGrid
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.EventGrid/namespaces";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -93,7 +96,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of CaCertificateResources and their operations over a CaCertificateResource. </returns>
         public virtual CaCertificateCollection GetCaCertificates()
         {
-            return GetCachedClient(Client => new CaCertificateCollection(Client, Id));
+            return GetCachedClient(client => new CaCertificateCollection(client, Id));
         }
 
         /// <summary>
@@ -107,12 +110,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>CaCertificates_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CaCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="caCertificateName"> Name of the CA certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="caCertificateName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="caCertificateName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="caCertificateName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<CaCertificateResource>> GetCaCertificateAsync(string caCertificateName, CancellationToken cancellationToken = default)
         {
@@ -130,12 +141,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>CaCertificates_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CaCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="caCertificateName"> Name of the CA certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="caCertificateName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="caCertificateName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="caCertificateName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<CaCertificateResource> GetCaCertificate(string caCertificateName, CancellationToken cancellationToken = default)
         {
@@ -146,7 +165,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of EventGridNamespaceClientGroupResources and their operations over a EventGridNamespaceClientGroupResource. </returns>
         public virtual EventGridNamespaceClientGroupCollection GetEventGridNamespaceClientGroups()
         {
-            return GetCachedClient(Client => new EventGridNamespaceClientGroupCollection(Client, Id));
+            return GetCachedClient(client => new EventGridNamespaceClientGroupCollection(client, Id));
         }
 
         /// <summary>
@@ -160,12 +179,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>ClientGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceClientGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientGroupName"> Name of the client group. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="clientGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clientGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="clientGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<EventGridNamespaceClientGroupResource>> GetEventGridNamespaceClientGroupAsync(string clientGroupName, CancellationToken cancellationToken = default)
         {
@@ -183,12 +210,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>ClientGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceClientGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientGroupName"> Name of the client group. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="clientGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clientGroupName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="clientGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<EventGridNamespaceClientGroupResource> GetEventGridNamespaceClientGroup(string clientGroupName, CancellationToken cancellationToken = default)
         {
@@ -199,7 +234,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of EventGridNamespaceClientResources and their operations over a EventGridNamespaceClientResource. </returns>
         public virtual EventGridNamespaceClientCollection GetEventGridNamespaceClients()
         {
-            return GetCachedClient(Client => new EventGridNamespaceClientCollection(Client, Id));
+            return GetCachedClient(client => new EventGridNamespaceClientCollection(client, Id));
         }
 
         /// <summary>
@@ -213,12 +248,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Clients_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceClientResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientName"> Name of the client. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="clientName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clientName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="clientName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<EventGridNamespaceClientResource>> GetEventGridNamespaceClientAsync(string clientName, CancellationToken cancellationToken = default)
         {
@@ -236,12 +279,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Clients_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceClientResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientName"> Name of the client. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="clientName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="clientName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="clientName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<EventGridNamespaceClientResource> GetEventGridNamespaceClient(string clientName, CancellationToken cancellationToken = default)
         {
@@ -252,7 +303,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of NamespaceTopicResources and their operations over a NamespaceTopicResource. </returns>
         public virtual NamespaceTopicCollection GetNamespaceTopics()
         {
-            return GetCachedClient(Client => new NamespaceTopicCollection(Client, Id));
+            return GetCachedClient(client => new NamespaceTopicCollection(client, Id));
         }
 
         /// <summary>
@@ -266,12 +317,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>NamespaceTopics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NamespaceTopicResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicName"> Name of the namespace topic. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<NamespaceTopicResource>> GetNamespaceTopicAsync(string topicName, CancellationToken cancellationToken = default)
         {
@@ -289,12 +348,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>NamespaceTopics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NamespaceTopicResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicName"> Name of the namespace topic. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<NamespaceTopicResource> GetNamespaceTopic(string topicName, CancellationToken cancellationToken = default)
         {
@@ -305,7 +372,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of EventGridNamespacePermissionBindingResources and their operations over a EventGridNamespacePermissionBindingResource. </returns>
         public virtual EventGridNamespacePermissionBindingCollection GetEventGridNamespacePermissionBindings()
         {
-            return GetCachedClient(Client => new EventGridNamespacePermissionBindingCollection(Client, Id));
+            return GetCachedClient(client => new EventGridNamespacePermissionBindingCollection(client, Id));
         }
 
         /// <summary>
@@ -319,12 +386,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>PermissionBindings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespacePermissionBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="permissionBindingName"> Name of the permission binding. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="permissionBindingName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="permissionBindingName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="permissionBindingName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<EventGridNamespacePermissionBindingResource>> GetEventGridNamespacePermissionBindingAsync(string permissionBindingName, CancellationToken cancellationToken = default)
         {
@@ -342,12 +417,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>PermissionBindings_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespacePermissionBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="permissionBindingName"> Name of the permission binding. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="permissionBindingName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="permissionBindingName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="permissionBindingName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<EventGridNamespacePermissionBindingResource> GetEventGridNamespacePermissionBinding(string permissionBindingName, CancellationToken cancellationToken = default)
         {
@@ -358,7 +441,7 @@ namespace Azure.ResourceManager.EventGrid
         /// <returns> An object representing collection of TopicSpaceResources and their operations over a TopicSpaceResource. </returns>
         public virtual TopicSpaceCollection GetTopicSpaces()
         {
-            return GetCachedClient(Client => new TopicSpaceCollection(Client, Id));
+            return GetCachedClient(client => new TopicSpaceCollection(client, Id));
         }
 
         /// <summary>
@@ -372,12 +455,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicSpaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicSpaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicSpaceName"> Name of the Topic space. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicSpaceName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicSpaceName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicSpaceName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<TopicSpaceResource>> GetTopicSpaceAsync(string topicSpaceName, CancellationToken cancellationToken = default)
         {
@@ -395,12 +486,20 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>TopicSpaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="TopicSpaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="topicSpaceName"> Name of the Topic space. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="topicSpaceName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="topicSpaceName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="topicSpaceName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<TopicSpaceResource> GetTopicSpace(string topicSpaceName, CancellationToken cancellationToken = default)
         {
@@ -417,6 +516,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -450,6 +557,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -481,6 +596,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Namespaces_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -516,6 +639,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -550,6 +681,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -558,7 +697,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<EventGridNamespaceResource>> UpdateAsync(WaitUntil waitUntil, EventGridNamespacePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.Update");
             scope.Start();
@@ -588,6 +730,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -596,7 +746,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<EventGridNamespaceResource> Update(WaitUntil waitUntil, EventGridNamespacePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.Update");
             scope.Start();
@@ -625,6 +778,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Namespaces_ListSharedAccessKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -656,6 +817,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_ListSharedAccessKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -686,6 +855,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_RegenerateKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -694,7 +871,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<NamespaceSharedAccessKeys>> RegenerateKeyAsync(WaitUntil waitUntil, NamespaceRegenerateKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.RegenerateKey");
             scope.Start();
@@ -724,6 +904,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_RegenerateKey</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -732,7 +920,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<NamespaceSharedAccessKeys> RegenerateKey(WaitUntil waitUntil, NamespaceRegenerateKeyContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.RegenerateKey");
             scope.Start();
@@ -762,6 +953,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -770,8 +969,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<EventGridNamespaceResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.AddTag");
             scope.Start();
@@ -816,6 +1021,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -824,8 +1037,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<EventGridNamespaceResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.AddTag");
             scope.Start();
@@ -870,6 +1089,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -877,7 +1104,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<EventGridNamespaceResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.SetTags");
             scope.Start();
@@ -919,6 +1149,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -926,7 +1164,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<EventGridNamespaceResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.SetTags");
             scope.Start();
@@ -968,6 +1209,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -975,7 +1224,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<EventGridNamespaceResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.RemoveTag");
             scope.Start();
@@ -1020,6 +1272,14 @@ namespace Azure.ResourceManager.EventGrid
         /// <term>Operation Id</term>
         /// <description>Namespaces_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-12-15-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventGridNamespaceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -1027,7 +1287,10 @@ namespace Azure.ResourceManager.EventGrid
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<EventGridNamespaceResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _eventGridNamespaceNamespacesClientDiagnostics.CreateScope("EventGridNamespaceResource.RemoveTag");
             scope.Start();

@@ -13,7 +13,7 @@ namespace Azure.ResourceManager.Compute.Models
     /// <summary> The SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions. </summary>
     public partial class SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions
     {
-        /// <summary> Initializes a new instance of SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions. </summary>
+        /// <summary> Initializes a new instance of <see cref="SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions"/>. </summary>
         /// <param name="location"> The name of a supported Azure region. </param>
         /// <param name="edgeZone"> The name of the edge zone. </param>
         /// <param name="publisherName"> A valid image publisher. </param>
@@ -23,11 +23,26 @@ namespace Azure.ResourceManager.Compute.Models
         /// <exception cref="ArgumentNullException"> <paramref name="edgeZone"/>, <paramref name="publisherName"/>, <paramref name="offer"/>, <paramref name="skus"/> or <paramref name="version"/> is null. </exception>
         public SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions(AzureLocation location, string edgeZone, string publisherName, string offer, string skus, string version)
         {
-            Argument.AssertNotNull(edgeZone, nameof(edgeZone));
-            Argument.AssertNotNull(publisherName, nameof(publisherName));
-            Argument.AssertNotNull(offer, nameof(offer));
-            Argument.AssertNotNull(skus, nameof(skus));
-            Argument.AssertNotNull(version, nameof(version));
+            if (edgeZone == null)
+            {
+                throw new ArgumentNullException(nameof(edgeZone));
+            }
+            if (publisherName == null)
+            {
+                throw new ArgumentNullException(nameof(publisherName));
+            }
+            if (offer == null)
+            {
+                throw new ArgumentNullException(nameof(offer));
+            }
+            if (skus == null)
+            {
+                throw new ArgumentNullException(nameof(skus));
+            }
+            if (version == null)
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
 
             Location = location;
             EdgeZone = edgeZone;
@@ -35,6 +50,11 @@ namespace Azure.ResourceManager.Compute.Models
             Offer = offer;
             Skus = skus;
             Version = version;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions"/> for deserialization. </summary>
+        internal SubscriptionResourceGetVirtualMachineImagesEdgeZoneOptions()
+        {
         }
 
         /// <summary> The name of a supported Azure region. </summary>

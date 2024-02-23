@@ -14,21 +14,27 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Execute pipeline activity. </summary>
     public partial class ExecutePipelineActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of ExecutePipelineActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutePipelineActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="pipeline"> Pipeline reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="pipeline"/> is null. </exception>
         public ExecutePipelineActivity(string name, PipelineReference pipeline) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(pipeline, nameof(pipeline));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (pipeline == null)
+            {
+                throw new ArgumentNullException(nameof(pipeline));
+            }
 
             Pipeline = pipeline;
             Parameters = new ChangeTrackingDictionary<string, object>();
             Type = "ExecutePipeline";
         }
 
-        /// <summary> Initializes a new instance of ExecutePipelineActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExecutePipelineActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

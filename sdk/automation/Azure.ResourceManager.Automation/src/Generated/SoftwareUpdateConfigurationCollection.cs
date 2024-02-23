@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Automation.Models;
 namespace Azure.ResourceManager.Automation
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SoftwareUpdateConfigurationResource" /> and their operations.
-    /// Each <see cref="SoftwareUpdateConfigurationResource" /> in the collection will belong to the same instance of <see cref="AutomationAccountResource" />.
-    /// To get a <see cref="SoftwareUpdateConfigurationCollection" /> instance call the GetSoftwareUpdateConfigurations method from an instance of <see cref="AutomationAccountResource" />.
+    /// A class representing a collection of <see cref="SoftwareUpdateConfigurationResource"/> and their operations.
+    /// Each <see cref="SoftwareUpdateConfigurationResource"/> in the collection will belong to the same instance of <see cref="AutomationAccountResource"/>.
+    /// To get a <see cref="SoftwareUpdateConfigurationCollection"/> instance call the GetSoftwareUpdateConfigurations method from an instance of <see cref="AutomationAccountResource"/>.
     /// </summary>
     public partial class SoftwareUpdateConfigurationCollection : ArmCollection, IEnumerable<SoftwareUpdateConfigurationCollectionItem>, IAsyncEnumerable<SoftwareUpdateConfigurationCollectionItem>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<SoftwareUpdateConfigurationResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string softwareUpdateConfigurationName, SoftwareUpdateConfigurationData data, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -117,8 +144,18 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<SoftwareUpdateConfigurationResource> CreateOrUpdate(WaitUntil waitUntil, string softwareUpdateConfigurationName, SoftwareUpdateConfigurationData data, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.CreateOrUpdate");
             scope.Start();
@@ -148,6 +185,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_GetByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
@@ -157,7 +202,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
         public virtual async Task<Response<SoftwareUpdateConfigurationResource>> GetAsync(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.Get");
             scope.Start();
@@ -186,6 +238,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_GetByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
@@ -195,7 +255,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
         public virtual Response<SoftwareUpdateConfigurationResource> Get(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.Get");
             scope.Start();
@@ -224,16 +291,24 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientRequestId"> Identifies this specific client request. </param>
         /// <param name="filter"> The filter to apply on the operation. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SoftwareUpdateConfigurationCollectionItem" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SoftwareUpdateConfigurationCollectionItem"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SoftwareUpdateConfigurationCollectionItem> GetAllAsync(string clientRequestId = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _softwareUpdateConfigurationRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, clientRequestId, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, SoftwareUpdateConfigurationCollectionItem.DeserializeSoftwareUpdateConfigurationCollectionItem, _softwareUpdateConfigurationClientDiagnostics, Pipeline, "SoftwareUpdateConfigurationCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => SoftwareUpdateConfigurationCollectionItem.DeserializeSoftwareUpdateConfigurationCollectionItem(e), _softwareUpdateConfigurationClientDiagnostics, Pipeline, "SoftwareUpdateConfigurationCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -247,16 +322,24 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="clientRequestId"> Identifies this specific client request. </param>
         /// <param name="filter"> The filter to apply on the operation. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SoftwareUpdateConfigurationCollectionItem" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SoftwareUpdateConfigurationCollectionItem"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SoftwareUpdateConfigurationCollectionItem> GetAll(string clientRequestId = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _softwareUpdateConfigurationRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, clientRequestId, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, SoftwareUpdateConfigurationCollectionItem.DeserializeSoftwareUpdateConfigurationCollectionItem, _softwareUpdateConfigurationClientDiagnostics, Pipeline, "SoftwareUpdateConfigurationCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => SoftwareUpdateConfigurationCollectionItem.DeserializeSoftwareUpdateConfigurationCollectionItem(e), _softwareUpdateConfigurationClientDiagnostics, Pipeline, "SoftwareUpdateConfigurationCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -270,6 +353,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_GetByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
@@ -279,7 +370,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.Exists");
             scope.Start();
@@ -306,6 +404,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>SoftwareUpdateConfigurations_GetByName</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
@@ -315,7 +421,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
         public virtual Response<bool> Exists(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(softwareUpdateConfigurationName, nameof(softwareUpdateConfigurationName));
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
 
             using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.Exists");
             scope.Start();
@@ -323,6 +436,112 @@ namespace Azure.ResourceManager.Automation
             {
                 var response = _softwareUpdateConfigurationRestClient.GetByName(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, softwareUpdateConfigurationName, clientRequestId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SoftwareUpdateConfigurations_GetByName</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
+        /// <param name="clientRequestId"> Identifies this specific client request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="softwareUpdateConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SoftwareUpdateConfigurationResource>> GetIfExistsAsync(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
+        {
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
+
+            using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _softwareUpdateConfigurationRestClient.GetByNameAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, softwareUpdateConfigurationName, clientRequestId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SoftwareUpdateConfigurationResource>(response.GetRawResponse());
+                return Response.FromValue(new SoftwareUpdateConfigurationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SoftwareUpdateConfigurations_GetByName</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SoftwareUpdateConfigurationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="softwareUpdateConfigurationName"> The name of the software update configuration to be created. </param>
+        /// <param name="clientRequestId"> Identifies this specific client request. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="softwareUpdateConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="softwareUpdateConfigurationName"/> is null. </exception>
+        public virtual NullableResponse<SoftwareUpdateConfigurationResource> GetIfExists(string softwareUpdateConfigurationName, string clientRequestId = null, CancellationToken cancellationToken = default)
+        {
+            if (softwareUpdateConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(softwareUpdateConfigurationName));
+            }
+            if (softwareUpdateConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(softwareUpdateConfigurationName));
+            }
+
+            using var scope = _softwareUpdateConfigurationClientDiagnostics.CreateScope("SoftwareUpdateConfigurationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _softwareUpdateConfigurationRestClient.GetByName(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, softwareUpdateConfigurationName, clientRequestId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SoftwareUpdateConfigurationResource>(response.GetRawResponse());
+                return Response.FromValue(new SoftwareUpdateConfigurationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

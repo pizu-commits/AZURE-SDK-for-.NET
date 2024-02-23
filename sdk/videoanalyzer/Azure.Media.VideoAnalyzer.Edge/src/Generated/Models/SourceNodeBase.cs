@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -17,17 +16,20 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     public abstract partial class SourceNodeBase
     {
-        /// <summary> Initializes a new instance of SourceNodeBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="SourceNodeBase"/>. </summary>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         protected SourceNodeBase(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
         }
 
-        /// <summary> Initializes a new instance of SourceNodeBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="SourceNodeBase"/>. </summary>
         /// <param name="type"> Type discriminator for the derived types. </param>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         internal SourceNodeBase(string type, string name)

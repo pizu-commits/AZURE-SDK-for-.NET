@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,7 +14,7 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> SharePoint Online List linked service. </summary>
     public partial class SharePointOnlineListLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of SharePointOnlineListLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SharePointOnlineListLinkedService"/>. </summary>
         /// <param name="siteUri"> The URL of the SharePoint Online site. For example, https://contoso.sharepoint.com/sites/siteName. Type: string (or Expression with resultType string). </param>
         /// <param name="tenantId"> The tenant ID under which your application resides. You can find it from Azure portal Active Directory overview page. Type: string (or Expression with resultType string). </param>
         /// <param name="servicePrincipalId"> The application (client) ID of your application registered in Azure Active Directory. Make sure to grant SharePoint site permission to this application. Type: string (or Expression with resultType string). </param>
@@ -23,10 +22,22 @@ namespace Azure.ResourceManager.DataFactory.Models
         /// <exception cref="ArgumentNullException"> <paramref name="siteUri"/>, <paramref name="tenantId"/>, <paramref name="servicePrincipalId"/> or <paramref name="servicePrincipalKey"/> is null. </exception>
         public SharePointOnlineListLinkedService(DataFactoryElement<string> siteUri, DataFactoryElement<string> tenantId, DataFactoryElement<string> servicePrincipalId, DataFactorySecretBaseDefinition servicePrincipalKey)
         {
-            Argument.AssertNotNull(siteUri, nameof(siteUri));
-            Argument.AssertNotNull(tenantId, nameof(tenantId));
-            Argument.AssertNotNull(servicePrincipalId, nameof(servicePrincipalId));
-            Argument.AssertNotNull(servicePrincipalKey, nameof(servicePrincipalKey));
+            if (siteUri == null)
+            {
+                throw new ArgumentNullException(nameof(siteUri));
+            }
+            if (tenantId == null)
+            {
+                throw new ArgumentNullException(nameof(tenantId));
+            }
+            if (servicePrincipalId == null)
+            {
+                throw new ArgumentNullException(nameof(servicePrincipalId));
+            }
+            if (servicePrincipalKey == null)
+            {
+                throw new ArgumentNullException(nameof(servicePrincipalKey));
+            }
 
             SiteUri = siteUri;
             TenantId = tenantId;
@@ -35,7 +46,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "SharePointOnlineList";
         }
 
-        /// <summary> Initializes a new instance of SharePointOnlineListLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SharePointOnlineListLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -55,6 +66,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ServicePrincipalKey = servicePrincipalKey;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "SharePointOnlineList";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SharePointOnlineListLinkedService"/> for deserialization. </summary>
+        internal SharePointOnlineListLinkedService()
+        {
         }
 
         /// <summary> The URL of the SharePoint Online site. For example, https://contoso.sharepoint.com/sites/siteName. Type: string (or Expression with resultType string). </summary>

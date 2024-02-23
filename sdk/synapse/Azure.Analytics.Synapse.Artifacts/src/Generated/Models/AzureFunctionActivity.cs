@@ -7,29 +7,34 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Azure Function activity. </summary>
     public partial class AzureFunctionActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of AzureFunctionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureFunctionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="method"> Rest API method for target endpoint. </param>
         /// <param name="functionName"> Name of the Function that the Azure Function Activity will call. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="functionName"/> is null. </exception>
         public AzureFunctionActivity(string name, AzureFunctionActivityMethod method, object functionName) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(functionName, nameof(functionName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (functionName == null)
+            {
+                throw new ArgumentNullException(nameof(functionName));
+            }
 
             Method = method;
             FunctionName = functionName;
             Type = "AzureFunctionActivity";
         }
 
-        /// <summary> Initializes a new instance of AzureFunctionActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureFunctionActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

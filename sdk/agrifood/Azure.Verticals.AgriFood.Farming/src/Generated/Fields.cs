@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -69,7 +70,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetCascadeDeleteJobDetailsAsync(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -104,7 +112,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetCascadeDeleteJobDetails(string,RequestContext)']/*" />
         public virtual Response GetCascadeDeleteJobDetails(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.GetCascadeDeleteJobDetails");
             scope.Start();
@@ -140,8 +155,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetFieldAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetFieldAsync(string partyId, string fieldId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.GetField");
             scope.Start();
@@ -177,8 +206,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetField(string,string,RequestContext)']/*" />
         public virtual Response GetField(string partyId, string fieldId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.GetField");
             scope.Start();
@@ -215,9 +258,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string partyId, string fieldId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.CreateOrUpdate");
             scope.Start();
@@ -254,9 +314,26 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='CreateOrUpdate(string,string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string partyId, string fieldId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.CreateOrUpdate");
             scope.Start();
@@ -292,8 +369,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='DeleteAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string partyId, string fieldId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.Delete");
             scope.Start();
@@ -329,8 +420,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='Delete(string,string,RequestContext)']/*" />
         public virtual Response Delete(string partyId, string fieldId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
-            Argument.AssertNotNullOrEmpty(fieldId, nameof(fieldId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
+            if (fieldId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.Delete");
             scope.Start();
@@ -381,7 +486,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetFieldsRequest(farmIds, fieldIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetFieldsNextPageRequest(nextLink, farmIds, fieldIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFields", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFields", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -419,7 +524,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetFieldsRequest(farmIds, fieldIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetFieldsNextPageRequest(nextLink, farmIds, fieldIds, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFields", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFields", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -458,11 +563,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetFieldsByPartyIdAsync(string,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetFieldsByPartyIdAsync(string partyId, IEnumerable<string> farmIds, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetFieldsByPartyIdRequest(partyId, farmIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetFieldsByPartyIdNextPageRequest(nextLink, partyId, farmIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFieldsByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFieldsByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -501,11 +613,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='GetFieldsByPartyId(string,IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},IEnumerable{string},DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetFieldsByPartyId(string partyId, IEnumerable<string> farmIds, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(partyId, nameof(partyId));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (partyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(partyId));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetFieldsByPartyIdRequest(partyId, farmIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetFieldsByPartyIdNextPageRequest(nextLink, partyId, farmIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFieldsByPartyId", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Fields.GetFieldsByPartyId", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -530,9 +649,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='CreateCascadeDeleteJobAsync(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> CreateCascadeDeleteJobAsync(WaitUntil waitUntil, string jobId, string partyId, string fieldId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(fieldId, nameof(fieldId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.CreateCascadeDeleteJob");
             scope.Start();
@@ -570,9 +702,22 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Fields.xml" path="doc/members/member[@name='CreateCascadeDeleteJob(WaitUntil,string,string,string,RequestContext)']/*" />
         public virtual Operation<BinaryData> CreateCascadeDeleteJob(WaitUntil waitUntil, string jobId, string partyId, string fieldId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(fieldId, nameof(fieldId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (fieldId == null)
+            {
+                throw new ArgumentNullException(nameof(fieldId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Fields.CreateCascadeDeleteJob");
             scope.Start();

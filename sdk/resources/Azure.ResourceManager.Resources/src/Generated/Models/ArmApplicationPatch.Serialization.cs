@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
@@ -13,10 +14,18 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.Resources.Models
 {
-    public partial class ArmApplicationPatch : IUtf8JsonSerializable
+    public partial class ArmApplicationPatch : IUtf8JsonSerializable, IJsonModel<ArmApplicationPatch>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<ArmApplicationPatch>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<ArmApplicationPatch>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ArmApplicationPatch>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ArmApplicationPatch)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(Plan))
             {
@@ -56,6 +65,26 @@ namespace Azure.ResourceManager.Resources.Models
             }
             writer.WritePropertyName("location"u8);
             writer.WriteStringValue(Location);
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("id"u8);
+                writer.WriteStringValue(Id);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(Name);
+            }
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("type"u8);
+                writer.WriteStringValue(ResourceType);
+            }
+            if (options.Format != "W" && Optional.IsDefined(SystemData))
+            {
+                writer.WritePropertyName("systemData"u8);
+                JsonSerializer.Serialize(writer, SystemData);
+            }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
             if (Optional.IsDefined(ManagedResourceGroupId))
@@ -74,20 +103,124 @@ namespace Azure.ResourceManager.Resources.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Parameters);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Parameters.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Parameters))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
+            }
+            if (options.Format != "W" && Optional.IsDefined(Outputs))
+            {
+                writer.WritePropertyName("outputs"u8);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(Outputs);
+#else
+                using (JsonDocument document = JsonDocument.Parse(Outputs))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
+#endif
+            }
+            if (options.Format != "W" && Optional.IsDefined(ProvisioningState))
+            {
+                writer.WritePropertyName("provisioningState"u8);
+                writer.WriteStringValue(ProvisioningState.Value.ToString());
+            }
+            if (options.Format != "W" && Optional.IsDefined(BillingDetails))
+            {
+                writer.WritePropertyName("billingDetails"u8);
+                writer.WriteObjectValue(BillingDetails);
             }
             if (Optional.IsDefined(JitAccessPolicy))
             {
                 writer.WritePropertyName("jitAccessPolicy"u8);
                 writer.WriteObjectValue(JitAccessPolicy);
             }
+            if (options.Format != "W" && Optional.IsDefined(PublisherTenantId))
+            {
+                writer.WritePropertyName("publisherTenantId"u8);
+                writer.WriteStringValue(PublisherTenantId.Value);
+            }
+            if (options.Format != "W" && Optional.IsCollectionDefined(Authorizations))
+            {
+                writer.WritePropertyName("authorizations"u8);
+                writer.WriteStartArray();
+                foreach (var item in Authorizations)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (options.Format != "W" && Optional.IsDefined(ManagementMode))
+            {
+                writer.WritePropertyName("managementMode"u8);
+                writer.WriteStringValue(ManagementMode.Value.ToString());
+            }
+            if (options.Format != "W" && Optional.IsDefined(CustomerSupport))
+            {
+                writer.WritePropertyName("customerSupport"u8);
+                writer.WriteObjectValue(CustomerSupport);
+            }
+            if (options.Format != "W" && Optional.IsDefined(SupportUris))
+            {
+                writer.WritePropertyName("supportUrls"u8);
+                writer.WriteObjectValue(SupportUris);
+            }
+            if (options.Format != "W" && Optional.IsCollectionDefined(Artifacts))
+            {
+                writer.WritePropertyName("artifacts"u8);
+                writer.WriteStartArray();
+                foreach (var item in Artifacts)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (options.Format != "W" && Optional.IsDefined(CreatedBy))
+            {
+                writer.WritePropertyName("createdBy"u8);
+                writer.WriteObjectValue(CreatedBy);
+            }
+            if (options.Format != "W" && Optional.IsDefined(UpdatedBy))
+            {
+                writer.WritePropertyName("updatedBy"u8);
+                writer.WriteObjectValue(UpdatedBy);
+            }
             writer.WriteEndObject();
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static ArmApplicationPatch DeserializeArmApplicationPatch(JsonElement element)
+        ArmApplicationPatch IJsonModel<ArmApplicationPatch>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ArmApplicationPatch>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ArmApplicationPatch)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeArmApplicationPatch(document.RootElement, options);
+        }
+
+        internal static ArmApplicationPatch DeserializeArmApplicationPatch(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -118,6 +251,8 @@ namespace Azure.ResourceManager.Resources.Models
             Optional<IReadOnlyList<ArmApplicationArtifact>> artifacts = default;
             Optional<ArmApplicationDetails> createdBy = default;
             Optional<ArmApplicationDetails> updatedBy = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("plan"u8))
@@ -140,7 +275,7 @@ namespace Azure.ResourceManager.Resources.Models
                     {
                         continue;
                     }
-                    identity = ArmApplicationManagedIdentity.DeserializeArmApplicationManagedIdentity(property.Value);
+                    identity = ArmApplicationManagedIdentity.DeserializeArmApplicationManagedIdentity(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("managedBy"u8))
@@ -154,7 +289,7 @@ namespace Azure.ResourceManager.Resources.Models
                     {
                         continue;
                     }
-                    sku = ArmApplicationSku.DeserializeArmApplicationSku(property.Value);
+                    sku = ArmApplicationSku.DeserializeArmApplicationSku(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("tags"u8))
@@ -260,7 +395,7 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            billingDetails = ArmApplicationBillingDetails.DeserializeArmApplicationBillingDetails(property0.Value);
+                            billingDetails = ArmApplicationBillingDetails.DeserializeArmApplicationBillingDetails(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("jitAccessPolicy"u8))
@@ -269,7 +404,7 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            jitAccessPolicy = ArmApplicationJitAccessPolicy.DeserializeArmApplicationJitAccessPolicy(property0.Value);
+                            jitAccessPolicy = ArmApplicationJitAccessPolicy.DeserializeArmApplicationJitAccessPolicy(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("publisherTenantId"u8))
@@ -290,7 +425,7 @@ namespace Azure.ResourceManager.Resources.Models
                             List<ArmApplicationAuthorization> array = new List<ArmApplicationAuthorization>();
                             foreach (var item in property0.Value.EnumerateArray())
                             {
-                                array.Add(ArmApplicationAuthorization.DeserializeArmApplicationAuthorization(item));
+                                array.Add(ArmApplicationAuthorization.DeserializeArmApplicationAuthorization(item, options));
                             }
                             authorizations = array;
                             continue;
@@ -310,7 +445,7 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            customerSupport = ArmApplicationPackageContact.DeserializeArmApplicationPackageContact(property0.Value);
+                            customerSupport = ArmApplicationPackageContact.DeserializeArmApplicationPackageContact(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("supportUrls"u8))
@@ -319,7 +454,7 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            supportUris = ArmApplicationPackageSupportUris.DeserializeArmApplicationPackageSupportUris(property0.Value);
+                            supportUris = ArmApplicationPackageSupportUris.DeserializeArmApplicationPackageSupportUris(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("artifacts"u8))
@@ -331,7 +466,7 @@ namespace Azure.ResourceManager.Resources.Models
                             List<ArmApplicationArtifact> array = new List<ArmApplicationArtifact>();
                             foreach (var item in property0.Value.EnumerateArray())
                             {
-                                array.Add(ArmApplicationArtifact.DeserializeArmApplicationArtifact(item));
+                                array.Add(ArmApplicationArtifact.DeserializeArmApplicationArtifact(item, options));
                             }
                             artifacts = array;
                             continue;
@@ -342,7 +477,7 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            createdBy = ArmApplicationDetails.DeserializeArmApplicationDetails(property0.Value);
+                            createdBy = ArmApplicationDetails.DeserializeArmApplicationDetails(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("updatedBy"u8))
@@ -351,14 +486,50 @@ namespace Azure.ResourceManager.Resources.Models
                             {
                                 continue;
                             }
-                            updatedBy = ArmApplicationDetails.DeserializeArmApplicationDetails(property0.Value);
+                            updatedBy = ArmApplicationDetails.DeserializeArmApplicationDetails(property0.Value, options);
                             continue;
                         }
                     }
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new ArmApplicationPatch(id, name, type, systemData.Value, Optional.ToDictionary(tags), location, managedBy.Value, sku.Value, plan, kind.Value, identity.Value, managedResourceGroupId.Value, applicationDefinitionId.Value, parameters.Value, outputs.Value, Optional.ToNullable(provisioningState), billingDetails.Value, jitAccessPolicy.Value, Optional.ToNullable(publisherTenantId), Optional.ToList(authorizations), Optional.ToNullable(managementMode), customerSupport.Value, supportUris.Value, Optional.ToList(artifacts), createdBy.Value, updatedBy.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new ArmApplicationPatch(id, name, type, systemData.Value, Optional.ToDictionary(tags), location, managedBy.Value, sku.Value, serializedAdditionalRawData, plan, kind.Value, identity.Value, managedResourceGroupId.Value, applicationDefinitionId.Value, parameters.Value, outputs.Value, Optional.ToNullable(provisioningState), billingDetails.Value, jitAccessPolicy.Value, Optional.ToNullable(publisherTenantId), Optional.ToList(authorizations), Optional.ToNullable(managementMode), customerSupport.Value, supportUris.Value, Optional.ToList(artifacts), createdBy.Value, updatedBy.Value);
         }
+
+        BinaryData IPersistableModel<ArmApplicationPatch>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ArmApplicationPatch>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(ArmApplicationPatch)} does not support '{options.Format}' format.");
+            }
+        }
+
+        ArmApplicationPatch IPersistableModel<ArmApplicationPatch>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ArmApplicationPatch>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeArmApplicationPatch(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(ArmApplicationPatch)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<ArmApplicationPatch>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

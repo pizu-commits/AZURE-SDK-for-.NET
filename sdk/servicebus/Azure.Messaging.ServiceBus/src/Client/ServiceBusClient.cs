@@ -72,7 +72,6 @@ namespace Azure.Messaging.ServiceBus
         /// </summary>
         ///
         /// <returns>A task to be resolved on when the operation has completed.</returns>
-        [SuppressMessage("Usage", "AZC0002:Ensure all service methods take an optional CancellationToken parameter.", Justification = "This signature must match the IAsyncDisposable interface.")]
         public virtual async ValueTask DisposeAsync()
         {
             Logger.ClientCloseStart(typeof(ServiceBusClient), Identifier);
@@ -230,6 +229,12 @@ namespace Azure.Messaging.ServiceBus
             Logger.ClientCreateStart(typeof(ServiceBusClient), fullyQualifiedNamespace);
             _options = options?.Clone() ?? new ServiceBusClientOptions();
             Identifier = string.IsNullOrEmpty(_options.Identifier) ? DiagnosticUtilities.GenerateIdentifier(fullyQualifiedNamespace) : _options.Identifier;
+
+            if (Uri.TryCreate(fullyQualifiedNamespace, UriKind.Absolute, out var uri))
+            {
+                fullyQualifiedNamespace = uri.Host;
+            }
+
             Connection = ServiceBusConnection.CreateWithCredential(
                 fullyQualifiedNamespace,
                 credential,

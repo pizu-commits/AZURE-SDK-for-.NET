@@ -7,26 +7,28 @@
 
 using System;
 using Azure.AI.TextAnalytics.Legacy.Models;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Legacy
 {
     /// <summary> The TextAnalyticsWarning. </summary>
     internal partial class TextAnalyticsWarning
     {
-        /// <summary> Initializes a new instance of TextAnalyticsWarning. </summary>
+        /// <summary> Initializes a new instance of <see cref="TextAnalyticsWarning"/>. </summary>
         /// <param name="code"> Error code. </param>
         /// <param name="message"> Warning message. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal TextAnalyticsWarning(WarningCodeValue code, string message)
         {
-            Argument.AssertNotNull(message, nameof(message));
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
 
             Code = code;
             Message = message;
         }
 
-        /// <summary> Initializes a new instance of TextAnalyticsWarning. </summary>
+        /// <summary> Initializes a new instance of <see cref="TextAnalyticsWarning"/>. </summary>
         /// <param name="code"> Error code. </param>
         /// <param name="message"> Warning message. </param>
         /// <param name="targetRef"> A JSON pointer reference indicating the target object. </param>

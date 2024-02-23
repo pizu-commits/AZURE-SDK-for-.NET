@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Logic
 {
     /// <summary>
-    /// A class representing a collection of <see cref="IntegrationAccountAgreementResource" /> and their operations.
-    /// Each <see cref="IntegrationAccountAgreementResource" /> in the collection will belong to the same instance of <see cref="IntegrationAccountResource" />.
-    /// To get an <see cref="IntegrationAccountAgreementCollection" /> instance call the GetIntegrationAccountAgreements method from an instance of <see cref="IntegrationAccountResource" />.
+    /// A class representing a collection of <see cref="IntegrationAccountAgreementResource"/> and their operations.
+    /// Each <see cref="IntegrationAccountAgreementResource"/> in the collection will belong to the same instance of <see cref="IntegrationAccountResource"/>.
+    /// To get an <see cref="IntegrationAccountAgreementCollection"/> instance call the GetIntegrationAccountAgreements method from an instance of <see cref="IntegrationAccountResource"/>.
     /// </summary>
     public partial class IntegrationAccountAgreementCollection : ArmCollection, IEnumerable<IntegrationAccountAgreementResource>, IAsyncEnumerable<IntegrationAccountAgreementResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<IntegrationAccountAgreementResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string agreementName, IntegrationAccountAgreementData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<IntegrationAccountAgreementResource> CreateOrUpdate(WaitUntil waitUntil, string agreementName, IntegrationAccountAgreementData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agreementName"> The integration account agreement name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
         public virtual async Task<Response<IntegrationAccountAgreementResource>> GetAsync(string agreementName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agreementName"> The integration account agreement name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
         public virtual Response<IntegrationAccountAgreementResource> Get(string agreementName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.Get");
             scope.Start();
@@ -219,17 +286,25 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The number of items to be included in the result. </param>
         /// <param name="filter"> The filter to apply on the operation. Options for filters include: AgreementType. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="IntegrationAccountAgreementResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="IntegrationAccountAgreementResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<IntegrationAccountAgreementResource> GetAllAsync(int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationAccountAgreementRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationAccountAgreementRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IntegrationAccountAgreementResource(Client, IntegrationAccountAgreementData.DeserializeIntegrationAccountAgreementData(e)), _integrationAccountAgreementClientDiagnostics, Pipeline, "IntegrationAccountAgreementCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new IntegrationAccountAgreementResource(Client, IntegrationAccountAgreementData.DeserializeIntegrationAccountAgreementData(e)), _integrationAccountAgreementClientDiagnostics, Pipeline, "IntegrationAccountAgreementCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,17 +318,25 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The number of items to be included in the result. </param>
         /// <param name="filter"> The filter to apply on the operation. Options for filters include: AgreementType. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="IntegrationAccountAgreementResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="IntegrationAccountAgreementResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<IntegrationAccountAgreementResource> GetAll(int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationAccountAgreementRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationAccountAgreementRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, top, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IntegrationAccountAgreementResource(Client, IntegrationAccountAgreementData.DeserializeIntegrationAccountAgreementData(e)), _integrationAccountAgreementClientDiagnostics, Pipeline, "IntegrationAccountAgreementCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new IntegrationAccountAgreementResource(Client, IntegrationAccountAgreementData.DeserializeIntegrationAccountAgreementData(e)), _integrationAccountAgreementClientDiagnostics, Pipeline, "IntegrationAccountAgreementCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -267,6 +350,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agreementName"> The integration account agreement name. </param>
@@ -275,7 +366,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string agreementName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.Exists");
             scope.Start();
@@ -302,6 +400,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationAccountAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agreementName"> The integration account agreement name. </param>
@@ -310,7 +416,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
         public virtual Response<bool> Exists(string agreementName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agreementName, nameof(agreementName));
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
 
             using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.Exists");
             scope.Start();
@@ -318,6 +431,110 @@ namespace Azure.ResourceManager.Logic
             {
                 var response = _integrationAccountAgreementRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agreementName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/agreements/{agreementName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IntegrationAccountAgreements_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="agreementName"> The integration account agreement name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="agreementName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
+        public virtual async Task<NullableResponse<IntegrationAccountAgreementResource>> GetIfExistsAsync(string agreementName, CancellationToken cancellationToken = default)
+        {
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
+
+            using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _integrationAccountAgreementRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agreementName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<IntegrationAccountAgreementResource>(response.GetRawResponse());
+                return Response.FromValue(new IntegrationAccountAgreementResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/agreements/{agreementName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>IntegrationAccountAgreements_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationAccountAgreementResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="agreementName"> The integration account agreement name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="agreementName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="agreementName"/> is null. </exception>
+        public virtual NullableResponse<IntegrationAccountAgreementResource> GetIfExists(string agreementName, CancellationToken cancellationToken = default)
+        {
+            if (agreementName == null)
+            {
+                throw new ArgumentNullException(nameof(agreementName));
+            }
+            if (agreementName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agreementName));
+            }
+
+            using var scope = _integrationAccountAgreementClientDiagnostics.CreateScope("IntegrationAccountAgreementCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _integrationAccountAgreementRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agreementName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<IntegrationAccountAgreementResource>(response.GetRawResponse());
+                return Response.FromValue(new IntegrationAccountAgreementResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

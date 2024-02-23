@@ -7,28 +7,33 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Concur Service linked service. </summary>
     public partial class ConcurLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of ConcurLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ConcurLinkedService"/>. </summary>
         /// <param name="clientId"> Application client_id supplied by Concur App Management. </param>
         /// <param name="username"> The user name that you use to access Concur Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="clientId"/> or <paramref name="username"/> is null. </exception>
         public ConcurLinkedService(object clientId, object username)
         {
-            Argument.AssertNotNull(clientId, nameof(clientId));
-            Argument.AssertNotNull(username, nameof(username));
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
+            if (username == null)
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
 
             ClientId = clientId;
             Username = username;
             Type = "Concur";
         }
 
-        /// <summary> Initializes a new instance of ConcurLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ConcurLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

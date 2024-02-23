@@ -7,28 +7,33 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Jira Service linked service. </summary>
     public partial class JiraLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of JiraLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="JiraLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Jira service. (e.g. jira.example.com). </param>
         /// <param name="username"> The user name that you use to access Jira Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> or <paramref name="username"/> is null. </exception>
         public JiraLinkedService(object host, object username)
         {
-            Argument.AssertNotNull(host, nameof(host));
-            Argument.AssertNotNull(username, nameof(username));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (username == null)
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
 
             Host = host;
             Username = username;
             Type = "Jira";
         }
 
-        /// <summary> Initializes a new instance of JiraLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="JiraLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

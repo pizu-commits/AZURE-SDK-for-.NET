@@ -8,27 +8,32 @@
 using System;
 using System.Collections.Generic;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The LanguageDetectionDocumentResult. </summary>
     internal partial class LanguageDetectionDocumentResult : DocumentResult
     {
-        /// <summary> Initializes a new instance of LanguageDetectionDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="LanguageDetectionDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="detectedLanguage"> Detected Language. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="warnings"/> is null. </exception>
         public LanguageDetectionDocumentResult(string id, IEnumerable<DocumentWarning> warnings, DetectedLanguageInternal detectedLanguage) : base(id, warnings)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(warnings, nameof(warnings));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
 
             DetectedLanguage = detectedLanguage;
         }
 
-        /// <summary> Initializes a new instance of LanguageDetectionDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="LanguageDetectionDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>

@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -49,8 +50,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
         public PurviewScanningServiceClient(Uri endpoint, TokenCredential credential, PurviewScanningServiceClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new PurviewScanningServiceClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -70,7 +77,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="keyVaultName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -79,7 +86,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetKeyVaultReferenceAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetKeyVaultReferenceAsync(string keyVaultName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetKeyVaultReference");
             scope.Start();
@@ -105,7 +119,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="keyVaultName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -114,7 +128,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetKeyVaultReference(string,RequestContext)']/*" />
         public virtual Response GetKeyVaultReference(string keyVaultName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetKeyVaultReference");
             scope.Start();
@@ -140,7 +161,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> or <paramref name="content"/> is null. </exception>
@@ -150,8 +171,18 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='CreateOrUpdateKeyVaultReferenceAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateKeyVaultReferenceAsync(string keyVaultName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.CreateOrUpdateKeyVaultReference");
             scope.Start();
@@ -177,7 +208,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> or <paramref name="content"/> is null. </exception>
@@ -187,8 +218,18 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='CreateOrUpdateKeyVaultReference(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdateKeyVaultReference(string keyVaultName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.CreateOrUpdateKeyVaultReference");
             scope.Start();
@@ -214,7 +255,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="keyVaultName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -223,7 +264,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='DeleteKeyVaultReferenceAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteKeyVaultReferenceAsync(string keyVaultName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.DeleteKeyVaultReference");
             scope.Start();
@@ -249,7 +297,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="keyVaultName"> The String to use. </param>
+        /// <param name="keyVaultName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="keyVaultName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="keyVaultName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -258,7 +306,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='DeleteKeyVaultReference(string,RequestContext)']/*" />
         public virtual Response DeleteKeyVaultReference(string keyVaultName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(keyVaultName, nameof(keyVaultName));
+            if (keyVaultName == null)
+            {
+                throw new ArgumentNullException(nameof(keyVaultName));
+            }
+            if (keyVaultName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(keyVaultName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.DeleteKeyVaultReference");
             scope.Start();
@@ -284,7 +339,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="scanRulesetName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -293,7 +348,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetScanRulesetAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetScanRulesetAsync(string scanRulesetName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetScanRuleset");
             scope.Start();
@@ -319,7 +381,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="scanRulesetName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -328,7 +390,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetScanRuleset(string,RequestContext)']/*" />
         public virtual Response GetScanRuleset(string scanRulesetName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetScanRuleset");
             scope.Start();
@@ -354,7 +423,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
@@ -364,7 +433,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='CreateOrUpdateScanRulesetAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateScanRulesetAsync(string scanRulesetName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.CreateOrUpdateScanRuleset");
             scope.Start();
@@ -390,7 +466,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
@@ -400,7 +476,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='CreateOrUpdateScanRuleset(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdateScanRuleset(string scanRulesetName, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.CreateOrUpdateScanRuleset");
             scope.Start();
@@ -426,7 +509,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="scanRulesetName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -435,7 +518,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='DeleteScanRulesetAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteScanRulesetAsync(string scanRulesetName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.DeleteScanRuleset");
             scope.Start();
@@ -461,7 +551,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="scanRulesetName"> The String to use. </param>
+        /// <param name="scanRulesetName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="scanRulesetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="scanRulesetName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -470,7 +560,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='DeleteScanRuleset(string,RequestContext)']/*" />
         public virtual Response DeleteScanRuleset(string scanRulesetName, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(scanRulesetName, nameof(scanRulesetName));
+            if (scanRulesetName == null)
+            {
+                throw new ArgumentNullException(nameof(scanRulesetName));
+            }
+            if (scanRulesetName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanRulesetName));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.DeleteScanRuleset");
             scope.Start();
@@ -496,7 +593,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSourceType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceType"/> is an empty string, and was expected to be non-empty. </exception>
@@ -505,7 +602,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetSystemRulesetsForDataSourceAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetSystemRulesetsForDataSourceAsync(string dataSourceType, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(dataSourceType, nameof(dataSourceType));
+            if (dataSourceType == null)
+            {
+                throw new ArgumentNullException(nameof(dataSourceType));
+            }
+            if (dataSourceType.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(dataSourceType));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetSystemRulesetsForDataSource");
             scope.Start();
@@ -531,7 +635,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSourceType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceType"/> is an empty string, and was expected to be non-empty. </exception>
@@ -540,7 +644,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanningServiceClient.xml" path="doc/members/member[@name='GetSystemRulesetsForDataSource(string,RequestContext)']/*" />
         public virtual Response GetSystemRulesetsForDataSource(string dataSourceType, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(dataSourceType, nameof(dataSourceType));
+            if (dataSourceType == null)
+            {
+                throw new ArgumentNullException(nameof(dataSourceType));
+            }
+            if (dataSourceType.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(dataSourceType));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanningServiceClient.GetSystemRulesetsForDataSource");
             scope.Start();
@@ -566,8 +677,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="version"> The Int32 to use. </param>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="version"> The <see cref="int"/> to use. </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -598,8 +709,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="version"> The Int32 to use. </param>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="version"> The <see cref="int"/> to use. </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -630,7 +741,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -661,7 +772,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -700,7 +811,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetKeyVaultReferencesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetKeyVaultReferencesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetKeyVaultReferences", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetKeyVaultReferences", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -721,7 +832,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetKeyVaultReferencesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetKeyVaultReferencesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetKeyVaultReferences", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetKeyVaultReferences", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -742,7 +853,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetClassificationRulesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetClassificationRulesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetClassificationRules", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetClassificationRules", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -763,7 +874,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetClassificationRulesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetClassificationRulesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetClassificationRules", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetClassificationRules", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -784,7 +895,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDataSourcesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDataSourcesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetDataSources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetDataSources", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -805,7 +916,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetDataSourcesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetDataSourcesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetDataSources", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetDataSources", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -826,7 +937,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetScanRulesetsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetScanRulesetsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetScanRulesets", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetScanRulesets", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -847,7 +958,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetScanRulesetsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetScanRulesetsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetScanRulesets", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetScanRulesets", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -868,7 +979,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSystemRulesetsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSystemRulesetsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesets", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesets", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -889,7 +1000,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSystemRulesetsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSystemRulesetsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesets", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesets", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -902,7 +1013,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -911,7 +1022,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSystemRulesetsVersionsRequest(dataSourceType, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSystemRulesetsVersionsNextPageRequest(nextLink, dataSourceType, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesetsVersions", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesetsVersions", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -924,7 +1035,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataSourceType"> The DataSourceType to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
+        /// <param name="dataSourceType"> The <see cref="string"/> to use. Allowed values: "None" | "AzureSubscription" | "AzureResourceGroup" | "AzureSynapseWorkspace" | "AzureSynapse" | "AdlsGen1" | "AdlsGen2" | "AmazonAccount" | "AmazonS3" | "AmazonSql" | "AzureCosmosDb" | "AzureDataExplorer" | "AzureFileService" | "AzureSqlDatabase" | "AmazonPostgreSql" | "AzurePostgreSql" | "SqlServerDatabase" | "AzureSqlDatabaseManagedInstance" | "AzureSqlDataWarehouse" | "AzureMySql" | "AzureStorage" | "Teradata" | "Oracle" | "SapS4Hana" | "SapEcc" | "PowerBI". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -933,7 +1044,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSystemRulesetsVersionsRequest(dataSourceType, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSystemRulesetsVersionsNextPageRequest(nextLink, dataSourceType, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesetsVersions", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanningServiceClient.GetSystemRulesetsVersions", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetKeyVaultReferenceRequest(string keyVaultName, RequestContext context)

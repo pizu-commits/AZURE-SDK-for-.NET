@@ -9,28 +9,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> An object representing the summarization result of a single document. </summary>
     internal partial class AbstractiveSummaryDocumentResult : DocumentResult
     {
-        /// <summary> Initializes a new instance of AbstractiveSummaryDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="AbstractiveSummaryDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="summaries"> A list of abstractive summaries. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/> or <paramref name="summaries"/> is null. </exception>
         public AbstractiveSummaryDocumentResult(string id, IEnumerable<DocumentWarning> warnings, IEnumerable<AbstractiveSummaryInternal> summaries) : base(id, warnings)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(warnings, nameof(warnings));
-            Argument.AssertNotNull(summaries, nameof(summaries));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
+            if (summaries == null)
+            {
+                throw new ArgumentNullException(nameof(summaries));
+            }
 
             Summaries = summaries.ToList();
         }
 
-        /// <summary> Initializes a new instance of AbstractiveSummaryDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="AbstractiveSummaryDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>

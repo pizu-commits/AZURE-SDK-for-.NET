@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> A WebLinkedService that uses basic authentication to communicate with an HTTP endpoint. </summary>
     public partial class WebBasicAuthentication : WebLinkedServiceTypeProperties
     {
-        /// <summary> Initializes a new instance of WebBasicAuthentication. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebBasicAuthentication"/>. </summary>
         /// <param name="url"> The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). </param>
         /// <param name="username"> User name for Basic authentication. Type: string (or Expression with resultType string). </param>
         /// <param name="password">
@@ -24,16 +23,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="url"/>, <paramref name="username"/> or <paramref name="password"/> is null. </exception>
         public WebBasicAuthentication(object url, object username, SecretBase password) : base(url)
         {
-            Argument.AssertNotNull(url, nameof(url));
-            Argument.AssertNotNull(username, nameof(username));
-            Argument.AssertNotNull(password, nameof(password));
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+            if (username == null)
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
 
             Username = username;
             Password = password;
             AuthenticationType = WebAuthenticationType.Basic;
         }
 
-        /// <summary> Initializes a new instance of WebBasicAuthentication. </summary>
+        /// <summary> Initializes a new instance of <see cref="WebBasicAuthentication"/>. </summary>
         /// <param name="url"> The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). </param>
         /// <param name="authenticationType"> Type of authentication used to connect to the web table source. </param>
         /// <param name="username"> User name for Basic authentication. Type: string (or Expression with resultType string). </param>

@@ -17,9 +17,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AppServicePlanHybridConnectionNamespaceRelayResource" /> and their operations.
-    /// Each <see cref="AppServicePlanHybridConnectionNamespaceRelayResource" /> in the collection will belong to the same instance of <see cref="AppServicePlanResource" />.
-    /// To get an <see cref="AppServicePlanHybridConnectionNamespaceRelayCollection" /> instance call the GetAppServicePlanHybridConnectionNamespaceRelays method from an instance of <see cref="AppServicePlanResource" />.
+    /// A class representing a collection of <see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/> and their operations.
+    /// Each <see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/> in the collection will belong to the same instance of <see cref="AppServicePlanResource"/>.
+    /// To get an <see cref="AppServicePlanHybridConnectionNamespaceRelayCollection"/> instance call the GetAppServicePlanHybridConnectionNamespaceRelays method from an instance of <see cref="AppServicePlanResource"/>.
     /// </summary>
     public partial class AppServicePlanHybridConnectionNamespaceRelayCollection : ArmCollection
     {
@@ -61,6 +61,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServicePlans_GetHybridConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
@@ -70,8 +78,22 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
         public virtual async Task<Response<AppServicePlanHybridConnectionNamespaceRelayResource>> GetAsync(string namespaceName, string relayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(namespaceName, nameof(namespaceName));
-            Argument.AssertNotNullOrEmpty(relayName, nameof(relayName));
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
 
             using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.Get");
             scope.Start();
@@ -100,6 +122,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServicePlans_GetHybridConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
@@ -109,8 +139,22 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
         public virtual Response<AppServicePlanHybridConnectionNamespaceRelayResource> Get(string namespaceName, string relayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(namespaceName, nameof(namespaceName));
-            Argument.AssertNotNullOrEmpty(relayName, nameof(relayName));
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
 
             using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.Get");
             scope.Start();
@@ -139,6 +183,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServicePlans_GetHybridConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
@@ -148,8 +200,22 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string namespaceName, string relayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(namespaceName, nameof(namespaceName));
-            Argument.AssertNotNullOrEmpty(relayName, nameof(relayName));
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
 
             using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.Exists");
             scope.Start();
@@ -176,6 +242,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServicePlans_GetHybridConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
@@ -185,8 +259,22 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
         public virtual Response<bool> Exists(string namespaceName, string relayName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(namespaceName, nameof(namespaceName));
-            Argument.AssertNotNullOrEmpty(relayName, nameof(relayName));
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
 
             using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.Exists");
             scope.Start();
@@ -194,6 +282,128 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansRestClient.GetHybridConnection(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, namespaceName, relayName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AppServicePlans_GetHybridConnection</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
+        /// <param name="relayName"> Name of the Service Bus relay. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AppServicePlanHybridConnectionNamespaceRelayResource>> GetIfExistsAsync(string namespaceName, string relayName, CancellationToken cancellationToken = default)
+        {
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
+
+            using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _appServicePlanHybridConnectionNamespaceRelayAppServicePlansRestClient.GetHybridConnectionAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, namespaceName, relayName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AppServicePlanHybridConnectionNamespaceRelayResource>(response.GetRawResponse());
+                return Response.FromValue(new AppServicePlanHybridConnectionNamespaceRelayResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AppServicePlans_GetHybridConnection</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServicePlanHybridConnectionNamespaceRelayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="namespaceName"> Name of the Service Bus namespace. </param>
+        /// <param name="relayName"> Name of the Service Bus relay. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="namespaceName"/> or <paramref name="relayName"/> is null. </exception>
+        public virtual NullableResponse<AppServicePlanHybridConnectionNamespaceRelayResource> GetIfExists(string namespaceName, string relayName, CancellationToken cancellationToken = default)
+        {
+            if (namespaceName == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceName));
+            }
+            if (namespaceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(namespaceName));
+            }
+            if (relayName == null)
+            {
+                throw new ArgumentNullException(nameof(relayName));
+            }
+            if (relayName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(relayName));
+            }
+
+            using var scope = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansClientDiagnostics.CreateScope("AppServicePlanHybridConnectionNamespaceRelayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _appServicePlanHybridConnectionNamespaceRelayAppServicePlansRestClient.GetHybridConnection(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, namespaceName, relayName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AppServicePlanHybridConnectionNamespaceRelayResource>(response.GetRawResponse());
+                return Response.FromValue(new AppServicePlanHybridConnectionNamespaceRelayResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

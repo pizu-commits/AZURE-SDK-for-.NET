@@ -9,6 +9,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,13 +21,16 @@ namespace Azure.ResourceManager.AppService
 {
     /// <summary>
     /// A Class representing an AppServiceEnvironment along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="AppServiceEnvironmentResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetAppServiceEnvironmentResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetAppServiceEnvironment method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="AppServiceEnvironmentResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetAppServiceEnvironmentResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetAppServiceEnvironment method.
     /// </summary>
     public partial class AppServiceEnvironmentResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="AppServiceEnvironmentResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="name"> The name. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string name)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}";
@@ -41,12 +45,15 @@ namespace Azure.ResourceManager.AppService
         private readonly RecommendationsRestOperations _hostingEnvironmentRecommendationRecommendationsRestClient;
         private readonly AppServiceEnvironmentData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Web/hostingEnvironments";
+
         /// <summary> Initializes a new instance of the <see cref="AppServiceEnvironmentResource"/> class for mocking. </summary>
         protected AppServiceEnvironmentResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "AppServiceEnvironmentResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="AppServiceEnvironmentResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal AppServiceEnvironmentResource(ArmClient client, AppServiceEnvironmentData data) : this(client, data.Id)
@@ -73,9 +80,6 @@ namespace Azure.ResourceManager.AppService
 #endif
         }
 
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Web/hostingEnvironments";
-
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
 
@@ -101,7 +105,7 @@ namespace Azure.ResourceManager.AppService
         /// <returns> An object representing collection of HostingEnvironmentDetectorResources and their operations over a HostingEnvironmentDetectorResource. </returns>
         public virtual HostingEnvironmentDetectorCollection GetHostingEnvironmentDetectors()
         {
-            return GetCachedClient(Client => new HostingEnvironmentDetectorCollection(Client, Id));
+            return GetCachedClient(client => new HostingEnvironmentDetectorCollection(client, Id));
         }
 
         /// <summary>
@@ -115,6 +119,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetHostingEnvironmentDetectorResponse</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -122,8 +134,8 @@ namespace Azure.ResourceManager.AppService
         /// <param name="endTime"> End Time. </param>
         /// <param name="timeGrain"> Time Grain. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<HostingEnvironmentDetectorResource>> GetHostingEnvironmentDetectorAsync(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
@@ -141,6 +153,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetHostingEnvironmentDetectorResponse</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -148,8 +168,8 @@ namespace Azure.ResourceManager.AppService
         /// <param name="endTime"> End Time. </param>
         /// <param name="timeGrain"> Time Grain. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<HostingEnvironmentDetectorResource> GetHostingEnvironmentDetector(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
@@ -157,14 +177,14 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Gets an object representing a AseV3NetworkingConfigurationResource along with the instance operations that can be performed on it in the AppServiceEnvironment. </summary>
-        /// <returns> Returns a <see cref="AseV3NetworkingConfigurationResource" /> object. </returns>
+        /// <returns> Returns a <see cref="AseV3NetworkingConfigurationResource"/> object. </returns>
         public virtual AseV3NetworkingConfigurationResource GetAseV3NetworkingConfiguration()
         {
             return new AseV3NetworkingConfigurationResource(Client, Id.AppendChildResource("configurations", "networking"));
         }
 
         /// <summary> Gets an object representing a HostingEnvironmentMultiRolePoolResource along with the instance operations that can be performed on it in the AppServiceEnvironment. </summary>
-        /// <returns> Returns a <see cref="HostingEnvironmentMultiRolePoolResource" /> object. </returns>
+        /// <returns> Returns a <see cref="HostingEnvironmentMultiRolePoolResource"/> object. </returns>
         public virtual HostingEnvironmentMultiRolePoolResource GetHostingEnvironmentMultiRolePool()
         {
             return new HostingEnvironmentMultiRolePoolResource(Client, Id.AppendChildResource("multiRolePools", "default"));
@@ -174,7 +194,7 @@ namespace Azure.ResourceManager.AppService
         /// <returns> An object representing collection of HostingEnvironmentWorkerPoolResources and their operations over a HostingEnvironmentWorkerPoolResource. </returns>
         public virtual HostingEnvironmentWorkerPoolCollection GetHostingEnvironmentWorkerPools()
         {
-            return GetCachedClient(Client => new HostingEnvironmentWorkerPoolCollection(Client, Id));
+            return GetCachedClient(client => new HostingEnvironmentWorkerPoolCollection(client, Id));
         }
 
         /// <summary>
@@ -188,12 +208,20 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetWorkerPool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentWorkerPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="workerPoolName"> Name of the worker pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="workerPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="workerPoolName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="workerPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<HostingEnvironmentWorkerPoolResource>> GetHostingEnvironmentWorkerPoolAsync(string workerPoolName, CancellationToken cancellationToken = default)
         {
@@ -211,12 +239,20 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetWorkerPool</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentWorkerPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="workerPoolName"> Name of the worker pool. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="workerPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="workerPoolName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="workerPoolName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<HostingEnvironmentWorkerPoolResource> GetHostingEnvironmentWorkerPool(string workerPoolName, CancellationToken cancellationToken = default)
         {
@@ -227,7 +263,7 @@ namespace Azure.ResourceManager.AppService
         /// <returns> An object representing collection of HostingEnvironmentPrivateEndpointConnectionResources and their operations over a HostingEnvironmentPrivateEndpointConnectionResource. </returns>
         public virtual HostingEnvironmentPrivateEndpointConnectionCollection GetHostingEnvironmentPrivateEndpointConnections()
         {
-            return GetCachedClient(Client => new HostingEnvironmentPrivateEndpointConnectionCollection(Client, Id));
+            return GetCachedClient(client => new HostingEnvironmentPrivateEndpointConnectionCollection(client, Id));
         }
 
         /// <summary>
@@ -241,12 +277,20 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetPrivateEndpointConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the private endpoint connection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<HostingEnvironmentPrivateEndpointConnectionResource>> GetHostingEnvironmentPrivateEndpointConnectionAsync(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -264,12 +308,20 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetPrivateEndpointConnection</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentPrivateEndpointConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="privateEndpointConnectionName"> Name of the private endpoint connection. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="privateEndpointConnectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="privateEndpointConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<HostingEnvironmentPrivateEndpointConnectionResource> GetHostingEnvironmentPrivateEndpointConnection(string privateEndpointConnectionName, CancellationToken cancellationToken = default)
         {
@@ -280,7 +332,7 @@ namespace Azure.ResourceManager.AppService
         /// <returns> An object representing collection of HostingEnvironmentRecommendationResources and their operations over a HostingEnvironmentRecommendationResource. </returns>
         public virtual HostingEnvironmentRecommendationCollection GetHostingEnvironmentRecommendations()
         {
-            return GetCachedClient(Client => new HostingEnvironmentRecommendationCollection(Client, Id));
+            return GetCachedClient(client => new HostingEnvironmentRecommendationCollection(client, Id));
         }
 
         /// <summary>
@@ -294,14 +346,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_GetRuleDetailsByHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentRecommendationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> Name of the recommendation. </param>
         /// <param name="updateSeen"> Specify &lt;code&gt;true&lt;/code&gt; to update the last-seen timestamp of the recommendation object. </param>
         /// <param name="recommendationId"> The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<HostingEnvironmentRecommendationResource>> GetHostingEnvironmentRecommendationAsync(string name, bool? updateSeen = null, string recommendationId = null, CancellationToken cancellationToken = default)
         {
@@ -319,14 +379,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_GetRuleDetailsByHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentRecommendationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="name"> Name of the recommendation. </param>
         /// <param name="updateSeen"> Specify &lt;code&gt;true&lt;/code&gt; to update the last-seen timestamp of the recommendation object. </param>
         /// <param name="recommendationId"> The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<HostingEnvironmentRecommendationResource> GetHostingEnvironmentRecommendation(string name, bool? updateSeen = null, string recommendationId = null, CancellationToken cancellationToken = default)
         {
@@ -343,6 +411,14 @@ namespace Azure.ResourceManager.AppService
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -376,6 +452,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -407,6 +491,14 @@ namespace Azure.ResourceManager.AppService
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -443,6 +535,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -478,6 +578,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Configuration details of the App Service Environment. </param>
@@ -485,7 +593,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<AppServiceEnvironmentResource>> UpdateAsync(AppServiceEnvironmentPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _appServiceEnvironmentClientDiagnostics.CreateScope("AppServiceEnvironmentResource.Update");
             scope.Start();
@@ -512,6 +623,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Configuration details of the App Service Environment. </param>
@@ -519,7 +638,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<AppServiceEnvironmentResource> Update(AppServiceEnvironmentPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _appServiceEnvironmentClientDiagnostics.CreateScope("AppServiceEnvironmentResource.Update");
             scope.Start();
@@ -546,15 +668,19 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListCapacities</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StampCapacity" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="StampCapacity"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<StampCapacity> GetCapacitiesAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListCapacitiesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListCapacitiesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, StampCapacity.DeserializeStampCapacity, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetCapacities", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => StampCapacity.DeserializeStampCapacity(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetCapacities", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -568,15 +694,19 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListCapacities</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StampCapacity" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="StampCapacity"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<StampCapacity> GetCapacities(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListCapacitiesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListCapacitiesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, StampCapacity.DeserializeStampCapacity, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetCapacities", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => StampCapacity.DeserializeStampCapacity(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetCapacities", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -589,6 +719,10 @@ namespace Azure.ResourceManager.AppService
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetVipInfo</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
         /// </item>
         /// </list>
         /// </summary>
@@ -620,6 +754,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetVipInfo</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -650,14 +788,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListDiagnostics</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="HostingEnvironmentDiagnostics" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="HostingEnvironmentDiagnostics"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<HostingEnvironmentDiagnostics> GetDiagnosticsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListDiagnosticsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, HostingEnvironmentDiagnostics.DeserializeHostingEnvironmentDiagnostics, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetDiagnostics", "", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => HostingEnvironmentDiagnostics.DeserializeHostingEnvironmentDiagnostics(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetDiagnostics", "", null, cancellationToken);
         }
 
         /// <summary>
@@ -671,14 +817,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListDiagnostics</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="HostingEnvironmentDiagnostics" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="HostingEnvironmentDiagnostics"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<HostingEnvironmentDiagnostics> GetDiagnostics(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListDiagnosticsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, HostingEnvironmentDiagnostics.DeserializeHostingEnvironmentDiagnostics, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetDiagnostics", "", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => HostingEnvironmentDiagnostics.DeserializeHostingEnvironmentDiagnostics(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetDiagnostics", "", null, cancellationToken);
         }
 
         /// <summary>
@@ -692,6 +846,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetDiagnosticsItem</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="diagnosticsName"> Name of the diagnostics item. </param>
@@ -700,7 +858,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="diagnosticsName"/> is null. </exception>
         public virtual async Task<Response<HostingEnvironmentDiagnostics>> GetDiagnosticsItemAsync(string diagnosticsName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(diagnosticsName, nameof(diagnosticsName));
+            if (diagnosticsName == null)
+            {
+                throw new ArgumentNullException(nameof(diagnosticsName));
+            }
+            if (diagnosticsName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(diagnosticsName));
+            }
 
             using var scope = _appServiceEnvironmentClientDiagnostics.CreateScope("AppServiceEnvironmentResource.GetDiagnosticsItem");
             scope.Start();
@@ -727,6 +892,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetDiagnosticsItem</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="diagnosticsName"> Name of the diagnostics item. </param>
@@ -735,7 +904,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="diagnosticsName"/> is null. </exception>
         public virtual Response<HostingEnvironmentDiagnostics> GetDiagnosticsItem(string diagnosticsName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(diagnosticsName, nameof(diagnosticsName));
+            if (diagnosticsName == null)
+            {
+                throw new ArgumentNullException(nameof(diagnosticsName));
+            }
+            if (diagnosticsName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(diagnosticsName));
+            }
 
             using var scope = _appServiceEnvironmentClientDiagnostics.CreateScope("AppServiceEnvironmentResource.GetDiagnosticsItem");
             scope.Start();
@@ -762,15 +938,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetInboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="InboundEnvironmentEndpoint" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="InboundEnvironmentEndpoint"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<InboundEnvironmentEndpoint> GetInboundNetworkDependenciesEndpointsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetInboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateGetInboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, InboundEnvironmentEndpoint.DeserializeInboundEnvironmentEndpoint, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetInboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => InboundEnvironmentEndpoint.DeserializeInboundEnvironmentEndpoint(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetInboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -784,15 +968,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetInboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="InboundEnvironmentEndpoint" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="InboundEnvironmentEndpoint"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<InboundEnvironmentEndpoint> GetInboundNetworkDependenciesEndpoints(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetInboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateGetInboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, InboundEnvironmentEndpoint.DeserializeInboundEnvironmentEndpoint, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetInboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => InboundEnvironmentEndpoint.DeserializeInboundEnvironmentEndpoint(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetInboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -806,14 +998,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListOperations</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppServiceOperation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppServiceOperation"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppServiceOperation> GetOperationsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListOperationsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, AppServiceOperation.DeserializeAppServiceOperation, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOperations", "", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => AppServiceOperation.DeserializeAppServiceOperation(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOperations", "", null, cancellationToken);
         }
 
         /// <summary>
@@ -827,14 +1027,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListOperations</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppServiceOperation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppServiceOperation"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppServiceOperation> GetOperations(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListOperationsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, AppServiceOperation.DeserializeAppServiceOperation, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOperations", "", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => AppServiceOperation.DeserializeAppServiceOperation(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOperations", "", null, cancellationToken);
         }
 
         /// <summary>
@@ -848,15 +1056,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetOutboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="OutboundEnvironmentEndpoint" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="OutboundEnvironmentEndpoint"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<OutboundEnvironmentEndpoint> GetOutboundNetworkDependenciesEndpointsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetOutboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateGetOutboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, OutboundEnvironmentEndpoint.DeserializeOutboundEnvironmentEndpoint, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => OutboundEnvironmentEndpoint.DeserializeOutboundEnvironmentEndpoint(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -870,15 +1086,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetOutboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="OutboundEnvironmentEndpoint" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="OutboundEnvironmentEndpoint"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<OutboundEnvironmentEndpoint> GetOutboundNetworkDependenciesEndpoints(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetOutboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateGetOutboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, OutboundEnvironmentEndpoint.DeserializeOutboundEnvironmentEndpoint, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => OutboundEnvironmentEndpoint.DeserializeOutboundEnvironmentEndpoint(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -892,14 +1116,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetPrivateLinkResources</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppServicePrivateLinkResourceData" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppServicePrivateLinkResourceData"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppServicePrivateLinkResourceData> GetPrivateLinkResourcesAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetPrivateLinkResourcesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, AppServicePrivateLinkResourceData.DeserializeAppServicePrivateLinkResourceData, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetPrivateLinkResources", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => AppServicePrivateLinkResourceData.DeserializeAppServicePrivateLinkResourceData(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetPrivateLinkResources", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -913,14 +1145,22 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_GetPrivateLinkResources</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppServicePrivateLinkResourceData" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppServicePrivateLinkResourceData"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppServicePrivateLinkResourceData> GetPrivateLinkResources(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateGetPrivateLinkResourcesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, AppServicePrivateLinkResourceData.DeserializeAppServicePrivateLinkResourceData, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetPrivateLinkResources", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => AppServicePrivateLinkResourceData.DeserializeAppServicePrivateLinkResourceData(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetPrivateLinkResources", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -933,6 +1173,14 @@ namespace Azure.ResourceManager.AppService
         /// <item>
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Reboot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -964,6 +1212,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_Reboot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -994,15 +1250,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListAppServicePlans</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppServicePlanResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppServicePlanResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppServicePlanResource> GetAppServicePlansAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListAppServicePlansRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListAppServicePlansNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppServicePlanResource(Client, AppServicePlanData.DeserializeAppServicePlanData(e)), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetAppServicePlans", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppServicePlanResource(Client, AppServicePlanData.DeserializeAppServicePlanData(e)), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetAppServicePlans", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1016,15 +1280,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListAppServicePlans</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppServicePlanResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppServicePlanResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppServicePlanResource> GetAppServicePlans(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListAppServicePlansRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListAppServicePlansNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppServicePlanResource(Client, AppServicePlanData.DeserializeAppServicePlanData(e)), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetAppServicePlans", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppServicePlanResource(Client, AppServicePlanData.DeserializeAppServicePlanData(e)), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetAppServicePlans", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1038,16 +1310,24 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListUsages</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CsmUsageQuota" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="CsmUsageQuota"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<CsmUsageQuota> GetUsagesAsync(string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListUsagesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListUsagesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, CsmUsageQuota.DeserializeCsmUsageQuota, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetUsages", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => CsmUsageQuota.DeserializeCsmUsageQuota(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetUsages", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1061,16 +1341,24 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>AppServiceEnvironments_ListUsages</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CsmUsageQuota" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="CsmUsageQuota"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<CsmUsageQuota> GetUsages(string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appServiceEnvironmentRestClient.CreateListUsagesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appServiceEnvironmentRestClient.CreateListUsagesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, CsmUsageQuota.DeserializeCsmUsageQuota, _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetUsages", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => CsmUsageQuota.DeserializeCsmUsageQuota(e), _appServiceEnvironmentClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetUsages", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1084,17 +1372,21 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ListHistoryForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expiredOnly"> Specify &lt;code&gt;false&lt;/code&gt; to return all recommendations. The default is &lt;code&gt;true&lt;/code&gt;, which returns only expired recommendations. </param>
         /// <param name="filter"> Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppServiceRecommendation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppServiceRecommendation"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppServiceRecommendation> GetHistoryForHostingEnvironmentRecommendationsAsync(bool? expiredOnly = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _recommendationsRestClient.CreateListHistoryForHostingEnvironmentRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expiredOnly, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _recommendationsRestClient.CreateListHistoryForHostingEnvironmentNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expiredOnly, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, AppServiceRecommendation.DeserializeAppServiceRecommendation, _recommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetHistoryForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => AppServiceRecommendation.DeserializeAppServiceRecommendation(e), _recommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetHistoryForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1108,17 +1400,21 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ListHistoryForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="expiredOnly"> Specify &lt;code&gt;false&lt;/code&gt; to return all recommendations. The default is &lt;code&gt;true&lt;/code&gt;, which returns only expired recommendations. </param>
         /// <param name="filter"> Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppServiceRecommendation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppServiceRecommendation"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppServiceRecommendation> GetHistoryForHostingEnvironmentRecommendations(bool? expiredOnly = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _recommendationsRestClient.CreateListHistoryForHostingEnvironmentRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expiredOnly, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _recommendationsRestClient.CreateListHistoryForHostingEnvironmentNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, expiredOnly, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, AppServiceRecommendation.DeserializeAppServiceRecommendation, _recommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetHistoryForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => AppServiceRecommendation.DeserializeAppServiceRecommendation(e), _recommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetHistoryForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1132,17 +1428,25 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ListRecommendedRulesForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentRecommendationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="featured"> Specify &lt;code&gt;true&lt;/code&gt; to return only the most critical recommendations. The default is &lt;code&gt;false&lt;/code&gt;, which returns all recommendations. </param>
         /// <param name="filter"> Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppServiceRecommendation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppServiceRecommendation"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppServiceRecommendation> GetRecommendedRulesForHostingEnvironmentRecommendationsAsync(bool? featured = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _hostingEnvironmentRecommendationRecommendationsRestClient.CreateListRecommendedRulesForHostingEnvironmentRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, featured, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _hostingEnvironmentRecommendationRecommendationsRestClient.CreateListRecommendedRulesForHostingEnvironmentNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, featured, filter);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, AppServiceRecommendation.DeserializeAppServiceRecommendation, _hostingEnvironmentRecommendationRecommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetRecommendedRulesForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => AppServiceRecommendation.DeserializeAppServiceRecommendation(e), _hostingEnvironmentRecommendationRecommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetRecommendedRulesForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1156,17 +1460,25 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ListRecommendedRulesForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="HostingEnvironmentRecommendationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="featured"> Specify &lt;code&gt;true&lt;/code&gt; to return only the most critical recommendations. The default is &lt;code&gt;false&lt;/code&gt;, which returns all recommendations. </param>
         /// <param name="filter"> Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppServiceRecommendation" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppServiceRecommendation"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppServiceRecommendation> GetRecommendedRulesForHostingEnvironmentRecommendations(bool? featured = null, string filter = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _hostingEnvironmentRecommendationRecommendationsRestClient.CreateListRecommendedRulesForHostingEnvironmentRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, featured, filter);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _hostingEnvironmentRecommendationRecommendationsRestClient.CreateListRecommendedRulesForHostingEnvironmentNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, featured, filter);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, AppServiceRecommendation.DeserializeAppServiceRecommendation, _hostingEnvironmentRecommendationRecommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetRecommendedRulesForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => AppServiceRecommendation.DeserializeAppServiceRecommendation(e), _hostingEnvironmentRecommendationRecommendationsClientDiagnostics, Pipeline, "AppServiceEnvironmentResource.GetRecommendedRulesForHostingEnvironmentRecommendations", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -1180,6 +1492,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_DisableAllForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="environmentName"> Name of the app. </param>
@@ -1187,7 +1503,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> is null. </exception>
         public virtual async Task<Response> DisableAllForHostingEnvironmentRecommendationAsync(string environmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(environmentName, nameof(environmentName));
+            if (environmentName == null)
+            {
+                throw new ArgumentNullException(nameof(environmentName));
+            }
 
             using var scope = _recommendationsClientDiagnostics.CreateScope("AppServiceEnvironmentResource.DisableAllForHostingEnvironmentRecommendation");
             scope.Start();
@@ -1214,6 +1533,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_DisableAllForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="environmentName"> Name of the app. </param>
@@ -1221,7 +1544,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> is null. </exception>
         public virtual Response DisableAllForHostingEnvironmentRecommendation(string environmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(environmentName, nameof(environmentName));
+            if (environmentName == null)
+            {
+                throw new ArgumentNullException(nameof(environmentName));
+            }
 
             using var scope = _recommendationsClientDiagnostics.CreateScope("AppServiceEnvironmentResource.DisableAllForHostingEnvironmentRecommendation");
             scope.Start();
@@ -1248,6 +1574,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ResetAllFiltersForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="environmentName"> Name of the app. </param>
@@ -1255,7 +1585,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> is null. </exception>
         public virtual async Task<Response> ResetAllFiltersForHostingEnvironmentRecommendationAsync(string environmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(environmentName, nameof(environmentName));
+            if (environmentName == null)
+            {
+                throw new ArgumentNullException(nameof(environmentName));
+            }
 
             using var scope = _recommendationsClientDiagnostics.CreateScope("AppServiceEnvironmentResource.ResetAllFiltersForHostingEnvironmentRecommendation");
             scope.Start();
@@ -1282,6 +1615,10 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Recommendations_ResetAllFiltersForHostingEnvironment</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="environmentName"> Name of the app. </param>
@@ -1289,7 +1626,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="environmentName"/> is null. </exception>
         public virtual Response ResetAllFiltersForHostingEnvironmentRecommendation(string environmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(environmentName, nameof(environmentName));
+            if (environmentName == null)
+            {
+                throw new ArgumentNullException(nameof(environmentName));
+            }
 
             using var scope = _recommendationsClientDiagnostics.CreateScope("AppServiceEnvironmentResource.ResetAllFiltersForHostingEnvironmentRecommendation");
             scope.Start();

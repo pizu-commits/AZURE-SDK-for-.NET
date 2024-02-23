@@ -21,13 +21,17 @@ namespace Azure.ResourceManager.Workloads
 {
     /// <summary>
     /// A Class representing a SapCentralServerInstance along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="SapCentralServerInstanceResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetSapCentralServerInstanceResource method.
-    /// Otherwise you can get one from its parent resource <see cref="SapVirtualInstanceResource" /> using the GetSapCentralServerInstance method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="SapCentralServerInstanceResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetSapCentralServerInstanceResource method.
+    /// Otherwise you can get one from its parent resource <see cref="SapVirtualInstanceResource"/> using the GetSapCentralServerInstance method.
     /// </summary>
     public partial class SapCentralServerInstanceResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="SapCentralServerInstanceResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="sapVirtualInstanceName"> The sapVirtualInstanceName. </param>
+        /// <param name="centralInstanceName"> The centralInstanceName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string sapVirtualInstanceName, string centralInstanceName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}";
@@ -38,12 +42,15 @@ namespace Azure.ResourceManager.Workloads
         private readonly SAPCentralInstancesRestOperations _sapCentralServerInstanceSapCentralInstancesRestClient;
         private readonly SapCentralServerInstanceData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Workloads/sapVirtualInstances/centralInstances";
+
         /// <summary> Initializes a new instance of the <see cref="SapCentralServerInstanceResource"/> class for mocking. </summary>
         protected SapCentralServerInstanceResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "SapCentralServerInstanceResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="SapCentralServerInstanceResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal SapCentralServerInstanceResource(ArmClient client, SapCentralServerInstanceData data) : this(client, data.Id)
@@ -64,9 +71,6 @@ namespace Azure.ResourceManager.Workloads
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Workloads/sapVirtualInstances/centralInstances";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -100,6 +104,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -132,6 +144,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -163,6 +183,14 @@ namespace Azure.ResourceManager.Workloads
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -198,6 +226,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -232,6 +268,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -240,7 +284,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<SapCentralServerInstanceResource>> UpdateAsync(WaitUntil waitUntil, SapCentralServerInstancePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.Update");
             scope.Start();
@@ -270,6 +317,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -278,7 +333,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<SapCentralServerInstanceResource> Update(WaitUntil waitUntil, SapCentralServerInstancePatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.Update");
             scope.Start();
@@ -307,6 +365,14 @@ namespace Azure.ResourceManager.Workloads
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_StartInstance</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -342,6 +408,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_StartInstance</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -375,6 +449,14 @@ namespace Azure.ResourceManager.Workloads
         /// <item>
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_StopInstance</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -411,6 +493,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_StopInstance</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -446,6 +536,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -454,8 +552,14 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<SapCentralServerInstanceResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.AddTag");
             scope.Start();
@@ -500,6 +604,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -508,8 +620,14 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<SapCentralServerInstanceResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.AddTag");
             scope.Start();
@@ -554,6 +672,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -561,7 +687,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<SapCentralServerInstanceResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.SetTags");
             scope.Start();
@@ -603,6 +732,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -610,7 +747,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<SapCentralServerInstanceResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.SetTags");
             scope.Start();
@@ -652,6 +792,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -659,7 +807,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<SapCentralServerInstanceResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.RemoveTag");
             scope.Start();
@@ -704,6 +855,14 @@ namespace Azure.ResourceManager.Workloads
         /// <term>Operation Id</term>
         /// <description>SAPCentralInstances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SapCentralServerInstanceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -711,7 +870,10 @@ namespace Azure.ResourceManager.Workloads
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<SapCentralServerInstanceResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _sapCentralServerInstanceSapCentralInstancesClientDiagnostics.CreateScope("SapCentralServerInstanceResource.RemoveTag");
             scope.Start();

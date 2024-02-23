@@ -7,25 +7,27 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Xero Service linked service. </summary>
     public partial class XeroLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of XeroLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="XeroLinkedService"/>. </summary>
         /// <param name="host"> The endpoint of the Xero server. (i.e. api.xero.com). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public XeroLinkedService(object host)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             Type = "Xero";
         }
 
-        /// <summary> Initializes a new instance of XeroLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="XeroLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

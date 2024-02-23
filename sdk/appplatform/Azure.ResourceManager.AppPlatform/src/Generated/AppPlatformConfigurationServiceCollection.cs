@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppPlatform
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AppPlatformConfigurationServiceResource" /> and their operations.
-    /// Each <see cref="AppPlatformConfigurationServiceResource" /> in the collection will belong to the same instance of <see cref="AppPlatformServiceResource" />.
-    /// To get an <see cref="AppPlatformConfigurationServiceCollection" /> instance call the GetAppPlatformConfigurationServices method from an instance of <see cref="AppPlatformServiceResource" />.
+    /// A class representing a collection of <see cref="AppPlatformConfigurationServiceResource"/> and their operations.
+    /// Each <see cref="AppPlatformConfigurationServiceResource"/> in the collection will belong to the same instance of <see cref="AppPlatformServiceResource"/>.
+    /// To get an <see cref="AppPlatformConfigurationServiceCollection"/> instance call the GetAppPlatformConfigurationServices method from an instance of <see cref="AppPlatformServiceResource"/>.
     /// </summary>
     public partial class AppPlatformConfigurationServiceCollection : ArmCollection, IEnumerable<AppPlatformConfigurationServiceResource>, IAsyncEnumerable<AppPlatformConfigurationServiceResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AppPlatformConfigurationServiceResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string configurationServiceName, AppPlatformConfigurationServiceData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AppPlatformConfigurationServiceResource> CreateOrUpdate(WaitUntil waitUntil, string configurationServiceName, AppPlatformConfigurationServiceData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
         public virtual async Task<Response<AppPlatformConfigurationServiceResource>> GetAsync(string configurationServiceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
         public virtual Response<AppPlatformConfigurationServiceResource> Get(string configurationServiceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppPlatformConfigurationServiceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppPlatformConfigurationServiceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppPlatformConfigurationServiceResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appPlatformConfigurationServiceConfigurationServicesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appPlatformConfigurationServiceConfigurationServicesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppPlatformConfigurationServiceResource(Client, AppPlatformConfigurationServiceData.DeserializeAppPlatformConfigurationServiceData(e)), _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics, Pipeline, "AppPlatformConfigurationServiceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppPlatformConfigurationServiceResource(Client, AppPlatformConfigurationServiceData.DeserializeAppPlatformConfigurationServiceData(e)), _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics, Pipeline, "AppPlatformConfigurationServiceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppPlatformConfigurationServiceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppPlatformConfigurationServiceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppPlatformConfigurationServiceResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appPlatformConfigurationServiceConfigurationServicesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appPlatformConfigurationServiceConfigurationServicesRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppPlatformConfigurationServiceResource(Client, AppPlatformConfigurationServiceData.DeserializeAppPlatformConfigurationServiceData(e)), _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics, Pipeline, "AppPlatformConfigurationServiceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppPlatformConfigurationServiceResource(Client, AppPlatformConfigurationServiceData.DeserializeAppPlatformConfigurationServiceData(e)), _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics, Pipeline, "AppPlatformConfigurationServiceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string configurationServiceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>ConfigurationServices_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
         public virtual Response<bool> Exists(string configurationServiceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(configurationServiceName, nameof(configurationServiceName));
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
 
             using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.AppPlatform
             {
                 var response = _appPlatformConfigurationServiceConfigurationServicesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, configurationServiceName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConfigurationServices_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="configurationServiceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AppPlatformConfigurationServiceResource>> GetIfExistsAsync(string configurationServiceName, CancellationToken cancellationToken = default)
+        {
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
+
+            using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _appPlatformConfigurationServiceConfigurationServicesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, configurationServiceName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AppPlatformConfigurationServiceResource>(response.GetRawResponse());
+                return Response.FromValue(new AppPlatformConfigurationServiceResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConfigurationServices_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformConfigurationServiceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="configurationServiceName"> The name of Application Configuration Service. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="configurationServiceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="configurationServiceName"/> is null. </exception>
+        public virtual NullableResponse<AppPlatformConfigurationServiceResource> GetIfExists(string configurationServiceName, CancellationToken cancellationToken = default)
+        {
+            if (configurationServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(configurationServiceName));
+            }
+            if (configurationServiceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(configurationServiceName));
+            }
+
+            using var scope = _appPlatformConfigurationServiceConfigurationServicesClientDiagnostics.CreateScope("AppPlatformConfigurationServiceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _appPlatformConfigurationServiceConfigurationServicesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, configurationServiceName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AppPlatformConfigurationServiceResource>(response.GetRawResponse());
+                return Response.FromValue(new AppPlatformConfigurationServiceResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

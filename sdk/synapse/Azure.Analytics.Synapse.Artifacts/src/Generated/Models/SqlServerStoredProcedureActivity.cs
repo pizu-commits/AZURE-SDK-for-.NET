@@ -7,27 +7,32 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> SQL stored procedure activity type. </summary>
     public partial class SqlServerStoredProcedureActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of SqlServerStoredProcedureActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerStoredProcedureActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="storedProcedureName"> Stored procedure name. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="storedProcedureName"/> is null. </exception>
         public SqlServerStoredProcedureActivity(string name, object storedProcedureName) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(storedProcedureName, nameof(storedProcedureName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (storedProcedureName == null)
+            {
+                throw new ArgumentNullException(nameof(storedProcedureName));
+            }
 
             StoredProcedureName = storedProcedureName;
             Type = "SqlServerStoredProcedure";
         }
 
-        /// <summary> Initializes a new instance of SqlServerStoredProcedureActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SqlServerStoredProcedureActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

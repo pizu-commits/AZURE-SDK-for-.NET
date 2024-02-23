@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Search.Documents.Indexes.Models
 {
     /// <summary> Represents service-level resource counters and quotas. </summary>
     public partial class SearchServiceCounters
     {
-        /// <summary> Initializes a new instance of SearchServiceCounters. </summary>
+        /// <summary> Initializes a new instance of <see cref="SearchServiceCounters"/>. </summary>
         /// <param name="aliasCounter"> Total number of aliases. </param>
         /// <param name="documentCounter"> Total number of documents across all indexes in the service. </param>
         /// <param name="indexCounter"> Total number of indexes. </param>
@@ -26,15 +25,42 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <exception cref="ArgumentNullException"> <paramref name="aliasCounter"/>, <paramref name="documentCounter"/>, <paramref name="indexCounter"/>, <paramref name="indexerCounter"/>, <paramref name="dataSourceCounter"/>, <paramref name="storageSizeCounter"/>, <paramref name="synonymMapCounter"/>, <paramref name="skillsetCounter"/> or <paramref name="vectorIndexSizeCounter"/> is null. </exception>
         internal SearchServiceCounters(SearchResourceCounter aliasCounter, SearchResourceCounter documentCounter, SearchResourceCounter indexCounter, SearchResourceCounter indexerCounter, SearchResourceCounter dataSourceCounter, SearchResourceCounter storageSizeCounter, SearchResourceCounter synonymMapCounter, SearchResourceCounter skillsetCounter, SearchResourceCounter vectorIndexSizeCounter)
         {
-            Argument.AssertNotNull(aliasCounter, nameof(aliasCounter));
-            Argument.AssertNotNull(documentCounter, nameof(documentCounter));
-            Argument.AssertNotNull(indexCounter, nameof(indexCounter));
-            Argument.AssertNotNull(indexerCounter, nameof(indexerCounter));
-            Argument.AssertNotNull(dataSourceCounter, nameof(dataSourceCounter));
-            Argument.AssertNotNull(storageSizeCounter, nameof(storageSizeCounter));
-            Argument.AssertNotNull(synonymMapCounter, nameof(synonymMapCounter));
-            Argument.AssertNotNull(skillsetCounter, nameof(skillsetCounter));
-            Argument.AssertNotNull(vectorIndexSizeCounter, nameof(vectorIndexSizeCounter));
+            if (aliasCounter == null)
+            {
+                throw new ArgumentNullException(nameof(aliasCounter));
+            }
+            if (documentCounter == null)
+            {
+                throw new ArgumentNullException(nameof(documentCounter));
+            }
+            if (indexCounter == null)
+            {
+                throw new ArgumentNullException(nameof(indexCounter));
+            }
+            if (indexerCounter == null)
+            {
+                throw new ArgumentNullException(nameof(indexerCounter));
+            }
+            if (dataSourceCounter == null)
+            {
+                throw new ArgumentNullException(nameof(dataSourceCounter));
+            }
+            if (storageSizeCounter == null)
+            {
+                throw new ArgumentNullException(nameof(storageSizeCounter));
+            }
+            if (synonymMapCounter == null)
+            {
+                throw new ArgumentNullException(nameof(synonymMapCounter));
+            }
+            if (skillsetCounter == null)
+            {
+                throw new ArgumentNullException(nameof(skillsetCounter));
+            }
+            if (vectorIndexSizeCounter == null)
+            {
+                throw new ArgumentNullException(nameof(vectorIndexSizeCounter));
+            }
 
             AliasCounter = aliasCounter;
             DocumentCounter = documentCounter;

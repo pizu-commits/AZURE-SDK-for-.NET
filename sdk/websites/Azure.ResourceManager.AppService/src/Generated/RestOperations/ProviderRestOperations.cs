@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public async Task<Response<ApplicationStackListResult>> GetAvailableStacksAsync(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
@@ -78,7 +78,7 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public Response<ApplicationStackListResult> GetAvailableStacks(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
@@ -428,13 +428,20 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ApplicationStackListResult>> GetAvailableStacksOnPremAsync(string subscriptionId, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateGetAvailableStacksOnPremRequest(subscriptionId, osTypeSelected);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -454,13 +461,20 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ApplicationStackListResult> GetAvailableStacksOnPrem(string subscriptionId, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateGetAvailableStacksOnPremRequest(subscriptionId, osTypeSelected);
             _pipeline.Send(message, cancellationToken);
@@ -494,12 +508,15 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<ApplicationStackListResult>> GetAvailableStacksNextPageAsync(string nextLink, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -519,12 +536,15 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<ApplicationStackListResult> GetAvailableStacksNextPage(string nextLink, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
             _pipeline.Send(message, cancellationToken);
@@ -563,7 +583,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<FunctionAppStackListResult>> GetFunctionAppStacksNextPageAsync(string nextLink, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -588,7 +611,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<FunctionAppStackListResult> GetFunctionAppStacksNextPage(string nextLink, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
             _pipeline.Send(message, cancellationToken);
@@ -628,7 +654,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<FunctionAppStackListResult>> GetFunctionAppStacksForLocationNextPageAsync(string nextLink, AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -654,7 +683,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<FunctionAppStackListResult> GetFunctionAppStacksForLocationNextPage(string nextLink, AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
             _pipeline.Send(message, cancellationToken);
@@ -694,7 +726,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<WebAppStackListResult>> GetWebAppStacksForLocationNextPageAsync(string nextLink, AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -720,7 +755,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<WebAppStackListResult> GetWebAppStacksForLocationNextPage(string nextLink, AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
             _pipeline.Send(message, cancellationToken);
@@ -758,7 +796,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<CsmOperationListResult>> ListOperationsNextPageAsync(string nextLink, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateListOperationsNextPageRequest(nextLink);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -782,7 +823,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<CsmOperationListResult> ListOperationsNextPage(string nextLink, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateListOperationsNextPageRequest(nextLink);
             _pipeline.Send(message, cancellationToken);
@@ -821,7 +865,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<WebAppStackListResult>> GetWebAppStacksNextPageAsync(string nextLink, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -846,7 +893,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<WebAppStackListResult> GetWebAppStacksNextPage(string nextLink, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
             _pipeline.Send(message, cancellationToken);
@@ -881,14 +931,24 @@ namespace Azure.ResourceManager.AppService
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ApplicationStackListResult>> GetAvailableStacksOnPremNextPageAsync(string nextLink, string subscriptionId, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateGetAvailableStacksOnPremNextPageRequest(nextLink, subscriptionId, osTypeSelected);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -909,14 +969,24 @@ namespace Azure.ResourceManager.AppService
         /// <summary> Description for Get available application frameworks and their versions. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="osTypeSelected"> The ProviderOSTypeSelected to use. </param>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ApplicationStackListResult> GetAvailableStacksOnPremNextPage(string nextLink, string subscriptionId, ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateGetAvailableStacksOnPremNextPageRequest(nextLink, subscriptionId, osTypeSelected);
             _pipeline.Send(message, cancellationToken);

@@ -1,6 +1,6 @@
 # Azure.Communication.Chat
 When a new version of the swagger needs to be updated:
-1. Go to sdk\communication, and run `dotnet msbuild /t:GenerateCode` to generate code.
+1. Go to sdk\communication, and run `dotnet build /t:GenerateCode` to generate code.
 2. Upload the Azure.Communication.Chat.dll to the apiview.dev tool.
 If any of the new objects needs to be overwritten, add the required changes to the 'Models' folder.
 
@@ -11,10 +11,10 @@ If any of the new objects needs to be overwritten, add the required changes to t
 
 ``` yaml
 title: Chat
-tag: package-chat-2023-07-01-preview
+tag: package-chat-2023-11-07
 model-namespace: false
 require:
-    -  https://github.com/Azure/azure-rest-api-specs/blob/320e44c22609a1921424f6da30fa8fe4518bd5ca/specification/communication/data-plane/Chat/readme.md
+    -  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/731138d0505c02fcee05d7b5a1417fd10ef5efc3/specification/communication/data-plane/Chat/readme.md
 payload-flattening-threshold: 10
 generation1-convenience-client: true
 directive:

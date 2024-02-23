@@ -6,24 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.PhoneNumbers
 {
     /// <summary> Represents a phone number capability offering. </summary>
     public partial class PhoneNumberOffering
     {
-        /// <summary> Initializes a new instance of PhoneNumberOffering. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoneNumberOffering"/>. </summary>
         /// <param name="cost"> The incurred cost for a single phone number. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="cost"/> is null. </exception>
         internal PhoneNumberOffering(PhoneNumberCost cost)
         {
-            Argument.AssertNotNull(cost, nameof(cost));
+            if (cost == null)
+            {
+                throw new ArgumentNullException(nameof(cost));
+            }
 
             Cost = cost;
         }
 
-        /// <summary> Initializes a new instance of PhoneNumberOffering. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoneNumberOffering"/>. </summary>
         /// <param name="phoneNumberType"> Represents the number type of the offering. </param>
         /// <param name="assignmentType"> Represents the assignment type of the offering. </param>
         /// <param name="availableCapabilities"> Capabilities of a phone number. </param>

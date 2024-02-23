@@ -6,23 +6,31 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Communication.Identity.Models
 {
     /// <summary> The TeamsUserExchangeTokenRequest. </summary>
     internal partial class TeamsUserExchangeTokenRequest
     {
-        /// <summary> Initializes a new instance of TeamsUserExchangeTokenRequest. </summary>
+        /// <summary> Initializes a new instance of <see cref="TeamsUserExchangeTokenRequest"/>. </summary>
         /// <param name="token"> Azure AD access token of a Teams User to acquire a new Communication Identity access token. </param>
         /// <param name="appId"> Client ID of an Azure AD application to be verified against the appid claim in the Azure AD access token. </param>
         /// <param name="userId"> Object ID of an Azure AD user (Teams User) to be verified against the oid claim in the Azure AD access token. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="token"/>, <paramref name="appId"/> or <paramref name="userId"/> is null. </exception>
         public TeamsUserExchangeTokenRequest(string token, string appId, string userId)
         {
-            Argument.AssertNotNull(token, nameof(token));
-            Argument.AssertNotNull(appId, nameof(appId));
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (token == null)
+            {
+                throw new ArgumentNullException(nameof(token));
+            }
+            if (appId == null)
+            {
+                throw new ArgumentNullException(nameof(appId));
+            }
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             Token = token;
             AppId = appId;

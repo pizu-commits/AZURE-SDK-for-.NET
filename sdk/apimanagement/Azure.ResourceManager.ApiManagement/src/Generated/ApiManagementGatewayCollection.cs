@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiManagementGatewayResource" /> and their operations.
-    /// Each <see cref="ApiManagementGatewayResource" /> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource" />.
-    /// To get an <see cref="ApiManagementGatewayCollection" /> instance call the GetApiManagementGateways method from an instance of <see cref="ApiManagementServiceResource" />.
+    /// A class representing a collection of <see cref="ApiManagementGatewayResource"/> and their operations.
+    /// Each <see cref="ApiManagementGatewayResource"/> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource"/>.
+    /// To get an <see cref="ApiManagementGatewayCollection"/> instance call the GetApiManagementGateways method from an instance of <see cref="ApiManagementServiceResource"/>.
     /// </summary>
     public partial class ApiManagementGatewayCollection : ArmCollection, IEnumerable<ApiManagementGatewayResource>, IAsyncEnumerable<ApiManagementGatewayResource>
     {
@@ -63,19 +64,37 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
-        /// <param name="data"> The ApiManagementGateway to use. </param>
+        /// <param name="data"> The <see cref="ApiManagementGatewayData"/> to use. </param>
         /// <param name="ifMatch"> ETag of the Entity. Not required when creating an entity, but required when updating an entity. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="gatewayId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiManagementGatewayResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string gatewayId, ApiManagementGatewayData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.CreateOrUpdate");
             scope.Start();
@@ -105,19 +124,37 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
-        /// <param name="data"> The ApiManagementGateway to use. </param>
+        /// <param name="data"> The <see cref="ApiManagementGatewayData"/> to use. </param>
         /// <param name="ifMatch"> ETag of the Entity. Not required when creating an entity, but required when updating an entity. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="gatewayId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ApiManagementGatewayResource> CreateOrUpdate(WaitUntil waitUntil, string gatewayId, ApiManagementGatewayData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
         public virtual async Task<Response<ApiManagementGatewayResource>> GetAsync(string gatewayId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
         public virtual Response<ApiManagementGatewayResource> Get(string gatewayId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.Get");
             scope.Start();
@@ -221,18 +288,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| region | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| description | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiManagementGatewayResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiManagementGatewayResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiManagementGatewayResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementGatewayGatewayRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementGatewayGatewayRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementGatewayResource(Client, ApiManagementGatewayData.DeserializeApiManagementGatewayData(e)), _apiManagementGatewayGatewayClientDiagnostics, Pipeline, "ApiManagementGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementGatewayResource(Client, ApiManagementGatewayData.DeserializeApiManagementGatewayData(e)), _apiManagementGatewayGatewayClientDiagnostics, Pipeline, "ApiManagementGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -246,18 +321,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| region | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| description | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiManagementGatewayResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiManagementGatewayResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiManagementGatewayResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementGatewayGatewayRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementGatewayGatewayRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementGatewayResource(Client, ApiManagementGatewayData.DeserializeApiManagementGatewayData(e)), _apiManagementGatewayGatewayClientDiagnostics, Pipeline, "ApiManagementGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementGatewayResource(Client, ApiManagementGatewayData.DeserializeApiManagementGatewayData(e)), _apiManagementGatewayGatewayClientDiagnostics, Pipeline, "ApiManagementGatewayCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -271,6 +354,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
@@ -279,7 +370,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string gatewayId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.Exists");
             scope.Start();
@@ -306,6 +404,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Gateway_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
@@ -314,7 +420,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
         public virtual Response<bool> Exists(string gatewayId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(gatewayId, nameof(gatewayId));
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
 
             using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.Exists");
             scope.Start();
@@ -322,6 +435,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiManagementGatewayGatewayRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, gatewayId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Gateway_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="gatewayId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiManagementGatewayResource>> GetIfExistsAsync(string gatewayId, CancellationToken cancellationToken = default)
+        {
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
+
+            using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiManagementGatewayGatewayRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, gatewayId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementGatewayResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementGatewayResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Gateway_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementGatewayResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="gatewayId"> Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed'. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="gatewayId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="gatewayId"/> is null. </exception>
+        public virtual NullableResponse<ApiManagementGatewayResource> GetIfExists(string gatewayId, CancellationToken cancellationToken = default)
+        {
+            if (gatewayId == null)
+            {
+                throw new ArgumentNullException(nameof(gatewayId));
+            }
+            if (gatewayId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(gatewayId));
+            }
+
+            using var scope = _apiManagementGatewayGatewayClientDiagnostics.CreateScope("ApiManagementGatewayCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiManagementGatewayGatewayRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, gatewayId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementGatewayResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementGatewayResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

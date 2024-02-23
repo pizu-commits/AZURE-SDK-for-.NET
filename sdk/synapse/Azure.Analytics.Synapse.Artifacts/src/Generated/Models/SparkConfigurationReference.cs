@@ -6,20 +6,22 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Spark configuration reference. </summary>
     public partial class SparkConfigurationReference
     {
-        /// <summary> Initializes a new instance of SparkConfigurationReference. </summary>
+        /// <summary> Initializes a new instance of <see cref="SparkConfigurationReference"/>. </summary>
         /// <param name="type"> Spark configuration reference type. </param>
         /// <param name="referenceName"> Reference spark configuration name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="referenceName"/> is null. </exception>
         public SparkConfigurationReference(SparkConfigurationReferenceType type, string referenceName)
         {
-            Argument.AssertNotNull(referenceName, nameof(referenceName));
+            if (referenceName == null)
+            {
+                throw new ArgumentNullException(nameof(referenceName));
+            }
 
             Type = type;
             ReferenceName = referenceName;

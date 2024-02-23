@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -68,7 +69,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetDataDeleteJobDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetDataDeleteJobDetailsAsync(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.GetDataDeleteJobDetails");
             scope.Start();
@@ -103,7 +111,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetDataDeleteJobDetails(string,RequestContext)']/*" />
         public virtual Response GetDataDeleteJobDetails(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.GetDataDeleteJobDetails");
             scope.Start();
@@ -138,7 +153,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetDataIngestionJobDetailsAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetDataIngestionJobDetailsAsync(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.GetDataIngestionJobDetails");
             scope.Start();
@@ -173,7 +195,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetDataIngestionJobDetails(string,RequestContext)']/*" />
         public virtual Response GetDataIngestionJobDetails(string jobId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.GetDataIngestionJobDetails");
             scope.Start();
@@ -218,15 +247,30 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetWeathersAsync(string,string,string,string,string,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual AsyncPageable<BinaryData> GetWeathersAsync(string partyId, string boundaryId, string extensionId, string weatherDataType, string granularity, DateTimeOffset? startDateTime, DateTimeOffset? endDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(boundaryId, nameof(boundaryId));
-            Argument.AssertNotNull(extensionId, nameof(extensionId));
-            Argument.AssertNotNull(weatherDataType, nameof(weatherDataType));
-            Argument.AssertNotNull(granularity, nameof(granularity));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (boundaryId == null)
+            {
+                throw new ArgumentNullException(nameof(boundaryId));
+            }
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (weatherDataType == null)
+            {
+                throw new ArgumentNullException(nameof(weatherDataType));
+            }
+            if (granularity == null)
+            {
+                throw new ArgumentNullException(nameof(granularity));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetWeathersRequest(partyId, boundaryId, extensionId, weatherDataType, granularity, startDateTime, endDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetWeathersNextPageRequest(nextLink, partyId, boundaryId, extensionId, weatherDataType, granularity, startDateTime, endDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Weather.GetWeathers", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Weather.GetWeathers", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -258,15 +302,30 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='GetWeathers(string,string,string,string,string,DateTimeOffset?,DateTimeOffset?,int?,string,RequestContext)']/*" />
         public virtual Pageable<BinaryData> GetWeathers(string partyId, string boundaryId, string extensionId, string weatherDataType, string granularity, DateTimeOffset? startDateTime, DateTimeOffset? endDateTime, int? maxPageSize, string skipToken, RequestContext context)
         {
-            Argument.AssertNotNull(partyId, nameof(partyId));
-            Argument.AssertNotNull(boundaryId, nameof(boundaryId));
-            Argument.AssertNotNull(extensionId, nameof(extensionId));
-            Argument.AssertNotNull(weatherDataType, nameof(weatherDataType));
-            Argument.AssertNotNull(granularity, nameof(granularity));
+            if (partyId == null)
+            {
+                throw new ArgumentNullException(nameof(partyId));
+            }
+            if (boundaryId == null)
+            {
+                throw new ArgumentNullException(nameof(boundaryId));
+            }
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (weatherDataType == null)
+            {
+                throw new ArgumentNullException(nameof(weatherDataType));
+            }
+            if (granularity == null)
+            {
+                throw new ArgumentNullException(nameof(granularity));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetWeathersRequest(partyId, boundaryId, extensionId, weatherDataType, granularity, startDateTime, endDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetWeathersNextPageRequest(nextLink, partyId, boundaryId, extensionId, weatherDataType, granularity, startDateTime, endDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Weather.GetWeathers", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "Weather.GetWeathers", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -290,8 +349,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='CreateDataDeleteJobAsync(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> CreateDataDeleteJobAsync(WaitUntil waitUntil, string jobId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.CreateDataDeleteJob");
             scope.Start();
@@ -328,8 +397,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='CreateDataDeleteJob(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual Operation<BinaryData> CreateDataDeleteJob(WaitUntil waitUntil, string jobId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.CreateDataDeleteJob");
             scope.Start();
@@ -366,8 +445,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='CreateDataIngestionJobAsync(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Operation<BinaryData>> CreateDataIngestionJobAsync(WaitUntil waitUntil, string jobId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.CreateDataIngestionJob");
             scope.Start();
@@ -404,8 +493,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/Weather.xml" path="doc/members/member[@name='CreateDataIngestionJob(WaitUntil,string,RequestContent,RequestContext)']/*" />
         public virtual Operation<BinaryData> CreateDataIngestionJob(WaitUntil waitUntil, string jobId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(jobId, nameof(jobId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (jobId == null)
+            {
+                throw new ArgumentNullException(nameof(jobId));
+            }
+            if (jobId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(jobId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("Weather.CreateDataIngestionJob");
             scope.Start();

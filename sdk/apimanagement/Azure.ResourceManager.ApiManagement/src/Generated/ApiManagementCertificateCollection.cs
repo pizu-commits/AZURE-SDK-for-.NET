@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.ApiManagement.Models;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiManagementCertificateResource" /> and their operations.
-    /// Each <see cref="ApiManagementCertificateResource" /> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource" />.
-    /// To get an <see cref="ApiManagementCertificateCollection" /> instance call the GetApiManagementCertificates method from an instance of <see cref="ApiManagementServiceResource" />.
+    /// A class representing a collection of <see cref="ApiManagementCertificateResource"/> and their operations.
+    /// Each <see cref="ApiManagementCertificateResource"/> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource"/>.
+    /// To get an <see cref="ApiManagementCertificateCollection"/> instance call the GetApiManagementCertificates method from an instance of <see cref="ApiManagementServiceResource"/>.
     /// </summary>
     public partial class ApiManagementCertificateCollection : ArmCollection, IEnumerable<ApiManagementCertificateResource>, IAsyncEnumerable<ApiManagementCertificateResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiManagementCertificateResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string certificateId, ApiManagementCertificateCreateOrUpdateContent content, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -117,8 +144,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<ApiManagementCertificateResource> CreateOrUpdate(WaitUntil waitUntil, string certificateId, ApiManagementCertificateCreateOrUpdateContent content, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.CreateOrUpdate");
             scope.Start();
@@ -148,6 +185,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
@@ -156,7 +201,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
         public virtual async Task<Response<ApiManagementCertificateResource>> GetAsync(string certificateId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.Get");
             scope.Start();
@@ -185,6 +237,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
@@ -193,7 +253,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
         public virtual Response<ApiManagementCertificateResource> Get(string certificateId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.Get");
             scope.Start();
@@ -222,6 +289,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| subject | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| thumbprint | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| expirationDate | filter | ge, le, eq, ne, gt, lt |     |&lt;/br&gt;. </param>
@@ -229,12 +304,12 @@ namespace Azure.ResourceManager.ApiManagement
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="isKeyVaultRefreshFailed"> When set to true, the response contains only certificates entities which failed refresh. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiManagementCertificateResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiManagementCertificateResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiManagementCertificateResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, bool? isKeyVaultRefreshFailed = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementCertificateCertificateRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip, isKeyVaultRefreshFailed);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementCertificateCertificateRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip, isKeyVaultRefreshFailed);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementCertificateResource(Client, ApiManagementCertificateData.DeserializeApiManagementCertificateData(e)), _apiManagementCertificateCertificateClientDiagnostics, Pipeline, "ApiManagementCertificateCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementCertificateResource(Client, ApiManagementCertificateData.DeserializeApiManagementCertificateData(e)), _apiManagementCertificateCertificateClientDiagnostics, Pipeline, "ApiManagementCertificateCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -248,6 +323,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| subject | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| thumbprint | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| expirationDate | filter | ge, le, eq, ne, gt, lt |     |&lt;/br&gt;. </param>
@@ -255,12 +338,12 @@ namespace Azure.ResourceManager.ApiManagement
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="isKeyVaultRefreshFailed"> When set to true, the response contains only certificates entities which failed refresh. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiManagementCertificateResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiManagementCertificateResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiManagementCertificateResource> GetAll(string filter = null, int? top = null, int? skip = null, bool? isKeyVaultRefreshFailed = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementCertificateCertificateRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip, isKeyVaultRefreshFailed);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementCertificateCertificateRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip, isKeyVaultRefreshFailed);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementCertificateResource(Client, ApiManagementCertificateData.DeserializeApiManagementCertificateData(e)), _apiManagementCertificateCertificateClientDiagnostics, Pipeline, "ApiManagementCertificateCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementCertificateResource(Client, ApiManagementCertificateData.DeserializeApiManagementCertificateData(e)), _apiManagementCertificateCertificateClientDiagnostics, Pipeline, "ApiManagementCertificateCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -274,6 +357,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
@@ -282,7 +373,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string certificateId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.Exists");
             scope.Start();
@@ -309,6 +407,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Certificate_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
@@ -317,7 +423,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
         public virtual Response<bool> Exists(string certificateId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(certificateId, nameof(certificateId));
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
 
             using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.Exists");
             scope.Start();
@@ -325,6 +438,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiManagementCertificateCertificateRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, certificateId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/certificates/{certificateId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Certificate_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="certificateId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiManagementCertificateResource>> GetIfExistsAsync(string certificateId, CancellationToken cancellationToken = default)
+        {
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
+
+            using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiManagementCertificateCertificateRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, certificateId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementCertificateResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementCertificateResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/certificates/{certificateId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Certificate_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementCertificateResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="certificateId"> Identifier of the certificate entity. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="certificateId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="certificateId"/> is null. </exception>
+        public virtual NullableResponse<ApiManagementCertificateResource> GetIfExists(string certificateId, CancellationToken cancellationToken = default)
+        {
+            if (certificateId == null)
+            {
+                throw new ArgumentNullException(nameof(certificateId));
+            }
+            if (certificateId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateId));
+            }
+
+            using var scope = _apiManagementCertificateCertificateClientDiagnostics.CreateScope("ApiManagementCertificateCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiManagementCertificateCertificateRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, certificateId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementCertificateResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementCertificateResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

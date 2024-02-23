@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.RecoveryServicesSiteRecovery.Models;
 namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ReplicationProtectedItemResource" /> and their operations.
-    /// Each <see cref="ReplicationProtectedItemResource" /> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource" />.
-    /// To get a <see cref="ReplicationProtectedItemCollection" /> instance call the GetReplicationProtectedItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource" />.
+    /// A class representing a collection of <see cref="ReplicationProtectedItemResource"/> and their operations.
+    /// Each <see cref="ReplicationProtectedItemResource"/> in the collection will belong to the same instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
+    /// To get a <see cref="ReplicationProtectedItemCollection"/> instance call the GetReplicationProtectedItems method from an instance of <see cref="SiteRecoveryProtectionContainerResource"/>.
     /// </summary>
     public partial class ReplicationProtectedItemCollection : ArmCollection, IEnumerable<ReplicationProtectedItemResource>, IAsyncEnumerable<ReplicationProtectedItemResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<ReplicationProtectedItemResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string replicatedProtectedItemName, ReplicationProtectedItemCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<ReplicationProtectedItemResource> CreateOrUpdate(WaitUntil waitUntil, string replicatedProtectedItemName, ReplicationProtectedItemCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
         public virtual async Task<Response<ReplicationProtectedItemResource>> GetAsync(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
         public virtual Response<ReplicationProtectedItemResource> Get(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ReplicationProtectedItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ReplicationProtectedItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ReplicationProtectedItemResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _replicationProtectedItemRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _replicationProtectedItemRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ReplicationProtectedItemResource(Client, ReplicationProtectedItemData.DeserializeReplicationProtectedItemData(e)), _replicationProtectedItemClientDiagnostics, Pipeline, "ReplicationProtectedItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ReplicationProtectedItemResource(Client, ReplicationProtectedItemData.DeserializeReplicationProtectedItemData(e)), _replicationProtectedItemClientDiagnostics, Pipeline, "ReplicationProtectedItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_ListByReplicationProtectionContainers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ReplicationProtectedItemResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ReplicationProtectedItemResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ReplicationProtectedItemResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _replicationProtectedItemRestClient.CreateListByReplicationProtectionContainersRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _replicationProtectedItemRestClient.CreateListByReplicationProtectionContainersNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ReplicationProtectedItemResource(Client, ReplicationProtectedItemData.DeserializeReplicationProtectedItemData(e)), _replicationProtectedItemClientDiagnostics, Pipeline, "ReplicationProtectedItemCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ReplicationProtectedItemResource(Client, ReplicationProtectedItemData.DeserializeReplicationProtectedItemData(e)), _replicationProtectedItemClientDiagnostics, Pipeline, "ReplicationProtectedItemCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <term>Operation Id</term>
         /// <description>ReplicationProtectedItems_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
         /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
         public virtual Response<bool> Exists(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicatedProtectedItemName, nameof(replicatedProtectedItemName));
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
 
             using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.RecoveryServicesSiteRecovery
             {
                 var response = _replicationProtectedItemRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, replicatedProtectedItemName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationProtectedItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="replicatedProtectedItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ReplicationProtectedItemResource>> GetIfExistsAsync(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
+        {
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
+
+            using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _replicationProtectedItemRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, replicatedProtectedItemName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ReplicationProtectedItemResource>(response.GetRawResponse());
+                return Response.FromValue(new ReplicationProtectedItemResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ReplicationProtectedItems_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ReplicationProtectedItemResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="replicatedProtectedItemName"> Replication protected item name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="replicatedProtectedItemName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="replicatedProtectedItemName"/> is null. </exception>
+        public virtual NullableResponse<ReplicationProtectedItemResource> GetIfExists(string replicatedProtectedItemName, CancellationToken cancellationToken = default)
+        {
+            if (replicatedProtectedItemName == null)
+            {
+                throw new ArgumentNullException(nameof(replicatedProtectedItemName));
+            }
+            if (replicatedProtectedItemName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicatedProtectedItemName));
+            }
+
+            using var scope = _replicationProtectedItemClientDiagnostics.CreateScope("ReplicationProtectedItemCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _replicationProtectedItemRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, replicatedProtectedItemName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ReplicationProtectedItemResource>(response.GetRawResponse());
+                return Response.FromValue(new ReplicationProtectedItemResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

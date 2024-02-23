@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.ResourceManager.SecurityCenter.Models
 {
     /// <summary> GCP cloud account connector based service to service credentials, the credentials are composed of the organization ID and a JSON API key (write only). </summary>
     public partial class GcpCredentialsDetailsProperties : AuthenticationDetailsProperties
     {
-        /// <summary> Initializes a new instance of GcpCredentialsDetailsProperties. </summary>
+        /// <summary> Initializes a new instance of <see cref="GcpCredentialsDetailsProperties"/>. </summary>
         /// <param name="organizationId"> The organization ID of the GCP cloud account. </param>
         /// <param name="gcpCredentialType"> Type field of the API key (write only). </param>
         /// <param name="projectId"> Project ID field of the API key (write only). </param>
@@ -29,17 +28,50 @@ namespace Azure.ResourceManager.SecurityCenter.Models
         /// <exception cref="ArgumentNullException"> <paramref name="organizationId"/>, <paramref name="gcpCredentialType"/>, <paramref name="projectId"/>, <paramref name="privateKeyId"/>, <paramref name="privateKey"/>, <paramref name="clientEmail"/>, <paramref name="clientId"/>, <paramref name="authUri"/>, <paramref name="tokenUri"/>, <paramref name="authProviderX509CertUri"/> or <paramref name="clientX509CertUri"/> is null. </exception>
         public GcpCredentialsDetailsProperties(string organizationId, string gcpCredentialType, string projectId, string privateKeyId, string privateKey, string clientEmail, string clientId, Uri authUri, Uri tokenUri, Uri authProviderX509CertUri, Uri clientX509CertUri)
         {
-            Argument.AssertNotNull(organizationId, nameof(organizationId));
-            Argument.AssertNotNull(gcpCredentialType, nameof(gcpCredentialType));
-            Argument.AssertNotNull(projectId, nameof(projectId));
-            Argument.AssertNotNull(privateKeyId, nameof(privateKeyId));
-            Argument.AssertNotNull(privateKey, nameof(privateKey));
-            Argument.AssertNotNull(clientEmail, nameof(clientEmail));
-            Argument.AssertNotNull(clientId, nameof(clientId));
-            Argument.AssertNotNull(authUri, nameof(authUri));
-            Argument.AssertNotNull(tokenUri, nameof(tokenUri));
-            Argument.AssertNotNull(authProviderX509CertUri, nameof(authProviderX509CertUri));
-            Argument.AssertNotNull(clientX509CertUri, nameof(clientX509CertUri));
+            if (organizationId == null)
+            {
+                throw new ArgumentNullException(nameof(organizationId));
+            }
+            if (gcpCredentialType == null)
+            {
+                throw new ArgumentNullException(nameof(gcpCredentialType));
+            }
+            if (projectId == null)
+            {
+                throw new ArgumentNullException(nameof(projectId));
+            }
+            if (privateKeyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateKeyId));
+            }
+            if (privateKey == null)
+            {
+                throw new ArgumentNullException(nameof(privateKey));
+            }
+            if (clientEmail == null)
+            {
+                throw new ArgumentNullException(nameof(clientEmail));
+            }
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
+            if (authUri == null)
+            {
+                throw new ArgumentNullException(nameof(authUri));
+            }
+            if (tokenUri == null)
+            {
+                throw new ArgumentNullException(nameof(tokenUri));
+            }
+            if (authProviderX509CertUri == null)
+            {
+                throw new ArgumentNullException(nameof(authProviderX509CertUri));
+            }
+            if (clientX509CertUri == null)
+            {
+                throw new ArgumentNullException(nameof(clientX509CertUri));
+            }
 
             OrganizationId = organizationId;
             GcpCredentialType = gcpCredentialType;
@@ -55,10 +87,11 @@ namespace Azure.ResourceManager.SecurityCenter.Models
             AuthenticationType = AuthenticationType.GcpCredentials;
         }
 
-        /// <summary> Initializes a new instance of GcpCredentialsDetailsProperties. </summary>
+        /// <summary> Initializes a new instance of <see cref="GcpCredentialsDetailsProperties"/>. </summary>
         /// <param name="authenticationProvisioningState"> State of the multi-cloud connector. </param>
         /// <param name="grantedPermissions"> The permissions detected in the cloud account. </param>
         /// <param name="authenticationType"> Connect to your cloud account, for AWS use either account credentials or role-based authentication. For GCP use account organization credentials. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="organizationId"> The organization ID of the GCP cloud account. </param>
         /// <param name="gcpCredentialType"> Type field of the API key (write only). </param>
         /// <param name="projectId"> Project ID field of the API key (write only). </param>
@@ -70,7 +103,7 @@ namespace Azure.ResourceManager.SecurityCenter.Models
         /// <param name="tokenUri"> Token URI field of the API key (write only). </param>
         /// <param name="authProviderX509CertUri"> Auth provider x509 certificate URL field of the API key (write only). </param>
         /// <param name="clientX509CertUri"> Client x509 certificate URL field of the API key (write only). </param>
-        internal GcpCredentialsDetailsProperties(AuthenticationProvisioningState? authenticationProvisioningState, IReadOnlyList<SecurityCenterCloudPermission> grantedPermissions, AuthenticationType authenticationType, string organizationId, string gcpCredentialType, string projectId, string privateKeyId, string privateKey, string clientEmail, string clientId, Uri authUri, Uri tokenUri, Uri authProviderX509CertUri, Uri clientX509CertUri) : base(authenticationProvisioningState, grantedPermissions, authenticationType)
+        internal GcpCredentialsDetailsProperties(AuthenticationProvisioningState? authenticationProvisioningState, IReadOnlyList<SecurityCenterCloudPermission> grantedPermissions, AuthenticationType authenticationType, IDictionary<string, BinaryData> serializedAdditionalRawData, string organizationId, string gcpCredentialType, string projectId, string privateKeyId, string privateKey, string clientEmail, string clientId, Uri authUri, Uri tokenUri, Uri authProviderX509CertUri, Uri clientX509CertUri) : base(authenticationProvisioningState, grantedPermissions, authenticationType, serializedAdditionalRawData)
         {
             OrganizationId = organizationId;
             GcpCredentialType = gcpCredentialType;
@@ -84,6 +117,11 @@ namespace Azure.ResourceManager.SecurityCenter.Models
             AuthProviderX509CertUri = authProviderX509CertUri;
             ClientX509CertUri = clientX509CertUri;
             AuthenticationType = authenticationType;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="GcpCredentialsDetailsProperties"/> for deserialization. </summary>
+        internal GcpCredentialsDetailsProperties()
+        {
         }
 
         /// <summary> The organization ID of the GCP cloud account. </summary>

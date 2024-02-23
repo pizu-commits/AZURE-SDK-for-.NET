@@ -66,15 +66,32 @@ namespace Azure.ResourceManager.DevSpaces
         /// <param name="subscriptionId"> Azure subscription ID. </param>
         /// <param name="resourceGroupName"> Resource group to which the resource belongs. </param>
         /// <param name="location"> Location of the container host. </param>
-        /// <param name="containerHostMapping"> The ContainerHostMapping to use. </param>
+        /// <param name="containerHostMapping"> The <see cref="ContainerHostMapping"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="containerHostMapping"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<ContainerHostMapping>> GetContainerHostMappingAsync(string subscriptionId, string resourceGroupName, AzureLocation location, ContainerHostMapping containerHostMapping, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNull(containerHostMapping, nameof(containerHostMapping));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (containerHostMapping == null)
+            {
+                throw new ArgumentNullException(nameof(containerHostMapping));
+            }
 
             using var message = CreateGetContainerHostMappingRequest(subscriptionId, resourceGroupName, location, containerHostMapping);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -98,15 +115,32 @@ namespace Azure.ResourceManager.DevSpaces
         /// <param name="subscriptionId"> Azure subscription ID. </param>
         /// <param name="resourceGroupName"> Resource group to which the resource belongs. </param>
         /// <param name="location"> Location of the container host. </param>
-        /// <param name="containerHostMapping"> The ContainerHostMapping to use. </param>
+        /// <param name="containerHostMapping"> The <see cref="ContainerHostMapping"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="containerHostMapping"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="resourceGroupName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<ContainerHostMapping> GetContainerHostMapping(string subscriptionId, string resourceGroupName, AzureLocation location, ContainerHostMapping containerHostMapping, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNull(containerHostMapping, nameof(containerHostMapping));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (containerHostMapping == null)
+            {
+                throw new ArgumentNullException(nameof(containerHostMapping));
+            }
 
             using var message = CreateGetContainerHostMappingRequest(subscriptionId, resourceGroupName, location, containerHostMapping);
             _pipeline.Send(message, cancellationToken);

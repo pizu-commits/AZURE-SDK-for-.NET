@@ -14,21 +14,27 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Custom activity type. </summary>
     public partial class CustomActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of CustomActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="command"> Command for custom activity Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="command"/> is null. </exception>
         public CustomActivity(string name, object command) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(command, nameof(command));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
 
             Command = command;
             ExtendedProperties = new ChangeTrackingDictionary<string, object>();
             Type = "Custom";
         }
 
-        /// <summary> Initializes a new instance of CustomActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

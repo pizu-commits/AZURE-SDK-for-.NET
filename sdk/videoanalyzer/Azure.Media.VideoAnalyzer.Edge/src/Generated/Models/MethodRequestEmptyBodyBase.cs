@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -17,18 +16,21 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     public partial class MethodRequestEmptyBodyBase : MethodRequest
     {
-        /// <summary> Initializes a new instance of MethodRequestEmptyBodyBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="MethodRequestEmptyBodyBase"/>. </summary>
         /// <param name="name"> Resource name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public MethodRequestEmptyBodyBase(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
             MethodName = "MethodRequestEmptyBodyBase";
         }
 
-        /// <summary> Initializes a new instance of MethodRequestEmptyBodyBase. </summary>
+        /// <summary> Initializes a new instance of <see cref="MethodRequestEmptyBodyBase"/>. </summary>
         /// <param name="methodName"> Direct method method name. </param>
         /// <param name="apiVersion"> Video Analyzer API version. </param>
         /// <param name="name"> Resource name. </param>

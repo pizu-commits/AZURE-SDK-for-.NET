@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using Azure.Core;
 
 namespace Azure.ResourceManager.Batch.Models
@@ -13,23 +14,64 @@ namespace Azure.ResourceManager.Batch.Models
     /// <summary> Information used to connect to an Azure Storage Container using Blobfuse. </summary>
     public partial class BatchBlobFileSystemConfiguration
     {
-        /// <summary> Initializes a new instance of BatchBlobFileSystemConfiguration. </summary>
+        /// <summary>
+        /// Keeps track of any properties unknown to the library.
+        /// <para>
+        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// </para>
+        /// <para>
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson("foo")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("\"foo\"")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson(new { key = "value" })</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("{\"key\": \"value\"}")</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+
+        /// <summary> Initializes a new instance of <see cref="BatchBlobFileSystemConfiguration"/>. </summary>
         /// <param name="accountName"> The Azure Storage Account name. </param>
         /// <param name="containerName"> The Azure Blob Storage Container name. </param>
         /// <param name="relativeMountPath"> All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/>, <paramref name="containerName"/> or <paramref name="relativeMountPath"/> is null. </exception>
         public BatchBlobFileSystemConfiguration(string accountName, string containerName, string relativeMountPath)
         {
-            Argument.AssertNotNull(accountName, nameof(accountName));
-            Argument.AssertNotNull(containerName, nameof(containerName));
-            Argument.AssertNotNull(relativeMountPath, nameof(relativeMountPath));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (containerName == null)
+            {
+                throw new ArgumentNullException(nameof(containerName));
+            }
+            if (relativeMountPath == null)
+            {
+                throw new ArgumentNullException(nameof(relativeMountPath));
+            }
 
             AccountName = accountName;
             ContainerName = containerName;
             RelativeMountPath = relativeMountPath;
         }
 
-        /// <summary> Initializes a new instance of BatchBlobFileSystemConfiguration. </summary>
+        /// <summary> Initializes a new instance of <see cref="BatchBlobFileSystemConfiguration"/>. </summary>
         /// <param name="accountName"> The Azure Storage Account name. </param>
         /// <param name="containerName"> The Azure Blob Storage Container name. </param>
         /// <param name="accountKey"> This property is mutually exclusive with both sasKey and identity; exactly one must be specified. </param>
@@ -37,7 +79,8 @@ namespace Azure.ResourceManager.Batch.Models
         /// <param name="blobfuseOptions"> These are 'net use' options in Windows and 'mount' options in Linux. </param>
         /// <param name="relativeMountPath"> All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
         /// <param name="identity"> This property is mutually exclusive with both accountKey and sasKey; exactly one must be specified. </param>
-        internal BatchBlobFileSystemConfiguration(string accountName, string containerName, string accountKey, string sasKey, string blobfuseOptions, string relativeMountPath, ComputeNodeIdentityReference identity)
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
+        internal BatchBlobFileSystemConfiguration(string accountName, string containerName, string accountKey, string sasKey, string blobfuseOptions, string relativeMountPath, ComputeNodeIdentityReference identity, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             AccountName = accountName;
             ContainerName = containerName;
@@ -46,6 +89,12 @@ namespace Azure.ResourceManager.Batch.Models
             BlobfuseOptions = blobfuseOptions;
             RelativeMountPath = relativeMountPath;
             Identity = identity;
+            _serializedAdditionalRawData = serializedAdditionalRawData;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="BatchBlobFileSystemConfiguration"/> for deserialization. </summary>
+        internal BatchBlobFileSystemConfiguration()
+        {
         }
 
         /// <summary> The Azure Storage Account name. </summary>

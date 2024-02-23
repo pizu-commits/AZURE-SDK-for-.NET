@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,9 +22,9 @@ using Azure.ResourceManager.SecurityCenter.Models;
 namespace Azure.ResourceManager.SecurityCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="CustomAssessmentAutomationResource" /> and their operations.
-    /// Each <see cref="CustomAssessmentAutomationResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="CustomAssessmentAutomationCollection" /> instance call the GetCustomAssessmentAutomations method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="CustomAssessmentAutomationResource"/> and their operations.
+    /// Each <see cref="CustomAssessmentAutomationResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="CustomAssessmentAutomationCollection"/> instance call the GetCustomAssessmentAutomations method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class CustomAssessmentAutomationCollection : ArmCollection, IEnumerable<CustomAssessmentAutomationResource>, IAsyncEnumerable<CustomAssessmentAutomationResource>
     {
@@ -65,6 +66,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<CustomAssessmentAutomationResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string customAssessmentAutomationName, CustomAssessmentAutomationCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +143,18 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<CustomAssessmentAutomationResource> CreateOrUpdate(WaitUntil waitUntil, string customAssessmentAutomationName, CustomAssessmentAutomationCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
         public virtual async Task<Response<CustomAssessmentAutomationResource>> GetAsync(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
         public virtual Response<CustomAssessmentAutomationResource> Get(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.Get");
             scope.Start();
@@ -221,15 +288,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CustomAssessmentAutomationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="CustomAssessmentAutomationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<CustomAssessmentAutomationResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _customAssessmentAutomationRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _customAssessmentAutomationRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new CustomAssessmentAutomationResource(Client, CustomAssessmentAutomationData.DeserializeCustomAssessmentAutomationData(e)), _customAssessmentAutomationClientDiagnostics, Pipeline, "CustomAssessmentAutomationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new CustomAssessmentAutomationResource(Client, CustomAssessmentAutomationData.DeserializeCustomAssessmentAutomationData(e)), _customAssessmentAutomationClientDiagnostics, Pipeline, "CustomAssessmentAutomationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,15 +318,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CustomAssessmentAutomationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="CustomAssessmentAutomationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<CustomAssessmentAutomationResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _customAssessmentAutomationRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _customAssessmentAutomationRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new CustomAssessmentAutomationResource(Client, CustomAssessmentAutomationData.DeserializeCustomAssessmentAutomationData(e)), _customAssessmentAutomationClientDiagnostics, Pipeline, "CustomAssessmentAutomationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new CustomAssessmentAutomationResource(Client, CustomAssessmentAutomationData.DeserializeCustomAssessmentAutomationData(e)), _customAssessmentAutomationClientDiagnostics, Pipeline, "CustomAssessmentAutomationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +348,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
@@ -273,7 +364,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.Exists");
             scope.Start();
@@ -300,6 +398,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomAssessmentAutomations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
@@ -308,7 +414,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
         public virtual Response<bool> Exists(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customAssessmentAutomationName, nameof(customAssessmentAutomationName));
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
 
             using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.Exists");
             scope.Start();
@@ -316,6 +429,110 @@ namespace Azure.ResourceManager.SecurityCenter
             {
                 var response = _customAssessmentAutomationRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, customAssessmentAutomationName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Security/customAssessmentAutomations/{customAssessmentAutomationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CustomAssessmentAutomations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="customAssessmentAutomationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<CustomAssessmentAutomationResource>> GetIfExistsAsync(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
+        {
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
+
+            using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _customAssessmentAutomationRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, customAssessmentAutomationName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<CustomAssessmentAutomationResource>(response.GetRawResponse());
+                return Response.FromValue(new CustomAssessmentAutomationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Security/customAssessmentAutomations/{customAssessmentAutomationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CustomAssessmentAutomations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomAssessmentAutomationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="customAssessmentAutomationName"> Name of the Custom Assessment Automation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="customAssessmentAutomationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="customAssessmentAutomationName"/> is null. </exception>
+        public virtual NullableResponse<CustomAssessmentAutomationResource> GetIfExists(string customAssessmentAutomationName, CancellationToken cancellationToken = default)
+        {
+            if (customAssessmentAutomationName == null)
+            {
+                throw new ArgumentNullException(nameof(customAssessmentAutomationName));
+            }
+            if (customAssessmentAutomationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customAssessmentAutomationName));
+            }
+
+            using var scope = _customAssessmentAutomationClientDiagnostics.CreateScope("CustomAssessmentAutomationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _customAssessmentAutomationRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, customAssessmentAutomationName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<CustomAssessmentAutomationResource>(response.GetRawResponse());
+                return Response.FromValue(new CustomAssessmentAutomationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

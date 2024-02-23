@@ -6,36 +6,48 @@
 #nullable disable
 
 using System;
-using Azure.Core;
+using System.Collections.Generic;
 
 namespace Azure.ResourceManager.DataFactory.Models
 {
     /// <summary> The custom setup of setting environment variable. </summary>
     public partial class EnvironmentVariableSetup : CustomSetupBase
     {
-        /// <summary> Initializes a new instance of EnvironmentVariableSetup. </summary>
+        /// <summary> Initializes a new instance of <see cref="EnvironmentVariableSetup"/>. </summary>
         /// <param name="variableName"> The name of the environment variable. </param>
         /// <param name="variableValue"> The value of the environment variable. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="variableName"/> or <paramref name="variableValue"/> is null. </exception>
         public EnvironmentVariableSetup(string variableName, string variableValue)
         {
-            Argument.AssertNotNull(variableName, nameof(variableName));
-            Argument.AssertNotNull(variableValue, nameof(variableValue));
+            if (variableName == null)
+            {
+                throw new ArgumentNullException(nameof(variableName));
+            }
+            if (variableValue == null)
+            {
+                throw new ArgumentNullException(nameof(variableValue));
+            }
 
             VariableName = variableName;
             VariableValue = variableValue;
             CustomSetupBaseType = "EnvironmentVariableSetup";
         }
 
-        /// <summary> Initializes a new instance of EnvironmentVariableSetup. </summary>
+        /// <summary> Initializes a new instance of <see cref="EnvironmentVariableSetup"/>. </summary>
         /// <param name="customSetupBaseType"> The type of custom setup. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="variableName"> The name of the environment variable. </param>
         /// <param name="variableValue"> The value of the environment variable. </param>
-        internal EnvironmentVariableSetup(string customSetupBaseType, string variableName, string variableValue) : base(customSetupBaseType)
+        internal EnvironmentVariableSetup(string customSetupBaseType, IDictionary<string, BinaryData> serializedAdditionalRawData, string variableName, string variableValue) : base(customSetupBaseType, serializedAdditionalRawData)
         {
             VariableName = variableName;
             VariableValue = variableValue;
             CustomSetupBaseType = customSetupBaseType ?? "EnvironmentVariableSetup";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="EnvironmentVariableSetup"/> for deserialization. </summary>
+        internal EnvironmentVariableSetup()
+        {
         }
 
         /// <summary> The name of the environment variable. </summary>

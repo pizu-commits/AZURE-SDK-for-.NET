@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.MySql
 {
     /// <summary>
-    /// A class representing a collection of <see cref="MySqlVirtualNetworkRuleResource" /> and their operations.
-    /// Each <see cref="MySqlVirtualNetworkRuleResource" /> in the collection will belong to the same instance of <see cref="MySqlServerResource" />.
-    /// To get a <see cref="MySqlVirtualNetworkRuleCollection" /> instance call the GetMySqlVirtualNetworkRules method from an instance of <see cref="MySqlServerResource" />.
+    /// A class representing a collection of <see cref="MySqlVirtualNetworkRuleResource"/> and their operations.
+    /// Each <see cref="MySqlVirtualNetworkRuleResource"/> in the collection will belong to the same instance of <see cref="MySqlServerResource"/>.
+    /// To get a <see cref="MySqlVirtualNetworkRuleCollection"/> instance call the GetMySqlVirtualNetworkRules method from an instance of <see cref="MySqlServerResource"/>.
     /// </summary>
     public partial class MySqlVirtualNetworkRuleCollection : ArmCollection, IEnumerable<MySqlVirtualNetworkRuleResource>, IAsyncEnumerable<MySqlVirtualNetworkRuleResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<MySqlVirtualNetworkRuleResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string virtualNetworkRuleName, MySqlVirtualNetworkRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<MySqlVirtualNetworkRuleResource> CreateOrUpdate(WaitUntil waitUntil, string virtualNetworkRuleName, MySqlVirtualNetworkRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
         public virtual async Task<Response<MySqlVirtualNetworkRuleResource>> GetAsync(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
         public virtual Response<MySqlVirtualNetworkRuleResource> Get(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="MySqlVirtualNetworkRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="MySqlVirtualNetworkRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<MySqlVirtualNetworkRuleResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MySqlVirtualNetworkRuleResource(Client, MySqlVirtualNetworkRuleData.DeserializeMySqlVirtualNetworkRuleData(e)), _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics, Pipeline, "MySqlVirtualNetworkRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MySqlVirtualNetworkRuleResource(Client, MySqlVirtualNetworkRuleData.DeserializeMySqlVirtualNetworkRuleData(e)), _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics, Pipeline, "MySqlVirtualNetworkRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="MySqlVirtualNetworkRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="MySqlVirtualNetworkRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<MySqlVirtualNetworkRuleResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MySqlVirtualNetworkRuleResource(Client, MySqlVirtualNetworkRuleData.DeserializeMySqlVirtualNetworkRuleData(e)), _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics, Pipeline, "MySqlVirtualNetworkRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MySqlVirtualNetworkRuleResource(Client, MySqlVirtualNetworkRuleData.DeserializeMySqlVirtualNetworkRuleData(e)), _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics, Pipeline, "MySqlVirtualNetworkRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>VirtualNetworkRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
         public virtual Response<bool> Exists(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(virtualNetworkRuleName, nameof(virtualNetworkRuleName));
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
 
             using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.MySql
             {
                 var response = _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualNetworkRuleName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualNetworkRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
+        public virtual async Task<NullableResponse<MySqlVirtualNetworkRuleResource>> GetIfExistsAsync(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
+        {
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
+
+            using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualNetworkRuleName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<MySqlVirtualNetworkRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new MySqlVirtualNetworkRuleResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualNetworkRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2017-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlVirtualNetworkRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="virtualNetworkRuleName"> The name of the virtual network rule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualNetworkRuleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualNetworkRuleName"/> is null. </exception>
+        public virtual NullableResponse<MySqlVirtualNetworkRuleResource> GetIfExists(string virtualNetworkRuleName, CancellationToken cancellationToken = default)
+        {
+            if (virtualNetworkRuleName == null)
+            {
+                throw new ArgumentNullException(nameof(virtualNetworkRuleName));
+            }
+            if (virtualNetworkRuleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(virtualNetworkRuleName));
+            }
+
+            using var scope = _mySqlVirtualNetworkRuleVirtualNetworkRulesClientDiagnostics.CreateScope("MySqlVirtualNetworkRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _mySqlVirtualNetworkRuleVirtualNetworkRulesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualNetworkRuleName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<MySqlVirtualNetworkRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new MySqlVirtualNetworkRuleResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

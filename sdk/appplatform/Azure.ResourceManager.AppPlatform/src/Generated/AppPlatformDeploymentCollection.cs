@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppPlatform
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AppPlatformDeploymentResource" /> and their operations.
-    /// Each <see cref="AppPlatformDeploymentResource" /> in the collection will belong to the same instance of <see cref="AppPlatformAppResource" />.
-    /// To get an <see cref="AppPlatformDeploymentCollection" /> instance call the GetAppPlatformDeployments method from an instance of <see cref="AppPlatformAppResource" />.
+    /// A class representing a collection of <see cref="AppPlatformDeploymentResource"/> and their operations.
+    /// Each <see cref="AppPlatformDeploymentResource"/> in the collection will belong to the same instance of <see cref="AppPlatformAppResource"/>.
+    /// To get an <see cref="AppPlatformDeploymentCollection"/> instance call the GetAppPlatformDeployments method from an instance of <see cref="AppPlatformAppResource"/>.
     /// </summary>
     public partial class AppPlatformDeploymentCollection : ArmCollection, IEnumerable<AppPlatformDeploymentResource>, IAsyncEnumerable<AppPlatformDeploymentResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<AppPlatformDeploymentResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string deploymentName, AppPlatformDeploymentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<AppPlatformDeploymentResource> CreateOrUpdate(WaitUntil waitUntil, string deploymentName, AppPlatformDeploymentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="deploymentName"> The name of the Deployment resource. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
         public virtual async Task<Response<AppPlatformDeploymentResource>> GetAsync(string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="deploymentName"> The name of the Deployment resource. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
         public virtual Response<AppPlatformDeploymentResource> Get(string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.Get");
             scope.Start();
@@ -219,16 +286,24 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="version"> Version of the deployments to be listed. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AppPlatformDeploymentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AppPlatformDeploymentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AppPlatformDeploymentResource> GetAllAsync(IEnumerable<string> version = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appPlatformDeploymentDeploymentsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, version);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appPlatformDeploymentDeploymentsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, version);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppPlatformDeploymentResource(Client, AppPlatformDeploymentData.DeserializeAppPlatformDeploymentData(e)), _appPlatformDeploymentDeploymentsClientDiagnostics, Pipeline, "AppPlatformDeploymentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AppPlatformDeploymentResource(Client, AppPlatformDeploymentData.DeserializeAppPlatformDeploymentData(e)), _appPlatformDeploymentDeploymentsClientDiagnostics, Pipeline, "AppPlatformDeploymentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,16 +317,24 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="version"> Version of the deployments to be listed. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AppPlatformDeploymentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AppPlatformDeploymentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AppPlatformDeploymentResource> GetAll(IEnumerable<string> version = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _appPlatformDeploymentDeploymentsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, version);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _appPlatformDeploymentDeploymentsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, version);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppPlatformDeploymentResource(Client, AppPlatformDeploymentData.DeserializeAppPlatformDeploymentData(e)), _appPlatformDeploymentDeploymentsClientDiagnostics, Pipeline, "AppPlatformDeploymentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AppPlatformDeploymentResource(Client, AppPlatformDeploymentData.DeserializeAppPlatformDeploymentData(e)), _appPlatformDeploymentDeploymentsClientDiagnostics, Pipeline, "AppPlatformDeploymentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +348,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="deploymentName"> The name of the Deployment resource. </param>
@@ -273,7 +364,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.Exists");
             scope.Start();
@@ -300,6 +398,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <term>Operation Id</term>
         /// <description>Deployments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="deploymentName"> The name of the Deployment resource. </param>
@@ -308,7 +414,14 @@ namespace Azure.ResourceManager.AppPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
         public virtual Response<bool> Exists(string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.Exists");
             scope.Start();
@@ -316,6 +429,110 @@ namespace Azure.ResourceManager.AppPlatform
             {
                 var response = _appPlatformDeploymentDeploymentsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, deploymentName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/deployments/{deploymentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Deployments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="deploymentName"> The name of the Deployment resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AppPlatformDeploymentResource>> GetIfExistsAsync(string deploymentName, CancellationToken cancellationToken = default)
+        {
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+
+            using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _appPlatformDeploymentDeploymentsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, deploymentName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AppPlatformDeploymentResource>(response.GetRawResponse());
+                return Response.FromValue(new AppPlatformDeploymentResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/deployments/{deploymentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Deployments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AppPlatformDeploymentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="deploymentName"> The name of the Deployment resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="deploymentName"/> is null. </exception>
+        public virtual NullableResponse<AppPlatformDeploymentResource> GetIfExists(string deploymentName, CancellationToken cancellationToken = default)
+        {
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+
+            using var scope = _appPlatformDeploymentDeploymentsClientDiagnostics.CreateScope("AppPlatformDeploymentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _appPlatformDeploymentDeploymentsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, deploymentName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AppPlatformDeploymentResource>(response.GetRawResponse());
+                return Response.FromValue(new AppPlatformDeploymentResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

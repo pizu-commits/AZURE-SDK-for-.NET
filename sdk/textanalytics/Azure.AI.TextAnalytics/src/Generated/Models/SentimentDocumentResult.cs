@@ -9,14 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The SentimentDocumentResult. </summary>
     internal partial class SentimentDocumentResult : DocumentResult
     {
-        /// <summary> Initializes a new instance of SentimentDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="SentimentDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="sentiment"> Predicted sentiment for document (Negative, Neutral, Positive, or Mixed). </param>
@@ -25,17 +24,29 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/>, <paramref name="confidenceScores"/> or <paramref name="sentences"/> is null. </exception>
         public SentimentDocumentResult(string id, IEnumerable<DocumentWarning> warnings, TextSentiment sentiment, SentimentConfidenceScores confidenceScores, IEnumerable<SentenceSentimentInternal> sentences) : base(id, warnings)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(warnings, nameof(warnings));
-            Argument.AssertNotNull(confidenceScores, nameof(confidenceScores));
-            Argument.AssertNotNull(sentences, nameof(sentences));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
+            if (confidenceScores == null)
+            {
+                throw new ArgumentNullException(nameof(confidenceScores));
+            }
+            if (sentences == null)
+            {
+                throw new ArgumentNullException(nameof(sentences));
+            }
 
             Sentiment = sentiment;
             ConfidenceScores = confidenceScores;
             Sentences = sentences.ToList();
         }
 
-        /// <summary> Initializes a new instance of SentimentDocumentResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="SentimentDocumentResult"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>

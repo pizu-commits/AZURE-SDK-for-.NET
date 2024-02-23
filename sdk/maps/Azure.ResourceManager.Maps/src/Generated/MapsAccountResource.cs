@@ -21,13 +21,16 @@ namespace Azure.ResourceManager.Maps
 {
     /// <summary>
     /// A Class representing a MapsAccount along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="MapsAccountResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetMapsAccountResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetMapsAccount method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="MapsAccountResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetMapsAccountResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetMapsAccount method.
     /// </summary>
     public partial class MapsAccountResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="MapsAccountResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="accountName"> The accountName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string accountName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}";
@@ -38,12 +41,15 @@ namespace Azure.ResourceManager.Maps
         private readonly AccountsRestOperations _mapsAccountAccountsRestClient;
         private readonly MapsAccountData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Maps/accounts";
+
         /// <summary> Initializes a new instance of the <see cref="MapsAccountResource"/> class for mocking. </summary>
         protected MapsAccountResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "MapsAccountResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="MapsAccountResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal MapsAccountResource(ArmClient client, MapsAccountData data) : this(client, data.Id)
@@ -64,9 +70,6 @@ namespace Azure.ResourceManager.Maps
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Maps/accounts";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -93,7 +96,7 @@ namespace Azure.ResourceManager.Maps
         /// <returns> An object representing collection of MapsCreatorResources and their operations over a MapsCreatorResource. </returns>
         public virtual MapsCreatorCollection GetMapsCreators()
         {
-            return GetCachedClient(Client => new MapsCreatorCollection(Client, Id));
+            return GetCachedClient(client => new MapsCreatorCollection(client, Id));
         }
 
         /// <summary>
@@ -107,12 +110,20 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Creators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsCreatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="creatorName"> The name of the Maps Creator instance. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="creatorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="creatorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="creatorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<MapsCreatorResource>> GetMapsCreatorAsync(string creatorName, CancellationToken cancellationToken = default)
         {
@@ -130,12 +141,20 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Creators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsCreatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="creatorName"> The name of the Maps Creator instance. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="creatorName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="creatorName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="creatorName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<MapsCreatorResource> GetMapsCreator(string creatorName, CancellationToken cancellationToken = default)
         {
@@ -152,6 +171,14 @@ namespace Azure.ResourceManager.Maps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -185,6 +212,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -216,6 +251,14 @@ namespace Azure.ResourceManager.Maps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Accounts_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -251,6 +294,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -285,6 +336,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The updated parameters for the Maps Account. </param>
@@ -292,7 +351,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<MapsAccountResource>> UpdateAsync(MapsAccountPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.Update");
             scope.Start();
@@ -319,6 +381,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> The updated parameters for the Maps Account. </param>
@@ -326,7 +396,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<MapsAccountResource> Update(MapsAccountPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.Update");
             scope.Start();
@@ -357,6 +430,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_ListSas</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> The updated parameters for the Maps Account. </param>
@@ -364,7 +445,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<MapsAccountSasToken>> GetSasAsync(MapsAccountSasContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.GetSas");
             scope.Start();
@@ -395,6 +479,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_ListSas</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> The updated parameters for the Maps Account. </param>
@@ -402,7 +494,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<MapsAccountSasToken> GetSas(MapsAccountSasContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.GetSas");
             scope.Start();
@@ -428,6 +523,14 @@ namespace Azure.ResourceManager.Maps
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Accounts_ListKeys</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -459,6 +562,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_ListKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -489,6 +600,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="keySpecification"> Which key to regenerate:  primary or secondary. </param>
@@ -496,7 +615,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="keySpecification"/> is null. </exception>
         public virtual async Task<Response<MapsAccountKeys>> RegenerateKeysAsync(MapsKeySpecification keySpecification, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(keySpecification, nameof(keySpecification));
+            if (keySpecification == null)
+            {
+                throw new ArgumentNullException(nameof(keySpecification));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.RegenerateKeys");
             scope.Start();
@@ -523,6 +645,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_RegenerateKeys</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="keySpecification"> Which key to regenerate:  primary or secondary. </param>
@@ -530,7 +660,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="keySpecification"/> is null. </exception>
         public virtual Response<MapsAccountKeys> RegenerateKeys(MapsKeySpecification keySpecification, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(keySpecification, nameof(keySpecification));
+            if (keySpecification == null)
+            {
+                throw new ArgumentNullException(nameof(keySpecification));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.RegenerateKeys");
             scope.Start();
@@ -557,6 +690,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -565,8 +706,14 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<MapsAccountResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.AddTag");
             scope.Start();
@@ -611,6 +758,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -619,8 +774,14 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<MapsAccountResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.AddTag");
             scope.Start();
@@ -665,6 +826,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -672,7 +841,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<MapsAccountResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.SetTags");
             scope.Start();
@@ -714,6 +886,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -721,7 +901,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<MapsAccountResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.SetTags");
             scope.Start();
@@ -763,6 +946,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -770,7 +961,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<MapsAccountResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.RemoveTag");
             scope.Start();
@@ -815,6 +1009,14 @@ namespace Azure.ResourceManager.Maps
         /// <term>Operation Id</term>
         /// <description>Accounts_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-12-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MapsAccountResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -822,7 +1024,10 @@ namespace Azure.ResourceManager.Maps
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<MapsAccountResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _mapsAccountAccountsClientDiagnostics.CreateScope("MapsAccountResource.RemoveTag");
             scope.Start();

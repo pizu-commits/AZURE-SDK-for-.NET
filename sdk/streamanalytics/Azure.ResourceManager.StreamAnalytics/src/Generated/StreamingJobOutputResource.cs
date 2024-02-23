@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.StreamAnalytics
 {
     /// <summary>
     /// A Class representing a StreamingJobOutput along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="StreamingJobOutputResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetStreamingJobOutputResource method.
-    /// Otherwise you can get one from its parent resource <see cref="StreamingJobResource" /> using the GetStreamingJobOutput method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="StreamingJobOutputResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetStreamingJobOutputResource method.
+    /// Otherwise you can get one from its parent resource <see cref="StreamingJobResource"/> using the GetStreamingJobOutput method.
     /// </summary>
     public partial class StreamingJobOutputResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="StreamingJobOutputResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="jobName"> The jobName. </param>
+        /// <param name="outputName"> The outputName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string jobName, string outputName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/outputs/{outputName}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.StreamAnalytics
         private readonly OutputsRestOperations _streamingJobOutputOutputsRestClient;
         private readonly StreamingJobOutputData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.StreamAnalytics/streamingjobs/outputs";
+
         /// <summary> Initializes a new instance of the <see cref="StreamingJobOutputResource"/> class for mocking. </summary>
         protected StreamingJobOutputResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "StreamingJobOutputResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="StreamingJobOutputResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal StreamingJobOutputResource(ArmClient client, StreamingJobOutputData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.StreamAnalytics
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.StreamAnalytics/streamingjobs/outputs";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +102,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +142,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Outputs_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -196,6 +224,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -230,6 +266,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> An Output object. The properties specified here will overwrite the corresponding properties in the existing output (ie. Those properties will be updated). Any properties that are set to null here will mean that the corresponding property in the existing output will remain the same and not change as a result of this PATCH operation. </param>
@@ -238,7 +282,10 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<StreamingJobOutputResource>> UpdateAsync(StreamingJobOutputData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputResource.Update");
             scope.Start();
@@ -265,6 +312,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <term>Operation Id</term>
         /// <description>Outputs_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> An Output object. The properties specified here will overwrite the corresponding properties in the existing output (ie. Those properties will be updated). Any properties that are set to null here will mean that the corresponding property in the existing output will remain the same and not change as a result of this PATCH operation. </param>
@@ -273,7 +328,10 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<StreamingJobOutputResource> Update(StreamingJobOutputData data, string ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingJobOutputOutputsClientDiagnostics.CreateScope("StreamingJobOutputResource.Update");
             scope.Start();
@@ -299,6 +357,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Outputs_Test</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -334,6 +400,14 @@ namespace Azure.ResourceManager.StreamAnalytics
         /// <item>
         /// <term>Operation Id</term>
         /// <description>Outputs_Test</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingJobOutputResource"/></description>
         /// </item>
         /// </list>
         /// </summary>

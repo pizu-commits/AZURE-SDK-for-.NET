@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AgFoodPlatform
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ExtensionResource" /> and their operations.
-    /// Each <see cref="ExtensionResource" /> in the collection will belong to the same instance of <see cref="FarmBeatResource" />.
-    /// To get an <see cref="ExtensionCollection" /> instance call the GetExtensions method from an instance of <see cref="FarmBeatResource" />.
+    /// A class representing a collection of <see cref="ExtensionResource"/> and their operations.
+    /// Each <see cref="ExtensionResource"/> in the collection will belong to the same instance of <see cref="FarmBeatResource"/>.
+    /// To get an <see cref="ExtensionCollection"/> instance call the GetExtensions method from an instance of <see cref="FarmBeatResource"/>.
     /// </summary>
     public partial class ExtensionCollection : ArmCollection, IEnumerable<ExtensionResource>, IAsyncEnumerable<ExtensionResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual async Task<ArmOperation<ExtensionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.CreateOrUpdate");
             scope.Start();
@@ -102,6 +118,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -111,7 +135,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual ArmOperation<ExtensionResource> CreateOrUpdate(WaitUntil waitUntil, string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.CreateOrUpdate");
             scope.Start();
@@ -141,6 +172,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionId"> Id of extension resource. </param>
@@ -149,7 +188,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual async Task<Response<ExtensionResource>> GetAsync(string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.Get");
             scope.Start();
@@ -178,6 +224,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionId"> Id of extension resource. </param>
@@ -186,7 +240,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual Response<ExtensionResource> Get(string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.Get");
             scope.Start();
@@ -215,6 +276,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_ListByFarmBeats</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionIds"> Installed extension ids. </param>
@@ -225,12 +294,12 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// </param>
         /// <param name="skipToken"> Skip token for getting next set of results. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ExtensionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ExtensionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ExtensionResource> GetAllAsync(IEnumerable<string> extensionIds = null, IEnumerable<string> extensionCategories = null, int? maxPageSize = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _extensionRestClient.CreateListByFarmBeatsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionIds, extensionCategories, pageSizeHint, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _extensionRestClient.CreateListByFarmBeatsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionIds, extensionCategories, pageSizeHint, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ExtensionResource(Client, ExtensionData.DeserializeExtensionData(e)), _extensionClientDiagnostics, Pipeline, "ExtensionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ExtensionResource(Client, ExtensionData.DeserializeExtensionData(e)), _extensionClientDiagnostics, Pipeline, "ExtensionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -244,6 +313,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_ListByFarmBeats</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionIds"> Installed extension ids. </param>
@@ -254,12 +331,12 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// </param>
         /// <param name="skipToken"> Skip token for getting next set of results. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ExtensionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ExtensionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ExtensionResource> GetAll(IEnumerable<string> extensionIds = null, IEnumerable<string> extensionCategories = null, int? maxPageSize = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _extensionRestClient.CreateListByFarmBeatsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionIds, extensionCategories, pageSizeHint, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _extensionRestClient.CreateListByFarmBeatsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionIds, extensionCategories, pageSizeHint, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ExtensionResource(Client, ExtensionData.DeserializeExtensionData(e)), _extensionClientDiagnostics, Pipeline, "ExtensionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ExtensionResource(Client, ExtensionData.DeserializeExtensionData(e)), _extensionClientDiagnostics, Pipeline, "ExtensionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -273,6 +350,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionId"> Id of extension resource. </param>
@@ -281,7 +366,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.Exists");
             scope.Start();
@@ -308,6 +400,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <term>Operation Id</term>
         /// <description>Extensions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="extensionId"> Id of extension resource. </param>
@@ -316,7 +416,14 @@ namespace Azure.ResourceManager.AgFoodPlatform
         /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
         public virtual Response<bool> Exists(string extensionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(extensionId, nameof(extensionId));
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
 
             using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.Exists");
             scope.Start();
@@ -324,6 +431,110 @@ namespace Azure.ResourceManager.AgFoodPlatform
             {
                 var response = _extensionRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Extensions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="extensionId"> Id of extension resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="extensionId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ExtensionResource>> GetIfExistsAsync(string extensionId, CancellationToken cancellationToken = default)
+        {
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
+
+            using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _extensionRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ExtensionResource>(response.GetRawResponse());
+                return Response.FromValue(new ExtensionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Extensions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-09-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ExtensionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="extensionId"> Id of extension resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="extensionId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="extensionId"/> is null. </exception>
+        public virtual NullableResponse<ExtensionResource> GetIfExists(string extensionId, CancellationToken cancellationToken = default)
+        {
+            if (extensionId == null)
+            {
+                throw new ArgumentNullException(nameof(extensionId));
+            }
+            if (extensionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(extensionId));
+            }
+
+            using var scope = _extensionClientDiagnostics.CreateScope("ExtensionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _extensionRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, extensionId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ExtensionResource>(response.GetRawResponse());
+                return Response.FromValue(new ExtensionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

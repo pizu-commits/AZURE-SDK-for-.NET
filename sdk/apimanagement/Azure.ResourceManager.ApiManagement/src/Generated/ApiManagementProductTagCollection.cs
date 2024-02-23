@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiManagementProductTagResource" /> and their operations.
-    /// Each <see cref="ApiManagementProductTagResource" /> in the collection will belong to the same instance of <see cref="ApiManagementProductResource" />.
-    /// To get an <see cref="ApiManagementProductTagCollection" /> instance call the GetApiManagementProductTags method from an instance of <see cref="ApiManagementProductResource" />.
+    /// A class representing a collection of <see cref="ApiManagementProductTagResource"/> and their operations.
+    /// Each <see cref="ApiManagementProductTagResource"/> in the collection will belong to the same instance of <see cref="ApiManagementProductResource"/>.
+    /// To get an <see cref="ApiManagementProductTagCollection"/> instance call the GetApiManagementProductTags method from an instance of <see cref="ApiManagementProductResource"/>.
     /// </summary>
     public partial class ApiManagementProductTagCollection : ArmCollection, IEnumerable<ApiManagementProductTagResource>, IAsyncEnumerable<ApiManagementProductTagResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_AssignToProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiManagementProductTagResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.CreateOrUpdate");
             scope.Start();
@@ -102,6 +118,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_AssignToProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -111,7 +135,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual ArmOperation<ApiManagementProductTagResource> CreateOrUpdate(WaitUntil waitUntil, string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.CreateOrUpdate");
             scope.Start();
@@ -141,6 +172,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_GetByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
@@ -149,7 +188,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual async Task<Response<ApiManagementProductTagResource>> GetAsync(string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.Get");
             scope.Start();
@@ -178,6 +224,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_GetByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
@@ -186,7 +240,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual Response<ApiManagementProductTagResource> Get(string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.Get");
             scope.Start();
@@ -215,18 +276,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_ListByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| displayName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiManagementProductTagResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiManagementProductTagResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiManagementProductTagResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementProductTagTagRestClient.CreateListByProductRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementProductTagTagRestClient.CreateListByProductNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementProductTagResource(Client, TagContractData.DeserializeTagContractData(e)), _apiManagementProductTagTagClientDiagnostics, Pipeline, "ApiManagementProductTagCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementProductTagResource(Client, TagContractData.DeserializeTagContractData(e)), _apiManagementProductTagTagClientDiagnostics, Pipeline, "ApiManagementProductTagCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -240,18 +309,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_ListByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| displayName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiManagementProductTagResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiManagementProductTagResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiManagementProductTagResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementProductTagTagRestClient.CreateListByProductRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementProductTagTagRestClient.CreateListByProductNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementProductTagResource(Client, TagContractData.DeserializeTagContractData(e)), _apiManagementProductTagTagClientDiagnostics, Pipeline, "ApiManagementProductTagCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementProductTagResource(Client, TagContractData.DeserializeTagContractData(e)), _apiManagementProductTagTagClientDiagnostics, Pipeline, "ApiManagementProductTagCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +342,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_GetByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
@@ -273,7 +358,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.Exists");
             scope.Start();
@@ -300,6 +392,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Tag_GetByProduct</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
@@ -308,7 +408,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
         public virtual Response<bool> Exists(string tagId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(tagId, nameof(tagId));
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
 
             using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.Exists");
             scope.Start();
@@ -316,6 +423,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiManagementProductTagTagRestClient.GetByProduct(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, tagId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Tag_GetByProduct</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="tagId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiManagementProductTagResource>> GetIfExistsAsync(string tagId, CancellationToken cancellationToken = default)
+        {
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
+
+            using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiManagementProductTagTagRestClient.GetByProductAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, tagId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementProductTagResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementProductTagResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Tag_GetByProduct</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementProductTagResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="tagId"> Tag identifier. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="tagId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="tagId"/> is null. </exception>
+        public virtual NullableResponse<ApiManagementProductTagResource> GetIfExists(string tagId, CancellationToken cancellationToken = default)
+        {
+            if (tagId == null)
+            {
+                throw new ArgumentNullException(nameof(tagId));
+            }
+            if (tagId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(tagId));
+            }
+
+            using var scope = _apiManagementProductTagTagClientDiagnostics.CreateScope("ApiManagementProductTagCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiManagementProductTagTagRestClient.GetByProduct(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, tagId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementProductTagResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementProductTagResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

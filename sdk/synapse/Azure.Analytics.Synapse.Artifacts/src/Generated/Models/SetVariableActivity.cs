@@ -7,24 +7,26 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Set value for a Variable. </summary>
     public partial class SetVariableActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of SetVariableActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SetVariableActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public SetVariableActivity(string name) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Type = "SetVariable";
         }
 
-        /// <summary> Initializes a new instance of SetVariableActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SetVariableActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

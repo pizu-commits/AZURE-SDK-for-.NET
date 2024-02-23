@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework.Validators;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Text.Json.Serialization;
+using Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework.Validators;
 
 namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework
 {
@@ -17,13 +18,14 @@ namespace Microsoft.Azure.WebJobs.Extensions.AuthenticationEvents.Framework
         /// <summary>Gets or sets the source.</summary>
         /// <value>The source.</value>
         [JsonPropertyName("source")]
-        [RequireNonDefault]
+        [Required]
         public string Source { get; set; }
 
         /// <summary>Gets or sets the cloud event data type.</summary>
         /// <value>Data type of cloud event.</value>
         [JsonPropertyName("oDataType")]
         [OneOf("microsoft.graph.onTokenIssuanceStartCalloutData", "")]
+        [Required]
         public string ODataType { get; set; } = string.Empty;
 
         /// <summary>Initializes a new instance of the <see cref="CloudEventRequest{T, K}" /> class.</summary>

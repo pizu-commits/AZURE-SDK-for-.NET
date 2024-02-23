@@ -14,16 +14,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> HDInsight MapReduce activity type. </summary>
     public partial class HDInsightMapReduceActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of HDInsightMapReduceActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightMapReduceActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="className"> Class name. Type: string (or Expression with resultType string). </param>
         /// <param name="jarFilePath"> Jar path. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="className"/> or <paramref name="jarFilePath"/> is null. </exception>
         public HDInsightMapReduceActivity(string name, object className, object jarFilePath) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(className, nameof(className));
-            Argument.AssertNotNull(jarFilePath, nameof(jarFilePath));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (className == null)
+            {
+                throw new ArgumentNullException(nameof(className));
+            }
+            if (jarFilePath == null)
+            {
+                throw new ArgumentNullException(nameof(jarFilePath));
+            }
 
             StorageLinkedServices = new ChangeTrackingList<LinkedServiceReference>();
             Arguments = new ChangeTrackingList<object>();
@@ -34,7 +43,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "HDInsightMapReduce";
         }
 
-        /// <summary> Initializes a new instance of HDInsightMapReduceActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="HDInsightMapReduceActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Amazon Marketplace Web Service linked service. </summary>
     public partial class AmazonMWSLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of AmazonMWSLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonMWSLinkedService"/>. </summary>
         /// <param name="endpoint"> The endpoint of the Amazon MWS server, (i.e. mws.amazonservices.com). </param>
         /// <param name="marketplaceID"> The Amazon Marketplace ID you want to retrieve data from. To retrieve data from multiple Marketplace IDs, separate them with a comma (,). (i.e. A2EUQ1WTGCTBG2). </param>
         /// <param name="sellerID"> The Amazon seller ID. </param>
@@ -22,10 +21,22 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="marketplaceID"/>, <paramref name="sellerID"/> or <paramref name="accessKeyId"/> is null. </exception>
         public AmazonMWSLinkedService(object endpoint, object marketplaceID, object sellerID, object accessKeyId)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(marketplaceID, nameof(marketplaceID));
-            Argument.AssertNotNull(sellerID, nameof(sellerID));
-            Argument.AssertNotNull(accessKeyId, nameof(accessKeyId));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (marketplaceID == null)
+            {
+                throw new ArgumentNullException(nameof(marketplaceID));
+            }
+            if (sellerID == null)
+            {
+                throw new ArgumentNullException(nameof(sellerID));
+            }
+            if (accessKeyId == null)
+            {
+                throw new ArgumentNullException(nameof(accessKeyId));
+            }
 
             Endpoint = endpoint;
             MarketplaceID = marketplaceID;
@@ -34,7 +45,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "AmazonMWS";
         }
 
-        /// <summary> Initializes a new instance of AmazonMWSLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonMWSLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

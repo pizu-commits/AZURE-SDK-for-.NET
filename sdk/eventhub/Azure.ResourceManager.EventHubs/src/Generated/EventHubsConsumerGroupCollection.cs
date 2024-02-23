@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.EventHubs
 {
     /// <summary>
-    /// A class representing a collection of <see cref="EventHubsConsumerGroupResource" /> and their operations.
-    /// Each <see cref="EventHubsConsumerGroupResource" /> in the collection will belong to the same instance of <see cref="EventHubResource" />.
-    /// To get an <see cref="EventHubsConsumerGroupCollection" /> instance call the GetEventHubsConsumerGroups method from an instance of <see cref="EventHubResource" />.
+    /// A class representing a collection of <see cref="EventHubsConsumerGroupResource"/> and their operations.
+    /// Each <see cref="EventHubsConsumerGroupResource"/> in the collection will belong to the same instance of <see cref="EventHubResource"/>.
+    /// To get an <see cref="EventHubsConsumerGroupCollection"/> instance call the GetEventHubsConsumerGroups method from an instance of <see cref="EventHubResource"/>.
     /// </summary>
     public partial class EventHubsConsumerGroupCollection : ArmCollection, IEnumerable<EventHubsConsumerGroupResource>, IAsyncEnumerable<EventHubsConsumerGroupResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<EventHubsConsumerGroupResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string consumerGroupName, EventHubsConsumerGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<EventHubsConsumerGroupResource> CreateOrUpdate(WaitUntil waitUntil, string consumerGroupName, EventHubsConsumerGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="consumerGroupName"> The consumer group name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
         public virtual async Task<Response<EventHubsConsumerGroupResource>> GetAsync(string consumerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="consumerGroupName"> The consumer group name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
         public virtual Response<EventHubsConsumerGroupResource> Get(string consumerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.Get");
             scope.Start();
@@ -219,17 +286,25 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_ListByEventHub</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skip"> Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. </param>
         /// <param name="top"> May be used to limit the number of results to the most recent N usageDetails. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="EventHubsConsumerGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="EventHubsConsumerGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<EventHubsConsumerGroupResource> GetAllAsync(int? skip = null, int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _eventHubsConsumerGroupConsumerGroupsRestClient.CreateListByEventHubRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, skip, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _eventHubsConsumerGroupConsumerGroupsRestClient.CreateListByEventHubNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, skip, top);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new EventHubsConsumerGroupResource(Client, EventHubsConsumerGroupData.DeserializeEventHubsConsumerGroupData(e)), _eventHubsConsumerGroupConsumerGroupsClientDiagnostics, Pipeline, "EventHubsConsumerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new EventHubsConsumerGroupResource(Client, EventHubsConsumerGroupData.DeserializeEventHubsConsumerGroupData(e)), _eventHubsConsumerGroupConsumerGroupsClientDiagnostics, Pipeline, "EventHubsConsumerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,17 +318,25 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_ListByEventHub</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="skip"> Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. </param>
         /// <param name="top"> May be used to limit the number of results to the most recent N usageDetails. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="EventHubsConsumerGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="EventHubsConsumerGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<EventHubsConsumerGroupResource> GetAll(int? skip = null, int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _eventHubsConsumerGroupConsumerGroupsRestClient.CreateListByEventHubRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, skip, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _eventHubsConsumerGroupConsumerGroupsRestClient.CreateListByEventHubNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, skip, top);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new EventHubsConsumerGroupResource(Client, EventHubsConsumerGroupData.DeserializeEventHubsConsumerGroupData(e)), _eventHubsConsumerGroupConsumerGroupsClientDiagnostics, Pipeline, "EventHubsConsumerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new EventHubsConsumerGroupResource(Client, EventHubsConsumerGroupData.DeserializeEventHubsConsumerGroupData(e)), _eventHubsConsumerGroupConsumerGroupsClientDiagnostics, Pipeline, "EventHubsConsumerGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -267,6 +350,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="consumerGroupName"> The consumer group name. </param>
@@ -275,7 +366,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string consumerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.Exists");
             scope.Start();
@@ -302,6 +400,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <term>Operation Id</term>
         /// <description>ConsumerGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="consumerGroupName"> The consumer group name. </param>
@@ -310,7 +416,14 @@ namespace Azure.ResourceManager.EventHubs
         /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
         public virtual Response<bool> Exists(string consumerGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(consumerGroupName, nameof(consumerGroupName));
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
 
             using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.Exists");
             scope.Start();
@@ -318,6 +431,110 @@ namespace Azure.ResourceManager.EventHubs
             {
                 var response = _eventHubsConsumerGroupConsumerGroupsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, consumerGroupName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConsumerGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="consumerGroupName"> The consumer group name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="consumerGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
+        public virtual async Task<NullableResponse<EventHubsConsumerGroupResource>> GetIfExistsAsync(string consumerGroupName, CancellationToken cancellationToken = default)
+        {
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
+
+            using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _eventHubsConsumerGroupConsumerGroupsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, consumerGroupName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<EventHubsConsumerGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new EventHubsConsumerGroupResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ConsumerGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="EventHubsConsumerGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="consumerGroupName"> The consumer group name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="consumerGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="consumerGroupName"/> is null. </exception>
+        public virtual NullableResponse<EventHubsConsumerGroupResource> GetIfExists(string consumerGroupName, CancellationToken cancellationToken = default)
+        {
+            if (consumerGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(consumerGroupName));
+            }
+            if (consumerGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(consumerGroupName));
+            }
+
+            using var scope = _eventHubsConsumerGroupConsumerGroupsClientDiagnostics.CreateScope("EventHubsConsumerGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _eventHubsConsumerGroupConsumerGroupsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, consumerGroupName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<EventHubsConsumerGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new EventHubsConsumerGroupResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

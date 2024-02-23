@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.SecurityCenter.Models;
 namespace Azure.ResourceManager.SecurityCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SubscriptionSecurityAlertResource" /> and their operations.
-    /// Each <see cref="SubscriptionSecurityAlertResource" /> in the collection will belong to the same instance of <see cref="SecurityCenterLocationResource" />.
-    /// To get a <see cref="SubscriptionSecurityAlertCollection" /> instance call the GetSubscriptionSecurityAlerts method from an instance of <see cref="SecurityCenterLocationResource" />.
+    /// A class representing a collection of <see cref="SubscriptionSecurityAlertResource"/> and their operations.
+    /// Each <see cref="SubscriptionSecurityAlertResource"/> in the collection will belong to the same instance of <see cref="SecurityCenterLocationResource"/>.
+    /// To get a <see cref="SubscriptionSecurityAlertCollection"/> instance call the GetSubscriptionSecurityAlerts method from an instance of <see cref="SecurityCenterLocationResource"/>.
     /// </summary>
     public partial class SubscriptionSecurityAlertCollection : ArmCollection, IEnumerable<SubscriptionSecurityAlertResource>, IAsyncEnumerable<SubscriptionSecurityAlertResource>
     {
@@ -68,6 +69,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_GetSubscriptionLevel</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alertName"> Name of the alert object. </param>
@@ -76,7 +85,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
         public virtual async Task<Response<SubscriptionSecurityAlertResource>> GetAsync(string alertName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(alertName, nameof(alertName));
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
 
             using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Get");
             scope.Start();
@@ -105,6 +121,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_GetSubscriptionLevel</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alertName"> Name of the alert object. </param>
@@ -113,7 +137,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
         public virtual Response<SubscriptionSecurityAlertResource> Get(string alertName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(alertName, nameof(alertName));
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
 
             using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Get");
             scope.Start();
@@ -142,15 +173,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_ListSubscriptionLevelByRegion</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SubscriptionSecurityAlertResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SubscriptionSecurityAlertResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SubscriptionSecurityAlertResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _subscriptionSecurityAlertAlertsRestClient.CreateListSubscriptionLevelByRegionRequest(Id.SubscriptionId, new AzureLocation(Id.Name));
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _subscriptionSecurityAlertAlertsRestClient.CreateListSubscriptionLevelByRegionNextPageRequest(nextLink, Id.SubscriptionId, new AzureLocation(Id.Name));
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SubscriptionSecurityAlertResource(Client, SecurityAlertData.DeserializeSecurityAlertData(e)), _subscriptionSecurityAlertAlertsClientDiagnostics, Pipeline, "SubscriptionSecurityAlertCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SubscriptionSecurityAlertResource(Client, SecurityAlertData.DeserializeSecurityAlertData(e)), _subscriptionSecurityAlertAlertsClientDiagnostics, Pipeline, "SubscriptionSecurityAlertCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -164,15 +203,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_ListSubscriptionLevelByRegion</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SubscriptionSecurityAlertResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SubscriptionSecurityAlertResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SubscriptionSecurityAlertResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _subscriptionSecurityAlertAlertsRestClient.CreateListSubscriptionLevelByRegionRequest(Id.SubscriptionId, new AzureLocation(Id.Name));
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _subscriptionSecurityAlertAlertsRestClient.CreateListSubscriptionLevelByRegionNextPageRequest(nextLink, Id.SubscriptionId, new AzureLocation(Id.Name));
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SubscriptionSecurityAlertResource(Client, SecurityAlertData.DeserializeSecurityAlertData(e)), _subscriptionSecurityAlertAlertsClientDiagnostics, Pipeline, "SubscriptionSecurityAlertCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SubscriptionSecurityAlertResource(Client, SecurityAlertData.DeserializeSecurityAlertData(e)), _subscriptionSecurityAlertAlertsClientDiagnostics, Pipeline, "SubscriptionSecurityAlertCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -186,6 +233,10 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_Simulate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -194,7 +245,10 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation> SimulateAsync(WaitUntil waitUntil, SecurityAlertSimulatorContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _alertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Simulate");
             scope.Start();
@@ -224,6 +278,10 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_Simulate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -232,7 +290,10 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation Simulate(WaitUntil waitUntil, SecurityAlertSimulatorContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _alertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Simulate");
             scope.Start();
@@ -262,6 +323,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_GetSubscriptionLevel</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alertName"> Name of the alert object. </param>
@@ -270,7 +339,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string alertName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(alertName, nameof(alertName));
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
 
             using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Exists");
             scope.Start();
@@ -297,6 +373,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>Alerts_GetSubscriptionLevel</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="alertName"> Name of the alert object. </param>
@@ -305,7 +389,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
         public virtual Response<bool> Exists(string alertName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(alertName, nameof(alertName));
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
 
             using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.Exists");
             scope.Start();
@@ -313,6 +404,110 @@ namespace Azure.ResourceManager.SecurityCenter
             {
                 var response = _subscriptionSecurityAlertAlertsRestClient.GetSubscriptionLevel(Id.SubscriptionId, new AzureLocation(Id.Name), alertName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/alerts/{alertName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Alerts_GetSubscriptionLevel</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="alertName"> Name of the alert object. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="alertName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SubscriptionSecurityAlertResource>> GetIfExistsAsync(string alertName, CancellationToken cancellationToken = default)
+        {
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
+
+            using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _subscriptionSecurityAlertAlertsRestClient.GetSubscriptionLevelAsync(Id.SubscriptionId, new AzureLocation(Id.Name), alertName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SubscriptionSecurityAlertResource>(response.GetRawResponse());
+                return Response.FromValue(new SubscriptionSecurityAlertResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/alerts/{alertName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Alerts_GetSubscriptionLevel</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionSecurityAlertResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="alertName"> Name of the alert object. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="alertName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="alertName"/> is null. </exception>
+        public virtual NullableResponse<SubscriptionSecurityAlertResource> GetIfExists(string alertName, CancellationToken cancellationToken = default)
+        {
+            if (alertName == null)
+            {
+                throw new ArgumentNullException(nameof(alertName));
+            }
+            if (alertName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(alertName));
+            }
+
+            using var scope = _subscriptionSecurityAlertAlertsClientDiagnostics.CreateScope("SubscriptionSecurityAlertCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _subscriptionSecurityAlertAlertsRestClient.GetSubscriptionLevel(Id.SubscriptionId, new AzureLocation(Id.Name), alertName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SubscriptionSecurityAlertResource>(response.GetRawResponse());
+                return Response.FromValue(new SubscriptionSecurityAlertResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

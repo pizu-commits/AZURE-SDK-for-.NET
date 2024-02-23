@@ -7,25 +7,27 @@
 
 using System;
 using Azure.Communication.MediaComposition.Models;
-using Azure.Core;
 
 namespace Azure.Communication.MediaComposition
 {
     /// <summary> Group call to be used as an output. </summary>
     public partial class GroupCallOutput : MediaOutput
     {
-        /// <summary> Initializes a new instance of GroupCallOutput. </summary>
+        /// <summary> Initializes a new instance of <see cref="GroupCallOutput"/>. </summary>
         /// <param name="id"> Group call identifier. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         public GroupCallOutput(string id)
         {
-            Argument.AssertNotNull(id, nameof(id));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             Id = id;
             Kind = MediaOutputType.GroupCall;
         }
 
-        /// <summary> Initializes a new instance of GroupCallOutput. </summary>
+        /// <summary> Initializes a new instance of <see cref="GroupCallOutput"/>. </summary>
         /// <param name="kind"> Kind of media output. </param>
         /// <param name="id"> Group call identifier. </param>
         internal GroupCallOutput(MediaOutputType kind, string id) : base(kind)

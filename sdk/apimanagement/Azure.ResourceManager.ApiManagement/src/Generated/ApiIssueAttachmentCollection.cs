@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiIssueAttachmentResource" /> and their operations.
-    /// Each <see cref="ApiIssueAttachmentResource" /> in the collection will belong to the same instance of <see cref="ApiIssueResource" />.
-    /// To get an <see cref="ApiIssueAttachmentCollection" /> instance call the GetApiIssueAttachments method from an instance of <see cref="ApiIssueResource" />.
+    /// A class representing a collection of <see cref="ApiIssueAttachmentResource"/> and their operations.
+    /// Each <see cref="ApiIssueAttachmentResource"/> in the collection will belong to the same instance of <see cref="ApiIssueResource"/>.
+    /// To get an <see cref="ApiIssueAttachmentCollection"/> instance call the GetApiIssueAttachments method from an instance of <see cref="ApiIssueResource"/>.
     /// </summary>
     public partial class ApiIssueAttachmentCollection : ArmCollection, IEnumerable<ApiIssueAttachmentResource>, IAsyncEnumerable<ApiIssueAttachmentResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ApiIssueAttachmentResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string attachmentId, ApiIssueAttachmentData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +143,18 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ApiIssueAttachmentResource> CreateOrUpdate(WaitUntil waitUntil, string attachmentId, ApiIssueAttachmentData data, ETag? ifMatch = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
         public virtual async Task<Response<ApiIssueAttachmentResource>> GetAsync(string attachmentId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
         public virtual Response<ApiIssueAttachmentResource> Get(string attachmentId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.Get");
             scope.Start();
@@ -221,18 +288,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| userId | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiIssueAttachmentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiIssueAttachmentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiIssueAttachmentResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiIssueAttachmentRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiIssueAttachmentRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiIssueAttachmentResource(Client, ApiIssueAttachmentData.DeserializeApiIssueAttachmentData(e)), _apiIssueAttachmentClientDiagnostics, Pipeline, "ApiIssueAttachmentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiIssueAttachmentResource(Client, ApiIssueAttachmentData.DeserializeApiIssueAttachmentData(e)), _apiIssueAttachmentClientDiagnostics, Pipeline, "ApiIssueAttachmentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -246,18 +321,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| userId | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiIssueAttachmentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiIssueAttachmentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiIssueAttachmentResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiIssueAttachmentRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiIssueAttachmentRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiIssueAttachmentResource(Client, ApiIssueAttachmentData.DeserializeApiIssueAttachmentData(e)), _apiIssueAttachmentClientDiagnostics, Pipeline, "ApiIssueAttachmentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiIssueAttachmentResource(Client, ApiIssueAttachmentData.DeserializeApiIssueAttachmentData(e)), _apiIssueAttachmentClientDiagnostics, Pipeline, "ApiIssueAttachmentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -271,6 +354,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
@@ -279,7 +370,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string attachmentId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.Exists");
             scope.Start();
@@ -306,6 +404,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>ApiIssueAttachment_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
@@ -314,7 +420,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
         public virtual Response<bool> Exists(string attachmentId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachmentId, nameof(attachmentId));
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
 
             using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.Exists");
             scope.Start();
@@ -322,6 +435,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiIssueAttachmentRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, attachmentId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/issues/{issueId}/attachments/{attachmentId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ApiIssueAttachment_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="attachmentId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiIssueAttachmentResource>> GetIfExistsAsync(string attachmentId, CancellationToken cancellationToken = default)
+        {
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
+
+            using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiIssueAttachmentRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, attachmentId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiIssueAttachmentResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiIssueAttachmentResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/issues/{issueId}/attachments/{attachmentId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ApiIssueAttachment_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiIssueAttachmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="attachmentId"> Attachment identifier within an Issue. Must be unique in the current Issue. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="attachmentId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="attachmentId"/> is null. </exception>
+        public virtual NullableResponse<ApiIssueAttachmentResource> GetIfExists(string attachmentId, CancellationToken cancellationToken = default)
+        {
+            if (attachmentId == null)
+            {
+                throw new ArgumentNullException(nameof(attachmentId));
+            }
+            if (attachmentId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachmentId));
+            }
+
+            using var scope = _apiIssueAttachmentClientDiagnostics.CreateScope("ApiIssueAttachmentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiIssueAttachmentRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Parent.Name, Id.Parent.Name, Id.Name, attachmentId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiIssueAttachmentResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiIssueAttachmentResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -6,27 +6,32 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Storage.Files.Shares.Models
 {
     /// <summary> A listed file item. </summary>
     internal partial class FileItem
     {
-        /// <summary> Initializes a new instance of FileItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="FileItem"/>. </summary>
         /// <param name="name"></param>
         /// <param name="properties"> File properties. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="properties"/> is null. </exception>
         internal FileItem(StringEncoded name, FileProperty properties)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(properties, nameof(properties));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (properties == null)
+            {
+                throw new ArgumentNullException(nameof(properties));
+            }
 
             Name = name;
             Properties = properties;
         }
 
-        /// <summary> Initializes a new instance of FileItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="FileItem"/>. </summary>
         /// <param name="name"></param>
         /// <param name="fileId"></param>
         /// <param name="properties"> File properties. </param>

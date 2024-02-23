@@ -7,23 +7,31 @@
 
 using System;
 using Azure.Communication.MediaComposition.Models;
-using Azure.Core;
 
 namespace Azure.Communication.MediaComposition
 {
     /// <summary> Rtmp stream to be used as an output. </summary>
     public partial class RtmpOutput : MediaOutput
     {
-        /// <summary> Initializes a new instance of RtmpOutput. </summary>
+        /// <summary> Initializes a new instance of <see cref="RtmpOutput"/>. </summary>
         /// <param name="streamKey"> Stream key of the stream. </param>
         /// <param name="resolution"> The dimensions of the scene or objects in the scene. </param>
         /// <param name="streamUrl"> The url of the stream. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="streamKey"/>, <paramref name="resolution"/> or <paramref name="streamUrl"/> is null. </exception>
         public RtmpOutput(string streamKey, LayoutResolution resolution, string streamUrl)
         {
-            Argument.AssertNotNull(streamKey, nameof(streamKey));
-            Argument.AssertNotNull(resolution, nameof(resolution));
-            Argument.AssertNotNull(streamUrl, nameof(streamUrl));
+            if (streamKey == null)
+            {
+                throw new ArgumentNullException(nameof(streamKey));
+            }
+            if (resolution == null)
+            {
+                throw new ArgumentNullException(nameof(resolution));
+            }
+            if (streamUrl == null)
+            {
+                throw new ArgumentNullException(nameof(streamUrl));
+            }
 
             StreamKey = streamKey;
             Resolution = resolution;
@@ -31,7 +39,7 @@ namespace Azure.Communication.MediaComposition
             Kind = MediaOutputType.Rtmp;
         }
 
-        /// <summary> Initializes a new instance of RtmpOutput. </summary>
+        /// <summary> Initializes a new instance of <see cref="RtmpOutput"/>. </summary>
         /// <param name="kind"> Kind of media output. </param>
         /// <param name="streamKey"> Stream key of the stream. </param>
         /// <param name="resolution"> The dimensions of the scene or objects in the scene. </param>

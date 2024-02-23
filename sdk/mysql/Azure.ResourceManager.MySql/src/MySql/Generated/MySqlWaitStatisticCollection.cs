@@ -9,6 +9,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -18,9 +19,9 @@ using Azure.ResourceManager.MySql.Models;
 namespace Azure.ResourceManager.MySql
 {
     /// <summary>
-    /// A class representing a collection of <see cref="MySqlWaitStatisticResource" /> and their operations.
-    /// Each <see cref="MySqlWaitStatisticResource" /> in the collection will belong to the same instance of <see cref="MySqlServerResource" />.
-    /// To get a <see cref="MySqlWaitStatisticCollection" /> instance call the GetMySqlWaitStatistics method from an instance of <see cref="MySqlServerResource" />.
+    /// A class representing a collection of <see cref="MySqlWaitStatisticResource"/> and their operations.
+    /// Each <see cref="MySqlWaitStatisticResource"/> in the collection will belong to the same instance of <see cref="MySqlServerResource"/>.
+    /// To get a <see cref="MySqlWaitStatisticCollection"/> instance call the GetMySqlWaitStatistics method from an instance of <see cref="MySqlServerResource"/>.
     /// </summary>
     public partial class MySqlWaitStatisticCollection : ArmCollection
     {
@@ -62,6 +63,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
@@ -70,7 +79,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
         public virtual async Task<Response<MySqlWaitStatisticResource>> GetAsync(string waitStatisticsId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(waitStatisticsId, nameof(waitStatisticsId));
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
 
             using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.Get");
             scope.Start();
@@ -99,6 +115,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
@@ -107,7 +131,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
         public virtual Response<MySqlWaitStatisticResource> Get(string waitStatisticsId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(waitStatisticsId, nameof(waitStatisticsId));
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
 
             using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.Get");
             scope.Start();
@@ -136,19 +167,30 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="input"> The required parameters for retrieving wait statistics. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="input"/> is null. </exception>
-        /// <returns> An async collection of <see cref="MySqlWaitStatisticResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="MySqlWaitStatisticResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<MySqlWaitStatisticResource> GetAllAsync(MySqlWaitStatisticsInput input, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(input, nameof(input));
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mySqlWaitStatisticWaitStatisticsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, input);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mySqlWaitStatisticWaitStatisticsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, input);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MySqlWaitStatisticResource(Client, MySqlWaitStatisticData.DeserializeMySqlWaitStatisticData(e)), _mySqlWaitStatisticWaitStatisticsClientDiagnostics, Pipeline, "MySqlWaitStatisticCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new MySqlWaitStatisticResource(Client, MySqlWaitStatisticData.DeserializeMySqlWaitStatisticData(e)), _mySqlWaitStatisticWaitStatisticsClientDiagnostics, Pipeline, "MySqlWaitStatisticCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -162,19 +204,30 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="input"> The required parameters for retrieving wait statistics. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="input"/> is null. </exception>
-        /// <returns> A collection of <see cref="MySqlWaitStatisticResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="MySqlWaitStatisticResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<MySqlWaitStatisticResource> GetAll(MySqlWaitStatisticsInput input, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(input, nameof(input));
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _mySqlWaitStatisticWaitStatisticsRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, input);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _mySqlWaitStatisticWaitStatisticsRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, input);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MySqlWaitStatisticResource(Client, MySqlWaitStatisticData.DeserializeMySqlWaitStatisticData(e)), _mySqlWaitStatisticWaitStatisticsClientDiagnostics, Pipeline, "MySqlWaitStatisticCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new MySqlWaitStatisticResource(Client, MySqlWaitStatisticData.DeserializeMySqlWaitStatisticData(e)), _mySqlWaitStatisticWaitStatisticsClientDiagnostics, Pipeline, "MySqlWaitStatisticCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -188,6 +241,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
@@ -196,7 +257,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string waitStatisticsId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(waitStatisticsId, nameof(waitStatisticsId));
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
 
             using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.Exists");
             scope.Start();
@@ -223,6 +291,14 @@ namespace Azure.ResourceManager.MySql
         /// <term>Operation Id</term>
         /// <description>WaitStatistics_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
@@ -231,7 +307,14 @@ namespace Azure.ResourceManager.MySql
         /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
         public virtual Response<bool> Exists(string waitStatisticsId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(waitStatisticsId, nameof(waitStatisticsId));
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
 
             using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.Exists");
             scope.Start();
@@ -239,6 +322,110 @@ namespace Azure.ResourceManager.MySql
             {
                 var response = _mySqlWaitStatisticWaitStatisticsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, waitStatisticsId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/waitStatistics/{waitStatisticsId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WaitStatistics_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="waitStatisticsId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
+        public virtual async Task<NullableResponse<MySqlWaitStatisticResource>> GetIfExistsAsync(string waitStatisticsId, CancellationToken cancellationToken = default)
+        {
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
+
+            using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _mySqlWaitStatisticWaitStatisticsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, waitStatisticsId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<MySqlWaitStatisticResource>(response.GetRawResponse());
+                return Response.FromValue(new MySqlWaitStatisticResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/waitStatistics/{waitStatisticsId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WaitStatistics_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2018-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MySqlWaitStatisticResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitStatisticsId"> The Wait Statistic identifier. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="waitStatisticsId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="waitStatisticsId"/> is null. </exception>
+        public virtual NullableResponse<MySqlWaitStatisticResource> GetIfExists(string waitStatisticsId, CancellationToken cancellationToken = default)
+        {
+            if (waitStatisticsId == null)
+            {
+                throw new ArgumentNullException(nameof(waitStatisticsId));
+            }
+            if (waitStatisticsId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(waitStatisticsId));
+            }
+
+            using var scope = _mySqlWaitStatisticWaitStatisticsClientDiagnostics.CreateScope("MySqlWaitStatisticCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _mySqlWaitStatisticWaitStatisticsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, waitStatisticsId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<MySqlWaitStatisticResource>(response.GetRawResponse());
+                return Response.FromValue(new MySqlWaitStatisticResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

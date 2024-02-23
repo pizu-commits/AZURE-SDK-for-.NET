@@ -14,14 +14,20 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> This activity evaluates an expression and executes activities under the cases property that correspond to the expression evaluation expected in the equals property. </summary>
     public partial class SwitchActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of SwitchActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SwitchActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="on"> An expression that would evaluate to a string or integer. This is used to determine the block of activities in cases that will be executed. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="on"/> is null. </exception>
         public SwitchActivity(string name, DataFactoryExpression @on) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(@on, nameof(@on));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (@on == null)
+            {
+                throw new ArgumentNullException(nameof(@on));
+            }
 
             On = @on;
             Cases = new ChangeTrackingList<SwitchCaseActivity>();
@@ -29,7 +35,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             ActivityType = "Switch";
         }
 
-        /// <summary> Initializes a new instance of SwitchActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SwitchActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="activityType"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>
@@ -51,6 +57,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Cases = cases;
             DefaultActivities = defaultActivities;
             ActivityType = activityType ?? "Switch";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SwitchActivity"/> for deserialization. </summary>
+        internal SwitchActivity()
+        {
         }
 
         /// <summary> An expression that would evaluate to a string or integer. This is used to determine the block of activities in cases that will be executed. </summary>

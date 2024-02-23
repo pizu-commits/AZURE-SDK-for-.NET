@@ -8,24 +8,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Maps.Rendering
 {
     /// <summary> Parameter group. </summary>
     internal partial class BoundingBox
     {
-        /// <summary> Initializes a new instance of BoundingBox. </summary>
+        /// <summary> Initializes a new instance of <see cref="BoundingBox"/>. </summary>
         /// <param name="southWest"> Minimum coordinates (south-west point) of bounding box in latitude longitude coordinate system. E.g. 52.41064,4.84228. </param>
         /// <param name="northEast"> Maximum coordinates (north-east point) of bounding box in latitude longitude coordinate system. E.g. 52.41064,4.84228. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="southWest"/> or <paramref name="northEast"/> is null. </exception>
         public BoundingBox(IEnumerable<double> southWest, IEnumerable<double> northEast)
         {
-            Argument.AssertNotNull(southWest, nameof(southWest));
-            Argument.AssertNotNull(northEast, nameof(northEast));
+            if (southWest == null)
+            {
+                throw new ArgumentNullException(nameof(southWest));
+            }
+            if (northEast == null)
+            {
+                throw new ArgumentNullException(nameof(northEast));
+            }
 
             SouthWest = southWest.ToList();
             NorthEast = northEast.ToList();
+        }
+
+        /// <summary> Initializes a new instance of <see cref="BoundingBox"/>. </summary>
+        /// <param name="southWest"> Minimum coordinates (south-west point) of bounding box in latitude longitude coordinate system. E.g. 52.41064,4.84228. </param>
+        /// <param name="northEast"> Maximum coordinates (north-east point) of bounding box in latitude longitude coordinate system. E.g. 52.41064,4.84228. </param>
+        internal BoundingBox(IList<double> southWest, IList<double> northEast)
+        {
+            SouthWest = southWest;
+            NorthEast = northEast;
         }
 
         /// <summary> Minimum coordinates (south-west point) of bounding box in latitude longitude coordinate system. E.g. 52.41064,4.84228. </summary>

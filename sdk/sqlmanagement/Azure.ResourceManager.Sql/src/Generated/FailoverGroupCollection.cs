@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Sql
 {
     /// <summary>
-    /// A class representing a collection of <see cref="FailoverGroupResource" /> and their operations.
-    /// Each <see cref="FailoverGroupResource" /> in the collection will belong to the same instance of <see cref="SqlServerResource" />.
-    /// To get a <see cref="FailoverGroupCollection" /> instance call the GetFailoverGroups method from an instance of <see cref="SqlServerResource" />.
+    /// A class representing a collection of <see cref="FailoverGroupResource"/> and their operations.
+    /// Each <see cref="FailoverGroupResource"/> in the collection will belong to the same instance of <see cref="SqlServerResource"/>.
+    /// To get a <see cref="FailoverGroupCollection"/> instance call the GetFailoverGroups method from an instance of <see cref="SqlServerResource"/>.
     /// </summary>
     public partial class FailoverGroupCollection : ArmCollection, IEnumerable<FailoverGroupResource>, IAsyncEnumerable<FailoverGroupResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<FailoverGroupResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string failoverGroupName, FailoverGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<FailoverGroupResource> CreateOrUpdate(WaitUntil waitUntil, string failoverGroupName, FailoverGroupData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="failoverGroupName"> The name of the failover group. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
         public virtual async Task<Response<FailoverGroupResource>> GetAsync(string failoverGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="failoverGroupName"> The name of the failover group. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
         public virtual Response<FailoverGroupResource> Get(string failoverGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="FailoverGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="FailoverGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<FailoverGroupResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _failoverGroupRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _failoverGroupRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new FailoverGroupResource(Client, FailoverGroupData.DeserializeFailoverGroupData(e)), _failoverGroupClientDiagnostics, Pipeline, "FailoverGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new FailoverGroupResource(Client, FailoverGroupData.DeserializeFailoverGroupData(e)), _failoverGroupClientDiagnostics, Pipeline, "FailoverGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_ListByServer</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="FailoverGroupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="FailoverGroupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<FailoverGroupResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _failoverGroupRestClient.CreateListByServerRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _failoverGroupRestClient.CreateListByServerNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new FailoverGroupResource(Client, FailoverGroupData.DeserializeFailoverGroupData(e)), _failoverGroupClientDiagnostics, Pipeline, "FailoverGroupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new FailoverGroupResource(Client, FailoverGroupData.DeserializeFailoverGroupData(e)), _failoverGroupClientDiagnostics, Pipeline, "FailoverGroupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="failoverGroupName"> The name of the failover group. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string failoverGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>FailoverGroups_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="failoverGroupName"> The name of the failover group. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
         public virtual Response<bool> Exists(string failoverGroupName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(failoverGroupName, nameof(failoverGroupName));
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
 
             using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.Sql
             {
                 var response = _failoverGroupRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, failoverGroupName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>FailoverGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="failoverGroupName"> The name of the failover group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
+        public virtual async Task<NullableResponse<FailoverGroupResource>> GetIfExistsAsync(string failoverGroupName, CancellationToken cancellationToken = default)
+        {
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
+
+            using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _failoverGroupRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, failoverGroupName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<FailoverGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new FailoverGroupResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>FailoverGroups_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-02-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="FailoverGroupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="failoverGroupName"> The name of the failover group. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="failoverGroupName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="failoverGroupName"/> is null. </exception>
+        public virtual NullableResponse<FailoverGroupResource> GetIfExists(string failoverGroupName, CancellationToken cancellationToken = default)
+        {
+            if (failoverGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(failoverGroupName));
+            }
+            if (failoverGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(failoverGroupName));
+            }
+
+            using var scope = _failoverGroupClientDiagnostics.CreateScope("FailoverGroupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _failoverGroupRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, failoverGroupName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<FailoverGroupResource>(response.GetRawResponse());
+                return Response.FromValue(new FailoverGroupResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

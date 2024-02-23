@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.DigitalTwins
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DigitalTwinsPrivateLinkResource" /> and their operations.
-    /// Each <see cref="DigitalTwinsPrivateLinkResource" /> in the collection will belong to the same instance of <see cref="DigitalTwinsDescriptionResource" />.
-    /// To get a <see cref="DigitalTwinsPrivateLinkResourceCollection" /> instance call the GetDigitalTwinsPrivateLinkResources method from an instance of <see cref="DigitalTwinsDescriptionResource" />.
+    /// A class representing a collection of <see cref="DigitalTwinsPrivateLinkResource"/> and their operations.
+    /// Each <see cref="DigitalTwinsPrivateLinkResource"/> in the collection will belong to the same instance of <see cref="DigitalTwinsDescriptionResource"/>.
+    /// To get a <see cref="DigitalTwinsPrivateLinkResourceCollection"/> instance call the GetDigitalTwinsPrivateLinkResources method from an instance of <see cref="DigitalTwinsDescriptionResource"/>.
     /// </summary>
     public partial class DigitalTwinsPrivateLinkResourceCollection : ArmCollection, IEnumerable<DigitalTwinsPrivateLinkResource>, IAsyncEnumerable<DigitalTwinsPrivateLinkResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceId"> The name of the private link resource. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
         public virtual async Task<Response<DigitalTwinsPrivateLinkResource>> GetAsync(string resourceId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceId, nameof(resourceId));
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
 
             using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceId"> The name of the private link resource. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
         public virtual Response<DigitalTwinsPrivateLinkResource> Get(string resourceId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceId, nameof(resourceId));
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
 
             using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -137,14 +168,22 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DigitalTwinsPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DigitalTwinsPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DigitalTwinsPrivateLinkResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _digitalTwinsPrivateLinkResourcePrivateLinkResourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new DigitalTwinsPrivateLinkResource(Client, DigitalTwinsPrivateLinkResourceData.DeserializeDigitalTwinsPrivateLinkResourceData(e)), _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "DigitalTwinsPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new DigitalTwinsPrivateLinkResource(Client, DigitalTwinsPrivateLinkResourceData.DeserializeDigitalTwinsPrivateLinkResourceData(e)), _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "DigitalTwinsPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -158,14 +197,22 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DigitalTwinsPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DigitalTwinsPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DigitalTwinsPrivateLinkResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _digitalTwinsPrivateLinkResourcePrivateLinkResourcesRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new DigitalTwinsPrivateLinkResource(Client, DigitalTwinsPrivateLinkResourceData.DeserializeDigitalTwinsPrivateLinkResourceData(e)), _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "DigitalTwinsPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new DigitalTwinsPrivateLinkResource(Client, DigitalTwinsPrivateLinkResourceData.DeserializeDigitalTwinsPrivateLinkResourceData(e)), _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics, Pipeline, "DigitalTwinsPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -179,6 +226,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceId"> The name of the private link resource. </param>
@@ -187,7 +242,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string resourceId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceId, nameof(resourceId));
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
 
             using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -214,6 +276,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <term>Operation Id</term>
         /// <description>PrivateLinkResources_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="resourceId"> The name of the private link resource. </param>
@@ -222,7 +292,14 @@ namespace Azure.ResourceManager.DigitalTwins
         /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
         public virtual Response<bool> Exists(string resourceId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(resourceId, nameof(resourceId));
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
 
             using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -230,6 +307,110 @@ namespace Azure.ResourceManager.DigitalTwins
             {
                 var response = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, resourceId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateLinkResources/{resourceId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinkResources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceId"> The name of the private link resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="resourceId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
+        public virtual async Task<NullableResponse<DigitalTwinsPrivateLinkResource>> GetIfExistsAsync(string resourceId, CancellationToken cancellationToken = default)
+        {
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
+
+            using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _digitalTwinsPrivateLinkResourcePrivateLinkResourcesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, resourceId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DigitalTwinsPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new DigitalTwinsPrivateLinkResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateLinkResources/{resourceId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinkResources_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-31</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DigitalTwinsPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="resourceId"> The name of the private link resource. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="resourceId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
+        public virtual NullableResponse<DigitalTwinsPrivateLinkResource> GetIfExists(string resourceId, CancellationToken cancellationToken = default)
+        {
+            if (resourceId == null)
+            {
+                throw new ArgumentNullException(nameof(resourceId));
+            }
+            if (resourceId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceId));
+            }
+
+            using var scope = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesClientDiagnostics.CreateScope("DigitalTwinsPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _digitalTwinsPrivateLinkResourcePrivateLinkResourcesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, resourceId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DigitalTwinsPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new DigitalTwinsPrivateLinkResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

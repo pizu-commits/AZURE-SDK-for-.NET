@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.IotCentral
 {
     /// <summary>
-    /// A class representing a collection of <see cref="IotCentralPrivateLinkResource" /> and their operations.
-    /// Each <see cref="IotCentralPrivateLinkResource" /> in the collection will belong to the same instance of <see cref="IotCentralAppResource" />.
-    /// To get an <see cref="IotCentralPrivateLinkResourceCollection" /> instance call the GetIotCentralPrivateLinkResources method from an instance of <see cref="IotCentralAppResource" />.
+    /// A class representing a collection of <see cref="IotCentralPrivateLinkResource"/> and their operations.
+    /// Each <see cref="IotCentralPrivateLinkResource"/> in the collection will belong to the same instance of <see cref="IotCentralAppResource"/>.
+    /// To get an <see cref="IotCentralPrivateLinkResourceCollection"/> instance call the GetIotCentralPrivateLinkResources method from an instance of <see cref="IotCentralAppResource"/>.
     /// </summary>
     public partial class IotCentralPrivateLinkResourceCollection : ArmCollection, IEnumerable<IotCentralPrivateLinkResource>, IAsyncEnumerable<IotCentralPrivateLinkResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupId"> The private link resource name. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
         public virtual async Task<Response<IotCentralPrivateLinkResource>> GetAsync(string groupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupId"> The private link resource name. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
         public virtual Response<IotCentralPrivateLinkResource> Get(string groupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.Get");
             scope.Start();
@@ -137,14 +168,22 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="IotCentralPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="IotCentralPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<IotCentralPrivateLinkResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _iotCentralPrivateLinkResourcePrivateLinksRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new IotCentralPrivateLinkResource(Client, IotCentralPrivateLinkResourceData.DeserializeIotCentralPrivateLinkResourceData(e)), _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics, Pipeline, "IotCentralPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new IotCentralPrivateLinkResource(Client, IotCentralPrivateLinkResourceData.DeserializeIotCentralPrivateLinkResourceData(e)), _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics, Pipeline, "IotCentralPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -158,14 +197,22 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="IotCentralPrivateLinkResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="IotCentralPrivateLinkResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<IotCentralPrivateLinkResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _iotCentralPrivateLinkResourcePrivateLinksRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new IotCentralPrivateLinkResource(Client, IotCentralPrivateLinkResourceData.DeserializeIotCentralPrivateLinkResourceData(e)), _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics, Pipeline, "IotCentralPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new IotCentralPrivateLinkResource(Client, IotCentralPrivateLinkResourceData.DeserializeIotCentralPrivateLinkResourceData(e)), _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics, Pipeline, "IotCentralPrivateLinkResourceCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -179,6 +226,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupId"> The private link resource name. </param>
@@ -187,7 +242,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string groupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -214,6 +276,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <term>Operation Id</term>
         /// <description>PrivateLinks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="groupId"> The private link resource name. </param>
@@ -222,7 +292,14 @@ namespace Azure.ResourceManager.IotCentral
         /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
         public virtual Response<bool> Exists(string groupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(groupId, nameof(groupId));
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
 
             using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.Exists");
             scope.Start();
@@ -230,6 +307,110 @@ namespace Azure.ResourceManager.IotCentral
             {
                 var response = _iotCentralPrivateLinkResourcePrivateLinksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, groupId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps/{resourceName}/privateLinkResources/{groupId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="groupId"> The private link resource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="groupId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
+        public virtual async Task<NullableResponse<IotCentralPrivateLinkResource>> GetIfExistsAsync(string groupId, CancellationToken cancellationToken = default)
+        {
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+
+            using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _iotCentralPrivateLinkResourcePrivateLinksRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, groupId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<IotCentralPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new IotCentralPrivateLinkResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps/{resourceName}/privateLinkResources/{groupId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PrivateLinks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IotCentralPrivateLinkResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="groupId"> The private link resource name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="groupId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="groupId"/> is null. </exception>
+        public virtual NullableResponse<IotCentralPrivateLinkResource> GetIfExists(string groupId, CancellationToken cancellationToken = default)
+        {
+            if (groupId == null)
+            {
+                throw new ArgumentNullException(nameof(groupId));
+            }
+            if (groupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(groupId));
+            }
+
+            using var scope = _iotCentralPrivateLinkResourcePrivateLinksClientDiagnostics.CreateScope("IotCentralPrivateLinkResourceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _iotCentralPrivateLinkResourcePrivateLinksRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, groupId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<IotCentralPrivateLinkResource>(response.GetRawResponse());
+                return Response.FromValue(new IotCentralPrivateLinkResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

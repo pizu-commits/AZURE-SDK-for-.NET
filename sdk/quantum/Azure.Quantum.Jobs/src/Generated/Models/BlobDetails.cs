@@ -6,21 +6,32 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Quantum.Jobs.Models
 {
     /// <summary> Blob details. </summary>
     public partial class BlobDetails
     {
-        /// <summary> Initializes a new instance of BlobDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="BlobDetails"/>. </summary>
         /// <param name="containerName"> The container name. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="containerName"/> is null. </exception>
         public BlobDetails(string containerName)
         {
-            Argument.AssertNotNull(containerName, nameof(containerName));
+            if (containerName == null)
+            {
+                throw new ArgumentNullException(nameof(containerName));
+            }
 
             ContainerName = containerName;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="BlobDetails"/>. </summary>
+        /// <param name="containerName"> The container name. </param>
+        /// <param name="blobName"> The blob name. </param>
+        internal BlobDetails(string containerName, string blobName)
+        {
+            ContainerName = containerName;
+            BlobName = blobName;
         }
 
         /// <summary> The container name. </summary>

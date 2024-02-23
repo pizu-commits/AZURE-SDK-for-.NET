@@ -20,13 +20,15 @@ namespace Azure.ResourceManager.Billing
 {
     /// <summary>
     /// A Class representing a BillingSubscription along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="BillingSubscriptionResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetBillingSubscriptionResource method.
-    /// Otherwise you can get one from its parent resource <see cref="TenantResource" /> using the GetBillingSubscription method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="BillingSubscriptionResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetBillingSubscriptionResource method.
+    /// Otherwise you can get one from its parent resource <see cref="TenantResource"/> using the GetBillingSubscription method.
     /// </summary>
     public partial class BillingSubscriptionResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="BillingSubscriptionResource"/> instance. </summary>
+        /// <param name="billingAccountName"> The billingAccountName. </param>
+        /// <param name="billingSubscriptionName"> The billingSubscriptionName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string billingAccountName, string billingSubscriptionName)
         {
             var resourceId = $"/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}";
@@ -37,12 +39,15 @@ namespace Azure.ResourceManager.Billing
         private readonly BillingSubscriptionsRestOperations _billingSubscriptionRestClient;
         private readonly BillingSubscriptionData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Billing/billingAccounts/billingSubscriptions";
+
         /// <summary> Initializes a new instance of the <see cref="BillingSubscriptionResource"/> class for mocking. </summary>
         protected BillingSubscriptionResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "BillingSubscriptionResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="BillingSubscriptionResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal BillingSubscriptionResource(ArmClient client, BillingSubscriptionData data) : this(client, data.Id)
@@ -63,9 +68,6 @@ namespace Azure.ResourceManager.Billing
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Billing/billingAccounts/billingSubscriptions";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -99,6 +101,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -131,6 +141,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -162,6 +180,14 @@ namespace Azure.ResourceManager.Billing
         /// <item>
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -197,6 +223,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -231,6 +265,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -239,7 +281,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<BillingSubscriptionResource>> UpdateAsync(WaitUntil waitUntil, BillingSubscriptionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Update");
             scope.Start();
@@ -269,6 +314,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -277,7 +330,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<BillingSubscriptionResource> Update(WaitUntil waitUntil, BillingSubscriptionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Update");
             scope.Start();
@@ -307,6 +363,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Move</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -315,7 +379,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<BillingSubscriptionResource>> MoveAsync(WaitUntil waitUntil, BillingSubscriptionMoveContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Move");
             scope.Start();
@@ -345,6 +412,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Move</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -353,7 +428,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<BillingSubscriptionResource> Move(WaitUntil waitUntil, BillingSubscriptionMoveContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Move");
             scope.Start();
@@ -383,6 +461,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_ValidateMoveEligibility</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Request parameters that are provided to the validate move eligibility operation. </param>
@@ -390,7 +476,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<BillingSubscriptionValidateMoveEligibilityResult>> ValidateMoveEligibilityAsync(BillingSubscriptionMoveContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.ValidateMoveEligibility");
             scope.Start();
@@ -417,6 +506,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_ValidateMoveEligibility</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="content"> Request parameters that are provided to the validate move eligibility operation. </param>
@@ -424,7 +521,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<BillingSubscriptionValidateMoveEligibilityResult> ValidateMoveEligibility(BillingSubscriptionMoveContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.ValidateMoveEligibility");
             scope.Start();
@@ -451,6 +551,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Merge</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -459,7 +567,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<BillingSubscriptionResource>> MergeAsync(WaitUntil waitUntil, BillingSubscriptionMergeContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Merge");
             scope.Start();
@@ -489,6 +600,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Merge</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -497,7 +616,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<BillingSubscriptionResource> Merge(WaitUntil waitUntil, BillingSubscriptionMergeContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Merge");
             scope.Start();
@@ -527,6 +649,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Split</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -535,7 +665,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<BillingSubscriptionResource>> SplitAsync(WaitUntil waitUntil, BillingSubscriptionSplitContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Split");
             scope.Start();
@@ -565,6 +698,14 @@ namespace Azure.ResourceManager.Billing
         /// <term>Operation Id</term>
         /// <description>BillingSubscriptions_Split</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-10-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingSubscriptionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -573,7 +714,10 @@ namespace Azure.ResourceManager.Billing
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<BillingSubscriptionResource> Split(WaitUntil waitUntil, BillingSubscriptionSplitContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingSubscriptionClientDiagnostics.CreateScope("BillingSubscriptionResource.Split");
             scope.Start();

@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.AppService
 {
     /// <summary>
     /// A Class representing a SiteBackup along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="SiteBackupResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetSiteBackupResource method.
-    /// Otherwise you can get one from its parent resource <see cref="WebSiteResource" /> using the GetSiteBackup method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="SiteBackupResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetSiteBackupResource method.
+    /// Otherwise you can get one from its parent resource <see cref="WebSiteResource"/> using the GetSiteBackup method.
     /// </summary>
     public partial class SiteBackupResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="SiteBackupResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="backupId"> The backupId. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string name, string backupId)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.AppService
         private readonly WebAppsRestOperations _siteBackupWebAppsRestClient;
         private readonly WebAppBackupData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Web/sites/backups";
+
         /// <summary> Initializes a new instance of the <see cref="SiteBackupResource"/> class for mocking. </summary>
         protected SiteBackupResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "SiteBackupResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="SiteBackupResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal SiteBackupResource(ArmClient client, WebAppBackupData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.AppService
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Web/sites/backups";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,6 +102,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatus</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +142,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatus</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -161,6 +181,14 @@ namespace Azure.ResourceManager.AppService
         /// <item>
         /// <term>Operation Id</term>
         /// <description>WebApps_DeleteBackup</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -196,6 +224,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_DeleteBackup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -230,6 +266,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListBackupStatusSecrets</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="info"> Information on backup request. </param>
@@ -237,7 +281,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="info"/> is null. </exception>
         public virtual async Task<Response<SiteBackupResource>> GetBackupStatusSecretsAsync(WebAppBackupInfo info, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(info, nameof(info));
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
 
             using var scope = _siteBackupWebAppsClientDiagnostics.CreateScope("SiteBackupResource.GetBackupStatusSecrets");
             scope.Start();
@@ -264,6 +311,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListBackupStatusSecrets</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="info"> Information on backup request. </param>
@@ -271,7 +326,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="info"/> is null. </exception>
         public virtual Response<SiteBackupResource> GetBackupStatusSecrets(WebAppBackupInfo info, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(info, nameof(info));
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
 
             using var scope = _siteBackupWebAppsClientDiagnostics.CreateScope("SiteBackupResource.GetBackupStatusSecrets");
             scope.Start();
@@ -298,6 +356,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_Restore</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -306,7 +372,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="info"/> is null. </exception>
         public virtual async Task<ArmOperation> RestoreAsync(WaitUntil waitUntil, RestoreRequestInfo info, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(info, nameof(info));
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
 
             using var scope = _siteBackupWebAppsClientDiagnostics.CreateScope("SiteBackupResource.Restore");
             scope.Start();
@@ -336,6 +405,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_Restore</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -344,7 +421,10 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="info"/> is null. </exception>
         public virtual ArmOperation Restore(WaitUntil waitUntil, RestoreRequestInfo info, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(info, nameof(info));
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
 
             using var scope = _siteBackupWebAppsClientDiagnostics.CreateScope("SiteBackupResource.Restore");
             scope.Start();

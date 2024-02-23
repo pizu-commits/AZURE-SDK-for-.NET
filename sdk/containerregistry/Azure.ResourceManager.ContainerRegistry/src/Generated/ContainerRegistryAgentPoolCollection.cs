@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ContainerRegistry
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerRegistryAgentPoolResource" /> and their operations.
-    /// Each <see cref="ContainerRegistryAgentPoolResource" /> in the collection will belong to the same instance of <see cref="ContainerRegistryResource" />.
-    /// To get a <see cref="ContainerRegistryAgentPoolCollection" /> instance call the GetContainerRegistryAgentPools method from an instance of <see cref="ContainerRegistryResource" />.
+    /// A class representing a collection of <see cref="ContainerRegistryAgentPoolResource"/> and their operations.
+    /// Each <see cref="ContainerRegistryAgentPoolResource"/> in the collection will belong to the same instance of <see cref="ContainerRegistryResource"/>.
+    /// To get a <see cref="ContainerRegistryAgentPoolCollection"/> instance call the GetContainerRegistryAgentPools method from an instance of <see cref="ContainerRegistryResource"/>.
     /// </summary>
     public partial class ContainerRegistryAgentPoolCollection : ArmCollection, IEnumerable<ContainerRegistryAgentPoolResource>, IAsyncEnumerable<ContainerRegistryAgentPoolResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerRegistryAgentPoolResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string agentPoolName, ContainerRegistryAgentPoolData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerRegistryAgentPoolResource> CreateOrUpdate(WaitUntil waitUntil, string agentPoolName, ContainerRegistryAgentPoolData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agentPoolName"> The name of the agent pool. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
         public virtual async Task<Response<ContainerRegistryAgentPoolResource>> GetAsync(string agentPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agentPoolName"> The name of the agent pool. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
         public virtual Response<ContainerRegistryAgentPoolResource> Get(string agentPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerRegistryAgentPoolResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerRegistryAgentPoolResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerRegistryAgentPoolResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryAgentPoolAgentPoolsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryAgentPoolAgentPoolsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryAgentPoolResource(Client, ContainerRegistryAgentPoolData.DeserializeContainerRegistryAgentPoolData(e)), _containerRegistryAgentPoolAgentPoolsClientDiagnostics, Pipeline, "ContainerRegistryAgentPoolCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryAgentPoolResource(Client, ContainerRegistryAgentPoolData.DeserializeContainerRegistryAgentPoolData(e)), _containerRegistryAgentPoolAgentPoolsClientDiagnostics, Pipeline, "ContainerRegistryAgentPoolCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerRegistryAgentPoolResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerRegistryAgentPoolResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerRegistryAgentPoolResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryAgentPoolAgentPoolsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryAgentPoolAgentPoolsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryAgentPoolResource(Client, ContainerRegistryAgentPoolData.DeserializeContainerRegistryAgentPoolData(e)), _containerRegistryAgentPoolAgentPoolsClientDiagnostics, Pipeline, "ContainerRegistryAgentPoolCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryAgentPoolResource(Client, ContainerRegistryAgentPoolData.DeserializeContainerRegistryAgentPoolData(e)), _containerRegistryAgentPoolAgentPoolsClientDiagnostics, Pipeline, "ContainerRegistryAgentPoolCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agentPoolName"> The name of the agent pool. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string agentPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>AgentPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="agentPoolName"> The name of the agent pool. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
         public virtual Response<bool> Exists(string agentPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(agentPoolName, nameof(agentPoolName));
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
 
             using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.ContainerRegistry
             {
                 var response = _containerRegistryAgentPoolAgentPoolsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agentPoolName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="agentPoolName"> The name of the agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerRegistryAgentPoolResource>> GetIfExistsAsync(string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
+
+            using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerRegistryAgentPoolAgentPoolsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agentPoolName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryAgentPoolResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryAgentPoolResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/agentPools/{agentPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentPools_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryAgentPoolResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="agentPoolName"> The name of the agent pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="agentPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="agentPoolName"/> is null. </exception>
+        public virtual NullableResponse<ContainerRegistryAgentPoolResource> GetIfExists(string agentPoolName, CancellationToken cancellationToken = default)
+        {
+            if (agentPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(agentPoolName));
+            }
+            if (agentPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(agentPoolName));
+            }
+
+            using var scope = _containerRegistryAgentPoolAgentPoolsClientDiagnostics.CreateScope("ContainerRegistryAgentPoolCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerRegistryAgentPoolAgentPoolsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, agentPoolName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryAgentPoolResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryAgentPoolResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.NetworkCloud
 {
     /// <summary>
-    /// A class representing a collection of <see cref="NetworkCloudStorageApplianceResource" /> and their operations.
-    /// Each <see cref="NetworkCloudStorageApplianceResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="NetworkCloudStorageApplianceCollection" /> instance call the GetNetworkCloudStorageAppliances method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="NetworkCloudStorageApplianceResource"/> and their operations.
+    /// Each <see cref="NetworkCloudStorageApplianceResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="NetworkCloudStorageApplianceCollection"/> instance call the GetNetworkCloudStorageAppliances method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class NetworkCloudStorageApplianceCollection : ArmCollection, IEnumerable<NetworkCloudStorageApplianceResource>, IAsyncEnumerable<NetworkCloudStorageApplianceResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageApplianceName"> The name of the storage appliance. </param>
@@ -72,7 +81,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
         public virtual async Task<Response<NetworkCloudStorageApplianceResource>> GetAsync(string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
 
             using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.Get");
             scope.Start();
@@ -101,6 +117,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageApplianceName"> The name of the storage appliance. </param>
@@ -109,7 +133,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
         public virtual Response<NetworkCloudStorageApplianceResource> Get(string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
 
             using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.Get");
             scope.Start();
@@ -138,15 +169,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="NetworkCloudStorageApplianceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="NetworkCloudStorageApplianceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<NetworkCloudStorageApplianceResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudStorageApplianceStorageAppliancesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudStorageApplianceStorageAppliancesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudStorageApplianceResource(Client, NetworkCloudStorageApplianceData.DeserializeNetworkCloudStorageApplianceData(e)), _networkCloudStorageApplianceStorageAppliancesClientDiagnostics, Pipeline, "NetworkCloudStorageApplianceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudStorageApplianceResource(Client, NetworkCloudStorageApplianceData.DeserializeNetworkCloudStorageApplianceData(e)), _networkCloudStorageApplianceStorageAppliancesClientDiagnostics, Pipeline, "NetworkCloudStorageApplianceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -160,15 +199,23 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="NetworkCloudStorageApplianceResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="NetworkCloudStorageApplianceResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<NetworkCloudStorageApplianceResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _networkCloudStorageApplianceStorageAppliancesRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _networkCloudStorageApplianceStorageAppliancesRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudStorageApplianceResource(Client, NetworkCloudStorageApplianceData.DeserializeNetworkCloudStorageApplianceData(e)), _networkCloudStorageApplianceStorageAppliancesClientDiagnostics, Pipeline, "NetworkCloudStorageApplianceCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new NetworkCloudStorageApplianceResource(Client, NetworkCloudStorageApplianceData.DeserializeNetworkCloudStorageApplianceData(e)), _networkCloudStorageApplianceStorageAppliancesClientDiagnostics, Pipeline, "NetworkCloudStorageApplianceCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -182,6 +229,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageApplianceName"> The name of the storage appliance. </param>
@@ -190,7 +245,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
 
             using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.Exists");
             scope.Start();
@@ -217,6 +279,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <term>Operation Id</term>
         /// <description>StorageAppliances_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="storageApplianceName"> The name of the storage appliance. </param>
@@ -225,7 +295,14 @@ namespace Azure.ResourceManager.NetworkCloud
         /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
         public virtual Response<bool> Exists(string storageApplianceName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(storageApplianceName, nameof(storageApplianceName));
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
 
             using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.Exists");
             scope.Start();
@@ -233,6 +310,110 @@ namespace Azure.ResourceManager.NetworkCloud
             {
                 var response = _networkCloudStorageApplianceStorageAppliancesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public virtual async Task<NullableResponse<NetworkCloudStorageApplianceResource>> GetIfExistsAsync(string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
+
+            using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _networkCloudStorageApplianceStorageAppliancesRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudStorageApplianceResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudStorageApplianceResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StorageAppliances_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-07-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="NetworkCloudStorageApplianceResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="storageApplianceName"> The name of the storage appliance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="storageApplianceName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="storageApplianceName"/> is null. </exception>
+        public virtual NullableResponse<NetworkCloudStorageApplianceResource> GetIfExists(string storageApplianceName, CancellationToken cancellationToken = default)
+        {
+            if (storageApplianceName == null)
+            {
+                throw new ArgumentNullException(nameof(storageApplianceName));
+            }
+            if (storageApplianceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(storageApplianceName));
+            }
+
+            using var scope = _networkCloudStorageApplianceStorageAppliancesClientDiagnostics.CreateScope("NetworkCloudStorageApplianceCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _networkCloudStorageApplianceStorageAppliancesRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, storageApplianceName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<NetworkCloudStorageApplianceResource>(response.GetRawResponse());
+                return Response.FromValue(new NetworkCloudStorageApplianceResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

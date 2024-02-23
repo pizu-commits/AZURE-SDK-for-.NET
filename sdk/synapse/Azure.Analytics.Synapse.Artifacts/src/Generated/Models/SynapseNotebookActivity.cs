@@ -14,14 +14,20 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
     /// <summary> Execute Synapse notebook activity. </summary>
     public partial class SynapseNotebookActivity : ExecutionActivity
     {
-        /// <summary> Initializes a new instance of SynapseNotebookActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SynapseNotebookActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="notebook"> Synapse notebook reference. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="notebook"/> is null. </exception>
         public SynapseNotebookActivity(string name, SynapseNotebookReference notebook) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(notebook, nameof(notebook));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (notebook == null)
+            {
+                throw new ArgumentNullException(nameof(notebook));
+            }
 
             Notebook = notebook;
             Parameters = new ChangeTrackingDictionary<string, NotebookParameter>();
@@ -29,7 +35,7 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
             Type = "SynapseNotebook";
         }
 
-        /// <summary> Initializes a new instance of SynapseNotebookActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="SynapseNotebookActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

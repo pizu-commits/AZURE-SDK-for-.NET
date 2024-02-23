@@ -1,6 +1,6 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.3.0-beta.1 (Unreleased)
 
 ### Features Added
 
@@ -10,12 +10,13 @@
 
 ### Other Changes
 
-## 1.2.0-beta.1 (2023-08-15)
+## 1.2.0 (2023-12-04)
 
 ### Features Added
-- Add `metadata` property to `ChatParticipant` and `ChatThreadProperties`.
-- Add apis to add `ChatParticipant` metadata and `ChatThreadProperties` metadata.
-- Add api to update `ChatThreadProperties` including metadata.
+
+- Added `ChatAttachment` object that contains properties for inline images incoming from Teams Chat Threads.
+
+## 1.2.0-beta.1 (2023-08-15)
 
 ## 1.1.2 (2023-06-19)
 

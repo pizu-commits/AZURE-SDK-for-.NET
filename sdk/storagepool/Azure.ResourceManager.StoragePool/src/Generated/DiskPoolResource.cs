@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.StoragePool
 {
     /// <summary>
     /// A Class representing a DiskPool along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="DiskPoolResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetDiskPoolResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetDiskPool method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="DiskPoolResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetDiskPoolResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetDiskPool method.
     /// </summary>
     public partial class DiskPoolResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="DiskPoolResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="diskPoolName"> The diskPoolName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string diskPoolName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}";
@@ -38,12 +42,15 @@ namespace Azure.ResourceManager.StoragePool
         private readonly DiskPoolsRestOperations _diskPoolRestClient;
         private readonly DiskPoolData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.StoragePool/diskPools";
+
         /// <summary> Initializes a new instance of the <see cref="DiskPoolResource"/> class for mocking. </summary>
         protected DiskPoolResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "DiskPoolResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="DiskPoolResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal DiskPoolResource(ArmClient client, DiskPoolData data) : this(client, data.Id)
@@ -64,9 +71,6 @@ namespace Azure.ResourceManager.StoragePool
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.StoragePool/diskPools";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -93,7 +97,7 @@ namespace Azure.ResourceManager.StoragePool
         /// <returns> An object representing collection of DiskPoolIscsiTargetResources and their operations over a DiskPoolIscsiTargetResource. </returns>
         public virtual DiskPoolIscsiTargetCollection GetDiskPoolIscsiTargets()
         {
-            return GetCachedClient(Client => new DiskPoolIscsiTargetCollection(Client, Id));
+            return GetCachedClient(client => new DiskPoolIscsiTargetCollection(client, Id));
         }
 
         /// <summary>
@@ -107,12 +111,20 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>IscsiTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolIscsiTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="iscsiTargetName"> The name of the iSCSI Target. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="iscsiTargetName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="iscsiTargetName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="iscsiTargetName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<DiskPoolIscsiTargetResource>> GetDiskPoolIscsiTargetAsync(string iscsiTargetName, CancellationToken cancellationToken = default)
         {
@@ -130,12 +142,20 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>IscsiTargets_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolIscsiTargetResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="iscsiTargetName"> The name of the iSCSI Target. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="iscsiTargetName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="iscsiTargetName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="iscsiTargetName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<DiskPoolIscsiTargetResource> GetDiskPoolIscsiTarget(string iscsiTargetName, CancellationToken cancellationToken = default)
         {
@@ -152,6 +172,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -185,6 +213,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -216,6 +252,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DiskPools_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -251,6 +295,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -285,6 +337,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -293,7 +353,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<DiskPoolResource>> UpdateAsync(WaitUntil waitUntil, DiskPoolPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.Update");
             scope.Start();
@@ -323,6 +386,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -331,7 +402,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<DiskPoolResource> Update(WaitUntil waitUntil, DiskPoolPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.Update");
             scope.Start();
@@ -361,15 +435,23 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_ListOutboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StoragePoolOutboundEnvironment" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="StoragePoolOutboundEnvironment"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<StoragePoolOutboundEnvironment> GetOutboundNetworkDependenciesEndpointsAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _diskPoolRestClient.CreateListOutboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _diskPoolRestClient.CreateListOutboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, StoragePoolOutboundEnvironment.DeserializeStoragePoolOutboundEnvironment, _diskPoolClientDiagnostics, Pipeline, "DiskPoolResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => StoragePoolOutboundEnvironment.DeserializeStoragePoolOutboundEnvironment(e), _diskPoolClientDiagnostics, Pipeline, "DiskPoolResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -383,15 +465,23 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_ListOutboundNetworkDependenciesEndpoints</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StoragePoolOutboundEnvironment" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="StoragePoolOutboundEnvironment"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<StoragePoolOutboundEnvironment> GetOutboundNetworkDependenciesEndpoints(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _diskPoolRestClient.CreateListOutboundNetworkDependenciesEndpointsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _diskPoolRestClient.CreateListOutboundNetworkDependenciesEndpointsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, StoragePoolOutboundEnvironment.DeserializeStoragePoolOutboundEnvironment, _diskPoolClientDiagnostics, Pipeline, "DiskPoolResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => StoragePoolOutboundEnvironment.DeserializeStoragePoolOutboundEnvironment(e), _diskPoolClientDiagnostics, Pipeline, "DiskPoolResource.GetOutboundNetworkDependenciesEndpoints", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -404,6 +494,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DiskPools_Start</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -439,6 +537,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Start</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -472,6 +578,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DiskPools_Deallocate</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -507,6 +621,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Deallocate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -540,6 +662,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DiskPools_Upgrade</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -575,6 +705,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Upgrade</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -609,6 +747,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -617,8 +763,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<DiskPoolResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.AddTag");
             scope.Start();
@@ -663,6 +815,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -671,8 +831,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<DiskPoolResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.AddTag");
             scope.Start();
@@ -717,6 +883,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -724,7 +898,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<DiskPoolResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.SetTags");
             scope.Start();
@@ -766,6 +943,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -773,7 +958,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<DiskPoolResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.SetTags");
             scope.Start();
@@ -815,6 +1003,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -822,7 +1018,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<DiskPoolResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.RemoveTag");
             scope.Start();
@@ -867,6 +1066,14 @@ namespace Azure.ResourceManager.StoragePool
         /// <term>Operation Id</term>
         /// <description>DiskPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DiskPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -874,7 +1081,10 @@ namespace Azure.ResourceManager.StoragePool
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<DiskPoolResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _diskPoolClientDiagnostics.CreateScope("DiskPoolResource.RemoveTag");
             scope.Start();

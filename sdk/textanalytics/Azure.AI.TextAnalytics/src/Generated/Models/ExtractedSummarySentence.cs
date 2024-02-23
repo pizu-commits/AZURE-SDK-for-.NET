@@ -6,14 +6,13 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The ExtractedSummarySentence. </summary>
     internal partial class ExtractedSummarySentence
     {
-        /// <summary> Initializes a new instance of ExtractedSummarySentence. </summary>
+        /// <summary> Initializes a new instance of <see cref="ExtractedSummarySentence"/>. </summary>
         /// <param name="text"> The extracted sentence text. </param>
         /// <param name="rankScore"> A double value representing the relevance of the sentence within the summary. Higher values indicate higher importance. </param>
         /// <param name="offset"> The sentence offset from the start of the document, based on the value of the parameter StringIndexType. </param>
@@ -21,7 +20,10 @@ namespace Azure.AI.TextAnalytics.Models
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public ExtractedSummarySentence(string text, double rankScore, int offset, int length)
         {
-            Argument.AssertNotNull(text, nameof(text));
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
 
             Text = text;
             RankScore = rankScore;

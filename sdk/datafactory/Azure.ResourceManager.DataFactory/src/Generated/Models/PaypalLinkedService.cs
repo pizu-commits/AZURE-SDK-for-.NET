@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,21 +14,27 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Paypal Service linked service. </summary>
     public partial class PaypalLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of PaypalLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PaypalLinkedService"/>. </summary>
         /// <param name="host"> The URL of the PayPal instance. (i.e. api.sandbox.paypal.com). </param>
         /// <param name="clientId"> The client ID associated with your PayPal application. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> or <paramref name="clientId"/> is null. </exception>
         public PaypalLinkedService(DataFactoryElement<string> host, DataFactoryElement<string> clientId)
         {
-            Argument.AssertNotNull(host, nameof(host));
-            Argument.AssertNotNull(clientId, nameof(clientId));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
 
             Host = host;
             ClientId = clientId;
             LinkedServiceType = "Paypal";
         }
 
-        /// <summary> Initializes a new instance of PaypalLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PaypalLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -53,6 +58,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             UsePeerVerification = usePeerVerification;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Paypal";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="PaypalLinkedService"/> for deserialization. </summary>
+        internal PaypalLinkedService()
+        {
         }
 
         /// <summary> The URL of the PayPal instance. (i.e. api.sandbox.paypal.com). </summary>

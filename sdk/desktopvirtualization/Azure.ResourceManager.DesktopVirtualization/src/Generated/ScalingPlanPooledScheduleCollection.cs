@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.DesktopVirtualization
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ScalingPlanPooledScheduleResource" /> and their operations.
-    /// Each <see cref="ScalingPlanPooledScheduleResource" /> in the collection will belong to the same instance of <see cref="ScalingPlanResource" />.
-    /// To get a <see cref="ScalingPlanPooledScheduleCollection" /> instance call the GetScalingPlanPooledSchedules method from an instance of <see cref="ScalingPlanResource" />.
+    /// A class representing a collection of <see cref="ScalingPlanPooledScheduleResource"/> and their operations.
+    /// Each <see cref="ScalingPlanPooledScheduleResource"/> in the collection will belong to the same instance of <see cref="ScalingPlanResource"/>.
+    /// To get a <see cref="ScalingPlanPooledScheduleCollection"/> instance call the GetScalingPlanPooledSchedules method from an instance of <see cref="ScalingPlanResource"/>.
     /// </summary>
     public partial class ScalingPlanPooledScheduleCollection : ArmCollection, IEnumerable<ScalingPlanPooledScheduleResource>, IAsyncEnumerable<ScalingPlanPooledScheduleResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ScalingPlanPooledScheduleResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string scalingPlanScheduleName, ScalingPlanPooledScheduleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ScalingPlanPooledScheduleResource> CreateOrUpdate(WaitUntil waitUntil, string scalingPlanScheduleName, ScalingPlanPooledScheduleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
         public virtual async Task<Response<ScalingPlanPooledScheduleResource>> GetAsync(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
         public virtual Response<ScalingPlanPooledScheduleResource> Get(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.Get");
             scope.Start();
@@ -219,18 +286,26 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="pageSize"> Number of items per page. </param>
         /// <param name="isDescending"> Indicates whether the collection is descending. </param>
         /// <param name="initialSkip"> Initial number of items to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ScalingPlanPooledScheduleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ScalingPlanPooledScheduleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ScalingPlanPooledScheduleResource> GetAllAsync(int? pageSize = null, bool? isDescending = null, int? initialSkip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _scalingPlanPooledScheduleRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, pageSizeHint, isDescending, initialSkip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _scalingPlanPooledScheduleRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, pageSizeHint, isDescending, initialSkip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ScalingPlanPooledScheduleResource(Client, ScalingPlanPooledScheduleData.DeserializeScalingPlanPooledScheduleData(e)), _scalingPlanPooledScheduleClientDiagnostics, Pipeline, "ScalingPlanPooledScheduleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ScalingPlanPooledScheduleResource(Client, ScalingPlanPooledScheduleData.DeserializeScalingPlanPooledScheduleData(e)), _scalingPlanPooledScheduleClientDiagnostics, Pipeline, "ScalingPlanPooledScheduleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -244,18 +319,26 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="pageSize"> Number of items per page. </param>
         /// <param name="isDescending"> Indicates whether the collection is descending. </param>
         /// <param name="initialSkip"> Initial number of items to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ScalingPlanPooledScheduleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ScalingPlanPooledScheduleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ScalingPlanPooledScheduleResource> GetAll(int? pageSize = null, bool? isDescending = null, int? initialSkip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _scalingPlanPooledScheduleRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, pageSizeHint, isDescending, initialSkip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _scalingPlanPooledScheduleRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, pageSizeHint, isDescending, initialSkip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ScalingPlanPooledScheduleResource(Client, ScalingPlanPooledScheduleData.DeserializeScalingPlanPooledScheduleData(e)), _scalingPlanPooledScheduleClientDiagnostics, Pipeline, "ScalingPlanPooledScheduleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ScalingPlanPooledScheduleResource(Client, ScalingPlanPooledScheduleData.DeserializeScalingPlanPooledScheduleData(e)), _scalingPlanPooledScheduleClientDiagnostics, Pipeline, "ScalingPlanPooledScheduleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -269,6 +352,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
@@ -277,7 +368,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.Exists");
             scope.Start();
@@ -304,6 +402,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <term>Operation Id</term>
         /// <description>ScalingPlanPooledSchedules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
@@ -312,7 +418,14 @@ namespace Azure.ResourceManager.DesktopVirtualization
         /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
         public virtual Response<bool> Exists(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(scalingPlanScheduleName, nameof(scalingPlanScheduleName));
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
 
             using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.Exists");
             scope.Start();
@@ -320,6 +433,110 @@ namespace Azure.ResourceManager.DesktopVirtualization
             {
                 var response = _scalingPlanPooledScheduleRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, scalingPlanScheduleName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/scalingPlans/{scalingPlanName}/pooledSchedules/{scalingPlanScheduleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ScalingPlanPooledSchedules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="scalingPlanScheduleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ScalingPlanPooledScheduleResource>> GetIfExistsAsync(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
+        {
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
+
+            using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _scalingPlanPooledScheduleRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, scalingPlanScheduleName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ScalingPlanPooledScheduleResource>(response.GetRawResponse());
+                return Response.FromValue(new ScalingPlanPooledScheduleResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/scalingPlans/{scalingPlanName}/pooledSchedules/{scalingPlanScheduleName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ScalingPlanPooledSchedules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-05</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ScalingPlanPooledScheduleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="scalingPlanScheduleName"> The name of the ScalingPlanSchedule. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="scalingPlanScheduleName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="scalingPlanScheduleName"/> is null. </exception>
+        public virtual NullableResponse<ScalingPlanPooledScheduleResource> GetIfExists(string scalingPlanScheduleName, CancellationToken cancellationToken = default)
+        {
+            if (scalingPlanScheduleName == null)
+            {
+                throw new ArgumentNullException(nameof(scalingPlanScheduleName));
+            }
+            if (scalingPlanScheduleName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scalingPlanScheduleName));
+            }
+
+            using var scope = _scalingPlanPooledScheduleClientDiagnostics.CreateScope("ScalingPlanPooledScheduleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _scalingPlanPooledScheduleRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, scalingPlanScheduleName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ScalingPlanPooledScheduleResource>(response.GetRawResponse());
+                return Response.FromValue(new ScalingPlanPooledScheduleResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

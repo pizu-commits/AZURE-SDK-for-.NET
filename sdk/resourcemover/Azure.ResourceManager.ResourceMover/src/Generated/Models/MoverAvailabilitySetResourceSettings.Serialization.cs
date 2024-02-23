@@ -5,16 +5,26 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.ResourceMover.Models
 {
-    public partial class MoverAvailabilitySetResourceSettings : IUtf8JsonSerializable
+    public partial class MoverAvailabilitySetResourceSettings : IUtf8JsonSerializable, IJsonModel<MoverAvailabilitySetResourceSettings>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<MoverAvailabilitySetResourceSettings>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<MoverAvailabilitySetResourceSettings>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MoverAvailabilitySetResourceSettings>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MoverAvailabilitySetResourceSettings)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsCollectionDefined(Tags))
             {
@@ -53,13 +63,50 @@ namespace Azure.ResourceManager.ResourceMover.Models
             }
             writer.WritePropertyName("resourceType"u8);
             writer.WriteStringValue(ResourceType);
-            writer.WritePropertyName("targetResourceName"u8);
-            writer.WriteStringValue(TargetResourceName);
+            if (Optional.IsDefined(TargetResourceName))
+            {
+                writer.WritePropertyName("targetResourceName"u8);
+                writer.WriteStringValue(TargetResourceName);
+            }
+            if (Optional.IsDefined(TargetResourceGroupName))
+            {
+                writer.WritePropertyName("targetResourceGroupName"u8);
+                writer.WriteStringValue(TargetResourceGroupName);
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static MoverAvailabilitySetResourceSettings DeserializeMoverAvailabilitySetResourceSettings(JsonElement element)
+        MoverAvailabilitySetResourceSettings IJsonModel<MoverAvailabilitySetResourceSettings>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MoverAvailabilitySetResourceSettings>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MoverAvailabilitySetResourceSettings)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeMoverAvailabilitySetResourceSettings(document.RootElement, options);
+        }
+
+        internal static MoverAvailabilitySetResourceSettings DeserializeMoverAvailabilitySetResourceSettings(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -68,7 +115,10 @@ namespace Azure.ResourceManager.ResourceMover.Models
             Optional<int?> faultDomain = default;
             Optional<int?> updateDomain = default;
             string resourceType = default;
-            string targetResourceName = default;
+            Optional<string> targetResourceName = default;
+            Optional<string> targetResourceGroupName = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("tags"u8))
@@ -115,8 +165,49 @@ namespace Azure.ResourceManager.ResourceMover.Models
                     targetResourceName = property.Value.GetString();
                     continue;
                 }
+                if (property.NameEquals("targetResourceGroupName"u8))
+                {
+                    targetResourceGroupName = property.Value.GetString();
+                    continue;
+                }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new MoverAvailabilitySetResourceSettings(resourceType, targetResourceName, Optional.ToDictionary(tags), Optional.ToNullable(faultDomain), Optional.ToNullable(updateDomain));
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new MoverAvailabilitySetResourceSettings(resourceType, targetResourceName.Value, targetResourceGroupName.Value, serializedAdditionalRawData, Optional.ToDictionary(tags), Optional.ToNullable(faultDomain), Optional.ToNullable(updateDomain));
         }
+
+        BinaryData IPersistableModel<MoverAvailabilitySetResourceSettings>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MoverAvailabilitySetResourceSettings>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(MoverAvailabilitySetResourceSettings)} does not support '{options.Format}' format.");
+            }
+        }
+
+        MoverAvailabilitySetResourceSettings IPersistableModel<MoverAvailabilitySetResourceSettings>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MoverAvailabilitySetResourceSettings>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeMoverAvailabilitySetResourceSettings(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(MoverAvailabilitySetResourceSettings)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<MoverAvailabilitySetResourceSettings>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

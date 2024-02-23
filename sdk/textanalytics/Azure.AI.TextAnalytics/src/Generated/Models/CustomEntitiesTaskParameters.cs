@@ -6,24 +6,29 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> Supported parameters for a Custom Entities task. </summary>
     internal partial class CustomEntitiesTaskParameters : CustomTaskParameters
     {
-        /// <summary> Initializes a new instance of CustomEntitiesTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomEntitiesTaskParameters"/>. </summary>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public CustomEntitiesTaskParameters(string projectName, string deploymentName) : base(projectName, deploymentName)
         {
-            Argument.AssertNotNull(projectName, nameof(projectName));
-            Argument.AssertNotNull(deploymentName, nameof(deploymentName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
         }
 
-        /// <summary> Initializes a new instance of CustomEntitiesTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomEntitiesTaskParameters"/>. </summary>
         /// <param name="loggingOptOut"></param>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>

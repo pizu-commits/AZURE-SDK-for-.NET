@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteSlotDetectorResource" /> and their operations.
-    /// Each <see cref="SiteSlotDetectorResource" /> in the collection will belong to the same instance of <see cref="WebSiteSlotResource" />.
-    /// To get a <see cref="SiteSlotDetectorCollection" /> instance call the GetSiteSlotDetectors method from an instance of <see cref="WebSiteSlotResource" />.
+    /// A class representing a collection of <see cref="SiteSlotDetectorResource"/> and their operations.
+    /// Each <see cref="SiteSlotDetectorResource"/> in the collection will belong to the same instance of <see cref="WebSiteSlotResource"/>.
+    /// To get a <see cref="SiteSlotDetectorCollection"/> instance call the GetSiteSlotDetectors method from an instance of <see cref="WebSiteSlotResource"/>.
     /// </summary>
     public partial class SiteSlotDetectorCollection : ArmCollection, IEnumerable<SiteSlotDetectorResource>, IAsyncEnumerable<SiteSlotDetectorResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -74,7 +83,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
         public virtual async Task<Response<SiteSlotDetectorResource>> GetAsync(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(detectorName, nameof(detectorName));
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
 
             using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.Get");
             scope.Start();
@@ -103,6 +119,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -114,7 +138,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
         public virtual Response<SiteSlotDetectorResource> Get(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(detectorName, nameof(detectorName));
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
 
             using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.Get");
             scope.Start();
@@ -143,15 +174,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_ListSiteDetectorResponsesSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SiteSlotDetectorResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SiteSlotDetectorResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SiteSlotDetectorResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteSlotDetectorDiagnosticsRestClient.CreateListSiteDetectorResponsesSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteSlotDetectorDiagnosticsRestClient.CreateListSiteDetectorResponsesSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteSlotDetectorResource(Client, AppServiceDetectorData.DeserializeAppServiceDetectorData(e)), _siteSlotDetectorDiagnosticsClientDiagnostics, Pipeline, "SiteSlotDetectorCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteSlotDetectorResource(Client, AppServiceDetectorData.DeserializeAppServiceDetectorData(e)), _siteSlotDetectorDiagnosticsClientDiagnostics, Pipeline, "SiteSlotDetectorCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -165,15 +204,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_ListSiteDetectorResponsesSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SiteSlotDetectorResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SiteSlotDetectorResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SiteSlotDetectorResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteSlotDetectorDiagnosticsRestClient.CreateListSiteDetectorResponsesSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteSlotDetectorDiagnosticsRestClient.CreateListSiteDetectorResponsesSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteSlotDetectorResource(Client, AppServiceDetectorData.DeserializeAppServiceDetectorData(e)), _siteSlotDetectorDiagnosticsClientDiagnostics, Pipeline, "SiteSlotDetectorCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteSlotDetectorResource(Client, AppServiceDetectorData.DeserializeAppServiceDetectorData(e)), _siteSlotDetectorDiagnosticsClientDiagnostics, Pipeline, "SiteSlotDetectorCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -187,6 +234,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -198,7 +253,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(detectorName, nameof(detectorName));
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
 
             using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.Exists");
             scope.Start();
@@ -225,6 +287,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="detectorName"> Detector Resource Name. </param>
@@ -236,7 +306,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
         public virtual Response<bool> Exists(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(detectorName, nameof(detectorName));
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
 
             using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.Exists");
             scope.Start();
@@ -244,6 +321,116 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _siteSlotDetectorDiagnosticsRestClient.GetSiteDetectorResponseSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, detectorName, startTime, endTime, timeGrain, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors/{detectorName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="detectorName"> Detector Resource Name. </param>
+        /// <param name="startTime"> Start Time. </param>
+        /// <param name="endTime"> End Time. </param>
+        /// <param name="timeGrain"> Time Grain. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteSlotDetectorResource>> GetIfExistsAsync(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
+        {
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
+
+            using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteSlotDetectorDiagnosticsRestClient.GetSiteDetectorResponseSlotAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, detectorName, startTime, endTime, timeGrain, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotDetectorResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotDetectorResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors/{detectorName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Diagnostics_GetSiteDetectorResponseSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotDetectorResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="detectorName"> Detector Resource Name. </param>
+        /// <param name="startTime"> Start Time. </param>
+        /// <param name="endTime"> End Time. </param>
+        /// <param name="timeGrain"> Time Grain. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="detectorName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="detectorName"/> is null. </exception>
+        public virtual NullableResponse<SiteSlotDetectorResource> GetIfExists(string detectorName, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, string timeGrain = null, CancellationToken cancellationToken = default)
+        {
+            if (detectorName == null)
+            {
+                throw new ArgumentNullException(nameof(detectorName));
+            }
+            if (detectorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(detectorName));
+            }
+
+            using var scope = _siteSlotDetectorDiagnosticsClientDiagnostics.CreateScope("SiteSlotDetectorCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteSlotDetectorDiagnosticsRestClient.GetSiteDetectorResponseSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, detectorName, startTime, endTime, timeGrain, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotDetectorResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotDetectorResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Communication.PhoneNumbers
 {
     /// <summary> The result of a phone number search operation. </summary>
     public partial class PhoneNumberSearchResult
     {
-        /// <summary> Initializes a new instance of PhoneNumberSearchResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoneNumberSearchResult"/>. </summary>
         /// <param name="searchId"> The search id. </param>
         /// <param name="phoneNumbers"> The phone numbers that are available. Can be fewer than the desired search quantity. </param>
         /// <param name="phoneNumberType"> The phone number's type, e.g. geographic, or tollFree. </param>
@@ -26,10 +25,22 @@ namespace Azure.Communication.PhoneNumbers
         /// <exception cref="ArgumentNullException"> <paramref name="searchId"/>, <paramref name="phoneNumbers"/>, <paramref name="capabilities"/> or <paramref name="cost"/> is null. </exception>
         internal PhoneNumberSearchResult(string searchId, IEnumerable<string> phoneNumbers, PhoneNumberType phoneNumberType, PhoneNumberAssignmentType assignmentType, PhoneNumberCapabilities capabilities, PhoneNumberCost cost, DateTimeOffset searchExpiresOn)
         {
-            Argument.AssertNotNull(searchId, nameof(searchId));
-            Argument.AssertNotNull(phoneNumbers, nameof(phoneNumbers));
-            Argument.AssertNotNull(capabilities, nameof(capabilities));
-            Argument.AssertNotNull(cost, nameof(cost));
+            if (searchId == null)
+            {
+                throw new ArgumentNullException(nameof(searchId));
+            }
+            if (phoneNumbers == null)
+            {
+                throw new ArgumentNullException(nameof(phoneNumbers));
+            }
+            if (capabilities == null)
+            {
+                throw new ArgumentNullException(nameof(capabilities));
+            }
+            if (cost == null)
+            {
+                throw new ArgumentNullException(nameof(cost));
+            }
 
             SearchId = searchId;
             PhoneNumbers = phoneNumbers.ToList();
@@ -40,7 +51,7 @@ namespace Azure.Communication.PhoneNumbers
             SearchExpiresOn = searchExpiresOn;
         }
 
-        /// <summary> Initializes a new instance of PhoneNumberSearchResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoneNumberSearchResult"/>. </summary>
         /// <param name="searchId"> The search id. </param>
         /// <param name="phoneNumbers"> The phone numbers that are available. Can be fewer than the desired search quantity. </param>
         /// <param name="phoneNumberType"> The phone number's type, e.g. geographic, or tollFree. </param>

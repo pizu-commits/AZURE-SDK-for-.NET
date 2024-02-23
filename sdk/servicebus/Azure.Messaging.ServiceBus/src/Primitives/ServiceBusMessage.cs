@@ -117,7 +117,8 @@ namespace Azure.Messaging.ServiceBus
             {
                 if (kvp.Key == AmqpMessageConstants.LockedUntilName || kvp.Key == AmqpMessageConstants.SequenceNumberName ||
                     kvp.Key == AmqpMessageConstants.DeadLetterSourceName || kvp.Key == AmqpMessageConstants.EnqueueSequenceNumberName ||
-                    kvp.Key == AmqpMessageConstants.EnqueuedTimeUtcName || kvp.Key == AmqpMessageConstants.MessageStateName)
+                    kvp.Key == AmqpMessageConstants.EnqueuedTimeUtcName || kvp.Key == AmqpMessageConstants.MessageStateName ||
+                    kvp.Key == AmqpMessageConstants.PartitionIdName)
                 {
                     continue;
                 }
@@ -302,7 +303,7 @@ namespace Azure.Messaging.ServiceBus
             }
         }
 
-        /// <summary>Gets or sets the a correlation identifier.</summary>
+        /// <summary>Gets or sets the correlation identifier.</summary>
         /// <value>Correlation identifier.</value>
         /// <remarks>
         /// Allows an application to specify a context for the message for the purposes of correlation,

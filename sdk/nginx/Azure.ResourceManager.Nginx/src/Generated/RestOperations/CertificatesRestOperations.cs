@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.Nginx
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2022-08-01";
+            _apiVersion = apiVersion ?? "2023-04-01";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -59,20 +59,48 @@ namespace Azure.ResourceManager.Nginx
             return message;
         }
 
-        /// <summary> Get a certificate of given Nginx deployment. </summary>
+        /// <summary> Get a certificate of given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<NginxCertificateData>> GetAsync(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, deploymentName, certificateName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -92,20 +120,48 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        /// <summary> Get a certificate of given Nginx deployment. </summary>
+        /// <summary> Get a certificate of given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<NginxCertificateData> Get(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, deploymentName, certificateName);
             _pipeline.Send(message, cancellationToken);
@@ -125,7 +181,7 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        internal HttpMessage CreateCreateRequest(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data)
+        internal HttpMessage CreateCreateOrUpdateRequest(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -151,24 +207,55 @@ namespace Azure.ResourceManager.Nginx
             return message;
         }
 
-        /// <summary> Create or update the Nginx certificates for given Nginx deployment. </summary>
+        /// <summary> Create or update the NGINX certificates for given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="data"> The certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/>, <paramref name="certificateName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> CreateAsync(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data, CancellationToken cancellationToken = default)
+        public async Task<Response> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
-            using var message = CreateCreateRequest(subscriptionId, resourceGroupName, deploymentName, certificateName, data);
+            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, deploymentName, certificateName, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
@@ -180,24 +267,55 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        /// <summary> Create or update the Nginx certificates for given Nginx deployment. </summary>
+        /// <summary> Create or update the NGINX certificates for given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="data"> The certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/>, <paramref name="certificateName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response Create(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data, CancellationToken cancellationToken = default)
+        public Response CreateOrUpdate(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, NginxCertificateData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
-            using var message = CreateCreateRequest(subscriptionId, resourceGroupName, deploymentName, certificateName, data);
+            using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, deploymentName, certificateName, data);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
@@ -231,20 +349,48 @@ namespace Azure.ResourceManager.Nginx
             return message;
         }
 
-        /// <summary> Deletes a certificate from the nginx deployment. </summary>
+        /// <summary> Deletes a certificate from the NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, deploymentName, certificateName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -259,20 +405,48 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        /// <summary> Deletes a certificate from the nginx deployment. </summary>
+        /// <summary> Deletes a certificate from the NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="certificateName"> The name of certificate. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="deploymentName"/> or <paramref name="certificateName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Delete(string subscriptionId, string resourceGroupName, string deploymentName, string certificateName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
-            Argument.AssertNotNullOrEmpty(certificateName, nameof(certificateName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
+            if (certificateName == null)
+            {
+                throw new ArgumentNullException(nameof(certificateName));
+            }
+            if (certificateName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(certificateName));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, deploymentName, certificateName);
             _pipeline.Send(message, cancellationToken);
@@ -308,18 +482,39 @@ namespace Azure.ResourceManager.Nginx
             return message;
         }
 
-        /// <summary> List all certificates of given Nginx deployment. </summary>
+        /// <summary> List all certificates of given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<NginxCertificateListResponse>> ListAsync(string subscriptionId, string resourceGroupName, string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var message = CreateListRequest(subscriptionId, resourceGroupName, deploymentName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -337,18 +532,39 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        /// <summary> List all certificates of given Nginx deployment. </summary>
+        /// <summary> List all certificates of given NGINX deployment. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<NginxCertificateListResponse> List(string subscriptionId, string resourceGroupName, string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var message = CreateListRequest(subscriptionId, resourceGroupName, deploymentName);
             _pipeline.Send(message, cancellationToken);
@@ -380,20 +596,44 @@ namespace Azure.ResourceManager.Nginx
             return message;
         }
 
-        /// <summary> List all certificates of given Nginx deployment. </summary>
+        /// <summary> List all certificates of given NGINX deployment. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<NginxCertificateListResponse>> ListNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, resourceGroupName, deploymentName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -411,20 +651,44 @@ namespace Azure.ResourceManager.Nginx
             }
         }
 
-        /// <summary> List all certificates of given Nginx deployment. </summary>
+        /// <summary> List all certificates of given NGINX deployment. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="deploymentName"> The name of targeted Nginx deployment. </param>
+        /// <param name="deploymentName"> The name of targeted NGINX deployment. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="deploymentName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<NginxCertificateListResponse> ListNextPage(string nextLink, string subscriptionId, string resourceGroupName, string deploymentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(deploymentName, nameof(deploymentName));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
+            if (deploymentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(deploymentName));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, resourceGroupName, deploymentName);
             _pipeline.Send(message, cancellationToken);

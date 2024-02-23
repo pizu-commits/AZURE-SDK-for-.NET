@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -70,8 +71,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='CreateOrUpdateAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(string sensorMappingId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.CreateOrUpdate");
             scope.Start();
@@ -107,8 +118,18 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='CreateOrUpdate(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(string sensorMappingId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.CreateOrUpdate");
             scope.Start();
@@ -143,7 +164,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='GetSensorMappingAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetSensorMappingAsync(string sensorMappingId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.GetSensorMapping");
             scope.Start();
@@ -178,7 +206,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='GetSensorMapping(string,RequestContext)']/*" />
         public virtual Response GetSensorMapping(string sensorMappingId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.GetSensorMapping");
             scope.Start();
@@ -213,7 +248,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='DeleteAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteAsync(string sensorMappingId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.Delete");
             scope.Start();
@@ -248,7 +290,14 @@ namespace Azure.Verticals.AgriFood.Farming
         /// <include file="Docs/SensorMappings.xml" path="doc/members/member[@name='Delete(string,RequestContext)']/*" />
         public virtual Response Delete(string sensorMappingId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(sensorMappingId, nameof(sensorMappingId));
+            if (sensorMappingId == null)
+            {
+                throw new ArgumentNullException(nameof(sensorMappingId));
+            }
+            if (sensorMappingId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sensorMappingId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("SensorMappings.Delete");
             scope.Start();
@@ -302,7 +351,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSensorMappingsRequest(sensorIds, sensorPartnerIds, partyIds, boundaryIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSensorMappingsNextPageRequest(nextLink, sensorIds, sensorPartnerIds, partyIds, boundaryIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "SensorMappings.GetSensorMappings", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "SensorMappings.GetSensorMappings", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -343,7 +392,7 @@ namespace Azure.Verticals.AgriFood.Farming
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetSensorMappingsRequest(sensorIds, sensorPartnerIds, partyIds, boundaryIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetSensorMappingsNextPageRequest(nextLink, sensorIds, sensorPartnerIds, partyIds, boundaryIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "SensorMappings.GetSensorMappings", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "SensorMappings.GetSensorMappings", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetSensorMappingsRequest(IEnumerable<string> sensorIds, IEnumerable<string> sensorPartnerIds, IEnumerable<string> partyIds, IEnumerable<string> boundaryIds, IEnumerable<string> ids, IEnumerable<string> names, IEnumerable<string> propertyFilters, IEnumerable<string> statuses, DateTimeOffset? minCreatedDateTime, DateTimeOffset? maxCreatedDateTime, DateTimeOffset? minLastModifiedDateTime, DateTimeOffset? maxLastModifiedDateTime, int? maxPageSize, string skipToken, RequestContext context)

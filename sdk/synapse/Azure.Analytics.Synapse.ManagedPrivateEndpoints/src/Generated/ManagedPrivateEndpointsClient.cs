@@ -8,6 +8,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Analytics.Synapse.ManagedPrivateEndpoints.Models;
 using Azure.Core;
@@ -184,11 +185,18 @@ namespace Azure.Analytics.Synapse.ManagedPrivateEndpoints
         /// <exception cref="ArgumentNullException"> <paramref name="managedVirtualNetworkName"/> is null. </exception>
         public virtual AsyncPageable<ManagedPrivateEndpoint> ListAsync(string managedVirtualNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(managedVirtualNetworkName, nameof(managedVirtualNetworkName));
+            if (managedVirtualNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(managedVirtualNetworkName));
+            }
+            if (managedVirtualNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(managedVirtualNetworkName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => RestClient.CreateListRequest(managedVirtualNetworkName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => RestClient.CreateListNextPageRequest(nextLink, managedVirtualNetworkName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, ManagedPrivateEndpoint.DeserializeManagedPrivateEndpoint, _clientDiagnostics, _pipeline, "ManagedPrivateEndpointsClient.List", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, ManagedPrivateEndpoint.DeserializeManagedPrivateEndpoint, _clientDiagnostics, _pipeline, "ManagedPrivateEndpointsClient.List", "value", "nextLink", cancellationToken);
         }
 
         /// <summary> List Managed Private Endpoints. </summary>
@@ -197,11 +205,18 @@ namespace Azure.Analytics.Synapse.ManagedPrivateEndpoints
         /// <exception cref="ArgumentNullException"> <paramref name="managedVirtualNetworkName"/> is null. </exception>
         public virtual Pageable<ManagedPrivateEndpoint> List(string managedVirtualNetworkName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(managedVirtualNetworkName, nameof(managedVirtualNetworkName));
+            if (managedVirtualNetworkName == null)
+            {
+                throw new ArgumentNullException(nameof(managedVirtualNetworkName));
+            }
+            if (managedVirtualNetworkName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(managedVirtualNetworkName));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => RestClient.CreateListRequest(managedVirtualNetworkName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => RestClient.CreateListNextPageRequest(nextLink, managedVirtualNetworkName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, ManagedPrivateEndpoint.DeserializeManagedPrivateEndpoint, _clientDiagnostics, _pipeline, "ManagedPrivateEndpointsClient.List", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, ManagedPrivateEndpoint.DeserializeManagedPrivateEndpoint, _clientDiagnostics, _pipeline, "ManagedPrivateEndpointsClient.List", "value", "nextLink", cancellationToken);
         }
     }
 }

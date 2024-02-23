@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.MobileNetwork
 {
     /// <summary>
-    /// A class representing a collection of <see cref="PacketCoreDataPlaneResource" /> and their operations.
-    /// Each <see cref="PacketCoreDataPlaneResource" /> in the collection will belong to the same instance of <see cref="PacketCoreControlPlaneResource" />.
-    /// To get a <see cref="PacketCoreDataPlaneCollection" /> instance call the GetPacketCoreDataPlanes method from an instance of <see cref="PacketCoreControlPlaneResource" />.
+    /// A class representing a collection of <see cref="PacketCoreDataPlaneResource"/> and their operations.
+    /// Each <see cref="PacketCoreDataPlaneResource"/> in the collection will belong to the same instance of <see cref="PacketCoreControlPlaneResource"/>.
+    /// To get a <see cref="PacketCoreDataPlaneCollection"/> instance call the GetPacketCoreDataPlanes method from an instance of <see cref="PacketCoreControlPlaneResource"/>.
     /// </summary>
     public partial class PacketCoreDataPlaneCollection : ArmCollection, IEnumerable<PacketCoreDataPlaneResource>, IAsyncEnumerable<PacketCoreDataPlaneResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<PacketCoreDataPlaneResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string packetCoreDataPlaneName, PacketCoreDataPlaneData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<PacketCoreDataPlaneResource> CreateOrUpdate(WaitUntil waitUntil, string packetCoreDataPlaneName, PacketCoreDataPlaneData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
         public virtual async Task<Response<PacketCoreDataPlaneResource>> GetAsync(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
         public virtual Response<PacketCoreDataPlaneResource> Get(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_ListByPacketCoreControlPlane</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PacketCoreDataPlaneResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PacketCoreDataPlaneResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PacketCoreDataPlaneResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _packetCoreDataPlaneRestClient.CreateListByPacketCoreControlPlaneRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _packetCoreDataPlaneRestClient.CreateListByPacketCoreControlPlaneNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PacketCoreDataPlaneResource(Client, PacketCoreDataPlaneData.DeserializePacketCoreDataPlaneData(e)), _packetCoreDataPlaneClientDiagnostics, Pipeline, "PacketCoreDataPlaneCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PacketCoreDataPlaneResource(Client, PacketCoreDataPlaneData.DeserializePacketCoreDataPlaneData(e)), _packetCoreDataPlaneClientDiagnostics, Pipeline, "PacketCoreDataPlaneCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_ListByPacketCoreControlPlane</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PacketCoreDataPlaneResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PacketCoreDataPlaneResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PacketCoreDataPlaneResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _packetCoreDataPlaneRestClient.CreateListByPacketCoreControlPlaneRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _packetCoreDataPlaneRestClient.CreateListByPacketCoreControlPlaneNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PacketCoreDataPlaneResource(Client, PacketCoreDataPlaneData.DeserializePacketCoreDataPlaneData(e)), _packetCoreDataPlaneClientDiagnostics, Pipeline, "PacketCoreDataPlaneCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PacketCoreDataPlaneResource(Client, PacketCoreDataPlaneData.DeserializePacketCoreDataPlaneData(e)), _packetCoreDataPlaneClientDiagnostics, Pipeline, "PacketCoreDataPlaneCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <term>Operation Id</term>
         /// <description>PacketCoreDataPlanes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.MobileNetwork
         /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
         public virtual Response<bool> Exists(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packetCoreDataPlaneName, nameof(packetCoreDataPlaneName));
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
 
             using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.MobileNetwork
             {
                 var response = _packetCoreDataPlaneRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packetCoreDataPlaneName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes/{packetCoreDataPlaneName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PacketCoreDataPlanes_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="packetCoreDataPlaneName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
+        public virtual async Task<NullableResponse<PacketCoreDataPlaneResource>> GetIfExistsAsync(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
+        {
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
+
+            using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _packetCoreDataPlaneRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packetCoreDataPlaneName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<PacketCoreDataPlaneResource>(response.GetRawResponse());
+                return Response.FromValue(new PacketCoreDataPlaneResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes/{packetCoreDataPlaneName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PacketCoreDataPlanes_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PacketCoreDataPlaneResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="packetCoreDataPlaneName"> The name of the packet core data plane. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="packetCoreDataPlaneName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="packetCoreDataPlaneName"/> is null. </exception>
+        public virtual NullableResponse<PacketCoreDataPlaneResource> GetIfExists(string packetCoreDataPlaneName, CancellationToken cancellationToken = default)
+        {
+            if (packetCoreDataPlaneName == null)
+            {
+                throw new ArgumentNullException(nameof(packetCoreDataPlaneName));
+            }
+            if (packetCoreDataPlaneName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packetCoreDataPlaneName));
+            }
+
+            using var scope = _packetCoreDataPlaneClientDiagnostics.CreateScope("PacketCoreDataPlaneCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _packetCoreDataPlaneRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packetCoreDataPlaneName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<PacketCoreDataPlaneResource>(response.GetRawResponse());
+                return Response.FromValue(new PacketCoreDataPlaneResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,21 +14,27 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Linked service for Amazon Redshift. </summary>
     public partial class AmazonRedshiftLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AmazonRedshiftLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonRedshiftLinkedService"/>. </summary>
         /// <param name="server"> The name of the Amazon Redshift server. Type: string (or Expression with resultType string). </param>
         /// <param name="database"> The database name of the Amazon Redshift source. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="server"/> or <paramref name="database"/> is null. </exception>
         public AmazonRedshiftLinkedService(DataFactoryElement<string> server, DataFactoryElement<string> database)
         {
-            Argument.AssertNotNull(server, nameof(server));
-            Argument.AssertNotNull(database, nameof(database));
+            if (server == null)
+            {
+                throw new ArgumentNullException(nameof(server));
+            }
+            if (database == null)
+            {
+                throw new ArgumentNullException(nameof(database));
+            }
 
             Server = server;
             Database = database;
             LinkedServiceType = "AmazonRedshift";
         }
 
-        /// <summary> Initializes a new instance of AmazonRedshiftLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AmazonRedshiftLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -51,6 +56,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             Port = port;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AmazonRedshift";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AmazonRedshiftLinkedService"/> for deserialization. </summary>
+        internal AmazonRedshiftLinkedService()
+        {
         }
 
         /// <summary> The name of the Amazon Redshift server. Type: string (or Expression with resultType string). </summary>

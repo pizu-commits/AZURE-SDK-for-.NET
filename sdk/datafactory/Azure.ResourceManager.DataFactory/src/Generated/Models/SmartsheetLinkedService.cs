@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Linked service for Smartsheet. </summary>
     public partial class SmartsheetLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of SmartsheetLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SmartsheetLinkedService"/>. </summary>
         /// <param name="apiToken"> The api token for the Smartsheet source. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiToken"/> is null. </exception>
         public SmartsheetLinkedService(DataFactorySecretBaseDefinition apiToken)
         {
-            Argument.AssertNotNull(apiToken, nameof(apiToken));
+            if (apiToken == null)
+            {
+                throw new ArgumentNullException(nameof(apiToken));
+            }
 
             ApiToken = apiToken;
             LinkedServiceType = "Smartsheet";
         }
 
-        /// <summary> Initializes a new instance of SmartsheetLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SmartsheetLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -40,6 +42,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ApiToken = apiToken;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Smartsheet";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SmartsheetLinkedService"/> for deserialization. </summary>
+        internal SmartsheetLinkedService()
+        {
         }
 
         /// <summary> The api token for the Smartsheet source. </summary>

@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
@@ -20,18 +19,21 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
     /// </summary>
     internal partial class PipelineTopologySetRequestBody : MethodRequest
     {
-        /// <summary> Initializes a new instance of PipelineTopologySetRequestBody. </summary>
+        /// <summary> Initializes a new instance of <see cref="PipelineTopologySetRequestBody"/>. </summary>
         /// <param name="name"> Pipeline topology unique identifier. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public PipelineTopologySetRequestBody(string name)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
             MethodName = "PipelineTopologySetRequestBody";
         }
 
-        /// <summary> Initializes a new instance of PipelineTopologySetRequestBody. </summary>
+        /// <summary> Initializes a new instance of <see cref="PipelineTopologySetRequestBody"/>. </summary>
         /// <param name="methodName"> Direct method method name. </param>
         /// <param name="apiVersion"> Video Analyzer API version. </param>
         /// <param name="name"> Pipeline topology unique identifier. </param>

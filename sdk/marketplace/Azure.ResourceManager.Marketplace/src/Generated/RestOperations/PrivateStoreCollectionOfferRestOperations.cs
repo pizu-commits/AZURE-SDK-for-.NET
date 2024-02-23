@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.Marketplace
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2022-03-01";
+            _apiVersion = apiVersion ?? "2023-01-01";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -100,6 +100,78 @@ namespace Azure.ResourceManager.Marketplace
             }
         }
 
+        internal HttpMessage CreateListByContextsRequest(Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/providers/Microsoft.Marketplace/privateStores/", false);
+            uri.AppendPath(privateStoreId, true);
+            uri.AppendPath("/collections/", false);
+            uri.AppendPath(collectionId, true);
+            uri.AppendPath("/mapOffersToContexts", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            if (payload != null)
+            {
+                request.Headers.Add("Content-Type", "application/json");
+                var content = new Utf8JsonRequestContent();
+                content.JsonWriter.WriteObjectValue(payload);
+                request.Content = content;
+            }
+            _userAgent.Apply(message);
+            return message;
+        }
+
+        /// <summary> Get a list of all offers in the given collection according to the required contexts. </summary>
+        /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
+        /// <param name="collectionId"> The collection ID. </param>
+        /// <param name="payload"> The <see cref="CollectionOffersByAllContextsPayload"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public async Task<Response<CollectionOffersByContextList>> ListByContextsAsync(Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload = null, CancellationToken cancellationToken = default)
+        {
+            using var message = CreateListByContextsRequest(privateStoreId, collectionId, payload);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        CollectionOffersByContextList value = default;
+                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
+                        value = CollectionOffersByContextList.DeserializeCollectionOffersByContextList(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Get a list of all offers in the given collection according to the required contexts. </summary>
+        /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
+        /// <param name="collectionId"> The collection ID. </param>
+        /// <param name="payload"> The <see cref="CollectionOffersByAllContextsPayload"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public Response<CollectionOffersByContextList> ListByContexts(Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload = null, CancellationToken cancellationToken = default)
+        {
+            using var message = CreateListByContextsRequest(privateStoreId, collectionId, payload);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        CollectionOffersByContextList value = default;
+                        using var document = JsonDocument.Parse(message.Response.ContentStream);
+                        value = CollectionOffersByContextList.DeserializeCollectionOffersByContextList(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
         internal HttpMessage CreateGetRequest(Guid privateStoreId, Guid collectionId, string offerId)
         {
             var message = _pipeline.CreateMessage();
@@ -129,7 +201,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<PrivateStoreOfferData>> GetAsync(Guid privateStoreId, Guid collectionId, string offerId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateGetRequest(privateStoreId, collectionId, offerId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -158,7 +237,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<PrivateStoreOfferData> Get(Guid privateStoreId, Guid collectionId, string offerId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateGetRequest(privateStoreId, collectionId, offerId);
             _pipeline.Send(message, cancellationToken);
@@ -206,14 +292,24 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="data"> The PrivateStoreOffer to use. </param>
+        /// <param name="data"> The <see cref="PrivateStoreOfferData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<PrivateStoreOfferData>> CreateOrUpdateAsync(Guid privateStoreId, Guid collectionId, string offerId, PrivateStoreOfferData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(privateStoreId, collectionId, offerId, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -235,14 +331,24 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="data"> The PrivateStoreOffer to use. </param>
+        /// <param name="data"> The <see cref="PrivateStoreOfferData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<PrivateStoreOfferData> CreateOrUpdate(Guid privateStoreId, Guid collectionId, string offerId, PrivateStoreOfferData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(privateStoreId, collectionId, offerId, data);
             _pipeline.Send(message, cancellationToken);
@@ -289,7 +395,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> DeleteAsync(Guid privateStoreId, Guid collectionId, string offerId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateDeleteRequest(privateStoreId, collectionId, offerId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -312,7 +425,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Delete(Guid privateStoreId, Guid collectionId, string offerId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateDeleteRequest(privateStoreId, collectionId, offerId);
             _pipeline.Send(message, cancellationToken);
@@ -357,13 +477,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="payload"> The PrivateStoreOperation to use. </param>
+        /// <param name="payload"> The <see cref="PrivateStoreOperation"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> PostAsync(Guid privateStoreId, Guid collectionId, string offerId, PrivateStoreOperation? payload = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreatePostRequest(privateStoreId, collectionId, offerId, payload);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -380,13 +507,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="payload"> The PrivateStoreOperation to use. </param>
+        /// <param name="payload"> The <see cref="PrivateStoreOperation"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Post(Guid privateStoreId, Guid collectionId, string offerId, PrivateStoreOperation? payload = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreatePostRequest(privateStoreId, collectionId, offerId, payload);
             _pipeline.Send(message, cancellationToken);
@@ -431,13 +565,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="content"> The MultiContextAndPlansContent to use. </param>
+        /// <param name="content"> The <see cref="MultiContextAndPlansContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<PrivateStoreOfferData>> UpsertOfferWithMultiContextAsync(Guid privateStoreId, Guid collectionId, string offerId, MultiContextAndPlansContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateUpsertOfferWithMultiContextRequest(privateStoreId, collectionId, offerId, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -459,13 +600,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
         /// <param name="collectionId"> The collection ID. </param>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="content"> The MultiContextAndPlansContent to use. </param>
+        /// <param name="content"> The <see cref="MultiContextAndPlansContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<PrivateStoreOfferData> UpsertOfferWithMultiContext(Guid privateStoreId, Guid collectionId, string offerId, MultiContextAndPlansContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var message = CreateUpsertOfferWithMultiContextRequest(privateStoreId, collectionId, offerId, content);
             _pipeline.Send(message, cancellationToken);
@@ -505,7 +653,10 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public async Task<Response<OfferListResponse>> ListNextPageAsync(string nextLink, Guid privateStoreId, Guid collectionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, privateStoreId, collectionId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -531,7 +682,10 @@ namespace Azure.ResourceManager.Marketplace
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
         public Response<OfferListResponse> ListNextPage(string nextLink, Guid privateStoreId, Guid collectionId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, privateStoreId, collectionId);
             _pipeline.Send(message, cancellationToken);
@@ -542,6 +696,80 @@ namespace Azure.ResourceManager.Marketplace
                         OfferListResponse value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
                         value = OfferListResponse.DeserializeOfferListResponse(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        internal HttpMessage CreateListByContextsNextPageRequest(string nextLink, Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendRawNextLink(nextLink, false);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            _userAgent.Apply(message);
+            return message;
+        }
+
+        /// <summary> Get a list of all offers in the given collection according to the required contexts. </summary>
+        /// <param name="nextLink"> The URL to the next page of results. </param>
+        /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
+        /// <param name="collectionId"> The collection ID. </param>
+        /// <param name="payload"> The <see cref="CollectionOffersByAllContextsPayload"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
+        public async Task<Response<CollectionOffersByContextList>> ListByContextsNextPageAsync(string nextLink, Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload = null, CancellationToken cancellationToken = default)
+        {
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+
+            using var message = CreateListByContextsNextPageRequest(nextLink, privateStoreId, collectionId, payload);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        CollectionOffersByContextList value = default;
+                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
+                        value = CollectionOffersByContextList.DeserializeCollectionOffersByContextList(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Get a list of all offers in the given collection according to the required contexts. </summary>
+        /// <param name="nextLink"> The URL to the next page of results. </param>
+        /// <param name="privateStoreId"> The store ID - must use the tenant ID. </param>
+        /// <param name="collectionId"> The collection ID. </param>
+        /// <param name="payload"> The <see cref="CollectionOffersByAllContextsPayload"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> is null. </exception>
+        public Response<CollectionOffersByContextList> ListByContextsNextPage(string nextLink, Guid privateStoreId, Guid collectionId, CollectionOffersByAllContextsPayload payload = null, CancellationToken cancellationToken = default)
+        {
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+
+            using var message = CreateListByContextsNextPageRequest(nextLink, privateStoreId, collectionId, payload);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        CollectionOffersByContextList value = default;
+                        using var document = JsonDocument.Parse(message.Response.ContentStream);
+                        value = CollectionOffersByContextList.DeserializeCollectionOffersByContextList(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:

@@ -6,24 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
     /// <summary> Information that enables communication between the IoT Hub and the IoT device - allowing this edge module to act as a transparent gateway between the two. </summary>
     public partial class IotHubDeviceConnection
     {
-        /// <summary> Initializes a new instance of IotHubDeviceConnection. </summary>
+        /// <summary> Initializes a new instance of <see cref="IotHubDeviceConnection"/>. </summary>
         /// <param name="deviceId"> The name of the IoT device configured and managed in IoT Hub. (case-sensitive). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deviceId"/> is null. </exception>
         public IotHubDeviceConnection(string deviceId)
         {
-            Argument.AssertNotNull(deviceId, nameof(deviceId));
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException(nameof(deviceId));
+            }
 
             DeviceId = deviceId;
         }
 
-        /// <summary> Initializes a new instance of IotHubDeviceConnection. </summary>
+        /// <summary> Initializes a new instance of <see cref="IotHubDeviceConnection"/>. </summary>
         /// <param name="deviceId"> The name of the IoT device configured and managed in IoT Hub. (case-sensitive). </param>
         /// <param name="credentials">
         /// IoT device connection credentials. Currently IoT device symmetric key credentials are supported.

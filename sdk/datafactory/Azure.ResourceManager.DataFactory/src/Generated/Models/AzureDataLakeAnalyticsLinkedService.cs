@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,21 +14,27 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Azure Data Lake Analytics linked service. </summary>
     public partial class AzureDataLakeAnalyticsLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of AzureDataLakeAnalyticsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataLakeAnalyticsLinkedService"/>. </summary>
         /// <param name="accountName"> The Azure Data Lake Analytics account name. Type: string (or Expression with resultType string). </param>
         /// <param name="tenant"> The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/> or <paramref name="tenant"/> is null. </exception>
         public AzureDataLakeAnalyticsLinkedService(DataFactoryElement<string> accountName, DataFactoryElement<string> tenant)
         {
-            Argument.AssertNotNull(accountName, nameof(accountName));
-            Argument.AssertNotNull(tenant, nameof(tenant));
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (tenant == null)
+            {
+                throw new ArgumentNullException(nameof(tenant));
+            }
 
             AccountName = accountName;
             Tenant = tenant;
             LinkedServiceType = "AzureDataLakeAnalytics";
         }
 
-        /// <summary> Initializes a new instance of AzureDataLakeAnalyticsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureDataLakeAnalyticsLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -55,6 +60,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             DataLakeAnalyticsUri = dataLakeAnalyticsUri;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "AzureDataLakeAnalytics";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AzureDataLakeAnalyticsLinkedService"/> for deserialization. </summary>
+        internal AzureDataLakeAnalyticsLinkedService()
+        {
         }
 
         /// <summary> The Azure Data Lake Analytics account name. Type: string (or Expression with resultType string). </summary>

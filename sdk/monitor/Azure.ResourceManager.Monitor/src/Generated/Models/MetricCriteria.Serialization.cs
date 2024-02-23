@@ -6,16 +6,25 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.Monitor.Models
 {
-    public partial class MetricCriteria : IUtf8JsonSerializable
+    public partial class MetricCriteria : IUtf8JsonSerializable, IJsonModel<MetricCriteria>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<MetricCriteria>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<MetricCriteria>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MetricCriteria>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MetricCriteria)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             writer.WritePropertyName("operator"u8);
             writer.WriteStringValue(Operator.ToString());
@@ -55,14 +64,31 @@ namespace Azure.ResourceManager.Monitor.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(item.Value);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(item.Value.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             writer.WriteEndObject();
         }
 
-        internal static MetricCriteria DeserializeMetricCriteria(JsonElement element)
+        MetricCriteria IJsonModel<MetricCriteria>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MetricCriteria>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MetricCriteria)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeMetricCriteria(document.RootElement, options);
+        }
+
+        internal static MetricCriteria DeserializeMetricCriteria(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -124,7 +150,7 @@ namespace Azure.ResourceManager.Monitor.Models
                     List<MetricDimension> array = new List<MetricDimension>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(MetricDimension.DeserializeMetricDimension(item));
+                        array.Add(MetricDimension.DeserializeMetricDimension(item, options));
                     }
                     dimensions = array;
                     continue;
@@ -143,5 +169,36 @@ namespace Azure.ResourceManager.Monitor.Models
             additionalProperties = additionalPropertiesDictionary;
             return new MetricCriteria(criterionType, name, metricName, metricNamespace.Value, timeAggregation, Optional.ToList(dimensions), Optional.ToNullable(skipMetricValidation), additionalProperties, @operator, threshold);
         }
+
+        BinaryData IPersistableModel<MetricCriteria>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MetricCriteria>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(MetricCriteria)} does not support '{options.Format}' format.");
+            }
+        }
+
+        MetricCriteria IPersistableModel<MetricCriteria>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MetricCriteria>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeMetricCriteria(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(MetricCriteria)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<MetricCriteria>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

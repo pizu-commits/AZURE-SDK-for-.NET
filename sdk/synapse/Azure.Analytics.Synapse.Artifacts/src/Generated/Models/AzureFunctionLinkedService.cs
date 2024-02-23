@@ -7,25 +7,27 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Azure Function linked service. </summary>
     public partial class AzureFunctionLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of AzureFunctionLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureFunctionLinkedService"/>. </summary>
         /// <param name="functionAppUrl"> The endpoint of the Azure Function App. URL will be in the format https://&lt;accountName&gt;.azurewebsites.net. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="functionAppUrl"/> is null. </exception>
         public AzureFunctionLinkedService(object functionAppUrl)
         {
-            Argument.AssertNotNull(functionAppUrl, nameof(functionAppUrl));
+            if (functionAppUrl == null)
+            {
+                throw new ArgumentNullException(nameof(functionAppUrl));
+            }
 
             FunctionAppUrl = functionAppUrl;
             Type = "AzureFunction";
         }
 
-        /// <summary> Initializes a new instance of AzureFunctionLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="AzureFunctionLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

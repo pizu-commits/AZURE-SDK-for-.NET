@@ -5,16 +5,26 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.CosmosDB.Models
 {
-    public partial class CosmosDBIndexingPolicy : IUtf8JsonSerializable
+    public partial class CosmosDBIndexingPolicy : IUtf8JsonSerializable, IJsonModel<CosmosDBIndexingPolicy>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<CosmosDBIndexingPolicy>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<CosmosDBIndexingPolicy>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<CosmosDBIndexingPolicy>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(CosmosDBIndexingPolicy)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(IsAutomatic))
             {
@@ -76,11 +86,40 @@ namespace Azure.ResourceManager.CosmosDB.Models
                 }
                 writer.WriteEndArray();
             }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static CosmosDBIndexingPolicy DeserializeCosmosDBIndexingPolicy(JsonElement element)
+        CosmosDBIndexingPolicy IJsonModel<CosmosDBIndexingPolicy>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<CosmosDBIndexingPolicy>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(CosmosDBIndexingPolicy)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeCosmosDBIndexingPolicy(document.RootElement, options);
+        }
+
+        internal static CosmosDBIndexingPolicy DeserializeCosmosDBIndexingPolicy(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -91,6 +130,8 @@ namespace Azure.ResourceManager.CosmosDB.Models
             Optional<IList<CosmosDBExcludedPath>> excludedPaths = default;
             Optional<IList<IList<CosmosDBCompositePath>>> compositeIndexes = default;
             Optional<IList<SpatialSpec>> spatialIndexes = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("automatic"u8))
@@ -120,7 +161,7 @@ namespace Azure.ResourceManager.CosmosDB.Models
                     List<CosmosDBIncludedPath> array = new List<CosmosDBIncludedPath>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(CosmosDBIncludedPath.DeserializeCosmosDBIncludedPath(item));
+                        array.Add(CosmosDBIncludedPath.DeserializeCosmosDBIncludedPath(item, options));
                     }
                     includedPaths = array;
                     continue;
@@ -134,7 +175,7 @@ namespace Azure.ResourceManager.CosmosDB.Models
                     List<CosmosDBExcludedPath> array = new List<CosmosDBExcludedPath>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(CosmosDBExcludedPath.DeserializeCosmosDBExcludedPath(item));
+                        array.Add(CosmosDBExcludedPath.DeserializeCosmosDBExcludedPath(item, options));
                     }
                     excludedPaths = array;
                     continue;
@@ -157,7 +198,7 @@ namespace Azure.ResourceManager.CosmosDB.Models
                             List<CosmosDBCompositePath> array0 = new List<CosmosDBCompositePath>();
                             foreach (var item0 in item.EnumerateArray())
                             {
-                                array0.Add(CosmosDBCompositePath.DeserializeCosmosDBCompositePath(item0));
+                                array0.Add(CosmosDBCompositePath.DeserializeCosmosDBCompositePath(item0, options));
                             }
                             array.Add(array0);
                         }
@@ -174,13 +215,49 @@ namespace Azure.ResourceManager.CosmosDB.Models
                     List<SpatialSpec> array = new List<SpatialSpec>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(SpatialSpec.DeserializeSpatialSpec(item));
+                        array.Add(SpatialSpec.DeserializeSpatialSpec(item, options));
                     }
                     spatialIndexes = array;
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new CosmosDBIndexingPolicy(Optional.ToNullable(automatic), Optional.ToNullable(indexingMode), Optional.ToList(includedPaths), Optional.ToList(excludedPaths), Optional.ToList(compositeIndexes), Optional.ToList(spatialIndexes));
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new CosmosDBIndexingPolicy(Optional.ToNullable(automatic), Optional.ToNullable(indexingMode), Optional.ToList(includedPaths), Optional.ToList(excludedPaths), Optional.ToList(compositeIndexes), Optional.ToList(spatialIndexes), serializedAdditionalRawData);
         }
+
+        BinaryData IPersistableModel<CosmosDBIndexingPolicy>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<CosmosDBIndexingPolicy>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(CosmosDBIndexingPolicy)} does not support '{options.Format}' format.");
+            }
+        }
+
+        CosmosDBIndexingPolicy IPersistableModel<CosmosDBIndexingPolicy>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<CosmosDBIndexingPolicy>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeCosmosDBIndexingPolicy(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(CosmosDBIndexingPolicy)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<CosmosDBIndexingPolicy>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ContainerRegistry
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerRegistryReplicationResource" /> and their operations.
-    /// Each <see cref="ContainerRegistryReplicationResource" /> in the collection will belong to the same instance of <see cref="ContainerRegistryResource" />.
-    /// To get a <see cref="ContainerRegistryReplicationCollection" /> instance call the GetContainerRegistryReplications method from an instance of <see cref="ContainerRegistryResource" />.
+    /// A class representing a collection of <see cref="ContainerRegistryReplicationResource"/> and their operations.
+    /// Each <see cref="ContainerRegistryReplicationResource"/> in the collection will belong to the same instance of <see cref="ContainerRegistryResource"/>.
+    /// To get a <see cref="ContainerRegistryReplicationCollection"/> instance call the GetContainerRegistryReplications method from an instance of <see cref="ContainerRegistryResource"/>.
     /// </summary>
     public partial class ContainerRegistryReplicationCollection : ArmCollection, IEnumerable<ContainerRegistryReplicationResource>, IAsyncEnumerable<ContainerRegistryReplicationResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerRegistryReplicationResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string replicationName, ContainerRegistryReplicationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerRegistryReplicationResource> CreateOrUpdate(WaitUntil waitUntil, string replicationName, ContainerRegistryReplicationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicationName"> The name of the replication. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
         public virtual async Task<Response<ContainerRegistryReplicationResource>> GetAsync(string replicationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicationName"> The name of the replication. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
         public virtual Response<ContainerRegistryReplicationResource> Get(string replicationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerRegistryReplicationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerRegistryReplicationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerRegistryReplicationResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryReplicationReplicationsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryReplicationReplicationsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryReplicationResource(Client, ContainerRegistryReplicationData.DeserializeContainerRegistryReplicationData(e)), _containerRegistryReplicationReplicationsClientDiagnostics, Pipeline, "ContainerRegistryReplicationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryReplicationResource(Client, ContainerRegistryReplicationData.DeserializeContainerRegistryReplicationData(e)), _containerRegistryReplicationReplicationsClientDiagnostics, Pipeline, "ContainerRegistryReplicationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerRegistryReplicationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerRegistryReplicationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerRegistryReplicationResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryReplicationReplicationsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryReplicationReplicationsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryReplicationResource(Client, ContainerRegistryReplicationData.DeserializeContainerRegistryReplicationData(e)), _containerRegistryReplicationReplicationsClientDiagnostics, Pipeline, "ContainerRegistryReplicationCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryReplicationResource(Client, ContainerRegistryReplicationData.DeserializeContainerRegistryReplicationData(e)), _containerRegistryReplicationReplicationsClientDiagnostics, Pipeline, "ContainerRegistryReplicationCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicationName"> The name of the replication. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string replicationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>Replications_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="replicationName"> The name of the replication. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
         public virtual Response<bool> Exists(string replicationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(replicationName, nameof(replicationName));
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
 
             using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.ContainerRegistry
             {
                 var response = _containerRegistryReplicationReplicationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, replicationName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/replications/{replicationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Replications_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="replicationName"> The name of the replication. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="replicationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerRegistryReplicationResource>> GetIfExistsAsync(string replicationName, CancellationToken cancellationToken = default)
+        {
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
+
+            using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerRegistryReplicationReplicationsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, replicationName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryReplicationResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryReplicationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/replications/{replicationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Replications_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-12-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryReplicationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="replicationName"> The name of the replication. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="replicationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="replicationName"/> is null. </exception>
+        public virtual NullableResponse<ContainerRegistryReplicationResource> GetIfExists(string replicationName, CancellationToken cancellationToken = default)
+        {
+            if (replicationName == null)
+            {
+                throw new ArgumentNullException(nameof(replicationName));
+            }
+            if (replicationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(replicationName));
+            }
+
+            using var scope = _containerRegistryReplicationReplicationsClientDiagnostics.CreateScope("ContainerRegistryReplicationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerRegistryReplicationReplicationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, replicationName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryReplicationResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryReplicationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

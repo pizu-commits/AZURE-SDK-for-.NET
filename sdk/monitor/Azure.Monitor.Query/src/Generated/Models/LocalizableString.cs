@@ -6,35 +6,37 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Monitor.Query.Models
 {
     /// <summary> The localizable string class. </summary>
     internal partial class LocalizableString
     {
-        /// <summary> Initializes a new instance of LocalizableString. </summary>
-        /// <param name="value"> the invariant value. </param>
+        /// <summary> Initializes a new instance of <see cref="LocalizableString"/>. </summary>
+        /// <param name="value"> The invariant value. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal LocalizableString(string value)
         {
-            Argument.AssertNotNull(value, nameof(value));
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             Value = value;
         }
 
-        /// <summary> Initializes a new instance of LocalizableString. </summary>
-        /// <param name="value"> the invariant value. </param>
-        /// <param name="localizedValue"> the locale specific value. </param>
+        /// <summary> Initializes a new instance of <see cref="LocalizableString"/>. </summary>
+        /// <param name="value"> The invariant value. </param>
+        /// <param name="localizedValue"> The display name. </param>
         internal LocalizableString(string value, string localizedValue)
         {
             Value = value;
             LocalizedValue = localizedValue;
         }
 
-        /// <summary> the invariant value. </summary>
+        /// <summary> The invariant value. </summary>
         public string Value { get; }
-        /// <summary> the locale specific value. </summary>
+        /// <summary> The display name. </summary>
         public string LocalizedValue { get; }
     }
 }

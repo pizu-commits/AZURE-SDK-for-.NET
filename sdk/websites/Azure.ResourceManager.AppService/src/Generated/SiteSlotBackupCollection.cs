@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteSlotBackupResource" /> and their operations.
-    /// Each <see cref="SiteSlotBackupResource" /> in the collection will belong to the same instance of <see cref="WebSiteSlotResource" />.
-    /// To get a <see cref="SiteSlotBackupCollection" /> instance call the GetSiteSlotBackups method from an instance of <see cref="WebSiteSlotResource" />.
+    /// A class representing a collection of <see cref="SiteSlotBackupResource"/> and their operations.
+    /// Each <see cref="SiteSlotBackupResource"/> in the collection will belong to the same instance of <see cref="WebSiteSlotResource"/>.
+    /// To get a <see cref="SiteSlotBackupCollection"/> instance call the GetSiteSlotBackups method from an instance of <see cref="WebSiteSlotResource"/>.
     /// </summary>
     public partial class SiteSlotBackupCollection : ArmCollection, IEnumerable<SiteSlotBackupResource>, IAsyncEnumerable<SiteSlotBackupResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatusSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupId"> ID of the backup. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
         public virtual async Task<Response<SiteSlotBackupResource>> GetAsync(string backupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupId, nameof(backupId));
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
 
             using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatusSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupId"> ID of the backup. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
         public virtual Response<SiteSlotBackupResource> Get(string backupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupId, nameof(backupId));
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
 
             using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListBackupsSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SiteSlotBackupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SiteSlotBackupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SiteSlotBackupResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteSlotBackupWebAppsRestClient.CreateListBackupsSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteSlotBackupWebAppsRestClient.CreateListBackupsSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteSlotBackupResource(Client, WebAppBackupData.DeserializeWebAppBackupData(e)), _siteSlotBackupWebAppsClientDiagnostics, Pipeline, "SiteSlotBackupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteSlotBackupResource(Client, WebAppBackupData.DeserializeWebAppBackupData(e)), _siteSlotBackupWebAppsClientDiagnostics, Pipeline, "SiteSlotBackupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListBackupsSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SiteSlotBackupResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SiteSlotBackupResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SiteSlotBackupResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteSlotBackupWebAppsRestClient.CreateListBackupsSlotRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteSlotBackupWebAppsRestClient.CreateListBackupsSlotNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteSlotBackupResource(Client, WebAppBackupData.DeserializeWebAppBackupData(e)), _siteSlotBackupWebAppsClientDiagnostics, Pipeline, "SiteSlotBackupCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteSlotBackupResource(Client, WebAppBackupData.DeserializeWebAppBackupData(e)), _siteSlotBackupWebAppsClientDiagnostics, Pipeline, "SiteSlotBackupCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatusSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupId"> ID of the backup. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string backupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupId, nameof(backupId));
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
 
             using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetBackupStatusSlot</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="backupId"> ID of the backup. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
         public virtual Response<bool> Exists(string backupId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(backupId, nameof(backupId));
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
 
             using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _siteSlotBackupWebAppsRestClient.GetBackupStatusSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, backupId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetBackupStatusSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="backupId"> ID of the backup. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="backupId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteSlotBackupResource>> GetIfExistsAsync(string backupId, CancellationToken cancellationToken = default)
+        {
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
+
+            using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteSlotBackupWebAppsRestClient.GetBackupStatusSlotAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, backupId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotBackupResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotBackupResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetBackupStatusSlot</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteSlotBackupResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="backupId"> ID of the backup. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="backupId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="backupId"/> is null. </exception>
+        public virtual NullableResponse<SiteSlotBackupResource> GetIfExists(string backupId, CancellationToken cancellationToken = default)
+        {
+            if (backupId == null)
+            {
+                throw new ArgumentNullException(nameof(backupId));
+            }
+            if (backupId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(backupId));
+            }
+
+            using var scope = _siteSlotBackupWebAppsClientDiagnostics.CreateScope("SiteSlotBackupCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteSlotBackupWebAppsRestClient.GetBackupStatusSlot(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, backupId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteSlotBackupResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteSlotBackupResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

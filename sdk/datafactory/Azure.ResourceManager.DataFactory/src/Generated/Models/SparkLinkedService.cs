@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,15 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Spark Server linked service. </summary>
     public partial class SparkLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of SparkLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SparkLinkedService"/>. </summary>
         /// <param name="host"> IP address or host name of the Spark server. </param>
         /// <param name="port"> The TCP port that the Spark server uses to listen for client connections. </param>
         /// <param name="authenticationType"> The authentication method used to access the Spark server. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> or <paramref name="port"/> is null. </exception>
         public SparkLinkedService(DataFactoryElement<string> host, DataFactoryElement<int> port, SparkAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
-            Argument.AssertNotNull(port, nameof(port));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (port == null)
+            {
+                throw new ArgumentNullException(nameof(port));
+            }
 
             Host = host;
             Port = port;
@@ -31,7 +36,7 @@ namespace Azure.ResourceManager.DataFactory.Models
             LinkedServiceType = "Spark";
         }
 
-        /// <summary> Initializes a new instance of SparkLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SparkLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -69,6 +74,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             AllowSelfSignedServerCert = allowSelfSignedServerCert;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Spark";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SparkLinkedService"/> for deserialization. </summary>
+        internal SparkLinkedService()
+        {
         }
 
         /// <summary> IP address or host name of the Spark server. </summary>

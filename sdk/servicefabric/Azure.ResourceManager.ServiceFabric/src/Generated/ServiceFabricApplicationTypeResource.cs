@@ -19,13 +19,17 @@ namespace Azure.ResourceManager.ServiceFabric
 {
     /// <summary>
     /// A Class representing a ServiceFabricApplicationType along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="ServiceFabricApplicationTypeResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetServiceFabricApplicationTypeResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ServiceFabricClusterResource" /> using the GetServiceFabricApplicationType method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="ServiceFabricApplicationTypeResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetServiceFabricApplicationTypeResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ServiceFabricClusterResource"/> using the GetServiceFabricApplicationType method.
     /// </summary>
     public partial class ServiceFabricApplicationTypeResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="ServiceFabricApplicationTypeResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="clusterName"> The clusterName. </param>
+        /// <param name="applicationTypeName"> The applicationTypeName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string clusterName, string applicationTypeName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}";
@@ -36,12 +40,15 @@ namespace Azure.ResourceManager.ServiceFabric
         private readonly ApplicationTypesRestOperations _serviceFabricApplicationTypeApplicationTypesRestClient;
         private readonly ServiceFabricApplicationTypeData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.ServiceFabric/clusters/applicationTypes";
+
         /// <summary> Initializes a new instance of the <see cref="ServiceFabricApplicationTypeResource"/> class for mocking. </summary>
         protected ServiceFabricApplicationTypeResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "ServiceFabricApplicationTypeResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="ServiceFabricApplicationTypeResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal ServiceFabricApplicationTypeResource(ArmClient client, ServiceFabricApplicationTypeData data) : this(client, data.Id)
@@ -62,9 +69,6 @@ namespace Azure.ResourceManager.ServiceFabric
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.ServiceFabric/clusters/applicationTypes";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -91,7 +95,7 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <returns> An object representing collection of ServiceFabricApplicationTypeVersionResources and their operations over a ServiceFabricApplicationTypeVersionResource. </returns>
         public virtual ServiceFabricApplicationTypeVersionCollection GetServiceFabricApplicationTypeVersions()
         {
-            return GetCachedClient(Client => new ServiceFabricApplicationTypeVersionCollection(Client, Id));
+            return GetCachedClient(client => new ServiceFabricApplicationTypeVersionCollection(client, Id));
         }
 
         /// <summary>
@@ -105,12 +109,20 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypeVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="version"> The application type version. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="version"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<ServiceFabricApplicationTypeVersionResource>> GetServiceFabricApplicationTypeVersionAsync(string version, CancellationToken cancellationToken = default)
         {
@@ -128,12 +140,20 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypeVersions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeVersionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="version"> The application type version. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="version"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<ServiceFabricApplicationTypeVersionResource> GetServiceFabricApplicationTypeVersion(string version, CancellationToken cancellationToken = default)
         {
@@ -150,6 +170,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -183,6 +211,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -214,6 +250,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -249,6 +293,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -283,6 +335,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -291,7 +351,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ServiceFabricApplicationTypeResource>> UpdateAsync(WaitUntil waitUntil, ServiceFabricApplicationTypeData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.Update");
             scope.Start();
@@ -321,6 +384,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -329,7 +400,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ServiceFabricApplicationTypeResource> Update(WaitUntil waitUntil, ServiceFabricApplicationTypeData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.Update");
             scope.Start();
@@ -359,6 +433,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -367,8 +449,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<ServiceFabricApplicationTypeResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.AddTag");
             scope.Start();
@@ -408,6 +496,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -416,8 +512,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<ServiceFabricApplicationTypeResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.AddTag");
             scope.Start();
@@ -457,6 +559,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -464,7 +574,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<ServiceFabricApplicationTypeResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.SetTags");
             scope.Start();
@@ -505,6 +618,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -512,7 +633,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<ServiceFabricApplicationTypeResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.SetTags");
             scope.Start();
@@ -553,6 +677,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -560,7 +692,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<ServiceFabricApplicationTypeResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.RemoveTag");
             scope.Start();
@@ -600,6 +735,14 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <term>Operation Id</term>
         /// <description>ApplicationTypes_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ServiceFabricApplicationTypeResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -607,7 +750,10 @@ namespace Azure.ResourceManager.ServiceFabric
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<ServiceFabricApplicationTypeResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _serviceFabricApplicationTypeApplicationTypesClientDiagnostics.CreateScope("ServiceFabricApplicationTypeResource.RemoveTag");
             scope.Start();

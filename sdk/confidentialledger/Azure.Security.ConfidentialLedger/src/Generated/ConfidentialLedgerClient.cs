@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -173,7 +174,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='CreateLedgerEntryAsync(RequestContent,string,RequestContext)']/*" />
         public virtual async Task<Response> CreateLedgerEntryAsync(RequestContent content, string collectionId = null, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.CreateLedgerEntry");
             scope.Start();
@@ -208,7 +212,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='CreateLedgerEntry(RequestContent,string,RequestContext)']/*" />
         public virtual Response CreateLedgerEntry(RequestContent content, string collectionId = null, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.CreateLedgerEntry");
             scope.Start();
@@ -244,7 +251,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetLedgerEntryAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> GetLedgerEntryAsync(string transactionId, string collectionId = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetLedgerEntry");
             scope.Start();
@@ -280,7 +294,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetLedgerEntry(string,string,RequestContext)']/*" />
         public virtual Response GetLedgerEntry(string transactionId, string collectionId = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetLedgerEntry");
             scope.Start();
@@ -315,7 +336,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetReceiptAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetReceiptAsync(string transactionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetReceipt");
             scope.Start();
@@ -350,7 +378,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetReceipt(string,RequestContext)']/*" />
         public virtual Response GetReceipt(string transactionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetReceipt");
             scope.Start();
@@ -385,7 +420,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetTransactionStatusAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetTransactionStatusAsync(string transactionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetTransactionStatus");
             scope.Start();
@@ -420,7 +462,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetTransactionStatus(string,RequestContext)']/*" />
         public virtual Response GetTransactionStatus(string transactionId, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(transactionId, nameof(transactionId));
+            if (transactionId == null)
+            {
+                throw new ArgumentNullException(nameof(transactionId));
+            }
+            if (transactionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(transactionId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetTransactionStatus");
             scope.Start();
@@ -516,7 +565,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='DeleteUserAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> DeleteUserAsync(string userId, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.DeleteUser");
             scope.Start();
@@ -550,7 +602,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='DeleteUser(string,RequestContext)']/*" />
         public virtual Response DeleteUser(string userId, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.DeleteUser");
             scope.Start();
@@ -584,7 +639,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetUserAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetUserAsync(string userId, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetUser");
             scope.Start();
@@ -618,7 +676,10 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='GetUser(string,RequestContext)']/*" />
         public virtual Response GetUser(string userId, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.GetUser");
             scope.Start();
@@ -653,8 +714,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='CreateOrUpdateUserAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateUserAsync(string userId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.CreateOrUpdateUser");
             scope.Start();
@@ -689,8 +756,14 @@ namespace Azure.Security.ConfidentialLedger
         /// <include file="Docs/ConfidentialLedgerClient.xml" path="doc/members/member[@name='CreateOrUpdateUser(string,RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdateUser(string userId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(userId, nameof(userId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("ConfidentialLedgerClient.CreateOrUpdateUser");
             scope.Start();
@@ -724,7 +797,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConsortiumMembersRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConsortiumMembersNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetConsortiumMembers", "members", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetConsortiumMembers", "members", "nextLink", context);
         }
 
         /// <summary>
@@ -745,7 +818,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetConsortiumMembersRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetConsortiumMembersNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetConsortiumMembers", "members", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetConsortiumMembers", "members", "nextLink", context);
         }
 
         /// <summary>
@@ -766,7 +839,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCollectionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCollectionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetCollections", "collections", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetCollections", "collections", "nextLink", context);
         }
 
         /// <summary>
@@ -787,7 +860,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetCollectionsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetCollectionsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetCollections", "collections", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetCollections", "collections", "nextLink", context);
         }
 
         /// <summary>
@@ -811,7 +884,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLedgerEntriesRequest(collectionId, fromTransactionId, toTransactionId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLedgerEntriesNextPageRequest(nextLink, collectionId, fromTransactionId, toTransactionId, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetLedgerEntries", "entries", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetLedgerEntries", "entries", "nextLink", context);
         }
 
         /// <summary>
@@ -835,7 +908,7 @@ namespace Azure.Security.ConfidentialLedger
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLedgerEntriesRequest(collectionId, fromTransactionId, toTransactionId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLedgerEntriesNextPageRequest(nextLink, collectionId, fromTransactionId, toTransactionId, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetLedgerEntries", "entries", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "ConfidentialLedgerClient.GetLedgerEntries", "entries", "nextLink", context);
         }
 
         internal HttpMessage CreateGetConstitutionRequest(RequestContext context)

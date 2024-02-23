@@ -6,24 +6,29 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> Supported parameters for a Custom Single Classification task. </summary>
     internal partial class CustomSingleLabelClassificationTaskParameters : CustomTaskParameters
     {
-        /// <summary> Initializes a new instance of CustomSingleLabelClassificationTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomSingleLabelClassificationTaskParameters"/>. </summary>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public CustomSingleLabelClassificationTaskParameters(string projectName, string deploymentName) : base(projectName, deploymentName)
         {
-            Argument.AssertNotNull(projectName, nameof(projectName));
-            Argument.AssertNotNull(deploymentName, nameof(deploymentName));
+            if (projectName == null)
+            {
+                throw new ArgumentNullException(nameof(projectName));
+            }
+            if (deploymentName == null)
+            {
+                throw new ArgumentNullException(nameof(deploymentName));
+            }
         }
 
-        /// <summary> Initializes a new instance of CustomSingleLabelClassificationTaskParameters. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomSingleLabelClassificationTaskParameters"/>. </summary>
         /// <param name="loggingOptOut"></param>
         /// <param name="projectName"> This field indicates the project name for the model. </param>
         /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>

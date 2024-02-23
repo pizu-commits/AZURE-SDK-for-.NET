@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Media.VideoAnalyzer.Edge.Models
 {
     /// <summary> A processor that allows the pipeline topology to send video frames to a Cognitive Services Vision extension. Inference results are relayed to downstream nodes. </summary>
     public partial class CognitiveServicesVisionProcessor : ProcessorNodeBase
     {
-        /// <summary> Initializes a new instance of CognitiveServicesVisionProcessor. </summary>
+        /// <summary> Initializes a new instance of <see cref="CognitiveServicesVisionProcessor"/>. </summary>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>
         /// <param name="endpoint">
@@ -30,17 +29,29 @@ namespace Azure.Media.VideoAnalyzer.Edge.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="inputs"/>, <paramref name="endpoint"/> or <paramref name="operation"/> is null. </exception>
         public CognitiveServicesVisionProcessor(string name, IEnumerable<NodeInput> inputs, EndpointBase endpoint, SpatialAnalysisOperationBase operation) : base(name, inputs)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(inputs, nameof(inputs));
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(operation, nameof(operation));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (inputs == null)
+            {
+                throw new ArgumentNullException(nameof(inputs));
+            }
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (operation == null)
+            {
+                throw new ArgumentNullException(nameof(operation));
+            }
 
             Endpoint = endpoint;
             Operation = operation;
             Type = "#Microsoft.VideoAnalyzer.CognitiveServicesVisionProcessor";
         }
 
-        /// <summary> Initializes a new instance of CognitiveServicesVisionProcessor. </summary>
+        /// <summary> Initializes a new instance of <see cref="CognitiveServicesVisionProcessor"/>. </summary>
         /// <param name="type"> Type discriminator for the derived types. </param>
         /// <param name="name"> Node name. Must be unique within the topology. </param>
         /// <param name="inputs"> An array of upstream node references within the topology to be used as inputs for this node. </param>

@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -54,7 +55,14 @@ namespace Azure.Analytics.Purview.Administration
         /// <include file="Docs/PurviewMetadataPolicyClient.xml" path="doc/members/member[@name='UpdateMetadataPolicyAsync(string,RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> UpdateMetadataPolicyAsync(string policyId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(policyId, nameof(policyId));
+            if (policyId == null)
+            {
+                throw new ArgumentNullException(nameof(policyId));
+            }
+            if (policyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(policyId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewMetadataPolicyClient.UpdateMetadataPolicy");
             scope.Start();
@@ -90,7 +98,14 @@ namespace Azure.Analytics.Purview.Administration
         /// <include file="Docs/PurviewMetadataPolicyClient.xml" path="doc/members/member[@name='UpdateMetadataPolicy(string,RequestContent,RequestContext)']/*" />
         public virtual Response UpdateMetadataPolicy(string policyId, RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(policyId, nameof(policyId));
+            if (policyId == null)
+            {
+                throw new ArgumentNullException(nameof(policyId));
+            }
+            if (policyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(policyId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewMetadataPolicyClient.UpdateMetadataPolicy");
             scope.Start();
@@ -125,7 +140,14 @@ namespace Azure.Analytics.Purview.Administration
         /// <include file="Docs/PurviewMetadataPolicyClient.xml" path="doc/members/member[@name='GetMetadataPolicyAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> GetMetadataPolicyAsync(string policyId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(policyId, nameof(policyId));
+            if (policyId == null)
+            {
+                throw new ArgumentNullException(nameof(policyId));
+            }
+            if (policyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(policyId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewMetadataPolicyClient.GetMetadataPolicy");
             scope.Start();
@@ -160,7 +182,14 @@ namespace Azure.Analytics.Purview.Administration
         /// <include file="Docs/PurviewMetadataPolicyClient.xml" path="doc/members/member[@name='GetMetadataPolicy(string,RequestContext)']/*" />
         public virtual Response GetMetadataPolicy(string policyId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(policyId, nameof(policyId));
+            if (policyId == null)
+            {
+                throw new ArgumentNullException(nameof(policyId));
+            }
+            if (policyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(policyId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewMetadataPolicyClient.GetMetadataPolicy");
             scope.Start();
@@ -194,7 +223,7 @@ namespace Azure.Analytics.Purview.Administration
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetMetadataPoliciesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetMetadataPoliciesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewMetadataPolicyClient.GetMetadataPolicies", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewMetadataPolicyClient.GetMetadataPolicies", "values", "nextLink", context);
         }
 
         /// <summary>
@@ -215,7 +244,7 @@ namespace Azure.Analytics.Purview.Administration
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetMetadataPoliciesRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetMetadataPoliciesNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewMetadataPolicyClient.GetMetadataPolicies", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewMetadataPolicyClient.GetMetadataPolicies", "values", "nextLink", context);
         }
 
         internal HttpMessage CreateGetMetadataPoliciesRequest(RequestContext context)
@@ -227,7 +256,7 @@ namespace Azure.Analytics.Purview.Administration
             uri.Reset(_endpoint);
             uri.AppendRaw("/policyStore", false);
             uri.AppendPath("/metadataPolicies", false);
-            uri.AppendQuery("api-version", "2021-07-01", true);
+            uri.AppendQuery("api-version", "2021-07-01-preview", true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             return message;
@@ -243,7 +272,7 @@ namespace Azure.Analytics.Purview.Administration
             uri.AppendRaw("/policyStore", false);
             uri.AppendPath("/metadataPolicies/", false);
             uri.AppendPath(policyId, true);
-            uri.AppendQuery("api-version", "2021-07-01", true);
+            uri.AppendQuery("api-version", "2021-07-01-preview", true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
@@ -261,7 +290,7 @@ namespace Azure.Analytics.Purview.Administration
             uri.AppendRaw("/policyStore", false);
             uri.AppendPath("/metadataPolicies/", false);
             uri.AppendPath(policyId, true);
-            uri.AppendQuery("api-version", "2021-07-01", true);
+            uri.AppendQuery("api-version", "2021-07-01-preview", true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             return message;

@@ -5,15 +5,108 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
+using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.MachineLearning.Models
 {
-    public partial class MachineLearningComputeStartStopSchedule
+    public partial class MachineLearningComputeStartStopSchedule : IUtf8JsonSerializable, IJsonModel<MachineLearningComputeStartStopSchedule>
     {
-        internal static MachineLearningComputeStartStopSchedule DeserializeMachineLearningComputeStartStopSchedule(JsonElement element)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<MachineLearningComputeStartStopSchedule>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<MachineLearningComputeStartStopSchedule>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningComputeStartStopSchedule>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MachineLearningComputeStartStopSchedule)} does not support '{format}' format.");
+            }
+
+            writer.WriteStartObject();
+            if (options.Format != "W" && Optional.IsDefined(Id))
+            {
+                if (Id != null)
+                {
+                    writer.WritePropertyName("id"u8);
+                    writer.WriteStringValue(Id);
+                }
+                else
+                {
+                    writer.WriteNull("id");
+                }
+            }
+            if (options.Format != "W" && Optional.IsDefined(ProvisioningStatus))
+            {
+                writer.WritePropertyName("provisioningStatus"u8);
+                writer.WriteStringValue(ProvisioningStatus.Value.ToString());
+            }
+            if (Optional.IsDefined(Status))
+            {
+                writer.WritePropertyName("status"u8);
+                writer.WriteStringValue(Status.Value.ToString());
+            }
+            if (Optional.IsDefined(Action))
+            {
+                writer.WritePropertyName("action"u8);
+                writer.WriteStringValue(Action.Value.ToString());
+            }
+            if (Optional.IsDefined(TriggerType))
+            {
+                writer.WritePropertyName("triggerType"u8);
+                writer.WriteStringValue(TriggerType.Value.ToString());
+            }
+            if (Optional.IsDefined(RecurrenceSchedule))
+            {
+                writer.WritePropertyName("recurrence"u8);
+                writer.WriteObjectValue(RecurrenceSchedule);
+            }
+            if (Optional.IsDefined(CronSchedule))
+            {
+                writer.WritePropertyName("cron"u8);
+                writer.WriteObjectValue(CronSchedule);
+            }
+            if (Optional.IsDefined(Schedule))
+            {
+                writer.WritePropertyName("schedule"u8);
+                writer.WriteObjectValue(Schedule);
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
+            writer.WriteEndObject();
+        }
+
+        MachineLearningComputeStartStopSchedule IJsonModel<MachineLearningComputeStartStopSchedule>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningComputeStartStopSchedule>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MachineLearningComputeStartStopSchedule)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeMachineLearningComputeStartStopSchedule(document.RootElement, options);
+        }
+
+        internal static MachineLearningComputeStartStopSchedule DeserializeMachineLearningComputeStartStopSchedule(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -23,9 +116,11 @@ namespace Azure.ResourceManager.MachineLearning.Models
             Optional<MachineLearningScheduleStatus> status = default;
             Optional<MachineLearningComputePowerAction> action = default;
             Optional<MachineLearningTriggerType> triggerType = default;
-            Optional<MachineLearningRecurrenceTrigger> recurrence = default;
-            Optional<CronTrigger> cron = default;
+            Optional<ComputeStartStopRecurrenceSchedule> recurrence = default;
+            Optional<ComputeStartStopCronSchedule> cron = default;
             Optional<MachineLearningScheduleBase> schedule = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("id"u8))
@@ -80,7 +175,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     {
                         continue;
                     }
-                    recurrence = MachineLearningRecurrenceTrigger.DeserializeMachineLearningRecurrenceTrigger(property.Value);
+                    recurrence = ComputeStartStopRecurrenceSchedule.DeserializeComputeStartStopRecurrenceSchedule(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("cron"u8))
@@ -89,7 +184,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     {
                         continue;
                     }
-                    cron = CronTrigger.DeserializeCronTrigger(property.Value);
+                    cron = ComputeStartStopCronSchedule.DeserializeComputeStartStopCronSchedule(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("schedule"u8))
@@ -98,11 +193,47 @@ namespace Azure.ResourceManager.MachineLearning.Models
                     {
                         continue;
                     }
-                    schedule = MachineLearningScheduleBase.DeserializeMachineLearningScheduleBase(property.Value);
+                    schedule = MachineLearningScheduleBase.DeserializeMachineLearningScheduleBase(property.Value, options);
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new MachineLearningComputeStartStopSchedule(id.Value, Optional.ToNullable(provisioningStatus), Optional.ToNullable(status), Optional.ToNullable(action), Optional.ToNullable(triggerType), recurrence.Value, cron.Value, schedule.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new MachineLearningComputeStartStopSchedule(id.Value, Optional.ToNullable(provisioningStatus), Optional.ToNullable(status), Optional.ToNullable(action), Optional.ToNullable(triggerType), recurrence.Value, cron.Value, schedule.Value, serializedAdditionalRawData);
         }
+
+        BinaryData IPersistableModel<MachineLearningComputeStartStopSchedule>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningComputeStartStopSchedule>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(MachineLearningComputeStartStopSchedule)} does not support '{options.Format}' format.");
+            }
+        }
+
+        MachineLearningComputeStartStopSchedule IPersistableModel<MachineLearningComputeStartStopSchedule>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MachineLearningComputeStartStopSchedule>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeMachineLearningComputeStartStopSchedule(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(MachineLearningComputeStartStopSchedule)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<MachineLearningComputeStartStopSchedule>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

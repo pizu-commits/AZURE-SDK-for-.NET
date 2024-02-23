@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.ManagementGroups;
 namespace Azure.ResourceManager.Network
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ManagementGroupNetworkManagerConnectionResource" /> and their operations.
-    /// Each <see cref="ManagementGroupNetworkManagerConnectionResource" /> in the collection will belong to the same instance of <see cref="ManagementGroupResource" />.
-    /// To get a <see cref="ManagementGroupNetworkManagerConnectionCollection" /> instance call the GetManagementGroupNetworkManagerConnections method from an instance of <see cref="ManagementGroupResource" />.
+    /// A class representing a collection of <see cref="ManagementGroupNetworkManagerConnectionResource"/> and their operations.
+    /// Each <see cref="ManagementGroupNetworkManagerConnectionResource"/> in the collection will belong to the same instance of <see cref="ManagementGroupResource"/>.
+    /// To get a <see cref="ManagementGroupNetworkManagerConnectionCollection"/> instance call the GetManagementGroupNetworkManagerConnections method from an instance of <see cref="ManagementGroupResource"/>.
     /// </summary>
     public partial class ManagementGroupNetworkManagerConnectionCollection : ArmCollection, IEnumerable<ManagementGroupNetworkManagerConnectionResource>, IAsyncEnumerable<ManagementGroupNetworkManagerConnectionResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ManagementGroupNetworkManagerConnectionResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string networkManagerConnectionName, NetworkManagerConnectionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ManagementGroupNetworkManagerConnectionResource> CreateOrUpdate(WaitUntil waitUntil, string networkManagerConnectionName, NetworkManagerConnectionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
         public virtual async Task<Response<ManagementGroupNetworkManagerConnectionResource>> GetAsync(string networkManagerConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
         public virtual Response<ManagementGroupNetworkManagerConnectionResource> Get(string networkManagerConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.Get");
             scope.Start();
@@ -220,17 +287,25 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> An optional query parameter which specifies the maximum number of records to be returned by the server. </param>
         /// <param name="skipToken"> SkipToken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ManagementGroupNetworkManagerConnectionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ManagementGroupNetworkManagerConnectionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ManagementGroupNetworkManagerConnectionResource> GetAllAsync(int? top = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _managementGroupNetworkManagerConnectionRestClient.CreateListRequest(Id.Name, top, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _managementGroupNetworkManagerConnectionRestClient.CreateListNextPageRequest(nextLink, Id.Name, top, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ManagementGroupNetworkManagerConnectionResource(Client, NetworkManagerConnectionData.DeserializeNetworkManagerConnectionData(e)), _managementGroupNetworkManagerConnectionClientDiagnostics, Pipeline, "ManagementGroupNetworkManagerConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ManagementGroupNetworkManagerConnectionResource(Client, NetworkManagerConnectionData.DeserializeNetworkManagerConnectionData(e)), _managementGroupNetworkManagerConnectionClientDiagnostics, Pipeline, "ManagementGroupNetworkManagerConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -244,17 +319,25 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> An optional query parameter which specifies the maximum number of records to be returned by the server. </param>
         /// <param name="skipToken"> SkipToken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ManagementGroupNetworkManagerConnectionResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ManagementGroupNetworkManagerConnectionResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ManagementGroupNetworkManagerConnectionResource> GetAll(int? top = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _managementGroupNetworkManagerConnectionRestClient.CreateListRequest(Id.Name, top, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _managementGroupNetworkManagerConnectionRestClient.CreateListNextPageRequest(nextLink, Id.Name, top, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ManagementGroupNetworkManagerConnectionResource(Client, NetworkManagerConnectionData.DeserializeNetworkManagerConnectionData(e)), _managementGroupNetworkManagerConnectionClientDiagnostics, Pipeline, "ManagementGroupNetworkManagerConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ManagementGroupNetworkManagerConnectionResource(Client, NetworkManagerConnectionData.DeserializeNetworkManagerConnectionData(e)), _managementGroupNetworkManagerConnectionClientDiagnostics, Pipeline, "ManagementGroupNetworkManagerConnectionCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -268,6 +351,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
@@ -276,7 +367,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string networkManagerConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.Exists");
             scope.Start();
@@ -303,6 +401,14 @@ namespace Azure.ResourceManager.Network
         /// <term>Operation Id</term>
         /// <description>ManagementGroupNetworkManagerConnections_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
@@ -311,7 +417,14 @@ namespace Azure.ResourceManager.Network
         /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
         public virtual Response<bool> Exists(string networkManagerConnectionName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(networkManagerConnectionName, nameof(networkManagerConnectionName));
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
 
             using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.Exists");
             scope.Start();
@@ -319,6 +432,110 @@ namespace Azure.ResourceManager.Network
             {
                 var response = _managementGroupNetworkManagerConnectionRestClient.Get(Id.Name, networkManagerConnectionName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Network/networkManagerConnections/{networkManagerConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ManagementGroupNetworkManagerConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkManagerConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ManagementGroupNetworkManagerConnectionResource>> GetIfExistsAsync(string networkManagerConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
+
+            using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _managementGroupNetworkManagerConnectionRestClient.GetAsync(Id.Name, networkManagerConnectionName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ManagementGroupNetworkManagerConnectionResource>(response.GetRawResponse());
+                return Response.FromValue(new ManagementGroupNetworkManagerConnectionResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Network/networkManagerConnections/{networkManagerConnectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ManagementGroupNetworkManagerConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ManagementGroupNetworkManagerConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="networkManagerConnectionName"> Name for the network manager connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="networkManagerConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="networkManagerConnectionName"/> is null. </exception>
+        public virtual NullableResponse<ManagementGroupNetworkManagerConnectionResource> GetIfExists(string networkManagerConnectionName, CancellationToken cancellationToken = default)
+        {
+            if (networkManagerConnectionName == null)
+            {
+                throw new ArgumentNullException(nameof(networkManagerConnectionName));
+            }
+            if (networkManagerConnectionName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(networkManagerConnectionName));
+            }
+
+            using var scope = _managementGroupNetworkManagerConnectionClientDiagnostics.CreateScope("ManagementGroupNetworkManagerConnectionCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _managementGroupNetworkManagerConnectionRestClient.Get(Id.Name, networkManagerConnectionName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ManagementGroupNetworkManagerConnectionResource>(response.GetRawResponse());
+                return Response.FromValue(new ManagementGroupNetworkManagerConnectionResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

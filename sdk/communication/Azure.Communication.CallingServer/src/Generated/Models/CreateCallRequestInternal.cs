@@ -9,27 +9,50 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Azure.Communication;
-using Azure.Core;
 
 namespace Azure.Communication.CallingServer
 {
     /// <summary> The CreateCallRequest. </summary>
     internal partial class CreateCallRequestInternal
     {
-        /// <summary> Initializes a new instance of CreateCallRequestInternal. </summary>
+        /// <summary> Initializes a new instance of <see cref="CreateCallRequestInternal"/>. </summary>
         /// <param name="targets"> The targets of the call. </param>
         /// <param name="source"> The source of the call. </param>
         /// <param name="callbackUri"> The callback URI. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targets"/>, <paramref name="source"/> or <paramref name="callbackUri"/> is null. </exception>
         public CreateCallRequestInternal(IEnumerable<CommunicationIdentifierModel> targets, CallSourceInternal source, string callbackUri)
         {
-            Argument.AssertNotNull(targets, nameof(targets));
-            Argument.AssertNotNull(source, nameof(source));
-            Argument.AssertNotNull(callbackUri, nameof(callbackUri));
+            if (targets == null)
+            {
+                throw new ArgumentNullException(nameof(targets));
+            }
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (callbackUri == null)
+            {
+                throw new ArgumentNullException(nameof(callbackUri));
+            }
 
             Targets = targets.ToList();
             Source = source;
             CallbackUri = callbackUri;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="CreateCallRequestInternal"/>. </summary>
+        /// <param name="targets"> The targets of the call. </param>
+        /// <param name="source"> The source of the call. </param>
+        /// <param name="subject"> The subject. </param>
+        /// <param name="callbackUri"> The callback URI. </param>
+        /// <param name="mediaStreamingConfiguration"> Media Streaming Configuration. </param>
+        internal CreateCallRequestInternal(IList<CommunicationIdentifierModel> targets, CallSourceInternal source, string subject, string callbackUri, MediaStreamingOptionsInternal mediaStreamingConfiguration)
+        {
+            Targets = targets;
+            Source = source;
+            Subject = subject;
+            CallbackUri = callbackUri;
+            MediaStreamingConfiguration = mediaStreamingConfiguration;
         }
 
         /// <summary> The targets of the call. </summary>

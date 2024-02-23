@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Hubspot Service linked service. </summary>
     public partial class HubspotLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of HubspotLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HubspotLinkedService"/>. </summary>
         /// <param name="clientId"> The client ID associated with your Hubspot application. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="clientId"/> is null. </exception>
         public HubspotLinkedService(DataFactoryElement<string> clientId)
         {
-            Argument.AssertNotNull(clientId, nameof(clientId));
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
 
             ClientId = clientId;
             LinkedServiceType = "Hubspot";
         }
 
-        /// <summary> Initializes a new instance of HubspotLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HubspotLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -52,6 +54,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             UsePeerVerification = usePeerVerification;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Hubspot";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="HubspotLinkedService"/> for deserialization. </summary>
+        internal HubspotLinkedService()
+        {
         }
 
         /// <summary> The client ID associated with your Hubspot application. </summary>

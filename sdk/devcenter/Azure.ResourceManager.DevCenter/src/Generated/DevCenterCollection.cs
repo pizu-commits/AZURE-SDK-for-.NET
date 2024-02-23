@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.DevCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DevCenterResource" /> and their operations.
-    /// Each <see cref="DevCenterResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="DevCenterCollection" /> instance call the GetDevCenters method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="DevCenterResource"/> and their operations.
+    /// Each <see cref="DevCenterResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="DevCenterCollection"/> instance call the GetDevCenters method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class DevCenterCollection : ArmCollection, IEnumerable<DevCenterResource>, IAsyncEnumerable<DevCenterResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<DevCenterResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string devCenterName, DevCenterData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<DevCenterResource> CreateOrUpdate(WaitUntil waitUntil, string devCenterName, DevCenterData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devCenterName"> The name of the devcenter. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
         public virtual async Task<Response<DevCenterResource>> GetAsync(string devCenterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devCenterName"> The name of the devcenter. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
         public virtual Response<DevCenterResource> Get(string devCenterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.Get");
             scope.Start();
@@ -220,16 +287,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="DevCenterResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="DevCenterResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<DevCenterResource> GetAllAsync(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, top);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterResource(Client, DevCenterData.DeserializeDevCenterData(e)), _devCenterClientDiagnostics, Pipeline, "DevCenterCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new DevCenterResource(Client, DevCenterData.DeserializeDevCenterData(e)), _devCenterClientDiagnostics, Pipeline, "DevCenterCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,16 +318,24 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="top"> The maximum number of resources to return from the operation. Example: '$top=10'. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="DevCenterResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="DevCenterResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<DevCenterResource> GetAll(int? top = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _devCenterRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName, top);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _devCenterRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, top);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterResource(Client, DevCenterData.DeserializeDevCenterData(e)), _devCenterClientDiagnostics, Pipeline, "DevCenterCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new DevCenterResource(Client, DevCenterData.DeserializeDevCenterData(e)), _devCenterClientDiagnostics, Pipeline, "DevCenterCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -266,6 +349,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devCenterName"> The name of the devcenter. </param>
@@ -274,7 +365,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string devCenterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.Exists");
             scope.Start();
@@ -301,6 +399,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <term>Operation Id</term>
         /// <description>DevCenters_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="devCenterName"> The name of the devcenter. </param>
@@ -309,7 +415,14 @@ namespace Azure.ResourceManager.DevCenter
         /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
         public virtual Response<bool> Exists(string devCenterName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(devCenterName, nameof(devCenterName));
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
 
             using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.Exists");
             scope.Start();
@@ -317,6 +430,110 @@ namespace Azure.ResourceManager.DevCenter
             {
                 var response = _devCenterRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, devCenterName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DevCenters_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="devCenterName"> The name of the devcenter. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="devCenterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DevCenterResource>> GetIfExistsAsync(string devCenterName, CancellationToken cancellationToken = default)
+        {
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
+
+            using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _devCenterRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, devCenterName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DevCenters_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-04-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DevCenterResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="devCenterName"> The name of the devcenter. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="devCenterName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="devCenterName"/> is null. </exception>
+        public virtual NullableResponse<DevCenterResource> GetIfExists(string devCenterName, CancellationToken cancellationToken = default)
+        {
+            if (devCenterName == null)
+            {
+                throw new ArgumentNullException(nameof(devCenterName));
+            }
+            if (devCenterName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(devCenterName));
+            }
+
+            using var scope = _devCenterClientDiagnostics.CreateScope("DevCenterCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _devCenterRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, devCenterName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DevCenterResource>(response.GetRawResponse());
+                return Response.FromValue(new DevCenterResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

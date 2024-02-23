@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ContainerRegistry
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ContainerRegistryTaskRunResource" /> and their operations.
-    /// Each <see cref="ContainerRegistryTaskRunResource" /> in the collection will belong to the same instance of <see cref="ContainerRegistryResource" />.
-    /// To get a <see cref="ContainerRegistryTaskRunCollection" /> instance call the GetContainerRegistryTaskRuns method from an instance of <see cref="ContainerRegistryResource" />.
+    /// A class representing a collection of <see cref="ContainerRegistryTaskRunResource"/> and their operations.
+    /// Each <see cref="ContainerRegistryTaskRunResource"/> in the collection will belong to the same instance of <see cref="ContainerRegistryResource"/>.
+    /// To get a <see cref="ContainerRegistryTaskRunCollection"/> instance call the GetContainerRegistryTaskRuns method from an instance of <see cref="ContainerRegistryResource"/>.
     /// </summary>
     public partial class ContainerRegistryTaskRunCollection : ArmCollection, IEnumerable<ContainerRegistryTaskRunResource>, IAsyncEnumerable<ContainerRegistryTaskRunResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<ContainerRegistryTaskRunResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string taskRunName, ContainerRegistryTaskRunData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<ContainerRegistryTaskRunResource> CreateOrUpdate(WaitUntil waitUntil, string taskRunName, ContainerRegistryTaskRunData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="taskRunName"> The name of the task run. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
         public virtual async Task<Response<ContainerRegistryTaskRunResource>> GetAsync(string taskRunName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="taskRunName"> The name of the task run. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
         public virtual Response<ContainerRegistryTaskRunResource> Get(string taskRunName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ContainerRegistryTaskRunResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ContainerRegistryTaskRunResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ContainerRegistryTaskRunResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryTaskRunTaskRunsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryTaskRunTaskRunsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTaskRunResource(Client, ContainerRegistryTaskRunData.DeserializeContainerRegistryTaskRunData(e)), _containerRegistryTaskRunTaskRunsClientDiagnostics, Pipeline, "ContainerRegistryTaskRunCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTaskRunResource(Client, ContainerRegistryTaskRunData.DeserializeContainerRegistryTaskRunData(e)), _containerRegistryTaskRunTaskRunsClientDiagnostics, Pipeline, "ContainerRegistryTaskRunCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ContainerRegistryTaskRunResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ContainerRegistryTaskRunResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ContainerRegistryTaskRunResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _containerRegistryTaskRunTaskRunsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _containerRegistryTaskRunTaskRunsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTaskRunResource(Client, ContainerRegistryTaskRunData.DeserializeContainerRegistryTaskRunData(e)), _containerRegistryTaskRunTaskRunsClientDiagnostics, Pipeline, "ContainerRegistryTaskRunCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ContainerRegistryTaskRunResource(Client, ContainerRegistryTaskRunData.DeserializeContainerRegistryTaskRunData(e)), _containerRegistryTaskRunTaskRunsClientDiagnostics, Pipeline, "ContainerRegistryTaskRunCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="taskRunName"> The name of the task run. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string taskRunName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <term>Operation Id</term>
         /// <description>TaskRuns_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="taskRunName"> The name of the task run. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.ContainerRegistry
         /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
         public virtual Response<bool> Exists(string taskRunName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(taskRunName, nameof(taskRunName));
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
 
             using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.ContainerRegistry
             {
                 var response = _containerRegistryTaskRunTaskRunsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, taskRunName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/taskRuns/{taskRunName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TaskRuns_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="taskRunName"> The name of the task run. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="taskRunName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
+        public virtual async Task<NullableResponse<ContainerRegistryTaskRunResource>> GetIfExistsAsync(string taskRunName, CancellationToken cancellationToken = default)
+        {
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
+
+            using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _containerRegistryTaskRunTaskRunsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, taskRunName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryTaskRunResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryTaskRunResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}/taskRuns/{taskRunName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>TaskRuns_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-06-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ContainerRegistryTaskRunResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="taskRunName"> The name of the task run. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="taskRunName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="taskRunName"/> is null. </exception>
+        public virtual NullableResponse<ContainerRegistryTaskRunResource> GetIfExists(string taskRunName, CancellationToken cancellationToken = default)
+        {
+            if (taskRunName == null)
+            {
+                throw new ArgumentNullException(nameof(taskRunName));
+            }
+            if (taskRunName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(taskRunName));
+            }
+
+            using var scope = _containerRegistryTaskRunTaskRunsClientDiagnostics.CreateScope("ContainerRegistryTaskRunCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _containerRegistryTaskRunTaskRunsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, taskRunName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ContainerRegistryTaskRunResource>(response.GetRawResponse());
+                return Response.FromValue(new ContainerRegistryTaskRunResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

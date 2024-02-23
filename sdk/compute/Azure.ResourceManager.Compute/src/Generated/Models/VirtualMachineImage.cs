@@ -15,20 +15,24 @@ namespace Azure.ResourceManager.Compute.Models
     /// <summary> Describes a Virtual Machine Image. </summary>
     public partial class VirtualMachineImage : VirtualMachineImageBase
     {
-        /// <summary> Initializes a new instance of VirtualMachineImage. </summary>
+        /// <summary> Initializes a new instance of <see cref="VirtualMachineImage"/>. </summary>
         /// <param name="name"> The name of the resource. </param>
         /// <param name="location"> The supported Azure location of the resource. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public VirtualMachineImage(string name, AzureLocation location) : base(name, location)
         {
-            Argument.AssertNotNull(name, nameof(name));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
 
             DataDiskImages = new ChangeTrackingList<DataDiskImage>();
             Features = new ChangeTrackingList<VirtualMachineImageFeature>();
         }
 
-        /// <summary> Initializes a new instance of VirtualMachineImage. </summary>
+        /// <summary> Initializes a new instance of <see cref="VirtualMachineImage"/>. </summary>
         /// <param name="id"> Resource Id. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="name"> The name of the resource. </param>
         /// <param name="location"> The supported Azure location of the resource. </param>
         /// <param name="tags"> Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). </param>
@@ -42,7 +46,7 @@ namespace Azure.ResourceManager.Compute.Models
         /// <param name="features"></param>
         /// <param name="architecture"> Specifies the Architecture Type. </param>
         /// <param name="imageDeprecationStatus"> Describes image deprecation status properties on the image. </param>
-        internal VirtualMachineImage(ResourceIdentifier id, string name, AzureLocation location, IDictionary<string, string> tags, ExtendedLocation extendedLocation, PurchasePlan plan, OSDiskImage osDiskImage, IList<DataDiskImage> dataDiskImages, AutomaticOSUpgradeProperties automaticOSUpgradeProperties, HyperVGeneration? hyperVGeneration, DisallowedConfiguration disallowed, IList<VirtualMachineImageFeature> features, ArchitectureType? architecture, ImageDeprecationStatus imageDeprecationStatus) : base(id, name, location, tags, extendedLocation)
+        internal VirtualMachineImage(ResourceIdentifier id, IDictionary<string, BinaryData> serializedAdditionalRawData, string name, AzureLocation location, IDictionary<string, string> tags, ExtendedLocation extendedLocation, PurchasePlan plan, OSDiskImage osDiskImage, IList<DataDiskImage> dataDiskImages, AutomaticOSUpgradeProperties automaticOSUpgradeProperties, HyperVGeneration? hyperVGeneration, DisallowedConfiguration disallowed, IList<VirtualMachineImageFeature> features, ArchitectureType? architecture, ImageDeprecationStatus imageDeprecationStatus) : base(id, serializedAdditionalRawData, name, location, tags, extendedLocation)
         {
             Plan = plan;
             OSDiskImage = osDiskImage;
@@ -53,6 +57,11 @@ namespace Azure.ResourceManager.Compute.Models
             Features = features;
             Architecture = architecture;
             ImageDeprecationStatus = imageDeprecationStatus;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="VirtualMachineImage"/> for deserialization. </summary>
+        internal VirtualMachineImage()
+        {
         }
 
         /// <summary> Used for establishing the purchase context of any 3rd Party artifact through MarketPlace. </summary>

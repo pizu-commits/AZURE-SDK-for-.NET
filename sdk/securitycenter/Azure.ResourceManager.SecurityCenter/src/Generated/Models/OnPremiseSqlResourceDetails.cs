@@ -6,6 +6,7 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using Azure.Core;
 
 namespace Azure.ResourceManager.SecurityCenter.Models
@@ -13,7 +14,7 @@ namespace Azure.ResourceManager.SecurityCenter.Models
     /// <summary> Details of the On Premise Sql resource that was assessed. </summary>
     public partial class OnPremiseSqlResourceDetails : OnPremiseResourceDetails
     {
-        /// <summary> Initializes a new instance of OnPremiseSqlResourceDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="OnPremiseSqlResourceDetails"/>. </summary>
         /// <param name="workspaceId"> Azure resource Id of the workspace the machine is attached to. </param>
         /// <param name="vmUuid"> The unique Id of the machine. </param>
         /// <param name="sourceComputerId"> The oms agent Id installed on the machine. </param>
@@ -23,30 +24,51 @@ namespace Azure.ResourceManager.SecurityCenter.Models
         /// <exception cref="ArgumentNullException"> <paramref name="workspaceId"/>, <paramref name="sourceComputerId"/>, <paramref name="machineName"/>, <paramref name="serverName"/> or <paramref name="databaseName"/> is null. </exception>
         public OnPremiseSqlResourceDetails(ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName, string serverName, string databaseName) : base(workspaceId, vmUuid, sourceComputerId, machineName)
         {
-            Argument.AssertNotNull(workspaceId, nameof(workspaceId));
-            Argument.AssertNotNull(sourceComputerId, nameof(sourceComputerId));
-            Argument.AssertNotNull(machineName, nameof(machineName));
-            Argument.AssertNotNull(serverName, nameof(serverName));
-            Argument.AssertNotNull(databaseName, nameof(databaseName));
+            if (workspaceId == null)
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            if (sourceComputerId == null)
+            {
+                throw new ArgumentNullException(nameof(sourceComputerId));
+            }
+            if (machineName == null)
+            {
+                throw new ArgumentNullException(nameof(machineName));
+            }
+            if (serverName == null)
+            {
+                throw new ArgumentNullException(nameof(serverName));
+            }
+            if (databaseName == null)
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
 
             ServerName = serverName;
             DatabaseName = databaseName;
-            Source = Source.OnPremiseSql;
+            Source = HealthReportSource.OnPremiseSql;
         }
 
-        /// <summary> Initializes a new instance of OnPremiseSqlResourceDetails. </summary>
+        /// <summary> Initializes a new instance of <see cref="OnPremiseSqlResourceDetails"/>. </summary>
         /// <param name="source"> The platform where the assessed resource resides. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="workspaceId"> Azure resource Id of the workspace the machine is attached to. </param>
         /// <param name="vmUuid"> The unique Id of the machine. </param>
         /// <param name="sourceComputerId"> The oms agent Id installed on the machine. </param>
         /// <param name="machineName"> The name of the machine. </param>
         /// <param name="serverName"> The Sql server name installed on the machine. </param>
         /// <param name="databaseName"> The Sql database name installed on the machine. </param>
-        internal OnPremiseSqlResourceDetails(Source source, ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName, string serverName, string databaseName) : base(source, workspaceId, vmUuid, sourceComputerId, machineName)
+        internal OnPremiseSqlResourceDetails(HealthReportSource source, IDictionary<string, BinaryData> serializedAdditionalRawData, ResourceIdentifier workspaceId, Guid vmUuid, string sourceComputerId, string machineName, string serverName, string databaseName) : base(source, serializedAdditionalRawData, workspaceId, vmUuid, sourceComputerId, machineName)
         {
             ServerName = serverName;
             DatabaseName = databaseName;
             Source = source;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="OnPremiseSqlResourceDetails"/> for deserialization. </summary>
+        internal OnPremiseSqlResourceDetails()
+        {
         }
 
         /// <summary> The Sql server name installed on the machine. </summary>

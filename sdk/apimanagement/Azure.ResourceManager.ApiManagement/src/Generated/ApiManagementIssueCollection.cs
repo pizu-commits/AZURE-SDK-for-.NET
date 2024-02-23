@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.ApiManagement
 {
     /// <summary>
-    /// A class representing a collection of <see cref="ApiManagementIssueResource" /> and their operations.
-    /// Each <see cref="ApiManagementIssueResource" /> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource" />.
-    /// To get an <see cref="ApiManagementIssueCollection" /> instance call the GetApiManagementIssues method from an instance of <see cref="ApiManagementServiceResource" />.
+    /// A class representing a collection of <see cref="ApiManagementIssueResource"/> and their operations.
+    /// Each <see cref="ApiManagementIssueResource"/> in the collection will belong to the same instance of <see cref="ApiManagementServiceResource"/>.
+    /// To get an <see cref="ApiManagementIssueCollection"/> instance call the GetApiManagementIssues method from an instance of <see cref="ApiManagementServiceResource"/>.
     /// </summary>
     public partial class ApiManagementIssueCollection : ArmCollection, IEnumerable<ApiManagementIssueResource>, IAsyncEnumerable<ApiManagementIssueResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
         public virtual async Task<Response<ApiManagementIssueResource>> GetAsync(string issueId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(issueId, nameof(issueId));
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
 
             using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
         public virtual Response<ApiManagementIssueResource> Get(string issueId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(issueId, nameof(issueId));
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
 
             using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.Get");
             scope.Start();
@@ -137,18 +168,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| apiId | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| title | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| description | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| authorName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| state | filter | eq |     |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApiManagementIssueResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="ApiManagementIssueResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<ApiManagementIssueResource> GetAllAsync(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementIssueIssueRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementIssueIssueRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementIssueResource(Client, IssueContractData.DeserializeIssueContractData(e)), _apiManagementIssueIssueClientDiagnostics, Pipeline, "ApiManagementIssueCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new ApiManagementIssueResource(Client, IssueContractData.DeserializeIssueContractData(e)), _apiManagementIssueIssueClientDiagnostics, Pipeline, "ApiManagementIssueCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -162,18 +201,26 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_ListByService</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> |     Field     |     Usage     |     Supported operators     |     Supported functions     |&lt;/br&gt;|-------------|-------------|-------------|-------------|&lt;/br&gt;| name | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| apiId | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| title | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| description | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| authorName | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |&lt;/br&gt;| state | filter | eq |     |&lt;/br&gt;. </param>
         /// <param name="top"> Number of records to return. </param>
         /// <param name="skip"> Number of records to skip. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApiManagementIssueResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="ApiManagementIssueResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<ApiManagementIssueResource> GetAll(string filter = null, int? top = null, int? skip = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _apiManagementIssueIssueRestClient.CreateListByServiceRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _apiManagementIssueIssueRestClient.CreateListByServiceNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, skip);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementIssueResource(Client, IssueContractData.DeserializeIssueContractData(e)), _apiManagementIssueIssueClientDiagnostics, Pipeline, "ApiManagementIssueCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new ApiManagementIssueResource(Client, IssueContractData.DeserializeIssueContractData(e)), _apiManagementIssueIssueClientDiagnostics, Pipeline, "ApiManagementIssueCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -187,6 +234,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
@@ -195,7 +250,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string issueId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(issueId, nameof(issueId));
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
 
             using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.Exists");
             scope.Start();
@@ -222,6 +284,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <term>Operation Id</term>
         /// <description>Issue_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
@@ -230,7 +300,14 @@ namespace Azure.ResourceManager.ApiManagement
         /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
         public virtual Response<bool> Exists(string issueId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(issueId, nameof(issueId));
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
 
             using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.Exists");
             scope.Start();
@@ -238,6 +315,110 @@ namespace Azure.ResourceManager.ApiManagement
             {
                 var response = _apiManagementIssueIssueRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, issueId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/issues/{issueId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Issue_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="issueId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
+        public virtual async Task<NullableResponse<ApiManagementIssueResource>> GetIfExistsAsync(string issueId, CancellationToken cancellationToken = default)
+        {
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
+
+            using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _apiManagementIssueIssueRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, issueId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementIssueResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementIssueResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/issues/{issueId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Issue_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-08-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="ApiManagementIssueResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="issueId"> Issue identifier. Must be unique in the current API Management service instance. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="issueId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="issueId"/> is null. </exception>
+        public virtual NullableResponse<ApiManagementIssueResource> GetIfExists(string issueId, CancellationToken cancellationToken = default)
+        {
+            if (issueId == null)
+            {
+                throw new ArgumentNullException(nameof(issueId));
+            }
+            if (issueId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(issueId));
+            }
+
+            using var scope = _apiManagementIssueIssueClientDiagnostics.CreateScope("ApiManagementIssueCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _apiManagementIssueIssueRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, issueId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<ApiManagementIssueResource>(response.GetRawResponse());
+                return Response.FromValue(new ApiManagementIssueResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

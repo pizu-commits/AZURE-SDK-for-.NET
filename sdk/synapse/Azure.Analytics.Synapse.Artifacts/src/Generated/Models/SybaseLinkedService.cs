@@ -7,28 +7,33 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Linked service for Sybase data source. </summary>
     public partial class SybaseLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of SybaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SybaseLinkedService"/>. </summary>
         /// <param name="server"> Server name for connection. Type: string (or Expression with resultType string). </param>
         /// <param name="database"> Database name for connection. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="server"/> or <paramref name="database"/> is null. </exception>
         public SybaseLinkedService(object server, object database)
         {
-            Argument.AssertNotNull(server, nameof(server));
-            Argument.AssertNotNull(database, nameof(database));
+            if (server == null)
+            {
+                throw new ArgumentNullException(nameof(server));
+            }
+            if (database == null)
+            {
+                throw new ArgumentNullException(nameof(database));
+            }
 
             Server = server;
             Database = database;
             Type = "Sybase";
         }
 
-        /// <summary> Initializes a new instance of SybaseLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="SybaseLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

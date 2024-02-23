@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Kusto
 {
     /// <summary>
-    /// A class representing a collection of <see cref="KustoAttachedDatabaseConfigurationResource" /> and their operations.
-    /// Each <see cref="KustoAttachedDatabaseConfigurationResource" /> in the collection will belong to the same instance of <see cref="KustoClusterResource" />.
-    /// To get a <see cref="KustoAttachedDatabaseConfigurationCollection" /> instance call the GetKustoAttachedDatabaseConfigurations method from an instance of <see cref="KustoClusterResource" />.
+    /// A class representing a collection of <see cref="KustoAttachedDatabaseConfigurationResource"/> and their operations.
+    /// Each <see cref="KustoAttachedDatabaseConfigurationResource"/> in the collection will belong to the same instance of <see cref="KustoClusterResource"/>.
+    /// To get a <see cref="KustoAttachedDatabaseConfigurationCollection"/> instance call the GetKustoAttachedDatabaseConfigurations method from an instance of <see cref="KustoClusterResource"/>.
     /// </summary>
     public partial class KustoAttachedDatabaseConfigurationCollection : ArmCollection, IEnumerable<KustoAttachedDatabaseConfigurationResource>, IAsyncEnumerable<KustoAttachedDatabaseConfigurationResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<KustoAttachedDatabaseConfigurationResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string attachedDatabaseConfigurationName, KustoAttachedDatabaseConfigurationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<KustoAttachedDatabaseConfigurationResource> CreateOrUpdate(WaitUntil waitUntil, string attachedDatabaseConfigurationName, KustoAttachedDatabaseConfigurationData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
         public virtual async Task<Response<KustoAttachedDatabaseConfigurationResource>> GetAsync(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
         public virtual Response<KustoAttachedDatabaseConfigurationResource> Get(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.Get");
             scope.Start();
@@ -219,14 +286,22 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_ListByCluster</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="KustoAttachedDatabaseConfigurationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="KustoAttachedDatabaseConfigurationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<KustoAttachedDatabaseConfigurationResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new KustoAttachedDatabaseConfigurationResource(Client, KustoAttachedDatabaseConfigurationData.DeserializeKustoAttachedDatabaseConfigurationData(e)), _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics, Pipeline, "KustoAttachedDatabaseConfigurationCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new KustoAttachedDatabaseConfigurationResource(Client, KustoAttachedDatabaseConfigurationData.DeserializeKustoAttachedDatabaseConfigurationData(e)), _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics, Pipeline, "KustoAttachedDatabaseConfigurationCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -240,14 +315,22 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_ListByCluster</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="KustoAttachedDatabaseConfigurationResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="KustoAttachedDatabaseConfigurationResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<KustoAttachedDatabaseConfigurationResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsRestClient.CreateListByClusterRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new KustoAttachedDatabaseConfigurationResource(Client, KustoAttachedDatabaseConfigurationData.DeserializeKustoAttachedDatabaseConfigurationData(e)), _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics, Pipeline, "KustoAttachedDatabaseConfigurationCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new KustoAttachedDatabaseConfigurationResource(Client, KustoAttachedDatabaseConfigurationData.DeserializeKustoAttachedDatabaseConfigurationData(e)), _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics, Pipeline, "KustoAttachedDatabaseConfigurationCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -261,6 +344,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
@@ -269,7 +360,14 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.Exists");
             scope.Start();
@@ -296,6 +394,14 @@ namespace Azure.ResourceManager.Kusto
         /// <term>Operation Id</term>
         /// <description>AttachedDatabaseConfigurations_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
@@ -304,7 +410,14 @@ namespace Azure.ResourceManager.Kusto
         /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
         public virtual Response<bool> Exists(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(attachedDatabaseConfigurationName, nameof(attachedDatabaseConfigurationName));
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
 
             using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.Exists");
             scope.Start();
@@ -312,6 +425,110 @@ namespace Azure.ResourceManager.Kusto
             {
                 var response = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, attachedDatabaseConfigurationName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AttachedDatabaseConfigurations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="attachedDatabaseConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
+        public virtual async Task<NullableResponse<KustoAttachedDatabaseConfigurationResource>> GetIfExistsAsync(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
+        {
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
+
+            using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, attachedDatabaseConfigurationName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<KustoAttachedDatabaseConfigurationResource>(response.GetRawResponse());
+                return Response.FromValue(new KustoAttachedDatabaseConfigurationResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AttachedDatabaseConfigurations_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-08-15</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="KustoAttachedDatabaseConfigurationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="attachedDatabaseConfigurationName"> The name of the attached database configuration. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="attachedDatabaseConfigurationName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="attachedDatabaseConfigurationName"/> is null. </exception>
+        public virtual NullableResponse<KustoAttachedDatabaseConfigurationResource> GetIfExists(string attachedDatabaseConfigurationName, CancellationToken cancellationToken = default)
+        {
+            if (attachedDatabaseConfigurationName == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDatabaseConfigurationName));
+            }
+            if (attachedDatabaseConfigurationName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(attachedDatabaseConfigurationName));
+            }
+
+            using var scope = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsClientDiagnostics.CreateScope("KustoAttachedDatabaseConfigurationCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _kustoAttachedDatabaseConfigurationAttachedDatabaseConfigurationsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, attachedDatabaseConfigurationName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<KustoAttachedDatabaseConfigurationResource>(response.GetRawResponse());
+                return Response.FromValue(new KustoAttachedDatabaseConfigurationResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

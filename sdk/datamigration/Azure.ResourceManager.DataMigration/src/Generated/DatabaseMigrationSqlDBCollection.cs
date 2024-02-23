@@ -18,9 +18,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.DataMigration
 {
     /// <summary>
-    /// A class representing a collection of <see cref="DatabaseMigrationSqlDBResource" /> and their operations.
-    /// Each <see cref="DatabaseMigrationSqlDBResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="DatabaseMigrationSqlDBCollection" /> instance call the GetDatabaseMigrationSqlDBs method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="DatabaseMigrationSqlDBResource"/> and their operations.
+    /// Each <see cref="DatabaseMigrationSqlDBResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="DatabaseMigrationSqlDBCollection"/> instance call the GetDatabaseMigrationSqlDBs method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class DatabaseMigrationSqlDBCollection : ArmCollection
     {
@@ -62,10 +62,18 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="data"> Details of Sql Db migration resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -73,9 +81,26 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/>, <paramref name="targetDBName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<DatabaseMigrationSqlDBResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string sqlDBInstanceName, string targetDBName, DatabaseMigrationSqlDBData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.CreateOrUpdate");
             scope.Start();
@@ -105,10 +130,18 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="data"> Details of Sql Db migration resource. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -116,9 +149,26 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/>, <paramref name="targetDBName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<DatabaseMigrationSqlDBResource> CreateOrUpdate(WaitUntil waitUntil, string sqlDBInstanceName, string targetDBName, DatabaseMigrationSqlDBData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.CreateOrUpdate");
             scope.Start();
@@ -148,9 +198,17 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
         /// <param name="expand"> Complete migration details be included in the response. </param>
@@ -159,8 +217,22 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
         public virtual async Task<Response<DatabaseMigrationSqlDBResource>> GetAsync(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.Get");
             scope.Start();
@@ -189,9 +261,17 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
         /// <param name="expand"> Complete migration details be included in the response. </param>
@@ -200,8 +280,22 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
         public virtual Response<DatabaseMigrationSqlDBResource> Get(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.Get");
             scope.Start();
@@ -230,9 +324,17 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
         /// <param name="expand"> Complete migration details be included in the response. </param>
@@ -241,8 +343,22 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.Exists");
             scope.Start();
@@ -269,9 +385,17 @@ namespace Azure.ResourceManager.DataMigration
         /// <term>Operation Id</term>
         /// <description>DatabaseMigrationsSqlDb_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sqlDBInstanceName"> The String to use. </param>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
         /// <param name="targetDBName"> The name of the target database. </param>
         /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
         /// <param name="expand"> Complete migration details be included in the response. </param>
@@ -280,8 +404,22 @@ namespace Azure.ResourceManager.DataMigration
         /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
         public virtual Response<bool> Exists(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlDBInstanceName, nameof(sqlDBInstanceName));
-            Argument.AssertNotNullOrEmpty(targetDBName, nameof(targetDBName));
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
 
             using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.Exists");
             scope.Start();
@@ -289,6 +427,132 @@ namespace Azure.ResourceManager.DataMigration
             {
                 var response = _databaseMigrationSqlDBDatabaseMigrationsSqlDBRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, sqlDBInstanceName, targetDBName, migrationOperationId, expand, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{sqlDbInstanceName}/providers/Microsoft.DataMigration/databaseMigrations/{targetDbName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DatabaseMigrationsSqlDb_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
+        /// <param name="targetDBName"> The name of the target database. </param>
+        /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
+        /// <param name="expand"> Complete migration details be included in the response. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
+        public virtual async Task<NullableResponse<DatabaseMigrationSqlDBResource>> GetIfExistsAsync(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
+
+            using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _databaseMigrationSqlDBDatabaseMigrationsSqlDBRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, sqlDBInstanceName, targetDBName, migrationOperationId, expand, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<DatabaseMigrationSqlDBResource>(response.GetRawResponse());
+                return Response.FromValue(new DatabaseMigrationSqlDBResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{sqlDbInstanceName}/providers/Microsoft.DataMigration/databaseMigrations/{targetDbName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DatabaseMigrationsSqlDb_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-03-30-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DatabaseMigrationSqlDBResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sqlDBInstanceName"> The <see cref="string"/> to use. </param>
+        /// <param name="targetDBName"> The name of the target database. </param>
+        /// <param name="migrationOperationId"> Optional migration operation ID. If this is provided, then details of migration operation for that ID are retrieved. If not provided (default), then details related to most recent or current operation are retrieved. </param>
+        /// <param name="expand"> Complete migration details be included in the response. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="sqlDBInstanceName"/> or <paramref name="targetDBName"/> is null. </exception>
+        public virtual NullableResponse<DatabaseMigrationSqlDBResource> GetIfExists(string sqlDBInstanceName, string targetDBName, Guid? migrationOperationId = null, string expand = null, CancellationToken cancellationToken = default)
+        {
+            if (sqlDBInstanceName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlDBInstanceName));
+            }
+            if (sqlDBInstanceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlDBInstanceName));
+            }
+            if (targetDBName == null)
+            {
+                throw new ArgumentNullException(nameof(targetDBName));
+            }
+            if (targetDBName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(targetDBName));
+            }
+
+            using var scope = _databaseMigrationSqlDBDatabaseMigrationsSqlDBClientDiagnostics.CreateScope("DatabaseMigrationSqlDBCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _databaseMigrationSqlDBDatabaseMigrationsSqlDBRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, sqlDBInstanceName, targetDBName, migrationOperationId, expand, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<DatabaseMigrationSqlDBResource>(response.GetRawResponse());
+                return Response.FromValue(new DatabaseMigrationSqlDBResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

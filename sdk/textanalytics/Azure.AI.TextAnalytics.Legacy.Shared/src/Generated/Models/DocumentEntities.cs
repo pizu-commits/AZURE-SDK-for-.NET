@@ -8,30 +8,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Legacy
 {
     /// <summary> The DocumentEntities. </summary>
     internal partial class DocumentEntities
     {
-        /// <summary> Initializes a new instance of DocumentEntities. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentEntities"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="entities"> Recognized entities in the document. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="entities"/> or <paramref name="warnings"/> is null. </exception>
         internal DocumentEntities(string id, IEnumerable<Entity> entities, IEnumerable<TextAnalyticsWarning> warnings)
         {
-            Argument.AssertNotNull(id, nameof(id));
-            Argument.AssertNotNull(entities, nameof(entities));
-            Argument.AssertNotNull(warnings, nameof(warnings));
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (entities == null)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            if (warnings == null)
+            {
+                throw new ArgumentNullException(nameof(warnings));
+            }
 
             Id = id;
             Entities = entities.ToList();
             Warnings = warnings.ToList();
         }
 
-        /// <summary> Initializes a new instance of DocumentEntities. </summary>
+        /// <summary> Initializes a new instance of <see cref="DocumentEntities"/>. </summary>
         /// <param name="id"> Unique, non-empty document identifier. </param>
         /// <param name="entities"> Recognized entities in the document. </param>
         /// <param name="warnings"> Warnings encountered while processing document. </param>

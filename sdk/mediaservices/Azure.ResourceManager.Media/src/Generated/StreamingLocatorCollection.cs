@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Media
 {
     /// <summary>
-    /// A class representing a collection of <see cref="StreamingLocatorResource" /> and their operations.
-    /// Each <see cref="StreamingLocatorResource" /> in the collection will belong to the same instance of <see cref="MediaServicesAccountResource" />.
-    /// To get a <see cref="StreamingLocatorCollection" /> instance call the GetStreamingLocators method from an instance of <see cref="MediaServicesAccountResource" />.
+    /// A class representing a collection of <see cref="StreamingLocatorResource"/> and their operations.
+    /// Each <see cref="StreamingLocatorResource"/> in the collection will belong to the same instance of <see cref="MediaServicesAccountResource"/>.
+    /// To get a <see cref="StreamingLocatorCollection"/> instance call the GetStreamingLocators method from an instance of <see cref="MediaServicesAccountResource"/>.
     /// </summary>
     public partial class StreamingLocatorCollection : ArmCollection, IEnumerable<StreamingLocatorResource>, IAsyncEnumerable<StreamingLocatorResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<StreamingLocatorResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string streamingLocatorName, StreamingLocatorData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<StreamingLocatorResource> CreateOrUpdate(WaitUntil waitUntil, string streamingLocatorName, StreamingLocatorData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
         public virtual async Task<Response<StreamingLocatorResource>> GetAsync(string streamingLocatorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
         public virtual Response<StreamingLocatorResource> Get(string streamingLocatorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.Get");
             scope.Start();
@@ -219,18 +286,26 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Restricts the set of items returned. </param>
         /// <param name="top"> Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n. </param>
         /// <param name="orderby"> Specifies the key by which the result collection should be ordered. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="StreamingLocatorResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="StreamingLocatorResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<StreamingLocatorResource> GetAllAsync(string filter = null, int? top = null, string orderby = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _streamingLocatorRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, orderby);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _streamingLocatorRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, orderby);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StreamingLocatorResource(Client, StreamingLocatorData.DeserializeStreamingLocatorData(e)), _streamingLocatorClientDiagnostics, Pipeline, "StreamingLocatorCollection.GetAll", "value", "@odata.nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new StreamingLocatorResource(Client, StreamingLocatorData.DeserializeStreamingLocatorData(e)), _streamingLocatorClientDiagnostics, Pipeline, "StreamingLocatorCollection.GetAll", "value", "@odata.nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -244,18 +319,26 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="filter"> Restricts the set of items returned. </param>
         /// <param name="top"> Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n. </param>
         /// <param name="orderby"> Specifies the key by which the result collection should be ordered. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="StreamingLocatorResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="StreamingLocatorResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<StreamingLocatorResource> GetAll(string filter = null, int? top = null, string orderby = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _streamingLocatorRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, orderby);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _streamingLocatorRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, filter, top, orderby);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StreamingLocatorResource(Client, StreamingLocatorData.DeserializeStreamingLocatorData(e)), _streamingLocatorClientDiagnostics, Pipeline, "StreamingLocatorCollection.GetAll", "value", "@odata.nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new StreamingLocatorResource(Client, StreamingLocatorData.DeserializeStreamingLocatorData(e)), _streamingLocatorClientDiagnostics, Pipeline, "StreamingLocatorCollection.GetAll", "value", "@odata.nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -269,6 +352,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
@@ -277,7 +368,14 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string streamingLocatorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.Exists");
             scope.Start();
@@ -304,6 +402,14 @@ namespace Azure.ResourceManager.Media
         /// <term>Operation Id</term>
         /// <description>StreamingLocators_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
@@ -312,7 +418,14 @@ namespace Azure.ResourceManager.Media
         /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
         public virtual Response<bool> Exists(string streamingLocatorName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(streamingLocatorName, nameof(streamingLocatorName));
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
 
             using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.Exists");
             scope.Start();
@@ -320,6 +433,110 @@ namespace Azure.ResourceManager.Media
             {
                 var response = _streamingLocatorRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, streamingLocatorName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StreamingLocators_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="streamingLocatorName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
+        public virtual async Task<NullableResponse<StreamingLocatorResource>> GetIfExistsAsync(string streamingLocatorName, CancellationToken cancellationToken = default)
+        {
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
+
+            using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _streamingLocatorRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, streamingLocatorName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingLocatorResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingLocatorResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/streamingLocators/{streamingLocatorName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>StreamingLocators_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="StreamingLocatorResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="streamingLocatorName"> The Streaming Locator name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="streamingLocatorName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="streamingLocatorName"/> is null. </exception>
+        public virtual NullableResponse<StreamingLocatorResource> GetIfExists(string streamingLocatorName, CancellationToken cancellationToken = default)
+        {
+            if (streamingLocatorName == null)
+            {
+                throw new ArgumentNullException(nameof(streamingLocatorName));
+            }
+            if (streamingLocatorName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamingLocatorName));
+            }
+
+            using var scope = _streamingLocatorClientDiagnostics.CreateScope("StreamingLocatorCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _streamingLocatorRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, streamingLocatorName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<StreamingLocatorResource>(response.GetRawResponse());
+                return Response.FromValue(new StreamingLocatorResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

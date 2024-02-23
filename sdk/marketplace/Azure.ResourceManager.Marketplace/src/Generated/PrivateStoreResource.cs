@@ -9,6 +9,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,13 +21,14 @@ namespace Azure.ResourceManager.Marketplace
 {
     /// <summary>
     /// A Class representing a PrivateStore along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="PrivateStoreResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetPrivateStoreResource method.
-    /// Otherwise you can get one from its parent resource <see cref="TenantResource" /> using the GetPrivateStore method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="PrivateStoreResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetPrivateStoreResource method.
+    /// Otherwise you can get one from its parent resource <see cref="TenantResource"/> using the GetPrivateStore method.
     /// </summary>
     public partial class PrivateStoreResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="PrivateStoreResource"/> instance. </summary>
+        /// <param name="privateStoreId"> The privateStoreId. </param>
         public static ResourceIdentifier CreateResourceIdentifier(Guid privateStoreId)
         {
             var resourceId = $"/providers/Microsoft.Marketplace/privateStores/{privateStoreId}";
@@ -35,14 +37,19 @@ namespace Azure.ResourceManager.Marketplace
 
         private readonly ClientDiagnostics _privateStoreClientDiagnostics;
         private readonly PrivateStoreRestOperations _privateStoreRestClient;
+        private readonly ClientDiagnostics _defaultClientDiagnostics;
+        private readonly MarketplaceRPServiceRestOperations _defaultRestClient;
         private readonly PrivateStoreData _data;
+
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Marketplace/privateStores";
 
         /// <summary> Initializes a new instance of the <see cref="PrivateStoreResource"/> class for mocking. </summary>
         protected PrivateStoreResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "PrivateStoreResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="PrivateStoreResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal PrivateStoreResource(ArmClient client, PrivateStoreData data) : this(client, data.Id)
@@ -59,13 +66,12 @@ namespace Azure.ResourceManager.Marketplace
             _privateStoreClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Marketplace", ResourceType.Namespace, Diagnostics);
             TryGetApiVersion(ResourceType, out string privateStoreApiVersion);
             _privateStoreRestClient = new PrivateStoreRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, privateStoreApiVersion);
+            _defaultClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Marketplace", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+            _defaultRestClient = new MarketplaceRPServiceRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
 #if DEBUG
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Marketplace/privateStores";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -92,7 +98,7 @@ namespace Azure.ResourceManager.Marketplace
         /// <returns> An object representing collection of MarketplaceApprovalRequestResources and their operations over a MarketplaceApprovalRequestResource. </returns>
         public virtual MarketplaceApprovalRequestCollection GetMarketplaceApprovalRequests()
         {
-            return GetCachedClient(Client => new MarketplaceApprovalRequestCollection(Client, Id));
+            return GetCachedClient(client => new MarketplaceApprovalRequestCollection(client, Id));
         }
 
         /// <summary>
@@ -106,12 +112,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_GetRequestApproval</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceApprovalRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestApprovalId"> The request approval ID to get create or update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="requestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="requestApprovalId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="requestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<MarketplaceApprovalRequestResource>> GetMarketplaceApprovalRequestAsync(string requestApprovalId, CancellationToken cancellationToken = default)
         {
@@ -129,12 +143,20 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_GetRequestApproval</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceApprovalRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="requestApprovalId"> The request approval ID to get create or update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="requestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="requestApprovalId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="requestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<MarketplaceApprovalRequestResource> GetMarketplaceApprovalRequest(string requestApprovalId, CancellationToken cancellationToken = default)
         {
@@ -145,7 +167,7 @@ namespace Azure.ResourceManager.Marketplace
         /// <returns> An object representing collection of MarketplaceAdminApprovalRequestResources and their operations over a MarketplaceAdminApprovalRequestResource. </returns>
         public virtual MarketplaceAdminApprovalRequestCollection GetMarketplaceAdminApprovalRequests()
         {
-            return GetCachedClient(Client => new MarketplaceAdminApprovalRequestCollection(Client, Id));
+            return GetCachedClient(client => new MarketplaceAdminApprovalRequestCollection(client, Id));
         }
 
         /// <summary>
@@ -159,13 +181,21 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_GetAdminRequestApproval</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAdminApprovalRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="adminRequestApprovalId"> The admin request approval ID to get create or update. </param>
         /// <param name="publisherId"> The publisher id of this offer. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="adminRequestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="adminRequestApprovalId"/> or <paramref name="publisherId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="adminRequestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<MarketplaceAdminApprovalRequestResource>> GetMarketplaceAdminApprovalRequestAsync(string adminRequestApprovalId, string publisherId, CancellationToken cancellationToken = default)
         {
@@ -183,13 +213,21 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_GetAdminRequestApproval</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAdminApprovalRequestResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="adminRequestApprovalId"> The admin request approval ID to get create or update. </param>
         /// <param name="publisherId"> The publisher id of this offer. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="adminRequestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="adminRequestApprovalId"/> or <paramref name="publisherId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="adminRequestApprovalId"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<MarketplaceAdminApprovalRequestResource> GetMarketplaceAdminApprovalRequest(string adminRequestApprovalId, string publisherId, CancellationToken cancellationToken = default)
         {
@@ -200,7 +238,7 @@ namespace Azure.ResourceManager.Marketplace
         /// <returns> An object representing collection of PrivateStoreCollectionInfoResources and their operations over a PrivateStoreCollectionInfoResource. </returns>
         public virtual PrivateStoreCollectionInfoCollection GetPrivateStoreCollectionInfos()
         {
-            return GetCachedClient(Client => new PrivateStoreCollectionInfoCollection(Client, Id));
+            return GetCachedClient(client => new PrivateStoreCollectionInfoCollection(client, Id));
         }
 
         /// <summary>
@@ -213,6 +251,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStoreCollection_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreCollectionInfoResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -235,6 +281,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStoreCollection_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreCollectionInfoResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="collectionId"> The collection ID. </param>
@@ -255,6 +309,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -288,6 +350,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -319,6 +389,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -354,6 +432,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -388,15 +474,26 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="data"> The PrivateStore to use. </param>
+        /// <param name="data"> The <see cref="PrivateStoreData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation> UpdateAsync(WaitUntil waitUntil, PrivateStoreData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _privateStoreClientDiagnostics.CreateScope("PrivateStoreResource.Update");
             scope.Start();
@@ -426,15 +523,26 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="data"> The PrivateStore to use. </param>
+        /// <param name="data"> The <see cref="PrivateStoreData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation Update(WaitUntil waitUntil, PrivateStoreData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _privateStoreClientDiagnostics.CreateScope("PrivateStoreResource.Update");
             scope.Start();
@@ -463,6 +571,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_AnyExistingOffersInTheCollections</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -494,6 +610,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_AnyExistingOffersInTheCollections</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -524,14 +648,22 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryOffers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PrivateStoreOfferResult" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PrivateStoreOfferResult"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PrivateStoreOfferResult> QueryOffersAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateQueryOffersRequest(Guid.Parse(Id.Name));
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, PrivateStoreOfferResult.DeserializePrivateStoreOfferResult, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryOffers", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => PrivateStoreOfferResult.DeserializePrivateStoreOfferResult(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryOffers", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -545,14 +677,22 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryOffers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PrivateStoreOfferResult" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PrivateStoreOfferResult"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PrivateStoreOfferResult> QueryOffers(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateQueryOffersRequest(Guid.Parse(Id.Name));
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, PrivateStoreOfferResult.DeserializePrivateStoreOfferResult, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryOffers", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => PrivateStoreOfferResult.DeserializePrivateStoreOfferResult(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryOffers", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -566,15 +706,23 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryUserOffers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The QueryUserOffersContent to use. </param>
+        /// <param name="content"> The <see cref="QueryUserOffersContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PrivateStoreOfferResult" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PrivateStoreOfferResult"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PrivateStoreOfferResult> QueryUserOffersAsync(QueryUserOffersContent content = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateQueryUserOffersRequest(Guid.Parse(Id.Name), content);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, PrivateStoreOfferResult.DeserializePrivateStoreOfferResult, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserOffers", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => PrivateStoreOfferResult.DeserializePrivateStoreOfferResult(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserOffers", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -588,15 +736,23 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryUserOffers</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The QueryUserOffersContent to use. </param>
+        /// <param name="content"> The <see cref="QueryUserOffersContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PrivateStoreOfferResult" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PrivateStoreOfferResult"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PrivateStoreOfferResult> QueryUserOffers(QueryUserOffersContent content = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateQueryUserOffersRequest(Guid.Parse(Id.Name), content);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, PrivateStoreOfferResult.DeserializePrivateStoreOfferResult, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserOffers", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => PrivateStoreOfferResult.DeserializePrivateStoreOfferResult(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserOffers", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -609,6 +765,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_BillingAccounts</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -640,6 +804,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_BillingAccounts</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -670,9 +842,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_CollectionsToSubscriptionsMapping</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The CollectionsToSubscriptionsMappingContent to use. </param>
+        /// <param name="content"> The <see cref="CollectionsToSubscriptionsMappingContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual async Task<Response<CollectionsToSubscriptionsMappingResult>> FetchCollectionsToSubscriptionsMappingAsync(CollectionsToSubscriptionsMappingContent content = null, CancellationToken cancellationToken = default)
         {
@@ -701,9 +881,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_CollectionsToSubscriptionsMapping</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The CollectionsToSubscriptionsMappingContent to use. </param>
+        /// <param name="content"> The <see cref="CollectionsToSubscriptionsMappingContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual Response<CollectionsToSubscriptionsMappingResult> FetchCollectionsToSubscriptionsMapping(CollectionsToSubscriptionsMappingContent content = null, CancellationToken cancellationToken = default)
         {
@@ -732,9 +920,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryApprovedPlans</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The QueryApprovedPlansContent to use. </param>
+        /// <param name="content"> The <see cref="QueryApprovedPlansContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual async Task<Response<QueryApprovedPlansResult>> QueryApprovedPlansAsync(QueryApprovedPlansContent content = null, CancellationToken cancellationToken = default)
         {
@@ -763,9 +959,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryApprovedPlans</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The QueryApprovedPlansContent to use. </param>
+        /// <param name="content"> The <see cref="QueryApprovedPlansContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual Response<QueryApprovedPlansResult> QueryApprovedPlans(QueryApprovedPlansContent content = null, CancellationToken cancellationToken = default)
         {
@@ -794,9 +998,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_BulkCollectionsAction</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The BulkCollectionsActionContent to use. </param>
+        /// <param name="content"> The <see cref="BulkCollectionsActionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual async Task<Response<BulkCollectionsActionResult>> PerformActionOnBulkCollectionsAsync(BulkCollectionsActionContent content = null, CancellationToken cancellationToken = default)
         {
@@ -825,9 +1037,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_BulkCollectionsAction</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="content"> The BulkCollectionsActionContent to use. </param>
+        /// <param name="content"> The <see cref="BulkCollectionsActionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual Response<BulkCollectionsActionResult> PerformActionOnBulkCollections(BulkCollectionsActionContent content = null, CancellationToken cancellationToken = default)
         {
@@ -855,6 +1075,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryNotificationsState</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -886,6 +1114,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_QueryNotificationsState</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -916,16 +1152,27 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_AcknowledgeOfferNotification</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="content"> The AcknowledgeOfferNotificationContent to use. </param>
+        /// <param name="content"> The <see cref="AcknowledgeOfferNotificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         public virtual async Task<Response> AcknowledgeOfferNotificationAsync(string offerId, AcknowledgeOfferNotificationContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var scope = _privateStoreClientDiagnostics.CreateScope("PrivateStoreResource.AcknowledgeOfferNotification");
             scope.Start();
@@ -952,16 +1199,27 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_AcknowledgeOfferNotification</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerId"> The offer ID to update or delete. </param>
-        /// <param name="content"> The AcknowledgeOfferNotificationContent to use. </param>
+        /// <param name="content"> The <see cref="AcknowledgeOfferNotificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="offerId"/> is null. </exception>
         public virtual Response AcknowledgeOfferNotification(string offerId, AcknowledgeOfferNotificationContent content = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
 
             using var scope = _privateStoreClientDiagnostics.CreateScope("PrivateStoreResource.AcknowledgeOfferNotification");
             scope.Start();
@@ -988,15 +1246,23 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_FetchAllSubscriptionsInTenant</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="nextPageToken"> The skip token to get the next page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="MarketplaceSubscription" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="MarketplaceSubscription"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<MarketplaceSubscription> FetchAllMarketplaceSubscriptionsAsync(string nextPageToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateFetchAllSubscriptionsInTenantRequest(Guid.Parse(Id.Name), nextPageToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, MarketplaceSubscription.DeserializeMarketplaceSubscription, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.FetchAllMarketplaceSubscriptions", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => MarketplaceSubscription.DeserializeMarketplaceSubscription(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.FetchAllMarketplaceSubscriptions", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -1010,15 +1276,23 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_FetchAllSubscriptionsInTenant</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="nextPageToken"> The skip token to get the next page. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="MarketplaceSubscription" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="MarketplaceSubscription"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<MarketplaceSubscription> FetchAllMarketplaceSubscriptions(string nextPageToken = null, CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _privateStoreRestClient.CreateFetchAllSubscriptionsInTenantRequest(Guid.Parse(Id.Name), nextPageToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, MarketplaceSubscription.DeserializeMarketplaceSubscription, _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.FetchAllMarketplaceSubscriptions", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => MarketplaceSubscription.DeserializeMarketplaceSubscription(e), _privateStoreClientDiagnostics, Pipeline, "PrivateStoreResource.FetchAllMarketplaceSubscriptions", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -1031,6 +1305,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListNewPlansNotifications</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1062,6 +1344,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListNewPlansNotifications</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -1092,9 +1382,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListStopSellOffersPlansNotifications</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="stopSellSubscriptions"> The StopSellSubscriptions to use. </param>
+        /// <param name="stopSellSubscriptions"> The <see cref="StopSellSubscriptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual async Task<Response<StopSellOffersPlansNotificationsList>> GetStopSellOffersPlansNotificationsAsync(StopSellSubscriptions stopSellSubscriptions = null, CancellationToken cancellationToken = default)
         {
@@ -1123,9 +1421,17 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListStopSellOffersPlansNotifications</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
-        /// <param name="stopSellSubscriptions"> The StopSellSubscriptions to use. </param>
+        /// <param name="stopSellSubscriptions"> The <see cref="StopSellSubscriptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         public virtual Response<StopSellOffersPlansNotificationsList> GetStopSellOffersPlansNotifications(StopSellSubscriptions stopSellSubscriptions = null, CancellationToken cancellationToken = default)
         {
@@ -1153,6 +1459,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <item>
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListSubscriptionsContext</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -1184,6 +1498,14 @@ namespace Azure.ResourceManager.Marketplace
         /// <term>Operation Id</term>
         /// <description>PrivateStore_ListSubscriptionsContext</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PrivateStoreResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -1201,6 +1523,58 @@ namespace Azure.ResourceManager.Marketplace
                 scope.Failed(e);
                 throw;
             }
+        }
+
+        /// <summary>
+        /// All rules approved in the private store that are relevant for user subscriptions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/queryUserRules</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>QueryUserRules</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="content"> The <see cref="QueryUserRulesContent"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="MarketplaceRule"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<MarketplaceRule> QueryUserRulesAsync(QueryUserRulesContent content = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _defaultRestClient.CreateQueryUserRulesRequest(Guid.Parse(Id.Name), content);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => MarketplaceRule.DeserializeMarketplaceRule(e), _defaultClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserRules", "value", null, cancellationToken);
+        }
+
+        /// <summary>
+        /// All rules approved in the private store that are relevant for user subscriptions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/queryUserRules</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>QueryUserRules</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-01-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="content"> The <see cref="QueryUserRulesContent"/> to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="MarketplaceRule"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<MarketplaceRule> QueryUserRules(QueryUserRulesContent content = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _defaultRestClient.CreateQueryUserRulesRequest(Guid.Parse(Id.Name), content);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => MarketplaceRule.DeserializeMarketplaceRule(e), _defaultClientDiagnostics, Pipeline, "PrivateStoreResource.QueryUserRules", "value", null, cancellationToken);
         }
     }
 }

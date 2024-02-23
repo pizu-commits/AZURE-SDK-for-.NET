@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Linked service for Twilio. </summary>
     public partial class TwilioLinkedService : LinkedService
     {
-        /// <summary> Initializes a new instance of TwilioLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="TwilioLinkedService"/>. </summary>
         /// <param name="userName"> The Account SID of Twilio service. </param>
         /// <param name="password">
         /// The auth token of Twilio service.
@@ -24,15 +23,21 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="userName"/> or <paramref name="password"/> is null. </exception>
         public TwilioLinkedService(object userName, SecretBase password)
         {
-            Argument.AssertNotNull(userName, nameof(userName));
-            Argument.AssertNotNull(password, nameof(password));
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
 
             UserName = userName;
             Password = password;
             Type = "Twilio";
         }
 
-        /// <summary> Initializes a new instance of TwilioLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="TwilioLinkedService"/>. </summary>
         /// <param name="type"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>

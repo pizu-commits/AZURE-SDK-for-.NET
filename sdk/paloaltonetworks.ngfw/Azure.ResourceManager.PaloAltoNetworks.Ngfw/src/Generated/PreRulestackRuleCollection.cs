@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
 {
     /// <summary>
-    /// A class representing a collection of <see cref="PreRulestackRuleResource" /> and their operations.
-    /// Each <see cref="PreRulestackRuleResource" /> in the collection will belong to the same instance of <see cref="GlobalRulestackResource" />.
-    /// To get a <see cref="PreRulestackRuleCollection" /> instance call the GetPreRulestackRules method from an instance of <see cref="GlobalRulestackResource" />.
+    /// A class representing a collection of <see cref="PreRulestackRuleResource"/> and their operations.
+    /// Each <see cref="PreRulestackRuleResource"/> in the collection will belong to the same instance of <see cref="GlobalRulestackResource"/>.
+    /// To get a <see cref="PreRulestackRuleCollection"/> instance call the GetPreRulestackRules method from an instance of <see cref="GlobalRulestackResource"/>.
     /// </summary>
     public partial class PreRulestackRuleCollection : ArmCollection, IEnumerable<PreRulestackRuleResource>, IAsyncEnumerable<PreRulestackRuleResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<PreRulestackRuleResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string priority, PreRulestackRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
-            Argument.AssertNotNull(data, nameof(data));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<PreRulestackRuleResource> CreateOrUpdate(WaitUntil waitUntil, string priority, PreRulestackRuleData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
-            Argument.AssertNotNull(data, nameof(data));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="priority"> Pre Rule priority. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
         public virtual async Task<Response<PreRulestackRuleResource>> GetAsync(string priority, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="priority"> Pre Rule priority. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
         public virtual Response<PreRulestackRuleResource> Get(string priority, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="PreRulestackRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="PreRulestackRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<PreRulestackRuleResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _preRulestackRulePreRulesRestClient.CreateListRequest(Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _preRulestackRulePreRulesRestClient.CreateListNextPageRequest(nextLink, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PreRulestackRuleResource(Client, PreRulestackRuleData.DeserializePreRulestackRuleData(e)), _preRulestackRulePreRulesClientDiagnostics, Pipeline, "PreRulestackRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new PreRulestackRuleResource(Client, PreRulestackRuleData.DeserializePreRulestackRuleData(e)), _preRulestackRulePreRulesClientDiagnostics, Pipeline, "PreRulestackRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="PreRulestackRuleResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="PreRulestackRuleResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<PreRulestackRuleResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _preRulestackRulePreRulesRestClient.CreateListRequest(Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _preRulestackRulePreRulesRestClient.CreateListNextPageRequest(nextLink, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PreRulestackRuleResource(Client, PreRulestackRuleData.DeserializePreRulestackRuleData(e)), _preRulestackRulePreRulesClientDiagnostics, Pipeline, "PreRulestackRuleCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new PreRulestackRuleResource(Client, PreRulestackRuleData.DeserializePreRulestackRuleData(e)), _preRulestackRulePreRulesClientDiagnostics, Pipeline, "PreRulestackRuleCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="priority"> Pre Rule priority. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string priority, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <term>Operation Id</term>
         /// <description>PreRules_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="priority"> Pre Rule priority. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
         /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
         public virtual Response<bool> Exists(string priority, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(priority, nameof(priority));
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
 
             using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.PaloAltoNetworks.Ngfw
             {
                 var response = _preRulestackRulePreRulesRestClient.Get(Id.Name, priority, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/{globalRulestackName}/preRules/{priority}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PreRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="priority"> Pre Rule priority. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="priority"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
+        public virtual async Task<NullableResponse<PreRulestackRuleResource>> GetIfExistsAsync(string priority, CancellationToken cancellationToken = default)
+        {
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
+
+            using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _preRulestackRulePreRulesRestClient.GetAsync(Id.Name, priority, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<PreRulestackRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new PreRulestackRuleResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/{globalRulestackName}/preRules/{priority}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>PreRules_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="PreRulestackRuleResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="priority"> Pre Rule priority. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="priority"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="priority"/> is null. </exception>
+        public virtual NullableResponse<PreRulestackRuleResource> GetIfExists(string priority, CancellationToken cancellationToken = default)
+        {
+            if (priority == null)
+            {
+                throw new ArgumentNullException(nameof(priority));
+            }
+            if (priority.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(priority));
+            }
+
+            using var scope = _preRulestackRulePreRulesClientDiagnostics.CreateScope("PreRulestackRuleCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _preRulestackRulePreRulesRestClient.Get(Id.Name, priority, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<PreRulestackRuleResource>(response.GetRawResponse());
+                return Response.FromValue(new PreRulestackRuleResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

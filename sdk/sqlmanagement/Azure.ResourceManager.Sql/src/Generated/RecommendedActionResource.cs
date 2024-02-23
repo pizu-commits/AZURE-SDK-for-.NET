@@ -18,13 +18,19 @@ namespace Azure.ResourceManager.Sql
 {
     /// <summary>
     /// A Class representing a RecommendedAction along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="RecommendedActionResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetRecommendedActionResource method.
-    /// Otherwise you can get one from its parent resource <see cref="SqlDatabaseAdvisorResource" /> using the GetRecommendedAction method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="RecommendedActionResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetRecommendedActionResource method.
+    /// Otherwise you can get one from its parent resource <see cref="SqlDatabaseAdvisorResource"/> using the GetRecommendedAction method.
     /// </summary>
     public partial class RecommendedActionResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="RecommendedActionResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="serverName"> The serverName. </param>
+        /// <param name="databaseName"> The databaseName. </param>
+        /// <param name="advisorName"> The advisorName. </param>
+        /// <param name="recommendedActionName"> The recommendedActionName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string serverName, string databaseName, string advisorName, string recommendedActionName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/advisors/{advisorName}/recommendedActions/{recommendedActionName}";
@@ -35,12 +41,15 @@ namespace Azure.ResourceManager.Sql
         private readonly DatabaseRecommendedActionsRestOperations _recommendedActionDatabaseRecommendedActionsRestClient;
         private readonly RecommendedActionData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Sql/servers/databases/advisors/recommendedActions";
+
         /// <summary> Initializes a new instance of the <see cref="RecommendedActionResource"/> class for mocking. </summary>
         protected RecommendedActionResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "RecommendedActionResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="RecommendedActionResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal RecommendedActionResource(ArmClient client, RecommendedActionData data) : this(client, data.Id)
@@ -61,9 +70,6 @@ namespace Azure.ResourceManager.Sql
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Sql/servers/databases/advisors/recommendedActions";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -97,6 +103,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>DatabaseRecommendedActions_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecommendedActionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -128,6 +142,14 @@ namespace Azure.ResourceManager.Sql
         /// <item>
         /// <term>Operation Id</term>
         /// <description>DatabaseRecommendedActions_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecommendedActionResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -161,6 +183,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>DatabaseRecommendedActions_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecommendedActionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> The requested recommended action resource state. </param>
@@ -168,7 +198,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<RecommendedActionResource>> UpdateAsync(RecommendedActionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _recommendedActionDatabaseRecommendedActionsClientDiagnostics.CreateScope("RecommendedActionResource.Update");
             scope.Start();
@@ -195,6 +228,14 @@ namespace Azure.ResourceManager.Sql
         /// <term>Operation Id</term>
         /// <description>DatabaseRecommendedActions_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-11-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RecommendedActionResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="data"> The requested recommended action resource state. </param>
@@ -202,7 +243,10 @@ namespace Azure.ResourceManager.Sql
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<RecommendedActionResource> Update(RecommendedActionData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _recommendedActionDatabaseRecommendedActionsClientDiagnostics.CreateScope("RecommendedActionResource.Update");
             scope.Start();

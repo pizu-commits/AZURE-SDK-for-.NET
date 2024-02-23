@@ -6,24 +6,26 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Search.Documents.Indexes.Models
 {
     /// <summary> A complex object that can be used to specify alternative spellings or synonyms to the root entity name. </summary>
     public partial class CustomEntityAlias
     {
-        /// <summary> Initializes a new instance of CustomEntityAlias. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomEntityAlias"/>. </summary>
         /// <param name="text"> The text of the alias. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public CustomEntityAlias(string text)
         {
-            Argument.AssertNotNull(text, nameof(text));
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
 
             Text = text;
         }
 
-        /// <summary> Initializes a new instance of CustomEntityAlias. </summary>
+        /// <summary> Initializes a new instance of <see cref="CustomEntityAlias"/>. </summary>
         /// <param name="text"> The text of the alias. </param>
         /// <param name="caseSensitive"> Determine if the alias is case sensitive. </param>
         /// <param name="accentSensitive"> Determine if the alias is accent sensitive. </param>

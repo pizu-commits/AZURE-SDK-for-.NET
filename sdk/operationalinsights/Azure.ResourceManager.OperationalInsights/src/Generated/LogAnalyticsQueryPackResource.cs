@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.OperationalInsights
 {
     /// <summary>
     /// A Class representing a LogAnalyticsQueryPack along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="LogAnalyticsQueryPackResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetLogAnalyticsQueryPackResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetLogAnalyticsQueryPack method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="LogAnalyticsQueryPackResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetLogAnalyticsQueryPackResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetLogAnalyticsQueryPack method.
     /// </summary>
     public partial class LogAnalyticsQueryPackResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="LogAnalyticsQueryPackResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroupName"> The resourceGroupName. </param>
+        /// <param name="queryPackName"> The queryPackName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroupName, string queryPackName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/queryPacks/{queryPackName}";
@@ -40,12 +44,15 @@ namespace Azure.ResourceManager.OperationalInsights
         private readonly QueriesRestOperations _logAnalyticsQueryQueriesRestClient;
         private readonly LogAnalyticsQueryPackData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.OperationalInsights/queryPacks";
+
         /// <summary> Initializes a new instance of the <see cref="LogAnalyticsQueryPackResource"/> class for mocking. </summary>
         protected LogAnalyticsQueryPackResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "LogAnalyticsQueryPackResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="LogAnalyticsQueryPackResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal LogAnalyticsQueryPackResource(ArmClient client, LogAnalyticsQueryPackData data) : this(client, data.Id)
@@ -69,9 +76,6 @@ namespace Azure.ResourceManager.OperationalInsights
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.OperationalInsights/queryPacks";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -98,7 +102,7 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <returns> An object representing collection of LogAnalyticsQueryResources and their operations over a LogAnalyticsQueryResource. </returns>
         public virtual LogAnalyticsQueryCollection GetLogAnalyticsQueries()
         {
-            return GetCachedClient(Client => new LogAnalyticsQueryCollection(Client, Id));
+            return GetCachedClient(client => new LogAnalyticsQueryCollection(client, Id));
         }
 
         /// <summary>
@@ -112,12 +116,20 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>Queries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="id"> The id of a specific query defined in the Log Analytics QueryPack. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<LogAnalyticsQueryResource>> GetLogAnalyticsQueryAsync(string id, CancellationToken cancellationToken = default)
         {
@@ -135,12 +147,20 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>Queries_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="id"> The id of a specific query defined in the Log Analytics QueryPack. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<LogAnalyticsQueryResource> GetLogAnalyticsQuery(string id, CancellationToken cancellationToken = default)
         {
@@ -157,6 +177,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <item>
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -190,6 +218,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -221,6 +257,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <item>
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -256,6 +300,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -290,6 +342,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_UpdateTags</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Updated tag information to set into the QueryPack instance. </param>
@@ -297,7 +357,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<LogAnalyticsQueryPackResource>> UpdateAsync(LogAnalyticsQueryPackPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.Update");
             scope.Start();
@@ -324,6 +387,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_UpdateTags</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="patch"> Updated tag information to set into the QueryPack instance. </param>
@@ -331,7 +402,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<LogAnalyticsQueryPackResource> Update(LogAnalyticsQueryPackPatch patch, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (patch == null)
+            {
+                throw new ArgumentNullException(nameof(patch));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.Update");
             scope.Start();
@@ -358,6 +432,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>Queries_Search</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="querySearchProperties"> Properties by which to search queries in the given Log Analytics QueryPack. </param>
@@ -366,14 +448,17 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <param name="skipToken"> Base64 encoded token used to fetch the next page of items. Default is null. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="querySearchProperties"/> is null. </exception>
-        /// <returns> An async collection of <see cref="LogAnalyticsQueryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="LogAnalyticsQueryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<LogAnalyticsQueryResource> SearchQueriesAsync(LogAnalyticsQuerySearchProperties querySearchProperties, long? top = null, bool? includeBody = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(querySearchProperties, nameof(querySearchProperties));
+            if (querySearchProperties == null)
+            {
+                throw new ArgumentNullException(nameof(querySearchProperties));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _logAnalyticsQueryQueriesRestClient.CreateSearchRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, querySearchProperties, top, includeBody, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _logAnalyticsQueryQueriesRestClient.CreateSearchNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, querySearchProperties, top, includeBody, skipToken);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LogAnalyticsQueryResource(Client, LogAnalyticsQueryData.DeserializeLogAnalyticsQueryData(e)), _logAnalyticsQueryQueriesClientDiagnostics, Pipeline, "LogAnalyticsQueryPackResource.SearchQueries", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new LogAnalyticsQueryResource(Client, LogAnalyticsQueryData.DeserializeLogAnalyticsQueryData(e)), _logAnalyticsQueryQueriesClientDiagnostics, Pipeline, "LogAnalyticsQueryPackResource.SearchQueries", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -387,6 +472,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>Queries_Search</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="querySearchProperties"> Properties by which to search queries in the given Log Analytics QueryPack. </param>
@@ -395,14 +488,17 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <param name="skipToken"> Base64 encoded token used to fetch the next page of items. Default is null. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="querySearchProperties"/> is null. </exception>
-        /// <returns> A collection of <see cref="LogAnalyticsQueryResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="LogAnalyticsQueryResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<LogAnalyticsQueryResource> SearchQueries(LogAnalyticsQuerySearchProperties querySearchProperties, long? top = null, bool? includeBody = null, string skipToken = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(querySearchProperties, nameof(querySearchProperties));
+            if (querySearchProperties == null)
+            {
+                throw new ArgumentNullException(nameof(querySearchProperties));
+            }
 
             HttpMessage FirstPageRequest(int? pageSizeHint) => _logAnalyticsQueryQueriesRestClient.CreateSearchRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, querySearchProperties, top, includeBody, skipToken);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _logAnalyticsQueryQueriesRestClient.CreateSearchNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name, querySearchProperties, top, includeBody, skipToken);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LogAnalyticsQueryResource(Client, LogAnalyticsQueryData.DeserializeLogAnalyticsQueryData(e)), _logAnalyticsQueryQueriesClientDiagnostics, Pipeline, "LogAnalyticsQueryPackResource.SearchQueries", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new LogAnalyticsQueryResource(Client, LogAnalyticsQueryData.DeserializeLogAnalyticsQueryData(e)), _logAnalyticsQueryQueriesClientDiagnostics, Pipeline, "LogAnalyticsQueryPackResource.SearchQueries", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -416,6 +512,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -424,8 +528,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<LogAnalyticsQueryPackResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.AddTag");
             scope.Start();
@@ -470,6 +580,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -478,8 +596,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<LogAnalyticsQueryPackResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.AddTag");
             scope.Start();
@@ -524,6 +648,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -531,7 +663,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<LogAnalyticsQueryPackResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.SetTags");
             scope.Start();
@@ -573,6 +708,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -580,7 +723,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<LogAnalyticsQueryPackResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.SetTags");
             scope.Start();
@@ -622,6 +768,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -629,7 +783,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<LogAnalyticsQueryPackResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.RemoveTag");
             scope.Start();
@@ -674,6 +831,14 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <term>Operation Id</term>
         /// <description>QueryPacks_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-09-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="LogAnalyticsQueryPackResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -681,7 +846,10 @@ namespace Azure.ResourceManager.OperationalInsights
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<LogAnalyticsQueryPackResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _logAnalyticsQueryPackQueryPacksClientDiagnostics.CreateScope("LogAnalyticsQueryPackResource.RemoveTag");
             scope.Start();

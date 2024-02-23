@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> This activity is used for iterating over a collection and execute given activities. </summary>
     public partial class ForEachActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of ForEachActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ForEachActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="items"> Collection to iterate. </param>
         /// <param name="activities">
@@ -26,16 +25,25 @@ namespace Azure.Analytics.Synapse.Artifacts.Models
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="items"/> or <paramref name="activities"/> is null. </exception>
         public ForEachActivity(string name, Expression items, IEnumerable<Activity> activities) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(items, nameof(items));
-            Argument.AssertNotNull(activities, nameof(activities));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items));
+            }
+            if (activities == null)
+            {
+                throw new ArgumentNullException(nameof(activities));
+            }
 
             Items = items;
             Activities = activities.ToList();
             Type = "ForEach";
         }
 
-        /// <summary> Initializes a new instance of ForEachActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="ForEachActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

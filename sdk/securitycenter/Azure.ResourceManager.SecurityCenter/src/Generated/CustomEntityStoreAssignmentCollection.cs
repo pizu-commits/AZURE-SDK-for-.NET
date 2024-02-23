@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,9 +22,9 @@ using Azure.ResourceManager.SecurityCenter.Models;
 namespace Azure.ResourceManager.SecurityCenter
 {
     /// <summary>
-    /// A class representing a collection of <see cref="CustomEntityStoreAssignmentResource" /> and their operations.
-    /// Each <see cref="CustomEntityStoreAssignmentResource" /> in the collection will belong to the same instance of <see cref="ResourceGroupResource" />.
-    /// To get a <see cref="CustomEntityStoreAssignmentCollection" /> instance call the GetCustomEntityStoreAssignments method from an instance of <see cref="ResourceGroupResource" />.
+    /// A class representing a collection of <see cref="CustomEntityStoreAssignmentResource"/> and their operations.
+    /// Each <see cref="CustomEntityStoreAssignmentResource"/> in the collection will belong to the same instance of <see cref="ResourceGroupResource"/>.
+    /// To get a <see cref="CustomEntityStoreAssignmentCollection"/> instance call the GetCustomEntityStoreAssignments method from an instance of <see cref="ResourceGroupResource"/>.
     /// </summary>
     public partial class CustomEntityStoreAssignmentCollection : ArmCollection, IEnumerable<CustomEntityStoreAssignmentResource>, IAsyncEnumerable<CustomEntityStoreAssignmentResource>
     {
@@ -65,6 +66,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -75,8 +84,18 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<CustomEntityStoreAssignmentResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string customEntityStoreAssignmentName, CustomEntityStoreAssignmentCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.CreateOrUpdate");
             scope.Start();
@@ -106,6 +125,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -116,8 +143,18 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<CustomEntityStoreAssignmentResource> CreateOrUpdate(WaitUntil waitUntil, string customEntityStoreAssignmentName, CustomEntityStoreAssignmentCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.CreateOrUpdate");
             scope.Start();
@@ -147,6 +184,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
@@ -155,7 +200,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
         public virtual async Task<Response<CustomEntityStoreAssignmentResource>> GetAsync(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.Get");
             scope.Start();
@@ -184,6 +236,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
@@ -192,7 +252,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
         public virtual Response<CustomEntityStoreAssignmentResource> Get(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.Get");
             scope.Start();
@@ -221,15 +288,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CustomEntityStoreAssignmentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="CustomEntityStoreAssignmentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<CustomEntityStoreAssignmentResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _customEntityStoreAssignmentRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _customEntityStoreAssignmentRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new CustomEntityStoreAssignmentResource(Client, CustomEntityStoreAssignmentData.DeserializeCustomEntityStoreAssignmentData(e)), _customEntityStoreAssignmentClientDiagnostics, Pipeline, "CustomEntityStoreAssignmentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new CustomEntityStoreAssignmentResource(Client, CustomEntityStoreAssignmentData.DeserializeCustomEntityStoreAssignmentData(e)), _customEntityStoreAssignmentClientDiagnostics, Pipeline, "CustomEntityStoreAssignmentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -243,15 +318,23 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_ListByResourceGroup</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CustomEntityStoreAssignmentResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="CustomEntityStoreAssignmentResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<CustomEntityStoreAssignmentResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _customEntityStoreAssignmentRestClient.CreateListByResourceGroupRequest(Id.SubscriptionId, Id.ResourceGroupName);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _customEntityStoreAssignmentRestClient.CreateListByResourceGroupNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new CustomEntityStoreAssignmentResource(Client, CustomEntityStoreAssignmentData.DeserializeCustomEntityStoreAssignmentData(e)), _customEntityStoreAssignmentClientDiagnostics, Pipeline, "CustomEntityStoreAssignmentCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new CustomEntityStoreAssignmentResource(Client, CustomEntityStoreAssignmentData.DeserializeCustomEntityStoreAssignmentData(e)), _customEntityStoreAssignmentClientDiagnostics, Pipeline, "CustomEntityStoreAssignmentCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -265,6 +348,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
@@ -273,7 +364,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.Exists");
             scope.Start();
@@ -300,6 +398,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <term>Operation Id</term>
         /// <description>CustomEntityStoreAssignments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
@@ -308,7 +414,14 @@ namespace Azure.ResourceManager.SecurityCenter
         /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
         public virtual Response<bool> Exists(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(customEntityStoreAssignmentName, nameof(customEntityStoreAssignmentName));
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
 
             using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.Exists");
             scope.Start();
@@ -316,6 +429,110 @@ namespace Azure.ResourceManager.SecurityCenter
             {
                 var response = _customEntityStoreAssignmentRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, customEntityStoreAssignmentName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Security/customEntityStoreAssignments/{customEntityStoreAssignmentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CustomEntityStoreAssignments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="customEntityStoreAssignmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
+        public virtual async Task<NullableResponse<CustomEntityStoreAssignmentResource>> GetIfExistsAsync(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
+        {
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
+
+            using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _customEntityStoreAssignmentRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, customEntityStoreAssignmentName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<CustomEntityStoreAssignmentResource>(response.GetRawResponse());
+                return Response.FromValue(new CustomEntityStoreAssignmentResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Security/customEntityStoreAssignments/{customEntityStoreAssignmentName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CustomEntityStoreAssignments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CustomEntityStoreAssignmentResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="customEntityStoreAssignmentName"> Name of the custom entity store assignment. Generated name is GUID. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="customEntityStoreAssignmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="customEntityStoreAssignmentName"/> is null. </exception>
+        public virtual NullableResponse<CustomEntityStoreAssignmentResource> GetIfExists(string customEntityStoreAssignmentName, CancellationToken cancellationToken = default)
+        {
+            if (customEntityStoreAssignmentName == null)
+            {
+                throw new ArgumentNullException(nameof(customEntityStoreAssignmentName));
+            }
+            if (customEntityStoreAssignmentName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(customEntityStoreAssignmentName));
+            }
+
+            using var scope = _customEntityStoreAssignmentClientDiagnostics.CreateScope("CustomEntityStoreAssignmentCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _customEntityStoreAssignmentRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, customEntityStoreAssignmentName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<CustomEntityStoreAssignmentResource>(response.GetRawResponse());
+                return Response.FromValue(new CustomEntityStoreAssignmentResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

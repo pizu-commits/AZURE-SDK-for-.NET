@@ -7,30 +7,38 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.Analytics.Synapse.Artifacts.Models
 {
     /// <summary> Filter and return results from input array based on the conditions. </summary>
     public partial class FilterActivity : ControlActivity
     {
-        /// <summary> Initializes a new instance of FilterActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="FilterActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="items"> Input array on which filter should be applied. </param>
         /// <param name="condition"> Condition to be used for filtering the input. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="items"/> or <paramref name="condition"/> is null. </exception>
         public FilterActivity(string name, Expression items, Expression condition) : base(name)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(items, nameof(items));
-            Argument.AssertNotNull(condition, nameof(condition));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items));
+            }
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
 
             Items = items;
             Condition = condition;
             Type = "Filter";
         }
 
-        /// <summary> Initializes a new instance of FilterActivity. </summary>
+        /// <summary> Initializes a new instance of <see cref="FilterActivity"/>. </summary>
         /// <param name="name"> Activity name. </param>
         /// <param name="type"> Type of activity. </param>
         /// <param name="description"> Activity description. </param>

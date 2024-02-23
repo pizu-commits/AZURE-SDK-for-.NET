@@ -37,24 +37,6 @@ namespace Azure.Monitor.Ingestion
         {
         }
 
-        /// <summary> Initializes a new instance of LogsIngestionClient. </summary>
-        /// <param name="endpoint"> The Data Collection Endpoint for the Data Collection Rule, for example https://dce-name.eastus-2.ingest.monitor.azure.com. </param>
-        /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
-        /// <param name="options"> The options for configuring the client. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/> or <paramref name="credential"/> is null. </exception>
-        public LogsIngestionClient(Uri endpoint, TokenCredential credential, LogsIngestionClientOptions options)
-        {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNull(credential, nameof(credential));
-            options ??= new LogsIngestionClientOptions();
-
-            ClientDiagnostics = new ClientDiagnostics(options, true);
-            _tokenCredential = credential;
-            _pipeline = HttpPipelineBuilder.Build(options, Array.Empty<HttpPipelinePolicy>(), new HttpPipelinePolicy[] { new BearerTokenAuthenticationPolicy(_tokenCredential, AuthorizationScopes) }, new ResponseClassifier());
-            _endpoint = endpoint;
-            _apiVersion = options.Version;
-        }
-
         /// <summary>
         /// [Protocol Method] Ingestion API used to directly ingest data using Data Collection Rules
         /// <list type="bullet">
@@ -77,9 +59,26 @@ namespace Azure.Monitor.Ingestion
         /// <include file="Docs/LogsIngestionClient.xml" path="doc/members/member[@name='UploadAsync(string,string,RequestContent,string,RequestContext)']/*" />
         public virtual async Task<Response> UploadAsync(string ruleId, string streamName, RequestContent content, string contentEncoding = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(ruleId, nameof(ruleId));
-            Argument.AssertNotNullOrEmpty(streamName, nameof(streamName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (ruleId == null)
+            {
+                throw new ArgumentNullException(nameof(ruleId));
+            }
+            if (ruleId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleId));
+            }
+            if (streamName == null)
+            {
+                throw new ArgumentNullException(nameof(streamName));
+            }
+            if (streamName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("LogsIngestionClient.Upload");
             scope.Start();
@@ -117,9 +116,26 @@ namespace Azure.Monitor.Ingestion
         /// <include file="Docs/LogsIngestionClient.xml" path="doc/members/member[@name='Upload(string,string,RequestContent,string,RequestContext)']/*" />
         public virtual Response Upload(string ruleId, string streamName, RequestContent content, string contentEncoding = null, RequestContext context = null)
         {
-            Argument.AssertNotNullOrEmpty(ruleId, nameof(ruleId));
-            Argument.AssertNotNullOrEmpty(streamName, nameof(streamName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (ruleId == null)
+            {
+                throw new ArgumentNullException(nameof(ruleId));
+            }
+            if (ruleId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(ruleId));
+            }
+            if (streamName == null)
+            {
+                throw new ArgumentNullException(nameof(streamName));
+            }
+            if (streamName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(streamName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("LogsIngestionClient.Upload");
             scope.Start();

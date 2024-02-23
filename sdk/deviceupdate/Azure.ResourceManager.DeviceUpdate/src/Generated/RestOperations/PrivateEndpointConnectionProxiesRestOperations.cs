@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.DeviceUpdate
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2022-10-01";
+            _apiVersion = apiVersion ?? "2023-07-01";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -67,9 +67,30 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<PrivateEndpointConnectionProxyListResult>> ListByAccountAsync(string subscriptionId, string resourceGroupName, string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var message = CreateListByAccountRequest(subscriptionId, resourceGroupName, accountName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -96,9 +117,30 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="accountName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<PrivateEndpointConnectionProxyListResult> ListByAccount(string subscriptionId, string resourceGroupName, string accountName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
 
             using var message = CreateListByAccountRequest(subscriptionId, resourceGroupName, accountName);
             _pipeline.Send(message, cancellationToken);
@@ -116,7 +158,7 @@ namespace Azure.ResourceManager.DeviceUpdate
             }
         }
 
-        internal HttpMessage CreateValidateRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data)
+        internal HttpMessage CreateValidateRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -152,13 +194,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> ValidateAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
+        public async Task<Response> ValidateAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateValidateRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -180,13 +253,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response Validate(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
+        public Response Validate(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateValidateRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, data);
             _pipeline.Send(message, cancellationToken);
@@ -199,7 +303,7 @@ namespace Azure.ResourceManager.DeviceUpdate
             }
         }
 
-        internal HttpMessage CreateUpdatePrivateEndpointPropertiesRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointUpdate privateEndpointUpdate)
+        internal HttpMessage CreateUpdatePrivateEndpointPropertiesRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointUpdate privateEndpointUpdate)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -235,13 +339,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="privateEndpointUpdate"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> UpdatePrivateEndpointPropertiesAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointUpdate privateEndpointUpdate, CancellationToken cancellationToken = default)
+        public async Task<Response> UpdatePrivateEndpointPropertiesAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointUpdate privateEndpointUpdate, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(privateEndpointUpdate, nameof(privateEndpointUpdate));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointUpdate == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointUpdate));
+            }
 
             using var message = CreateUpdatePrivateEndpointPropertiesRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, privateEndpointUpdate);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -263,13 +398,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="privateEndpointUpdate"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response UpdatePrivateEndpointProperties(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointUpdate privateEndpointUpdate, CancellationToken cancellationToken = default)
+        public Response UpdatePrivateEndpointProperties(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointUpdate privateEndpointUpdate, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(privateEndpointUpdate, nameof(privateEndpointUpdate));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointUpdate == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointUpdate));
+            }
 
             using var message = CreateUpdatePrivateEndpointPropertiesRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, privateEndpointUpdate);
             _pipeline.Send(message, cancellationToken);
@@ -312,12 +478,40 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<PrivateEndpointConnectionProxyData>> GetAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
+        public async Task<Response<DeviceUpdatePrivateEndpointConnectionProxyData>> GetAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -325,13 +519,13 @@ namespace Azure.ResourceManager.DeviceUpdate
             {
                 case 200:
                     {
-                        PrivateEndpointConnectionProxyData value = default;
+                        DeviceUpdatePrivateEndpointConnectionProxyData value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = PrivateEndpointConnectionProxyData.DeserializePrivateEndpointConnectionProxyData(document.RootElement);
+                        value = DeviceUpdatePrivateEndpointConnectionProxyData.DeserializeDeviceUpdatePrivateEndpointConnectionProxyData(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 case 404:
-                    return Response.FromValue((PrivateEndpointConnectionProxyData)null, message.Response);
+                    return Response.FromValue((DeviceUpdatePrivateEndpointConnectionProxyData)null, message.Response);
                 default:
                     throw new RequestFailedException(message.Response);
             }
@@ -345,12 +539,40 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<PrivateEndpointConnectionProxyData> Get(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
+        public Response<DeviceUpdatePrivateEndpointConnectionProxyData> Get(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
 
             using var message = CreateGetRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId);
             _pipeline.Send(message, cancellationToken);
@@ -358,19 +580,19 @@ namespace Azure.ResourceManager.DeviceUpdate
             {
                 case 200:
                     {
-                        PrivateEndpointConnectionProxyData value = default;
+                        DeviceUpdatePrivateEndpointConnectionProxyData value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = PrivateEndpointConnectionProxyData.DeserializePrivateEndpointConnectionProxyData(document.RootElement);
+                        value = DeviceUpdatePrivateEndpointConnectionProxyData.DeserializeDeviceUpdatePrivateEndpointConnectionProxyData(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 case 404:
-                    return Response.FromValue((PrivateEndpointConnectionProxyData)null, message.Response);
+                    return Response.FromValue((DeviceUpdatePrivateEndpointConnectionProxyData)null, message.Response);
                 default:
                     throw new RequestFailedException(message.Response);
             }
         }
 
-        internal HttpMessage CreateCreateOrUpdateRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data)
+        internal HttpMessage CreateCreateOrUpdateRequest(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -405,13 +627,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
+        public async Task<Response> CreateOrUpdateAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -433,13 +686,44 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="privateEndpointConnectionProxyId"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response CreateOrUpdate(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, PrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
+        public Response CreateOrUpdate(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, DeviceUpdatePrivateEndpointConnectionProxyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateOrUpdateRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId, data);
             _pipeline.Send(message, cancellationToken);
@@ -484,10 +768,38 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -512,10 +824,38 @@ namespace Azure.ResourceManager.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="privateEndpointConnectionProxyId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Delete(string subscriptionId, string resourceGroupName, string accountName, string privateEndpointConnectionProxyId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(privateEndpointConnectionProxyId, nameof(privateEndpointConnectionProxyId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (resourceGroupName == null)
+            {
+                throw new ArgumentNullException(nameof(resourceGroupName));
+            }
+            if (resourceGroupName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(resourceGroupName));
+            }
+            if (accountName == null)
+            {
+                throw new ArgumentNullException(nameof(accountName));
+            }
+            if (accountName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(accountName));
+            }
+            if (privateEndpointConnectionProxyId == null)
+            {
+                throw new ArgumentNullException(nameof(privateEndpointConnectionProxyId));
+            }
+            if (privateEndpointConnectionProxyId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(privateEndpointConnectionProxyId));
+            }
 
             using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, privateEndpointConnectionProxyId);
             _pipeline.Send(message, cancellationToken);

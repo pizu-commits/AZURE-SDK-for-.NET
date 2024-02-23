@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,26 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> SAP Table Resource properties. </summary>
     public partial class SapTableResourceDataset : DataFactoryDatasetProperties
     {
-        /// <summary> Initializes a new instance of SapTableResourceDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapTableResourceDataset"/>. </summary>
         /// <param name="linkedServiceName"> Linked service reference. </param>
         /// <param name="tableName"> The name of the SAP Table. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="linkedServiceName"/> or <paramref name="tableName"/> is null. </exception>
         public SapTableResourceDataset(DataFactoryLinkedServiceReference linkedServiceName, DataFactoryElement<string> tableName) : base(linkedServiceName)
         {
-            Argument.AssertNotNull(linkedServiceName, nameof(linkedServiceName));
-            Argument.AssertNotNull(tableName, nameof(tableName));
+            if (linkedServiceName == null)
+            {
+                throw new ArgumentNullException(nameof(linkedServiceName));
+            }
+            if (tableName == null)
+            {
+                throw new ArgumentNullException(nameof(tableName));
+            }
 
             TableName = tableName;
             DatasetType = "SapTableResource";
         }
 
-        /// <summary> Initializes a new instance of SapTableResourceDataset. </summary>
+        /// <summary> Initializes a new instance of <see cref="SapTableResourceDataset"/>. </summary>
         /// <param name="datasetType"> Type of dataset. </param>
         /// <param name="description"> Dataset description. </param>
         /// <param name="structure"> Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. </param>
@@ -43,6 +48,11 @@ namespace Azure.ResourceManager.DataFactory.Models
         {
             TableName = tableName;
             DatasetType = datasetType ?? "SapTableResource";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SapTableResourceDataset"/> for deserialization. </summary>
+        internal SapTableResourceDataset()
+        {
         }
 
         /// <summary> The name of the SAP Table. Type: string (or Expression with resultType string). </summary>

@@ -19,9 +19,9 @@ using Azure.ResourceManager.Resources;
 namespace Azure.ResourceManager.MarketplaceOrdering
 {
     /// <summary>
-    /// A class representing a collection of <see cref="MarketplaceAgreementTermResource" /> and their operations.
-    /// Each <see cref="MarketplaceAgreementTermResource" /> in the collection will belong to the same instance of <see cref="SubscriptionResource" />.
-    /// To get a <see cref="MarketplaceAgreementTermCollection" /> instance call the GetMarketplaceAgreementTerms method from an instance of <see cref="SubscriptionResource" />.
+    /// A class representing a collection of <see cref="MarketplaceAgreementTermResource"/> and their operations.
+    /// Each <see cref="MarketplaceAgreementTermResource"/> in the collection will belong to the same instance of <see cref="SubscriptionResource"/>.
+    /// To get a <see cref="MarketplaceAgreementTermCollection"/> instance call the GetMarketplaceAgreementTerms method from an instance of <see cref="SubscriptionResource"/>.
     /// </summary>
     public partial class MarketplaceAgreementTermCollection : ArmCollection
     {
@@ -63,6 +63,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -76,10 +84,34 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/>, <paramref name="planId"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<MarketplaceAgreementTermResource>> CreateOrUpdateAsync(WaitUntil waitUntil, AgreementOfferType offerType, string publisherId, string offerId, string planId, MarketplaceAgreementTermData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.CreateOrUpdate");
             scope.Start();
@@ -109,6 +141,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -122,10 +162,34 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/>, <paramref name="planId"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<MarketplaceAgreementTermResource> CreateOrUpdate(WaitUntil waitUntil, AgreementOfferType offerType, string publisherId, string offerId, string planId, MarketplaceAgreementTermData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
-            Argument.AssertNotNull(data, nameof(data));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.CreateOrUpdate");
             scope.Start();
@@ -155,6 +219,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
@@ -166,9 +238,30 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
         public virtual async Task<Response<MarketplaceAgreementTermResource>> GetAsync(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.Get");
             scope.Start();
@@ -197,6 +290,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
@@ -208,9 +309,30 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
         public virtual Response<MarketplaceAgreementTermResource> Get(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.Get");
             scope.Start();
@@ -239,6 +361,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
@@ -250,9 +380,30 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.Exists");
             scope.Start();
@@ -279,6 +430,14 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <term>Operation Id</term>
         /// <description>MarketplaceAgreements_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
@@ -290,9 +449,30 @@ namespace Azure.ResourceManager.MarketplaceOrdering
         /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
         public virtual Response<bool> Exists(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(publisherId, nameof(publisherId));
-            Argument.AssertNotNullOrEmpty(offerId, nameof(offerId));
-            Argument.AssertNotNullOrEmpty(planId, nameof(planId));
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
 
             using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.Exists");
             scope.Start();
@@ -300,6 +480,148 @@ namespace Azure.ResourceManager.MarketplaceOrdering
             {
                 var response = _marketplaceAgreementTermMarketplaceAgreementsRestClient.Get(Id.SubscriptionId, offerType, publisherId, offerId, planId, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/offerTypes/{offerType}/publishers/{publisherId}/offers/{offerId}/plans/{planId}/agreements/current</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MarketplaceAgreements_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
+        /// <param name="publisherId"> Publisher identifier string of image being deployed. </param>
+        /// <param name="offerId"> Offer identifier string of image being deployed. </param>
+        /// <param name="planId"> Plan identifier string of image being deployed. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
+        public virtual async Task<NullableResponse<MarketplaceAgreementTermResource>> GetIfExistsAsync(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
+        {
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
+
+            using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _marketplaceAgreementTermMarketplaceAgreementsRestClient.GetAsync(Id.SubscriptionId, offerType, publisherId, offerId, planId, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<MarketplaceAgreementTermResource>(response.GetRawResponse());
+                return Response.FromValue(new MarketplaceAgreementTermResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/offerTypes/{offerType}/publishers/{publisherId}/offers/{offerId}/plans/{planId}/agreements/current</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>MarketplaceAgreements_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-01-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="MarketplaceAgreementTermResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="offerType"> Offer Type, currently only virtualmachine type is supported. </param>
+        /// <param name="publisherId"> Publisher identifier string of image being deployed. </param>
+        /// <param name="offerId"> Offer identifier string of image being deployed. </param>
+        /// <param name="planId"> Plan identifier string of image being deployed. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="publisherId"/>, <paramref name="offerId"/> or <paramref name="planId"/> is null. </exception>
+        public virtual NullableResponse<MarketplaceAgreementTermResource> GetIfExists(AgreementOfferType offerType, string publisherId, string offerId, string planId, CancellationToken cancellationToken = default)
+        {
+            if (publisherId == null)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (publisherId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(publisherId));
+            }
+            if (offerId == null)
+            {
+                throw new ArgumentNullException(nameof(offerId));
+            }
+            if (offerId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(offerId));
+            }
+            if (planId == null)
+            {
+                throw new ArgumentNullException(nameof(planId));
+            }
+            if (planId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(planId));
+            }
+
+            using var scope = _marketplaceAgreementTermMarketplaceAgreementsClientDiagnostics.CreateScope("MarketplaceAgreementTermCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _marketplaceAgreementTermMarketplaceAgreementsRestClient.Get(Id.SubscriptionId, offerType, publisherId, offerId, planId, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<MarketplaceAgreementTermResource>(response.GetRawResponse());
+                return Response.FromValue(new MarketplaceAgreementTermResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

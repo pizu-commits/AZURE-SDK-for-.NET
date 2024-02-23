@@ -7,21 +7,26 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 
 namespace Azure.AI.MetricsAdvisor.Models
 {
     /// <summary> The MetricSeriesItem. </summary>
     public partial class MetricSeriesDefinition
     {
-        /// <summary> Initializes a new instance of MetricSeriesDefinition. </summary>
+        /// <summary> Initializes a new instance of <see cref="MetricSeriesDefinition"/>. </summary>
         /// <param name="metricId"> metric unique id. </param>
         /// <param name="dimension"> dimension name and value pair. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="metricId"/> or <paramref name="dimension"/> is null. </exception>
         internal MetricSeriesDefinition(string metricId, IReadOnlyDictionary<string, string> dimension)
         {
-            Argument.AssertNotNull(metricId, nameof(metricId));
-            Argument.AssertNotNull(dimension, nameof(dimension));
+            if (metricId == null)
+            {
+                throw new ArgumentNullException(nameof(metricId));
+            }
+            if (dimension == null)
+            {
+                throw new ArgumentNullException(nameof(dimension));
+            }
 
             MetricId = metricId;
             Dimension = dimension;

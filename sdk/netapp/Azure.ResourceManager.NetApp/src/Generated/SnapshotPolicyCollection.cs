@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.NetApp
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SnapshotPolicyResource" /> and their operations.
-    /// Each <see cref="SnapshotPolicyResource" /> in the collection will belong to the same instance of <see cref="NetAppAccountResource" />.
-    /// To get a <see cref="SnapshotPolicyCollection" /> instance call the GetSnapshotPolicies method from an instance of <see cref="NetAppAccountResource" />.
+    /// A class representing a collection of <see cref="SnapshotPolicyResource"/> and their operations.
+    /// Each <see cref="SnapshotPolicyResource"/> in the collection will belong to the same instance of <see cref="NetAppAccountResource"/>.
+    /// To get a <see cref="SnapshotPolicyCollection"/> instance call the GetSnapshotPolicies method from an instance of <see cref="NetAppAccountResource"/>.
     /// </summary>
     public partial class SnapshotPolicyCollection : ArmCollection, IEnumerable<SnapshotPolicyResource>, IAsyncEnumerable<SnapshotPolicyResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<SnapshotPolicyResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string snapshotPolicyName, SnapshotPolicyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<SnapshotPolicyResource> CreateOrUpdate(WaitUntil waitUntil, string snapshotPolicyName, SnapshotPolicyData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
         public virtual async Task<Response<SnapshotPolicyResource>> GetAsync(string snapshotPolicyName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
         public virtual Response<SnapshotPolicyResource> Get(string snapshotPolicyName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.Get");
             scope.Start();
@@ -219,14 +286,22 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SnapshotPolicyResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SnapshotPolicyResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SnapshotPolicyResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _snapshotPolicyRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new SnapshotPolicyResource(Client, SnapshotPolicyData.DeserializeSnapshotPolicyData(e)), _snapshotPolicyClientDiagnostics, Pipeline, "SnapshotPolicyCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => new SnapshotPolicyResource(Client, SnapshotPolicyData.DeserializeSnapshotPolicyData(e)), _snapshotPolicyClientDiagnostics, Pipeline, "SnapshotPolicyCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -240,14 +315,22 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SnapshotPolicyResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SnapshotPolicyResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SnapshotPolicyResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _snapshotPolicyRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, null, e => new SnapshotPolicyResource(Client, SnapshotPolicyData.DeserializeSnapshotPolicyData(e)), _snapshotPolicyClientDiagnostics, Pipeline, "SnapshotPolicyCollection.GetAll", "value", null, cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => new SnapshotPolicyResource(Client, SnapshotPolicyData.DeserializeSnapshotPolicyData(e)), _snapshotPolicyClientDiagnostics, Pipeline, "SnapshotPolicyCollection.GetAll", "value", null, cancellationToken);
         }
 
         /// <summary>
@@ -261,6 +344,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
@@ -269,7 +360,14 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string snapshotPolicyName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.Exists");
             scope.Start();
@@ -296,6 +394,14 @@ namespace Azure.ResourceManager.NetApp
         /// <term>Operation Id</term>
         /// <description>SnapshotPolicies_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
@@ -304,7 +410,14 @@ namespace Azure.ResourceManager.NetApp
         /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
         public virtual Response<bool> Exists(string snapshotPolicyName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(snapshotPolicyName, nameof(snapshotPolicyName));
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
 
             using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.Exists");
             scope.Start();
@@ -312,6 +425,110 @@ namespace Azure.ResourceManager.NetApp
             {
                 var response = _snapshotPolicyRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, snapshotPolicyName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SnapshotPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="snapshotPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SnapshotPolicyResource>> GetIfExistsAsync(string snapshotPolicyName, CancellationToken cancellationToken = default)
+        {
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
+
+            using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _snapshotPolicyRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, snapshotPolicyName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SnapshotPolicyResource>(response.GetRawResponse());
+                return Response.FromValue(new SnapshotPolicyResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SnapshotPolicies_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SnapshotPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="snapshotPolicyName"> The name of the snapshot policy. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="snapshotPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="snapshotPolicyName"/> is null. </exception>
+        public virtual NullableResponse<SnapshotPolicyResource> GetIfExists(string snapshotPolicyName, CancellationToken cancellationToken = default)
+        {
+            if (snapshotPolicyName == null)
+            {
+                throw new ArgumentNullException(nameof(snapshotPolicyName));
+            }
+            if (snapshotPolicyName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(snapshotPolicyName));
+            }
+
+            using var scope = _snapshotPolicyClientDiagnostics.CreateScope("SnapshotPolicyCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _snapshotPolicyRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, snapshotPolicyName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SnapshotPolicyResource>(response.GetRawResponse());
+                return Response.FromValue(new SnapshotPolicyResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

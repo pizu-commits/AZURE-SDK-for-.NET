@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -20,9 +21,9 @@ using Azure.ResourceManager.Automation.Models;
 namespace Azure.ResourceManager.Automation
 {
     /// <summary>
-    /// A class representing a collection of <see cref="AutomationAccountPython2PackageResource" /> and their operations.
-    /// Each <see cref="AutomationAccountPython2PackageResource" /> in the collection will belong to the same instance of <see cref="AutomationAccountResource" />.
-    /// To get an <see cref="AutomationAccountPython2PackageCollection" /> instance call the GetAutomationAccountPython2Packages method from an instance of <see cref="AutomationAccountResource" />.
+    /// A class representing a collection of <see cref="AutomationAccountPython2PackageResource"/> and their operations.
+    /// Each <see cref="AutomationAccountPython2PackageResource"/> in the collection will belong to the same instance of <see cref="AutomationAccountResource"/>.
+    /// To get an <see cref="AutomationAccountPython2PackageCollection"/> instance call the GetAutomationAccountPython2Packages method from an instance of <see cref="AutomationAccountResource"/>.
     /// </summary>
     public partial class AutomationAccountPython2PackageCollection : ArmCollection, IEnumerable<AutomationAccountPython2PackageResource>, IAsyncEnumerable<AutomationAccountPython2PackageResource>
     {
@@ -64,6 +65,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -74,8 +83,18 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> or <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<AutomationAccountPython2PackageResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string packageName, AutomationAccountPython2PackageCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.CreateOrUpdate");
             scope.Start();
@@ -105,6 +124,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_CreateOrUpdate</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -115,8 +142,18 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> or <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<AutomationAccountPython2PackageResource> CreateOrUpdate(WaitUntil waitUntil, string packageName, AutomationAccountPython2PackageCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
-            Argument.AssertNotNull(content, nameof(content));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.CreateOrUpdate");
             scope.Start();
@@ -146,6 +183,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packageName"> The python package name. </param>
@@ -154,7 +199,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
         public virtual async Task<Response<AutomationAccountPython2PackageResource>> GetAsync(string packageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.Get");
             scope.Start();
@@ -183,6 +235,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packageName"> The python package name. </param>
@@ -191,7 +251,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
         public virtual Response<AutomationAccountPython2PackageResource> Get(string packageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.Get");
             scope.Start();
@@ -220,15 +287,23 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_ListByAutomationAccount</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="AutomationAccountPython2PackageResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="AutomationAccountPython2PackageResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<AutomationAccountPython2PackageResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automationAccountPython2PackagePython2PackageRestClient.CreateListByAutomationAccountRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _automationAccountPython2PackagePython2PackageRestClient.CreateListByAutomationAccountNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AutomationAccountPython2PackageResource(Client, AutomationModuleData.DeserializeAutomationModuleData(e)), _automationAccountPython2PackagePython2PackageClientDiagnostics, Pipeline, "AutomationAccountPython2PackageCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new AutomationAccountPython2PackageResource(Client, AutomationModuleData.DeserializeAutomationModuleData(e)), _automationAccountPython2PackagePython2PackageClientDiagnostics, Pipeline, "AutomationAccountPython2PackageCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -242,15 +317,23 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_ListByAutomationAccount</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="AutomationAccountPython2PackageResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="AutomationAccountPython2PackageResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<AutomationAccountPython2PackageResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _automationAccountPython2PackagePython2PackageRestClient.CreateListByAutomationAccountRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _automationAccountPython2PackagePython2PackageRestClient.CreateListByAutomationAccountNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AutomationAccountPython2PackageResource(Client, AutomationModuleData.DeserializeAutomationModuleData(e)), _automationAccountPython2PackagePython2PackageClientDiagnostics, Pipeline, "AutomationAccountPython2PackageCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new AutomationAccountPython2PackageResource(Client, AutomationModuleData.DeserializeAutomationModuleData(e)), _automationAccountPython2PackagePython2PackageClientDiagnostics, Pipeline, "AutomationAccountPython2PackageCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -264,6 +347,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packageName"> The python package name. </param>
@@ -272,7 +363,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string packageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.Exists");
             scope.Start();
@@ -299,6 +397,14 @@ namespace Azure.ResourceManager.Automation
         /// <term>Operation Id</term>
         /// <description>Python2Package_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="packageName"> The python package name. </param>
@@ -307,7 +413,14 @@ namespace Azure.ResourceManager.Automation
         /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
         public virtual Response<bool> Exists(string packageName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(packageName, nameof(packageName));
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
 
             using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.Exists");
             scope.Start();
@@ -315,6 +428,110 @@ namespace Azure.ResourceManager.Automation
             {
                 var response = _automationAccountPython2PackagePython2PackageRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packageName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/python2Packages/{packageName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Python2Package_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="packageName"> The python package name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="packageName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
+        public virtual async Task<NullableResponse<AutomationAccountPython2PackageResource>> GetIfExistsAsync(string packageName, CancellationToken cancellationToken = default)
+        {
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
+
+            using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _automationAccountPython2PackagePython2PackageRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packageName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomationAccountPython2PackageResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomationAccountPython2PackageResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/python2Packages/{packageName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Python2Package_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AutomationAccountPython2PackageResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="packageName"> The python package name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="packageName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="packageName"/> is null. </exception>
+        public virtual NullableResponse<AutomationAccountPython2PackageResource> GetIfExists(string packageName, CancellationToken cancellationToken = default)
+        {
+            if (packageName == null)
+            {
+                throw new ArgumentNullException(nameof(packageName));
+            }
+            if (packageName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(packageName));
+            }
+
+            using var scope = _automationAccountPython2PackagePython2PackageClientDiagnostics.CreateScope("AutomationAccountPython2PackageCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _automationAccountPython2PackagePython2PackageRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, packageName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<AutomationAccountPython2PackageResource>(response.GetRawResponse());
+                return Response.FromValue(new AutomationAccountPython2PackageResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

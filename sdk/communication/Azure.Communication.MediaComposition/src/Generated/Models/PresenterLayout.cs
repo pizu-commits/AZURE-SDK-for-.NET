@@ -7,28 +7,33 @@
 
 using System;
 using Azure.Communication.MediaComposition.Models;
-using Azure.Core;
 
 namespace Azure.Communication.MediaComposition
 {
     /// <summary> Configure the presenter layout. </summary>
     public partial class PresenterLayout : MediaCompositionLayout
     {
-        /// <summary> Initializes a new instance of PresenterLayout. </summary>
+        /// <summary> Initializes a new instance of <see cref="PresenterLayout"/>. </summary>
         /// <param name="presenterId"> Id of the presenter input. </param>
         /// <param name="supportId"> Id of the support input. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="presenterId"/> or <paramref name="supportId"/> is null. </exception>
         public PresenterLayout(string presenterId, string supportId)
         {
-            Argument.AssertNotNull(presenterId, nameof(presenterId));
-            Argument.AssertNotNull(supportId, nameof(supportId));
+            if (presenterId == null)
+            {
+                throw new ArgumentNullException(nameof(presenterId));
+            }
+            if (supportId == null)
+            {
+                throw new ArgumentNullException(nameof(supportId));
+            }
 
             PresenterId = presenterId;
             SupportId = supportId;
             Kind = LayoutType.Presenter;
         }
 
-        /// <summary> Initializes a new instance of PresenterLayout. </summary>
+        /// <summary> Initializes a new instance of <see cref="PresenterLayout"/>. </summary>
         /// <param name="kind"> Kind of layout. </param>
         /// <param name="resolution"> The dimensions of the scene or objects in the scene. </param>
         /// <param name="placeholderImageUri"> Set global placeholder image. </param>

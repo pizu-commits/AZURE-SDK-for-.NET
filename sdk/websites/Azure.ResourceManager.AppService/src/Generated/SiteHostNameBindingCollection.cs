@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.AppService
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SiteHostNameBindingResource" /> and their operations.
-    /// Each <see cref="SiteHostNameBindingResource" /> in the collection will belong to the same instance of <see cref="WebSiteResource" />.
-    /// To get a <see cref="SiteHostNameBindingCollection" /> instance call the GetSiteHostNameBindings method from an instance of <see cref="WebSiteResource" />.
+    /// A class representing a collection of <see cref="SiteHostNameBindingResource"/> and their operations.
+    /// Each <see cref="SiteHostNameBindingResource"/> in the collection will belong to the same instance of <see cref="WebSiteResource"/>.
+    /// To get a <see cref="SiteHostNameBindingCollection"/> instance call the GetSiteHostNameBindings method from an instance of <see cref="WebSiteResource"/>.
     /// </summary>
     public partial class SiteHostNameBindingCollection : ArmCollection, IEnumerable<SiteHostNameBindingResource>, IAsyncEnumerable<SiteHostNameBindingResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_CreateOrUpdateHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -73,8 +82,18 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> or <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<SiteHostNameBindingResource>> CreateOrUpdateAsync(WaitUntil waitUntil, string hostName, HostNameBindingData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.CreateOrUpdate");
             scope.Start();
@@ -104,6 +123,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_CreateOrUpdateHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -114,8 +141,18 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> or <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<SiteHostNameBindingResource> CreateOrUpdate(WaitUntil waitUntil, string hostName, HostNameBindingData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.CreateOrUpdate");
             scope.Start();
@@ -145,6 +182,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hostName"> Hostname in the hostname binding. </param>
@@ -153,7 +198,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
         public virtual async Task<Response<SiteHostNameBindingResource>> GetAsync(string hostName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.Get");
             scope.Start();
@@ -182,6 +234,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hostName"> Hostname in the hostname binding. </param>
@@ -190,7 +250,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
         public virtual Response<SiteHostNameBindingResource> Get(string hostName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.Get");
             scope.Start();
@@ -219,15 +286,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListHostNameBindings</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SiteHostNameBindingResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SiteHostNameBindingResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SiteHostNameBindingResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteHostNameBindingWebAppsRestClient.CreateListHostNameBindingsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteHostNameBindingWebAppsRestClient.CreateListHostNameBindingsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteHostNameBindingResource(Client, HostNameBindingData.DeserializeHostNameBindingData(e)), _siteHostNameBindingWebAppsClientDiagnostics, Pipeline, "SiteHostNameBindingCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SiteHostNameBindingResource(Client, HostNameBindingData.DeserializeHostNameBindingData(e)), _siteHostNameBindingWebAppsClientDiagnostics, Pipeline, "SiteHostNameBindingCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -241,15 +316,23 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_ListHostNameBindings</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SiteHostNameBindingResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SiteHostNameBindingResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SiteHostNameBindingResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _siteHostNameBindingWebAppsRestClient.CreateListHostNameBindingsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _siteHostNameBindingWebAppsRestClient.CreateListHostNameBindingsNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteHostNameBindingResource(Client, HostNameBindingData.DeserializeHostNameBindingData(e)), _siteHostNameBindingWebAppsClientDiagnostics, Pipeline, "SiteHostNameBindingCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SiteHostNameBindingResource(Client, HostNameBindingData.DeserializeHostNameBindingData(e)), _siteHostNameBindingWebAppsClientDiagnostics, Pipeline, "SiteHostNameBindingCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -263,6 +346,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hostName"> Hostname in the hostname binding. </param>
@@ -271,7 +362,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string hostName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.Exists");
             scope.Start();
@@ -298,6 +396,14 @@ namespace Azure.ResourceManager.AppService
         /// <term>Operation Id</term>
         /// <description>WebApps_GetHostNameBinding</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="hostName"> Hostname in the hostname binding. </param>
@@ -306,7 +412,14 @@ namespace Azure.ResourceManager.AppService
         /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
         public virtual Response<bool> Exists(string hostName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(hostName, nameof(hostName));
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
 
             using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.Exists");
             scope.Start();
@@ -314,6 +427,110 @@ namespace Azure.ResourceManager.AppService
             {
                 var response = _siteHostNameBindingWebAppsRestClient.GetHostNameBinding(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, hostName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings/{hostName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetHostNameBinding</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="hostName"> Hostname in the hostname binding. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="hostName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SiteHostNameBindingResource>> GetIfExistsAsync(string hostName, CancellationToken cancellationToken = default)
+        {
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
+
+            using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _siteHostNameBindingWebAppsRestClient.GetHostNameBindingAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, hostName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteHostNameBindingResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteHostNameBindingResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings/{hostName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WebApps_GetHostNameBinding</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-02-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SiteHostNameBindingResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="hostName"> Hostname in the hostname binding. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="hostName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="hostName"/> is null. </exception>
+        public virtual NullableResponse<SiteHostNameBindingResource> GetIfExists(string hostName, CancellationToken cancellationToken = default)
+        {
+            if (hostName == null)
+            {
+                throw new ArgumentNullException(nameof(hostName));
+            }
+            if (hostName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(hostName));
+            }
+
+            using var scope = _siteHostNameBindingWebAppsClientDiagnostics.CreateScope("SiteHostNameBindingCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _siteHostNameBindingWebAppsRestClient.GetHostNameBinding(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, hostName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SiteHostNameBindingResource>(response.GetRawResponse());
+                return Response.FromValue(new SiteHostNameBindingResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

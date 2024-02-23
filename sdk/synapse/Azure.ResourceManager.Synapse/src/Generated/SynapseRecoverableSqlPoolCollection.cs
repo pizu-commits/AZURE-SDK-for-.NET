@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -19,9 +20,9 @@ using Azure.ResourceManager;
 namespace Azure.ResourceManager.Synapse
 {
     /// <summary>
-    /// A class representing a collection of <see cref="SynapseRecoverableSqlPoolResource" /> and their operations.
-    /// Each <see cref="SynapseRecoverableSqlPoolResource" /> in the collection will belong to the same instance of <see cref="SynapseWorkspaceResource" />.
-    /// To get a <see cref="SynapseRecoverableSqlPoolCollection" /> instance call the GetSynapseRecoverableSqlPools method from an instance of <see cref="SynapseWorkspaceResource" />.
+    /// A class representing a collection of <see cref="SynapseRecoverableSqlPoolResource"/> and their operations.
+    /// Each <see cref="SynapseRecoverableSqlPoolResource"/> in the collection will belong to the same instance of <see cref="SynapseWorkspaceResource"/>.
+    /// To get a <see cref="SynapseRecoverableSqlPoolCollection"/> instance call the GetSynapseRecoverableSqlPools method from an instance of <see cref="SynapseWorkspaceResource"/>.
     /// </summary>
     public partial class SynapseRecoverableSqlPoolCollection : ArmCollection, IEnumerable<SynapseRecoverableSqlPoolResource>, IAsyncEnumerable<SynapseRecoverableSqlPoolResource>
     {
@@ -63,6 +64,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sqlPoolName"> The name of the sql pool. </param>
@@ -71,7 +80,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
         public virtual async Task<Response<SynapseRecoverableSqlPoolResource>> GetAsync(string sqlPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlPoolName, nameof(sqlPoolName));
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
 
             using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.Get");
             scope.Start();
@@ -100,6 +116,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sqlPoolName"> The name of the sql pool. </param>
@@ -108,7 +132,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
         public virtual Response<SynapseRecoverableSqlPoolResource> Get(string sqlPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlPoolName, nameof(sqlPoolName));
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
 
             using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.Get");
             scope.Start();
@@ -137,15 +168,23 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="SynapseRecoverableSqlPoolResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="SynapseRecoverableSqlPoolResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<SynapseRecoverableSqlPoolResource> GetAllAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SynapseRecoverableSqlPoolResource(Client, SynapseRecoverableSqlPoolData.DeserializeSynapseRecoverableSqlPoolData(e)), _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics, Pipeline, "SynapseRecoverableSqlPoolCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new SynapseRecoverableSqlPoolResource(Client, SynapseRecoverableSqlPoolData.DeserializeSynapseRecoverableSqlPoolData(e)), _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics, Pipeline, "SynapseRecoverableSqlPoolCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -159,15 +198,23 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="SynapseRecoverableSqlPoolResource" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="SynapseRecoverableSqlPoolResource"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<SynapseRecoverableSqlPoolResource> GetAll(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SynapseRecoverableSqlPoolResource(Client, SynapseRecoverableSqlPoolData.DeserializeSynapseRecoverableSqlPoolData(e)), _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics, Pipeline, "SynapseRecoverableSqlPoolCollection.GetAll", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new SynapseRecoverableSqlPoolResource(Client, SynapseRecoverableSqlPoolData.DeserializeSynapseRecoverableSqlPoolData(e)), _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics, Pipeline, "SynapseRecoverableSqlPoolCollection.GetAll", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -181,6 +228,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sqlPoolName"> The name of the sql pool. </param>
@@ -189,7 +244,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
         public virtual async Task<Response<bool>> ExistsAsync(string sqlPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlPoolName, nameof(sqlPoolName));
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
 
             using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.Exists");
             scope.Start();
@@ -216,6 +278,14 @@ namespace Azure.ResourceManager.Synapse
         /// <term>Operation Id</term>
         /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="sqlPoolName"> The name of the sql pool. </param>
@@ -224,7 +294,14 @@ namespace Azure.ResourceManager.Synapse
         /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
         public virtual Response<bool> Exists(string sqlPoolName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(sqlPoolName, nameof(sqlPoolName));
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
 
             using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.Exists");
             scope.Start();
@@ -232,6 +309,110 @@ namespace Azure.ResourceManager.Synapse
             {
                 var response = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, sqlPoolName, cancellationToken: cancellationToken);
                 return Response.FromValue(response.Value != null, response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/recoverableSqlPools/{sqlPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sqlPoolName"> The name of the sql pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="sqlPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
+        public virtual async Task<NullableResponse<SynapseRecoverableSqlPoolResource>> GetIfExistsAsync(string sqlPoolName, CancellationToken cancellationToken = default)
+        {
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
+
+            using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = await _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.GetAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, sqlPoolName, cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapseRecoverableSqlPoolResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapseRecoverableSqlPoolResource(Client, response.Value), response.GetRawResponse());
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get details for this resource from the service.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/recoverableSqlPools/{sqlPoolName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>WorkspaceManagedSqlServerRecoverableSqlPools_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2021-06-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SynapseRecoverableSqlPoolResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="sqlPoolName"> The name of the sql pool. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="sqlPoolName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="sqlPoolName"/> is null. </exception>
+        public virtual NullableResponse<SynapseRecoverableSqlPoolResource> GetIfExists(string sqlPoolName, CancellationToken cancellationToken = default)
+        {
+            if (sqlPoolName == null)
+            {
+                throw new ArgumentNullException(nameof(sqlPoolName));
+            }
+            if (sqlPoolName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(sqlPoolName));
+            }
+
+            using var scope = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsClientDiagnostics.CreateScope("SynapseRecoverableSqlPoolCollection.GetIfExists");
+            scope.Start();
+            try
+            {
+                var response = _synapseRecoverableSqlPoolWorkspaceManagedSqlServerRecoverableSqlPoolsRestClient.Get(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, sqlPoolName, cancellationToken: cancellationToken);
+                if (response.Value == null)
+                    return new NoValueResponse<SynapseRecoverableSqlPoolResource>(response.GetRawResponse());
+                return Response.FromValue(new SynapseRecoverableSqlPoolResource(Client, response.Value), response.GetRawResponse());
             }
             catch (Exception e)
             {

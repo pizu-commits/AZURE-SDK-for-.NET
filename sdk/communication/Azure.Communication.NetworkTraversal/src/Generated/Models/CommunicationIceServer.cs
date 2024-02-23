@@ -8,14 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Azure.Core;
 
 namespace Azure.Communication.NetworkTraversal
 {
     /// <summary> An instance of a STUN/TURN server with credentials to be used for ICE negotiation. </summary>
     public partial class CommunicationIceServer
     {
-        /// <summary> Initializes a new instance of CommunicationIceServer. </summary>
+        /// <summary> Initializes a new instance of <see cref="CommunicationIceServer"/>. </summary>
         /// <param name="urls"> List of STUN/TURN server URLs. </param>
         /// <param name="username"> User account name which uniquely identifies the credentials. </param>
         /// <param name="credential"> Credential for the server. </param>
@@ -23,9 +22,18 @@ namespace Azure.Communication.NetworkTraversal
         /// <exception cref="ArgumentNullException"> <paramref name="urls"/>, <paramref name="username"/> or <paramref name="credential"/> is null. </exception>
         public CommunicationIceServer(IEnumerable<string> urls, string username, string credential, RouteType routeType)
         {
-            Argument.AssertNotNull(urls, nameof(urls));
-            Argument.AssertNotNull(username, nameof(username));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (urls == null)
+            {
+                throw new ArgumentNullException(nameof(urls));
+            }
+            if (username == null)
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
 
             Urls = urls.ToList();
             Username = username;
@@ -33,7 +41,7 @@ namespace Azure.Communication.NetworkTraversal
             RouteType = routeType;
         }
 
-        /// <summary> Initializes a new instance of CommunicationIceServer. </summary>
+        /// <summary> Initializes a new instance of <see cref="CommunicationIceServer"/>. </summary>
         /// <param name="urls"> List of STUN/TURN server URLs. </param>
         /// <param name="username"> User account name which uniquely identifies the credentials. </param>
         /// <param name="credential"> Credential for the server. </param>

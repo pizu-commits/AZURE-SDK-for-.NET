@@ -33,7 +33,7 @@ namespace Azure.ResourceManager.Support
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2020-04-01";
+            _apiVersion = apiVersion ?? "2022-09-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -66,8 +66,18 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<SupportNameAvailabilityResult>> CheckNameAvailabilityAsync(string subscriptionId, SupportNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateCheckNameAvailabilityRequest(subscriptionId, content);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -93,8 +103,18 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<SupportNameAvailabilityResult> CheckNameAvailability(string subscriptionId, SupportNameAvailabilityContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNull(content, nameof(content));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var message = CreateCheckNameAvailabilityRequest(subscriptionId, content);
             _pipeline.Send(message, cancellationToken);
@@ -146,7 +166,14 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<SupportTicketsListResult>> ListAsync(string subscriptionId, int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListRequest(subscriptionId, top, filter);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -173,7 +200,14 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<SupportTicketsListResult> List(string subscriptionId, int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListRequest(subscriptionId, top, filter);
             _pipeline.Send(message, cancellationToken);
@@ -217,8 +251,22 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<SupportTicketData>> GetAsync(string subscriptionId, string supportTicketName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, supportTicketName);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -246,8 +294,22 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<SupportTicketData> Get(string subscriptionId, string supportTicketName, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
 
             using var message = CreateGetRequest(subscriptionId, supportTicketName);
             _pipeline.Send(message, cancellationToken);
@@ -267,7 +329,7 @@ namespace Azure.ResourceManager.Support
             }
         }
 
-        internal HttpMessage CreateUpdateRequest(string subscriptionId, string supportTicketName, SupportTicketPatch patch)
+        internal HttpMessage CreateUpdateRequest(string subscriptionId, string supportTicketName, UpdateSupportTicket updateSupportTicket)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -283,26 +345,43 @@ namespace Azure.ResourceManager.Support
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("Content-Type", "application/json");
             var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(patch);
+            content.JsonWriter.WriteObjectValue(updateSupportTicket);
             request.Content = content;
             _userAgent.Apply(message);
             return message;
         }
 
-        /// <summary> This API allows you to update the severity level, ticket status, and your contact information in the support ticket.&lt;br/&gt;&lt;br/&gt;Note: The severity levels cannot be changed if a support ticket is actively being worked upon by an Azure support engineer. In such a case, contact your support engineer to request severity update by adding a new communication using the Communications API.&lt;br/&gt;&lt;br/&gt;Changing the ticket status to _closed_ is allowed only on an unassigned case. When an engineer is actively working on the ticket, send your ticket closure request by sending a note to your engineer. </summary>
+        /// <summary> This API allows you to update the severity level, ticket status, advanced diagnostic consent and your contact information in the support ticket.&lt;br/&gt;&lt;br/&gt;Note: The severity levels cannot be changed if a support ticket is actively being worked upon by an Azure support engineer. In such a case, contact your support engineer to request severity update by adding a new communication using the Communications API. </summary>
         /// <param name="subscriptionId"> Azure subscription Id. </param>
         /// <param name="supportTicketName"> Support ticket name. </param>
-        /// <param name="patch"> UpdateSupportTicket object. </param>
+        /// <param name="updateSupportTicket"> UpdateSupportTicket object. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="supportTicketName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="supportTicketName"/> or <paramref name="updateSupportTicket"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<SupportTicketData>> UpdateAsync(string subscriptionId, string supportTicketName, SupportTicketPatch patch, CancellationToken cancellationToken = default)
+        public async Task<Response<SupportTicketData>> UpdateAsync(string subscriptionId, string supportTicketName, UpdateSupportTicket updateSupportTicket, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
+            if (updateSupportTicket == null)
+            {
+                throw new ArgumentNullException(nameof(updateSupportTicket));
+            }
 
-            using var message = CreateUpdateRequest(subscriptionId, supportTicketName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, supportTicketName, updateSupportTicket);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
@@ -318,20 +397,37 @@ namespace Azure.ResourceManager.Support
             }
         }
 
-        /// <summary> This API allows you to update the severity level, ticket status, and your contact information in the support ticket.&lt;br/&gt;&lt;br/&gt;Note: The severity levels cannot be changed if a support ticket is actively being worked upon by an Azure support engineer. In such a case, contact your support engineer to request severity update by adding a new communication using the Communications API.&lt;br/&gt;&lt;br/&gt;Changing the ticket status to _closed_ is allowed only on an unassigned case. When an engineer is actively working on the ticket, send your ticket closure request by sending a note to your engineer. </summary>
+        /// <summary> This API allows you to update the severity level, ticket status, advanced diagnostic consent and your contact information in the support ticket.&lt;br/&gt;&lt;br/&gt;Note: The severity levels cannot be changed if a support ticket is actively being worked upon by an Azure support engineer. In such a case, contact your support engineer to request severity update by adding a new communication using the Communications API. </summary>
         /// <param name="subscriptionId"> Azure subscription Id. </param>
         /// <param name="supportTicketName"> Support ticket name. </param>
-        /// <param name="patch"> UpdateSupportTicket object. </param>
+        /// <param name="updateSupportTicket"> UpdateSupportTicket object. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="supportTicketName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="supportTicketName"/> or <paramref name="updateSupportTicket"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<SupportTicketData> Update(string subscriptionId, string supportTicketName, SupportTicketPatch patch, CancellationToken cancellationToken = default)
+        public Response<SupportTicketData> Update(string subscriptionId, string supportTicketName, UpdateSupportTicket updateSupportTicket, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
-            Argument.AssertNotNull(patch, nameof(patch));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
+            if (updateSupportTicket == null)
+            {
+                throw new ArgumentNullException(nameof(updateSupportTicket));
+            }
 
-            using var message = CreateUpdateRequest(subscriptionId, supportTicketName, patch);
+            using var message = CreateUpdateRequest(subscriptionId, supportTicketName, updateSupportTicket);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
@@ -378,9 +474,26 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response> CreateAsync(string subscriptionId, string supportTicketName, SupportTicketData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, supportTicketName, data);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -403,9 +516,26 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="supportTicketName"/> is an empty string, and was expected to be non-empty. </exception>
         public Response Create(string subscriptionId, string supportTicketName, SupportTicketData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(supportTicketName, nameof(supportTicketName));
-            Argument.AssertNotNull(data, nameof(data));
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
+            if (supportTicketName == null)
+            {
+                throw new ArgumentNullException(nameof(supportTicketName));
+            }
+            if (supportTicketName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(supportTicketName));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var message = CreateCreateRequest(subscriptionId, supportTicketName, data);
             _pipeline.Send(message, cancellationToken);
@@ -443,8 +573,18 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public async Task<Response<SupportTicketsListResult>> ListNextPageAsync(string nextLink, string subscriptionId, int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, top, filter);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
@@ -472,8 +612,18 @@ namespace Azure.ResourceManager.Support
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
         public Response<SupportTicketsListResult> ListNextPage(string nextLink, string subscriptionId, int? top = null, string filter = null, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(nextLink, nameof(nextLink));
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            if (nextLink == null)
+            {
+                throw new ArgumentNullException(nameof(nextLink));
+            }
+            if (subscriptionId == null)
+            {
+                throw new ArgumentNullException(nameof(subscriptionId));
+            }
+            if (subscriptionId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(subscriptionId));
+            }
 
             using var message = CreateListNextPageRequest(nextLink, subscriptionId, top, filter);
             _pipeline.Send(message, cancellationToken);

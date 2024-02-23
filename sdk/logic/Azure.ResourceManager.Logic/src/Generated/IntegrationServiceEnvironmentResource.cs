@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -21,13 +22,16 @@ namespace Azure.ResourceManager.Logic
 {
     /// <summary>
     /// A Class representing an IntegrationServiceEnvironment along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct an <see cref="IntegrationServiceEnvironmentResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetIntegrationServiceEnvironmentResource method.
-    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource" /> using the GetIntegrationServiceEnvironment method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct an <see cref="IntegrationServiceEnvironmentResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetIntegrationServiceEnvironmentResource method.
+    /// Otherwise you can get one from its parent resource <see cref="ResourceGroupResource"/> using the GetIntegrationServiceEnvironment method.
     /// </summary>
     public partial class IntegrationServiceEnvironmentResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="IntegrationServiceEnvironmentResource"/> instance. </summary>
+        /// <param name="subscriptionId"> The subscriptionId. </param>
+        /// <param name="resourceGroup"> The resourceGroup. </param>
+        /// <param name="integrationServiceEnvironmentName"> The integrationServiceEnvironmentName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string subscriptionId, string resourceGroup, string integrationServiceEnvironmentName)
         {
             var resourceId = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}";
@@ -42,12 +46,15 @@ namespace Azure.ResourceManager.Logic
         private readonly IntegrationServiceEnvironmentNetworkHealthRestOperations _integrationServiceEnvironmentNetworkHealthRestClient;
         private readonly IntegrationServiceEnvironmentData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.Logic/integrationServiceEnvironments";
+
         /// <summary> Initializes a new instance of the <see cref="IntegrationServiceEnvironmentResource"/> class for mocking. </summary>
         protected IntegrationServiceEnvironmentResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "IntegrationServiceEnvironmentResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="IntegrationServiceEnvironmentResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal IntegrationServiceEnvironmentResource(ArmClient client, IntegrationServiceEnvironmentData data) : this(client, data.Id)
@@ -72,9 +79,6 @@ namespace Azure.ResourceManager.Logic
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.Logic/integrationServiceEnvironments";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -101,7 +105,7 @@ namespace Azure.ResourceManager.Logic
         /// <returns> An object representing collection of IntegrationServiceEnvironmentManagedApiResources and their operations over a IntegrationServiceEnvironmentManagedApiResource. </returns>
         public virtual IntegrationServiceEnvironmentManagedApiCollection GetIntegrationServiceEnvironmentManagedApis()
         {
-            return GetCachedClient(Client => new IntegrationServiceEnvironmentManagedApiCollection(Client, Id));
+            return GetCachedClient(client => new IntegrationServiceEnvironmentManagedApiCollection(client, Id));
         }
 
         /// <summary>
@@ -115,12 +119,20 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual async Task<Response<IntegrationServiceEnvironmentManagedApiResource>> GetIntegrationServiceEnvironmentManagedApiAsync(string apiName, CancellationToken cancellationToken = default)
         {
@@ -138,12 +150,20 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentManagedApis_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentManagedApiResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="apiName"> The api name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="apiName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="apiName"/> is an empty string, and was expected to be non-empty. </exception>
         [ForwardsClientCalls]
         public virtual Response<IntegrationServiceEnvironmentManagedApiResource> GetIntegrationServiceEnvironmentManagedApi(string apiName, CancellationToken cancellationToken = default)
         {
@@ -160,6 +180,14 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -193,6 +221,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -224,6 +260,14 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Delete</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -259,6 +303,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Delete</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -293,6 +345,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -301,7 +361,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<ArmOperation<IntegrationServiceEnvironmentResource>> UpdateAsync(WaitUntil waitUntil, IntegrationServiceEnvironmentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.Update");
             scope.Start();
@@ -331,6 +394,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Update</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -339,7 +410,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual ArmOperation<IntegrationServiceEnvironmentResource> Update(WaitUntil waitUntil, IntegrationServiceEnvironmentData data, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(data, nameof(data));
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.Update");
             scope.Start();
@@ -368,6 +442,14 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Restart</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -399,6 +481,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Restart</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -429,15 +519,19 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentSkus_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="IntegrationServiceEnvironmentSkuDefinition" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> An async collection of <see cref="IntegrationServiceEnvironmentSkuDefinition"/> that may take multiple service requests to iterate over. </returns>
         public virtual AsyncPageable<IntegrationServiceEnvironmentSkuDefinition> GetIntegrationServiceEnvironmentSkusAsync(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationServiceEnvironmentSkusRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationServiceEnvironmentSkusRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, IntegrationServiceEnvironmentSkuDefinition.DeserializeIntegrationServiceEnvironmentSkuDefinition, _integrationServiceEnvironmentSkusClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentResource.GetIntegrationServiceEnvironmentSkus", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => IntegrationServiceEnvironmentSkuDefinition.DeserializeIntegrationServiceEnvironmentSkuDefinition(e), _integrationServiceEnvironmentSkusClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentResource.GetIntegrationServiceEnvironmentSkus", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -451,15 +545,19 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentSkus_List</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="IntegrationServiceEnvironmentSkuDefinition" /> that may take multiple service requests to iterate over. </returns>
+        /// <returns> A collection of <see cref="IntegrationServiceEnvironmentSkuDefinition"/> that may take multiple service requests to iterate over. </returns>
         public virtual Pageable<IntegrationServiceEnvironmentSkuDefinition> GetIntegrationServiceEnvironmentSkus(CancellationToken cancellationToken = default)
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => _integrationServiceEnvironmentSkusRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _integrationServiceEnvironmentSkusRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, IntegrationServiceEnvironmentSkuDefinition.DeserializeIntegrationServiceEnvironmentSkuDefinition, _integrationServiceEnvironmentSkusClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentResource.GetIntegrationServiceEnvironmentSkus", "value", "nextLink", cancellationToken);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => IntegrationServiceEnvironmentSkuDefinition.DeserializeIntegrationServiceEnvironmentSkuDefinition(e), _integrationServiceEnvironmentSkusClientDiagnostics, Pipeline, "IntegrationServiceEnvironmentResource.GetIntegrationServiceEnvironmentSkus", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -472,6 +570,10 @@ namespace Azure.ResourceManager.Logic
         /// <item>
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentNetworkHealth_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
         /// </item>
         /// </list>
         /// </summary>
@@ -503,6 +605,10 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironmentNetworkHealth_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -533,6 +639,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -541,8 +655,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual async Task<Response<IntegrationServiceEnvironmentResource>> AddTagAsync(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.AddTag");
             scope.Start();
@@ -587,6 +707,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -595,8 +723,14 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public virtual Response<IntegrationServiceEnvironmentResource> AddTag(string key, string value, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
-            Argument.AssertNotNull(value, nameof(value));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.AddTag");
             scope.Start();
@@ -641,6 +775,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -648,7 +790,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual async Task<Response<IntegrationServiceEnvironmentResource>> SetTagsAsync(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.SetTags");
             scope.Start();
@@ -690,6 +835,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="tags"> The set of tags to use as replacement. </param>
@@ -697,7 +850,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is null. </exception>
         public virtual Response<IntegrationServiceEnvironmentResource> SetTags(IDictionary<string, string> tags, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(tags, nameof(tags));
+            if (tags == null)
+            {
+                throw new ArgumentNullException(nameof(tags));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.SetTags");
             scope.Start();
@@ -739,6 +895,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -746,7 +910,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual async Task<Response<IntegrationServiceEnvironmentResource>> RemoveTagAsync(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.RemoveTag");
             scope.Start();
@@ -791,6 +958,14 @@ namespace Azure.ResourceManager.Logic
         /// <term>Operation Id</term>
         /// <description>IntegrationServiceEnvironments_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2019-05-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="IntegrationServiceEnvironmentResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="key"> The key for the tag. </param>
@@ -798,7 +973,10 @@ namespace Azure.ResourceManager.Logic
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         public virtual Response<IntegrationServiceEnvironmentResource> RemoveTag(string key, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(key, nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             using var scope = _integrationServiceEnvironmentClientDiagnostics.CreateScope("IntegrationServiceEnvironmentResource.RemoveTag");
             scope.Start();

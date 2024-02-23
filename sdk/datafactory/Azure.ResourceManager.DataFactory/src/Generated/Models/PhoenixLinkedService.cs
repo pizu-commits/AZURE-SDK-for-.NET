@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,23 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Phoenix server linked service. </summary>
     public partial class PhoenixLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of PhoenixLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoenixLinkedService"/>. </summary>
         /// <param name="host"> The IP address or host name of the Phoenix server. (i.e. 192.168.222.160). </param>
         /// <param name="authenticationType"> The authentication mechanism used to connect to the Phoenix server. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="host"/> is null. </exception>
         public PhoenixLinkedService(DataFactoryElement<string> host, PhoenixAuthenticationType authenticationType)
         {
-            Argument.AssertNotNull(host, nameof(host));
+            if (host == null)
+            {
+                throw new ArgumentNullException(nameof(host));
+            }
 
             Host = host;
             AuthenticationType = authenticationType;
             LinkedServiceType = "Phoenix";
         }
 
-        /// <summary> Initializes a new instance of PhoenixLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="PhoenixLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -62,6 +64,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             AllowSelfSignedServerCert = allowSelfSignedServerCert;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Phoenix";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="PhoenixLinkedService"/> for deserialization. </summary>
+        internal PhoenixLinkedService()
+        {
         }
 
         /// <summary> The IP address or host name of the Phoenix server. (i.e. 192.168.222.160). </summary>

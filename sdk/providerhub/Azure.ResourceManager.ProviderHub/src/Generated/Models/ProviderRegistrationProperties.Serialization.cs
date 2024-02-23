@@ -6,16 +6,25 @@
 #nullable disable
 
 using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.ResourceManager.ProviderHub.Models
 {
-    public partial class ProviderRegistrationProperties : IUtf8JsonSerializable
+    public partial class ProviderRegistrationProperties : IUtf8JsonSerializable, IJsonModel<ProviderRegistrationProperties>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<ProviderRegistrationProperties>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<ProviderRegistrationProperties>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ProviderRegistrationProperties>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ProviderRegistrationProperties)} does not support '{format}' format.");
+            }
+
             writer.WriteStartObject();
             if (Optional.IsDefined(ProviderHubMetadata))
             {
@@ -103,7 +112,10 @@ namespace Azure.ResourceManager.ProviderHub.Models
 #if NET6_0_OR_GREATER
 				writer.WriteRawValue(Metadata);
 #else
-                JsonSerializer.Serialize(writer, JsonDocument.Parse(Metadata.ToString()).RootElement);
+                using (JsonDocument document = JsonDocument.Parse(Metadata))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
 #endif
             }
             if (Optional.IsDefined(TemplateDeploymentOptions))
@@ -111,11 +123,40 @@ namespace Azure.ResourceManager.ProviderHub.Models
                 writer.WritePropertyName("templateDeploymentOptions"u8);
                 writer.WriteObjectValue(TemplateDeploymentOptions);
             }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
         }
 
-        internal static ProviderRegistrationProperties DeserializeProviderRegistrationProperties(JsonElement element)
+        ProviderRegistrationProperties IJsonModel<ProviderRegistrationProperties>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<ProviderRegistrationProperties>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(ProviderRegistrationProperties)} does not support '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeProviderRegistrationProperties(document.RootElement, options);
+        }
+
+        internal static ProviderRegistrationProperties DeserializeProviderRegistrationProperties(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -135,6 +176,8 @@ namespace Azure.ResourceManager.ProviderHub.Models
             Optional<IList<ResourceProviderCapabilities>> capabilities = default;
             Optional<BinaryData> metadata = default;
             Optional<TemplateDeploymentOptions> templateDeploymentOptions = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("providerHubMetadata"u8))
@@ -143,7 +186,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    providerHubMetadata = ProviderHubMetadata.DeserializeProviderHubMetadata(property.Value);
+                    providerHubMetadata = ProviderHubMetadata.DeserializeProviderHubMetadata(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("provisioningState"u8))
@@ -161,7 +204,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    subscriptionLifecycleNotificationSpecifications = SubscriptionLifecycleNotificationSpecifications.DeserializeSubscriptionLifecycleNotificationSpecifications(property.Value);
+                    subscriptionLifecycleNotificationSpecifications = SubscriptionLifecycleNotificationSpecifications.DeserializeSubscriptionLifecycleNotificationSpecifications(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("providerAuthentication"u8))
@@ -170,7 +213,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    providerAuthentication = ResourceProviderAuthentication.DeserializeResourceProviderAuthentication(property.Value);
+                    providerAuthentication = ResourceProviderAuthentication.DeserializeResourceProviderAuthentication(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("providerAuthorizations"u8))
@@ -182,7 +225,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     List<ResourceProviderAuthorization> array = new List<ResourceProviderAuthorization>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(ResourceProviderAuthorization.DeserializeResourceProviderAuthorization(item));
+                        array.Add(ResourceProviderAuthorization.DeserializeResourceProviderAuthorization(item, options));
                     }
                     providerAuthorizations = array;
                     continue;
@@ -226,7 +269,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    featuresRule = FeaturesRule.DeserializeFeaturesRule(property.Value);
+                    featuresRule = FeaturesRule.DeserializeFeaturesRule(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("requestHeaderOptions"u8))
@@ -235,7 +278,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    requestHeaderOptions = RequestHeaderOptions.DeserializeRequestHeaderOptions(property.Value);
+                    requestHeaderOptions = RequestHeaderOptions.DeserializeRequestHeaderOptions(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("management"u8))
@@ -244,7 +287,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    management = ResourceProviderManagement.DeserializeResourceProviderManagement(property.Value);
+                    management = ResourceProviderManagement.DeserializeResourceProviderManagement(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("capabilities"u8))
@@ -256,7 +299,7 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     List<ResourceProviderCapabilities> array = new List<ResourceProviderCapabilities>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(ResourceProviderCapabilities.DeserializeResourceProviderCapabilities(item));
+                        array.Add(ResourceProviderCapabilities.DeserializeResourceProviderCapabilities(item, options));
                     }
                     capabilities = array;
                     continue;
@@ -276,11 +319,47 @@ namespace Azure.ResourceManager.ProviderHub.Models
                     {
                         continue;
                     }
-                    templateDeploymentOptions = TemplateDeploymentOptions.DeserializeTemplateDeploymentOptions(property.Value);
+                    templateDeploymentOptions = TemplateDeploymentOptions.DeserializeTemplateDeploymentOptions(property.Value, options);
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new ProviderRegistrationProperties(providerAuthentication.Value, Optional.ToList(providerAuthorizations), @namespace.Value, providerVersion.Value, Optional.ToNullable(providerType), Optional.ToList(requiredFeatures), featuresRule.Value, requestHeaderOptions.Value, management.Value, Optional.ToList(capabilities), metadata.Value, templateDeploymentOptions.Value, providerHubMetadata.Value, Optional.ToNullable(provisioningState), subscriptionLifecycleNotificationSpecifications.Value);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new ProviderRegistrationProperties(providerAuthentication.Value, Optional.ToList(providerAuthorizations), @namespace.Value, providerVersion.Value, Optional.ToNullable(providerType), Optional.ToList(requiredFeatures), featuresRule.Value, requestHeaderOptions.Value, management.Value, Optional.ToList(capabilities), metadata.Value, templateDeploymentOptions.Value, serializedAdditionalRawData, providerHubMetadata.Value, Optional.ToNullable(provisioningState), subscriptionLifecycleNotificationSpecifications.Value);
         }
+
+        BinaryData IPersistableModel<ProviderRegistrationProperties>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ProviderRegistrationProperties>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(ProviderRegistrationProperties)} does not support '{options.Format}' format.");
+            }
+        }
+
+        ProviderRegistrationProperties IPersistableModel<ProviderRegistrationProperties>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<ProviderRegistrationProperties>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeProviderRegistrationProperties(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(ProviderRegistrationProperties)} does not support '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<ProviderRegistrationProperties>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

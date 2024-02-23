@@ -6,27 +6,32 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Azure.Storage.Blobs.Models
 {
     /// <summary> Blob info from a Filter Blobs API call. </summary>
     internal partial class FilterBlobItem
     {
-        /// <summary> Initializes a new instance of FilterBlobItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="FilterBlobItem"/>. </summary>
         /// <param name="name"></param>
         /// <param name="containerName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="containerName"/> is null. </exception>
         internal FilterBlobItem(string name, string containerName)
         {
-            Argument.AssertNotNull(name, nameof(name));
-            Argument.AssertNotNull(containerName, nameof(containerName));
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            if (containerName == null)
+            {
+                throw new ArgumentNullException(nameof(containerName));
+            }
 
             Name = name;
             ContainerName = containerName;
         }
 
-        /// <summary> Initializes a new instance of FilterBlobItem. </summary>
+        /// <summary> Initializes a new instance of <see cref="FilterBlobItem"/>. </summary>
         /// <param name="name"></param>
         /// <param name="containerName"></param>
         /// <param name="tags"> Blob tags. </param>

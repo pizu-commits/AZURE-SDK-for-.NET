@@ -20,13 +20,14 @@ namespace Azure.ResourceManager.BillingBenefits
 {
     /// <summary>
     /// A Class representing a BillingBenefitsReservationOrderAlias along with the instance operations that can be performed on it.
-    /// If you have a <see cref="ResourceIdentifier" /> you can construct a <see cref="BillingBenefitsReservationOrderAliasResource" />
-    /// from an instance of <see cref="ArmClient" /> using the GetBillingBenefitsReservationOrderAliasResource method.
-    /// Otherwise you can get one from its parent resource <see cref="TenantResource" /> using the GetBillingBenefitsReservationOrderAlias method.
+    /// If you have a <see cref="ResourceIdentifier"/> you can construct a <see cref="BillingBenefitsReservationOrderAliasResource"/>
+    /// from an instance of <see cref="ArmClient"/> using the GetBillingBenefitsReservationOrderAliasResource method.
+    /// Otherwise you can get one from its parent resource <see cref="TenantResource"/> using the GetBillingBenefitsReservationOrderAlias method.
     /// </summary>
     public partial class BillingBenefitsReservationOrderAliasResource : ArmResource
     {
         /// <summary> Generate the resource identifier of a <see cref="BillingBenefitsReservationOrderAliasResource"/> instance. </summary>
+        /// <param name="reservationOrderAliasName"> The reservationOrderAliasName. </param>
         public static ResourceIdentifier CreateResourceIdentifier(string reservationOrderAliasName)
         {
             var resourceId = $"/providers/Microsoft.BillingBenefits/reservationOrderAliases/{reservationOrderAliasName}";
@@ -37,12 +38,15 @@ namespace Azure.ResourceManager.BillingBenefits
         private readonly ReservationOrderAliasRestOperations _billingBenefitsReservationOrderAliasReservationOrderAliasRestClient;
         private readonly BillingBenefitsReservationOrderAliasData _data;
 
+        /// <summary> Gets the resource type for the operations. </summary>
+        public static readonly ResourceType ResourceType = "Microsoft.BillingBenefits/reservationOrderAliases";
+
         /// <summary> Initializes a new instance of the <see cref="BillingBenefitsReservationOrderAliasResource"/> class for mocking. </summary>
         protected BillingBenefitsReservationOrderAliasResource()
         {
         }
 
-        /// <summary> Initializes a new instance of the <see cref = "BillingBenefitsReservationOrderAliasResource"/> class. </summary>
+        /// <summary> Initializes a new instance of the <see cref="BillingBenefitsReservationOrderAliasResource"/> class. </summary>
         /// <param name="client"> The client parameters to use in these operations. </param>
         /// <param name="data"> The resource that is the target of operations. </param>
         internal BillingBenefitsReservationOrderAliasResource(ArmClient client, BillingBenefitsReservationOrderAliasData data) : this(client, data.Id)
@@ -63,9 +67,6 @@ namespace Azure.ResourceManager.BillingBenefits
 			ValidateResourceId(Id);
 #endif
         }
-
-        /// <summary> Gets the resource type for the operations. </summary>
-        public static readonly ResourceType ResourceType = "Microsoft.BillingBenefits/reservationOrderAliases";
 
         /// <summary> Gets whether or not the current instance has data. </summary>
         public virtual bool HasData { get; }
@@ -99,6 +100,14 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <term>Operation Id</term>
         /// <description>ReservationOrderAlias_Get</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingBenefitsReservationOrderAliasResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -130,6 +139,14 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <item>
         /// <term>Operation Id</term>
         /// <description>ReservationOrderAlias_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingBenefitsReservationOrderAliasResource"/></description>
         /// </item>
         /// </list>
         /// </summary>
@@ -163,6 +180,14 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <term>Operation Id</term>
         /// <description>ReservationOrderAlias_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingBenefitsReservationOrderAliasResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -171,7 +196,10 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<ArmOperation<BillingBenefitsReservationOrderAliasResource>> UpdateAsync(WaitUntil waitUntil, BillingBenefitsReservationOrderAliasCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingBenefitsReservationOrderAliasReservationOrderAliasClientDiagnostics.CreateScope("BillingBenefitsReservationOrderAliasResource.Update");
             scope.Start();
@@ -201,6 +229,14 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <term>Operation Id</term>
         /// <description>ReservationOrderAlias_Create</description>
         /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2022-11-01</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="BillingBenefitsReservationOrderAliasResource"/></description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
@@ -209,7 +245,10 @@ namespace Azure.ResourceManager.BillingBenefits
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual ArmOperation<BillingBenefitsReservationOrderAliasResource> Update(WaitUntil waitUntil, BillingBenefitsReservationOrderAliasCreateOrUpdateContent content, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = _billingBenefitsReservationOrderAliasReservationOrderAliasClientDiagnostics.CreateScope("BillingBenefitsReservationOrderAliasResource.Update");
             scope.Start();

@@ -7,27 +7,29 @@
 
 using System;
 using Azure.AI.TextAnalytics;
-using Azure.Core;
 
 namespace Azure.AI.TextAnalytics.Models
 {
     /// <summary> The KeyPhraseExtractionLROResult. </summary>
     internal partial class KeyPhraseExtractionLROResult : AnalyzeTextLROResult
     {
-        /// <summary> Initializes a new instance of KeyPhraseExtractionLROResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="KeyPhraseExtractionLROResult"/>. </summary>
         /// <param name="lastUpdateDateTime"></param>
         /// <param name="status"></param>
         /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         public KeyPhraseExtractionLROResult(DateTimeOffset lastUpdateDateTime, TextAnalyticsOperationStatus status, KeyPhraseResult results) : base(lastUpdateDateTime, status)
         {
-            Argument.AssertNotNull(results, nameof(results));
+            if (results == null)
+            {
+                throw new ArgumentNullException(nameof(results));
+            }
 
             Results = results;
             Kind = AnalyzeTextLROResultsKind.KeyPhraseExtractionLROResults;
         }
 
-        /// <summary> Initializes a new instance of KeyPhraseExtractionLROResult. </summary>
+        /// <summary> Initializes a new instance of <see cref="KeyPhraseExtractionLROResult"/>. </summary>
         /// <param name="lastUpdateDateTime"></param>
         /// <param name="status"></param>
         /// <param name="kind"> Enumeration of supported Text Analysis long-running operation task results. </param>

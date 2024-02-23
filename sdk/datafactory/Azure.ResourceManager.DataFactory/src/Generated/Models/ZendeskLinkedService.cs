@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,20 +14,23 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Linked service for Zendesk. </summary>
     public partial class ZendeskLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of ZendeskLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ZendeskLinkedService"/>. </summary>
         /// <param name="authenticationType"> The authentication type to use. </param>
         /// <param name="uri"> The url to connect Zendesk source. Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         public ZendeskLinkedService(ZendeskAuthenticationType authenticationType, DataFactoryElement<string> uri)
         {
-            Argument.AssertNotNull(uri, nameof(uri));
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
 
             AuthenticationType = authenticationType;
             Uri = uri;
             LinkedServiceType = "Zendesk";
         }
 
-        /// <summary> Initializes a new instance of ZendeskLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="ZendeskLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -50,6 +52,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             ApiToken = apiToken;
             EncryptedCredential = encryptedCredential;
             LinkedServiceType = linkedServiceType ?? "Zendesk";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="ZendeskLinkedService"/> for deserialization. </summary>
+        internal ZendeskLinkedService()
+        {
         }
 
         /// <summary> The authentication type to use. </summary>

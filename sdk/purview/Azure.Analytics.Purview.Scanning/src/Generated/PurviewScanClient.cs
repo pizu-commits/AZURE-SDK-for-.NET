@@ -7,6 +7,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
@@ -38,8 +39,8 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewScanClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="dataSourceName"> The String to use. </param>
-        /// <param name="scanName"> The String to use. </param>
+        /// <param name="dataSourceName"> The <see cref="string"/> to use. </param>
+        /// <param name="scanName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="dataSourceName"/>, <paramref name="scanName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceName"/> or <paramref name="scanName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -49,18 +50,38 @@ namespace Azure.Analytics.Purview.Scanning
 
         /// <summary> Initializes a new instance of PurviewScanClient. </summary>
         /// <param name="endpoint"> The scanning endpoint of your purview account. Example: https://{accountName}.scan.purview.azure.com. </param>
-        /// <param name="dataSourceName"> The String to use. </param>
-        /// <param name="scanName"> The String to use. </param>
+        /// <param name="dataSourceName"> The <see cref="string"/> to use. </param>
+        /// <param name="scanName"> The <see cref="string"/> to use. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="dataSourceName"/>, <paramref name="scanName"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataSourceName"/> or <paramref name="scanName"/> is an empty string, and was expected to be non-empty. </exception>
         public PurviewScanClient(Uri endpoint, string dataSourceName, string scanName, TokenCredential credential, PurviewScanningServiceClientOptions options)
         {
-            Argument.AssertNotNull(endpoint, nameof(endpoint));
-            Argument.AssertNotNullOrEmpty(dataSourceName, nameof(dataSourceName));
-            Argument.AssertNotNullOrEmpty(scanName, nameof(scanName));
-            Argument.AssertNotNull(credential, nameof(credential));
+            if (endpoint == null)
+            {
+                throw new ArgumentNullException(nameof(endpoint));
+            }
+            if (dataSourceName == null)
+            {
+                throw new ArgumentNullException(nameof(dataSourceName));
+            }
+            if (dataSourceName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(dataSourceName));
+            }
+            if (scanName == null)
+            {
+                throw new ArgumentNullException(nameof(scanName));
+            }
+            if (scanName.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(scanName));
+            }
+            if (credential == null)
+            {
+                throw new ArgumentNullException(nameof(credential));
+            }
             options ??= new PurviewScanningServiceClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
@@ -212,7 +233,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CreateOrUpdateAsync(RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateAsync(RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CreateOrUpdate");
             scope.Start();
@@ -246,7 +270,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CreateOrUpdate(RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdate(RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CreateOrUpdate");
             scope.Start();
@@ -392,8 +419,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runId"> The String to use. </param>
-        /// <param name="scanLevel"> The ScanLevelType to use. Allowed values: "Full" | "Incremental". </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="scanLevel"> The <see cref="string"/> to use. Allowed values: "Full" | "Incremental". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -402,7 +429,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='RunScanAsync(string,string,RequestContext)']/*" />
         public virtual async Task<Response> RunScanAsync(string runId, string scanLevel, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(runId, nameof(runId));
+            if (runId == null)
+            {
+                throw new ArgumentNullException(nameof(runId));
+            }
+            if (runId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(runId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.RunScan");
             scope.Start();
@@ -428,8 +462,8 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runId"> The String to use. </param>
-        /// <param name="scanLevel"> The ScanLevelType to use. Allowed values: "Full" | "Incremental". </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="scanLevel"> The <see cref="string"/> to use. Allowed values: "Full" | "Incremental". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -438,7 +472,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='RunScan(string,string,RequestContext)']/*" />
         public virtual Response RunScan(string runId, string scanLevel, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(runId, nameof(runId));
+            if (runId == null)
+            {
+                throw new ArgumentNullException(nameof(runId));
+            }
+            if (runId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(runId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.RunScan");
             scope.Start();
@@ -464,7 +505,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runId"> The String to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -473,7 +514,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CancelScanAsync(string,RequestContext)']/*" />
         public virtual async Task<Response> CancelScanAsync(string runId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(runId, nameof(runId));
+            if (runId == null)
+            {
+                throw new ArgumentNullException(nameof(runId));
+            }
+            if (runId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(runId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CancelScan");
             scope.Start();
@@ -499,7 +547,7 @@ namespace Azure.Analytics.Purview.Scanning
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runId"> The String to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -508,7 +556,14 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CancelScan(string,RequestContext)']/*" />
         public virtual Response CancelScan(string runId, RequestContext context)
         {
-            Argument.AssertNotNullOrEmpty(runId, nameof(runId));
+            if (runId == null)
+            {
+                throw new ArgumentNullException(nameof(runId));
+            }
+            if (runId.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty string.", nameof(runId));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CancelScan");
             scope.Start();
@@ -602,7 +657,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CreateOrUpdateTriggerAsync(RequestContent,RequestContext)']/*" />
         public virtual async Task<Response> CreateOrUpdateTriggerAsync(RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CreateOrUpdateTrigger");
             scope.Start();
@@ -636,7 +694,10 @@ namespace Azure.Analytics.Purview.Scanning
         /// <include file="Docs/PurviewScanClient.xml" path="doc/members/member[@name='CreateOrUpdateTrigger(RequestContent,RequestContext)']/*" />
         public virtual Response CreateOrUpdateTrigger(RequestContent content, RequestContext context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
 
             using var scope = ClientDiagnostics.CreateScope("PurviewScanClient.CreateOrUpdateTrigger");
             scope.Start();
@@ -730,7 +791,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetRunsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetRunsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanClient.GetRuns", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanClient.GetRuns", "value", "nextLink", context);
         }
 
         /// <summary>
@@ -751,7 +812,7 @@ namespace Azure.Analytics.Purview.Scanning
         {
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetRunsRequest(context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetRunsNextPageRequest(nextLink, context);
-            return PageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanClient.GetRuns", "value", "nextLink", context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "PurviewScanClient.GetRuns", "value", "nextLink", context);
         }
 
         internal HttpMessage CreateGetFilterRequest(RequestContext context)

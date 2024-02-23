@@ -6,31 +6,40 @@
 #nullable disable
 
 using System;
-using Azure.Core;
+using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Cdn.Models
 {
     /// <summary> Defines the url redirect action for the delivery rule. </summary>
     public partial class UriRedirectAction : DeliveryRuleAction
     {
-        /// <summary> Initializes a new instance of UriRedirectAction. </summary>
+        /// <summary> Initializes a new instance of <see cref="UriRedirectAction"/>. </summary>
         /// <param name="properties"> Defines the parameters for the action. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="properties"/> is null. </exception>
         public UriRedirectAction(UriRedirectActionProperties properties)
         {
-            Argument.AssertNotNull(properties, nameof(properties));
+            if (properties == null)
+            {
+                throw new ArgumentNullException(nameof(properties));
+            }
 
             Properties = properties;
             Name = DeliveryRuleActionType.UriRedirect;
         }
 
-        /// <summary> Initializes a new instance of UriRedirectAction. </summary>
+        /// <summary> Initializes a new instance of <see cref="UriRedirectAction"/>. </summary>
         /// <param name="name"> The name of the action for the delivery rule. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="properties"> Defines the parameters for the action. </param>
-        internal UriRedirectAction(DeliveryRuleActionType name, UriRedirectActionProperties properties) : base(name)
+        internal UriRedirectAction(DeliveryRuleActionType name, IDictionary<string, BinaryData> serializedAdditionalRawData, UriRedirectActionProperties properties) : base(name, serializedAdditionalRawData)
         {
             Properties = properties;
             Name = name;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="UriRedirectAction"/> for deserialization. </summary>
+        internal UriRedirectAction()
+        {
         }
 
         /// <summary> Defines the parameters for the action. </summary>

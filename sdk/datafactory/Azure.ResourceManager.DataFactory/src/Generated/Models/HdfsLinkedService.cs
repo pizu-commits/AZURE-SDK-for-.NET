@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
 using Azure.Core.Expressions.DataFactory;
 
 namespace Azure.ResourceManager.DataFactory.Models
@@ -15,18 +14,21 @@ namespace Azure.ResourceManager.DataFactory.Models
     /// <summary> Hadoop Distributed File System (HDFS) linked service. </summary>
     public partial class HdfsLinkedService : DataFactoryLinkedServiceProperties
     {
-        /// <summary> Initializes a new instance of HdfsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HdfsLinkedService"/>. </summary>
         /// <param name="uri"> The URL of the HDFS service endpoint, e.g. http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with resultType string). </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         public HdfsLinkedService(DataFactoryElement<string> uri)
         {
-            Argument.AssertNotNull(uri, nameof(uri));
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
 
             Uri = uri;
             LinkedServiceType = "Hdfs";
         }
 
-        /// <summary> Initializes a new instance of HdfsLinkedService. </summary>
+        /// <summary> Initializes a new instance of <see cref="HdfsLinkedService"/>. </summary>
         /// <param name="linkedServiceType"> Type of linked service. </param>
         /// <param name="connectVia"> The integration runtime reference. </param>
         /// <param name="description"> Linked service description. </param>
@@ -46,6 +48,11 @@ namespace Azure.ResourceManager.DataFactory.Models
             UserName = userName;
             Password = password;
             LinkedServiceType = linkedServiceType ?? "Hdfs";
+        }
+
+        /// <summary> Initializes a new instance of <see cref="HdfsLinkedService"/> for deserialization. </summary>
+        internal HdfsLinkedService()
+        {
         }
 
         /// <summary> The URL of the HDFS service endpoint, e.g. http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with resultType string). </summary>
