@@ -26,8 +26,7 @@ namespace Azure.Developer.DevCenter.Tests
                 TestEnvironment.Credential,
                 InstrumentClientOptions(new DevCenterClientOptions())));
 
-        [RecordedTest]
-        [PlaybackOnly("Dev box creation time takes several hours which is blocking for live integration tests")]
+        [Test]
         public async Task DevBoxCreationSucceeds()
         {
             DevBoxesClient devBoxesClient = GetDevBoxesClient();

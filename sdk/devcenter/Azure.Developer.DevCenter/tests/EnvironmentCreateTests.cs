@@ -26,8 +26,7 @@ namespace Azure.Developer.DevCenter.Tests
                 TestEnvironment.Credential,
                 InstrumentClientOptions(new DevCenterClientOptions())));
 
-        [RecordedTest]
-        [PlaybackOnly("Environment creation is unstable due to service issues currently under investigation")]
+        [Test]
         public async Task EnvironmentCreationSucceeds()
         {
             EnvironmentsClient environmentsClient = GetEnvironmentsClient();
