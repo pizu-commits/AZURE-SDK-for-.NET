@@ -24,6 +24,9 @@ parameters:
   - name: ServiceDirectory
     type: string
     default: ''
+  - name: AdditionalOutputs
+    type: object
+    default: []
   - name: OSName
     type: string
 
@@ -35,6 +38,7 @@ jobs:
     condition: and(succeededOrFailed(), ne(variables['Skip.Test'], true), ne(${{ parameters.Matrix }}, '{}'))
     strategy:
       matrix: $[ ${{ parameters.Matrix }} ]
+
     pool:
       vmImage: $(OSVmImage)
       name: $(Pool)
@@ -42,6 +46,27 @@ jobs:
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
       # Add a default so the job doesn't fail when the matrix is empty
       container: $[ variables['Container'] ]
+
+    templateContext:
+      outputs:
+        - output: TestBinlog
+          targetPath: $(Build.ArtifactStagingDirectory)/test.binlog
+          artifactName: binlog_$(Agent.JobName)
+          condition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
+          sbomEnabled: false
+        - output: DebugArtifacts
+          targetPath: $(Build.SourcesDirectory)/artifacts
+          artifactName: artifacts_$(Agent.JobName)
+          condition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
+          sbomEnabled: false
+        # See eng/pipelines/templates/steps/upload-dumps.yml for corresponding file copy step
+        - output: Dumps
+          targetPath: '$(Build.ArtifactStagingDirectory)/dumps.zip'
+          artifactName: "Crash Dump - $(System.JobName) - $(System.JobAttempt)"
+          condition: eq(variables['uploadDump'], 'true')
+          sbomEnabled: false
+        - ${{ parameters.AdditionalOutputs }}
+
     steps:
       - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
         - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
@@ -117,18 +142,6 @@ jobs:
           testRunTitle: "${{ parameters.OSName }} $(TestTargetFramework)"
           testResultsFormat: "VSTest"
           mergeTestResults: true
-      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
-        parameters:
-          ArtifactPath: $(Build.ArtifactStagingDirectory)/test.binlog
-          ArtifactName: binlog_$(Agent.JobName)
-          CustomCondition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
-          SbomEnabled: false
-      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
-        parameters:
-          ArtifactPath: $(Build.SourcesDirectory)/artifacts
-          ArtifactName: artifacts_$(Agent.JobName)
-          CustomCondition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
-          SbomEnabled: false
       - template: /eng/pipelines/templates/steps/upload-dumps.yml
       - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
         condition: and(succeededOrFailed(), eq(variables['CollectCoverage'], 'true'), eq(variables['coverage.collected'], 'true'))

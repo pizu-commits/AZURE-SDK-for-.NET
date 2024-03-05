@@ -58,6 +58,12 @@ jobs:
       Codeql.BuildIdentifier: ${{ parameters.ServiceDirectory }}
       Codeql.SkipTaskAutoInjection: false
 
+    templateContext:
+      outputs:
+        - output: packages
+          targetPath: '$(Build.ArtifactStagingDirectory)'
+          artifactName: 'packages'
+
     steps:
       - template: /eng/pipelines/templates/steps/install-dotnet.yml
       - template: /eng/common/pipelines/templates/steps/set-test-pipeline-version.yml
@@ -126,11 +132,6 @@ jobs:
           Artifacts: ${{parameters.Artifacts}}
           DocGenerationDir: "$(Build.SourcesDirectory)/doc/ApiDocGeneration"
           LibType: 'client'
-
-      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
-        parameters:
-          ArtifactPath: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'packages'
 
       - template: /eng/common/pipelines/templates/steps/detect-api-changes.yml
         parameters:
@@ -287,6 +288,12 @@ jobs:
           SparseCheckoutPaths:
             - /*
             - '!/sdk/*/**/SessionRecords/*'
+          AdditionalOutputs:
+            # Publish artifacts from dependency.tests.yml below via 1es pipeline templateContext
+            - output: DependencyTestProjectReferences
+              targetPath: $(Build.ArtifactStagingDirectory)
+              artifactName: DependencyTestProjectReferences
+              sbomEnabled: false
           PreGenerationSteps:
             - ${{ each config in parameters.MatrixConfigs }}:
                 - template: /eng/pipelines/templates/steps/dependency.tests.yml

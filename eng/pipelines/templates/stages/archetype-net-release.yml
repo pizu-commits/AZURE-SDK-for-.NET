@@ -24,6 +24,13 @@ stages:
           vmImage: azsdk-pool-mms-win-2022-1espt
           os: windows
 
+        templateContext:
+          outputs:
+            - output: packages
+              displayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
+              targetPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
+              artifactName: ${{parameters.ArtifactName}}-signed
+
         strategy:
           runOnce:
             deploy:
@@ -49,12 +56,6 @@ stages:
                   parameters:
                     PackagesPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
                     BuildToolsPath: $(Pipeline.Workspace)/azure-sdk-build-tools
-
-                - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
-                  parameters:
-                    DisplayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
-                    ArtifactPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
-                    ArtifactName: ${{parameters.ArtifactName}}-signed
 
   - ${{if and(in(variables['Build.Reason'], 'Manual', ''), eq(variables['System.TeamProject'], 'internal'))}}:
     - ${{ each artifact in parameters.Artifacts }}:

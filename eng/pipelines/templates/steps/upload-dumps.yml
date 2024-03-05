@@ -11,9 +11,3 @@ steps:
       [System.IO.Compression.ZipFile]::CreateFromDirectory("$(Build.ArtifactStagingDirectory)/dumps","$(Build.ArtifactStagingDirectory)/dumps.zip")
     condition: always()
     displayName: Copy dumps to staging directory
-  - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
-    parameters:
-      CustomCondition: eq(variables['uploadDump'], 'true')
-      ArtifactName: "Crash Dump - $(System.JobName) - $(System.JobAttempt)"
-      ArtifactPath: '$(Build.ArtifactStagingDirectory)/dumps.zip'
-      SbomEnabled: false
