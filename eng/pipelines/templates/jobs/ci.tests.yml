@@ -40,7 +40,7 @@ jobs:
       matrix: $[ ${{ parameters.Matrix }} ]
 
     pool:
-      vmImage: $(OSVmImage)
+      image: $(OSVmImage)
       name: $(Pool)
       os: ${{ parameters.OSName }}
     ${{ if eq(parameters.UsePlatformContainer, 'true') }}:
