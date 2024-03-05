@@ -11,7 +11,7 @@ jobs:
     timeoutInMinutes: 100
     pool:
       name: $(WINDOWSPOOL)
-      vmImage: $(WINDOWSVMIMAGE)
+      image: $(WINDOWSVMIMAGE)
       os: windows
     steps:
       #- script: "echo $(system.pullrequest.pullrequestnumber), https://github.com/$(build.repository.id), https://github.com/$(build.repository.ID)"

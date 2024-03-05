@@ -50,7 +50,7 @@ jobs:
   - job: Build
     pool:
       name: $(WINDOWSPOOL)
-      vmImage: $(WINDOWSVMIMAGE)
+      image: $(WINDOWSVMIMAGE)
       os: windows
 
     variables:
@@ -156,7 +156,7 @@ jobs:
     condition: and(succeededOrFailed(), ne(variables['Skip.Analyze'], true))
     pool:
       name: $(LINUXPOOL)
-      vmImage: $(LINUXVMIMAGE)
+      image: $(LINUXVMIMAGE)
       os: linux
     steps:
       - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
@@ -224,7 +224,7 @@ jobs:
     - job: Compliance
       pool:
         name: $(WINDOWSPOOL)
-        vmImage: $(WINDOWSVMIMAGE)
+        image: $(WINDOWSVMIMAGE)
         os: windows
       steps:
         - task: UsePythonVersion@0

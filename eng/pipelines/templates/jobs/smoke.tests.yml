@@ -40,7 +40,7 @@ jobs:
     - job: smoke_test_eligibility
       pool:
         name: $(LINUXPOOL)
-        vmImage: $(LINUXVMIMAGE)
+        image: $(LINUXVMIMAGE)
         os: linux
       displayName: Check Smoke Test Eligibility
       steps:
@@ -72,7 +72,7 @@ jobs:
         condition: and(succeeded(), eq(dependencies.smoke_test_eligibility.outputs['output_eligibility.RunSmokeTests'], true))
       pool:
         name: ${{ matrix.Pool }}
-        vmImage: ${{ matrix.OSVmImage }}
+        image: ${{ matrix.OSVmImage }}
         os: ${{ matrix.os }}
       timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
 
