@@ -60,7 +60,7 @@ jobs:
 
     templateContext:
       outputs:
-        - output: packages
+        - output: pipelineArtifact
           targetPath: '$(Build.ArtifactStagingDirectory)'
           artifactName: 'packages'
 

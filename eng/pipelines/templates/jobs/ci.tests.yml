@@ -49,18 +49,18 @@ jobs:
 
     templateContext:
       outputs:
-        - output: TestBinlog
+        - output: pipelineArtifact
           targetPath: $(Build.ArtifactStagingDirectory)/test.binlog
           artifactName: binlog_$(Agent.JobName)
           condition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
           sbomEnabled: false
-        - output: DebugArtifacts
+        - output: pipelineArtifact
           targetPath: $(Build.SourcesDirectory)/artifacts
           artifactName: artifacts_$(Agent.JobName)
           condition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
           sbomEnabled: false
         # See eng/pipelines/templates/steps/upload-dumps.yml for corresponding file copy step
-        - output: Dumps
+        - output: pipelineArtifact
           targetPath: '$(Build.ArtifactStagingDirectory)/dumps.zip'
           artifactName: "Crash Dump - $(System.JobName) - $(System.JobAttempt)"
           condition: eq(variables['uploadDump'], 'true')

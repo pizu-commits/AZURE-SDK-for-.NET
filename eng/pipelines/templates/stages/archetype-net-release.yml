@@ -26,7 +26,7 @@ stages:
 
         templateContext:
           outputs:
-            - output: packages
+            - output: pipelineArtifact
               displayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
               targetPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
               artifactName: ${{parameters.ArtifactName}}-signed
