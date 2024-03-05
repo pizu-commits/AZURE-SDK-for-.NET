@@ -50,7 +50,7 @@ stages:
                     PackagesPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
                     BuildToolsPath: $(Pipeline.Workspace)/azure-sdk-build-tools
 
-                - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
+                - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
                   parameters:
                     DisplayName: 'Store signed packages in ${{parameters.ArtifactName}}-signed artifact'
                     ArtifactPath: $(Pipeline.Workspace)/${{parameters.ArtifactName}}
