@@ -11,7 +11,7 @@ parameters:
   ArtifactName: ''
   ArtifactPath: ''
   CustomCondition: true
-  SbomEnabled: false
+  SbomEnabled: true
 
 steps:
   - pwsh: |

@@ -288,12 +288,6 @@ jobs:
           SparseCheckoutPaths:
             - /*
             - '!/sdk/*/**/SessionRecords/*'
-              #AdditionalOutputs:
-              #  # Publish artifacts from dependency.tests.yml below via 1es pipeline templateContext
-              #  - output: DependencyTestProjectReferences
-              #    targetPath: $(Build.ArtifactStagingDirectory)
-              #    artifactName: DependencyTestProjectReferences
-              #    sbomEnabled: false
           PreGenerationSteps:
             - ${{ each config in parameters.MatrixConfigs }}:
                 - template: /eng/pipelines/templates/steps/dependency.tests.yml
