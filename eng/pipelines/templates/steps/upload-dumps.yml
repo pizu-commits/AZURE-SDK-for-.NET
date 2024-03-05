@@ -16,3 +16,4 @@ steps:
       CustomCondition: eq(variables['uploadDump'], 'true')
       ArtifactName: "Crash Dump - $(System.JobName) - $(System.JobAttempt)"
       ArtifactPath: '$(Build.ArtifactStagingDirectory)/dumps.zip'
+      SbomEnabled: false

@@ -117,16 +117,18 @@ jobs:
           testRunTitle: "${{ parameters.OSName }} $(TestTargetFramework)"
           testResultsFormat: "VSTest"
           mergeTestResults: true
-      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
         parameters:
           ArtifactPath: $(Build.ArtifactStagingDirectory)/test.binlog
           ArtifactName: binlog_$(Agent.JobName)
           CustomCondition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
-      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+          SbomEnabled: false
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
         parameters:
           ArtifactPath: $(Build.SourcesDirectory)/artifacts
           ArtifactName: artifacts_$(Agent.JobName)
           CustomCondition: and(ne(variables['DiagnosticArguments'], ''), eq(variables['System.Debug'], 'true'))
+          SbomEnabled: false
       - template: /eng/pipelines/templates/steps/upload-dumps.yml
       - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
         condition: and(succeededOrFailed(), eq(variables['CollectCoverage'], 'true'), eq(variables['coverage.collected'], 'true'))
