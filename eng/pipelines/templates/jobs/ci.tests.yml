@@ -24,9 +24,9 @@ parameters:
   - name: ServiceDirectory
     type: string
     default: ''
-  - name: AdditionalOutputs
-    type: object
-    default: []
+      #  - name: AdditionalOutputs
+      #    type: object
+      #    default: []
   - name: OSName
     type: string
 
@@ -65,7 +65,7 @@ jobs:
           artifactName: "Crash Dump - $(System.JobName) - $(System.JobAttempt)"
           condition: eq(variables['uploadDump'], 'true')
           sbomEnabled: false
-        - ${{ parameters.AdditionalOutputs }}
+            # - ${{ parameters.AdditionalOutputs }}
 
     steps:
       - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
