@@ -80,7 +80,7 @@ extends:
         exclude:
           - repository: azure-sdk-build-tools
       sourceAnalysisPool:
-        name: azsdk-pool-mms-win-2022-1es-pt
+        name: azsdk-pool-mms-win-2022-general
         image: azsdk-pool-mms-win-2022-1espt
         os: windows
       binskim:
