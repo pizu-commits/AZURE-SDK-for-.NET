@@ -15,6 +15,16 @@ parameters:
     type: string
   - name: OSName
     type: string
+  # Unused, here for compatibility with generate-job-matrix.yml
+  - name: UsePlatformContainer
+    type: boolean
+    default: false
+  - name: CloudConfig
+    type: object
+    default: {}
+  - name: DependsOn
+    type: string
+    default: ''
 
 jobs:
   - job:
