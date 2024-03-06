@@ -56,7 +56,5 @@ extends:
       safeName: MicrosoftAzureWebJobsExtensionsStorage
     - name: Microsoft.Azure.WebJobs.Extensions.Storage.Blobs
       safeName: MicrosoftAzureWebJobsExtensionsStorageBlobs
-    - name: Microsoft.Azure.WebJobs.Extensions.Storage.Queues
-      safeName: MicrosoftAzureWebJobsExtensionsStorageQueues
     TestSetupSteps:
     - template: /sdk/storage/tests-install-azurite.yml
