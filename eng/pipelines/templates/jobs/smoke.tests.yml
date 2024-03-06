@@ -11,29 +11,13 @@ parameters:
   - name: TimeoutInMinutes
     type: number
     default: 60
-  - name: TestMatrix
+  - name: MatrixConfigs
     type: object
     default:
-      - name: Ubuntu_Net60
-        Pool: $(LINUXPOOL)
-        OSVmImage: $(LINUXVMIMAGE)
-        os: linux
-        TestTargetFramework: net6.0
-      - name: Windows_NetFramework
-        Pool: $(WINDOWSPOOL)
-        OSVmImage: $(WINDOWSVMIMAGE)
-        os: windows
-        TestTargetFramework: net462
-      - name: Windows_Net60
-        Pool: $(WINDOWSPOOL)
-        OSVmImage: $(WINDOWSVMIMAGE)
-        os: windows
-        TestTargetFramework: net6.0
-      - name: Windows_Net70
-        Pool: $(WINDOWSPOOL)
-        OSVmImage: $(WINDOWSVMIMAGE)
-        os: windows
-        TestTargetFramework: net7.0
+      - Name: SmokeTestMatrix
+        Path: eng/pipelines/templates/jobs/smoke-test-matrix.json
+        Selection: sparse
+        GenerateVMJobs: true
 
 jobs:
   - ${{ if eq(parameters.Daily, false) }}:
@@ -64,58 +48,15 @@ jobs:
           env:
             RunSmokeTests: $(RunSmokeTests)
 
-  - ${{ each matrix in parameters.TestMatrix }}:
-    - job: SmokeTest_${{ matrix.Name }}
-      displayName: Run Smoke Test ${{ matrix.Name }}
-      ${{ if eq(parameters.Daily, false) }}:
-        dependsOn: smoke_test_eligibility
-        condition: and(succeeded(), eq(dependencies.smoke_test_eligibility.outputs['output_eligibility.RunSmokeTests'], true))
-      pool:
-        name: ${{ matrix.Pool }}
-        image: ${{ matrix.OSVmImage }}
-        os: ${{ matrix.os }}
-      timeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
-
-      steps:
-        - template: /eng/common/pipelines/templates/steps/verify-agent-os.yml
-          parameters:
-            AgentImage: ${{ matrix.os }}
-        - template: /eng/pipelines/templates/steps/install-dotnet.yml
-          parameters:
-            EnableNuGetCache: false
-
-        - ${{ if eq(parameters.Daily, true) }}:
-          - task: PowerShell@2
-            displayName: Use latest dev feed package versions
-            inputs:
-              targetType: filePath
-              filePath: ./common/SmokeTests/SmokeTest/Update-Dependencies.ps1
-              arguments: -CI -PreferDevVersion
-              workingDirectory: common/SmokeTests/SmokeTest
-              pwsh: true
-
-        - ${{ if eq(parameters.Daily, false) }}:
-          - download: current
-            artifact: ${{ parameters.ArtifactName }}
-            timeoutInMinutes: 5
-
-        - ${{ if eq(parameters.Daily, false) }}:
-          - task: PowerShell@2
-            displayName: Use latest GA/Beta package versions
-            inputs:
-              targetType: filePath
-              filePath: ./common/SmokeTests/SmokeTest/Update-Dependencies.ps1
-              arguments: -CI -PreferDevVersion -ArtifactsPath "$(Pipeline.Workspace)/${{ parameters.ArtifactName }}"
-              workingDirectory: common/SmokeTests/SmokeTest
-              pwsh: true
-
-        - pwsh: Get-Content ./common/SmokeTests/SmokeTest/SmokeTest.csproj
-          displayName: Show SmokeTest.csproj
-
-        - template: /eng/pipelines/templates/steps/install-dotnet.yml
-
-        - pwsh: dotnet restore ./common/SmokeTests/SmokeTest/SmokeTest.csproj
-          displayName: dotnet restore
-
-        - pwsh: dotnet run -p .\common\SmokeTests\SmokeTest\SmokeTest.csproj --framework ${{ matrix.TestTargetFramework }}
-          displayName: "Run Smoke Tests"
+  - template: /eng/common/pipelines/templates/jobs/generate-job-matrix.yml
+    parameters:
+      GenerateJobName: generate_smoke_test_matrix
+      JobTemplatePath: /eng/pipelines/templates/jobs/smoke.tests.template.yml
+      MatrixConfigs: ${{ parameters.MatrixConfigs }}
+      CloudConfig:
+        Cloud: public
+      AdditionalParameters:
+        Daily: ${{ parameters.Daily }}
+        Artifact: ${{ parameters.Artifact }}
+        ArtifactName: ${{ parameters.ArtifactName }}
+        TimeoutInMinutes: ${{ parameters.TimeoutInMinutes }}
