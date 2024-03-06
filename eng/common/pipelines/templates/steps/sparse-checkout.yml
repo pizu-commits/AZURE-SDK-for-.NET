@@ -23,9 +23,42 @@ steps:
       displayName: 'Sparse checkout repositories'
     inputs:
       targetType: inline
-      # Define this inline, because of the chicken/egg problem with loading a script when nothing
-      # has been checked out yet.
       script: |
-        Write-Host "SKIPPING"
+        $PSNativeCommandArgumentPassing = 'Legacy'
+        function SparseCheckout([Array]$paths, [Hashtable]$repository)
+        {
+            $dir = $repository.WorkingDirectory
+            if (!$dir) {
+              $dir = "./$($repository.Name)"
+            }
+            New-Item $dir -ItemType Directory -Force | Out-Null
+            Push-Location $dir
+            if (Test-Path .git/info/sparse-checkout) {
+              $hasInitialized = $true
+            } else {
+              if ($repository.Commitish -match '^refs/pull/\d+/merge$') {
+                git clone --no-checkout --filter=tree:0 -c remote.origin.fetch=''+$($repository.Commitish):refs/remotes/origin/$($repository.Commitish)'' https://github.com/$($repository.Name) .
+              } else {
+                git clone --no-checkout --filter=tree:0 https://github.com/$($repository.Name) .
+              }
+              git config gc.auto 0
+              git sparse-checkout init
+              git sparse-checkout set --no-cone '/*' '!/*/' '/eng'
+            }
+            $quotedPaths = $paths | ForEach-Object { "'$_'" }
+            $gitsparsecmd = "git sparse-checkout add $quotedPaths"
+            Invoke-Expression -Command $gitsparsecmd
+            Get-Content .git/info/sparse-checkout
+            if (!$hasInitialized) {
+              $commitish = $repository.Commitish -replace '^refs/heads/', ''
+              git -c advice.detachedHead=false checkout $commitish --
+            }
+            Pop-Location
+        }
+        $paths = '${{ convertToJson(parameters.Paths) }}'.Trim('"') | ConvertFrom-Json
+        $repositories = '${{ convertToJson(parameters.Repositories) }}' -replace '\\', '/' | ConvertFrom-Json -AsHashtable
+        foreach ($repo in $Repositories) {
+          SparseCheckout $paths $repo
+        }
       pwsh: true
       workingDirectory: $(System.DefaultWorkingDirectory)

@@ -10,7 +10,7 @@ steps:
 
   - ${{ each artifact in parameters.Artifacts }}:
     - task: PowerShell@2
-      displayName: Build DocFx Documenttion Site for ${{artifact.name}}
+      displayName: Build DocFx Documentation Site for ${{artifact.name}}
       inputs:
         pwsh: true
         filePath: $(Build.SourcesDirectory)/doc/ApiDocGeneration/Generate-Api-Docs.ps1

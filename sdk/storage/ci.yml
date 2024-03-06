@@ -50,5 +50,13 @@ extends:
       safeName: AzureStorageDataMovement
     - name: Azure.Storage.DataMovement.Blobs
       safeName: AzureStorageDataMovementBlobs
+    - name: Azure.Storage.DataMovement.Files.Shares
+      safeName: AzureStorageDataMovementFilesShares
+    - name: Microsoft.Azure.WebJobs.Extensions.Storage
+      safeName: MicrosoftAzureWebJobsExtensionsStorage
+    - name: Microsoft.Azure.WebJobs.Extensions.Storage.Blobs
+      safeName: MicrosoftAzureWebJobsExtensionsStorageBlobs
+    - name: Microsoft.Azure.WebJobs.Extensions.Storage.Queues
+      safeName: MicrosoftAzureWebJobsExtensionsStorageQueues
     TestSetupSteps:
     - template: /sdk/storage/tests-install-azurite.yml
