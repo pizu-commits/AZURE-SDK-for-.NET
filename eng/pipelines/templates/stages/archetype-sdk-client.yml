@@ -84,9 +84,9 @@ extends:
         image: azsdk-pool-mms-win-2022-1espt
         os: windows
       binskim:
-        # Exclude aot checking project
+        # Exclude aot checking project, and imported azure-sdk-build-tools gpg/azcopy binaries
         # See https://dev.azure.com/securitytools/SecurityIntegration/_wiki/wikis/Guardian/1378/Glob-Format
-        analyzeTargetGlob: +:file|**/*.dll;+:file|**/*.exe;-:f|**/aotcompatibility/**/*.exe
+        analyzeTargetGlob: +:file|**/*.dll;+:file|**/*.exe;-:f|**/tools/gpg/**/*.dll;-:f|**/tools/gpg/**/*.exe;-:f|**/tools/azcopy/**/*.dll;-:f|**/aotcompatibility/**/*.exe
       eslint:
         enabled: false
         justificationForDisabling: 'ESLint injected task has failures because it uses an old version of mkdirp. We should not fail for tools not controlled by the repo. See: https://dev.azure.com/azure-sdk/internal/_build/results?buildId=3499746'
