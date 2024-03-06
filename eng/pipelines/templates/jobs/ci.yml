@@ -65,6 +65,8 @@ jobs:
           artifactName: 'packages'
 
     steps:
+      - checkout: self
+        fetchDepth: 1
       - template: /eng/pipelines/templates/steps/install-dotnet.yml
       - template: /eng/common/pipelines/templates/steps/set-test-pipeline-version.yml
         parameters:
@@ -159,12 +161,8 @@ jobs:
       image: $(LINUXVMIMAGE)
       os: linux
     steps:
-      - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
-        - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-          parameters:
-            Paths:
-              - "/*"
-              - "!SessionRecords"
+      - checkout: self
+        fetchDepth: 1
 
       - template: /eng/common/pipelines/templates/steps/cache-ps-modules.yml
 

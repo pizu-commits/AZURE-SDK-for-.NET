@@ -195,11 +195,8 @@ stages:
                     runOnce:
                       deploy:
                         steps:
-                          - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-                            parameters:
-                              Paths:
-                                - sdk/**/*.md
-                                - .github/CODEOWNERS
+                          - checkout: self
+                            fetchDepth: 1
                           - download: current
                           - template: /eng/common/pipelines/templates/steps/update-docsms-metadata.yml
                             parameters:
@@ -229,7 +226,8 @@ stages:
                     runOnce:
                       deploy:
                         steps:
-                          - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+                          - checkout: self
+                            fetchDepth: 1
                           - template: /eng/common/pipelines/templates/steps/publish-blobs.yml
                             parameters:
                               FolderForUpload: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}/${{artifact.name}}'
@@ -332,11 +330,8 @@ stages:
           image: $(LINUXVMIMAGE)
           os: linux
         steps:
-          - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-            parameters:
-              Paths:
-                - sdk/**/*.md
-                - .github/CODEOWNERS
+          - checkout: self
+            fetchDepth: 1
           - download: current
           - pwsh: |
               Get-ChildItem -Recurse $(Pipeline.Workspace)/${{parameters.ArtifactName}}/
