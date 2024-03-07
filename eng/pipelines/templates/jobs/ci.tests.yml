@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - checkout: self
-        fetchDepth: 1
+        fetchDepth: 0
       - ${{ if ne(parameters.ProjectListOverrideFilePropertyName, '') }}:
         - task: DownloadPipelineArtifact@2
           inputs:

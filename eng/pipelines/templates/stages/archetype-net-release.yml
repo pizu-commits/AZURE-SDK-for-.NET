@@ -196,7 +196,7 @@ stages:
                       deploy:
                         steps:
                           - checkout: self
-                            fetchDepth: 1
+                            fetchDepth: 0
                           - download: current
                           - template: /eng/common/pipelines/templates/steps/update-docsms-metadata.yml
                             parameters:
@@ -227,7 +227,7 @@ stages:
                       deploy:
                         steps:
                           - checkout: self
-                            fetchDepth: 1
+                            fetchDepth: 0
                           - template: /eng/common/pipelines/templates/steps/publish-blobs.yml
                             parameters:
                               FolderForUpload: '$(Pipeline.Workspace)/${{parameters.ArtifactName}}/${{artifact.name}}'
@@ -331,7 +331,7 @@ stages:
           os: linux
         steps:
           - checkout: self
-            fetchDepth: 1
+            fetchDepth: 0
           - download: current
           - pwsh: |
               Get-ChildItem -Recurse $(Pipeline.Workspace)/${{parameters.ArtifactName}}/

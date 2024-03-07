@@ -92,7 +92,7 @@ jobs:
 
     steps:
       - checkout: self
-        fetchDepth: 1
+        fetchDepth: 0
 
       - ${{ parameters.PreSteps }}
 
