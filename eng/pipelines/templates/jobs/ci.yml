@@ -161,8 +161,12 @@ jobs:
       image: $(LINUXVMIMAGE)
       os: linux
     steps:
-      - checkout: self
-        fetchDepth: 0
+      - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
+        - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+          parameters:
+              Paths:
+                - "/*"
+                - "!SessionRecords"
 
       - template: /eng/common/pipelines/templates/steps/cache-ps-modules.yml
 

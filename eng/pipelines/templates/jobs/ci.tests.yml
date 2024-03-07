@@ -69,8 +69,19 @@ jobs:
           sbomEnabled: false
 
     steps:
-      - checkout: self
-        fetchDepth: 0
+      - ${{ if not(contains(variables['Build.DefinitionName'], '-pr - ')) }}:
+        - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+          parameters:
+            ${{ if eq(parameters.ProjectListOverrideFilePropertyName, '') }}:
+              Paths:
+                - "/*"
+                - "!SessionRecords"
+                - "/sdk/${{ parameters.ServiceDirectory }}/**/SessionRecords/*"
+            ${{ else }}:
+              Paths:
+                - "/*"
+                - "!SessionRecords"
+                - "/sdk/*/**/SessionRecords/*"
       - ${{ if ne(parameters.ProjectListOverrideFilePropertyName, '') }}:
         - task: DownloadPipelineArtifact@2
           inputs:
