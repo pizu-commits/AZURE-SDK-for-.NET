@@ -69,6 +69,9 @@ parameters:
     type: boolean
     default: false
 
+variables:
+  nugetMultiFeedWarnLevel: 'none'
+
 extends:
   ${{ if eq(variables['System.TeamProject'], 'internal') }}:
     template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
