@@ -10,7 +10,6 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.HDInsight.Containers;
 
 namespace Azure.ResourceManager.HDInsight.Containers.Models
 {
@@ -23,7 +22,7 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
             var format = options.Format == "W" ? ((IPersistableModel<UpdatableClusterProfile>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support writing '{format}' format.");
             }
 
             writer.WriteStartObject();
@@ -62,6 +61,16 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
                 writer.WritePropertyName("prometheusProfile"u8);
                 writer.WriteObjectValue(PrometheusProfile);
             }
+            if (Optional.IsDefined(RangerPluginProfile))
+            {
+                writer.WritePropertyName("rangerPluginProfile"u8);
+                writer.WriteObjectValue(RangerPluginProfile);
+            }
+            if (Optional.IsDefined(RangerProfile))
+            {
+                writer.WritePropertyName("rangerProfile"u8);
+                writer.WriteObjectValue(RangerProfile);
+            }
             if (Optional.IsCollectionDefined(ScriptActionProfiles))
             {
                 writer.WritePropertyName("scriptActionProfiles"u8);
@@ -95,7 +104,7 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
             var format = options.Format == "W" ? ((IPersistableModel<UpdatableClusterProfile>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support reading '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
@@ -116,6 +125,8 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
             AuthorizationProfile authorizationProfile = default;
             ClusterLogAnalyticsProfile logAnalyticsProfile = default;
             ClusterPrometheusProfile prometheusProfile = default;
+            ClusterRangerPluginProfile rangerPluginProfile = default;
+            RangerProfile rangerProfile = default;
             IList<ScriptActionProfile> scriptActionProfiles = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
@@ -180,6 +191,24 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
                     prometheusProfile = ClusterPrometheusProfile.DeserializeClusterPrometheusProfile(property.Value, options);
                     continue;
                 }
+                if (property.NameEquals("rangerPluginProfile"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    rangerPluginProfile = ClusterRangerPluginProfile.DeserializeClusterRangerPluginProfile(property.Value, options);
+                    continue;
+                }
+                if (property.NameEquals("rangerProfile"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    rangerProfile = RangerProfile.DeserializeRangerProfile(property.Value, options);
+                    continue;
+                }
                 if (property.NameEquals("scriptActionProfiles"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -207,6 +236,8 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
                 authorizationProfile,
                 logAnalyticsProfile,
                 prometheusProfile,
+                rangerPluginProfile,
+                rangerProfile,
                 scriptActionProfiles ?? new ChangeTrackingList<ScriptActionProfile>(),
                 serializedAdditionalRawData);
         }
@@ -220,7 +251,7 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support writing '{options.Format}' format.");
             }
         }
 
@@ -236,7 +267,7 @@ namespace Azure.ResourceManager.HDInsight.Containers.Models
                         return DeserializeUpdatableClusterProfile(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(UpdatableClusterProfile)} does not support reading '{options.Format}' format.");
             }
         }
 
