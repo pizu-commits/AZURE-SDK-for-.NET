@@ -89,14 +89,14 @@ jobs:
             -DocRepoLocation $(DocRepoLocation)
         displayName: Verify Required Docs Json Members
 
-      - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
-        parameters:
-          BaseRepoBranch: $(DefaultBranch)
-          BaseRepoOwner: $(DocRepoOwner)
-          CommitMsg: "Update docs CI configuration"
-          TargetRepoName: $(DocRepoName)
-          TargetRepoOwner: $(DocRepoOwner)
-          WorkingDirectory: $(DocRepoLocation)
+          #- template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+          #  parameters:
+          #    BaseRepoBranch: $(DefaultBranch)
+          #    BaseRepoOwner: $(DocRepoOwner)
+          #    CommitMsg: "Update docs CI configuration"
+          #    TargetRepoName: $(DocRepoName)
+          #    TargetRepoOwner: $(DocRepoOwner)
+          #    WorkingDirectory: $(DocRepoLocation)
 
       # Prepare daily docs CI
       - template: /eng/common/pipelines/templates/steps/set-daily-docs-branch-name.yml
@@ -161,25 +161,25 @@ jobs:
             -DocRepoLocation $(DocRepoLocation)
         displayName: Verify Required Docs Json Members
 
-      - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
-        parameters:
-          BaseRepoBranch: $(DailyDocsBranchName)
-          BaseRepoOwner: $(DocRepoOwner)
-          CommitMsg: "Update targeting packages based on release metadata. (Daily docs)"
-          TargetRepoName: $(DocRepoName)
-          TargetRepoOwner: $(DocRepoOwner)
-          WorkingDirectory: $(DocRepoLocation)
-          ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
-          PushArgs: -f
+          # - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+          #   parameters:
+          #     BaseRepoBranch: $(DailyDocsBranchName)
+          #     BaseRepoOwner: $(DocRepoOwner)
+          #     CommitMsg: "Update targeting packages based on release metadata. (Daily docs)"
+          #     TargetRepoName: $(DocRepoName)
+          #     TargetRepoOwner: $(DocRepoOwner)
+          #     WorkingDirectory: $(DocRepoLocation)
+          #     ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
+          #     PushArgs: -f
 
-      - task: PowerShell@2
-        displayName: Queue Docs CI build
-        inputs:
-          pwsh: true
-          filePath: eng/common/scripts/Queue-Pipeline.ps1
-          arguments: >
-            -Organization "apidrop"
-            -Project "Content%20CI"
-            -DefinitionId 397
-            -AuthToken "$(azuresdk-apidrop-devops-queue-build-pat)"
-            -BuildParametersJson (@{ params = (Get-Content ./eng/dailydocsconfig.json -Raw) -replace '%%DailyDocsBranchName%%', "$(DailyDocsBranchName)" } | ConvertTo-Json)
+            # - task: PowerShell@2
+            #   displayName: Queue Docs CI build
+            #   inputs:
+            #     pwsh: true
+            #     filePath: eng/common/scripts/Queue-Pipeline.ps1
+            #     arguments: >
+            #       -Organization "apidrop"
+            #       -Project "Content%20CI"
+            #       -DefinitionId 397
+            #       -AuthToken "$(azuresdk-apidrop-devops-queue-build-pat)"
+            #       -BuildParametersJson (@{ params = (Get-Content ./eng/dailydocsconfig.json -Raw) -replace '%%DailyDocsBranchName%%', "$(DailyDocsBranchName)" } | ConvertTo-Json)
