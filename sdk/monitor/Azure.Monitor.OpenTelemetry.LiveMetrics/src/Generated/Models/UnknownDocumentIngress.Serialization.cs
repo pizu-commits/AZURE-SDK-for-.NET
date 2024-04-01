@@ -13,39 +13,19 @@ using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    internal partial class RemoteDependency : IUtf8JsonSerializable, IJsonModel<RemoteDependency>
+    internal partial class UnknownDocumentIngress : IUtf8JsonSerializable, IJsonModel<DocumentIngress>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<RemoteDependency>)this).Write(writer, new ModelReaderWriterOptions("W"));
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DocumentIngress>)this).Write(writer, new ModelReaderWriterOptions("W"));
 
-        void IJsonModel<RemoteDependency>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<DocumentIngress>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<RemoteDependency>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DocumentIngress>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(RemoteDependency)} does not support writing '{format}' format.");
+                throw new FormatException($"The model {nameof(DocumentIngress)} does not support writing '{format}' format.");
             }
 
             writer.WriteStartObject();
-            if (Optional.IsDefined(Name))
-            {
-                writer.WritePropertyName("Name"u8);
-                writer.WriteStringValue(Name);
-            }
-            if (Optional.IsDefined(CommandName))
-            {
-                writer.WritePropertyName("CommandName"u8);
-                writer.WriteStringValue(CommandName);
-            }
-            if (Optional.IsDefined(ResultCode))
-            {
-                writer.WritePropertyName("ResultCode"u8);
-                writer.WriteStringValue(ResultCode);
-            }
-            if (Optional.IsDefined(Duration))
-            {
-                writer.WritePropertyName("Duration"u8);
-                writer.WriteStringValue(Duration);
-            }
             writer.WritePropertyName("DocumentType"u8);
             writer.WriteStringValue(DocumentType.ToString());
             if (Optional.IsCollectionDefined(DocumentStreamIds))
@@ -86,19 +66,19 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
             writer.WriteEndObject();
         }
 
-        RemoteDependency IJsonModel<RemoteDependency>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        DocumentIngress IJsonModel<DocumentIngress>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<RemoteDependency>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DocumentIngress>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(RemoteDependency)} does not support reading '{format}' format.");
+                throw new FormatException($"The model {nameof(DocumentIngress)} does not support reading '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeRemoteDependency(document.RootElement, options);
+            return DeserializeDocumentIngress(document.RootElement, options);
         }
 
-        internal static RemoteDependency DeserializeRemoteDependency(JsonElement element, ModelReaderWriterOptions options = null)
+        internal static UnknownDocumentIngress DeserializeUnknownDocumentIngress(JsonElement element, ModelReaderWriterOptions options = null)
         {
             options ??= new ModelReaderWriterOptions("W");
 
@@ -106,37 +86,13 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
             {
                 return null;
             }
-            string name = default;
-            string commandName = default;
-            string resultCode = default;
-            string duration = default;
-            DocumentType documentType = default;
+            DocumentType documentType = "AutoRest.CSharp.Output.Models.Types.EnumTypeValue";
             IList<string> documentStreamIds = default;
             IList<KeyValuePairStringString> properties = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("Name"u8))
-                {
-                    name = property.Value.GetString();
-                    continue;
-                }
-                if (property.NameEquals("CommandName"u8))
-                {
-                    commandName = property.Value.GetString();
-                    continue;
-                }
-                if (property.NameEquals("ResultCode"u8))
-                {
-                    resultCode = property.Value.GetString();
-                    continue;
-                }
-                if (property.NameEquals("Duration"u8))
-                {
-                    duration = property.Value.GetString();
-                    continue;
-                }
                 if (property.NameEquals("DocumentType"u8))
                 {
                     documentType = new DocumentType(property.Value.GetString());
@@ -176,61 +132,53 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 }
             }
             serializedAdditionalRawData = additionalPropertiesDictionary;
-            return new RemoteDependency(
-                documentType,
-                documentStreamIds ?? new ChangeTrackingList<string>(),
-                properties ?? new ChangeTrackingList<KeyValuePairStringString>(),
-                serializedAdditionalRawData,
-                name,
-                commandName,
-                resultCode,
-                duration);
+            return new UnknownDocumentIngress(documentType, documentStreamIds ?? new ChangeTrackingList<string>(), properties ?? new ChangeTrackingList<KeyValuePairStringString>(), serializedAdditionalRawData);
         }
 
-        BinaryData IPersistableModel<RemoteDependency>.Write(ModelReaderWriterOptions options)
+        BinaryData IPersistableModel<DocumentIngress>.Write(ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<RemoteDependency>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DocumentIngress>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(RemoteDependency)} does not support writing '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DocumentIngress)} does not support writing '{options.Format}' format.");
             }
         }
 
-        RemoteDependency IPersistableModel<RemoteDependency>.Create(BinaryData data, ModelReaderWriterOptions options)
+        DocumentIngress IPersistableModel<DocumentIngress>.Create(BinaryData data, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<RemoteDependency>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DocumentIngress>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     {
                         using JsonDocument document = JsonDocument.Parse(data);
-                        return DeserializeRemoteDependency(document.RootElement, options);
+                        return DeserializeDocumentIngress(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(RemoteDependency)} does not support reading '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DocumentIngress)} does not support reading '{options.Format}' format.");
             }
         }
 
-        string IPersistableModel<RemoteDependency>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<DocumentIngress>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
 
         /// <summary> Deserializes the model from a raw response. </summary>
         /// <param name="response"> The response to deserialize the model from. </param>
-        internal static new RemoteDependency FromResponse(Response response)
+        internal static new UnknownDocumentIngress FromResponse(Response response)
         {
             using var document = JsonDocument.Parse(response.Content);
-            return DeserializeRemoteDependency(document.RootElement);
+            return DeserializeUnknownDocumentIngress(document.RootElement);
         }
 
         /// <summary> Convert into a Utf8JsonRequestContent. </summary>
         internal override RequestContent ToRequestContent()
         {
             var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue<RemoteDependency>(this, new ModelReaderWriterOptions("W"));
+            content.JsonWriter.WriteObjectValue<UnknownDocumentIngress>(this, new ModelReaderWriterOptions("W"));
             return content;
         }
     }

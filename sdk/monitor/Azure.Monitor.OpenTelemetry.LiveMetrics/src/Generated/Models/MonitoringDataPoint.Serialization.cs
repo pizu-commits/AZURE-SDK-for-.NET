@@ -5,15 +5,26 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
+using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    internal partial class MonitoringDataPoint : IUtf8JsonSerializable
+    public partial class MonitoringDataPoint : IUtf8JsonSerializable, IJsonModel<MonitoringDataPoint>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<MonitoringDataPoint>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<MonitoringDataPoint>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<MonitoringDataPoint>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MonitoringDataPoint)} does not support writing '{format}' format.");
+            }
+
             writer.WriteStartObject();
             writer.WritePropertyName("Version"u8);
             writer.WriteStringValue(Version);
@@ -47,7 +58,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 writer.WriteStartArray();
                 foreach (var item in Metrics)
                 {
-                    writer.WriteObjectValue<MetricPoint>(item);
+                    writer.WriteObjectValue<MetricPoint>(item, options);
                 }
                 writer.WriteEndArray();
             }
@@ -57,7 +68,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 writer.WriteStartArray();
                 foreach (var item in Documents)
                 {
-                    writer.WriteObjectValue<DocumentIngress>(item);
+                    writer.WriteObjectValue<DocumentIngress>(item, options);
                 }
                 writer.WriteEndArray();
             }
@@ -67,7 +78,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 writer.WriteStartArray();
                 foreach (var item in TopCpuProcesses)
                 {
-                    writer.WriteObjectValue<ProcessCpuData>(item);
+                    writer.WriteObjectValue<ProcessCpuData>(item, options);
                 }
                 writer.WriteEndArray();
             }
@@ -77,11 +88,249 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 writer.WriteStartArray();
                 foreach (var item in CollectionConfigurationErrors)
                 {
-                    writer.WriteObjectValue<CollectionConfigurationError>(item);
+                    writer.WriteObjectValue<CollectionConfigurationError>(item, options);
                 }
                 writer.WriteEndArray();
             }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
             writer.WriteEndObject();
+        }
+
+        MonitoringDataPoint IJsonModel<MonitoringDataPoint>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MonitoringDataPoint>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(MonitoringDataPoint)} does not support reading '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeMonitoringDataPoint(document.RootElement, options);
+        }
+
+        internal static MonitoringDataPoint DeserializeMonitoringDataPoint(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
+            if (element.ValueKind == JsonValueKind.Null)
+            {
+                return null;
+            }
+            string version = default;
+            int invariantVersion = default;
+            string instance = default;
+            string roleName = default;
+            string machineName = default;
+            string streamId = default;
+            DateTimeOffset? timestamp = default;
+            DateTimeOffset? transmissionTime = default;
+            bool isWebApp = default;
+            bool performanceCollectionSupported = default;
+            IList<MetricPoint> metrics = default;
+            IList<DocumentIngress> documents = default;
+            IList<ProcessCpuData> topCpuProcesses = default;
+            IList<CollectionConfigurationError> collectionConfigurationErrors = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
+            foreach (var property in element.EnumerateObject())
+            {
+                if (property.NameEquals("Version"u8))
+                {
+                    version = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("InvariantVersion"u8))
+                {
+                    invariantVersion = property.Value.GetInt32();
+                    continue;
+                }
+                if (property.NameEquals("Instance"u8))
+                {
+                    instance = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("RoleName"u8))
+                {
+                    roleName = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("MachineName"u8))
+                {
+                    machineName = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("StreamId"u8))
+                {
+                    streamId = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("Timestamp"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    timestamp = property.Value.GetDateTimeOffset("O");
+                    continue;
+                }
+                if (property.NameEquals("TransmissionTime"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    transmissionTime = property.Value.GetDateTimeOffset("O");
+                    continue;
+                }
+                if (property.NameEquals("IsWebApp"u8))
+                {
+                    isWebApp = property.Value.GetBoolean();
+                    continue;
+                }
+                if (property.NameEquals("PerformanceCollectionSupported"u8))
+                {
+                    performanceCollectionSupported = property.Value.GetBoolean();
+                    continue;
+                }
+                if (property.NameEquals("Metrics"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<MetricPoint> array = new List<MetricPoint>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(MetricPoint.DeserializeMetricPoint(item, options));
+                    }
+                    metrics = array;
+                    continue;
+                }
+                if (property.NameEquals("Documents"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<DocumentIngress> array = new List<DocumentIngress>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(DocumentIngress.DeserializeDocumentIngress(item, options));
+                    }
+                    documents = array;
+                    continue;
+                }
+                if (property.NameEquals("TopCpuProcesses"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<ProcessCpuData> array = new List<ProcessCpuData>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(ProcessCpuData.DeserializeProcessCpuData(item, options));
+                    }
+                    topCpuProcesses = array;
+                    continue;
+                }
+                if (property.NameEquals("CollectionConfigurationErrors"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<CollectionConfigurationError> array = new List<CollectionConfigurationError>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(CollectionConfigurationError.DeserializeCollectionConfigurationError(item, options));
+                    }
+                    collectionConfigurationErrors = array;
+                    continue;
+                }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
+            }
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new MonitoringDataPoint(
+                version,
+                invariantVersion,
+                instance,
+                roleName,
+                machineName,
+                streamId,
+                timestamp,
+                transmissionTime,
+                isWebApp,
+                performanceCollectionSupported,
+                metrics ?? new ChangeTrackingList<MetricPoint>(),
+                documents ?? new ChangeTrackingList<DocumentIngress>(),
+                topCpuProcesses ?? new ChangeTrackingList<ProcessCpuData>(),
+                collectionConfigurationErrors ?? new ChangeTrackingList<CollectionConfigurationError>(),
+                serializedAdditionalRawData);
+        }
+
+        BinaryData IPersistableModel<MonitoringDataPoint>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MonitoringDataPoint>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(MonitoringDataPoint)} does not support writing '{options.Format}' format.");
+            }
+        }
+
+        MonitoringDataPoint IPersistableModel<MonitoringDataPoint>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<MonitoringDataPoint>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeMonitoringDataPoint(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(MonitoringDataPoint)} does not support reading '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<MonitoringDataPoint>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+
+        /// <summary> Deserializes the model from a raw response. </summary>
+        /// <param name="response"> The response to deserialize the model from. </param>
+        internal static MonitoringDataPoint FromResponse(Response response)
+        {
+            using var document = JsonDocument.Parse(response.Content);
+            return DeserializeMonitoringDataPoint(document.RootElement);
+        }
+
+        /// <summary> Convert into a Utf8JsonRequestContent. </summary>
+        internal virtual RequestContent ToRequestContent()
+        {
+            var content = new Utf8JsonRequestContent();
+            content.JsonWriter.WriteObjectValue<MonitoringDataPoint>(this, new ModelReaderWriterOptions("W"));
+            return content;
         }
     }
 }

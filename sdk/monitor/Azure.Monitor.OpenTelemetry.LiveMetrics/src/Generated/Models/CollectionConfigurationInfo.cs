@@ -12,8 +12,40 @@ using System.Linq;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Represents the collection configuration - a customizable description of performance counters, metrics, and full telemetry documents to be collected by the client SDK. </summary>
-    internal partial class CollectionConfigurationInfo
+    public partial class CollectionConfigurationInfo
     {
+        /// <summary>
+        /// Keeps track of any properties unknown to the library.
+        /// <para>
+        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// </para>
+        /// <para>
+        /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson("foo")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("\"foo\"")</term>
+        /// <description>Creates a payload of "foo".</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromObjectAsJson(new { key = "value" })</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// <item>
+        /// <term>BinaryData.FromString("{\"key\": \"value\"}")</term>
+        /// <description>Creates a payload of { "key": "value" }.</description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+
         /// <summary> Initializes a new instance of <see cref="CollectionConfigurationInfo"/>. </summary>
         /// <param name="eTag"> An encoded string that indicates whether the collection configuration is changed. </param>
         /// <param name="metrics"> An array of metric configuration info. </param>
@@ -35,12 +67,19 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
         /// <param name="metrics"> An array of metric configuration info. </param>
         /// <param name="documentStreams"> An array of document stream configuration info. </param>
         /// <param name="quotaInfo"> Controls document quotas to be sent to Live Metrics. </param>
-        internal CollectionConfigurationInfo(string eTag, IReadOnlyList<DerivedMetricInfo> metrics, IReadOnlyList<DocumentStreamInfo> documentStreams, QuotaConfigurationInfo quotaInfo)
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
+        internal CollectionConfigurationInfo(string eTag, IReadOnlyList<DerivedMetricInfo> metrics, IReadOnlyList<DocumentStreamInfo> documentStreams, QuotaConfigurationInfo quotaInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ETag = eTag;
             Metrics = metrics;
             DocumentStreams = documentStreams;
             QuotaInfo = quotaInfo;
+            _serializedAdditionalRawData = serializedAdditionalRawData;
+        }
+
+        /// <summary> Initializes a new instance of <see cref="CollectionConfigurationInfo"/> for deserialization. </summary>
+        internal CollectionConfigurationInfo()
+        {
         }
 
         /// <summary> An encoded string that indicates whether the collection configuration is changed. </summary>

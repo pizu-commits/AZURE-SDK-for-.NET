@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Aggregation type. </summary>
-    internal readonly partial struct AggregationType : IEquatable<AggregationType>
+    public readonly partial struct AggregationType : IEquatable<AggregationType>
     {
         private readonly string _value;
 

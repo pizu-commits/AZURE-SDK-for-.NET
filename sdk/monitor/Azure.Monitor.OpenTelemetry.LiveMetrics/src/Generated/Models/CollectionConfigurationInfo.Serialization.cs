@@ -5,15 +5,82 @@
 
 #nullable disable
 
+using System;
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
+using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    internal partial class CollectionConfigurationInfo
+    public partial class CollectionConfigurationInfo : IUtf8JsonSerializable, IJsonModel<CollectionConfigurationInfo>
     {
-        internal static CollectionConfigurationInfo DeserializeCollectionConfigurationInfo(JsonElement element)
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<CollectionConfigurationInfo>)this).Write(writer, new ModelReaderWriterOptions("W"));
+
+        void IJsonModel<CollectionConfigurationInfo>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
+            var format = options.Format == "W" ? ((IPersistableModel<CollectionConfigurationInfo>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(CollectionConfigurationInfo)} does not support writing '{format}' format.");
+            }
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("ETag"u8);
+            writer.WriteStringValue(ETag);
+            writer.WritePropertyName("Metrics"u8);
+            writer.WriteStartArray();
+            foreach (var item in Metrics)
+            {
+                writer.WriteObjectValue<DerivedMetricInfo>(item, options);
+            }
+            writer.WriteEndArray();
+            writer.WritePropertyName("DocumentStreams"u8);
+            writer.WriteStartArray();
+            foreach (var item in DocumentStreams)
+            {
+                writer.WriteObjectValue<DocumentStreamInfo>(item, options);
+            }
+            writer.WriteEndArray();
+            if (Optional.IsDefined(QuotaInfo))
+            {
+                writer.WritePropertyName("QuotaInfo"u8);
+                writer.WriteObjectValue<QuotaConfigurationInfo>(QuotaInfo, options);
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
+            }
+            writer.WriteEndObject();
+        }
+
+        CollectionConfigurationInfo IJsonModel<CollectionConfigurationInfo>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<CollectionConfigurationInfo>)this).GetFormatFromOptions(options) : options.Format;
+            if (format != "J")
+            {
+                throw new FormatException($"The model {nameof(CollectionConfigurationInfo)} does not support reading '{format}' format.");
+            }
+
+            using JsonDocument document = JsonDocument.ParseValue(ref reader);
+            return DeserializeCollectionConfigurationInfo(document.RootElement, options);
+        }
+
+        internal static CollectionConfigurationInfo DeserializeCollectionConfigurationInfo(JsonElement element, ModelReaderWriterOptions options = null)
+        {
+            options ??= new ModelReaderWriterOptions("W");
+
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
@@ -22,6 +89,8 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
             IReadOnlyList<DerivedMetricInfo> metrics = default;
             IReadOnlyList<DocumentStreamInfo> documentStreams = default;
             QuotaConfigurationInfo quotaInfo = default;
+            IDictionary<string, BinaryData> serializedAdditionalRawData = default;
+            Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("ETag"u8))
@@ -34,7 +103,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                     List<DerivedMetricInfo> array = new List<DerivedMetricInfo>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(DerivedMetricInfo.DeserializeDerivedMetricInfo(item));
+                        array.Add(DerivedMetricInfo.DeserializeDerivedMetricInfo(item, options));
                     }
                     metrics = array;
                     continue;
@@ -44,7 +113,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                     List<DocumentStreamInfo> array = new List<DocumentStreamInfo>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(DocumentStreamInfo.DeserializeDocumentStreamInfo(item));
+                        array.Add(DocumentStreamInfo.DeserializeDocumentStreamInfo(item, options));
                     }
                     documentStreams = array;
                     continue;
@@ -55,11 +124,63 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                     {
                         continue;
                     }
-                    quotaInfo = QuotaConfigurationInfo.DeserializeQuotaConfigurationInfo(property.Value);
+                    quotaInfo = QuotaConfigurationInfo.DeserializeQuotaConfigurationInfo(property.Value, options);
                     continue;
                 }
+                if (options.Format != "W")
+                {
+                    additionalPropertiesDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
+                }
             }
-            return new CollectionConfigurationInfo(eTag, metrics, documentStreams, quotaInfo);
+            serializedAdditionalRawData = additionalPropertiesDictionary;
+            return new CollectionConfigurationInfo(eTag, metrics, documentStreams, quotaInfo, serializedAdditionalRawData);
+        }
+
+        BinaryData IPersistableModel<CollectionConfigurationInfo>.Write(ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<CollectionConfigurationInfo>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    return ModelReaderWriter.Write(this, options);
+                default:
+                    throw new FormatException($"The model {nameof(CollectionConfigurationInfo)} does not support writing '{options.Format}' format.");
+            }
+        }
+
+        CollectionConfigurationInfo IPersistableModel<CollectionConfigurationInfo>.Create(BinaryData data, ModelReaderWriterOptions options)
+        {
+            var format = options.Format == "W" ? ((IPersistableModel<CollectionConfigurationInfo>)this).GetFormatFromOptions(options) : options.Format;
+
+            switch (format)
+            {
+                case "J":
+                    {
+                        using JsonDocument document = JsonDocument.Parse(data);
+                        return DeserializeCollectionConfigurationInfo(document.RootElement, options);
+                    }
+                default:
+                    throw new FormatException($"The model {nameof(CollectionConfigurationInfo)} does not support reading '{options.Format}' format.");
+            }
+        }
+
+        string IPersistableModel<CollectionConfigurationInfo>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+
+        /// <summary> Deserializes the model from a raw response. </summary>
+        /// <param name="response"> The response to deserialize the model from. </param>
+        internal static CollectionConfigurationInfo FromResponse(Response response)
+        {
+            using var document = JsonDocument.Parse(response.Content);
+            return DeserializeCollectionConfigurationInfo(document.RootElement);
+        }
+
+        /// <summary> Convert into a Utf8JsonRequestContent. </summary>
+        internal virtual RequestContent ToRequestContent()
+        {
+            var content = new Utf8JsonRequestContent();
+            content.JsonWriter.WriteObjectValue<CollectionConfigurationInfo>(this, new ModelReaderWriterOptions("W"));
+            return content;
         }
     }
 }

@@ -23,17 +23,17 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
         /// <param name="documentType"> Telemetry type. Types not defined in enum will get replaced with a 'Unknown' type. </param>
         /// <param name="documentStreamIds"> An array of document streaming ids. Each id identifies a flow of documents customized by UX customers. </param>
         /// <param name="properties"> Collection of custom properties. </param>
+        /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="name"> Name of the request, e.g., 'GET /values/{id}'. </param>
         /// <param name="url"> Request URL with all query string parameters. </param>
         /// <param name="responseCode"> Result of a request execution. For http requests, it could be some HTTP status code. </param>
         /// <param name="duration"> Request duration in ISO 8601 duration format, i.e., P[n]Y[n]M[n]DT[n]H[n]M[n]S or P[n]W. </param>
-        internal Request(DocumentType documentType, IList<string> documentStreamIds, IList<KeyValuePairString> properties, string name, Uri url, string responseCode, string duration) : base(documentType, documentStreamIds, properties)
+        internal Request(DocumentType documentType, IList<string> documentStreamIds, IList<KeyValuePairStringString> properties, IDictionary<string, BinaryData> serializedAdditionalRawData, string name, Uri url, string responseCode, string duration) : base(documentType, documentStreamIds, properties, serializedAdditionalRawData)
         {
             Name = name;
             Url = url;
             ResponseCode = responseCode;
             Duration = duration;
-            DocumentType = documentType;
         }
 
         /// <summary> Name of the request, e.g., 'GET /values/{id}'. </summary>
