@@ -1512,8 +1512,8 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
             var equalsValue = new FilterInfo("CustomDimensions.Dimension.1", PredicateType.Equal, "abc");
 
             // ACT
-            bool result1 = new Filter<DocumentMock>(equalsValue).Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Dimension.1", "abc") }));
-            bool result2 = new Filter<DocumentMock>(equalsValue).Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Dimension.1", "abcd") }));
+            bool result1 = new Filter<DocumentMock>(equalsValue).Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Dimension.1", "abc") }));
+            bool result2 = new Filter<DocumentMock>(equalsValue).Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Dimension.1", "abcd") }));
             bool result3 = new Filter<DocumentMock>(equalsValue).Check(new DocumentMock());
 
             // ASSERT
@@ -1644,8 +1644,8 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
             Filter<DocumentMock> filter = new Filter<DocumentMock>(filterInfo);
 
             // ACT
-            bool result1 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", "1234") }));
-            bool result2 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", "12234") }));
+            bool result1 = filter.Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Prop1", "1234") }));
+            bool result2 = filter.Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Prop1", "12234") }));
             // bool result3 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", null) })); // null is not supported in the new models.
             bool result4 = filter.Check(new DocumentMock());
 
@@ -1682,8 +1682,8 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
             Filter<DocumentMock> filter = new Filter<DocumentMock>(filterInfo);
 
             // ACT
-            bool result1 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", "1234") }));
-            bool result2 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", "12234") }));
+            bool result1 = filter.Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Prop1", "1234") }));
+            bool result2 = filter.Check(new DocumentMock(new List<KeyValuePairStringString>() { new KeyValuePairStringString("Prop1", "12234") }));
             //bool result3 = filter.Check(new DocumentMock(new List<KeyValuePairString>() { new KeyValuePairString("Prop1", null) })); // null is not supported in the new models.
             bool result4 = filter.Check(new DocumentMock());
 

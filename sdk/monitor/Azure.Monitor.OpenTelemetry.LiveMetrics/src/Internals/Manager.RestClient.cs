@@ -31,7 +31,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
             {
                 Debug.WriteLine($"{DateTime.Now}: OnPing invoked.");
 
-                var response = _quickPulseSDKClientAPIsRestClient.CustomPing(
+                var response = _restClient.CustomPing(
                     ikey: _connectionVars.InstrumentationKey,
                     apikey: null,
                     xMsQpsTransmissionTime: null,
@@ -87,7 +87,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
 
                 var dataPoint = GetDataPoint();
 
-                var response = _quickPulseSDKClientAPIsRestClient.CustomPost(
+                var response = _restClient.CustomPost(
                     ikey: _connectionVars.InstrumentationKey,
                     apikey: null,
                     xMsQpsConfigurationEtag: _etag,

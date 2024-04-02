@@ -75,31 +75,32 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
             Assert.Empty(errors);
         }
 
-        [Fact]
-        public void DerivedMetricHandlesNullFiltersCorrectly()
-        {
-            // ARRANGE
-            var metricInfo = new DerivedMetricInfo(
-                id: "Metric1",
-                telemetryType: TelemetryType.Request.ToString(),
-                filterGroups: null,
-                projection: "Name",
-                aggregation: Models.AggregationType.Sum,
-                backEndAggregation: Models.AggregationType.Sum
-            );
+        // TODO: CHECK WITH SEAN. DerivedMetricInfo NO LONGER SUPPORTS null FOR filterGroups.
+        //[Fact]
+        //public void DerivedMetricHandlesNullFiltersCorrectly()
+        //{
+        //    // ARRANGE
+        //    var metricInfo = new DerivedMetricInfo(
+        //        id: "Metric1",
+        //        telemetryType: TelemetryType.Request.ToString(),
+        //        filterGroups: null,
+        //        projection: "Name",
+        //        aggregation: Models.AggregationType.Sum,
+        //        backEndAggregation: Models.AggregationType.Sum
+        //    );
 
-            var telemetryThatMustPass = new RequestTelemetry() { Name = "Both the words 'dog' and 'CAT' are here, which satisfies both filters" };
+        //    var telemetryThatMustPass = new RequestTelemetry() { Name = "Both the words 'dog' and 'CAT' are here, which satisfies both filters" };
 
-            // ACT
-            CollectionConfigurationError[] errors;
-            var metric = new DerivedMetric<RequestTelemetry>(metricInfo, out errors);
+        //    // ACT
+        //    CollectionConfigurationError[] errors;
+        //    var metric = new DerivedMetric<RequestTelemetry>(metricInfo, out errors);
 
-            // ASSERT
-            Assert.Empty(errors);
+        //    // ASSERT
+        //    Assert.Empty(errors);
 
-            Assert.True(metric.CheckFilters(telemetryThatMustPass, out errors));
-            Assert.Empty(errors);
-        }
+        //    Assert.True(metric.CheckFilters(telemetryThatMustPass, out errors));
+        //    Assert.Empty(errors);
+        //}
 
         [Fact]
         public void DerivedMetricPerformsLogicalConnectionsBetweenFiltersCorrectly()
@@ -195,7 +196,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
                 backEndAggregation: Models.AggregationType.Sum
             );
 
-            var telemetry = new DocumentMock(new List<KeyValuePairString>() { new("Dimension.1", "1.5") });
+            var telemetry = new DocumentMock(new List<KeyValuePairStringString>() { new("Dimension.1", "1.5") });
 
             // ACT
             CollectionConfigurationError[] errors;

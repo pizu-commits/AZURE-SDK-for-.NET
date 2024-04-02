@@ -37,13 +37,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         }
 
         /// <summary> Initializes a new instance of LiveMetricsClient. </summary>
-        /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="credential"/> is null. </exception>
-        public LiveMetricsClient(TokenCredential credential) : this(new Uri((Uri)null), credential, new LiveMetricsClientOptions())
-        {
-        }
-
-        /// <summary> Initializes a new instance of LiveMetricsClient. </summary>
         /// <param name="endpoint"> The endpoint of the Live Metrics service. </param>
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <param name="options"> The options for configuring the client. </param>
@@ -73,7 +66,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <param name="configurationEtag"> An encoded string that indicates whether the collection configuration is changed. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='IsSubscribedAsync(string,MonitoringDataPoint,long?,string,string,string,string,string,string,CancellationToken)']/*" />
         public virtual async Task<Response<CollectionConfigurationInfo>> IsSubscribedAsync(string ikey, MonitoringDataPoint monitoringDataPoint = null, long? transmissionTime = null, string machineName = null, string instanceName = null, string streamId = null, string roleName = null, string invariantVersion = null, string configurationEtag = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -96,7 +88,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <param name="configurationEtag"> An encoded string that indicates whether the collection configuration is changed. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='IsSubscribed(string,MonitoringDataPoint,long?,string,string,string,string,string,string,CancellationToken)']/*" />
         public virtual Response<CollectionConfigurationInfo> IsSubscribed(string ikey, MonitoringDataPoint monitoringDataPoint = null, long? transmissionTime = null, string machineName = null, string instanceName = null, string streamId = null, string roleName = null, string invariantVersion = null, string configurationEtag = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -135,7 +126,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='IsSubscribedAsync(string,RequestContent,long?,string,string,string,string,string,string,RequestContext)']/*" />
         public virtual async Task<Response> IsSubscribedAsync(string ikey, RequestContent content, long? transmissionTime = null, string machineName = null, string instanceName = null, string streamId = null, string roleName = null, string invariantVersion = null, string configurationEtag = null, RequestContext context = null)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -182,7 +172,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='IsSubscribed(string,RequestContent,long?,string,string,string,string,string,string,RequestContext)']/*" />
         public virtual Response IsSubscribed(string ikey, RequestContent content, long? transmissionTime = null, string machineName = null, string instanceName = null, string streamId = null, string roleName = null, string invariantVersion = null, string configurationEtag = null, RequestContext context = null)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -208,7 +197,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <param name="transmissionTime"> Timestamp when the client transmits the metrics and documents to Live Metrics. A 8-byte long type of ticks. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='PublishAsync(string,IEnumerable{MonitoringDataPoint},string,long?,CancellationToken)']/*" />
         public virtual async Task<Response<CollectionConfigurationInfo>> PublishAsync(string ikey, IEnumerable<MonitoringDataPoint> monitoringDataPoints = null, string configurationEtag = null, long? transmissionTime = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -226,7 +214,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <param name="transmissionTime"> Timestamp when the client transmits the metrics and documents to Live Metrics. A 8-byte long type of ticks. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='Publish(string,IEnumerable{MonitoringDataPoint},string,long?,CancellationToken)']/*" />
         public virtual Response<CollectionConfigurationInfo> Publish(string ikey, IEnumerable<MonitoringDataPoint> monitoringDataPoints = null, string configurationEtag = null, long? transmissionTime = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -260,7 +247,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='PublishAsync(string,RequestContent,string,long?,RequestContext)']/*" />
         public virtual async Task<Response> PublishAsync(string ikey, RequestContent content, string configurationEtag = null, long? transmissionTime = null, RequestContext context = null)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));
@@ -302,7 +288,6 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
         /// <exception cref="ArgumentNullException"> <paramref name="ikey"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        /// <include file="Docs/LiveMetricsClient.xml" path="doc/members/member[@name='Publish(string,RequestContent,string,long?,RequestContext)']/*" />
         public virtual Response Publish(string ikey, RequestContent content, string configurationEtag = null, long? transmissionTime = null, RequestContext context = null)
         {
             Argument.AssertNotNull(ikey, nameof(ikey));

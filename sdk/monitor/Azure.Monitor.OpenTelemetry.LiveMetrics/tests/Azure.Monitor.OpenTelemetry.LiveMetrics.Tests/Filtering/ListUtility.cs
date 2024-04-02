@@ -8,7 +8,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering.Tests
 {
     internal static class ListUtility
     {
-        public static string? GetValue(this IList<KeyValuePairString> list, string key)
+        public static string? GetValue(this IList<KeyValuePairStringString> list, string key)
         {
             foreach (var item in list)
             {

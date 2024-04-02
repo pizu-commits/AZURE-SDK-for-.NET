@@ -13,7 +13,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
 {
     internal sealed partial class Manager : IDisposable
     {
-        private readonly LiveMetricsRestAPIsForClientSDKsRestClient _quickPulseSDKClientAPIsRestClient;
+        private readonly LiveMetricsClient _restClient;
         private readonly ConnectionVars _connectionVars;
         private readonly bool _isAadEnabled;
         private readonly string _streamId = Guid.NewGuid().ToString(); // StreamId should be unique per application instance.
@@ -24,7 +24,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
             options.Retry.MaxRetries = 0; // prevent Azure.Core from automatically retrying.
 
             _connectionVars = InitializeConnectionVars(options, platform);
-            _quickPulseSDKClientAPIsRestClient = InitializeRestClient(options, _connectionVars, out _isAadEnabled);
+            _restClient = InitializeRestClient(options, _connectionVars, out _isAadEnabled);
 
             //CollectionConfigurationError[] errors;
             //_collectionConfigurationInfo = new CollectionConfigurationInfo(); // TODO: DEFAULT CTOR WAS REMOVED. NEED TO TOUCH BASE WITH SEAN
@@ -61,7 +61,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
             throw new InvalidOperationException("A connection string was not found. Please set your connection string.");
         }
 
-        private static LiveMetricsRestAPIsForClientSDKsRestClient InitializeRestClient(LiveMetricsExporterOptions options, ConnectionVars connectionVars, out bool isAadEnabled)
+        private static LiveMetricsClient InitializeRestClient(LiveMetricsExporterOptions options, ConnectionVars connectionVars, out bool isAadEnabled)
         {
             HttpPipeline pipeline;
 
@@ -83,7 +83,8 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals
                 pipeline = HttpPipelineBuilder.Build(options);
             }
 
-            return new LiveMetricsRestAPIsForClientSDKsRestClient(new ClientDiagnostics(options), pipeline, host: connectionVars.LiveEndpoint);
+            // TODO: return new LiveMetricsClient(new ClientDiagnostics(options), pipeline, host: connectionVars.LiveEndpoint);
+            throw new NotImplementedException();
         }
 
         /// <summary>
