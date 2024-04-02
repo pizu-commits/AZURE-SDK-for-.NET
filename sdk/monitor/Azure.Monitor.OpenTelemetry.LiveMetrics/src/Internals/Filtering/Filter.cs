@@ -326,7 +326,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering
             }
         }
 
-        private static string TryGetString(IList<KeyValuePairString> list, string keyValue)
+        private static string TryGetString(IList<KeyValuePairStringString> list, string keyValue)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -338,7 +338,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering
             return null;
         }
 
-        private static bool ScanList(IList<KeyValuePairString> list, string searchValue)
+        private static bool ScanList(IList<KeyValuePairStringString> list, string searchValue)
         {
             return list?.Any(val => (val.Value ?? string.Empty).IndexOf(searchValue ?? string.Empty, StringComparison.OrdinalIgnoreCase) != -1)
                    ?? false;
