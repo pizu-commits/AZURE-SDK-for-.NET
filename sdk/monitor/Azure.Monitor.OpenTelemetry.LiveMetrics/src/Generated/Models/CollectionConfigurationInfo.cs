@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Represents the collection configuration - a customizable description of performance counters, metrics, and full telemetry documents to be collected by the client SDK. </summary>
-    public partial class CollectionConfigurationInfo
+    internal partial class CollectionConfigurationInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

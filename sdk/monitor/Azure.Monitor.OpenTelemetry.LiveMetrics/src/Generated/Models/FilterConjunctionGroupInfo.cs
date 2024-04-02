@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> An AND-connected group of FilterInfo objects. </summary>
-    public partial class FilterConjunctionGroupInfo
+    internal partial class FilterConjunctionGroupInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

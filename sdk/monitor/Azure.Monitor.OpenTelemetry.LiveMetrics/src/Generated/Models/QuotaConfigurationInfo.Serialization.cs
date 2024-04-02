@@ -13,7 +13,7 @@ using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    public partial class QuotaConfigurationInfo : IUtf8JsonSerializable, IJsonModel<QuotaConfigurationInfo>
+    internal partial class QuotaConfigurationInfo : IUtf8JsonSerializable, IJsonModel<QuotaConfigurationInfo>
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<QuotaConfigurationInfo>)this).Write(writer, new ModelReaderWriterOptions("W"));
 

@@ -13,7 +13,7 @@ using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    public partial class DocumentFilterConjunctionGroupInfo : IUtf8JsonSerializable, IJsonModel<DocumentFilterConjunctionGroupInfo>
+    internal partial class DocumentFilterConjunctionGroupInfo : IUtf8JsonSerializable, IJsonModel<DocumentFilterConjunctionGroupInfo>
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DocumentFilterConjunctionGroupInfo>)this).Write(writer, new ModelReaderWriterOptions("W"));
 

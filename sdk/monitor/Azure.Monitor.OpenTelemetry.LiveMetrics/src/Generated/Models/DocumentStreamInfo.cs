@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Configurations/filters set by UX to scope the document/telemetry it's interested in. </summary>
-    public partial class DocumentStreamInfo
+    internal partial class DocumentStreamInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

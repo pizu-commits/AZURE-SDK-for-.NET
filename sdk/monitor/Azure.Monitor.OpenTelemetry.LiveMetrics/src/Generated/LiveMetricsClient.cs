@@ -17,7 +17,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics
 {
     // Data plane generated client.
     /// <summary> Live Metrics REST APIs. </summary>
-    public partial class LiveMetricsClient
+    internal partial class LiveMetricsClient
     {
         private static readonly string[] AuthorizationScopes = new string[] { "https://monitor.azure.com/.default" };
         private readonly TokenCredential _tokenCredential;

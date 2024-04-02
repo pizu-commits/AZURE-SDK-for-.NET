@@ -13,7 +13,7 @@ using Azure.Core;
 
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
-    public partial class ProcessCpuData : IUtf8JsonSerializable, IJsonModel<ProcessCpuData>
+    internal partial class ProcessCpuData : IUtf8JsonSerializable, IJsonModel<ProcessCpuData>
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<ProcessCpuData>)this).Write(writer, new ModelReaderWriterOptions("W"));
 

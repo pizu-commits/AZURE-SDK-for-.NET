@@ -5,31 +5,10 @@
 
 #nullable disable
 
-using System;
-using Azure.Core.Extensions;
-using Azure.Monitor.OpenTelemetry.LiveMetrics;
-
 namespace Microsoft.Extensions.Azure
 {
-    /// <summary> Extension methods to add <see cref="LiveMetricsClient"/> to client builder. </summary>
+    /// <summary> Extension methods to add  to client builder. </summary>
     public static partial class MonitorOpenTelemetryLiveMetricsClientBuilderExtensions
     {
-        /// <summary> Registers a <see cref="LiveMetricsClient"/> instance. </summary>
-        /// <param name="builder"> The builder to register with. </param>
-        /// <param name="endpoint"> The endpoint of the Live Metrics service. </param>
-        public static IAzureClientBuilder<LiveMetricsClient, LiveMetricsClientOptions> AddLiveMetricsClient<TBuilder>(this TBuilder builder, Uri endpoint)
-        where TBuilder : IAzureClientFactoryBuilderWithCredential
-        {
-            return builder.RegisterClientFactory<LiveMetricsClient, LiveMetricsClientOptions>((options, cred) => new LiveMetricsClient(endpoint, cred, options));
-        }
-
-        /// <summary> Registers a <see cref="LiveMetricsClient"/> instance. </summary>
-        /// <param name="builder"> The builder to register with. </param>
-        /// <param name="configuration"> The configuration values. </param>
-        public static IAzureClientBuilder<LiveMetricsClient, LiveMetricsClientOptions> AddLiveMetricsClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
-        where TBuilder : IAzureClientFactoryBuilderWithConfiguration<TConfiguration>
-        {
-            return builder.RegisterClientFactory<LiveMetricsClient, LiveMetricsClientOptions>(configuration);
-        }
     }
 }

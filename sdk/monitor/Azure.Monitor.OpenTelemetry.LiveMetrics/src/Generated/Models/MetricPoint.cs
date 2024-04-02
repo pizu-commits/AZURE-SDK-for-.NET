@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Metric data point. </summary>
-    public partial class MetricPoint
+    internal partial class MetricPoint
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

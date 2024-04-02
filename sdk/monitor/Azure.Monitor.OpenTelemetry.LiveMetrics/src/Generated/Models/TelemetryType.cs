@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Telemetry type. </summary>
-    public readonly partial struct TelemetryType : IEquatable<TelemetryType>
+    internal readonly partial struct TelemetryType : IEquatable<TelemetryType>
     {
         private readonly string _value;
 

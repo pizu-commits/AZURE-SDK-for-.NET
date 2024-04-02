@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> CPU consumption datapoint. </summary>
-    public partial class ProcessCpuData
+    internal partial class ProcessCpuData
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

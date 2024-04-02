@@ -11,7 +11,7 @@ using Azure.Core;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics
 {
     /// <summary> Client options for LiveMetricsClient. </summary>
-    public partial class LiveMetricsClientOptions : ClientOptions
+    internal partial class LiveMetricsClientOptions : ClientOptions
     {
         private const ServiceVersion LatestVersion = ServiceVersion.V2024_04_01_Preview;
 

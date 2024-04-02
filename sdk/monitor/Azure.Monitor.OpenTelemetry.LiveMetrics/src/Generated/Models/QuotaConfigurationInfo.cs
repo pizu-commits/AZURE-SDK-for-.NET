@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Controls document quotas to be sent to Live Metrics. </summary>
-    public partial class QuotaConfigurationInfo
+    internal partial class QuotaConfigurationInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

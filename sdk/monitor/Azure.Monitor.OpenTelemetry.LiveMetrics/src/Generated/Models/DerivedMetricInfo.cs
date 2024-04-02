@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> A metric configuration set by UX to scope the metrics it's interested in. </summary>
-    public partial class DerivedMetricInfo
+    internal partial class DerivedMetricInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

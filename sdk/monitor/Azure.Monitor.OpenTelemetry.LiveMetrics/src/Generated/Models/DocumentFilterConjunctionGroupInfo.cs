@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> A collection of filters for a specific telemetry type. </summary>
-    public partial class DocumentFilterConjunctionGroupInfo
+    internal partial class DocumentFilterConjunctionGroupInfo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.

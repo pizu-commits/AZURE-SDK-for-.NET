@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
 {
     /// <summary> Monitoring data point coming from the client, which includes metrics, documents and other metadata info. </summary>
-    public partial class MonitoringDataPoint
+    internal partial class MonitoringDataPoint
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
