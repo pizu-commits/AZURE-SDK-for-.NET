@@ -157,7 +157,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering
             {
                 if (error.Data[i].Key == "MetricId")
                 {
-                    error.Data[i] = new KeyValuePairString(error.Data[i].Key, id);
+                    error.Data[i] = new KeyValuePairStringString(error.Data[i].Key, id);
 
                     // TODO: MODEL CHANGED TO READONLY. I'M INVESTIGATING IF WE CAN REVERT THIS CHANGE. (2024-03-22)
                     //error.Data[i].Value = id;

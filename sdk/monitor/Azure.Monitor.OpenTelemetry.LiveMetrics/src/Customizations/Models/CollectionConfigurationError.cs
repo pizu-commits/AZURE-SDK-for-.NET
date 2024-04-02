@@ -17,7 +17,7 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Models
                 errorType,
                 message,
                 exception?.ToString() ?? string.Empty,
-                Array.ConvertAll(data, tuple => new KeyValuePairString(tuple.Item1, tuple.Item2))
+                Array.ConvertAll(data, tuple => new KeyValuePairStringString(tuple.Item1, tuple.Item2))
             );
         }
     }

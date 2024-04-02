@@ -56,12 +56,12 @@ namespace Azure.Monitor.OpenTelemetry.LiveMetrics.Internals.Filtering
             new[] { typeof(string), typeof(NumberStyles), typeof(IFormatProvider), typeof(double).MakeByRefType() });
 
         private static readonly MethodInfo ListStringTryGetValueMethodInfo =
-            GetMethodInfo<IList<KeyValuePairString>, string, string>((list, key) => Filter<int>.TryGetString(list, key));
+            GetMethodInfo<IList<KeyValuePairStringString>, string, string>((list, key) => Filter<int>.TryGetString(list, key));
 
         private static readonly MethodInfo DictionaryStringDoubleTryGetValueMethodInfo = typeof(IDictionary<string, double>).GetMethod("TryGetValue");
 
         private static readonly MethodInfo ListKeyValuePairStringScanMethodInfo =
-            GetMethodInfo<IList<KeyValuePairString>, string, bool>((list, searchValue) => Filter<int>.ScanList(list, searchValue));
+            GetMethodInfo<IList<KeyValuePairStringString>, string, bool>((list, searchValue) => Filter<int>.ScanList(list, searchValue));
 
         private static readonly MethodInfo DictionaryStringDoubleScanMethodInfo =
            GetMethodInfo<IDictionary<string, double>, string, bool>((dict, searchValue) => Filter<int>.ScanDictionary(dict, searchValue));
