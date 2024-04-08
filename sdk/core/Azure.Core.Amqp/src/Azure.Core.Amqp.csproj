@@ -11,7 +11,8 @@
     <NoWarn>$(NoWarn);AZC0001</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- These packages are included as part net6.0; the external references are not needed. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net6.0'">
     <PackageReference Include="System.Memory" />
     <PackageReference Include="System.Memory.Data" />
     <PackageReference Include="Microsoft.Azure.Amqp" />

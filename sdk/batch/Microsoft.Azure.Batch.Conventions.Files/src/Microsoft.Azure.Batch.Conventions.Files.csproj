@@ -15,13 +15,17 @@
       Improve usability of GetOutputStoragePath.
     </PackageReleaseNotes>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0;net6.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" VersionOverride="12.12.0" />
     <PackageReference Include="Microsoft.Azure.Batch" />
+  </ItemGroup>
+
+  <!-- These packages are included as part net6.0; the external references are not needed. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net6.0'">
     <PackageReference Include="System.Text.Encodings.Web" VersionOverride="4.7.2" />
   </ItemGroup>
 

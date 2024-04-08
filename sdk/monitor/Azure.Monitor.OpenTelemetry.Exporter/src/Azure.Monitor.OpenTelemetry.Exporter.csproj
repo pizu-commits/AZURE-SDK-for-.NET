@@ -20,6 +20,11 @@
     <PackageReference Include="OpenTelemetry.PersistentStorage.FileSystem" />
   </ItemGroup>
 
+  <!-- These packages are included as part net6.0; the external references are not needed. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net6.0'">
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
   <!-- Shared source from Azure.Core -->
   <ItemGroup>
     <Compile Include="$(AzureCoreSharedSources)ArrayBufferWriter.cs" LinkBase="Shared" />

@@ -26,7 +26,8 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <Compile Include="$(AzureStorageSharedSources)AesGcm\**\*.cs" LinkBase="Shared" />
   </ItemGroup>
-  <ItemGroup>
+  <!-- These packages are included as part net6.0; the external references are not needed. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net6.0'">
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
   <ItemGroup>
