@@ -28,6 +28,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetEnvironment("<projectName>", "<userId>", "<environmentName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -45,6 +46,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetEnvironmentAsync("<projectName>", "<userId>", "<environmentName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -84,7 +86,9 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetEnvironment("<projectName>", "<userId>", "<environmentName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
             Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("user").ToString());
@@ -109,7 +113,9 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetEnvironmentAsync("<projectName>", "<userId>", "<environmentName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
             Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("user").ToString());
@@ -147,6 +153,742 @@ namespace Azure.Developer.DevCenter.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_PatchEnvironment_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            using RequestContent content = RequestContent.Create(new
+            {
+                environmentType = "<environmentType>",
+                catalogName = "<catalogName>",
+                environmentDefinitionName = "<environmentDefinitionName>",
+            });
+            Response response = client.PatchEnvironment("<projectName>", "<userId>", "<environmentName>", content);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("environmentType").ToString());
+            Console.WriteLine(result.GetProperty("catalogName").ToString());
+            Console.WriteLine(result.GetProperty("environmentDefinitionName").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_PatchEnvironment_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            using RequestContent content = RequestContent.Create(new
+            {
+                environmentType = "<environmentType>",
+                catalogName = "<catalogName>",
+                environmentDefinitionName = "<environmentDefinitionName>",
+            });
+            Response response = await client.PatchEnvironmentAsync("<projectName>", "<userId>", "<environmentName>", content);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("environmentType").ToString());
+            Console.WriteLine(result.GetProperty("catalogName").ToString());
+            Console.WriteLine(result.GetProperty("environmentDefinitionName").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_PatchEnvironment_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            using RequestContent content = RequestContent.Create(new
+            {
+                expirationDate = "2022-05-10T14:57:31.2311892-04:00",
+                parameters = new
+                {
+                    key = new object(),
+                },
+                environmentType = "<environmentType>",
+                catalogName = "<catalogName>",
+                environmentDefinitionName = "<environmentDefinitionName>",
+            });
+            Response response = client.PatchEnvironment("<projectName>", "<userId>", "<environmentName>", content);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
+            Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("environmentType").ToString());
+            Console.WriteLine(result.GetProperty("user").ToString());
+            Console.WriteLine(result.GetProperty("provisioningState").ToString());
+            Console.WriteLine(result.GetProperty("resourceGroupId").ToString());
+            Console.WriteLine(result.GetProperty("catalogName").ToString());
+            Console.WriteLine(result.GetProperty("environmentDefinitionName").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_PatchEnvironment_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            using RequestContent content = RequestContent.Create(new
+            {
+                expirationDate = "2022-05-10T14:57:31.2311892-04:00",
+                parameters = new
+                {
+                    key = new object(),
+                },
+                environmentType = "<environmentType>",
+                catalogName = "<catalogName>",
+                environmentDefinitionName = "<environmentDefinitionName>",
+            });
+            Response response = await client.PatchEnvironmentAsync("<projectName>", "<userId>", "<environmentName>", content);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
+            Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("environmentType").ToString());
+            Console.WriteLine(result.GetProperty("user").ToString());
+            Console.WriteLine(result.GetProperty("provisioningState").ToString());
+            Console.WriteLine(result.GetProperty("resourceGroupId").ToString());
+            Console.WriteLine(result.GetProperty("catalogName").ToString());
+            Console.WriteLine(result.GetProperty("environmentDefinitionName").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetOutputs_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetOutputs("<projectName>", "<userId>", "<environmentName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetOutputs_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetOutputsAsync("<projectName>", "<userId>", "<environmentName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetOutputs_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOutputs> response = client.GetOutputs("<projectName>", "<userId>", "<environmentName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetOutputs_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOutputs> response = await client.GetOutputsAsync("<projectName>", "<userId>", "<environmentName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetOutputs_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetOutputs("<projectName>", "<userId>", "<environmentName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("type").ToString());
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("value").ToString());
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("sensitive").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetOutputs_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetOutputsAsync("<projectName>", "<userId>", "<environmentName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("type").ToString());
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("value").ToString());
+            Console.WriteLine(result.GetProperty("outputs").GetProperty("<key>").GetProperty("sensitive").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetOutputs_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOutputs> response = client.GetOutputs("<projectName>", "<userId>", "<environmentName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetOutputs_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOutputs> response = await client.GetOutputsAsync("<projectName>", "<userId>", "<environmentName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperation_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetOperation("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("kind").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperation_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetOperationAsync("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("kind").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperation_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOperation> response = client.GetOperation("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperation_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOperation> response = await client.GetOperationAsync("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperation_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetOperation("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("kind").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+            Console.WriteLine(result.GetProperty("startTime").ToString());
+            Console.WriteLine(result.GetProperty("endTime").ToString());
+            Console.WriteLine(result.GetProperty("environmentParameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperation_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetOperationAsync("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("kind").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+            Console.WriteLine(result.GetProperty("startTime").ToString());
+            Console.WriteLine(result.GetProperty("endTime").ToString());
+            Console.WriteLine(result.GetProperty("environmentParameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+            Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperation_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOperation> response = client.GetOperation("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperation_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentOperation> response = await client.GetOperationAsync("<projectName>", "<userId>", "<environmentName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetLogsByOperation_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetLogsByOperation("<projectName>", "<userId>", "<environmentName>", "<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetLogsByOperation_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetLogsByOperationAsync("<projectName>", "<userId>", "<environmentName>", "<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetLogsByOperation_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<string> response = client.GetLogsByOperation("<projectName>", "<userId>", "<environmentName>", "<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetLogsByOperation_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<string> response = await client.GetLogsByOperationAsync("<projectName>", "<userId>", "<environmentName>", "<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetLogsByOperation_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetLogsByOperation("<projectName>", "<userId>", "<environmentName>", "<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetLogsByOperation_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetLogsByOperationAsync("<projectName>", "<userId>", "<environmentName>", "<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_GetLogsByOperation_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<string> response = client.GetLogsByOperation("<projectName>", "<userId>", "<environmentName>", "<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_GetLogsByOperation_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<string> response = await client.GetLogsByOperationAsync("<projectName>", "<userId>", "<environmentName>", "<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetAction_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetAction_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetAction_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = client.GetAction("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetAction_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = await client.GetActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetAction_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.GetAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+            Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetAction_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.GetActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+            Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetAction_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = client.GetAction("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetAction_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = await client.GetActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_SkipAction_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.SkipAction("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+
+            Console.WriteLine(response.Status);
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_SkipAction_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.SkipActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+
+            Console.WriteLine(response.Status);
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_SkipAction_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.SkipAction("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+
+            Console.WriteLine(response.Status);
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_SkipAction_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.SkipActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>");
+
+            Console.WriteLine(response.Status);
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_DelayAction_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.DelayAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_DelayAction_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_DelayAction_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = client.DelayAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_DelayAction_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = await client.DelayActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_DelayAction_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = client.DelayAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+            Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_DelayAction_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("name").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
+            Console.WriteLine(result.GetProperty("actionType").ToString());
+            Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+            Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentClientOperations_DelayAction_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = client.DelayAction("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentClientOperations_DelayAction_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            Response<EnvironmentAction> response = await client.DelayActionAsync("<projectName>", "<userId>", "<environmentName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"));
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public void Example_Catalog_GetCatalog_ShortVersion()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
@@ -156,6 +898,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetCatalog("<projectName>", "<catalogName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
         }
 
@@ -170,6 +913,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetCatalogAsync("<projectName>", "<catalogName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
         }
 
@@ -206,6 +950,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetCatalog("<projectName>", "<catalogName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
         }
 
@@ -220,6 +965,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetCatalogAsync("<projectName>", "<catalogName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
         }
 
@@ -256,6 +1002,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetEnvironmentDefinition("<projectName>", "<catalogName>", "<definitionName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -272,6 +1019,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetEnvironmentDefinitionAsync("<projectName>", "<catalogName>", "<definitionName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -310,6 +1058,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = client.GetEnvironmentDefinition("<projectName>", "<catalogName>", "<definitionName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -337,6 +1086,7 @@ namespace Azure.Developer.DevCenter.Samples
             Response response = await client.GetEnvironmentDefinitionAsync("<projectName>", "<catalogName>", "<definitionName>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -386,6 +1136,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetAllEnvironments("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -404,6 +1155,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetAllEnvironmentsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -448,7 +1200,9 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetAllEnvironments("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("expirationDate").ToString());
                 Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("user").ToString());
@@ -474,7 +1228,9 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetAllEnvironmentsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("expirationDate").ToString());
                 Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("user").ToString());
@@ -526,6 +1282,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironments("<projectName>", "<userId>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -544,6 +1301,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentsAsync("<projectName>", "<userId>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -588,7 +1346,9 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironments("<projectName>", "<userId>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("expirationDate").ToString());
                 Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("user").ToString());
@@ -614,7 +1374,9 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentsAsync("<projectName>", "<userId>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("expirationDate").ToString());
                 Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("environmentType").ToString());
                 Console.WriteLine(result.GetProperty("user").ToString());
@@ -657,6 +1419,272 @@ namespace Azure.Developer.DevCenter.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperations_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (BinaryData item in client.GetOperations("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("operationId").ToString());
+                Console.WriteLine(result.GetProperty("kind").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperations_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (BinaryData item in client.GetOperationsAsync("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("operationId").ToString());
+                Console.WriteLine(result.GetProperty("kind").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperations_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (EnvironmentOperation item in client.GetOperations("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperations_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (EnvironmentOperation item in client.GetOperationsAsync("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperations_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (BinaryData item in client.GetOperations("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("operationId").ToString());
+                Console.WriteLine(result.GetProperty("kind").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+                Console.WriteLine(result.GetProperty("startTime").ToString());
+                Console.WriteLine(result.GetProperty("endTime").ToString());
+                Console.WriteLine(result.GetProperty("environmentParameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperations_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (BinaryData item in client.GetOperationsAsync("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("operationId").ToString());
+                Console.WriteLine(result.GetProperty("kind").ToString());
+                Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+                Console.WriteLine(result.GetProperty("startTime").ToString());
+                Console.WriteLine(result.GetProperty("endTime").ToString());
+                Console.WriteLine(result.GetProperty("environmentParameters").GetProperty("<key>").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+                Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentOperation_GetOperations_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (EnvironmentOperation item in client.GetOperations("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentOperation_GetOperations_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (EnvironmentOperation item in client.GetOperationsAsync("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetActions_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (BinaryData item in client.GetActions("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("actionType").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetActions_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (BinaryData item in client.GetActionsAsync("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("actionType").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetActions_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (EnvironmentAction item in client.GetActions("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetActions_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (EnvironmentAction item in client.GetActionsAsync("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetActions_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (BinaryData item in client.GetActions("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("actionType").ToString());
+                Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+                Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetActions_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (BinaryData item in client.GetActionsAsync("<projectName>", "<userId>", "<environmentName>", null))
+            {
+                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("name").ToString());
+                Console.WriteLine(result.GetProperty("uri").ToString());
+                Console.WriteLine(result.GetProperty("actionType").ToString());
+                Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+                Console.WriteLine(result.GetProperty("lastModifiedBy").ToString());
+                Console.WriteLine(result.GetProperty("lastModifiedAt").ToString());
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_EnvironmentAction_GetActions_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            foreach (EnvironmentAction item in client.GetActions("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_EnvironmentAction_GetActions_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeploymentEnvironmentsClient client = new DeploymentEnvironmentsClient(endpoint, credential);
+
+            await foreach (EnvironmentAction item in client.GetActionsAsync("<projectName>", "<userId>", "<environmentName>"))
+            {
+            }
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public void Example_Catalog_GetCatalogs_ShortVersion()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
@@ -666,6 +1694,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetCatalogs("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
             }
         }
@@ -681,6 +1710,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetCatalogsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
             }
         }
@@ -722,6 +1752,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetCatalogs("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
             }
         }
@@ -737,6 +1768,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetCatalogsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
             }
         }
@@ -778,6 +1810,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentDefinitions("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -795,6 +1828,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentDefinitionsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -838,6 +1872,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentDefinitions("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -866,6 +1901,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentDefinitionsAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -920,6 +1956,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentDefinitionsByCatalog("<projectName>", "<catalogName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -937,6 +1974,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentDefinitionsByCatalogAsync("<projectName>", "<catalogName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -980,6 +2018,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentDefinitionsByCatalog("<projectName>", "<catalogName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -1008,6 +2047,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentDefinitionsByCatalogAsync("<projectName>", "<catalogName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -1062,6 +2102,7 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentTypes("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("deploymentTargetId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
@@ -1079,6 +2120,7 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentTypesAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("deploymentTargetId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
@@ -1122,9 +2164,11 @@ namespace Azure.Developer.DevCenter.Samples
             foreach (BinaryData item in client.GetEnvironmentTypes("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("deploymentTargetId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("displayName").ToString());
             }
         }
 
@@ -1139,9 +2183,11 @@ namespace Azure.Developer.DevCenter.Samples
             await foreach (BinaryData item in client.GetEnvironmentTypesAsync("<projectName>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("uri").ToString());
                 Console.WriteLine(result.GetProperty("name").ToString());
                 Console.WriteLine(result.GetProperty("deploymentTargetId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
+                Console.WriteLine(result.GetProperty("displayName").ToString());
             }
         }
 
@@ -1189,6 +2235,7 @@ namespace Azure.Developer.DevCenter.Samples
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -1213,6 +2260,7 @@ namespace Azure.Developer.DevCenter.Samples
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("catalogName").ToString());
@@ -1229,6 +2277,7 @@ namespace Azure.Developer.DevCenter.Samples
 
             using RequestContent content = RequestContent.Create(new
             {
+                expirationDate = "2022-05-10T14:57:31.2311892-04:00",
                 parameters = new
                 {
                     key = new object(),
@@ -1241,7 +2290,9 @@ namespace Azure.Developer.DevCenter.Samples
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
             Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("user").ToString());
@@ -1265,6 +2316,7 @@ namespace Azure.Developer.DevCenter.Samples
 
             using RequestContent content = RequestContent.Create(new
             {
+                expirationDate = "2022-05-10T14:57:31.2311892-04:00",
                 parameters = new
                 {
                     key = new object(),
@@ -1277,7 +2329,9 @@ namespace Azure.Developer.DevCenter.Samples
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("expirationDate").ToString());
             Console.WriteLine(result.GetProperty("parameters").GetProperty("<key>").ToString());
+            Console.WriteLine(result.GetProperty("uri").ToString());
             Console.WriteLine(result.GetProperty("name").ToString());
             Console.WriteLine(result.GetProperty("environmentType").ToString());
             Console.WriteLine(result.GetProperty("user").ToString());
