@@ -3,12 +3,16 @@
 ## 1.2.0-beta.1 (2024-04-30)
 
 ### Features Added
+- Test Changes
 
 ### Breaking Changes
+- Test Changes
 
 ### Bugs Fixed
+- Test Changes
 
 ### Other Changes
+- Test Changes
 
 ## 1.1.2 (2024-04-29)
 
