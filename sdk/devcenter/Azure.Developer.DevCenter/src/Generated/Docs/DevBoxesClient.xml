@@ -50,6 +50,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetPoolAsync("<projectName>", "<poolName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("location").ToString());
 Console.WriteLine(result.GetProperty("healthStatus").ToString());
@@ -63,6 +64,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetPoolAsync("<projectName>", "<poolName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("location").ToString());
 Console.WriteLine(result.GetProperty("osType").ToString());
@@ -80,6 +82,7 @@ Console.WriteLine(result.GetProperty("localAdministrator").ToString());
 Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
 Console.WriteLine(result.GetProperty("healthStatus").ToString());
+Console.WriteLine(result.GetProperty("displayName").ToString());
 ]]></code></example>
     </member>
     <member name="GetPool(string,string,RequestContext)">
@@ -93,6 +96,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetPool("<projectName>", "<poolName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("location").ToString());
 Console.WriteLine(result.GetProperty("healthStatus").ToString());
@@ -106,6 +110,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetPool("<projectName>", "<poolName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("location").ToString());
 Console.WriteLine(result.GetProperty("osType").ToString());
@@ -123,6 +128,7 @@ Console.WriteLine(result.GetProperty("localAdministrator").ToString());
 Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
 Console.WriteLine(result.GetProperty("healthStatus").ToString());
+Console.WriteLine(result.GetProperty("displayName").ToString());
 ]]></code></example>
     </member>
     <member name="GetScheduleAsync(string,string,string,CancellationToken)">
@@ -174,7 +180,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetScheduleAsync("<projectName>", "<poolName>", "<scheduleName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("type").ToString());
 Console.WriteLine(result.GetProperty("frequency").ToString());
 Console.WriteLine(result.GetProperty("time").ToString());
@@ -189,7 +198,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetScheduleAsync("<projectName>", "<poolName>", "<scheduleName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("type").ToString());
 Console.WriteLine(result.GetProperty("frequency").ToString());
 Console.WriteLine(result.GetProperty("time").ToString());
@@ -207,7 +219,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetSchedule("<projectName>", "<poolName>", "<scheduleName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("type").ToString());
 Console.WriteLine(result.GetProperty("frequency").ToString());
 Console.WriteLine(result.GetProperty("time").ToString());
@@ -222,7 +237,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetSchedule("<projectName>", "<poolName>", "<scheduleName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("type").ToString());
 Console.WriteLine(result.GetProperty("frequency").ToString());
 Console.WriteLine(result.GetProperty("time").ToString());
@@ -278,6 +296,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
 ]]></code>
@@ -290,6 +309,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetDevBoxAsync("<projectName>", "<userId>", "<devBoxName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("projectName").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -329,6 +349,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetDevBox("<projectName>", "<userId>", "<devBoxName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
 ]]></code>
@@ -341,6 +362,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetDevBox("<projectName>", "<userId>", "<devBoxName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("projectName").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -508,9 +530,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetDevBoxActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 ]]></code>
 This sample shows how to call GetDevBoxActionAsync with all parameters and parse the result.
 <code><![CDATA[
@@ -521,9 +546,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.GetDevBoxActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
 Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
 ]]></code></example>
@@ -539,9 +567,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetDevBoxAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 ]]></code>
 This sample shows how to call GetDevBoxAction with all parameters and parse the result.
 <code><![CDATA[
@@ -552,9 +583,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.GetDevBoxAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
 Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
 ]]></code></example>
@@ -654,9 +688,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 ]]></code>
 This sample shows how to call DelayActionAsync with all parameters and parse the result.
 <code><![CDATA[
@@ -667,9 +704,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = await client.DelayActionAsync("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
 Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
 ]]></code></example>
@@ -685,9 +725,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 ]]></code>
 This sample shows how to call DelayAction with all parameters and parse the result.
 <code><![CDATA[
@@ -698,11 +741,128 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 Response response = client.DelayAction("<projectName>", "<userId>", "<devBoxName>", "<actionName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null);
 
 JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("actionType").ToString());
 Console.WriteLine(result.GetProperty("sourceId").ToString());
+Console.WriteLine(result.GetProperty("sourceUri").ToString());
+Console.WriteLine(result.GetProperty("sourceType").ToString());
 Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
 Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
+]]></code></example>
+    </member>
+    <member name="GetOperationAsync(string,string,string,Guid,CancellationToken)">
+      <example>
+This sample shows how to call GetOperationAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxOperation> response = await client.GetOperationAsync("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+]]></code>
+This sample shows how to call GetOperationAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxOperation> response = await client.GetOperationAsync("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+]]></code></example>
+    </member>
+    <member name="GetOperation(string,string,string,Guid,CancellationToken)">
+      <example>
+This sample shows how to call GetOperation.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxOperation> response = client.GetOperation("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+]]></code>
+This sample shows how to call GetOperation with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response<DevBoxOperation> response = client.GetOperation("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"));
+]]></code></example>
+    </member>
+    <member name="GetOperationAsync(string,string,string,Guid,RequestContext)">
+      <example>
+This sample shows how to call GetOperationAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetOperationAsync("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
+Console.WriteLine(result.GetProperty("operationId").ToString());
+Console.WriteLine(result.GetProperty("kind").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call GetOperationAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = await client.GetOperationAsync("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
+Console.WriteLine(result.GetProperty("operationId").ToString());
+Console.WriteLine(result.GetProperty("kind").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+]]></code></example>
+    </member>
+    <member name="GetOperation(string,string,string,Guid,RequestContext)">
+      <example>
+This sample shows how to call GetOperation and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetOperation("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
+Console.WriteLine(result.GetProperty("operationId").ToString());
+Console.WriteLine(result.GetProperty("kind").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+]]></code>
+This sample shows how to call GetOperation with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Response response = client.GetOperation("<projectName>", "<userId>", "<devBoxName>", Guid.Parse("73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a"), null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
+Console.WriteLine(result.GetProperty("operationId").ToString());
+Console.WriteLine(result.GetProperty("kind").ToString());
+Console.WriteLine(result.GetProperty("status").ToString());
+Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+Console.WriteLine(result.GetProperty("startTime").ToString());
+Console.WriteLine(result.GetProperty("endTime").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
 ]]></code></example>
     </member>
     <member name="GetPoolsAsync(string,CancellationToken)">
@@ -762,6 +922,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetPoolsAsync("<projectName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("location").ToString());
     Console.WriteLine(result.GetProperty("healthStatus").ToString());
@@ -776,6 +937,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetPoolsAsync("<projectName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("location").ToString());
     Console.WriteLine(result.GetProperty("osType").ToString());
@@ -793,6 +955,7 @@ await foreach (BinaryData item in client.GetPoolsAsync("<projectName>", null))
     Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
     Console.WriteLine(result.GetProperty("healthStatus").ToString());
+    Console.WriteLine(result.GetProperty("displayName").ToString());
 }
 ]]></code></example>
     </member>
@@ -807,6 +970,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetPools("<projectName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("location").ToString());
     Console.WriteLine(result.GetProperty("healthStatus").ToString());
@@ -821,6 +985,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetPools("<projectName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("location").ToString());
     Console.WriteLine(result.GetProperty("osType").ToString());
@@ -838,6 +1003,7 @@ foreach (BinaryData item in client.GetPools("<projectName>", null))
     Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("stopOnDisconnect").GetProperty("gracePeriodMinutes").ToString());
     Console.WriteLine(result.GetProperty("healthStatus").ToString());
+    Console.WriteLine(result.GetProperty("displayName").ToString());
 }
 ]]></code></example>
     </member>
@@ -898,7 +1064,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetSchedulesAsync("<projectName>", "<poolName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("type").ToString());
     Console.WriteLine(result.GetProperty("frequency").ToString());
     Console.WriteLine(result.GetProperty("time").ToString());
@@ -914,7 +1083,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetSchedulesAsync("<projectName>", "<poolName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("type").ToString());
     Console.WriteLine(result.GetProperty("frequency").ToString());
     Console.WriteLine(result.GetProperty("time").ToString());
@@ -933,7 +1105,10 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetSchedules("<projectName>", "<poolName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("type").ToString());
     Console.WriteLine(result.GetProperty("frequency").ToString());
     Console.WriteLine(result.GetProperty("time").ToString());
@@ -949,7 +1124,138 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetSchedules("<projectName>", "<poolName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("frequency").ToString());
+    Console.WriteLine(result.GetProperty("time").ToString());
+    Console.WriteLine(result.GetProperty("timeZone").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByProjectAsync(string,CancellationToken)">
+      <example>
+This sample shows how to call GetSchedulesByProjectAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxSchedule item in client.GetSchedulesByProjectAsync("<projectName>"))
+{
+}
+]]></code>
+This sample shows how to call GetSchedulesByProjectAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxSchedule item in client.GetSchedulesByProjectAsync("<projectName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByProject(string,CancellationToken)">
+      <example>
+This sample shows how to call GetSchedulesByProject.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxSchedule item in client.GetSchedulesByProject("<projectName>"))
+{
+}
+]]></code>
+This sample shows how to call GetSchedulesByProject with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxSchedule item in client.GetSchedulesByProject("<projectName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByProjectAsync(string,RequestContext)">
+      <example>
+This sample shows how to call GetSchedulesByProjectAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetSchedulesByProjectAsync("<projectName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("frequency").ToString());
+    Console.WriteLine(result.GetProperty("time").ToString());
+    Console.WriteLine(result.GetProperty("timeZone").ToString());
+}
+]]></code>
+This sample shows how to call GetSchedulesByProjectAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetSchedulesByProjectAsync("<projectName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("frequency").ToString());
+    Console.WriteLine(result.GetProperty("time").ToString());
+    Console.WriteLine(result.GetProperty("timeZone").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetSchedulesByProject(string,RequestContext)">
+      <example>
+This sample shows how to call GetSchedulesByProject and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetSchedulesByProject("<projectName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
+    Console.WriteLine(result.GetProperty("type").ToString());
+    Console.WriteLine(result.GetProperty("frequency").ToString());
+    Console.WriteLine(result.GetProperty("time").ToString());
+    Console.WriteLine(result.GetProperty("timeZone").ToString());
+}
+]]></code>
+This sample shows how to call GetSchedulesByProject with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetSchedulesByProject("<projectName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("name").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("type").ToString());
     Console.WriteLine(result.GetProperty("frequency").ToString());
     Console.WriteLine(result.GetProperty("time").ToString());
@@ -1014,6 +1320,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetAllDevBoxesAsync(null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1027,6 +1334,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetAllDevBoxesAsync(null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1067,6 +1375,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetAllDevBoxes(null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1080,6 +1389,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetAllDevBoxes(null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1166,6 +1476,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetAllDevBoxesByUserAsync("<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1179,6 +1490,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetAllDevBoxesByUserAsync("<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1219,6 +1531,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetAllDevBoxesByUser("<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1232,6 +1545,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetAllDevBoxesByUser("<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1318,6 +1632,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetDevBoxesAsync("<projectName>", "<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1331,6 +1646,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetDevBoxesAsync("<projectName>", "<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1371,6 +1687,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetDevBoxes("<projectName>", "<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
 }
@@ -1384,6 +1701,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetDevBoxes("<projectName>", "<userId>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("projectName").ToString());
     Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1470,9 +1788,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetDevBoxActionsAsync("<projectName>", "<userId>", "<devBoxName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
 }
 ]]></code>
 This sample shows how to call GetDevBoxActionsAsync with all parameters and parse the result.
@@ -1484,9 +1805,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.GetDevBoxActionsAsync("<projectName>", "<userId>", "<devBoxName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
     Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
 }
@@ -1503,9 +1827,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetDevBoxActions("<projectName>", "<userId>", "<devBoxName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
 }
 ]]></code>
 This sample shows how to call GetDevBoxActions with all parameters and parse the result.
@@ -1517,9 +1844,12 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.GetDevBoxActions("<projectName>", "<userId>", "<devBoxName>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("suspendedUntil").ToString());
     Console.WriteLine(result.GetProperty("next").GetProperty("scheduledTime").ToString());
 }
@@ -1582,6 +1912,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.DelayAllActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("result").ToString());
 }
@@ -1595,11 +1926,15 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 await foreach (BinaryData item in client.DelayAllActionsAsync("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("result").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("suspendedUntil").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("next").GetProperty("scheduledTime").ToString());
     Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
@@ -1620,6 +1955,7 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.DelayAllActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("result").ToString());
 }
@@ -1633,13 +1969,143 @@ DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 foreach (BinaryData item in client.DelayAllActions("<projectName>", "<userId>", "<devBoxName>", DateTimeOffset.Parse("2022-05-10T14:57:31.2311892-04:00"), null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("result").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("uri").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("name").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("actionType").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("sourceId").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("sourceUri").ToString());
+    Console.WriteLine(result.GetProperty("action").GetProperty("sourceType").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("suspendedUntil").ToString());
     Console.WriteLine(result.GetProperty("action").GetProperty("next").GetProperty("scheduledTime").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetOperationsAsync(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetOperationsAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxOperation item in client.GetOperationsAsync("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code>
+This sample shows how to call GetOperationsAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (DevBoxOperation item in client.GetOperationsAsync("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetOperations(string,string,string,CancellationToken)">
+      <example>
+This sample shows how to call GetOperations.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxOperation item in client.GetOperations("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code>
+This sample shows how to call GetOperations with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (DevBoxOperation item in client.GetOperations("<projectName>", "<userId>", "<devBoxName>"))
+{
+}
+]]></code></example>
+    </member>
+    <member name="GetOperationsAsync(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetOperationsAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetOperationsAsync("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("operationId").ToString());
+    Console.WriteLine(result.GetProperty("kind").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+}
+]]></code>
+This sample shows how to call GetOperationsAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+await foreach (BinaryData item in client.GetOperationsAsync("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("operationId").ToString());
+    Console.WriteLine(result.GetProperty("kind").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+    Console.WriteLine(result.GetProperty("startTime").ToString());
+    Console.WriteLine(result.GetProperty("endTime").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
+    Console.WriteLine(result.GetProperty("error").GetProperty("innererror").GetProperty("code").ToString());
+}
+]]></code></example>
+    </member>
+    <member name="GetOperations(string,string,string,RequestContext)">
+      <example>
+This sample shows how to call GetOperations and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetOperations("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("operationId").ToString());
+    Console.WriteLine(result.GetProperty("kind").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+}
+]]></code>
+This sample shows how to call GetOperations with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+foreach (BinaryData item in client.GetOperations("<projectName>", "<userId>", "<devBoxName>", null))
+{
+    JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("uri").ToString());
+    Console.WriteLine(result.GetProperty("operationId").ToString());
+    Console.WriteLine(result.GetProperty("kind").ToString());
+    Console.WriteLine(result.GetProperty("status").ToString());
+    Console.WriteLine(result.GetProperty("createdByObjectId").ToString());
+    Console.WriteLine(result.GetProperty("startTime").ToString());
+    Console.WriteLine(result.GetProperty("endTime").ToString());
     Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
     Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
     Console.WriteLine(result.GetProperty("error").GetProperty("target").ToString());
@@ -1663,6 +2129,7 @@ Operation<BinaryData> operation = await client.CreateDevBoxAsync(WaitUntil.Compl
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
 ]]></code>
@@ -1681,6 +2148,7 @@ Operation<BinaryData> operation = await client.CreateDevBoxAsync(WaitUntil.Compl
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("projectName").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1725,6 +2193,7 @@ Operation<BinaryData> operation = client.CreateDevBox(WaitUntil.Completed, "<pro
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
 ]]></code>
@@ -1743,6 +2212,7 @@ Operation<BinaryData> operation = client.CreateDevBox(WaitUntil.Completed, "<pro
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("uri").ToString());
 Console.WriteLine(result.GetProperty("name").ToString());
 Console.WriteLine(result.GetProperty("projectName").ToString());
 Console.WriteLine(result.GetProperty("poolName").ToString());
@@ -1921,6 +2391,44 @@ TokenCredential credential = new DefaultAzureCredential();
 DevBoxesClient client = new DevBoxesClient(endpoint, credential);
 
 Operation operation = client.RestartDevBox(WaitUntil.Completed, "<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="RepairDevBoxAsync(WaitUntil,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call RepairDevBoxAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Operation operation = await client.RepairDevBoxAsync(WaitUntil.Completed, "<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call RepairDevBoxAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Operation operation = await client.RepairDevBoxAsync(WaitUntil.Completed, "<projectName>", "<userId>", "<devBoxName>");
+]]></code></example>
+    </member>
+    <member name="RepairDevBox(WaitUntil,string,string,string,RequestContext)">
+      <example>
+This sample shows how to call RepairDevBox.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Operation operation = client.RepairDevBox(WaitUntil.Completed, "<projectName>", "<userId>", "<devBoxName>");
+]]></code>
+This sample shows how to call RepairDevBox with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+DevBoxesClient client = new DevBoxesClient(endpoint, credential);
+
+Operation operation = client.RepairDevBox(WaitUntil.Completed, "<projectName>", "<userId>", "<devBoxName>");
 ]]></code></example>
     </member>
   </members>

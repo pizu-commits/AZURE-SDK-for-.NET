@@ -101,7 +101,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary>
-        /// [Protocol Method] Gets an environment
+        /// [Protocol Method] Gets an environment.
         /// <list type="bullet">
         /// <item>
         /// <description>
@@ -145,7 +145,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary>
-        /// [Protocol Method] Gets an environment
+        /// [Protocol Method] Gets an environment.
         /// <list type="bullet">
         /// <item>
         /// <description>
@@ -179,6 +179,834 @@ namespace Azure.Developer.DevCenter
             try
             {
                 using HttpMessage message = CreateGetEnvironmentRequest(projectName, userId, environmentName, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Partially updates an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="content"> The content to send as the body of the request. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='PatchEnvironmentAsync(string,string,string,RequestContent,RequestContext)']/*" />
+        public virtual async Task<Response> PatchEnvironmentAsync(string projectName, string userId, string environmentName, RequestContent content, RequestContext context = null)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.PatchEnvironment");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreatePatchEnvironmentRequest(projectName, userId, environmentName, content, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Partially updates an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="content"> The content to send as the body of the request. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='PatchEnvironment(string,string,string,RequestContent,RequestContext)']/*" />
+        public virtual Response PatchEnvironment(string projectName, string userId, string environmentName, RequestContent content, RequestContext context = null)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.PatchEnvironment");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreatePatchEnvironmentRequest(projectName, userId, environmentName, content, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Gets Outputs from the environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOutputsAsync(string,string,string,CancellationToken)']/*" />
+        public virtual async Task<Response<EnvironmentOutputs>> GetOutputsAsync(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await GetOutputsAsync(projectName, userId, environmentName, context).ConfigureAwait(false);
+            return Response.FromValue(EnvironmentOutputs.FromResponse(response), response);
+        }
+
+        /// <summary> Gets Outputs from the environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOutputs(string,string,string,CancellationToken)']/*" />
+        public virtual Response<EnvironmentOutputs> GetOutputs(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = GetOutputs(projectName, userId, environmentName, context);
+            return Response.FromValue(EnvironmentOutputs.FromResponse(response), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets Outputs from the environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOutputsAsync(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOutputsAsync(string,string,string,RequestContext)']/*" />
+        public virtual async Task<Response> GetOutputsAsync(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetOutputs");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetOutputsRequest(projectName, userId, environmentName, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets Outputs from the environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOutputs(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOutputs(string,string,string,RequestContext)']/*" />
+        public virtual Response GetOutputs(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetOutputs");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetOutputsRequest(projectName, userId, environmentName, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Gets an environment action result. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperationAsync(string,string,string,Guid,CancellationToken)']/*" />
+        public virtual async Task<Response<EnvironmentOperation>> GetOperationAsync(string projectName, string userId, string environmentName, Guid operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await GetOperationAsync(projectName, userId, environmentName, operationId, context).ConfigureAwait(false);
+            return Response.FromValue(EnvironmentOperation.FromResponse(response), response);
+        }
+
+        /// <summary> Gets an environment action result. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperation(string,string,string,Guid,CancellationToken)']/*" />
+        public virtual Response<EnvironmentOperation> GetOperation(string projectName, string userId, string environmentName, Guid operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = GetOperation(projectName, userId, environmentName, operationId, context);
+            return Response.FromValue(EnvironmentOperation.FromResponse(response), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets an environment action result.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOperationAsync(string,string,string,Guid,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperationAsync(string,string,string,Guid,RequestContext)']/*" />
+        public virtual async Task<Response> GetOperationAsync(string projectName, string userId, string environmentName, Guid operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetOperation");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetOperationRequest(projectName, userId, environmentName, operationId, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets an environment action result.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOperation(string,string,string,Guid,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperation(string,string,string,Guid,RequestContext)']/*" />
+        public virtual Response GetOperation(string projectName, string userId, string environmentName, Guid operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetOperation");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetOperationRequest(projectName, userId, environmentName, operationId, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Gets the logs for an operation on an environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="operationId"> The id of the operation on an environment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetLogsByOperationAsync(string,string,string,string,CancellationToken)']/*" />
+        public virtual async Task<Response<string>> GetLogsByOperationAsync(string projectName, string userId, string environmentName, string operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await GetLogsByOperationAsync(projectName, userId, environmentName, operationId, context).ConfigureAwait(false);
+            return Response.FromValue(response.Content.ToString(), response);
+        }
+
+        /// <summary> Gets the logs for an operation on an environment. </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="operationId"> The id of the operation on an environment. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetLogsByOperation(string,string,string,string,CancellationToken)']/*" />
+        public virtual Response<string> GetLogsByOperation(string projectName, string userId, string environmentName, string operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = GetLogsByOperation(projectName, userId, environmentName, operationId, context);
+            return Response.FromValue(response.Content.ToString(), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets the logs for an operation on an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetLogsByOperationAsync(string,string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="operationId"> The id of the operation on an environment. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetLogsByOperationAsync(string,string,string,string,RequestContext)']/*" />
+        public virtual async Task<Response> GetLogsByOperationAsync(string projectName, string userId, string environmentName, string operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetLogsByOperation");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetLogsByOperationRequest(projectName, userId, environmentName, operationId, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Gets the logs for an operation on an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetLogsByOperation(string,string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="operationId"> The id of the operation on an environment. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetLogsByOperation(string,string,string,string,RequestContext)']/*" />
+        public virtual Response GetLogsByOperation(string projectName, string userId, string environmentName, string operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetLogsByOperation");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetLogsByOperationRequest(projectName, userId, environmentName, operationId, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Retrieve a specific environment action. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActionAsync(string,string,string,string,CancellationToken)']/*" />
+        public virtual async Task<Response<EnvironmentAction>> GetActionAsync(string projectName, string userId, string environmentName, string actionName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await GetActionAsync(projectName, userId, environmentName, actionName, context).ConfigureAwait(false);
+            return Response.FromValue(EnvironmentAction.FromResponse(response), response);
+        }
+
+        /// <summary> Retrieve a specific environment action. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetAction(string,string,string,string,CancellationToken)']/*" />
+        public virtual Response<EnvironmentAction> GetAction(string projectName, string userId, string environmentName, string actionName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = GetAction(projectName, userId, environmentName, actionName, context);
+            return Response.FromValue(EnvironmentAction.FromResponse(response), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Retrieve a specific environment action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetActionAsync(string,string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActionAsync(string,string,string,string,RequestContext)']/*" />
+        public virtual async Task<Response> GetActionAsync(string projectName, string userId, string environmentName, string actionName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetActionRequest(projectName, userId, environmentName, actionName, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Retrieve a specific environment action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetAction(string,string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetAction(string,string,string,string,RequestContext)']/*" />
+        public virtual Response GetAction(string projectName, string userId, string environmentName, string actionName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.GetAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetActionRequest(projectName, userId, environmentName, actionName, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        // The convenience method is omitted here because it has exactly the same parameter list as the corresponding protocol method
+        /// <summary>
+        /// [Protocol Method] Skips an occurrence of an action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='SkipActionAsync(string,string,string,string,RequestContext)']/*" />
+        public virtual async Task<Response> SkipActionAsync(string projectName, string userId, string environmentName, string actionName, RequestContext context = null)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.SkipAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateSkipActionRequest(projectName, userId, environmentName, actionName, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        // The convenience method is omitted here because it has exactly the same parameter list as the corresponding protocol method
+        /// <summary>
+        /// [Protocol Method] Skips an occurrence of an action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='SkipAction(string,string,string,string,RequestContext)']/*" />
+        public virtual Response SkipAction(string projectName, string userId, string environmentName, string actionName, RequestContext context = null)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.SkipAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateSkipActionRequest(projectName, userId, environmentName, actionName, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary> Delays the occurrence of an action. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="until"> The time to delay the Environment action until. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='DelayActionAsync(string,string,string,string,DateTimeOffset,CancellationToken)']/*" />
+        public virtual async Task<Response<EnvironmentAction>> DelayActionAsync(string projectName, string userId, string environmentName, string actionName, DateTimeOffset until, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await DelayActionAsync(projectName, userId, environmentName, actionName, until, context).ConfigureAwait(false);
+            return Response.FromValue(EnvironmentAction.FromResponse(response), response);
+        }
+
+        /// <summary> Delays the occurrence of an action. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="until"> The time to delay the Environment action until. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='DelayAction(string,string,string,string,DateTimeOffset,CancellationToken)']/*" />
+        public virtual Response<EnvironmentAction> DelayAction(string projectName, string userId, string environmentName, string actionName, DateTimeOffset until, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = DelayAction(projectName, userId, environmentName, actionName, until, context);
+            return Response.FromValue(EnvironmentAction.FromResponse(response), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Delays the occurrence of an action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="DelayActionAsync(string,string,string,string,DateTimeOffset,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="until"> The time to delay the Environment action until. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='DelayActionAsync(string,string,string,string,DateTimeOffset,RequestContext)']/*" />
+        public virtual async Task<Response> DelayActionAsync(string projectName, string userId, string environmentName, string actionName, DateTimeOffset until, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.DelayAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateDelayActionRequest(projectName, userId, environmentName, actionName, until, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Delays the occurrence of an action.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="DelayAction(string,string,string,string,DateTimeOffset,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="actionName"> Uniquely identifies the action. </param>
+        /// <param name="until"> The time to delay the Environment action until. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='DelayAction(string,string,string,string,DateTimeOffset,RequestContext)']/*" />
+        public virtual Response DelayAction(string projectName, string userId, string environmentName, string actionName, DateTimeOffset until, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+            Argument.AssertNotNullOrEmpty(actionName, nameof(actionName));
+
+            using var scope = ClientDiagnostics.CreateScope("DeploymentEnvironmentsClient.DelayAction");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateDelayActionRequest(projectName, userId, environmentName, actionName, until, context);
                 return _pipeline.ProcessMessage(message, context);
             }
             catch (Exception e)
@@ -223,7 +1051,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary>
-        /// [Protocol Method] Gets the specified catalog within the project
+        /// [Protocol Method] Gets the specified catalog within the project.
         /// <list type="bullet">
         /// <item>
         /// <description>
@@ -265,7 +1093,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary>
-        /// [Protocol Method] Gets the specified catalog within the project
+        /// [Protocol Method] Gets the specified catalog within the project.
         /// <list type="bullet">
         /// <item>
         /// <description>
@@ -626,6 +1454,226 @@ namespace Azure.Developer.DevCenter
             HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetEnvironmentsRequest(projectName, userId, context);
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetEnvironmentsNextPageRequest(nextLink, projectName, userId, context);
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetEnvironments", "value", "nextLink", context);
+        }
+
+        /// <summary> Lists operations on the environment which have occurred within the past 90 days. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperationsAsync(string,string,string,CancellationToken)']/*" />
+        public virtual AsyncPageable<EnvironmentOperation> GetOperationsAsync(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => EnvironmentOperation.DeserializeEnvironmentOperation(e), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetOperations", "value", "nextLink", context);
+        }
+
+        /// <summary> Lists operations on the environment which have occurred within the past 90 days. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperations(string,string,string,CancellationToken)']/*" />
+        public virtual Pageable<EnvironmentOperation> GetOperations(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => EnvironmentOperation.DeserializeEnvironmentOperation(e), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetOperations", "value", "nextLink", context);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Lists operations on the environment which have occurred within the past 90 days
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOperationsAsync(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperationsAsync(string,string,string,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetOperationsAsync(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetOperations", "value", "nextLink", context);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Lists operations on the environment which have occurred within the past 90 days
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetOperations(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetOperations(string,string,string,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetOperations(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetOperationsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetOperationsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetOperations", "value", "nextLink", context);
+        }
+
+        /// <summary> Get all scheduled actions for a user within an environment. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActionsAsync(string,string,string,CancellationToken)']/*" />
+        public virtual AsyncPageable<EnvironmentAction> GetActionsAsync(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetActionsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetActionsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => EnvironmentAction.DeserializeEnvironmentAction(e), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetActions", "value", "nextLink", context);
+        }
+
+        /// <summary> Get all scheduled actions for a user within an environment. </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActions(string,string,string,CancellationToken)']/*" />
+        public virtual Pageable<EnvironmentAction> GetActions(string projectName, string userId, string environmentName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetActionsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetActionsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => EnvironmentAction.DeserializeEnvironmentAction(e), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetActions", "value", "nextLink", context);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Get all scheduled actions for a user within an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetActionsAsync(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActionsAsync(string,string,string,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetActionsAsync(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetActionsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetActionsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetActions", "value", "nextLink", context);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Get all scheduled actions for a user within an environment.
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetActions(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
+        /// <include file="Docs/DeploymentEnvironmentsClient.xml" path="doc/members/member[@name='GetActions(string,string,string,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetActions(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(userId, nameof(userId));
+            Argument.AssertNotNullOrEmpty(environmentName, nameof(environmentName));
+
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetActionsRequest(projectName, userId, environmentName, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetActionsNextPageRequest(nextLink, projectName, userId, environmentName, context);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeploymentEnvironmentsClient.GetActions", "value", "nextLink", context);
         }
 
         /// <summary> Lists all of the catalogs available for a project. </summary>
@@ -1252,6 +2300,27 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
+        internal HttpMessage CreatePatchEnvironmentRequest(string projectName, string userId, string environmentName, RequestContent content, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Patch;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("content-type", "application/merge-patch+json");
+            request.Content = content;
+            return message;
+        }
+
         internal HttpMessage CreateDeleteEnvironmentRequest(string projectName, string userId, string environmentName, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier202204);
@@ -1265,6 +2334,175 @@ namespace Azure.Developer.DevCenter
             uri.AppendPath(userId, true);
             uri.AppendPath("/environments/", false);
             uri.AppendPath(environmentName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetOutputsRequest(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/outputs", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetOperationsRequest(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/operations", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetOperationRequest(string projectName, string userId, string environmentName, Guid operationId, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/operations/", false);
+            uri.AppendPath(operationId, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetLogsByOperationRequest(string projectName, string userId, string environmentName, string operationId, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/operations/", false);
+            uri.AppendPath(operationId, true);
+            uri.AppendPath("/logs", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "text/plain");
+            return message;
+        }
+
+        internal HttpMessage CreateGetActionsRequest(string projectName, string userId, string environmentName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/actions", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetActionRequest(string projectName, string userId, string environmentName, string actionName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/actions/", false);
+            uri.AppendPath(actionName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateSkipActionRequest(string projectName, string userId, string environmentName, string actionName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier204);
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/actions/", false);
+            uri.AppendPath(actionName, true);
+            uri.AppendPath(":skip", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateDelayActionRequest(string projectName, string userId, string environmentName, string actionName, DateTimeOffset until, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/users/", false);
+            uri.AppendPath(userId, true);
+            uri.AppendPath("/environments/", false);
+            uri.AppendPath(environmentName, true);
+            uri.AppendPath("/actions/", false);
+            uri.AppendPath(actionName, true);
+            uri.AppendPath(":delay", false);
+            uri.AppendQuery("until", until, "O", true);
             uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
@@ -1399,6 +2637,32 @@ namespace Azure.Developer.DevCenter
             return message;
         }
 
+        internal HttpMessage CreateGetOperationsNextPageRequest(string nextLink, string projectName, string userId, string environmentName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendRawNextLink(nextLink, false);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
+        internal HttpMessage CreateGetActionsNextPageRequest(string nextLink, string projectName, string userId, string environmentName, RequestContext context)
+        {
+            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
+            var request = message.Request;
+            request.Method = RequestMethod.Get;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendRawNextLink(nextLink, false);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            return message;
+        }
+
         internal HttpMessage CreateGetCatalogsNextPageRequest(string nextLink, string projectName, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
@@ -1468,5 +2732,7 @@ namespace Azure.Developer.DevCenter
         private static ResponseClassifier ResponseClassifier201 => _responseClassifier201 ??= new StatusCodeClassifier(stackalloc ushort[] { 201 });
         private static ResponseClassifier _responseClassifier202204;
         private static ResponseClassifier ResponseClassifier202204 => _responseClassifier202204 ??= new StatusCodeClassifier(stackalloc ushort[] { 202, 204 });
+        private static ResponseClassifier _responseClassifier204;
+        private static ResponseClassifier ResponseClassifier204 => _responseClassifier204 ??= new StatusCodeClassifier(stackalloc ushort[] { 204 });
     }
 }

@@ -16,19 +16,28 @@ namespace Azure.Developer.DevCenter.Models
     public static partial class DevCenterModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="Models.DevCenterProject"/>. </summary>
+        /// <param name="uri"> The unique URI of the project. </param>
         /// <param name="name"> Name of the project. </param>
         /// <param name="description"> Description of the project. </param>
         /// <param name="maxDevBoxesPerUser">
         /// When specified, indicates the maximum number of Dev Boxes a single user can
         /// create across all pools in the project.
         /// </param>
+        /// <param name="displayName"> Display name of the pool. </param>
         /// <returns> A new <see cref="Models.DevCenterProject"/> instance for mocking. </returns>
-        public static DevCenterProject DevCenterProject(string name = null, string description = null, int? maxDevBoxesPerUser = null)
+        public static DevCenterProject DevCenterProject(Uri uri = null, string name = null, string description = null, int? maxDevBoxesPerUser = null, string displayName = null)
         {
-            return new DevCenterProject(name, description, maxDevBoxesPerUser, serializedAdditionalRawData: null);
+            return new DevCenterProject(
+                uri,
+                name,
+                description,
+                maxDevBoxesPerUser,
+                displayName,
+                serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevBoxPool"/>. </summary>
+        /// <param name="uri"> The unique URI of the pool. </param>
         /// <param name="name"> Pool name. </param>
         /// <param name="location"> Azure region where Dev Boxes in the pool are located. </param>
         /// <param name="osType"> The operating system type of Dev Boxes in this pool. </param>
@@ -45,10 +54,12 @@ namespace Azure.Developer.DevCenter.Models
         /// Overall health status of the Pool. Indicates whether or not the Pool is
         /// available to create Dev Boxes.
         /// </param>
+        /// <param name="displayName"> Display name of the pool. </param>
         /// <returns> A new <see cref="Models.DevBoxPool"/> instance for mocking. </returns>
-        public static DevBoxPool DevBoxPool(string name = null, AzureLocation location = default, DevBoxOSType? osType = null, DevBoxHardwareProfile hardwareProfile = null, HibernateSupport? hibernateSupport = null, DevBoxStorageProfile storageProfile = null, DevBoxImageReference imageReference = null, LocalAdministratorStatus? localAdministratorStatus = null, StopOnDisconnectConfiguration stopOnDisconnect = null, PoolHealthStatus healthStatus = default)
+        public static DevBoxPool DevBoxPool(Uri uri = null, string name = null, AzureLocation location = default, DevBoxOSType? osType = null, DevBoxHardwareProfile hardwareProfile = null, HibernateSupport? hibernateSupport = null, DevBoxStorageProfile storageProfile = null, DevBoxImageReference imageReference = null, LocalAdministratorStatus? localAdministratorStatus = null, StopOnDisconnectConfiguration stopOnDisconnect = null, PoolHealthStatus healthStatus = default, string displayName = null)
         {
             return new DevBoxPool(
+                uri,
                 name,
                 location,
                 osType,
@@ -59,6 +70,7 @@ namespace Azure.Developer.DevCenter.Models
                 localAdministratorStatus,
                 stopOnDisconnect,
                 healthStatus,
+                displayName,
                 serializedAdditionalRawData: null);
         }
 
@@ -122,16 +134,22 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevBoxSchedule"/>. </summary>
+        /// <param name="uri"> The unique URI of the schedule. </param>
         /// <param name="name"> Display name for the Schedule. </param>
+        /// <param name="sourceUri"> The URI of the resource that this schedule belongs to. </param>
+        /// <param name="sourceType"> The type of the resource that this schedule belongs to. </param>
         /// <param name="scheduleType"> Supported type this scheduled task represents. </param>
         /// <param name="scheduleFrequency"> The frequency of this scheduled task. </param>
         /// <param name="time"> The target time to trigger the action. The format is HH:MM. </param>
         /// <param name="timeZone"> The IANA timezone id at which the schedule should execute. </param>
         /// <returns> A new <see cref="Models.DevBoxSchedule"/> instance for mocking. </returns>
-        public static DevBoxSchedule DevBoxSchedule(string name = null, ScheduleType scheduleType = default, ScheduleFrequency scheduleFrequency = default, string time = null, string timeZone = null)
+        public static DevBoxSchedule DevBoxSchedule(Uri uri = null, string name = null, Uri sourceUri = null, ScheduleSourceType sourceType = default, ScheduleType scheduleType = default, ScheduleFrequency scheduleFrequency = default, string time = null, string timeZone = null)
         {
             return new DevBoxSchedule(
+                uri,
                 name,
+                sourceUri,
+                sourceType,
                 scheduleType,
                 scheduleFrequency,
                 time,
@@ -140,6 +158,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevBox"/>. </summary>
+        /// <param name="uri"> The unique URI of the dev box. </param>
         /// <param name="name"> Display name for the Dev Box. </param>
         /// <param name="projectName"> Name of the project this Dev Box belongs to. </param>
         /// <param name="poolName"> The name of the Dev Box pool this machine belongs to. </param>
@@ -167,9 +186,10 @@ namespace Azure.Developer.DevCenter.Models
         /// <param name="createdTime"> Creation time of this Dev Box. </param>
         /// <param name="localAdministratorStatus"> Indicates whether the owner of the Dev Box is a local administrator. </param>
         /// <returns> A new <see cref="Models.DevBox"/> instance for mocking. </returns>
-        public static DevBox DevBox(string name = null, string projectName = null, string poolName = null, HibernateSupport? hibernateSupport = null, DevBoxProvisioningState? provisioningState = null, string actionState = null, PowerState? powerState = null, Guid? uniqueId = null, ResponseError error = null, AzureLocation? location = null, DevBoxOSType? osType = null, Guid? userId = null, DevBoxHardwareProfile hardwareProfile = null, DevBoxStorageProfile storageProfile = null, DevBoxImageReference imageReference = null, DateTimeOffset? createdTime = null, LocalAdministratorStatus? localAdministratorStatus = null)
+        public static DevBox DevBox(Uri uri = null, string name = null, string projectName = null, string poolName = null, HibernateSupport? hibernateSupport = null, DevBoxProvisioningState? provisioningState = null, string actionState = null, PowerState? powerState = null, Guid? uniqueId = null, ResponseError error = null, AzureLocation? location = null, DevBoxOSType? osType = null, Guid? userId = null, DevBoxHardwareProfile hardwareProfile = null, DevBoxStorageProfile storageProfile = null, DevBoxImageReference imageReference = null, DateTimeOffset? createdTime = null, LocalAdministratorStatus? localAdministratorStatus = null)
         {
             return new DevBox(
+                uri,
                 name,
                 projectName,
                 poolName,
@@ -200,18 +220,24 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevBoxAction"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box action. </param>
         /// <param name="name"> The name of the action. </param>
         /// <param name="actionType"> The action that will be taken. </param>
         /// <param name="sourceId"> The id of the resource which triggered this action. </param>
+        /// <param name="sourceUri"> The URI of the resource which triggered this action. </param>
+        /// <param name="sourceType"> The type of the resource which triggered this action. </param>
         /// <param name="suspendedUntil"> The earliest time that the action could occur (UTC). </param>
         /// <param name="nextAction"> Details about the next run of this action. </param>
         /// <returns> A new <see cref="Models.DevBoxAction"/> instance for mocking. </returns>
-        public static DevBoxAction DevBoxAction(string name = null, DevBoxActionType actionType = default, string sourceId = null, DateTimeOffset? suspendedUntil = null, DevBoxNextAction nextAction = null)
+        public static DevBoxAction DevBoxAction(Uri uri = null, string name = null, DevBoxActionType actionType = default, string sourceId = null, Uri sourceUri = null, DevBoxActionSourceType sourceType = default, DateTimeOffset? suspendedUntil = null, DevBoxNextAction nextAction = null)
         {
             return new DevBoxAction(
+                uri,
                 name,
                 actionType,
                 sourceId,
+                sourceUri,
+                sourceType,
                 suspendedUntil,
                 nextAction,
                 serializedAdditionalRawData: null);
@@ -226,18 +252,54 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevBoxActionDelayResult"/>. </summary>
+        /// <param name="uri"> The unique URI of the action. </param>
         /// <param name="actionName"> The name of the action. </param>
         /// <param name="delayStatus"> The result of the delay operation on this action. </param>
         /// <param name="action"> The delayed action. </param>
         /// <param name="error"> Information about the error that occurred. Only populated on error. </param>
         /// <returns> A new <see cref="Models.DevBoxActionDelayResult"/> instance for mocking. </returns>
-        public static DevBoxActionDelayResult DevBoxActionDelayResult(string actionName = null, DevBoxActionDelayStatus delayStatus = default, DevBoxAction action = null, ResponseError error = null)
+        public static DevBoxActionDelayResult DevBoxActionDelayResult(Uri uri = null, string actionName = null, DevBoxActionDelayStatus delayStatus = default, DevBoxAction action = null, ResponseError error = null)
         {
-            return new DevBoxActionDelayResult(actionName, delayStatus, action, error, serializedAdditionalRawData: null);
+            return new DevBoxActionDelayResult(
+                uri,
+                actionName,
+                delayStatus,
+                action,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box operation. </param>
+        /// <param name="operationId"> Unique identifier for the Dev Box operation. </param>
+        /// <param name="kind"> The kind of operation that occurred. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> he time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.DevBoxOperation"/> instance for mocking. </returns>
+        public static DevBoxOperation DevBoxOperation(Uri uri = null, Guid operationId = default, string kind = null, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, ResponseError error = null)
+        {
+            return new UnknownDevBoxOperation(
+                uri,
+                operationId,
+                kind == null ? default : new DevBoxOperationKind(kind),
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                error,
+                serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevCenterEnvironment"/>. </summary>
+        /// <param name="expirationDate">
+        /// The time the expiration date will be triggered (UTC), after which the
+        /// environment and associated resources will be deleted.
+        /// </param>
         /// <param name="parameters"> Parameters object for the environment. </param>
+        /// <param name="uri"> The unique URI of the environment. </param>
         /// <param name="name"> Environment name. </param>
         /// <param name="environmentTypeName"> Environment type. </param>
         /// <param name="userId"> The AAD object id of the owner of this Environment. </param>
@@ -247,12 +309,14 @@ namespace Azure.Developer.DevCenter.Models
         /// <param name="environmentDefinitionName"> Name of the environment definition. </param>
         /// <param name="error"> Provisioning error details. Populated only for error states. </param>
         /// <returns> A new <see cref="Models.DevCenterEnvironment"/> instance for mocking. </returns>
-        public static DevCenterEnvironment DevCenterEnvironment(IDictionary<string, BinaryData> parameters = null, string name = null, string environmentTypeName = null, Guid? userId = null, EnvironmentProvisioningState? provisioningState = null, ResourceIdentifier resourceGroupId = null, string catalogName = null, string environmentDefinitionName = null, ResponseError error = null)
+        public static DevCenterEnvironment DevCenterEnvironment(DateTimeOffset? expirationDate = null, IDictionary<string, BinaryData> parameters = null, Uri uri = null, string name = null, string environmentTypeName = null, Guid? userId = null, EnvironmentProvisioningState? provisioningState = null, ResourceIdentifier resourceGroupId = null, string catalogName = null, string environmentDefinitionName = null, ResponseError error = null)
         {
             parameters ??= new Dictionary<string, BinaryData>();
 
             return new DevCenterEnvironment(
+                expirationDate,
                 parameters,
+                uri,
                 name,
                 environmentTypeName,
                 userId,
@@ -264,15 +328,93 @@ namespace Azure.Developer.DevCenter.Models
                 serializedAdditionalRawData: null);
         }
 
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentOutputs"/>. </summary>
+        /// <param name="outputs"> The outputs Names and Values. </param>
+        /// <returns> A new <see cref="Models.EnvironmentOutputs"/> instance for mocking. </returns>
+        public static EnvironmentOutputs EnvironmentOutputs(IReadOnlyDictionary<string, EnvironmentOutput> outputs = null)
+        {
+            outputs ??= new Dictionary<string, EnvironmentOutput>();
+
+            return new EnvironmentOutputs(outputs, serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentOutput"/>. </summary>
+        /// <param name="type"> Type of the output value. </param>
+        /// <param name="value"> The output value. </param>
+        /// <param name="sensitive"> Indicates if the value is sensitive. </param>
+        /// <returns> A new <see cref="Models.EnvironmentOutput"/> instance for mocking. </returns>
+        public static EnvironmentOutput EnvironmentOutput(EnvironmentOutputType? type = null, BinaryData value = null, bool? sensitive = null)
+        {
+            return new EnvironmentOutput(type, value, sensitive, serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the environment operation. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="kind"> The kind of operation that occurred. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> The time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="environmentParameters"> Parameters object for the environment at the time of the operation. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.EnvironmentOperation"/> instance for mocking. </returns>
+        public static EnvironmentOperation EnvironmentOperation(Uri uri = null, Guid operationId = default, string kind = null, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, IReadOnlyDictionary<string, BinaryData> environmentParameters = null, ResponseError error = null)
+        {
+            environmentParameters ??= new Dictionary<string, BinaryData>();
+
+            return new UnknownEnvironmentOperation(
+                uri,
+                operationId,
+                kind == null ? default : new EnvironmentOperationKind(kind),
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                environmentParameters,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentAction"/>. </summary>
+        /// <param name="name"> Uniquely identifies the action. </param>
+        /// <param name="uri"> Uri of the action resource. </param>
+        /// <param name="actionType"> The action that will be taken. </param>
+        /// <param name="next"> Details about the next run of this action. </param>
+        /// <param name="lastModifiedBy"> Object Id of the user who last modified the action. </param>
+        /// <param name="lastModifiedAt"> Time the object was last modified. </param>
+        /// <returns> A new <see cref="Models.EnvironmentAction"/> instance for mocking. </returns>
+        public static EnvironmentAction EnvironmentAction(string name = null, Uri uri = null, EnvironmentActionType actionType = default, EnvironmentNextAction next = null, Guid? lastModifiedBy = null, DateTimeOffset? lastModifiedAt = null)
+        {
+            return new EnvironmentAction(
+                name,
+                uri,
+                actionType,
+                next,
+                lastModifiedBy,
+                lastModifiedAt,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentNextAction"/>. </summary>
+        /// <param name="scheduledTime"> The time the action will be triggered (UTC). </param>
+        /// <returns> A new <see cref="Models.EnvironmentNextAction"/> instance for mocking. </returns>
+        public static EnvironmentNextAction EnvironmentNextAction(DateTimeOffset? scheduledTime = null)
+        {
+            return new EnvironmentNextAction(scheduledTime, serializedAdditionalRawData: null);
+        }
+
         /// <summary> Initializes a new instance of <see cref="Models.DevCenterCatalog"/>. </summary>
+        /// <param name="uri"> The unique URI of the catalog. </param>
         /// <param name="name"> Name of the catalog. </param>
         /// <returns> A new <see cref="Models.DevCenterCatalog"/> instance for mocking. </returns>
-        public static DevCenterCatalog DevCenterCatalog(string name = null)
+        public static DevCenterCatalog DevCenterCatalog(Uri uri = null, string name = null)
         {
-            return new DevCenterCatalog(name, serializedAdditionalRawData: null);
+            return new DevCenterCatalog(uri, name, serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.EnvironmentDefinition"/>. </summary>
+        /// <param name="uri"> The unique URI of the environment definition. </param>
         /// <param name="id"> The ID of the environment definition. </param>
         /// <param name="name"> Name of the environment definition. </param>
         /// <param name="catalogName"> Name of the catalog. </param>
@@ -281,11 +423,12 @@ namespace Azure.Developer.DevCenter.Models
         /// <param name="parametersSchema"> JSON schema defining the parameters object passed to an environment. </param>
         /// <param name="templatePath"> Path to the Environment Definition entrypoint file. </param>
         /// <returns> A new <see cref="Models.EnvironmentDefinition"/> instance for mocking. </returns>
-        public static EnvironmentDefinition EnvironmentDefinition(string id = null, string name = null, string catalogName = null, string description = null, IEnumerable<EnvironmentDefinitionParameter> parameters = null, string parametersSchema = null, string templatePath = null)
+        public static EnvironmentDefinition EnvironmentDefinition(Uri uri = null, string id = null, string name = null, string catalogName = null, string description = null, IEnumerable<EnvironmentDefinitionParameter> parameters = null, string parametersSchema = null, string templatePath = null)
         {
             parameters ??= new List<EnvironmentDefinitionParameter>();
 
             return new EnvironmentDefinition(
+                uri,
                 id,
                 name,
                 catalogName,
@@ -303,7 +446,7 @@ namespace Azure.Developer.DevCenter.Models
         /// <param name="defaultValue"> Default value of the parameter. </param>
         /// <param name="parameterType">
         /// A string of one of the basic JSON types (number, integer, array, object,
-        /// boolean, string)
+        /// boolean, string).
         /// </param>
         /// <param name="readOnly">
         /// Whether or not this parameter is read-only.  If true, default should have a
@@ -329,6 +472,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DevCenterEnvironmentType"/>. </summary>
+        /// <param name="uri"> The unique URI of the environment type. </param>
         /// <param name="name"> Name of the environment type. </param>
         /// <param name="deploymentTargetId">
         /// Id of a subscription or management group that the environment type will be
@@ -336,10 +480,175 @@ namespace Azure.Developer.DevCenter.Models
         /// or management group.
         /// </param>
         /// <param name="status"> Indicates whether this environment type is enabled for use in this project. </param>
+        /// <param name="displayName"> Display name of the environment type. </param>
         /// <returns> A new <see cref="Models.DevCenterEnvironmentType"/> instance for mocking. </returns>
-        public static DevCenterEnvironmentType DevCenterEnvironmentType(string name = null, ResourceIdentifier deploymentTargetId = null, EnvironmentTypeStatus status = default)
+        public static DevCenterEnvironmentType DevCenterEnvironmentType(Uri uri = null, string name = null, ResourceIdentifier deploymentTargetId = null, EnvironmentTypeStatus status = default, string displayName = null)
         {
-            return new DevCenterEnvironmentType(name, deploymentTargetId, status, serializedAdditionalRawData: null);
+            return new DevCenterEnvironmentType(
+                uri,
+                name,
+                deploymentTargetId,
+                status,
+                displayName,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxStartOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box operation. </param>
+        /// <param name="operationId"> Unique identifier for the Dev Box operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> he time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.DevBoxStartOperation"/> instance for mocking. </returns>
+        public static DevBoxStartOperation DevBoxStartOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, ResponseError error = null)
+        {
+            return new DevBoxStartOperation(
+                uri,
+                operationId,
+                DevBoxOperationKind.Start,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxStopOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box operation. </param>
+        /// <param name="operationId"> Unique identifier for the Dev Box operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> he time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.DevBoxStopOperation"/> instance for mocking. </returns>
+        public static DevBoxStopOperation DevBoxStopOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, ResponseError error = null)
+        {
+            return new DevBoxStopOperation(
+                uri,
+                operationId,
+                DevBoxOperationKind.Stop,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxRestartOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box operation. </param>
+        /// <param name="operationId"> Unique identifier for the Dev Box operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> he time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.DevBoxRestartOperation"/> instance for mocking. </returns>
+        public static DevBoxRestartOperation DevBoxRestartOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, ResponseError error = null)
+        {
+            return new DevBoxRestartOperation(
+                uri,
+                operationId,
+                DevBoxOperationKind.Restart,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxRepairOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the Dev Box operation. </param>
+        /// <param name="operationId"> Unique identifier for the Dev Box operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> he time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <param name="result"> The result of the repair operation. </param>
+        /// <returns> A new <see cref="Models.DevBoxRepairOperation"/> instance for mocking. </returns>
+        public static DevBoxRepairOperation DevBoxRepairOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, ResponseError error = null, DevBoxRepairOperationResult result = null)
+        {
+            return new DevBoxRepairOperation(
+                uri,
+                operationId,
+                DevBoxOperationKind.Repair,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                error,
+                serializedAdditionalRawData: null,
+                result);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.DevBoxRepairOperationResult"/>. </summary>
+        /// <param name="repairOutcome"> The outcome of the repair operation. </param>
+        /// <param name="code"> The result code associated with the repair operation. </param>
+        /// <param name="message"> The result message associated with the repair operation. </param>
+        /// <returns> A new <see cref="Models.DevBoxRepairOperationResult"/> instance for mocking. </returns>
+        public static DevBoxRepairOperationResult DevBoxRepairOperationResult(DevBoxRepairOutcome? repairOutcome = null, string code = null, string message = null)
+        {
+            return new DevBoxRepairOperationResult(repairOutcome, code, message, serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentDeployOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the environment operation. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> The time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="environmentParameters"> Parameters object for the environment at the time of the operation. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.EnvironmentDeployOperation"/> instance for mocking. </returns>
+        public static EnvironmentDeployOperation EnvironmentDeployOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, IReadOnlyDictionary<string, BinaryData> environmentParameters = null, ResponseError error = null)
+        {
+            environmentParameters ??= new Dictionary<string, BinaryData>();
+
+            return new EnvironmentDeployOperation(
+                uri,
+                operationId,
+                EnvironmentOperationKind.Deploy,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                environmentParameters,
+                error,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.EnvironmentDeleteOperation"/>. </summary>
+        /// <param name="uri"> The unique URI for the environment operation. </param>
+        /// <param name="operationId"> Unique identifier for the environment operation. </param>
+        /// <param name="status"> The operation status. </param>
+        /// <param name="createdByObjectId"> The object ID of the actor which initiated the operation. </param>
+        /// <param name="startTime"> The time the operation started. </param>
+        /// <param name="endTime"> The time the operation finished. </param>
+        /// <param name="environmentParameters"> Parameters object for the environment at the time of the operation. </param>
+        /// <param name="error"> Provisioning or operation error details. Populated only for error states. </param>
+        /// <returns> A new <see cref="Models.EnvironmentDeleteOperation"/> instance for mocking. </returns>
+        public static EnvironmentDeleteOperation EnvironmentDeleteOperation(Uri uri = null, Guid operationId = default, DevCenterOperationStatus status = default, Guid? createdByObjectId = null, DateTimeOffset? startTime = null, DateTimeOffset? endTime = null, IReadOnlyDictionary<string, BinaryData> environmentParameters = null, ResponseError error = null)
+        {
+            environmentParameters ??= new Dictionary<string, BinaryData>();
+
+            return new EnvironmentDeleteOperation(
+                uri,
+                operationId,
+                EnvironmentOperationKind.Delete,
+                status,
+                createdByObjectId,
+                startTime,
+                endTime,
+                environmentParameters,
+                error,
+                serializedAdditionalRawData: null);
         }
     }
 }

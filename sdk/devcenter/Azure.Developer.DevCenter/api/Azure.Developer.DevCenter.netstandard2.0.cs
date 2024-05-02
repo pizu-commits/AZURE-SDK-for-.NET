@@ -10,8 +10,20 @@ namespace Azure.Developer.DevCenter
         public virtual Azure.Operation<System.BinaryData> CreateOrUpdateEnvironment(Azure.WaitUntil waitUntil, string projectName, string userId, string environmentName, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Operation<Azure.Developer.DevCenter.Models.DevCenterEnvironment>> CreateOrUpdateEnvironmentAsync(Azure.WaitUntil waitUntil, string projectName, string userId, Azure.Developer.DevCenter.Models.DevCenterEnvironment environment, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Operation<System.BinaryData>> CreateOrUpdateEnvironmentAsync(Azure.WaitUntil waitUntil, string projectName, string userId, string environmentName, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
+        public virtual Azure.Response DelayAction(string projectName, string userId, string environmentName, string actionName, System.DateTimeOffset until, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentAction> DelayAction(string projectName, string userId, string environmentName, string actionName, System.DateTimeOffset until, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> DelayActionAsync(string projectName, string userId, string environmentName, string actionName, System.DateTimeOffset until, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentAction>> DelayActionAsync(string projectName, string userId, string environmentName, string actionName, System.DateTimeOffset until, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.Operation DeleteEnvironment(Azure.WaitUntil waitUntil, string projectName, string userId, string environmentName, Azure.RequestContext context = null) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Operation> DeleteEnvironmentAsync(Azure.WaitUntil waitUntil, string projectName, string userId, string environmentName, Azure.RequestContext context = null) { throw null; }
+        public virtual Azure.Response GetAction(string projectName, string userId, string environmentName, string actionName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentAction> GetAction(string projectName, string userId, string environmentName, string actionName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> GetActionAsync(string projectName, string userId, string environmentName, string actionName, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentAction>> GetActionAsync(string projectName, string userId, string environmentName, string actionName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Pageable<System.BinaryData> GetActions(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.EnvironmentAction> GetActions(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.AsyncPageable<System.BinaryData> GetActionsAsync(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.EnvironmentAction> GetActionsAsync(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.Pageable<System.BinaryData> GetAllEnvironments(string projectName, Azure.RequestContext context) { throw null; }
         public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevCenterEnvironment> GetAllEnvironments(string projectName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.AsyncPageable<System.BinaryData> GetAllEnvironmentsAsync(string projectName, Azure.RequestContext context) { throw null; }
@@ -48,6 +60,26 @@ namespace Azure.Developer.DevCenter
         public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevCenterEnvironmentType> GetEnvironmentTypes(string projectName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.AsyncPageable<System.BinaryData> GetEnvironmentTypesAsync(string projectName, Azure.RequestContext context) { throw null; }
         public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.DevCenterEnvironmentType> GetEnvironmentTypesAsync(string projectName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response GetLogsByOperation(string projectName, string userId, string environmentName, string operationId, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<string> GetLogsByOperation(string projectName, string userId, string environmentName, string operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> GetLogsByOperationAsync(string projectName, string userId, string environmentName, string operationId, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<string>> GetLogsByOperationAsync(string projectName, string userId, string environmentName, string operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response GetOperation(string projectName, string userId, string environmentName, System.Guid operationId, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentOperation> GetOperation(string projectName, string userId, string environmentName, System.Guid operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> GetOperationAsync(string projectName, string userId, string environmentName, System.Guid operationId, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentOperation>> GetOperationAsync(string projectName, string userId, string environmentName, System.Guid operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Pageable<System.BinaryData> GetOperations(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.EnvironmentOperation> GetOperations(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.AsyncPageable<System.BinaryData> GetOperationsAsync(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.EnvironmentOperation> GetOperationsAsync(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response GetOutputs(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentOutputs> GetOutputs(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> GetOutputsAsync(string projectName, string userId, string environmentName, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Developer.DevCenter.Models.EnvironmentOutputs>> GetOutputsAsync(string projectName, string userId, string environmentName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response PatchEnvironment(string projectName, string userId, string environmentName, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> PatchEnvironmentAsync(string projectName, string userId, string environmentName, Azure.Core.RequestContent content, Azure.RequestContext context = null) { throw null; }
+        public virtual Azure.Response SkipAction(string projectName, string userId, string environmentName, string actionName, Azure.RequestContext context = null) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> SkipActionAsync(string projectName, string userId, string environmentName, string actionName, Azure.RequestContext context = null) { throw null; }
     }
     public partial class DevBoxesClient
     {
@@ -93,6 +125,14 @@ namespace Azure.Developer.DevCenter
         public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevBox> GetDevBoxes(string projectName, string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.AsyncPageable<System.BinaryData> GetDevBoxesAsync(string projectName, string userId, Azure.RequestContext context) { throw null; }
         public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.DevBox> GetDevBoxesAsync(string projectName, string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Response GetOperation(string projectName, string userId, string devBoxName, System.Guid operationId, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Response<Azure.Developer.DevCenter.Models.DevBoxOperation> GetOperation(string projectName, string userId, string devBoxName, System.Guid operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response> GetOperationAsync(string projectName, string userId, string devBoxName, System.Guid operationId, Azure.RequestContext context) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Response<Azure.Developer.DevCenter.Models.DevBoxOperation>> GetOperationAsync(string projectName, string userId, string devBoxName, System.Guid operationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Pageable<System.BinaryData> GetOperations(string projectName, string userId, string devBoxName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevBoxOperation> GetOperations(string projectName, string userId, string devBoxName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.AsyncPageable<System.BinaryData> GetOperationsAsync(string projectName, string userId, string devBoxName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.DevBoxOperation> GetOperationsAsync(string projectName, string userId, string devBoxName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.Response GetPool(string projectName, string poolName, Azure.RequestContext context) { throw null; }
         public virtual Azure.Response<Azure.Developer.DevCenter.Models.DevBoxPool> GetPool(string projectName, string poolName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Response> GetPoolAsync(string projectName, string poolName, Azure.RequestContext context) { throw null; }
@@ -113,6 +153,12 @@ namespace Azure.Developer.DevCenter
         public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevBoxSchedule> GetSchedules(string projectName, string poolName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual Azure.AsyncPageable<System.BinaryData> GetSchedulesAsync(string projectName, string poolName, Azure.RequestContext context) { throw null; }
         public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.DevBoxSchedule> GetSchedulesAsync(string projectName, string poolName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Pageable<System.BinaryData> GetSchedulesByProject(string projectName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.Pageable<Azure.Developer.DevCenter.Models.DevBoxSchedule> GetSchedulesByProject(string projectName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.AsyncPageable<System.BinaryData> GetSchedulesByProjectAsync(string projectName, Azure.RequestContext context) { throw null; }
+        public virtual Azure.AsyncPageable<Azure.Developer.DevCenter.Models.DevBoxSchedule> GetSchedulesByProjectAsync(string projectName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
+        public virtual Azure.Operation RepairDevBox(Azure.WaitUntil waitUntil, string projectName, string userId, string devBoxName, Azure.RequestContext context = null) { throw null; }
+        public virtual System.Threading.Tasks.Task<Azure.Operation> RepairDevBoxAsync(Azure.WaitUntil waitUntil, string projectName, string userId, string devBoxName, Azure.RequestContext context = null) { throw null; }
         public virtual Azure.Operation RestartDevBox(Azure.WaitUntil waitUntil, string projectName, string userId, string devBoxName, Azure.RequestContext context = null) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Operation> RestartDevBoxAsync(Azure.WaitUntil waitUntil, string projectName, string userId, string devBoxName, Azure.RequestContext context = null) { throw null; }
         public virtual Azure.Response SkipAction(string projectName, string userId, string devBoxName, string actionName, Azure.RequestContext context = null) { throw null; }
@@ -141,10 +187,11 @@ namespace Azure.Developer.DevCenter
     }
     public partial class DevCenterClientOptions : Azure.Core.ClientOptions
     {
-        public DevCenterClientOptions(Azure.Developer.DevCenter.DevCenterClientOptions.ServiceVersion version = Azure.Developer.DevCenter.DevCenterClientOptions.ServiceVersion.V2023_04_01) { }
+        public DevCenterClientOptions(Azure.Developer.DevCenter.DevCenterClientOptions.ServiceVersion version = Azure.Developer.DevCenter.DevCenterClientOptions.ServiceVersion.V2024_02_01) { }
         public enum ServiceVersion
         {
             V2023_04_01 = 1,
+            V2024_02_01 = 2,
         }
     }
 }
@@ -169,6 +216,7 @@ namespace Azure.Developer.DevCenter.Models
         public Azure.Developer.DevCenter.Models.DevBoxProvisioningState? ProvisioningState { get { throw null; } }
         public Azure.Developer.DevCenter.Models.DevBoxStorageProfile StorageProfile { get { throw null; } }
         public System.Guid? UniqueId { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         public System.Guid? UserId { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevBox System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBox>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBox>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
@@ -183,7 +231,10 @@ namespace Azure.Developer.DevCenter.Models
         public string Name { get { throw null; } }
         public Azure.Developer.DevCenter.Models.DevBoxNextAction NextAction { get { throw null; } }
         public string SourceId { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.DevBoxActionSourceType SourceType { get { throw null; } }
+        public System.Uri SourceUri { get { throw null; } }
         public System.DateTimeOffset? SuspendedUntil { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevBoxAction System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxAction>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxAction>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevBoxAction System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxAction>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -197,6 +248,7 @@ namespace Azure.Developer.DevCenter.Models
         public string ActionName { get { throw null; } }
         public Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus DelayStatus { get { throw null; } }
         public Azure.ResponseError Error { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevBoxActionDelayResult System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxActionDelayResult>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxActionDelayResult>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevBoxActionDelayResult System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxActionDelayResult>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -219,6 +271,24 @@ namespace Azure.Developer.DevCenter.Models
         public static bool operator ==(Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus left, Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus right) { throw null; }
         public static implicit operator Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus (string value) { throw null; }
         public static bool operator !=(Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus left, Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct DevBoxActionSourceType : System.IEquatable<Azure.Developer.DevCenter.Models.DevBoxActionSourceType>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public DevBoxActionSourceType(string value) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxActionSourceType Pool { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.DevBoxActionSourceType Schedule { get { throw null; } }
+        public bool Equals(Azure.Developer.DevCenter.Models.DevBoxActionSourceType other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Developer.DevCenter.Models.DevBoxActionSourceType left, Azure.Developer.DevCenter.Models.DevBoxActionSourceType right) { throw null; }
+        public static implicit operator Azure.Developer.DevCenter.Models.DevBoxActionSourceType (string value) { throw null; }
+        public static bool operator !=(Azure.Developer.DevCenter.Models.DevBoxActionSourceType left, Azure.Developer.DevCenter.Models.DevBoxActionSourceType right) { throw null; }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -274,6 +344,22 @@ namespace Azure.Developer.DevCenter.Models
         string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxNextAction>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxNextAction>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
     }
+    public abstract partial class DevBoxOperation : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxOperation>
+    {
+        protected DevBoxOperation(System.Uri uri, Azure.Developer.DevCenter.Models.DevCenterOperationStatus status) { }
+        public System.Guid? CreatedByObjectId { get { throw null; } }
+        public System.DateTimeOffset? EndTime { get { throw null; } }
+        public Azure.ResponseError Error { get { throw null; } }
+        public System.Guid OperationId { get { throw null; } }
+        public System.DateTimeOffset? StartTime { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.DevCenterOperationStatus Status { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
+        Azure.Developer.DevCenter.Models.DevBoxOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct DevBoxOSType : System.IEquatable<Azure.Developer.DevCenter.Models.DevBoxOSType>
     {
@@ -294,6 +380,7 @@ namespace Azure.Developer.DevCenter.Models
     public partial class DevBoxPool : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxPool>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxPool>
     {
         internal DevBoxPool() { }
+        public string DisplayName { get { throw null; } }
         public Azure.Developer.DevCenter.Models.DevBoxHardwareProfile HardwareProfile { get { throw null; } }
         public Azure.Developer.DevCenter.Models.PoolHealthStatus HealthStatus { get { throw null; } }
         public Azure.Developer.DevCenter.Models.HibernateSupport? HibernateSupport { get { throw null; } }
@@ -304,6 +391,7 @@ namespace Azure.Developer.DevCenter.Models
         public Azure.Developer.DevCenter.Models.DevBoxOSType? OSType { get { throw null; } }
         public Azure.Developer.DevCenter.Models.StopOnDisconnectConfiguration StopOnDisconnect { get { throw null; } }
         public Azure.Developer.DevCenter.Models.DevBoxStorageProfile StorageProfile { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevBoxPool System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxPool>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxPool>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevBoxPool System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxPool>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -338,19 +426,90 @@ namespace Azure.Developer.DevCenter.Models
         public static bool operator !=(Azure.Developer.DevCenter.Models.DevBoxProvisioningState left, Azure.Developer.DevCenter.Models.DevBoxProvisioningState right) { throw null; }
         public override string ToString() { throw null; }
     }
+    public partial class DevBoxRepairOperation : Azure.Developer.DevCenter.Models.DevBoxOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>
+    {
+        internal DevBoxRepairOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        public Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult Result { get { throw null; } }
+        Azure.Developer.DevCenter.Models.DevBoxRepairOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxRepairOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class DevBoxRepairOperationResult : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>
+    {
+        internal DevBoxRepairOperationResult() { }
+        public string Code { get { throw null; } }
+        public string Message { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.DevBoxRepairOutcome? RepairOutcome { get { throw null; } }
+        Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct DevBoxRepairOutcome : System.IEquatable<Azure.Developer.DevCenter.Models.DevBoxRepairOutcome>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public DevBoxRepairOutcome(string value) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxRepairOutcome FixApplied { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.DevBoxRepairOutcome IssuesDetected { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.DevBoxRepairOutcome NoIssuesDetected { get { throw null; } }
+        public bool Equals(Azure.Developer.DevCenter.Models.DevBoxRepairOutcome other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Developer.DevCenter.Models.DevBoxRepairOutcome left, Azure.Developer.DevCenter.Models.DevBoxRepairOutcome right) { throw null; }
+        public static implicit operator Azure.Developer.DevCenter.Models.DevBoxRepairOutcome (string value) { throw null; }
+        public static bool operator !=(Azure.Developer.DevCenter.Models.DevBoxRepairOutcome left, Azure.Developer.DevCenter.Models.DevBoxRepairOutcome right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    public partial class DevBoxRestartOperation : Azure.Developer.DevCenter.Models.DevBoxOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>
+    {
+        internal DevBoxRestartOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        Azure.Developer.DevCenter.Models.DevBoxRestartOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxRestartOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxRestartOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
     public partial class DevBoxSchedule : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>
     {
         internal DevBoxSchedule() { }
         public string Name { get { throw null; } }
         public Azure.Developer.DevCenter.Models.ScheduleFrequency ScheduleFrequency { get { throw null; } }
         public Azure.Developer.DevCenter.Models.ScheduleType ScheduleType { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.ScheduleSourceType SourceType { get { throw null; } }
+        public System.Uri SourceUri { get { throw null; } }
         public string Time { get { throw null; } }
         public string TimeZone { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevBoxSchedule System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevBoxSchedule System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxSchedule>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class DevBoxStartOperation : Azure.Developer.DevCenter.Models.DevBoxOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>
+    {
+        internal DevBoxStartOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        Azure.Developer.DevCenter.Models.DevBoxStartOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxStartOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStartOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class DevBoxStopOperation : Azure.Developer.DevCenter.Models.DevBoxOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>
+    {
+        internal DevBoxStopOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        Azure.Developer.DevCenter.Models.DevBoxStopOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.DevBoxStopOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStopOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
     }
     public partial class DevBoxStorageProfile : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevBoxStorageProfile>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevBoxStorageProfile>
     {
@@ -366,6 +525,7 @@ namespace Azure.Developer.DevCenter.Models
     {
         internal DevCenterCatalog() { }
         public string Name { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevCenterCatalog System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterCatalog>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterCatalog>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevCenterCatalog System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterCatalog>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -379,10 +539,12 @@ namespace Azure.Developer.DevCenter.Models
         public string EnvironmentDefinitionName { get { throw null; } set { } }
         public string EnvironmentTypeName { get { throw null; } set { } }
         public Azure.ResponseError Error { get { throw null; } }
+        public System.DateTimeOffset? ExpirationDate { get { throw null; } set { } }
         public string Name { get { throw null; } }
         public System.Collections.Generic.IDictionary<string, System.BinaryData> Parameters { get { throw null; } }
         public Azure.Developer.DevCenter.Models.EnvironmentProvisioningState? ProvisioningState { get { throw null; } }
         public Azure.Core.ResourceIdentifier ResourceGroupId { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         public System.Guid? UserId { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevCenterEnvironment System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterEnvironment>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterEnvironment>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
@@ -394,8 +556,10 @@ namespace Azure.Developer.DevCenter.Models
     {
         internal DevCenterEnvironmentType() { }
         public Azure.Core.ResourceIdentifier DeploymentTargetId { get { throw null; } }
+        public string DisplayName { get { throw null; } }
         public string Name { get { throw null; } }
         public Azure.Developer.DevCenter.Models.EnvironmentTypeStatus Status { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevCenterEnvironmentType System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterEnvironmentType>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterEnvironmentType>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevCenterEnvironmentType System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterEnvironmentType>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -404,36 +568,91 @@ namespace Azure.Developer.DevCenter.Models
     }
     public static partial class DevCenterModelFactory
     {
-        public static Azure.Developer.DevCenter.Models.DevBox DevBox(string name = null, string projectName = null, string poolName = null, Azure.Developer.DevCenter.Models.HibernateSupport? hibernateSupport = default(Azure.Developer.DevCenter.Models.HibernateSupport?), Azure.Developer.DevCenter.Models.DevBoxProvisioningState? provisioningState = default(Azure.Developer.DevCenter.Models.DevBoxProvisioningState?), string actionState = null, Azure.Developer.DevCenter.Models.PowerState? powerState = default(Azure.Developer.DevCenter.Models.PowerState?), System.Guid? uniqueId = default(System.Guid?), Azure.ResponseError error = null, Azure.Core.AzureLocation? location = default(Azure.Core.AzureLocation?), Azure.Developer.DevCenter.Models.DevBoxOSType? osType = default(Azure.Developer.DevCenter.Models.DevBoxOSType?), System.Guid? userId = default(System.Guid?), Azure.Developer.DevCenter.Models.DevBoxHardwareProfile hardwareProfile = null, Azure.Developer.DevCenter.Models.DevBoxStorageProfile storageProfile = null, Azure.Developer.DevCenter.Models.DevBoxImageReference imageReference = null, System.DateTimeOffset? createdTime = default(System.DateTimeOffset?), Azure.Developer.DevCenter.Models.LocalAdministratorStatus? localAdministratorStatus = default(Azure.Developer.DevCenter.Models.LocalAdministratorStatus?)) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevBoxAction DevBoxAction(string name = null, Azure.Developer.DevCenter.Models.DevBoxActionType actionType = default(Azure.Developer.DevCenter.Models.DevBoxActionType), string sourceId = null, System.DateTimeOffset? suspendedUntil = default(System.DateTimeOffset?), Azure.Developer.DevCenter.Models.DevBoxNextAction nextAction = null) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevBoxActionDelayResult DevBoxActionDelayResult(string actionName = null, Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus delayStatus = default(Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus), Azure.Developer.DevCenter.Models.DevBoxAction action = null, Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBox DevBox(System.Uri uri = null, string name = null, string projectName = null, string poolName = null, Azure.Developer.DevCenter.Models.HibernateSupport? hibernateSupport = default(Azure.Developer.DevCenter.Models.HibernateSupport?), Azure.Developer.DevCenter.Models.DevBoxProvisioningState? provisioningState = default(Azure.Developer.DevCenter.Models.DevBoxProvisioningState?), string actionState = null, Azure.Developer.DevCenter.Models.PowerState? powerState = default(Azure.Developer.DevCenter.Models.PowerState?), System.Guid? uniqueId = default(System.Guid?), Azure.ResponseError error = null, Azure.Core.AzureLocation? location = default(Azure.Core.AzureLocation?), Azure.Developer.DevCenter.Models.DevBoxOSType? osType = default(Azure.Developer.DevCenter.Models.DevBoxOSType?), System.Guid? userId = default(System.Guid?), Azure.Developer.DevCenter.Models.DevBoxHardwareProfile hardwareProfile = null, Azure.Developer.DevCenter.Models.DevBoxStorageProfile storageProfile = null, Azure.Developer.DevCenter.Models.DevBoxImageReference imageReference = null, System.DateTimeOffset? createdTime = default(System.DateTimeOffset?), Azure.Developer.DevCenter.Models.LocalAdministratorStatus? localAdministratorStatus = default(Azure.Developer.DevCenter.Models.LocalAdministratorStatus?)) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxAction DevBoxAction(System.Uri uri = null, string name = null, Azure.Developer.DevCenter.Models.DevBoxActionType actionType = default(Azure.Developer.DevCenter.Models.DevBoxActionType), string sourceId = null, System.Uri sourceUri = null, Azure.Developer.DevCenter.Models.DevBoxActionSourceType sourceType = default(Azure.Developer.DevCenter.Models.DevBoxActionSourceType), System.DateTimeOffset? suspendedUntil = default(System.DateTimeOffset?), Azure.Developer.DevCenter.Models.DevBoxNextAction nextAction = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxActionDelayResult DevBoxActionDelayResult(System.Uri uri = null, string actionName = null, Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus delayStatus = default(Azure.Developer.DevCenter.Models.DevBoxActionDelayStatus), Azure.Developer.DevCenter.Models.DevBoxAction action = null, Azure.ResponseError error = null) { throw null; }
         public static Azure.Developer.DevCenter.Models.DevBoxHardwareProfile DevBoxHardwareProfile(Azure.Developer.DevCenter.Models.SkuName? skuName = default(Azure.Developer.DevCenter.Models.SkuName?), int? vcpUs = default(int?), int? memoryGB = default(int?)) { throw null; }
         public static Azure.Developer.DevCenter.Models.DevBoxImageReference DevBoxImageReference(string name = null, string version = null, string operatingSystem = null, string osBuildNumber = null, System.DateTimeOffset? publishedDate = default(System.DateTimeOffset?)) { throw null; }
         public static Azure.Developer.DevCenter.Models.DevBoxNextAction DevBoxNextAction(System.DateTimeOffset scheduledTime = default(System.DateTimeOffset)) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevBoxPool DevBoxPool(string name = null, Azure.Core.AzureLocation location = default(Azure.Core.AzureLocation), Azure.Developer.DevCenter.Models.DevBoxOSType? osType = default(Azure.Developer.DevCenter.Models.DevBoxOSType?), Azure.Developer.DevCenter.Models.DevBoxHardwareProfile hardwareProfile = null, Azure.Developer.DevCenter.Models.HibernateSupport? hibernateSupport = default(Azure.Developer.DevCenter.Models.HibernateSupport?), Azure.Developer.DevCenter.Models.DevBoxStorageProfile storageProfile = null, Azure.Developer.DevCenter.Models.DevBoxImageReference imageReference = null, Azure.Developer.DevCenter.Models.LocalAdministratorStatus? localAdministratorStatus = default(Azure.Developer.DevCenter.Models.LocalAdministratorStatus?), Azure.Developer.DevCenter.Models.StopOnDisconnectConfiguration stopOnDisconnect = null, Azure.Developer.DevCenter.Models.PoolHealthStatus healthStatus = default(Azure.Developer.DevCenter.Models.PoolHealthStatus)) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevBoxSchedule DevBoxSchedule(string name = null, Azure.Developer.DevCenter.Models.ScheduleType scheduleType = default(Azure.Developer.DevCenter.Models.ScheduleType), Azure.Developer.DevCenter.Models.ScheduleFrequency scheduleFrequency = default(Azure.Developer.DevCenter.Models.ScheduleFrequency), string time = null, string timeZone = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxOperation DevBoxOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), string kind = null, Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxPool DevBoxPool(System.Uri uri = null, string name = null, Azure.Core.AzureLocation location = default(Azure.Core.AzureLocation), Azure.Developer.DevCenter.Models.DevBoxOSType? osType = default(Azure.Developer.DevCenter.Models.DevBoxOSType?), Azure.Developer.DevCenter.Models.DevBoxHardwareProfile hardwareProfile = null, Azure.Developer.DevCenter.Models.HibernateSupport? hibernateSupport = default(Azure.Developer.DevCenter.Models.HibernateSupport?), Azure.Developer.DevCenter.Models.DevBoxStorageProfile storageProfile = null, Azure.Developer.DevCenter.Models.DevBoxImageReference imageReference = null, Azure.Developer.DevCenter.Models.LocalAdministratorStatus? localAdministratorStatus = default(Azure.Developer.DevCenter.Models.LocalAdministratorStatus?), Azure.Developer.DevCenter.Models.StopOnDisconnectConfiguration stopOnDisconnect = null, Azure.Developer.DevCenter.Models.PoolHealthStatus healthStatus = default(Azure.Developer.DevCenter.Models.PoolHealthStatus), string displayName = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxRepairOperation DevBoxRepairOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), Azure.ResponseError error = null, Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult result = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxRepairOperationResult DevBoxRepairOperationResult(Azure.Developer.DevCenter.Models.DevBoxRepairOutcome? repairOutcome = default(Azure.Developer.DevCenter.Models.DevBoxRepairOutcome?), string code = null, string message = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxRestartOperation DevBoxRestartOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxSchedule DevBoxSchedule(System.Uri uri = null, string name = null, System.Uri sourceUri = null, Azure.Developer.DevCenter.Models.ScheduleSourceType sourceType = default(Azure.Developer.DevCenter.Models.ScheduleSourceType), Azure.Developer.DevCenter.Models.ScheduleType scheduleType = default(Azure.Developer.DevCenter.Models.ScheduleType), Azure.Developer.DevCenter.Models.ScheduleFrequency scheduleFrequency = default(Azure.Developer.DevCenter.Models.ScheduleFrequency), string time = null, string timeZone = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxStartOperation DevBoxStartOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevBoxStopOperation DevBoxStopOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), Azure.ResponseError error = null) { throw null; }
         public static Azure.Developer.DevCenter.Models.DevBoxStorageProfile DevBoxStorageProfile(Azure.Developer.DevCenter.Models.OSDisk osDisk = null) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevCenterCatalog DevCenterCatalog(string name = null) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevCenterEnvironment DevCenterEnvironment(System.Collections.Generic.IDictionary<string, System.BinaryData> parameters = null, string name = null, string environmentTypeName = null, System.Guid? userId = default(System.Guid?), Azure.Developer.DevCenter.Models.EnvironmentProvisioningState? provisioningState = default(Azure.Developer.DevCenter.Models.EnvironmentProvisioningState?), Azure.Core.ResourceIdentifier resourceGroupId = null, string catalogName = null, string environmentDefinitionName = null, Azure.ResponseError error = null) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevCenterEnvironmentType DevCenterEnvironmentType(string name = null, Azure.Core.ResourceIdentifier deploymentTargetId = null, Azure.Developer.DevCenter.Models.EnvironmentTypeStatus status = default(Azure.Developer.DevCenter.Models.EnvironmentTypeStatus)) { throw null; }
-        public static Azure.Developer.DevCenter.Models.DevCenterProject DevCenterProject(string name = null, string description = null, int? maxDevBoxesPerUser = default(int?)) { throw null; }
-        public static Azure.Developer.DevCenter.Models.EnvironmentDefinition EnvironmentDefinition(string id = null, string name = null, string catalogName = null, string description = null, System.Collections.Generic.IEnumerable<Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameter> parameters = null, string parametersSchema = null, string templatePath = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevCenterCatalog DevCenterCatalog(System.Uri uri = null, string name = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevCenterEnvironment DevCenterEnvironment(System.DateTimeOffset? expirationDate = default(System.DateTimeOffset?), System.Collections.Generic.IDictionary<string, System.BinaryData> parameters = null, System.Uri uri = null, string name = null, string environmentTypeName = null, System.Guid? userId = default(System.Guid?), Azure.Developer.DevCenter.Models.EnvironmentProvisioningState? provisioningState = default(Azure.Developer.DevCenter.Models.EnvironmentProvisioningState?), Azure.Core.ResourceIdentifier resourceGroupId = null, string catalogName = null, string environmentDefinitionName = null, Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevCenterEnvironmentType DevCenterEnvironmentType(System.Uri uri = null, string name = null, Azure.Core.ResourceIdentifier deploymentTargetId = null, Azure.Developer.DevCenter.Models.EnvironmentTypeStatus status = default(Azure.Developer.DevCenter.Models.EnvironmentTypeStatus), string displayName = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.DevCenterProject DevCenterProject(System.Uri uri = null, string name = null, string description = null, int? maxDevBoxesPerUser = default(int?), string displayName = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentAction EnvironmentAction(string name = null, System.Uri uri = null, Azure.Developer.DevCenter.Models.EnvironmentActionType actionType = default(Azure.Developer.DevCenter.Models.EnvironmentActionType), Azure.Developer.DevCenter.Models.EnvironmentNextAction next = null, System.Guid? lastModifiedBy = default(System.Guid?), System.DateTimeOffset? lastModifiedAt = default(System.DateTimeOffset?)) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentDefinition EnvironmentDefinition(System.Uri uri = null, string id = null, string name = null, string catalogName = null, string description = null, System.Collections.Generic.IEnumerable<Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameter> parameters = null, string parametersSchema = null, string templatePath = null) { throw null; }
         public static Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameter EnvironmentDefinitionParameter(string id = null, string name = null, string description = null, string defaultValue = null, Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType parameterType = default(Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType), bool? readOnly = default(bool?), bool required = false, System.Collections.Generic.IEnumerable<string> allowed = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation EnvironmentDeleteOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), System.Collections.Generic.IReadOnlyDictionary<string, System.BinaryData> environmentParameters = null, Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentDeployOperation EnvironmentDeployOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), System.Collections.Generic.IReadOnlyDictionary<string, System.BinaryData> environmentParameters = null, Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentNextAction EnvironmentNextAction(System.DateTimeOffset? scheduledTime = default(System.DateTimeOffset?)) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOperation EnvironmentOperation(System.Uri uri = null, System.Guid operationId = default(System.Guid), string kind = null, Azure.Developer.DevCenter.Models.DevCenterOperationStatus status = Azure.Developer.DevCenter.Models.DevCenterOperationStatus.NotStarted, System.Guid? createdByObjectId = default(System.Guid?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), System.Collections.Generic.IReadOnlyDictionary<string, System.BinaryData> environmentParameters = null, Azure.ResponseError error = null) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutput EnvironmentOutput(Azure.Developer.DevCenter.Models.EnvironmentOutputType? type = default(Azure.Developer.DevCenter.Models.EnvironmentOutputType?), System.BinaryData value = null, bool? sensitive = default(bool?)) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputs EnvironmentOutputs(System.Collections.Generic.IReadOnlyDictionary<string, Azure.Developer.DevCenter.Models.EnvironmentOutput> outputs = null) { throw null; }
         public static Azure.Developer.DevCenter.Models.OSDisk OSDisk(int? diskSizeGB = default(int?)) { throw null; }
         public static Azure.Developer.DevCenter.Models.RemoteConnection RemoteConnection(System.Uri webUri = null, System.Uri rdpConnectionUri = null) { throw null; }
         public static Azure.Developer.DevCenter.Models.StopOnDisconnectConfiguration StopOnDisconnectConfiguration(Azure.Developer.DevCenter.Models.StopOnDisconnectStatus status = default(Azure.Developer.DevCenter.Models.StopOnDisconnectStatus), int? gracePeriodMinutes = default(int?)) { throw null; }
+    }
+    public enum DevCenterOperationStatus
+    {
+        NotStarted = 0,
+        Running = 1,
+        Succeeded = 2,
+        Failed = 3,
+        Canceled = 4,
     }
     public partial class DevCenterProject : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterProject>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterProject>
     {
         internal DevCenterProject() { }
         public string Description { get { throw null; } }
+        public string DisplayName { get { throw null; } }
         public int? MaxDevBoxesPerUser { get { throw null; } }
         public string Name { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.DevCenterProject System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterProject>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.DevCenterProject>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.DevCenterProject System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterProject>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterProject>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.DevCenterProject>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class EnvironmentAction : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentAction>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentAction>
+    {
+        internal EnvironmentAction() { }
+        public Azure.Developer.DevCenter.Models.EnvironmentActionType ActionType { get { throw null; } }
+        public System.DateTimeOffset? LastModifiedAt { get { throw null; } }
+        public System.Guid? LastModifiedBy { get { throw null; } }
+        public string Name { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.EnvironmentNextAction Next { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
+        Azure.Developer.DevCenter.Models.EnvironmentAction System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentAction>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentAction>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentAction System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentAction>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentAction>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentAction>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct EnvironmentActionType : System.IEquatable<Azure.Developer.DevCenter.Models.EnvironmentActionType>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public EnvironmentActionType(string value) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentActionType Delete { get { throw null; } }
+        public bool Equals(Azure.Developer.DevCenter.Models.EnvironmentActionType other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Developer.DevCenter.Models.EnvironmentActionType left, Azure.Developer.DevCenter.Models.EnvironmentActionType right) { throw null; }
+        public static implicit operator Azure.Developer.DevCenter.Models.EnvironmentActionType (string value) { throw null; }
+        public static bool operator !=(Azure.Developer.DevCenter.Models.EnvironmentActionType left, Azure.Developer.DevCenter.Models.EnvironmentActionType right) { throw null; }
+        public override string ToString() { throw null; }
     }
     public partial class EnvironmentDefinition : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDefinition>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDefinition>
     {
@@ -445,6 +664,7 @@ namespace Azure.Developer.DevCenter.Models
         public System.Collections.Generic.IReadOnlyList<Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameter> Parameters { get { throw null; } }
         public string ParametersSchema { get { throw null; } }
         public string TemplatePath { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
         Azure.Developer.DevCenter.Models.EnvironmentDefinition System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDefinition>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
         void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDefinition>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
         Azure.Developer.DevCenter.Models.EnvironmentDefinition System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDefinition>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
@@ -488,6 +708,94 @@ namespace Azure.Developer.DevCenter.Models
         public static bool operator ==(Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType left, Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType right) { throw null; }
         public static implicit operator Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType (string value) { throw null; }
         public static bool operator !=(Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType left, Azure.Developer.DevCenter.Models.EnvironmentDefinitionParameterType right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    public partial class EnvironmentDeleteOperation : Azure.Developer.DevCenter.Models.EnvironmentOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>
+    {
+        internal EnvironmentDeleteOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeleteOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class EnvironmentDeployOperation : Azure.Developer.DevCenter.Models.EnvironmentOperation, System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>
+    {
+        internal EnvironmentDeployOperation() : base (default(System.Uri), default(Azure.Developer.DevCenter.Models.DevCenterOperationStatus)) { }
+        Azure.Developer.DevCenter.Models.EnvironmentDeployOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentDeployOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentDeployOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class EnvironmentNextAction : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>
+    {
+        internal EnvironmentNextAction() { }
+        public System.DateTimeOffset? ScheduledTime { get { throw null; } }
+        Azure.Developer.DevCenter.Models.EnvironmentNextAction System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentNextAction System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentNextAction>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public abstract partial class EnvironmentOperation : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>
+    {
+        protected EnvironmentOperation(System.Uri uri, Azure.Developer.DevCenter.Models.DevCenterOperationStatus status) { }
+        public System.Guid? CreatedByObjectId { get { throw null; } }
+        public System.DateTimeOffset? EndTime { get { throw null; } }
+        public System.Collections.Generic.IReadOnlyDictionary<string, System.BinaryData> EnvironmentParameters { get { throw null; } }
+        public Azure.ResponseError Error { get { throw null; } }
+        public System.Guid OperationId { get { throw null; } }
+        public System.DateTimeOffset? StartTime { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.DevCenterOperationStatus Status { get { throw null; } }
+        public System.Uri Uri { get { throw null; } }
+        Azure.Developer.DevCenter.Models.EnvironmentOperation System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentOperation System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOperation>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class EnvironmentOutput : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>
+    {
+        internal EnvironmentOutput() { }
+        public bool? Sensitive { get { throw null; } }
+        public Azure.Developer.DevCenter.Models.EnvironmentOutputType? Type { get { throw null; } }
+        public System.BinaryData Value { get { throw null; } }
+        Azure.Developer.DevCenter.Models.EnvironmentOutput System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentOutput System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutput>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    public partial class EnvironmentOutputs : System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>, System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>
+    {
+        internal EnvironmentOutputs() { }
+        public System.Collections.Generic.IReadOnlyDictionary<string, Azure.Developer.DevCenter.Models.EnvironmentOutput> Outputs { get { throw null; } }
+        Azure.Developer.DevCenter.Models.EnvironmentOutputs System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>.Create(ref System.Text.Json.Utf8JsonReader reader, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        void System.ClientModel.Primitives.IJsonModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>.Write(System.Text.Json.Utf8JsonWriter writer, System.ClientModel.Primitives.ModelReaderWriterOptions options) { }
+        Azure.Developer.DevCenter.Models.EnvironmentOutputs System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>.Create(System.BinaryData data, System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        string System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>.GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+        System.BinaryData System.ClientModel.Primitives.IPersistableModel<Azure.Developer.DevCenter.Models.EnvironmentOutputs>.Write(System.ClientModel.Primitives.ModelReaderWriterOptions options) { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct EnvironmentOutputType : System.IEquatable<Azure.Developer.DevCenter.Models.EnvironmentOutputType>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public EnvironmentOutputType(string value) { throw null; }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputType Array { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputType Boolean { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputType Number { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputType Object { get { throw null; } }
+        public static Azure.Developer.DevCenter.Models.EnvironmentOutputType String { get { throw null; } }
+        public bool Equals(Azure.Developer.DevCenter.Models.EnvironmentOutputType other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Developer.DevCenter.Models.EnvironmentOutputType left, Azure.Developer.DevCenter.Models.EnvironmentOutputType right) { throw null; }
+        public static implicit operator Azure.Developer.DevCenter.Models.EnvironmentOutputType (string value) { throw null; }
+        public static bool operator !=(Azure.Developer.DevCenter.Models.EnvironmentOutputType left, Azure.Developer.DevCenter.Models.EnvironmentOutputType right) { throw null; }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -652,6 +960,23 @@ namespace Azure.Developer.DevCenter.Models
         public static bool operator ==(Azure.Developer.DevCenter.Models.ScheduleFrequency left, Azure.Developer.DevCenter.Models.ScheduleFrequency right) { throw null; }
         public static implicit operator Azure.Developer.DevCenter.Models.ScheduleFrequency (string value) { throw null; }
         public static bool operator !=(Azure.Developer.DevCenter.Models.ScheduleFrequency left, Azure.Developer.DevCenter.Models.ScheduleFrequency right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ScheduleSourceType : System.IEquatable<Azure.Developer.DevCenter.Models.ScheduleSourceType>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public ScheduleSourceType(string value) { throw null; }
+        public static Azure.Developer.DevCenter.Models.ScheduleSourceType Pool { get { throw null; } }
+        public bool Equals(Azure.Developer.DevCenter.Models.ScheduleSourceType other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(Azure.Developer.DevCenter.Models.ScheduleSourceType left, Azure.Developer.DevCenter.Models.ScheduleSourceType right) { throw null; }
+        public static implicit operator Azure.Developer.DevCenter.Models.ScheduleSourceType (string value) { throw null; }
+        public static bool operator !=(Azure.Developer.DevCenter.Models.ScheduleSourceType left, Azure.Developer.DevCenter.Models.ScheduleSourceType right) { throw null; }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
