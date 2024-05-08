@@ -55,15 +55,20 @@ parameters:
     default:
       Public:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
+        ServiceConnection: Azure SDK Test Resources
       Preview:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources-preview)
+        ServiceConnection: Azure SDK Test Resources
       Canary:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
         Location: 'eastus2euap'
+        ServiceConnection: TODO
       UsGov:
         SubscriptionConfiguration: $(sub-config-gov-test-resources)
+        ServiceConnection: TODO
       China:
         SubscriptionConfiguration: $(sub-config-cn-test-resources)
+        ServiceConnection: TODO
   - name: MatrixConfigs
     type: object
     default:
@@ -165,7 +170,7 @@ extends:
                       - ${{ parameters.MatrixReplace }}
                     CloudConfig:
                       SubscriptionConfiguration: ${{ cloud.value.SubscriptionConfiguration }}
+                      ServiceConnection: ${{ cloud.value.ServiceConnection }}
                       SubscriptionConfigurations: ${{ cloud.value.SubscriptionConfigurations }}
                       Location: ${{ coalesce(parameters.Location, cloud.value.Location) }}
                       Cloud: ${{ cloud.key }}
-

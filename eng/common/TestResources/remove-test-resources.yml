@@ -4,6 +4,7 @@
 parameters:
   ServiceDirectory: ''
   SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
+  ServiceConnection: <invalid>
   ResourceType: test
   UseFederatedAuth: true
 
@@ -23,23 +24,10 @@ parameters:
 
 steps:
   - ${{ if parameters.UseFederatedAuth }}:
-    - pwsh: |
-        $subscriptionConfiguration = @'
-          ${{ parameters.SubscriptionConfiguration }}
-        '@ | ConvertFrom-Json -AsHashtable;
-
-        if (!$subscriptionConfiguration.AzureSubscription) {
-          Write-Error "AzureSubscription (Azure DevOps service connection name) is not set in the SubscriptionConfiguration"
-          exit 1
-        }
-
-        Write-Host "##vso[task.setvariable variable=AzureSubscription;isOutput=true]$($subscriptionConfiguration.AzureSubscription)"
-      displayName: Set AzureSubscription
-
     - task: AzurePowerShell@5
       displayName: Deploy test resources
       inputs:
-        azureSubscription: $(AzureSubscription)
+        azureSubscription: ${{ parameters.ServiceConnection }}
         azurePowerShellVersion: LatestVersion
         pwsh: true
         ScriptType: InlineScripts
