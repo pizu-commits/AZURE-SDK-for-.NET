@@ -105,6 +105,9 @@ parameters:
   - name: oneESTemplateTag
     type: string
     default: true
+  - name: UseFederatedAuth
+    type: boolean
+    default: true
 
 extends:
   template: /eng/pipelines/templates/stages/1es-redirect.yml
@@ -145,6 +148,7 @@ extends:
                       Project: ${{ parameters.Project }}
                       TestSetupSteps: ${{ parameters.TestSetupSteps }}
                       DeployTestResources: ${{ parameters.DeployTestResources }}
+                      UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
                     MatrixConfigs:
                       # Enumerate platforms and additional platforms based on supported clouds (sparse platform<-->cloud matrix).
                       - ${{ each config in parameters.MatrixConfigs }}:

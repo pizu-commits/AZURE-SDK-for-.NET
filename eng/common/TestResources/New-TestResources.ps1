@@ -93,7 +93,7 @@ param (
     [switch] $SuppressVsoCommands = ($null -eq $env:SYSTEM_TEAMPROJECTID),
 
     [Parameter()]
-    [switch] $UserAuth,
+    [switch] $ServicePrincipalAuth,
 
     # Captures any arguments not declared here (no parameter errors)
     # This enables backwards compatibility with old script versions in
@@ -614,9 +614,10 @@ try {
         }
     }
 
-    if ($UserAuth) {
+    # Default: Use user authentication
+    if (!$ServicePrincipalAuth) {
         if ($TestApplicationId) {
-            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when UserAuth is set."
+            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when using user authentication."
         }
 
         $userAccount = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account)
@@ -625,8 +626,9 @@ try {
         $userAccountName = $userAccount.UserPrincipalName
         Log "User authentication with user '$userAccountName' ('$TestApplicationId') will be used."
     }
-    # If no test application ID was specified during an interactive session, create a new service principal.
-    elseif (!$CI -and !$TestApplicationId) {
+    # If -ServicePrincipalAuth is specified and not running in CI, create a new service principal.
+    # TODO: More e2e testing
+    elseif ($ServicePrincipalAuth -and !$CI -and !$TestApplicationId) {
         # Cache the created service principal in this session for frequent reuse.
         $servicePrincipal = if ($AzureTestPrincipal -and (Get-AzADServicePrincipal -ApplicationId $AzureTestPrincipal.AppId) -and $AzureTestSubscription -eq $SubscriptionId) {
             Log "TestApplicationId was not specified; loading cached service principal '$($AzureTestPrincipal.AppId)'"

@@ -5,6 +5,8 @@ parameters:
   Location: ''
   SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
   ResourceType: test
+  UseFederatedAuth: true
+
 
 # SubscriptionConfiguration will be splatted into the parameters of the test
 # resources script. It should be JSON in the form:
@@ -38,26 +40,87 @@ steps:
 
   - template: /eng/common/TestResources/setup-environments.yml
 
-  - pwsh: |
-      eng/common/scripts/Import-AzModules.ps1
+  - ${{ if parameters.UseFederatedAuth }}:
+    - pwsh: |
+        $subscriptionConfiguration = @'
+          ${{ parameters.SubscriptionConfiguration }}
+        '@ | ConvertFrom-Json -AsHashtable;
 
-      $subscriptionConfiguration = @'
-        ${{ parameters.SubscriptionConfiguration }}
-      '@ | ConvertFrom-Json -AsHashtable;
+        if (!$subscriptionConfiguration.AzureSubscription) {
+          Write-Error "AzureSubscription (Azure DevOps service connection name) is not set in the SubscriptionConfiguration"
+          exit 1
+        }
 
-      # The subscriptionConfiguration may have ArmTemplateParameters defined, so
-      # pass those in via the ArmTemplateParameters flag, and handle any
-      # additional parameters from the pipelines via AdditionalParameters
-      eng/common/TestResources/New-TestResources.ps1 `
-        -ResourceType '${{ parameters.ResourceType }}' `
-        -ServiceDirectory '${{ parameters.ServiceDirectory }}' `
-        -Location '${{ parameters.Location }}' `
-        -DeleteAfterHours '${{ parameters.DeleteAfterHours }}' `
-        @subscriptionConfiguration `
-        -AdditionalParameters ${{ parameters.ArmTemplateParameters }} `
-        -CI `
-        -Force `
-        -Verbose | Out-Null
-    displayName: Deploy test resources
-    env:
-      TEMP: $(Agent.TempDirectory)
+        Write-Host "##vso[task.setvariable variable=AzureSubscription;isOutput=true]$($subscriptionConfiguration.AzureSubscription)"
+      displayName: Set AzureSubscription
+
+    - task: AzurePowerShell@5
+      displayName: Deploy test resources
+      env:
+        TEMP: $(Agent.TempDirectory)
+      inputs:
+        azureSubscription: $(AzureSubscription)
+        azurePowerShellVersion: LatestVersion
+        pwsh: true
+        ScriptType: InlineScripts
+        Inline: |
+          eng/common/scripts/Import-AzModules.ps1
+
+          $subscriptionConfiguration = @'
+            ${{ parameters.SubscriptionConfiguration }}
+          '@ | ConvertFrom-Json -AsHashtable;
+
+          # Strip authentication keys from subscription configuration.
+          # Authentication is handled by service connection.
+          $keysToRemove = @(
+            'TenantId'
+            'TestApplicationId'
+            'TestApplicationSecret'
+            'TestApplicationOid'
+            'ProvisionerApplicationId'
+            'ProvisionerApplicationOid'
+            'ProvisionerApplicationSecret'
+          )
+
+          foreach ($item in $keysToRemove) {
+            $subscriptionConfiguration.Remove($item)
+          }
+
+          # The subscriptionConfiguration may have ArmTemplateParameters defined, so
+          # pass those in via the ArmTemplateParameters flag, and handle any
+          # additional parameters from the pipelines via AdditionalParameters
+          eng/common/TestResources/New-TestResources.ps1 `
+            -ResourceType '${{ parameters.ResourceType }}' `
+            -ServiceDirectory '${{ parameters.ServiceDirectory }}' `
+            -Location '${{ parameters.Location }}' `
+            -DeleteAfterHours '${{ parameters.DeleteAfterHours }}' `
+            @subscriptionConfiguration `
+            -AdditionalParameters ${{ parameters.ArmTemplateParameters }} `
+            -CI `
+            -Force `
+            -Verbose | Out-Null
+  - ${{ else }}:
+    - pwsh: |
+        eng/common/scripts/Import-AzModules.ps1
+
+        $subscriptionConfiguration = @'
+          ${{ parameters.SubscriptionConfiguration }}
+        '@ | ConvertFrom-Json -AsHashtable;
+
+        # The subscriptionConfiguration may have ArmTemplateParameters defined, so
+        # pass those in via the ArmTemplateParameters flag, and handle any
+        # additional parameters from the pipelines via AdditionalParameters
+        eng/common/TestResources/New-TestResources.ps1 `
+          -ResourceType '${{ parameters.ResourceType }}' `
+          -ServiceDirectory '${{ parameters.ServiceDirectory }}' `
+          -Location '${{ parameters.Location }}' `
+          -DeleteAfterHours '${{ parameters.DeleteAfterHours }}' `
+          -ServicePrincipalAuth `
+          @subscriptionConfiguration `
+          -AdditionalParameters ${{ parameters.ArmTemplateParameters }} `
+          -CI `
+          -Force `
+          -Verbose | Out-Null
+      displayName: Deploy test resources
+      env:
+        TEMP: $(Agent.TempDirectory)
