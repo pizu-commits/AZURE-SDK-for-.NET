@@ -56,8 +56,6 @@ parameters:
     type: string
   - name: UseFederatedAuth
     type: boolean
-  - name: ServiceConnection
-    type: string
 
 jobs:
   - job:
@@ -139,7 +137,7 @@ jobs:
                 SubscriptionConfiguration: $(SubscriptionConfiguration)
                 ArmTemplateParameters: $(ArmTemplateParameters)
                 UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
-                ServiceConnection: ${{ parameters.ServiceConnection }}
+                ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
         - ${{ if not(parameters.TestResourceDirectories) }}:
           - template: /eng/common/TestResources/deploy-test-resources.yml
             parameters:
@@ -150,7 +148,7 @@ jobs:
               SubscriptionConfiguration: $(SubscriptionConfiguration)
               ArmTemplateParameters: $(ArmTemplateParameters)
               UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
-              ServiceConnection: ${{ parameters.ServiceConnection }}
+              ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
 
       - pwsh: |
           if ($env:SupportsRecording -and $env:Record) {
@@ -166,7 +164,7 @@ jobs:
         displayName: "Build & Test (all tests for $(TestTargetFramework))"
         inputs:
           # $(AzureSubscription) is set in deploy-test-resources.yml
-          azureSubscription: ${{ parameters.ServiceConnection }}
+          azureSubscription: ${{ parameters.CloudConfig.ServiceConnection }}
           azurePowerShellVersion: LatestVersion
           pwsh: true
           ScriptType: InlineScript
@@ -201,14 +199,14 @@ jobs:
                 ServiceDirectory: '${{ directory }}'
                 SubscriptionConfiguration: $(SubscriptionConfiguration)
                 UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
-                ServiceConnection: ${{ parameters.ServiceConnection }}
+                ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
         - ${{ if not(parameters.TestResourceDirectories) }}:
           - template: /eng/common/TestResources/remove-test-resources.yml
             parameters:
               ServiceDirectory: '${{ parameters.ServiceDirectory }}'
               SubscriptionConfiguration: $(SubscriptionConfiguration)
               UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
-              ServiceConnection: ${{ parameters.ServiceConnection }}
+              ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
 
       - task: PublishTestResults@2
         condition: always()
