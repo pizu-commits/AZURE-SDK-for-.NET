@@ -47,7 +47,7 @@ steps:
       env:
         TEMP: $(Agent.TempDirectory)
       inputs:
-        azureSubscription: $(AzureSubscription)
+        azureSubscription: ${{ parameters.ServiceConnection }}
         azurePowerShellVersion: LatestVersion
         pwsh: true
         ScriptType: InlineScripts
