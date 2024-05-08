@@ -386,6 +386,7 @@ if ($initialContext) {
     $exitActions += {
         Write-Verbose "Restoring initial context: $($initialContext.Account)"
         $null = $initialContext | Select-AzContext
+        Write-Verbose "Initial context restored"
     }
 }
 
