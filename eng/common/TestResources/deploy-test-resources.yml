@@ -50,7 +50,7 @@ steps:
         azureSubscription: ${{ parameters.ServiceConnection }}
         azurePowerShellVersion: LatestVersion
         pwsh: true
-        ScriptType: InlineScripts
+        ScriptType: InlineScript
         Inline: |
           eng/common/scripts/Import-AzModules.ps1
 
