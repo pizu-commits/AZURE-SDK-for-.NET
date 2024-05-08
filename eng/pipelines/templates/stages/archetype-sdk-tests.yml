@@ -129,6 +129,12 @@ extends:
                 - template: /eng/pipelines/templates/variables/globals.yml@self
                 - template: /eng/pipelines/templates/variables/image.yml@self
               jobs:
+                - job:
+                  steps:
+                    - pwsh: |
+                        Write-Host '${{ convertToJson(cloud.value.SubscriptionConfigurations) }}'
+                      displayName: cloud.value.SubscriptionConfigurations
+
                 - template: /eng/common/pipelines/templates/jobs/generate-job-matrix.yml@self
                   parameters:
                     SparseCheckoutPaths:
