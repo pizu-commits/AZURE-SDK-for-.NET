@@ -109,6 +109,7 @@ steps:
           -CI `
           -Force `
           -Verbose | Out-Null
+        Write-Host "All done calling New-TestResources.ps1"
       displayName: Deploy test resources
       env:
         TEMP: $(Agent.TempDirectory)
