@@ -65,7 +65,6 @@ steps:
           -ServiceDirectory '${{ parameters.ServiceDirectory }}' `
           -Location '${{ parameters.Location }}' `
           -DeleteAfterHours '${{ parameters.DeleteAfterHours }}' `
-          -ServicePrincipalAuth `
           @subscriptionConfiguration `
           -AdditionalParameters ${{ parameters.ArmTemplateParameters }} `
           -CI `
