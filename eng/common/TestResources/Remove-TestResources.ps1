@@ -57,6 +57,9 @@ param (
     [string] $ResourceType = 'test',
 
     [Parameter()]
+    [switch] $UseFederatedAuth,
+
+    [Parameter()]
     [switch] $Force,
 
     # Captures any arguments not declared here (no parameter errors)
@@ -110,7 +113,7 @@ function Retry([scriptblock] $Action, [int] $Attempts = 5) {
     }
 }
 
-if ($ProvisionerApplicationId) {
+if ($ProvisionerApplicationId -and !$UseFederatedAuth) {
     $null = Disable-AzContextAutosave -Scope Process
 
     Log "Logging into service principal '$ProvisionerApplicationId'"

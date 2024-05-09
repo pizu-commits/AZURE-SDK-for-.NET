@@ -92,8 +92,12 @@ param (
     [Parameter()]
     [switch] $SuppressVsoCommands = ($null -eq $env:SYSTEM_TEAMPROJECTID),
 
+    # TODO: Support this
     [Parameter()]
     [switch] $ServicePrincipalAuth,
+
+    [Parameter()]
+    [switch] $UseFederatedAuth,
 
     # Captures any arguments not declared here (no parameter errors)
     # This enables backwards compatibility with old script versions in
@@ -268,7 +272,6 @@ function BuildDeploymentOutputs([string]$serviceName, [object]$azContext, [objec
     # Add default values
     $deploymentOutputs = [Ordered]@{
         "${serviceDirectoryPrefix}CLIENT_ID" = $TestApplicationId;
-        "${serviceDirectoryPrefix}CLIENT_SECRET" = $TestApplicationSecret;
         "${serviceDirectoryPrefix}TENANT_ID" = $azContext.Tenant.Id;
         "${serviceDirectoryPrefix}SUBSCRIPTION_ID" =  $azContext.Subscription.Id;
         "${serviceDirectoryPrefix}RESOURCE_GROUP" = $resourceGroup.ResourceGroupName;
@@ -278,6 +281,10 @@ function BuildDeploymentOutputs([string]$serviceName, [object]$azContext, [objec
         "${serviceDirectoryPrefix}RESOURCE_MANAGER_URL" = $azContext.Environment.ResourceManagerUrl;
         "${serviceDirectoryPrefix}SERVICE_MANAGEMENT_URL" = $azContext.Environment.ServiceManagementUrl;
         "AZURE_SERVICE_DIRECTORY" = $serviceName.ToUpperInvariant();
+    }
+
+    if (!$UseFederatedAuth) {
+        $deploymentOutputs["${serviceDirectoryPrefix}CLIENT_SECRET"] = $TestApplicationSecret;
     }
 
     MergeHashes $environmentVariables $(Get-Variable deploymentOutputs)
@@ -381,13 +388,11 @@ $exitActions = @({
     }
 })
 
-if (!$CI) {
-    New-Variable -Name 'initialContext' -Value (Get-AzContext) -Option Constant
-    if ($initialContext) {
-        $exitActions += {
-            Write-Verbose "Restoring initial context: $($initialContext.Account)"
-            $null = $initialContext | Select-AzContext
-        }
+New-Variable -Name 'initialContext' -Value (Get-AzContext) -Option Constant
+if ($initialContext) {
+    $exitActions += {
+        Write-Verbose "Restoring initial context: $($initialContext.Account)"
+        $null = $initialContext | Select-AzContext
     }
 }
 
@@ -616,10 +621,10 @@ try {
         }
     }
 
-    # Default: Use user authentication
+    # TODO: Changed, review before PR
     if (!$ServicePrincipalAuth -and !$CI) {
         if ($TestApplicationId) {
-            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when using user authentication."
+            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when UserAuth is set."
         }
 
         $userAccount = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account)
@@ -628,9 +633,8 @@ try {
         $userAccountName = $userAccount.UserPrincipalName
         Log "User authentication with user '$userAccountName' ('$TestApplicationId') will be used."
     }
-    # If -ServicePrincipalAuth is specified and not running in CI, create a new service principal.
-    # TODO: More e2e testing
-    elseif ($ServicePrincipalAuth -and !$CI -and !$TestApplicationId) {
+    # If no test application ID was specified during an interactive session, create a new service principal.
+    elseif (!$CI -and !$TestApplicationId) {
         # Cache the created service principal in this session for frequent reuse.
         $servicePrincipal = if ($AzureTestPrincipal -and (Get-AzADServicePrincipal -ApplicationId $AzureTestPrincipal.AppId) -and $AzureTestSubscription -eq $SubscriptionId) {
             Log "TestApplicationId was not specified; loading cached service principal '$($AzureTestPrincipal.AppId)'"
@@ -690,7 +694,9 @@ try {
     # Make sure pre- and post-scripts are passed formerly required arguments.
     $PSBoundParameters['TestApplicationId'] = $TestApplicationId
     $PSBoundParameters['TestApplicationOid'] = $TestApplicationOid
-    $PSBoundParameters['TestApplicationSecret'] = $TestApplicationSecret
+    if (!$UseFederatedAuth) {
+        $PSBoundParameters['TestApplicationSecret'] = $TestApplicationSecret
+    }
 
     # If the role hasn't been explicitly assigned to the resource group and a cached service principal or user authentication is in use,
     # query to see if the grant is needed.
@@ -708,7 +714,8 @@ try {
    # considered a critical failure, as the test application may have subscription-level permissions and not require
    # the explicit grant.
    if (!$resourceGroupRoleAssigned) {
-        $idSlug = if ($userAuth) { "User '$userAccountName' ('$TestApplicationId')"} else { "Test Application '$TestApplicationId'"};
+        # TODO: Not doing UserAuth anymore
+        $idSlug = if ($userAuth) { "User '$userAccountName' ('$TestApplicationId')" } else { "Test Application '$TestApplicationId'"};
         Log "Attempting to assign the 'Owner' role for '$ResourceGroupName' to the $idSlug"
         $ownerAssignment = New-AzRoleAssignment `
                             -RoleDefinitionName "Owner" `
@@ -738,7 +745,7 @@ try {
     if ($TenantId) {
         $templateParameters.Add('tenantId', $TenantId)
     }
-    if ($TestApplicationSecret) {
+    if ($TestApplicationSecret -and !$UseFederatedAuth) {
         $templateParameters.Add('testApplicationSecret', $TestApplicationSecret)
     }
 
@@ -1020,6 +1027,7 @@ The environment file will be named for the test resources template that it was
 generated for. For ARM templates, it will be test-resources.json.env. For
 Bicep templates, test-resources.bicep.env.
 
+# TODO: Remove
 .PARAMETER UserAuth
 Create the resource group and deploy the template using the signed in user's credentials.
 No service principal will be created or used.
