@@ -623,6 +623,7 @@ try {
             Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when using user authentication."
         }
 
+        Write-Host "Get-AzADUser -UserPrincipalName $($context.Account.Id)"
         $userAccount = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account)
         $TestApplicationOid = $userAccount.Id
         $TestApplicationId = $testApplicationOid
