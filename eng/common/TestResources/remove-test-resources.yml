@@ -24,7 +24,7 @@ parameters:
 
 steps:
   - task: AzurePowerShell@5
-    displayName: Deploy test resources
+    displayName: Remove test resources
     condition: and(eq(variables['CI_HAS_DEPLOYED_RESOURCES'], 'true'), ne(variables['Skip.RemoveTestResources'], 'true'))
     inputs:
       azureSubscription: ${{ parameters.ServiceConnection }}
@@ -37,17 +37,6 @@ steps:
         $subscriptionConfiguration = @"
           ${{ parameters.SubscriptionConfiguration }}
         "@ | ConvertFrom-Json -AsHashtable;
-
-        # Strip authentication keys from subscription configuration.
-        # Authentication is handled by service connection.
-        $keysToRemove = @(
-          'TestApplicationSecret'
-          'ProvisionerApplicationSecret'
-        )
-
-        foreach ($item in $keysToRemove) {
-          $subscriptionConfiguration.Remove($item)
-        }
 
         eng/common/TestResources/Remove-TestResources.ps1 `
           @subscriptionConfiguration `
