@@ -381,12 +381,13 @@ $exitActions = @({
     }
 })
 
-New-Variable -Name 'initialContext' -Value (Get-AzContext) -Option Constant
-if ($initialContext) {
-    $exitActions += {
-        Write-Verbose "Restoring initial context: $($initialContext.Account)"
-        $null = $initialContext | Select-AzContext
-        Write-Verbose "Initial context restored"
+if (!$CI) {
+    New-Variable -Name 'initialContext' -Value (Get-AzContext) -Option Constant
+    if ($initialContext) {
+        $exitActions += {
+            Write-Verbose "Restoring initial context: $($initialContext.Account)"
+            $null = $initialContext | Select-AzContext
+        }
     }
 }
 
