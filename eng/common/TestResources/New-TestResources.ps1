@@ -555,6 +555,7 @@ try {
     # Make sure the provisioner OID is set so we can pass it through to the deployment.
     if (!$ProvisionerApplicationId -and !$ProvisionerApplicationOid) {
         if ($context.Account.Type -eq 'User') {
+            Write-Host "Get-AzADUser -UserPrincipalName $($context.Account.Id)"
             $user = Get-AzADUser -UserPrincipalName $context.Account.Id
             $ProvisionerApplicationOid = $user.Id
         } elseif ($context.Account.Type -eq 'ServicePrincipal') {
