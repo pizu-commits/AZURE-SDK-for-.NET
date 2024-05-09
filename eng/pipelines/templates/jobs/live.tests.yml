@@ -172,7 +172,7 @@ jobs:
           azurePowerShellVersion: LatestVersion
           pwsh: true
           ScriptType: InlineScript
-          Inline: |
+          Inline: >-
             dotnet test eng/service.proj
             --framework $(TestTargetFramework)
             --filter "TestCategory!=Manually & ($(AdditionalTestFilters))"
