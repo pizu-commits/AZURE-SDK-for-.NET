@@ -167,7 +167,6 @@ jobs:
       - task: AzurePowerShell@5
         displayName: "Build & Test (all tests for $(TestTargetFramework))"
         inputs:
-          # $(AzureSubscription) is set in deploy-test-resources.yml
           azureSubscription: ${{ parameters.CloudConfig.ServiceConnection }}
           azurePowerShellVersion: LatestVersion
           pwsh: true
