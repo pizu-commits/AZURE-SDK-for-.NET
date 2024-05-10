@@ -169,7 +169,7 @@ jobs:
         inputs:
           azureSubscription: ${{ parameters.CloudConfig.ServiceConnection }}
           scriptType: pscore
-          scriptLocation: inlineScriipt
+          scriptLocation: inlineScript
           inlineScript: >-
             dotnet test eng/service.proj
             --framework $(TestTargetFramework)
