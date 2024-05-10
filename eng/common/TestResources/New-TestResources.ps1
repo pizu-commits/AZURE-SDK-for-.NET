@@ -633,9 +633,7 @@ try {
         }
     }
 
-    # User is already logged in, test applicaiton will be the user identity
-    # ignoring the TestApplicationId parameter if it was passed.
-    if ($UserAuth) {
+    if (!$CI -and !$UseFederatedAuth -and $UserAuth) {
         if ($TestApplicationId) {
             Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when UserAuth is set."
         }
