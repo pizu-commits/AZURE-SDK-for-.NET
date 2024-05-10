@@ -92,12 +92,13 @@ param (
     [Parameter()]
     [switch] $SuppressVsoCommands = ($null -eq $env:SYSTEM_TEAMPROJECTID),
 
-    # TODO: Support this
+    # Default behavior is to use -UserAuth
     [Parameter()]
     [switch] $ServicePrincipalAuth,
 
     [Parameter()]
     [switch] $UseFederatedAuth,
+
 
     # Captures any arguments not declared here (no parameter errors)
     # This enables backwards compatibility with old script versions in
@@ -108,6 +109,16 @@ param (
 )
 
 . $PSScriptRoot/SubConfig-Helpers.ps1
+
+if ($UseFederatedAuth -and $ServicePrincipalAuth) {
+    Write-Error "Only one of 'UseFedertedAuth' and 'ServicePrincipalAuth' can be set."
+    exit 1
+}
+
+$UserAuth = $true
+if ($ServicePrincipalAuth) {
+    $UserAuth = $false
+}
 
 # By default stop for any error.
 if (!$PSBoundParameters.ContainsKey('ErrorAction')) {
@@ -525,8 +536,9 @@ try {
         }
     }
 
-    # If a provisioner service principal was provided, log into it to perform the pre- and post-scripts and deployments.
-    if ($ProvisionerApplicationId) {
+    # If a provisioner service principal was provided (and not using Federated
+    # Auth), log into it to perform the pre- and post-scripts and deployments.
+    if ($ProvisionerApplicationId -and !$UseFederatedAuth) {
         $null = Disable-AzContextAutosave -Scope Process
 
         Log "Logging into service principal '$ProvisionerApplicationId'."
@@ -621,8 +633,9 @@ try {
         }
     }
 
-    # TODO: Changed, review before PR
-    if (!$ServicePrincipalAuth -and !$CI) {
+    # User is already logged in, test applicaiton will be the user identity
+    # ignoring the TestApplicationId parameter if it was passed.
+    if ($UserAuth) {
         if ($TestApplicationId) {
             Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when UserAuth is set."
         }
@@ -633,8 +646,8 @@ try {
         $userAccountName = $userAccount.UserPrincipalName
         Log "User authentication with user '$userAccountName' ('$TestApplicationId') will be used."
     }
-    # If no test application ID was specified during an interactive session, create a new service principal.
-    elseif (!$CI -and !$TestApplicationId) {
+    # If user has specified -ServicePrincipalAuth
+    elseif (!$CI -and $ServicePrincipalAuth) {
         # Cache the created service principal in this session for frequent reuse.
         $servicePrincipal = if ($AzureTestPrincipal -and (Get-AzADServicePrincipal -ApplicationId $AzureTestPrincipal.AppId) -and $AzureTestSubscription -eq $SubscriptionId) {
             Log "TestApplicationId was not specified; loading cached service principal '$($AzureTestPrincipal.AppId)'"
@@ -714,8 +727,7 @@ try {
    # considered a critical failure, as the test application may have subscription-level permissions and not require
    # the explicit grant.
    if (!$resourceGroupRoleAssigned) {
-        # TODO: Not doing UserAuth anymore
-        $idSlug = if ($userAuth) { "User '$userAccountName' ('$TestApplicationId')" } else { "Test Application '$TestApplicationId'"};
+        $idSlug = if ($UserAuth) { "User '$userAccountName' ('$TestApplicationId')" } else { "Test Application '$TestApplicationId'"};
         Log "Attempting to assign the 'Owner' role for '$ResourceGroupName' to the $idSlug"
         $ownerAssignment = New-AzRoleAssignment `
                             -RoleDefinitionName "Owner" `
@@ -1027,19 +1039,22 @@ The environment file will be named for the test resources template that it was
 generated for. For ARM templates, it will be test-resources.json.env. For
 Bicep templates, test-resources.bicep.env.
 
-# TODO: Remove
-.PARAMETER UserAuth
-Create the resource group and deploy the template using the signed in user's credentials.
-No service principal will be created or used.
-
-The environment file will be named for the test resources template that it was
-generated for. For ARM templates, it will be test-resources.json.env. For
-Bicep templates, test-resources.bicep.env.
-
 .PARAMETER SuppressVsoCommands
 By default, the -CI parameter will print out secrets to logs with Azure Pipelines log
 commands that cause them to be redacted. For CI environments that don't support this (like
 stress test clusters), this flag can be set to $false to avoid printing out these secrets to the logs.
+
+.PARAMETER ServicePrincipalAuth
+Use the signed in user's credentials to create a service principal for
+provisioning. This is useful for some local development scenarios.
+
+.PARAMETER UseFederatedAuth
+Use signed in user's credentials for provisioninig. No service principal will be
+created. This is used in CI where the execution context already has a signed in
+user.
+
+In cases where provisioner or test applications are specified, secrets for those
+apps will not be exported or made available to pre- or post- scripts.
 
 .EXAMPLE
 Connect-AzAccount -Subscription 'REPLACE_WITH_SUBSCRIPTION_ID'
