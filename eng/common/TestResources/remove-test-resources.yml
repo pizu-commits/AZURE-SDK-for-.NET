@@ -4,7 +4,7 @@
 parameters:
   ServiceDirectory: ''
   SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
-  ServiceConnection: ''
+  ServiceConnection: not-specified
   ResourceType: test
   UseFederatedAuth: false
 
@@ -23,16 +23,35 @@ parameters:
 # not error when parameters are provided which the script doesn't use.
 
 steps:
-  - task: AzurePowerShell@5
-    displayName: Remove test resources
-    condition: and(eq(variables['CI_HAS_DEPLOYED_RESOURCES'], 'true'), ne(variables['Skip.RemoveTestResources'], 'true'))
-    inputs:
-      ${{ if ne(parameters.ServiceConnection, '') }}:
-        azureSubscription: ${{ parameters.ServiceConnection }}
-      azurePowerShellVersion: LatestVersion
-      pwsh: true
-      ScriptType: InlineScript
-      Inline: |
+
+  - ${{ if parameters.UseFederatedAuth}}:
+    - task: AzurePowerShell@5
+      displayName: Remove test resources
+      condition: and(eq(variables['CI_HAS_DEPLOYED_RESOURCES'], 'true'), ne(variables['Skip.RemoveTestResources'], 'true'))
+      inputs:
+        ${{ if ne(parameters.ServiceConnection, '') }}:
+          azureSubscription: ${{ parameters.ServiceConnection }}
+        azurePowerShellVersion: LatestVersion
+        pwsh: true
+        ScriptType: InlineScript
+        Inline: |
+          eng/common/scripts/Import-AzModules.ps1
+
+          $subscriptionConfiguration = @"
+            ${{ parameters.SubscriptionConfiguration }}
+          "@ | ConvertFrom-Json -AsHashtable;
+
+          eng/common/TestResources/Remove-TestResources.ps1 `
+            @subscriptionConfiguration `
+            -ResourceType '${{ parameters.ResourceType }}' `
+            -ServiceDirectory "${{ parameters.ServiceDirectory }}" `
+            -CI `
+            -Force `
+            -UseFederatedAuth `
+            -Verbose
+
+  - ${{ else }}:
+    - pwsh: |
         eng/common/scripts/Import-AzModules.ps1
 
         $subscriptionConfiguration = @"
@@ -45,5 +64,7 @@ steps:
           -ServiceDirectory "${{ parameters.ServiceDirectory }}" `
           -CI `
           -Force `
-          -UseFederatedAuth:$${{ parameters.UseFederatedAuth }} `
           -Verbose
+      displayName: Remove test resources
+      condition: and(eq(variables['CI_HAS_DEPLOYED_RESOURCES'], 'true'), ne(variables['Skip.RemoveTestResources'], 'true'))
+      continueOnError: true
