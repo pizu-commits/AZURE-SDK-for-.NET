@@ -4,7 +4,7 @@ parameters:
   DeleteAfterHours: 8
   Location: ''
   SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
-  ServiceConnection: not-specified
+  ServiceConnection: ''
   ResourceType: test
   UseFederatedAuth: false
 
@@ -46,7 +46,8 @@ steps:
     env:
       TEMP: $(Agent.TempDirectory)
     inputs:
-      azureSubscription: ${{ parameters.ServiceConnection }}
+      ${{ if ne(parameters.ServiceConnection, '') }}:
+        azureSubscription: ${{ parameters.ServiceConnection }}
       azurePowerShellVersion: LatestVersion
       pwsh: true
       ScriptType: InlineScript
