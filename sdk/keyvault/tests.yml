@@ -3,7 +3,7 @@ trigger: none
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-tests.yml
   parameters:
-    UseFederatedAuth: false
+    UseFederatedAuth: true
     ServiceDirectory: keyvault
     SDKType: client
     MaxParallel: 5
@@ -12,6 +12,7 @@ extends:
     CloudConfig:
       Public:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
+        ServiceConnection: azure-sdk-tests
         ${{ if not(contains(variables['Build.DefinitionName'], 'tests-weekly')) }}:
           MatrixFilters:
             - ArmTemplateParameters=^(?!.*enableHsm.*true)
