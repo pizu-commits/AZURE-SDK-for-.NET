@@ -164,13 +164,14 @@ jobs:
         parameters:
           Container: ${{ parameters.UsePlatformContainer }}
 
-      - task: AzureCLI@2
-        displayName: "(az cli) Build & Test (all tests for $(TestTargetFramework))"
+      - task: AzurePowerShell@5
+        displayName: "(AzurePowerShell@5) Build & Test (all tests for $(TestTargetFramework))"
         inputs:
           azureSubscription: ${{ parameters.CloudConfig.ServiceConnection }}
-          scriptType: pscore
-          scriptLocation: inlineScript
-          inlineScript: >-
+          azurePowerShellVersion: LatestVersion
+          pwsh: true
+          ScriptType: InlineScript
+          Inline: >-
             dotnet test eng/service.proj
             --framework $(TestTargetFramework)
             --filter "TestCategory!=Manually & ($(AdditionalTestFilters))"
