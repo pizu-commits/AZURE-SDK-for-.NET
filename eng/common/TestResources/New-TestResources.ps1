@@ -92,13 +92,9 @@ param (
     [Parameter()]
     [switch] $SuppressVsoCommands = ($null -eq $env:SYSTEM_TEAMPROJECTID),
 
-    # Default behavior is to use -UserAuth
+    # Default behavior is to use logged in credentials
     [Parameter()]
     [switch] $ServicePrincipalAuth,
-
-    [Parameter()]
-    [switch] $UseFederatedAuth,
-
 
     # Captures any arguments not declared here (no parameter errors)
     # This enables backwards compatibility with old script versions in
@@ -110,14 +106,11 @@ param (
 
 . $PSScriptRoot/SubConfig-Helpers.ps1
 
-if ($UseFederatedAuth -and $ServicePrincipalAuth) {
-    Write-Error "Only one of 'UseFedertedAuth' and 'ServicePrincipalAuth' can be set."
-    exit 1
-}
-
-$UserAuth = $true
-if ($ServicePrincipalAuth) {
-    $UserAuth = $false
+if (!$ServicePrincipalAuth) {
+    # Clear secrets if not using Service Principal auth. This prevents secrets
+    # from being passed to pre- and post-scripts.
+    $PSBoundParameters['TestApplicationSecret'] = $TestApplicationSecret = ''
+    $PSBoundParameters['ProvisionerApplicationSecret'] = $ProvisionerApplicationSecret = ''
 }
 
 # By default stop for any error.
@@ -282,8 +275,6 @@ function BuildDeploymentOutputs([string]$serviceName, [object]$azContext, [objec
     $serviceDirectoryPrefix = BuildServiceDirectoryPrefix $serviceName
     # Add default values
     $deploymentOutputs = [Ordered]@{
-        "${serviceDirectoryPrefix}CLIENT_ID" = $TestApplicationId;
-        "${serviceDirectoryPrefix}TENANT_ID" = $azContext.Tenant.Id;
         "${serviceDirectoryPrefix}SUBSCRIPTION_ID" =  $azContext.Subscription.Id;
         "${serviceDirectoryPrefix}RESOURCE_GROUP" = $resourceGroup.ResourceGroupName;
         "${serviceDirectoryPrefix}LOCATION" = $resourceGroup.Location;
@@ -294,8 +285,10 @@ function BuildDeploymentOutputs([string]$serviceName, [object]$azContext, [objec
         "AZURE_SERVICE_DIRECTORY" = $serviceName.ToUpperInvariant();
     }
 
-    if (!$UseFederatedAuth) {
+    if ($ServicePrincipalAuth) {
+        $deploymentOutputs["${serviceDirectoryPrefix}CLIENT_ID"] = $TestApplicationId;
         $deploymentOutputs["${serviceDirectoryPrefix}CLIENT_SECRET"] = $TestApplicationSecret;
+        $deploymentOutputs["${serviceDirectoryPrefix}TENANT_ID"] = $azContext.Tenant.Id;
     }
 
     MergeHashes $environmentVariables $(Get-Variable deploymentOutputs)
@@ -536,9 +529,8 @@ try {
         }
     }
 
-    # If a provisioner service principal was provided (and not using Federated
-    # Auth), log into it to perform the pre- and post-scripts and deployments.
-    if ($ProvisionerApplicationId -and !$UseFederatedAuth) {
+    # If a provisioner service principal was provided log into it to perform the pre- and post-scripts and deployments.
+    if ($ProvisionerApplicationId -and $ServicePrincipalAuth) {
         $null = Disable-AzContextAutosave -Scope Process
 
         Log "Logging into service principal '$ProvisionerApplicationId'."
@@ -633,9 +625,9 @@ try {
         }
     }
 
-    if (!$CI -and !$UseFederatedAuth -and $UserAuth) {
+    if (!$CI -and !$ServicePrincipalAuth) {
         if ($TestApplicationId) {
-            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when UserAuth is set."
+            Write-Warning "The specified TestApplicationId '$TestApplicationId' will be ignored when -ServicePrincipalAutth is not set."
         }
 
         $userAccount = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account)
@@ -705,7 +697,7 @@ try {
     # Make sure pre- and post-scripts are passed formerly required arguments.
     $PSBoundParameters['TestApplicationId'] = $TestApplicationId
     $PSBoundParameters['TestApplicationOid'] = $TestApplicationOid
-    if (!$UseFederatedAuth) {
+    if ($ServicePrincipalAuth) {
         $PSBoundParameters['TestApplicationSecret'] = $TestApplicationSecret
     }
 
@@ -725,7 +717,7 @@ try {
    # considered a critical failure, as the test application may have subscription-level permissions and not require
    # the explicit grant.
    if (!$resourceGroupRoleAssigned) {
-        $idSlug = if ($UserAuth) { "User '$userAccountName' ('$TestApplicationId')" } else { "Test Application '$TestApplicationId'"};
+        $idSlug = if (!$ServicePrincipalAuth) { "User '$userAccountName' ('$TestApplicationId')" } else { "Test Application '$TestApplicationId'"};
         Log "Attempting to assign the 'Owner' role for '$ResourceGroupName' to the $idSlug"
         $ownerAssignment = New-AzRoleAssignment `
                             -RoleDefinitionName "Owner" `
@@ -755,7 +747,7 @@ try {
     if ($TenantId) {
         $templateParameters.Add('tenantId', $TenantId)
     }
-    if ($TestApplicationSecret -and !$UseFederatedAuth) {
+    if ($TestApplicationSecret -and $ServicePrincipalAuth) {
         $templateParameters.Add('testApplicationSecret', $TestApplicationSecret)
     }
 
@@ -1043,16 +1035,9 @@ commands that cause them to be redacted. For CI environments that don't support 
 stress test clusters), this flag can be set to $false to avoid printing out these secrets to the logs.
 
 .PARAMETER ServicePrincipalAuth
-Use the signed in user's credentials to create a service principal for
-provisioning. This is useful for some local development scenarios.
-
-.PARAMETER UseFederatedAuth
-Use signed in user's credentials for provisioninig. No service principal will be
-created. This is used in CI where the execution context already has a signed in
-user.
-
-In cases where provisioner or test applications are specified, secrets for those
-apps will not be exported or made available to pre- or post- scripts.
+Use the provisioner SP credentials to deploy, and pass the test SP credentials
+to tests. If provisioner and test SP are not set, provision an SP with user
+credentials and pass the new SP to tests.
 
 .EXAMPLE
 Connect-AzAccount -Subscription 'REPLACE_WITH_SUBSCRIPTION_ID'

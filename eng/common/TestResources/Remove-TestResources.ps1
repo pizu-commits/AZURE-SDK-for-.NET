@@ -56,8 +56,10 @@ param (
     [ValidateSet('test', 'perf')]
     [string] $ResourceType = 'test',
 
+    [Parameter(ParameterSetName = 'Default+Provisioner')]
+    [Parameter(ParameterSetName = 'ResourceGroup+Provisioner')]
     [Parameter()]
-    [switch] $UseFederatedAuth,
+    [switch] $ServicePrincipalAuth,
 
     [Parameter()]
     [switch] $Force,
@@ -113,7 +115,7 @@ function Retry([scriptblock] $Action, [int] $Attempts = 5) {
     }
 }
 
-if ($ProvisionerApplicationId -and !$UseFederatedAuth) {
+if ($ProvisionerApplicationId -and $ServicePrincipalAuth) {
     $null = Disable-AzContextAutosave -Scope Process
 
     Log "Logging into service principal '$ProvisionerApplicationId'"
@@ -307,6 +309,9 @@ Run script in CI mode. Infers various environment variable names based on CI con
 
 .PARAMETER Force
 Force removal of resource group without asking for user confirmation
+
+.PARAMETER ServicePrincipalAuth
+Log in with provided Provisioner application credentials.
 
 .EXAMPLE
 Remove-TestResources.ps1 keyvault -Force
