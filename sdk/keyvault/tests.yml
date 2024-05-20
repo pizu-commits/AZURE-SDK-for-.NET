@@ -11,7 +11,9 @@ extends:
     CloudConfig:
       Public:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
-        ServiceConnection: azure-sdk-tests
+        # ServiceConnection: azure-sdk-tests
+        ServiceConnection:
+        SubscriptionConfigurationFilePath: eng/common/TestResources/sub-config/AzurePublic.json
         ${{ if not(contains(variables['Build.DefinitionName'], 'tests-weekly')) }}:
           MatrixFilters:
             - ArmTemplateParameters=^(?!.*enableHsm.*true)

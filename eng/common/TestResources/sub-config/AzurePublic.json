@@ -1,0 +1,11 @@
+{
+    "SubscriptionId": "b4fbd62c-31c7-4b50-b793-6f45dc36c311",
+    "TenantId": "0964f292-2b0a-4405-b3e8-c5c6621e2ee9",
+    "TestApplicationId": "ef63c54f-c5f9-4bae-b29a-8aba2a82d654",
+    "TestApplicationOid": "cd2af1fa-e9c6-4da5-b365-fac731a96298",
+    "ProvisionerApplicationId": "ef63c54f-c5f9-4bae-b29a-8aba2a82d654",
+    "ProvisionerApplicationOid": "cd2af1fa-e9c6-4da5-b365-fac731a96298",
+    "Environment": "AzureCloud",
+    "AzureSubscription": "Azure SDK Test Resources",
+    "EnvironmentVariables": {}
+}
