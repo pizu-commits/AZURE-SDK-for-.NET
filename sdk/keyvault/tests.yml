@@ -12,7 +12,7 @@ extends:
       Public:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
         # ServiceConnection: azure-sdk-tests
-        ServiceConnection:
+        ServiceConnection: iso_azure-sdk-tests
         SubscriptionConfigurationFilePath: eng/common/TestResources/sub-config/AzurePublic.json
         ${{ if not(contains(variables['Build.DefinitionName'], 'tests-weekly')) }}:
           MatrixFilters:
