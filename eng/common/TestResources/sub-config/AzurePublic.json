@@ -1,10 +1,10 @@
 {
-    "SubscriptionId": "b4fbd62c-31c7-4b50-b793-6f45dc36c311",
-    "TenantId": "0964f292-2b0a-4405-b3e8-c5c6621e2ee9",
-    "TestApplicationId": "ef63c54f-c5f9-4bae-b29a-8aba2a82d654",
-    "TestApplicationOid": "cd2af1fa-e9c6-4da5-b365-fac731a96298",
-    "ProvisionerApplicationId": "ef63c54f-c5f9-4bae-b29a-8aba2a82d654",
-    "ProvisionerApplicationOid": "cd2af1fa-e9c6-4da5-b365-fac731a96298",
+    "SubscriptionId": "2cd617ea-1866-46b1-90e3-fffb087ebf9b",
+    "TenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    "TestApplicationId": "f850650c-1fcf-4489-b46f-71af2e30d360",
+    "TestApplicationOid": "30511c9d-ba1a-4c7b-b422-5b543da11b3f",
+    "ProvisionerApplicationId": "f850650c-1fcf-4489-b46f-71af2e30d360",
+    "ProvisionerApplicationOid": "30511c9d-ba1a-4c7b-b422-5b543da11b3f",
     "Environment": "AzureCloud",
     "AzureSubscription": "Azure SDK Test Resources",
     "EnvironmentVariables": {}

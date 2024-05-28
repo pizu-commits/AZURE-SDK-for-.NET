@@ -8,7 +8,7 @@ extends:
     CloudConfig:
       Public:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources)
-        ServiceConnection: iso_azure-sdk-tests
+        ServiceConnection: azure-sdk-tests
         SubscriptionConfigurationFilePath: eng/common/TestResources/sub-config/AzurePublic.json
       Preview:
         SubscriptionConfiguration: $(sub-config-azure-cloud-test-resources-preview)
