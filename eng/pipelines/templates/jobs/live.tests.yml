@@ -134,6 +134,7 @@ jobs:
                   Location: ${{ coalesce(parameters.Location, parameters.CloudConfig.Location) }}
                 ServiceDirectory: '${{ directory }}'
                 TestResourcesDirectory: '$(TestResourcesDirectory)'
+                EnvVars: ${{ parameters.EnvVars }}
                 SubscriptionConfiguration: $(SubscriptionConfiguration)
                 ArmTemplateParameters: $(ArmTemplateParameters)
                 UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
