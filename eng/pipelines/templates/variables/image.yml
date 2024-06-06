@@ -2,7 +2,7 @@
 
 variables:
   - name: LINUXPOOL
-    value: bebroder-test-netiso
+    value: bebroder-test-netiso-wus2
   - name: WINDOWSPOOL
     value: azsdk-pool-mms-win-2022-general
   - name: MACPOOL
