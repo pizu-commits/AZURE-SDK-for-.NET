@@ -126,6 +126,9 @@ jobs:
           Write-Host "##vso[task.setvariable variable=TestResourcesDirectory]$directory"
         displayName: Set TestResources Location
 
+      - pwsh: Write-Host '${{ convertToJson(parameters.CloudConfig) }}'
+        displayName: Show Cloud Config
+
       - ${{ if parameters.DeployTestResources }}:
         - ${{ if parameters.TestResourceDirectories }}:
           - ${{ each directory in parameters.TestResourceDirectories }}:
