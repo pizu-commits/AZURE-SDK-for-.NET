@@ -5,6 +5,7 @@ extends:
   parameters:
     ServiceDirectory: communication
     Project: Azure.Communication.Sms
+    UseFederatedAuth: true
     CloudConfig:
       Public:
         SubscriptionConfigurations:
@@ -12,6 +13,7 @@ extends:
           - $(sub-config-communication-services-cloud-test-resources-common)
           - $(sub-config-communication-services-cloud-test-resources-net)
           - $(sub-config-communication-services-sms-cloud-test-resources)
+        SubscriptionConfigurationFilePath: eng/common/TestResources/sub-config/AzurePublicMsft.json
       Int:
         SubscriptionConfigurations:
           - $(sub-config-communication-int-test-resources-common)
