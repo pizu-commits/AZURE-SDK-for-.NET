@@ -48,15 +48,15 @@ steps:
         ${{ if parameters.EnvVars }}:
           env: ${{ parameters.EnvVars }}
 
-    - ${{ if ne(parameters.SubscriptionConfigurationFilePath, '') }}:
-      - pwsh: |
-          $configBase = @'
-            $(SubscriptionConfiguration)
-          '@ | ConvertFrom-Json -AsHashtable
-          $config = Get-Content '${{ parameters.SubscriptionConfigurationFilePath }}' `
-            | ConvertFrom-Json -AsHashtable
-          . ./eng/common/TestResources/SubConfig-Helpers.ps1
-          UpdateSubscriptionConfiguration $configBase $config
-        displayName: Merge in Subscription Configuration File Path
-        ${{ if parameters.EnvVars }}:
-          env: ${{ parameters.EnvVars }}
+  - ${{ if ne(parameters.SubscriptionConfigurationFilePath, '') }}:
+    - pwsh: |
+        $configBase = @'
+          $(SubscriptionConfiguration)
+        '@ | ConvertFrom-Json -AsHashtable
+        $config = Get-Content '${{ parameters.SubscriptionConfigurationFilePath }}' `
+          | ConvertFrom-Json -AsHashtable
+        . ./eng/common/TestResources/SubConfig-Helpers.ps1
+        UpdateSubscriptionConfiguration $configBase $config
+      displayName: Merge in Subscription Configuration File Path
+      ${{ if parameters.EnvVars }}:
+        env: ${{ parameters.EnvVars }}
