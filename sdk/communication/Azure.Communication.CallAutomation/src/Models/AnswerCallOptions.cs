@@ -52,6 +52,11 @@ namespace Azure.Communication.CallAutomation
         public CommunicationUserIdentifier AnsweredBy { get; set; }
 
         /// <summary>
+        /// Options to start recording with streaming on the call.
+        /// </summary>
+        public RecordingOptions RecordingOptions { get; set; }
+
+        /// <summary>
         /// The operation context.
         /// </summary>
         public string OperationContext { get; set; }

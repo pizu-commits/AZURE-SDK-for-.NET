@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Azure.Communication.CallAutomation.Generated.Models;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
@@ -39,6 +40,94 @@ namespace Azure.Communication.CallAutomation
             _clientDiagnostics = null;
             CallMediaRestClient = null;
             CallConnectionId = null;
+        }
+
+        /// <summary>
+        /// Starts recording in the call.
+        /// </summary>
+        /// <param name="cancellationToken">An optional CancellationToken to cancel the request.</param>
+        /// <returns>Returns an HTTP response with a 202 status code for success, or an HTTP failure error code in case of an error.</returns>
+        public virtual Response StartRecordingStreaming(CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StartRecordingStreamingAsync)}");
+            scope.Start();
+
+            try
+            {
+                return CallMediaRestClient.StartMediaStreaming(CallConnectionId, new StartMediaStreamingRequestInternal(), cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Starts recording in the call.
+        /// </summary>
+        /// <param name="cancellationToken">An optional CancellationToken to cancel the request.</param>
+        /// <returns>Returns an HTTP response with a 202 status code for success, or an HTTP failure error code in case of an error.</returns>
+        public virtual async Task<Response> StartRecordingStreamingAsync(CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StartRecordingStreamingAsync)}");
+            scope.Start();
+
+            try
+            {
+                return await CallMediaRestClient
+                    .StartMediaStreamingAsync(CallConnectionId, new StartMediaStreamingRequestInternal(), cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Stops recording in the call.
+        /// </summary>
+        /// <param name="cancellationToken">An optional CancellationToken to cancel the request.</param>
+        /// <returns>Returns an HTTP response with a 202 status code for success, or an HTTP failure error code in case of an error.</returns>
+        public virtual Response StopRecordingStreaming(CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StopRecordingStreaming)}");
+            scope.Start();
+
+            try
+            {
+                return CallMediaRestClient.StopMediaStreaming(CallConnectionId, new StopMediaStreamingRequestInternal(),
+                    cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Stops recording in the call.
+        /// </summary>
+        /// <param name="cancellationToken">An optional CancellationToken to cancel the request.</param>
+        /// <returns>Returns an HTTP response with a 202 status code for success, or an HTTP failure error code in case of an error.</returns>
+        public virtual async Task<Response> StopRecordingStreamingAsync(CancellationToken cancellationToken = default)
+        {
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StopRecordingStreamingAsync)}");
+            scope.Start();
+
+            try
+            {
+                return await CallMediaRestClient.StopMediaStreamingAsync(CallConnectionId,
+                    new StopMediaStreamingRequestInternal(), cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                scope.Failed(ex);
+                throw;
+            }
         }
 
         /// <summary>
@@ -503,7 +592,7 @@ namespace Azure.Communication.CallAutomation
         /// <returns></returns>
         public virtual async Task<Response> HoldAsync(HoldOptions options, CancellationToken cancellationToken = default)
         {
-            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StartHoldMusicAsync)}");
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(Hold)}");
             scope.Start();
             try
             {
@@ -561,7 +650,7 @@ namespace Azure.Communication.CallAutomation
         /// <returns></returns>
         public virtual async Task<Response> UnholdAsync(UnholdOptions options, CancellationToken cancellationToken = default)
         {
-            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StopHoldMusicAsync)}");
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(Unhold)}");
             scope.Start();
             try
             {
@@ -584,7 +673,7 @@ namespace Azure.Communication.CallAutomation
         /// <returns></returns>
         public virtual Response Unhold(UnholdOptions options, CancellationToken cancellationToken = default)
         {
-            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(StopHoldMusicAsync)}");
+            using DiagnosticScope scope = _clientDiagnostics.CreateScope($"{nameof(CallMedia)}.{nameof(Unhold)}");
             scope.Start();
             try
             {

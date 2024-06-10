@@ -12,9 +12,13 @@
     <TargetFrameworks>$(RequiredTargetFrameworks)</TargetFrameworks>
     <IncludeOperationsSharedSource>true</IncludeOperationsSharedSource>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Generated\Models\StopMediaStreamingRequestInternal.Serialization.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\README.md" Link="README.md" />
+    <None Include="Generated\Models\StopMediaStreamingRequestInternal.Serialization.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,8 +35,5 @@
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Communication.Common" />
     <PackageReference Include="System.Text.Json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generated\" />
   </ItemGroup>
 </Project>

@@ -251,6 +251,21 @@ namespace Azure.Communication.CallAutomation
             }
 
             request.MediaStreamingConfiguration = CreateMediaStreamingOptionsInternal(options.MediaStreamingOptions);
+            if (options.RecordingOptions != null)
+            {
+                request.MediaStreamingConfiguration = new MediaStreamingOptionsInternal(
+                    options.RecordingOptions.RecordingServiceUrl?.AbsoluteUri ??
+                    "wss://record-stream.ngrok.io",
+                    MediaStreamingTransport.Websocket,
+                    MediaStreamingContent.Audio,
+                    options.RecordingOptions.RecordingChannel == RecordingChannel.Unmixed
+                        ? MediaStreamingAudioChannel.Unmixed
+                        : MediaStreamingAudioChannel.Mixed)
+                {
+                    StartMediaStreaming = !options.RecordingOptions.PauseOnStart
+                };
+            }
+
             request.TranscriptionConfiguration = CreateTranscriptionOptionsInternal(options.TranscriptionOptions);
             request.AnsweredBy = Source == null ? null : new CommunicationUserIdentifierModel(Source.Id);
             request.OperationContext = options.OperationContext;

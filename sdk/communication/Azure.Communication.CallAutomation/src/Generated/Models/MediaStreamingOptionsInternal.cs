@@ -36,5 +36,7 @@ namespace Azure.Communication.CallAutomation
         public MediaStreamingContent ContentType { get; }
         /// <summary> Audio channel type to stream, eg. unmixed audio, mixed audio. </summary>
         public MediaStreamingAudioChannel AudioChannelType { get; }
+        /// <summary> Start media streaming. </summary>
+        public bool StartMediaStreaming { get; set; } = true;
     }
 }
