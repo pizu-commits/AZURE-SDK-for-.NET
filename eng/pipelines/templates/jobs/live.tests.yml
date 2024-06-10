@@ -114,6 +114,7 @@ jobs:
         parameters:
           SubscriptionConfiguration: ${{ parameters.CloudConfig.SubscriptionConfiguration }}
           SubscriptionConfigurations: ${{ parameters.CloudConfig.SubscriptionConfigurations }}
+          SubscriptionConfigurationFilePath: ${{ parameters.CloudConfig.SubscriptionConfigurationFilePath }}
           EnvVars: ${{ parameters.EnvVars }}
       - pwsh: |
           $project = "${{ parameters.Project }}"
@@ -139,7 +140,6 @@ jobs:
                 ArmTemplateParameters: $(ArmTemplateParameters)
                 UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
                 ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
-                SubscriptionConfigurationFilePath: ${{ parameters.CloudConfig.SubscriptionConfigurationFilePath }}
         - ${{ if not(parameters.TestResourceDirectories) }}:
           - template: /eng/common/TestResources/deploy-test-resources.yml
             parameters:
@@ -152,7 +152,6 @@ jobs:
               ArmTemplateParameters: $(ArmTemplateParameters)
               UseFederatedAuth: ${{ parameters.UseFederatedAuth }}
               ServiceConnection: ${{ parameters.CloudConfig.ServiceConnection }}
-              SubscriptionConfigurationFilePath: ${{ parameters.CloudConfig.SubscriptionConfigurationFilePath }}
 
       - pwsh: |
           if ($env:SupportsRecording -and $env:Record) {
