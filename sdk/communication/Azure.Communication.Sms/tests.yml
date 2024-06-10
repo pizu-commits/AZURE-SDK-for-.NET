@@ -8,6 +8,7 @@ extends:
     UseFederatedAuth: true
     CloudConfig:
       Public:
+        ServiceConnection: azure-sdk-tests
         SubscriptionConfigurations:
           - $(sub-config-azure-cloud-test-resources)
           - $(sub-config-communication-services-cloud-test-resources-common)
