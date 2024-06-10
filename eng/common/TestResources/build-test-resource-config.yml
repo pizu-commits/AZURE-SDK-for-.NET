@@ -48,7 +48,7 @@ steps:
         ${{ if parameters.EnvVars }}:
           env: ${{ parameters.EnvVars }}
 
-    - ${{ if ne(variables['SubscriptionConfiguration'], '') }}:
+    - ${{ if ne(variables['SubscriptionConfigurationFilePath'], '') }}:
       - pwsh: |
           $configBase = @'
             $(SubscriptionConfiguration)
