@@ -11,23 +11,26 @@ extends:
   parameters:
     ServiceDirectory: communication
     Project: Azure.Communication.Email
+    UseFederatedAuth: true
     CloudConfig:
       Public:
+        ServiceConnection: azure-sdk-tests
         SubscriptionConfigurations:
           - $(sub-config-azure-cloud-test-resources)
           - $(sub-config-communication-services-cloud-test-resources-common)
           - $(sub-config-communication-services-cloud-test-resources-net)
-      Int:
-        SubscriptionConfigurations:
-          - $(sub-config-communication-int-test-resources-common)
-          - $(sub-config-communication-int-test-resources-net)
-      PPE:
-        SubscriptionConfigurations:
-          - $(sub-config-communication-ppe-test-resources-common)
-          - $(sub-config-communication-ppe-test-resources-net)
-    ${{ if eq(parameters.runOnlyPPE, true) }}:
-      Clouds: PPE
-    ${{ if eq(parameters.runOnlyPPE, false) }}:
-      Clouds: Public,PPE,Int
-    TestResourceDirectories:
-      - communication/Azure.Communication.Email/
+        SubscriptionConfigurationFilePath: eng/common/TestResources/sub-config/AzurePublicMsft.json
+    #   Int:
+    #     SubscriptionConfigurations:
+    #       - $(sub-config-communication-int-test-resources-common)
+    #       - $(sub-config-communication-int-test-resources-net)
+    #   PPE:
+    #     SubscriptionConfigurations:
+    #       - $(sub-config-communication-ppe-test-resources-common)
+    #       - $(sub-config-communication-ppe-test-resources-net)
+    # ${{ if eq(parameters.runOnlyPPE, true) }}:
+    #   Clouds: PPE
+    # ${{ if eq(parameters.runOnlyPPE, false) }}:
+    #   Clouds: Public,PPE,Int
+    # TestResourceDirectories:
+    #   - communication/Azure.Communication.Email/
