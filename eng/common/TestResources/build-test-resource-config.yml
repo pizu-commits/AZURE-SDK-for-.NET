@@ -9,55 +9,50 @@ parameters:
   - name: EnvVars
     type: object
     default: null
-  - name: SubscriptionConfigurationFilePath
-    type: string
-    default: ''
   - name: SubscriptionConfigurationFilePaths
     type: object
     default: null
 
 steps:
   - pwsh: |
-      $baseSubConfig = @'
+      $finalConfig = @{}
+      $baseSubConfigRaw = @'
         ${{ parameters.SubscriptionConfiguration }}
-      '@ | ConvertFrom-Json -AsHashtable
+      '@.Trim()
+      if ($baseSubConfigRaw) {
+        $baseSubConfig = $baseSubConfigRaw | ConvertFrom-Json -AsHashtable
 
-      $subConfigJsons = @'
-        ${{ convertToJson(parameters.SubscriptionConfigurations) }}
-      '@ | ConvertFrom-Json -AsHashtable
+        Write-Host "Setting base sub config"
+        $finalConfig = SetSubscriptionConfiguration $baseSubConfig
+      }
 
-      $baseSubConfigFilePath = '${{ parameters.SubscriptionConfigurationFilePath }}'
+      $subConfigJsonsRaw = @'
+        ${{ parameters.SubscriptionConfigurations }}
+      '@.Trim()
+      if ($subConfigJsonsRaw) {
+        $subConfigJsons = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
 
-      $subConfigFiles = @'
+        foreach ($subConfigJson in $subConfigJsons) {
+          Write-Host "Merging sub config from list"
+          $subConfig = $subConfigJson | ConvertFrom-Json -AsHashtable
+          $finalConfig = UpdateSubscriptionConfiguration $finalConfig $subConfig
+        }
+      }
+
+      $subConfigFilesRaw = @'
         ${{ convertToJson(parameters.SubscriptionConfigurationFilePaths) }}
-      '@ | ConvertFrom-Json -AsHashtable
+      '@.Trim()
 
-
-      $subConfig = @{}
-      if ($baseSubConfig) {
-        $subConfig = SetSubscriptionConfiguration $baseSubConfig
-      }
-
-      if ($subConfigJsons) {
-        foreach ($configJson in $subConfigJsons) {
-          $config = $configJson | ConvertFrom-Json -AsHashtable
-          $subConfig = UpdateSubscriptionConfiguration $subConfig $config
+      if ($subConfigFilesRaw) {
+        $subConfigFiles = $subConfigFilesRaw | ConvertFrom-Json -AsHashtable
+        foreach ($file in $subConfigFiles) {
+          Write-Host "Merging sub config from file: $file"
+          $subConfig = Get-Content $file | ConvertFrom-Json -AsHashtable
+          $finalConfig = UpdateSubscriptionConfiguration $finalConfig $subConfig
         }
       }
 
-      if ($baseSubConfigFilePath) {
-        $config = Get-Content $baseSubConfigFilePath | ConvertFrom-Json -AsHashtable
-        $subConfig = UpdateSubscriptionConfiguration $subConfig $config
-      }
-
-      if ($subConfigFiles) {
-        foreach ($configFilePath in $subConfigFiles) {
-          $config = Get-Content $configFilePath | ConvertFrom-Json -AsHashtable
-          $subConfig = UpdateSubscriptionConfiguration $subConfig $config
-        }
-      }
-
-      Write-Host ($subConfig | ConvertTo-Json)
-      $serialized = $subscriptionConfiguration | ConvertTo-Json -Compress
+      Write-Host ($finalConfig | ConvertTo-Json)
+      $serialized = $finalConfig | ConvertTo-Json -Compress
       Write-Host "##vso[task.setvariable variable=SubscriptionConfiguration;]$serialized"
     displayName: Merge subscription configurations
