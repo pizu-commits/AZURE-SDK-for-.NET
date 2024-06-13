@@ -15,6 +15,8 @@ parameters:
 
 steps:
   - pwsh: |
+      . ./eng/common/TestResources/SubConfig-Helpers.ps1
+
       $finalConfig = @{}
       $baseSubConfigRaw = @'
         ${{ parameters.SubscriptionConfiguration }}
