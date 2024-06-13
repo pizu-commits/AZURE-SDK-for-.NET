@@ -10,4 +10,4 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Security.Cryptography;
 
-[assembly: SuppressMessage("Usage", "AZC0030:Model name 'ExitOptions' ends with 'Options'. Suggest to rename it to 'ExitConfig' or any other appropriate name.", Justification = "<Pending>", Scope = "namespaceanddescendants", Target = "~N:Azure.Compute.Batch")]
+[assembly: SuppressMessage("Usage", "AZC0030:Model name 'ExitOptions' ends with 'Options'. Suggest to rename it to 'ExitConfig' or any other appropriate name.", Justification = "SDK Review Approved, ExitCodeMapping and ExitCodeRangeMapping models have parameter called exitOptions which we wanted to match", Scope = "namespaceanddescendants", Target = "~N:Azure.Compute.Batch")]
