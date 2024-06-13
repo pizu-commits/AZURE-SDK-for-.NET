@@ -12,51 +12,52 @@ parameters:
   - name: SubscriptionConfigurationFilePath
     type: string
     default: ''
+  - name: SubscriptionConfigurationFilePaths
+    type: object
+    default: null
 
 steps:
-  - ${{ if parameters.SubscriptionConfiguration }}:
-    - pwsh: |
-        $config = @'
-          ${{ parameters.SubscriptionConfiguration }}
-        '@ | ConvertFrom-Json -AsHashtable
+  - pwsh: |
+      $baseSubConfig = @'
+        ${{ parameters.SubscriptionConfiguration }}
+      '@ | ConvertFrom-Json -AsHashtable
 
-        . ./eng/common/TestResources/SubConfig-Helpers.ps1
-        SetSubscriptionConfiguration $config
-      displayName: Initialize SubscriptionConfiguration variable
-      ${{ if parameters.EnvVars }}:
-        env: ${{ parameters.EnvVars }}
+      $subConfigJsons = @'
+        ${{ parameters.SubscriptionConfigurations }}
+      '@ | ConvertFrom-Json -AsHashtable
 
-  - ${{ if parameters.SubscriptionConfigurations }}:
-    - pwsh: |
-        Write-Host "##vso[task.setvariable variable=SubscriptionConfiguration;]{}"
-      displayName: Initialize SubscriptionConfiguration variable for merging
-      condition: eq(variables['SubscriptionConfiguration'], '')
+      $baseSubConfigFilePath = '${{ parameters.SubscriptionConfigurationFilePath }}'
 
-    - ${{ each config in parameters.SubscriptionConfigurations }}:
-      - pwsh: |
-          $configBase = @'
-            $(SubscriptionConfiguration)
-          '@ | ConvertFrom-Json -AsHashtable
-          $config = @'
-            ${{ config }}
-          '@ | ConvertFrom-Json -AsHashtable
+      $subConfigFiles = @'
+        ${{ parameters.SubscriptionConfigurationFilePaths }}
+      '@ | ConvertFrom-Json -AsHashtable
 
-          . ./eng/common/TestResources/SubConfig-Helpers.ps1
-          UpdateSubscriptionConfiguration $configBase $config
 
-        displayName: Merge Test Resource Configurations
-        ${{ if parameters.EnvVars }}:
-          env: ${{ parameters.EnvVars }}
+      $subConfig = @{}
+      if ($baseSubConfig) {
+        $subConfig = SetSubscriptionConfiguration $baseSubConfig
+      }
 
-  - ${{ if ne(parameters.SubscriptionConfigurationFilePath, '') }}:
-    - pwsh: |
-        $configBase = @'
-          $(SubscriptionConfiguration)
-        '@ | ConvertFrom-Json -AsHashtable
-        $config = Get-Content '${{ parameters.SubscriptionConfigurationFilePath }}' `
-          | ConvertFrom-Json -AsHashtable
-        . ./eng/common/TestResources/SubConfig-Helpers.ps1
-        UpdateSubscriptionConfiguration $configBase $config
-      displayName: Merge in Subscription Configuration File Path
-      ${{ if parameters.EnvVars }}:
-        env: ${{ parameters.EnvVars }}
+      if ($subConfigJsons) {
+        foreach ($configJson in $subConfigJsons) {
+          $config = $configJson | ConvertFrom-Json -AsHashtable
+          $subConfig = UpdateSubscriptionConfiguration $subConfig $config
+        }
+      }
+
+      if ($baseSubConfigFilePath) {
+        $config = Get-Content $baseSubConfigFilePath | ConvertFrom-Json -AsHashtable
+        $subConfig = UpdateSubscriptionConfiguration $subConfig $config
+      }
+
+      if ($subConfigFiles) {
+        foreach ($configFilePath in $subConfigFiles) {
+          $config = Get-Content $configFilePath | ConvertFrom-Json -AsHashtable
+          $subConfig = UpdateSubscriptionConfiguration $subConfig $config
+        }
+      }
+
+      Write-Host ($subConfig | ConvertTo-Json)
+      $serialized = $subscriptionConfiguration | ConvertTo-Json -Compress
+      Write-Host "##vso[task.setvariable variable=SubscriptionConfiguration;]$serialized"
+    displayName: Merge subscription configurations
