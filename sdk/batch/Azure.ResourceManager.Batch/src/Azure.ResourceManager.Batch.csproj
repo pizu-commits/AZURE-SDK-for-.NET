@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Description>Azure Batch allows large-scale parallel and high-performance computing (HPC) batch jobs to be run efficiently in Azure. This client library allows for the creating and management of Azure Batch resources such as Pools and tasks. For more information about Batch, see https://learn.microsoft.com/en-us/azure/batch/batch-technical-overview</Description>
     <Version>1.5.0-beta.1</Version>
     <!--The ApiCompatVersion is managed automatically and should not generally be modified manually.-->
     <ApiCompatVersion>1.4.0</ApiCompatVersion>
