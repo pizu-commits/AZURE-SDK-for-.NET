@@ -173,7 +173,7 @@ extends:
                     CloudConfig:
                       SubscriptionConfiguration: ${{ cloud.value.SubscriptionConfiguration }}
                       ServiceConnection: ${{ cloud.value.ServiceConnection }}
-                      SubscriptionConfigurationFilePath: ${{ cloud.value.SubscriptionConfigurationFilePath }}
+                      SubscriptionConfigurationFilePaths: ${{ cloud.value.SubscriptionConfigurationFilePaths }}
                       SubscriptionConfigurations: ${{ cloud.value.SubscriptionConfigurations }}
                       Location: ${{ coalesce(parameters.Location, cloud.value.Location) }}
                       Cloud: ${{ cloud.key }}
