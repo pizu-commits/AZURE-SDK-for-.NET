@@ -29,7 +29,7 @@ steps:
       }
 
       $subConfigJsonsRaw = @'
-        ${{ parameters.SubscriptionConfigurations }}
+        ${{ convertToJson(parameters.SubscriptionConfigurations) }}
       '@.Trim()
       if ($subConfigJsonsRaw) {
         $subConfigJsons = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
