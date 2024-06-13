@@ -160,7 +160,7 @@ namespace Azure.Compute.Batch.Tests.Integration
                 {
                     BatchFileProperties batchFileProperties = await client.GetNodeFilePropertiesAsync(poolId, item.Id, file);
                     Assert.IsNotNull(batchFileProperties);
-                    Assert.IsNotEmpty(batchFileProperties.BatchFileUrl);
+                    Assert.IsNotEmpty(batchFileProperties.FileUrl);
 
                     BinaryData fileContents = await client.GetNodeFileAsync(poolId, item.Id, file);
                     using (var reader = new StreamReader(fileContents.ToStream()))
