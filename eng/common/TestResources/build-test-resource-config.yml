@@ -23,13 +23,13 @@ steps:
       '@ | ConvertFrom-Json -AsHashtable
 
       $subConfigJsons = @'
-        ${{ parameters.SubscriptionConfigurations }}
+        ${{ convertToJson(parameters.SubscriptionConfigurations) }}
       '@ | ConvertFrom-Json -AsHashtable
 
       $baseSubConfigFilePath = '${{ parameters.SubscriptionConfigurationFilePath }}'
 
       $subConfigFiles = @'
-        ${{ parameters.SubscriptionConfigurationFilePaths }}
+        ${{ convertToJson(parameters.SubscriptionConfigurationFilePaths) }}
       '@ | ConvertFrom-Json -AsHashtable
 
 
