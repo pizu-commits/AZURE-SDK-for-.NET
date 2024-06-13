@@ -157,7 +157,7 @@
 # ServiceOwners:                                                   @rpsqrd @edyoung
 
 # PRLabel: %Batch
-/sdk/batch/                                                        @wiboris @dpwatrous @wanghoppe @cRui861 @skapur12
+/sdk/batch/                                                        @wiboris @dpwatrous @wanghoppe @skapur12
 
 # ServiceLabel: %Batch
 # ServiceOwners:                                                   @wiboris @dpwatrous

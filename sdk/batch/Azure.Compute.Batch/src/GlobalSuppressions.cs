@@ -10,4 +10,4 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Security.Cryptography;
 
-[assembly: SuppressMessage("Usage", "AZC0012:Avoid single word type names", Justification = "<Pending>", Scope = "type", Target = "~T:Azure.Compute.Batch.Models.Schedule")]
+[assembly: SuppressMessage("Usage", "AZC0030:Model name 'ExitOptions' ends with 'Options'. Suggest to rename it to 'ExitConfig' or any other appropriate name.", Justification = "<Pending>", Scope = "namespaceanddescendants", Target = "~N:Azure.Compute.Batch")]
