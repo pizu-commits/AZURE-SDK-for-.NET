@@ -32,7 +32,7 @@ steps:
 
       $subConfigJsonsRaw = @'
         ${{ convertToJson(parameters.SubscriptionConfigurations) }}
-      '@.Trim()
+      '@.Trim() -replace '{"', '{' -replace '"}', '}'
 
       Write-Host $subConfigJsonsRaw
 
