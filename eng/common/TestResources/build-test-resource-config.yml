@@ -56,7 +56,7 @@ steps:
     - pwsh: |
         . ./eng/common/TestResources/SubConfig-Helpers.ps1
         $configBase = @{}
-        if ('$(SubscriptionConfiguration)' -ne '') {
+        if ('$(SubscriptionConfiguration)'.Trim() -ne '') {
           # Tabbing of this sort is required for the here-string to work
           $configBase = @'
             $(SubscriptionConfiguration)
