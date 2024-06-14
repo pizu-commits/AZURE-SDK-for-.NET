@@ -63,13 +63,15 @@ steps:
         '@ | ConvertFrom-Json -AsHashtable
         }
 
+        Write-Host ($configBase | ConvertTo-Json)
+
         $configFiles = @'
           ${{ convertToJson(parameters.SubscriptionConfigurationFilePaths) }}
         '@ | ConvertFrom-Json -AsHashtable
 
         foreach ($file in $configFiles) {
           $config = Get-Content $file | ConvertFrom-Json -AsHashtable
-          UpdateSubscriptionConfiguration $configBase $config -devOpsOutput $false
+          $configBase = UpdateSubscriptionConfiguration $configBase $config -devOpsOutput $false
         }
 
         $serialized = $configBase | ConvertTo-Json -Compress
