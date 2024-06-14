@@ -33,6 +33,9 @@ steps:
       $subConfigJsonsRaw = @'
         ${{ convertToJson(parameters.SubscriptionConfigurations) }}
       '@.Trim()
+
+      Write-Host $subConfigJsonsRaw
+
       if ($subConfigJsonsRaw) {
         $subConfigJsons = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
 
