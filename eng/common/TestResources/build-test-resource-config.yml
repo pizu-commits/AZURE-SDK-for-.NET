@@ -63,8 +63,6 @@ steps:
         '@ | ConvertFrom-Json -AsHashtable
         }
 
-        Write-Host ($configBase | ConvertTo-Json)
-
         $configFiles = @'
           ${{ convertToJson(parameters.SubscriptionConfigurationFilePaths) }}
         '@ | ConvertFrom-Json -AsHashtable
