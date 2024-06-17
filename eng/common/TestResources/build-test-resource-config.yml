@@ -28,13 +28,9 @@ steps:
         $finalConfig = SetSubscriptionConfiguration $baseSubConfig
       }
 
-      Write-Host ($finalConfig | ConvertTo-Json)
-
       $subConfigJsonsRaw = @'
         ${{ convertToJson(parameters.SubscriptionConfigurations) }}
       '@.Trim() -replace '"{', '{' -replace '}"', '}'
-
-      Write-Host $subConfigJsonsRaw
 
       if ($subConfigJsonsRaw) {
         $subConfigs = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
@@ -42,7 +38,6 @@ steps:
         foreach ($subConfig in $subConfigs) {
           Write-Host "Merging sub config from list"
           $finalConfig = UpdateSubscriptionConfiguration $finalConfig $subConfig
-          Write-Host ($finalConfig | ConvertTo-Json)
         }
       }
 
