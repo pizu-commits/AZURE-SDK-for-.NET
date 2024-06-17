@@ -37,11 +37,10 @@ steps:
       Write-Host $subConfigJsonsRaw
 
       if ($subConfigJsonsRaw) {
-        $subConfigJsons = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
+        $subConfigs = $subConfigJsonsRaw | ConvertFrom-Json -AsHashtable
 
-        foreach ($subConfigJson in $subConfigJsons) {
+        foreach ($subConfig in $subConfigs) {
           Write-Host "Merging sub config from list"
-          $subConfig = $subConfigJson | ConvertFrom-Json -AsHashtable
           $finalConfig = UpdateSubscriptionConfiguration $finalConfig $subConfig
           Write-Host ($finalConfig | ConvertTo-Json)
         }
