@@ -51,7 +51,6 @@ steps:
           Write-Host "Merging sub config from file: $file"
           $subConfig = Get-Content $file | ConvertFrom-Json -AsHashtable
           $finalConfig = UpdateSubscriptionConfiguration $finalConfig $subConfig
-          Write-Host ($finalConfig | ConvertTo-Json)
         }
       }
 
