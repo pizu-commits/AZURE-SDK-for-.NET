@@ -124,8 +124,6 @@ $azsdkPipelineSubnetMap = @{
 $poolSubnet = ''
 if ($env:Pool) {
   $poolSubnet = $azsdkPipelineSubnetMap[$env:Pool]
-} elseif ($env:pool) {
-  $poolSubnet = $azsdkPipelineSubnetMap[$env:pool]
 } else {
   Write-Warning "Pool environment variable is not defined! Subnet allowlisting will not work and live test resources may be non-compliant."
 }
@@ -865,7 +863,7 @@ try {
                     if ($CI -and $poolSubnet) {
                         Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $poolSubnet"
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $poolSubnet }
-                    } elseif (!$CI) {
+                    } elseif (!$CI -or $env:Pool -eq 'Azure Pipelines') {
                         Write-Host "Enabling access to '$($account.Name)' from client IP"
                         $clientIp ??= Retry { Invoke-RestMethod -Uri 'https://icanhazip.com/' }  # cloudflare owned ip site
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -IPAddressOrRange $clientIp | Out-Null }
