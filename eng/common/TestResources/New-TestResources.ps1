@@ -124,6 +124,8 @@ $azsdkPipelineSubnetMap = @{
 $poolSubnet = ''
 if ($env:Pool) {
   $poolSubnet = $azsdkPipelineSubnetMap[$env:Pool]
+} elseif ($env:pool) {
+  $poolSubnet = $azsdkPipelineSubnetMap[$env:pool]
 } else {
   Write-Warning "Pool environment variable is not defined! Subnet allowlisting will not work and live test resources may be non-compliant."
 }
