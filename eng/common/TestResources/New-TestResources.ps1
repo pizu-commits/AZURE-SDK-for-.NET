@@ -863,7 +863,10 @@ try {
                     if ($CI -and $poolSubnet) {
                         Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $poolSubnet"
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $poolSubnet }
-                    } elseif (!$CI -or $env:Pool -eq 'Azure Pipelines') {
+                    } elseif ($CI -and $env:Pool -eq 'Azure Pipelines') {
+                        Write-Host "Enabling access to '$($account.Name)' from azure pipelines hosted pool range"
+                        Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -IPRule @{ Action = "allow"; IPAddressOrRange = "13.0.0.0/8" } | Out-Null }
+                    } elseif (!$CI) {
                         Write-Host "Enabling access to '$($account.Name)' from client IP"
                         $clientIp ??= Retry { Invoke-RestMethod -Uri 'https://icanhazip.com/' }  # cloudflare owned ip site
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -IPAddressOrRange $clientIp | Out-Null }
