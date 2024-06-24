@@ -30,8 +30,33 @@ namespace Azure.Messaging.WebPubSub
         internal static byte[] s_group = Encoding.UTF8.GetBytes("webpubsub.group");
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Gets a client access token.
         /// </summary>
+        /// <param name="options">Options to apply when creating the client access token.</param>
+        /// <returns>The generated token.</returns>
+#pragma warning disable AZC0015 // Unexpected client method return type.
+        public virtual string GetClientAccessToken(GetClientAccessTokenOptions options)
+#pragma warning restore AZC0015 // Unexpected client method return type.
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a client access token.
+        /// </summary>
+        /// <param name="options">Options to apply when creating the client access token.</param>
+        /// <returns>The generated token.</returns>
+#pragma warning disable AZC0015 // Unexpected client method return type.
+        public virtual Task<string> GetClientAccessTokenAsync(GetClientAccessTokenOptions options)
+#pragma warning restore AZC0015 // Unexpected client method return type.
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
+        /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAt">UTC time when the token expires.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -43,8 +68,9 @@ namespace Azure.Messaging.WebPubSub
             => GetClientAccessUriInternal(expiresAt, userId, roles, null, async: false, cancellationToken).EnsureCompleted();
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAt">UTC time when the token expires.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -57,8 +83,9 @@ namespace Azure.Messaging.WebPubSub
             => GetClientAccessUriInternal(expiresAt, userId, roles, groups, async: false, cancellationToken).EnsureCompleted();
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAt">UTC time when the token expires.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -70,8 +97,9 @@ namespace Azure.Messaging.WebPubSub
 #pragma warning restore AZC0015 // Unexpected client method return type.
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAt">UTC time when the token expires.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -84,8 +112,9 @@ namespace Azure.Messaging.WebPubSub
 #pragma warning restore AZC0015 // Unexpected client method return type.
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAfter">Defaults to one hour, if not specified. Must be greater or equal zero.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="roles">Roles that the connection with the generated token will have.</param>
@@ -103,8 +132,9 @@ namespace Azure.Messaging.WebPubSub
         }
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAfter">Defaults to one hour, if not specified. Must be greater or equal zero.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="roles">Roles that the connection with the generated token will have.</param>
@@ -124,8 +154,9 @@ namespace Azure.Messaging.WebPubSub
         }
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAfter">Defaults to one hour, if not specified. Must be greater or equal zero.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="roles">Roles that the connection with the generated token will have.</param>
@@ -143,8 +174,9 @@ namespace Azure.Messaging.WebPubSub
         }
 
         /// <summary>
-        /// Creates a URI with authentication token.
+        /// Creates a URI with authentication token for clients who connect to "/clients/hubs/{hub}".
         /// </summary>
+        /// <remarks>Not applicable for MQTT clients who connect to "/clients/mqtt/hubs/{hub}"</remarks>
         /// <param name="expiresAfter">Defaults to one hour, if not specified. Must be greater or equal zero.</param>
         /// <param name="userId">User Id.</param>
         /// <param name="roles">Roles that the connection with the generated token will have.</param>

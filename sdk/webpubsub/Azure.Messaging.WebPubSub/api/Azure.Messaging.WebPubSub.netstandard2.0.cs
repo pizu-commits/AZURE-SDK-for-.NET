@@ -5,6 +5,21 @@ namespace Azure.Messaging.WebPubSub
         public static string Create(System.FormattableString filter) { throw null; }
         public static string Create(System.FormattableString filter, System.IFormatProvider formatProvider) { throw null; }
     }
+    public enum ClientEndpointType
+    {
+        Default = 0,
+        MQTT = 1,
+    }
+    public partial class GetClientAccessTokenOptions
+    {
+        public static readonly Azure.Messaging.WebPubSub.GetClientAccessTokenOptions Default;
+        public GetClientAccessTokenOptions() { }
+        public Azure.Messaging.WebPubSub.ClientEndpointType ClientEndpoint { get { throw null; } set { } }
+        public System.Collections.Generic.IEnumerable<string> Groups { get { throw null; } set { } }
+        public int MinutesToExpire { get { throw null; } set { } }
+        public System.Collections.Generic.IEnumerable<string> Roles { get { throw null; } set { } }
+        public string UserId { get { throw null; } set { } }
+    }
     public enum WebPubSubPermission
     {
         SendToGroup = 1,
@@ -38,6 +53,8 @@ namespace Azure.Messaging.WebPubSub
         public virtual System.Threading.Tasks.Task<Azure.Response> CloseUserConnectionsAsync(string userId, System.Collections.Generic.IEnumerable<string> excluded = null, string reason = null, Azure.RequestContext context = null) { throw null; }
         public virtual Azure.Response<bool> ConnectionExists(string connectionId, Azure.RequestContext context = null) { throw null; }
         public virtual System.Threading.Tasks.Task<Azure.Response<bool>> ConnectionExistsAsync(string connectionId, Azure.RequestContext context = null) { throw null; }
+        public virtual string GetClientAccessToken(Azure.Messaging.WebPubSub.GetClientAccessTokenOptions options) { throw null; }
+        public virtual System.Threading.Tasks.Task<string> GetClientAccessTokenAsync(Azure.Messaging.WebPubSub.GetClientAccessTokenOptions options) { throw null; }
         public virtual System.Uri GetClientAccessUri(System.DateTimeOffset expiresAt, string userId = null, System.Collections.Generic.IEnumerable<string> roles = null, System.Collections.Generic.IEnumerable<string> groups = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual System.Uri GetClientAccessUri(System.DateTimeOffset expiresAt, string userId, System.Collections.Generic.IEnumerable<string> roles, System.Threading.CancellationToken cancellationToken) { throw null; }
         public virtual System.Uri GetClientAccessUri(System.TimeSpan expiresAfter = default(System.TimeSpan), string userId = null, System.Collections.Generic.IEnumerable<string> roles = null, System.Collections.Generic.IEnumerable<string> groups = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
