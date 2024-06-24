@@ -113,6 +113,7 @@ param (
 
 Write-Host "--- BEBRODER ip ranges"
 Write-Host $AllowIpRanges
+Write-Host $AllowIpRanges.Length
 Write-Host "--- BEBRODER ip ranges"
 
 $azsdkPipelineVnetWestUS = '/subscriptions/a18897a6-7e44-457d-9260-f2854c0aca42/resourceGroups/azsdk-pools/providers/Microsoft.Network/virtualNetworks/azsdk-pipeline-vnet-wus'
