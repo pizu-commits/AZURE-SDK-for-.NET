@@ -83,6 +83,14 @@ param (
     # List of CIDR ranges to add to specific resource firewalls, e.g. @(10.100.0.0/16, 10.200.0.0/16)
     [Parameter()]
     [ValidateCount(0,399)]
+    [Validatescript({
+        foreach ($range in $PSItem) {
+            if ($range -like '*/31' -or $range -like '*/32') {
+                throw "Firewall IP Ranges cannot contain a /31 or /32 CIDR"
+            }
+        }
+        return $true
+    })]
     [array] $AllowIpRanges = @(),
 
     [Parameter()]
@@ -111,11 +119,6 @@ param (
 
 . $PSScriptRoot/SubConfig-Helpers.ps1
 
-Write-Host "--- BEBRODER ip ranges"
-Write-Host $AllowIpRanges
-Write-Host $AllowIpRanges.Length
-Write-Host "--- BEBRODER ip ranges"
-
 $azsdkPipelineVnetWestUS = '/subscriptions/a18897a6-7e44-457d-9260-f2854c0aca42/resourceGroups/azsdk-pools/providers/Microsoft.Network/virtualNetworks/azsdk-pipeline-vnet-wus'
 $azsdkPipelineVnetCanadaCentral = '/subscriptions/a18897a6-7e44-457d-9260-f2854c0aca42/resourceGroups/azsdk-pools/providers/Microsoft.Network/virtualNetworks/azsdk-pipeline-vnet-cnc'
 $azsdkPipelineSubnetMap = @{
@@ -133,9 +136,9 @@ $azsdkPipelineSubnetMap = @{
 
 $poolSubnet = ''
 if ($env:Pool) {
-  $poolSubnet = $azsdkPipelineSubnetMap[$env:Pool]
+    $poolSubnet = $azsdkPipelineSubnetMap[$env:Pool]
 } else {
-  Write-Warning "Pool environment variable is not defined! Subnet allowlisting will not work and live test resources may be non-compliant."
+    Write-Warning "Pool environment variable is not defined! Subnet allowlisting will not work and live test resources may be non-compliant."
 }
 
 if (!$ServicePrincipalAuth) {
@@ -1071,6 +1074,10 @@ Optional key-value pairs of parameters to pass to the ARM template(s).
 
 .PARAMETER EnvironmentVariables
 Optional key-value pairs of parameters to set as environment variables to the shell.
+
+.PARAMETER AllowIpRanges
+Optional array of CIDR ranges to add to the network firewall for resource types like storage.
+When running locally, if this parameter is not set then the client's IP will be queried and added to the firewall instead.
 
 .PARAMETER CI
 Indicates the script is run as part of a Continuous Integration / Continuous
