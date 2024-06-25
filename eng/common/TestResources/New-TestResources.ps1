@@ -762,6 +762,10 @@ try {
     if ($TestApplicationSecret -and $ServicePrincipalAuth) {
         $templateParameters.Add('testApplicationSecret', $TestApplicationSecret)
     }
+    # Only add subnets when running in an azure pipeline context
+    if ($CI -and $Environment -eq 'AzureCloud' -and $env:PoolSubnet) {
+        $templateParameters.Add('azsdkPipelineSubnetList', @($env:PoolSubnet))
+    }
 
     $defaultCloudParameters = LoadCloudConfig $Environment
     MergeHashes $defaultCloudParameters $(Get-Variable templateParameters)
@@ -847,7 +851,10 @@ try {
                 if ($rules -and $rules.DefaultAction -eq "Allow") {
                     Write-Host "Restricting network rules in storage account '$($account.Name)' to deny access by default"
                     Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -DefaultAction Deny }
-                    if ($CI -and $AllowIpRanges) {
+                    if ($CI -and $env:PoolSubnet) {
+                        Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $($env:PoolSubnet)"
+                        Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $env:PoolSubnet }
+                    } elseif ($AllowIpRanges) {
                         Write-Host "Enabling access to '$($account.Name)' to $($AllowIpRanges.Length) IP ranges"
                         $ipRanges = $AllowIpRanges | ForEach-Object {
                             @{ Action = 'allow'; IPAddressOrRange = $_ }
@@ -857,8 +864,6 @@ try {
                         Write-Host "Enabling access to '$($account.Name)' from client IP"
                         $clientIp ??= Retry { Invoke-RestMethod -Uri 'https://icanhazip.com/' }  # cloudflare owned ip site
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -IPAddressOrRange $clientIp | Out-Null }
-                    } else {
-                        Write-Error "-AllowIpRanges must be set otherwise live test resources may not be network accessible"
                     }
                 }
             }
