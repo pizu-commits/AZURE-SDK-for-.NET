@@ -119,17 +119,6 @@ param (
 
 . $PSScriptRoot/SubConfig-Helpers.ps1
 
-$poolSubnet = ''
-if ($CI -and $env:Pool -and $env:Pool -ne 'Azure Pipelines') {
-    $ctx = Get-AzContext
-    Set-AzContext -Subscription 'Azure SDK Engineering System'
-    $poolSubnet = (Get-AzResource -ResourceGroupName azsdk-pools -Name $env:Pool -ExpandProperties).Properties.networkProfile.subnetId
-    Write-Host "Bebroder adding subnet $poolSubnet"
-    $ctx | Set-AzContext
-} else {
-    Write-Warning "Pool environment variable is not defined! Subnet allowlisting will not work and live test resources may be non-compliant."
-}
-
 if (!$ServicePrincipalAuth) {
     # Clear secrets if not using Service Principal auth. This prevents secrets
     # from being passed to pre- and post-scripts.
@@ -773,10 +762,6 @@ try {
     if ($TestApplicationSecret -and $ServicePrincipalAuth) {
         $templateParameters.Add('testApplicationSecret', $TestApplicationSecret)
     }
-    # Only add subnets when running in an azure pipeline context
-    if ($CI -and $Environment -eq 'AzureCloud' -and $poolSubnet) {
-        $templateParameters.Add('azsdkPipelineSubnetList', @($poolSubnet))
-    }
 
     $defaultCloudParameters = LoadCloudConfig $Environment
     MergeHashes $defaultCloudParameters $(Get-Variable templateParameters)
@@ -862,10 +847,7 @@ try {
                 if ($rules -and $rules.DefaultAction -eq "Allow") {
                     Write-Host "Restricting network rules in storage account '$($account.Name)' to deny access by default"
                     Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -DefaultAction Deny }
-                    if ($CI -and $poolSubnet) {
-                        Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $poolSubnet"
-                        Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $poolSubnet }
-                    } elseif ($AllowIpRanges) {
+                    if ($CI -and $AllowIpRanges) {
                         Write-Host "Enabling access to '$($account.Name)' to $($AllowIpRanges.Length) IP ranges"
                         $ipRanges = $AllowIpRanges | ForEach-Object {
                             @{ Action = 'allow'; IPAddressOrRange = $_ }
@@ -875,6 +857,8 @@ try {
                         Write-Host "Enabling access to '$($account.Name)' from client IP"
                         $clientIp ??= Retry { Invoke-RestMethod -Uri 'https://icanhazip.com/' }  # cloudflare owned ip site
                         Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -IPAddressOrRange $clientIp | Out-Null }
+                    } else {
+                        Write-Error "-AllowIpRanges must be set otherwise live test resources may not be network accessible"
                     }
                 }
             }
