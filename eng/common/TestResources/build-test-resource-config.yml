@@ -18,7 +18,7 @@ steps:
     displayName: Set Pipeline Subnet Info
     env: ${{ parameters.EnvVars }}
     inputs:
-      azureSubscription: Azure SDK Engineering System
+      azureSubscription: azure-sdk-tests
       azurePowerShellVersion: LatestVersion
       pwsh: true
       ScriptType: InlineScript
