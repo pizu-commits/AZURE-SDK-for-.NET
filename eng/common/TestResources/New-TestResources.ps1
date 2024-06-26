@@ -851,23 +851,26 @@ try {
                 if ($rules -and $rules.DefaultAction -eq "Allow") {
                     Write-Host "Restricting network rules in storage account '$($account.Name)' to deny access by default"
                     Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -DefaultAction Deny }
-                    if ($CI -and $env:PoolSubnet) {
-                        Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $($env:PoolSubnet)"
-                        Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $env:PoolSubnet }
-                    } elseif ($AllowIpRanges) {
-                        Write-Host "Enabling access to '$($account.Name)' to $($AllowIpRanges.Length) IP ranges"
-                        $ipRanges = $AllowIpRanges | ForEach-Object {
-                            @{ Action = 'allow'; IPAddressOrRange = $_ }
-                        }
-                        Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -IPRule $ipRanges | Out-Null }
-                    } elseif (!$CI) {
-                        Write-Host "Enabling access to '$($account.Name)' from client IP"
-                        $clientIp ??= Retry { Invoke-RestMethod -Uri 'https://icanhazip.com/' }  # cloudflare owned ip site
-                        Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -IPAddressOrRange $clientIp | Out-Null }
+                    Write-Host "Enabling access to '$($account.Name)' from pipeline subnet $($env:PoolSubnet)"
+                    Retry { Add-AzStorageAccountNetworkRule -ResourceGroupName $ResourceGroupName -Name $account.Name -VirtualNetworkResourceId $env:PoolSubnet }
+                    Write-Host "Enabling access to '$($account.Name)' to $($AllowIpRanges.Length) IP ranges"
+                    $ipRanges = $AllowIpRanges | ForEach-Object {
+                        @{ Action = 'allow'; IPAddressOrRange = $_ }
                     }
+                    Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -IPRule $ipRanges | Out-Null }
+
+                    $storageAccount = Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $account.Name
+                    $ctx = $storageAccount.Context
+                    Write-Host "Creating storage blob test for $account"
+                    New-AzStorageContainer -Name "myblobcontainer" -Context $ctx -Permission Off
+                    echo "foo" > testfile
+                    Set-AzStorageBlobContent -File ./testfile -Container "myblobcontainer" -Blob "testfile" -Context $ctx
+                    Write-Host "Done creating storage blob test for $account"
                 }
             }
         }
+
+        exit 1
 
         $postDeploymentScript = $templateFile.originalFilePath | Split-Path | Join-Path -ChildPath "$ResourceType-resources-post.ps1"
         if (Test-Path $postDeploymentScript) {
