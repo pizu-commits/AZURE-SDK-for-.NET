@@ -859,6 +859,9 @@ try {
                     }
                     Retry { Update-AzStorageAccountNetworkRuleSet -ResourceGroupName $ResourceGroupName -Name $account.Name -IPRule $ipRanges | Out-Null }
 
+                    Write-Host "Sleeping"
+                    Start-Sleep 30
+
                     $storageAccount = Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $account.Name
                     $ctx = $storageAccount.Context
                     Write-Host "Creating storage blob test for $account"
