@@ -23,12 +23,13 @@ steps:
       pwsh: true
       ScriptType: InlineScript
       Inline: |
-        #if ($env:Pool -eq 'Azure Pipelines') {
-        #  Write-Host "Skipping pool subnet lookup when running on an Azure Pipelines hosted pool"
-        #  Write-Host "##vso[task.setvariable variable=PoolSubnet;]"
-        #  exit 0
-        #}
-        $poolSubnet = (Get-AzResource -ResourceGroupName azsdk-pools -Name $env:Pool -ExpandProperties).Properties.networkProfile.subnetId
+        if ($env:Pool -eq 'Azure Pipelines') {
+          #Write-Host "Skipping pool subnet lookup when running on an Azure Pipelines hosted pool"
+          Write-Host "Mac debug subnet"
+          $poolSubnet = "/subscriptions/a18897a6-7e44-457d-9260-f2854c0aca42/resourceGroups/azsdk-pools/providers/Microsoft.Network/virtualNetworks/azsdk-pipeline-vnet-cnc/subnets/pipeline-subnet-win-2022-storage"
+        } else {
+          $poolSubnet = (Get-AzResource -ResourceGroupName azsdk-pools -Name $env:Pool -ExpandProperties).Properties.networkProfile.subnetId
+        }
         Write-Host "Setting pipeline subnet env variable PoolSubnet to '$poolSubnet'"
         Write-Host "##vso[task.setvariable variable=PoolSubnet;]$poolSubnet"
 
