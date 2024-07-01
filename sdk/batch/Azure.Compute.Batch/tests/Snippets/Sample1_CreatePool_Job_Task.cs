@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 using System;
+using System.IO;
+using System.Threading.Tasks;
 using Azure.Core;
 using Azure.Identity;
 using Azure.ResourceManager;
@@ -17,10 +19,10 @@ namespace Azure.Compute.Batch.Tests.Snippets
     public class Sample1_CreatePool_Job_Task
     {
         /// <summary>
-        ///   Code to create a Batch client contained snippet.
+        ///   Code to create a Batch client and call operations for snippets.
         /// </summary>
         ///
-        public async void CreateBatchClient()
+        public async void BatchClientOperations()
         {
             #region Snippet:Batch_Sample01_CreateBatchClient
 
@@ -36,13 +38,30 @@ namespace Azure.Compute.Batch.Tests.Snippets
             #region Snippet:Batch_Sample01_CreateBatchTask
             await _batchClient.CreateTaskAsync("jobId", new BatchTaskCreateContent("taskId", $"echo Hello world"));
             #endregion
+
+            #region Snippet:Batch_Sample01_GetTasks
+            var completedTasks = _batchClient.GetTasksAsync("jobId", filter: "state eq 'completed'");
+            await foreach (BatchTask t in completedTasks)
+            {
+                var outputFileName = t.ExecutionInfo.ExitCode == 0 ? "stdout.txt" : "stderr.txt";
+
+                Console.WriteLine("Task {0} exited with code {1}. Output ({2}):",
+                    t.Id, t.ExecutionInfo.ExitCode, outputFileName);
+
+                BinaryData fileContents = await _batchClient.GetTaskFileAsync("jobId", t.Id, outputFileName);
+                using (var reader = new StreamReader(fileContents.ToStream()))
+                {
+                    Console.WriteLine(await reader.ReadLineAsync());
+                }
+            }
+            #endregion
         }
 
         /// <summary>
-        ///   Code to create a Batch mgmt client contained snippet.
+        ///   Code to create a Batch mgmt client and call operatrions snippet.
         /// </summary>
         ///
-        public async void PoolCreation()
+        public async void BatchMgmtOperations()
         {
             #region Snippet:Batch_Sample01_CreateBatchMgmtClient
 
@@ -66,21 +85,23 @@ namespace Azure.Compute.Batch.Tests.Snippets
             };
             string nodeAgentSku = "batch.node.ubuntu 22.04";
 
-            BatchAccountPoolResource pool = (await batchAccount.GetBatchAccountPools().CreateOrUpdateAsync(WaitUntil.Completed, poolName, new BatchAccountPoolData()
-            {
-                VmSize = "Standard_DS1_v2",
-                DeploymentConfiguration = new BatchDeploymentConfiguration()
+            ArmOperation<BatchAccountPoolResource> armOperation = await batchAccount.GetBatchAccountPools().CreateOrUpdateAsync(
+                WaitUntil.Completed, poolName, new BatchAccountPoolData()
                 {
-                    VmConfiguration = new BatchVmConfiguration(imageReference, nodeAgentSku)
-                },
-                ScaleSettings = new BatchAccountPoolScaleSettings()
-                {
-                    FixedScale = new BatchAccountFixedScaleSettings()
+                    VmSize = "Standard_DS1_v2",
+                    DeploymentConfiguration = new BatchDeploymentConfiguration()
                     {
-                        TargetDedicatedNodes = 1
+                        VmConfiguration = new BatchVmConfiguration(imageReference, nodeAgentSku)
+                    },
+                    ScaleSettings = new BatchAccountPoolScaleSettings()
+                    {
+                        FixedScale = new BatchAccountFixedScaleSettings()
+                        {
+                            TargetDedicatedNodes = 1
+                        }
                     }
-                }
-            })).Value;
+                });
+            BatchAccountPoolResource pool = armOperation.Value;
             #endregion
         }
     }
