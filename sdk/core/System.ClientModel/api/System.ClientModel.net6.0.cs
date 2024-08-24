@@ -199,6 +199,18 @@ namespace System.ClientModel.Primitives
         public virtual void WaitForCompletion(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { }
         public virtual System.Threading.Tasks.ValueTask WaitForCompletionAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
     }
+    public abstract partial class PageableResult : System.ClientModel.ClientResult
+    {
+        protected PageableResult() { }
+        public abstract System.ClientModel.ClientResult GetNextPage(System.ClientModel.ClientResult? result, System.ClientModel.Primitives.RequestOptions options);
+        public abstract System.Threading.Tasks.Task<System.ClientModel.ClientResult> GetNextPageAsync(System.ClientModel.ClientResult? result, System.ClientModel.Primitives.RequestOptions options);
+        public abstract bool HasNext(System.ClientModel.ClientResult result);
+        public System.Collections.Generic.IAsyncEnumerable<System.ClientModel.ClientResult> ToAsyncEnumerable() { throw null; }
+        public System.ClientModel.AsyncPageCollection<T> ToAsyncPageCollection<T>() { throw null; }
+        public System.Collections.Generic.IEnumerable<System.ClientModel.ClientResult> ToEnumerable() { throw null; }
+        public System.ClientModel.PageCollection<T> ToPageCollection<T>() { throw null; }
+        protected virtual bool TryGetPage<T>(System.ClientModel.ClientResult result, out System.ClientModel.PageResult<T>? page) { throw null; }
+    }
     [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class PersistableModelProxyAttribute : System.Attribute
     {

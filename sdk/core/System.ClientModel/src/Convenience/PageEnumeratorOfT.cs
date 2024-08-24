@@ -1,23 +1,26 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System.ClientModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ClientModel.Tests.Paging;
+namespace System.ClientModel.Primitives;
 
-internal abstract class PageEnumerator<T> : PageResultEnumerator,
-    IAsyncEnumerator<PageResult<T>>,
-    IEnumerator<PageResult<T>>
+#pragma warning disable CS1591
+internal class PageEnumerator<T> : PageEnumerator, IAsyncEnumerator<PageResult<T>>, IEnumerator<PageResult<T>>
 {
-    public abstract PageResult<T> GetPageFromResult(ClientResult result);
+    private readonly PageableResult _subclient;
+
+    public PageEnumerator(PageableResult subclient)
+    {
+        _subclient = subclient;
+    }
 
     public PageResult<T> GetCurrentPage()
     {
         if (Current is null)
         {
-            return GetPageFromResult(GetFirst());
+            return _toPage(_subclient.GetNextPage(null, null!));
         }
 
         return ((IEnumerator<PageResult<T>>)this).Current;
@@ -27,7 +30,7 @@ internal abstract class PageEnumerator<T> : PageResultEnumerator,
     {
         if (Current is null)
         {
-            return GetPageFromResult(await GetFirstAsync().ConfigureAwait(false));
+            return _toPage(await _subclient.GetNextPageAsync(null, null!).ConfigureAwait(false));
         }
 
         return ((IEnumerator<PageResult<T>>)this).Current;
@@ -42,7 +45,7 @@ internal abstract class PageEnumerator<T> : PageResultEnumerator,
                 return default!;
             }
 
-            return GetPageFromResult(Current);
+            return _toPage(Current);
         }
     }
 
@@ -55,7 +58,8 @@ internal abstract class PageEnumerator<T> : PageResultEnumerator,
                 return default!;
             }
 
-            return GetPageFromResult(Current);
+            return _toPage(Current);
         }
     }
 }
+#pragma warning restore CS1591

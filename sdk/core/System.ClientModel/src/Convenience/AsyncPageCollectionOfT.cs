@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -30,6 +31,27 @@ public abstract class AsyncPageCollection<T> : IAsyncEnumerable<PageResult<T>>
         // GetAllValuesAsync is enumerated, so this constructor calls the base
         // class constructor that does not take a PipelineResponse.
     }
+
+    ///// <summary>
+    ///// TBD
+    ///// </summary>
+    ///// <param name="enumerator"></param>
+    ///// <returns></returns>
+    //public static AsyncPageCollection<T> FromEnumerator(PageEnumerator<T> enumerator)
+    //    => new AsyncEnumeratorPageCollection(enumerator);
+
+    ///// <summary>
+    ///// TBD.
+    ///// </summary>
+    ///// <param name="enumerator"></param>
+    ///// <returns></returns>
+    //public static async IAsyncEnumerable<ClientResult> FromEnumeratorAsync(PageEnumerator enumerator)
+    //{
+    //    while (await enumerator.MoveNextAsync().ConfigureAwait(false))
+    //    {
+    //        yield return enumerator.Current;
+    //    }
+    //}
 
     /// <summary>
     /// Get the current page of the collection.

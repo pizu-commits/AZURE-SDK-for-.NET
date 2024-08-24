@@ -29,6 +29,27 @@ public abstract class PageCollection<T> : IEnumerable<PageResult<T>>
         // that does not take a PipelineResponse.
     }
 
+    ///// <summary>
+    ///// TBD
+    ///// </summary>
+    ///// <param name="enumerator"></param>
+    ///// <returns></returns>
+    //public static PageCollection<T> FromEnumerator(PageEnumerator<T> enumerator)
+    //    => new EnumeratorPageCollection(enumerator);
+
+    ///// <summary>
+    ///// TBD
+    ///// </summary>
+    ///// <param name="enumerator"></param>
+    ///// <returns></returns>
+    //public static IEnumerable<ClientResult> FromEnumerator(PageEnumerator enumerator)
+    //{
+    //    while (enumerator.MoveNext())
+    //    {
+    //        yield return enumerator.Current;
+    //    }
+    //}
+
     /// <summary>
     /// Get the current page of the collection.
     /// </summary>
