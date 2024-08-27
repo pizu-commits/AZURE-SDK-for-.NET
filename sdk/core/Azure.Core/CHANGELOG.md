@@ -1,6 +1,6 @@
 # Release History
 
-## 1.43.0-beta.1 (Unreleased)
+## 2.0.0-beta.1 (Unreleased)
 
 ### Features Added
 
@@ -9,6 +9,8 @@
 ### Bugs Fixed
 
 ### Other Changes
+
+- Moved Azure.Core types to use functionality implemented in System.ClientModel library.
 
 - Added a new constructor on `AzureEventSourceListener` for callers that don't need the formatted message ([#45191](https://github.com/Azure/azure-sdk-for-net/pull/45191)).
 
