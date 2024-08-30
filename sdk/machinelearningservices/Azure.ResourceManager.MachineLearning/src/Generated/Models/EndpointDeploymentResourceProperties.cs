@@ -67,8 +67,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The failure reason if the creation failed. </summary>
+        [WirePath("failureReason")]
         public string FailureReason { get; set; }
         /// <summary> Read-only provision state status property. </summary>
+        [WirePath("provisioningState")]
         public DefaultResourceProvisioningState? ProvisioningState { get; }
         /// <summary> Kind of the deployment. </summary>
         internal string EndpointDeploymentResourcePropertiesType { get; set; }

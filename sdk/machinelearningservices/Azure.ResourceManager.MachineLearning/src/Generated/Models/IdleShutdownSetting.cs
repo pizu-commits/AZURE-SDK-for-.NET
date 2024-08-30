@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Time is defined in ISO8601 format. Minimum is 15 min, maximum is 3 days. </summary>
+        [WirePath("idleTimeBeforeShutdown")]
         public string IdleTimeBeforeShutdown { get; set; }
     }
 }

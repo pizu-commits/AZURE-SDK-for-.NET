@@ -79,6 +79,7 @@ namespace Azure.ResourceManager.MachineLearning
         /// <summary> RAI Custom Blocklist properties. </summary>
         internal RaiBlocklistProperties Properties { get; set; }
         /// <summary> Description of the block list. </summary>
+        [WirePath("properties.description")]
         public string RaiBlocklistDescription
         {
             get => Properties is null ? default : Properties.Description;

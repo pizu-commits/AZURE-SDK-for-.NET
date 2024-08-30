@@ -46,10 +46,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Model used for the endpoint deployment. </summary>
+        [WirePath("model")]
         public EndpointDeploymentModel Model { get; set; }
         /// <summary> The name of RAI policy. </summary>
+        [WirePath("raiPolicyName")]
         public string RaiPolicyName { get; set; }
         /// <summary> Deployment model version upgrade option. </summary>
+        [WirePath("versionUpgradeOption")]
         public DeploymentModelVersionUpgradeOption? VersionUpgradeOption { get; set; }
     }
 }

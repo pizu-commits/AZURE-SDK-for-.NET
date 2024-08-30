@@ -65,10 +65,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Argument to the the runtime. </summary>
+        [WirePath("argv")]
         public IList<string> Argv { get; }
         /// <summary> Display name of the kernel. </summary>
+        [WirePath("displayName")]
         public string DisplayName { get; set; }
         /// <summary> Language of the kernel [Example value: python]. </summary>
+        [WirePath("language")]
         public string Language { get; set; }
     }
 }

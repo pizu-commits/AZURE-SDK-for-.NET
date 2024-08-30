@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Dictionary of Keys for the endpoint. </summary>
+        [WirePath("keys")]
         public AccountApiKeys Keys { get; }
     }
 }

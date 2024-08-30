@@ -65,10 +65,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The count value of Call Rate Limit. </summary>
+        [WirePath("count")]
         public float? Count { get; }
         /// <summary> The renewal period in seconds of Call Rate Limit. </summary>
+        [WirePath("renewalPeriod")]
         public float? RenewalPeriod { get; }
         /// <summary> The call rate limit for the model. </summary>
+        [WirePath("rules")]
         public IReadOnlyList<EndpointModelSkuRateLimitRuleProperties> Rules { get; }
     }
 }

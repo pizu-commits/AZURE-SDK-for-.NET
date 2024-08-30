@@ -45,6 +45,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Account key object for workspace connection credential. </summary>
         internal WorkspaceConnectionAccountKey Credentials { get; set; }
         /// <summary> Gets or sets the credentials key. </summary>
+        [WirePath("credentials.key")]
         public string CredentialsKey
         {
             get => Credentials is null ? default : Credentials.Key;

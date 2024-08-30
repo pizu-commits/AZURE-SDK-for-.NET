@@ -58,6 +58,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> HyperParameters for fine tuning Azure Open AI model. </summary>
+        [WirePath("hyperParameters")]
         public AzureOpenAiHyperParameters HyperParameters { get; set; }
     }
 }

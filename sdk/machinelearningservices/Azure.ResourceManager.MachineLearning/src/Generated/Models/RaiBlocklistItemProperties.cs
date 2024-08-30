@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> If the pattern is a regex pattern. </summary>
+        [WirePath("isRegex")]
         public bool? IsRegex { get; set; }
         /// <summary> Pattern to match against. </summary>
+        [WirePath("pattern")]
         public string Pattern { get; set; }
     }
 }

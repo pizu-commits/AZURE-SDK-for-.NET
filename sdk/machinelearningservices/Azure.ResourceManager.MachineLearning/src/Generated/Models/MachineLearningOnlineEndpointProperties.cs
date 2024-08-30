@@ -58,14 +58,19 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// ARM resource ID of the compute if it exists.
         /// optional
         /// </summary>
+        [WirePath("compute")]
         public string Compute { get; set; }
         /// <summary> Percentage of traffic to be mirrored to each deployment without using returned scoring. Traffic values need to sum to utmost 50. </summary>
+        [WirePath("mirrorTraffic")]
         public IDictionary<string, int> MirrorTraffic { get; set; }
         /// <summary> Provisioning state for the endpoint. </summary>
+        [WirePath("provisioningState")]
         public MachineLearningEndpointProvisioningState? ProvisioningState { get; }
         /// <summary> Set to "Enabled" for endpoints that should allow public access when Private Link is enabled. </summary>
+        [WirePath("publicNetworkAccess")]
         public MachineLearningPublicNetworkAccessType? PublicNetworkAccess { get; set; }
         /// <summary> Percentage of traffic from endpoint to divert to each deployment. Traffic values need to sum to 100. </summary>
+        [WirePath("traffic")]
         public IDictionary<string, int> Traffic { get; set; }
     }
 }

@@ -117,6 +117,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("applicationInsights")]
         public IDictionary<string, BinaryData> ApplicationInsights { get; }
         /// <summary>
         /// Setting for diagnosing dependent container registry
@@ -148,6 +149,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("containerRegistry")]
         public IDictionary<string, BinaryData> ContainerRegistry { get; }
         /// <summary>
         /// Setting for diagnosing dns resolution
@@ -179,6 +181,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("dnsResolution")]
         public IDictionary<string, BinaryData> DnsResolution { get; }
         /// <summary>
         /// Setting for diagnosing dependent key vault
@@ -210,6 +213,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("keyVault")]
         public IDictionary<string, BinaryData> KeyVault { get; }
         /// <summary>
         /// Setting for diagnosing network security group
@@ -241,6 +245,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("nsg")]
         public IDictionary<string, BinaryData> Nsg { get; }
         /// <summary>
         /// Setting for diagnosing unclassified category of problems
@@ -272,6 +277,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("others")]
         public IDictionary<string, BinaryData> Others { get; }
         /// <summary>
         /// Setting for diagnosing the presence of required resource providers in the workspace.
@@ -303,6 +309,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("requiredResourceProviders")]
         public IDictionary<string, BinaryData> RequiredResourceProviders { get; }
         /// <summary>
         /// Setting for diagnosing resource lock
@@ -334,6 +341,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("resourceLock")]
         public IDictionary<string, BinaryData> ResourceLock { get; }
         /// <summary>
         /// Setting for diagnosing dependent storage account
@@ -365,6 +373,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("storageAccount")]
         public IDictionary<string, BinaryData> StorageAccount { get; }
         /// <summary>
         /// Setting for diagnosing user defined routing
@@ -396,6 +405,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("udr")]
         public IDictionary<string, BinaryData> Udr { get; }
     }
 }

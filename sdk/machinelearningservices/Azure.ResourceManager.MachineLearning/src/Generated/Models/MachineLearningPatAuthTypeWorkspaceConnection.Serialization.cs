@@ -8,6 +8,8 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -308,6 +310,293 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 credentials);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue("CredentialsPat", out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  credentials: ");
+                builder.AppendLine("{");
+                builder.Append("    pat: ");
+                builder.AppendLine(propertyOverride);
+                builder.AppendLine("  }");
+            }
+            else
+            {
+                if (Optional.IsDefined(Credentials))
+                {
+                    builder.Append("  credentials: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, Credentials, options, 2, false, "  credentials: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(AuthType), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  authType: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                builder.Append("  authType: ");
+                builder.AppendLine($"'{AuthType.ToString()}'");
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Category), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  category: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Category))
+                {
+                    builder.Append("  category: ");
+                    builder.AppendLine($"'{Category.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(CreatedByWorkspaceArmId), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  createdByWorkspaceArmId: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(CreatedByWorkspaceArmId))
+                {
+                    builder.Append("  createdByWorkspaceArmId: ");
+                    builder.AppendLine($"'{CreatedByWorkspaceArmId.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Error), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  error: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Error))
+                {
+                    builder.Append("  error: ");
+                    if (Error.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Error}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Error}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ExpiryOn), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  expiryTime: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ExpiryOn))
+                {
+                    builder.Append("  expiryTime: ");
+                    var formattedDateTimeString = TypeFormatters.ToString(ExpiryOn.Value, "o");
+                    builder.AppendLine($"'{formattedDateTimeString}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Group), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  group: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Group))
+                {
+                    builder.Append("  group: ");
+                    builder.AppendLine($"'{Group.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(IsSharedToAll), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  isSharedToAll: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(IsSharedToAll))
+                {
+                    builder.Append("  isSharedToAll: ");
+                    var boolValue = IsSharedToAll.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Metadata), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  metadata: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(Metadata))
+                {
+                    if (Metadata.Any())
+                    {
+                        builder.Append("  metadata: ");
+                        builder.AppendLine("{");
+                        foreach (var item in Metadata)
+                        {
+                            builder.Append($"    '{item.Key}': ");
+                            if (item.Value == null)
+                            {
+                                builder.Append("null");
+                                continue;
+                            }
+                            if (item.Value.Contains(Environment.NewLine))
+                            {
+                                builder.AppendLine("'''");
+                                builder.AppendLine($"{item.Value}'''");
+                            }
+                            else
+                            {
+                                builder.AppendLine($"'{item.Value}'");
+                            }
+                        }
+                        builder.AppendLine("  }");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(PeRequirement), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  peRequirement: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(PeRequirement))
+                {
+                    builder.Append("  peRequirement: ");
+                    builder.AppendLine($"'{PeRequirement.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(PeStatus), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  peStatus: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(PeStatus))
+                {
+                    builder.Append("  peStatus: ");
+                    builder.AppendLine($"'{PeStatus.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(SharedUserList), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  sharedUserList: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(SharedUserList))
+                {
+                    if (SharedUserList.Any())
+                    {
+                        builder.Append("  sharedUserList: ");
+                        builder.AppendLine("[");
+                        foreach (var item in SharedUserList)
+                        {
+                            if (item == null)
+                            {
+                                builder.Append("null");
+                                continue;
+                            }
+                            if (item.Contains(Environment.NewLine))
+                            {
+                                builder.AppendLine("    '''");
+                                builder.AppendLine($"{item}'''");
+                            }
+                            else
+                            {
+                                builder.AppendLine($"    '{item}'");
+                            }
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Target), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  target: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Target))
+                {
+                    builder.Append("  target: ");
+                    if (Target.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Target}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Target}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(UseWorkspaceManagedIdentity), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  useWorkspaceManagedIdentity: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(UseWorkspaceManagedIdentity))
+                {
+                    builder.Append("  useWorkspaceManagedIdentity: ");
+                    var boolValue = UseWorkspaceManagedIdentity.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<MachineLearningPatAuthTypeWorkspaceConnection>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<MachineLearningPatAuthTypeWorkspaceConnection>)this).GetFormatFromOptions(options) : options.Format;
@@ -316,6 +605,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(MachineLearningPatAuthTypeWorkspaceConnection)} does not support writing '{options.Format}' format.");
             }

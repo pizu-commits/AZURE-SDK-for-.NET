@@ -32,8 +32,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Specifies type. </summary>
+        [WirePath("dataType")]
         public FeatureDataType? DataType { get; set; }
         /// <summary> Specifies name. </summary>
+        [WirePath("featureName")]
         public string FeatureName { get; set; }
     }
 }

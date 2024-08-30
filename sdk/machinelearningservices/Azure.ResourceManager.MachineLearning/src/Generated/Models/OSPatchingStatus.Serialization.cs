@@ -8,6 +8,8 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -176,6 +178,107 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 serializedAdditionalRawData);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(PatchStatus), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  patchStatus: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(PatchStatus))
+                {
+                    builder.Append("  patchStatus: ");
+                    builder.AppendLine($"'{PatchStatus.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(LatestPatchOn), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  latestPatchTime: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(LatestPatchOn))
+                {
+                    builder.Append("  latestPatchTime: ");
+                    var formattedDateTimeString = TypeFormatters.ToString(LatestPatchOn.Value, "o");
+                    builder.AppendLine($"'{formattedDateTimeString}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(RebootPending), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  rebootPending: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(RebootPending))
+                {
+                    builder.Append("  rebootPending: ");
+                    var boolValue = RebootPending.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ScheduledRebootOn), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  scheduledRebootTime: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ScheduledRebootOn))
+                {
+                    builder.Append("  scheduledRebootTime: ");
+                    var formattedDateTimeString = TypeFormatters.ToString(ScheduledRebootOn.Value, "o");
+                    builder.AppendLine($"'{formattedDateTimeString}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(OSPatchingErrors), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  osPatchingErrors: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(OSPatchingErrors))
+                {
+                    if (OSPatchingErrors.Any())
+                    {
+                        builder.Append("  osPatchingErrors: ");
+                        builder.AppendLine("[");
+                        foreach (var item in OSPatchingErrors)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  osPatchingErrors: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<OSPatchingStatus>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<OSPatchingStatus>)this).GetFormatFromOptions(options) : options.Format;
@@ -184,6 +287,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(OSPatchingStatus)} does not support writing '{options.Format}' format.");
             }

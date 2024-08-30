@@ -8,6 +8,8 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -200,6 +202,143 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 serializedAdditionalRawData);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(BasePolicyName), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  basePolicyName: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(BasePolicyName))
+                {
+                    builder.Append("  basePolicyName: ");
+                    if (BasePolicyName.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{BasePolicyName}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{BasePolicyName}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(CompletionBlocklists), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  completionBlocklists: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(CompletionBlocklists))
+                {
+                    if (CompletionBlocklists.Any())
+                    {
+                        builder.Append("  completionBlocklists: ");
+                        builder.AppendLine("[");
+                        foreach (var item in CompletionBlocklists)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  completionBlocklists: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ContentFilters), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  contentFilters: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(ContentFilters))
+                {
+                    if (ContentFilters.Any())
+                    {
+                        builder.Append("  contentFilters: ");
+                        builder.AppendLine("[");
+                        foreach (var item in ContentFilters)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  contentFilters: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Mode), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  mode: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Mode))
+                {
+                    builder.Append("  mode: ");
+                    builder.AppendLine($"'{Mode.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(PromptBlocklists), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  promptBlocklists: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(PromptBlocklists))
+                {
+                    if (PromptBlocklists.Any())
+                    {
+                        builder.Append("  promptBlocklists: ");
+                        builder.AppendLine("[");
+                        foreach (var item in PromptBlocklists)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  promptBlocklists: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(PolicyType), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  type: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(PolicyType))
+                {
+                    builder.Append("  type: ");
+                    builder.AppendLine($"'{PolicyType.Value.ToString()}'");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<RaiPolicyProperties>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<RaiPolicyProperties>)this).GetFormatFromOptions(options) : options.Format;
@@ -208,6 +347,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(RaiPolicyProperties)} does not support writing '{options.Format}' format.");
             }

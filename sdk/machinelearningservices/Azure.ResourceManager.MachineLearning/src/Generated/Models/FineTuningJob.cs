@@ -90,10 +90,12 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// Please note <see cref="FineTuningVertical"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AzureOpenAiFineTuning"/> and <see cref="CustomModelFineTuning"/>.
         /// </summary>
+        [WirePath("fineTuningDetails")]
         public FineTuningVertical FineTuningDetails { get; set; }
         /// <summary> Instance types and other resources for the job. </summary>
         internal JobResources Resources { get; set; }
         /// <summary> List of instance types to choose from. </summary>
+        [WirePath("resources.instanceTypes")]
         public IList<string> ResourcesInstanceTypes
         {
             get
@@ -107,6 +109,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Queue settings for the job. </summary>
         internal JobQueueSettings QueueSettings { get; set; }
         /// <summary> Controls the compute job tier. </summary>
+        [WirePath("queueSettings.jobTier")]
         public JobTier? QueueJobTier
         {
             get => QueueSettings is null ? default : QueueSettings.JobTier;
@@ -123,6 +126,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// Please note <see cref="MachineLearningJobOutput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MachineLearningCustomModelJobOutput"/>, <see cref="MachineLearningFlowModelJobOutput"/>, <see cref="MachineLearningTableJobOutput"/>, <see cref="MachineLearningTritonModelJobOutput"/>, <see cref="MachineLearningUriFileJobOutput"/> and <see cref="MachineLearningUriFolderJobOutput"/>.
         /// </summary>
+        [WirePath("outputs")]
         public IDictionary<string, MachineLearningJobOutput> Outputs { get; }
     }
 }

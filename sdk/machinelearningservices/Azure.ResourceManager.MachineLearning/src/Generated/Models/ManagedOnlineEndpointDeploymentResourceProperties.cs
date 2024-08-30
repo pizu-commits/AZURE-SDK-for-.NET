@@ -34,8 +34,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Enum to determine endpoint compute type. </summary>
+        [WirePath("endpointComputeType")]
         public MachineLearningEndpointComputeType? EndpointComputeType { get; set; }
         /// <summary> Gets or sets the model. </summary>
+        [WirePath("model")]
         public string Model { get; set; }
     }
 }

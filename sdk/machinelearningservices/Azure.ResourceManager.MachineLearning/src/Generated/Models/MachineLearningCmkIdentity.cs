@@ -61,6 +61,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> UserAssignedIdentity to be used to fetch the encryption key from keyVault. </summary>
+        [WirePath("userAssignedIdentity")]
         public ResourceIdentifier UserAssignedIdentity { get; set; }
     }
 }

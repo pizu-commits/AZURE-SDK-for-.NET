@@ -75,8 +75,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the offer name. </summary>
+        [WirePath("offerName")]
         public string OfferName { get; set; }
         /// <summary> Gets or sets the publisher. </summary>
+        [WirePath("publisher")]
         public string Publisher { get; set; }
     }
 }

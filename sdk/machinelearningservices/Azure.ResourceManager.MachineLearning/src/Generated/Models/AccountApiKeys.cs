@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets the key 1. </summary>
+        [WirePath("key1")]
         public string Key1 { get; }
         /// <summary> Gets the key 2. </summary>
+        [WirePath("key2")]
         public string Key2 { get; }
     }
 }

@@ -33,10 +33,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Type of the image. Possible values are: docker - For docker images. azureml - For AzureML Environment images (custom and curated). </summary>
+        [WirePath("type")]
         public ImageType? ImageType { get; set; }
         /// <summary> Image reference URL if type is docker. Environment name if type is azureml. </summary>
+        [WirePath("reference")]
         public string Reference { get; set; }
         /// <summary> Version of image being used. If latest then skip this field. </summary>
+        [WirePath("version")]
         public string Version { get; set; }
         /// <summary>
         /// Additional Properties
@@ -68,6 +71,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("AdditionalProperties")]
         public IDictionary<string, BinaryData> AdditionalProperties { get; }
     }
 }

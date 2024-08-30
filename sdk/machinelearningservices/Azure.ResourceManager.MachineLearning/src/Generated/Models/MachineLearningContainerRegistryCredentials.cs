@@ -66,10 +66,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The location of the workspace ACR. </summary>
+        [WirePath("location")]
         public AzureLocation? Location { get; }
         /// <summary> Gets the passwords. </summary>
+        [WirePath("passwords")]
         public IReadOnlyList<MachineLearningPasswordDetail> Passwords { get; }
         /// <summary> The username of the workspace ACR. </summary>
+        [WirePath("username")]
         public string Username { get; }
     }
 }

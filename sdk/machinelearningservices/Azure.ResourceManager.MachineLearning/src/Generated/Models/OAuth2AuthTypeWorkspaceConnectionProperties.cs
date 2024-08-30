@@ -49,6 +49,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// ClientId and ClientSecret are required. Other properties are optional
         /// depending on each OAuth2 provider's implementation.
         /// </summary>
+        [WirePath("credentials")]
         public WorkspaceConnectionOAuth2 Credentials { get; set; }
     }
 }

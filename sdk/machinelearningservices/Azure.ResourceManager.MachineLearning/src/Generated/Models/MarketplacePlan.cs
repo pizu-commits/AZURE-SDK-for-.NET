@@ -64,10 +64,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The identifying name of the Offer of the Marketplace Plan. </summary>
+        [WirePath("offerId")]
         public string OfferId { get; }
         /// <summary> The identifying name of the Plan of the Marketplace Plan. </summary>
+        [WirePath("planId")]
         public string PlanId { get; }
         /// <summary> The identifying name of the Publisher of the Marketplace Plan. </summary>
+        [WirePath("publisherId")]
         public string PublisherId { get; }
     }
 }

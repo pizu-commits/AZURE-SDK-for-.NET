@@ -87,6 +87,7 @@ namespace Azure.ResourceManager.MachineLearning
         /// Please note <see cref="EndpointResourceProperties"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ContentSafetyEndpointResourceProperties"/>, <see cref="OpenAIEndpointResourceProperties"/>, <see cref="SpeechEndpointResourceProperties"/>, <see cref="ManagedOnlineEndpointResourceProperties"/> and <see cref="ServerlessEndpointResourceProperties"/>.
         /// </summary>
+        [WirePath("properties")]
         public EndpointResourceProperties Properties { get; set; }
     }
 }

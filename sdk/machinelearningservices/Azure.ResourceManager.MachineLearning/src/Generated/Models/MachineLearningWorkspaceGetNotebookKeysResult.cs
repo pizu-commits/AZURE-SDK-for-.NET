@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The primary access key of the Notebook. </summary>
+        [WirePath("primaryAccessKey")]
         public string PrimaryAccessKey { get; }
         /// <summary> The secondary access key of the Notebook. </summary>
+        [WirePath("secondaryAccessKey")]
         public string SecondaryAccessKey { get; }
     }
 }

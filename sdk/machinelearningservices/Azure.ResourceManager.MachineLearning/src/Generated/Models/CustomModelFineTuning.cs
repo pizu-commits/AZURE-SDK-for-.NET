@@ -59,6 +59,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> HyperParameters for fine tuning custom model. </summary>
+        [WirePath("hyperParameters")]
         public IDictionary<string, string> HyperParameters { get; set; }
     }
 }

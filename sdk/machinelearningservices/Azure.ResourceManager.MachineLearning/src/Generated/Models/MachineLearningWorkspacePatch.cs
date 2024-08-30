@@ -103,26 +103,36 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Managed service identity (system assigned and/or user assigned identities). </summary>
+        [WirePath("identity")]
         public ManagedServiceIdentity Identity { get; set; }
         /// <summary> Optional. This field is required to be implemented by the RP because AML is supporting more than one tier. </summary>
+        [WirePath("sku")]
         public MachineLearningSku Sku { get; set; }
         /// <summary> The resource tags for the machine learning workspace. </summary>
+        [WirePath("tags")]
         public IDictionary<string, string> Tags { get; }
         /// <summary> Gets or sets the allow role assignment on rg. </summary>
+        [WirePath("properties.allowRoleAssignmentOnRG")]
         public bool? AllowRoleAssignmentOnRG { get; set; }
         /// <summary> ARM id of the application insights associated with this workspace. </summary>
+        [WirePath("properties.applicationInsights")]
         public string ApplicationInsights { get; set; }
         /// <summary> ARM id of the container registry associated with this workspace. </summary>
+        [WirePath("properties.containerRegistry")]
         public string ContainerRegistry { get; set; }
         /// <summary> The description of this workspace. </summary>
+        [WirePath("properties.description")]
         public string Description { get; set; }
         /// <summary> Gets or sets the enable data isolation. </summary>
+        [WirePath("properties.enableDataIsolation")]
         public bool? EnableDataIsolation { get; set; }
         /// <summary> Flag to tell if SoftwareBillOfMaterials should be enabled for this workspace. </summary>
+        [WirePath("properties.enableSoftwareBillOfMaterials")]
         public bool? EnableSoftwareBillOfMaterials { get; set; }
         /// <summary> Gets or sets the encryption. </summary>
         internal EncryptionUpdateProperties Encryption { get; set; }
         /// <summary> Gets or sets the key identifier. </summary>
+        [WirePath("properties.encryption.keyVaultProperties.keyIdentifier")]
         public string KeyIdentifier
         {
             get => Encryption is null ? default : Encryption.KeyIdentifier;
@@ -130,24 +140,33 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Settings for feature store type workspace. </summary>
+        [WirePath("properties.featureStoreSettings")]
         public FeatureStoreSettings FeatureStoreSettings { get; set; }
         /// <summary> The friendly name for this workspace. This name in mutable. </summary>
+        [WirePath("properties.friendlyName")]
         public string FriendlyName { get; set; }
         /// <summary> The compute name for image build. </summary>
+        [WirePath("properties.imageBuildCompute")]
         public string ImageBuildCompute { get; set; }
         /// <summary> The list of IPv4 addresses that are allowed to access the workspace. </summary>
+        [WirePath("properties.ipAllowlist")]
         public IList<string> IPAllowlist { get; }
         /// <summary> Managed Network settings for a machine learning workspace. </summary>
+        [WirePath("properties.managedNetwork")]
         public ManagedNetworkSettings ManagedNetwork { get; set; }
         /// <summary> The user assigned identity resource id that represents the workspace identity. </summary>
+        [WirePath("properties.primaryUserAssignedIdentity")]
         public string PrimaryUserAssignedIdentity { get; set; }
         /// <summary> Whether requests from Public Network are allowed. </summary>
+        [WirePath("properties.publicNetworkAccess")]
         public MachineLearningPublicNetworkAccessType? PublicNetworkAccessType { get; set; }
         /// <summary> Settings for serverless compute in a workspace. </summary>
+        [WirePath("properties.serverlessComputeSettings")]
         public ServerlessComputeSettings ServerlessComputeSettings { get; set; }
         /// <summary> The service managed resource settings. </summary>
         internal ServiceManagedResourcesSettings ServiceManagedResourcesSettings { get; set; }
         /// <summary> Gets or sets the cosmos db collections throughput. </summary>
+        [WirePath("properties.serviceManagedResourcesSettings.cosmosDb.collectionsThroughput")]
         public int? CosmosDbCollectionsThroughput
         {
             get => ServiceManagedResourcesSettings is null ? default : ServiceManagedResourcesSettings.CosmosDbCollectionsThroughput;
@@ -160,8 +179,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Retention time in days after workspace get soft deleted. </summary>
+        [WirePath("properties.softDeleteRetentionInDays")]
         public int? SoftDeleteRetentionInDays { get; set; }
         /// <summary> Enabling v1_legacy_mode may prevent you from using features provided by the v2 API. </summary>
+        [WirePath("properties.v1LegacyMode")]
         public bool? V1LegacyMode { get; set; }
     }
 }

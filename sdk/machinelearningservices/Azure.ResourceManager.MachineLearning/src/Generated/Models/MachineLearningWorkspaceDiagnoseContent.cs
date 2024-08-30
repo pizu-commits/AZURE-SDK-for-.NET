@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the value. </summary>
+        [WirePath("value")]
         public MachineLearningWorkspaceDiagnoseProperties Value { get; set; }
     }
 }

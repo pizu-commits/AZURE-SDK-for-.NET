@@ -8,6 +8,7 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -152,6 +153,135 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 versionUpgradeOption);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Model), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  model: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Model))
+                {
+                    builder.Append("  model: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, Model, options, 2, false, "  model: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(RaiPolicyName), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  raiPolicyName: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(RaiPolicyName))
+                {
+                    builder.Append("  raiPolicyName: ");
+                    if (RaiPolicyName.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{RaiPolicyName}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{RaiPolicyName}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(VersionUpgradeOption), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  versionUpgradeOption: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(VersionUpgradeOption))
+                {
+                    builder.Append("  versionUpgradeOption: ");
+                    builder.AppendLine($"'{VersionUpgradeOption.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(FailureReason), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  failureReason: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(FailureReason))
+                {
+                    builder.Append("  failureReason: ");
+                    if (FailureReason.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{FailureReason}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{FailureReason}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ProvisioningState), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  provisioningState: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ProvisioningState))
+                {
+                    builder.Append("  provisioningState: ");
+                    builder.AppendLine($"'{ProvisioningState.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(EndpointDeploymentResourcePropertiesType), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  type: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(EndpointDeploymentResourcePropertiesType))
+                {
+                    builder.Append("  type: ");
+                    if (EndpointDeploymentResourcePropertiesType.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{EndpointDeploymentResourcePropertiesType}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{EndpointDeploymentResourcePropertiesType}'");
+                    }
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<OpenAIEndpointDeploymentResourceProperties>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<OpenAIEndpointDeploymentResourceProperties>)this).GetFormatFromOptions(options) : options.Format;
@@ -160,6 +290,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(OpenAIEndpointDeploymentResourceProperties)} does not support writing '{options.Format}' format.");
             }

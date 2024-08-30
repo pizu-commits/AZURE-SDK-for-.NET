@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the name. </summary>
+        [WirePath("name")]
         public string Name { get; set; }
         /// <summary> Properties of Cognitive Services RaiBlocklist Item. </summary>
+        [WirePath("properties")]
         public RaiBlocklistItemProperties Properties { get; set; }
     }
 }

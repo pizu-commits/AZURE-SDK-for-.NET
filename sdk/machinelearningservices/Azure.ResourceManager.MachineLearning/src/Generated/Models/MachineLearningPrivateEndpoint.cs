@@ -63,8 +63,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> e.g. /subscriptions/{networkSubscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Network/privateEndpoints/{privateEndpointName}. </summary>
+        [WirePath("id")]
         public ResourceIdentifier Id { get; }
         /// <summary> The subnetId that the private endpoint is connected to. </summary>
+        [WirePath("subnetArmId")]
         public ResourceIdentifier SubnetArmId { get; }
     }
 }

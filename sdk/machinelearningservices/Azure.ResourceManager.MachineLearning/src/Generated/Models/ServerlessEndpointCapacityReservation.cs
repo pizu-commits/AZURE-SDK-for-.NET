@@ -72,8 +72,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the capacity reservation group id. </summary>
+        [WirePath("capacityReservationGroupId")]
         public string CapacityReservationGroupId { get; set; }
         /// <summary> Gets or sets the endpoint reserved capacity. </summary>
+        [WirePath("endpointReservedCapacity")]
         public int? EndpointReservedCapacity { get; set; }
     }
 }

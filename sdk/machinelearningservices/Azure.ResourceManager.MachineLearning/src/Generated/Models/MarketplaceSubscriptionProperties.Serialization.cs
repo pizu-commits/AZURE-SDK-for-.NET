@@ -8,6 +8,7 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -138,6 +139,89 @@ namespace Azure.ResourceManager.MachineLearning.Models
             return new MarketplaceSubscriptionProperties(marketplacePlan, marketplaceSubscriptionStatus, modelId, provisioningState, serializedAdditionalRawData);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MarketplacePlan), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  marketplacePlan: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MarketplacePlan))
+                {
+                    builder.Append("  marketplacePlan: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, MarketplacePlan, options, 2, false, "  marketplacePlan: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MarketplaceSubscriptionStatus), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  marketplaceSubscriptionStatus: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MarketplaceSubscriptionStatus))
+                {
+                    builder.Append("  marketplaceSubscriptionStatus: ");
+                    builder.AppendLine($"'{MarketplaceSubscriptionStatus.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ModelId), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  modelId: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ModelId))
+                {
+                    builder.Append("  modelId: ");
+                    if (ModelId.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{ModelId}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{ModelId}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ProvisioningState), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  provisioningState: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ProvisioningState))
+                {
+                    builder.Append("  provisioningState: ");
+                    builder.AppendLine($"'{ProvisioningState.Value.ToString()}'");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<MarketplaceSubscriptionProperties>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<MarketplaceSubscriptionProperties>)this).GetFormatFromOptions(options) : options.Format;
@@ -146,6 +230,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(MarketplaceSubscriptionProperties)} does not support writing '{options.Format}' format.");
             }

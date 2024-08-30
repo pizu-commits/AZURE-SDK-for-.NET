@@ -93,10 +93,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("stackMetaLearnerKWargs")]
         public BinaryData StackMetaLearnerKWargs { get; set; }
         /// <summary> Specifies the proportion of the training set (when choosing train and validation type of training) to be reserved for training the meta-learner. Default value is 0.2. </summary>
+        [WirePath("stackMetaLearnerTrainPercentage")]
         public double? StackMetaLearnerTrainPercentage { get; set; }
         /// <summary> The meta-learner is a model trained on the output of the individual heterogeneous models. </summary>
+        [WirePath("stackMetaLearnerType")]
         public MachineLearningStackMetaLearnerType? StackMetaLearnerType { get; set; }
     }
 }

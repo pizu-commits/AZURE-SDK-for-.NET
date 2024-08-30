@@ -95,10 +95,12 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// The byok cosmosdb account that customer brings to store customer's data
         /// with encryption
         /// </summary>
+        [WirePath("cosmosDbResourceId")]
         public ResourceIdentifier CosmosDBResourceId { get; set; }
         /// <summary> Identity to be used with the keyVault. </summary>
         internal MachineLearningCmkIdentity Identity { get; set; }
         /// <summary> UserAssignedIdentity to be used to fetch the encryption key from keyVault. </summary>
+        [WirePath("identity.userAssignedIdentity")]
         public ResourceIdentifier UserAssignedIdentity
         {
             get => Identity is null ? default : Identity.UserAssignedIdentity;
@@ -111,18 +113,22 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> KeyVault details to do the encryption. </summary>
+        [WirePath("keyVaultProperties")]
         public MachineLearningEncryptionKeyVaultProperties KeyVaultProperties { get; set; }
         /// <summary>
         /// The byok search account that customer brings to store customer's data
         /// with encryption
         /// </summary>
+        [WirePath("searchAccountResourceId")]
         public ResourceIdentifier SearchAccountResourceId { get; set; }
         /// <summary> Indicates whether or not the encryption is enabled for the workspace. </summary>
+        [WirePath("status")]
         public MachineLearningEncryptionStatus Status { get; set; }
         /// <summary>
         /// The byok storage account that customer brings to store customer's data
         /// with encryption
         /// </summary>
+        [WirePath("storageAccountResourceId")]
         public ResourceIdentifier StorageAccountResourceId { get; set; }
     }
 }

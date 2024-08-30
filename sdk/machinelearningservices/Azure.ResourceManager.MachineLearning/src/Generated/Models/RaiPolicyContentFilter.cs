@@ -68,14 +68,19 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Level at which content is filtered. </summary>
+        [WirePath("allowedContentLevel")]
         public AllowedContentLevel? AllowedContentLevel { get; set; }
         /// <summary> If blocking would occur. </summary>
+        [WirePath("blocking")]
         public bool? Blocking { get; set; }
         /// <summary> If the ContentFilter is enabled. </summary>
+        [WirePath("enabled")]
         public bool? Enabled { get; set; }
         /// <summary> Name of ContentFilter. </summary>
+        [WirePath("name")]
         public string Name { get; set; }
         /// <summary> Content source to apply the Content Filters. </summary>
+        [WirePath("source")]
         public RaiPolicyContentSource? Source { get; set; }
     }
 }

@@ -66,12 +66,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets the fqdn. </summary>
+        [WirePath("fqdn")]
         public string Fqdn { get; }
         /// <summary> Gets the is private link enabled. </summary>
+        [WirePath("isPrivateLinkEnabled")]
         public bool? IsPrivateLinkEnabled { get; }
         /// <summary> The error that occurs when preparing notebook. </summary>
+        [WirePath("notebookPreparationError")]
         public MachineLearningNotebookPreparationError NotebookPreparationError { get; }
         /// <summary> the data plane resourceId that used to initialize notebook component. </summary>
+        [WirePath("resourceId")]
         public string ResourceId { get; }
     }
 }

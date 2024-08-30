@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The name of the virtual machine size. </summary>
+        [WirePath("targetVMSize")]
         public string TargetVmSize { get; set; }
     }
 }

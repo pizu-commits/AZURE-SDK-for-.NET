@@ -33,6 +33,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Service Tag destination for a Service Tag Outbound Rule for the managed network of a machine learning workspace. </summary>
+        [WirePath("destination")]
         public ServiceTagDestination Destination { get; set; }
     }
 }

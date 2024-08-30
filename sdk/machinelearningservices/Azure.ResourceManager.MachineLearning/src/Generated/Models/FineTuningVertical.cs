@@ -100,20 +100,24 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> [Required] Enum to determine the type of fine tuning. </summary>
         internal ModelProvider ModelProvider { get; set; }
         /// <summary> [Required] Fine tuning task type. </summary>
+        [WirePath("taskType")]
         public FineTuningTaskType TaskType { get; set; }
         /// <summary>
         /// [Required] Training data for fine tuning.
         /// Please note <see cref="MachineLearningJobInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MachineLearningCustomModelJobInput"/>, <see cref="MachineLearningLiteralJobInput"/>, <see cref="MachineLearningFlowModelJobInput"/>, <see cref="MachineLearningTableJobInput"/>, <see cref="MachineLearningTritonModelJobInput"/>, <see cref="MachineLearningUriFileJobInput"/> and <see cref="MachineLearningUriFolderJobInput"/>.
         /// </summary>
+        [WirePath("trainingData")]
         public MachineLearningJobInput TrainingData { get; set; }
         /// <summary>
         /// Validation data for fine tuning.
         /// Please note <see cref="MachineLearningJobInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MachineLearningCustomModelJobInput"/>, <see cref="MachineLearningLiteralJobInput"/>, <see cref="MachineLearningFlowModelJobInput"/>, <see cref="MachineLearningTableJobInput"/>, <see cref="MachineLearningTritonModelJobInput"/>, <see cref="MachineLearningUriFileJobInput"/> and <see cref="MachineLearningUriFolderJobInput"/>.
         /// </summary>
+        [WirePath("validationData")]
         public MachineLearningJobInput ValidationData { get; set; }
         /// <summary> [Required] Input model for fine tuning. </summary>
+        [WirePath("model")]
         public MachineLearningFlowModelJobInput Model { get; set; }
     }
 }

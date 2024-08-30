@@ -84,26 +84,37 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The capabilities. </summary>
+        [WirePath("capabilities")]
         public IReadOnlyDictionary<string, string> Capabilities { get; }
         /// <summary> Gets the deprecation. </summary>
+        [WirePath("deprecation")]
         public EndpointModelDeprecationProperties Deprecation { get; }
         /// <summary> The capabilities for finetune models. </summary>
+        [WirePath("finetuneCapabilities")]
         public IReadOnlyDictionary<string, string> FinetuneCapabilities { get; }
         /// <summary> Deployment model format. </summary>
+        [WirePath("format")]
         public string Format { get; }
         /// <summary> If the model is default version. </summary>
+        [WirePath("isDefaultVersion")]
         public bool? IsDefaultVersion { get; }
         /// <summary> Model lifecycle status. </summary>
+        [WirePath("lifecycleStatus")]
         public ModelLifecycleStatus? LifecycleStatus { get; }
         /// <summary> The max capacity. </summary>
+        [WirePath("maxCapacity")]
         public int? MaxCapacity { get; }
         /// <summary> Deployment model name. </summary>
+        [WirePath("name")]
         public string Name { get; }
         /// <summary> The list of Model Sku. </summary>
+        [WirePath("skus")]
         public IReadOnlyList<EndpointModelSkuProperties> Skus { get; }
         /// <summary> Metadata pertaining to creation and last modification of the resource. </summary>
+        [WirePath("systemData")]
         public SystemData SystemData { get; }
         /// <summary> Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API. </summary>
+        [WirePath("version")]
         public string Version { get; }
     }
 }

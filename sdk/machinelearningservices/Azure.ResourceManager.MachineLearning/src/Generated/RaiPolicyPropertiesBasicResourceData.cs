@@ -80,6 +80,7 @@ namespace Azure.ResourceManager.MachineLearning
         }
 
         /// <summary> Azure OpenAI Content Filters properties. </summary>
+        [WirePath("properties")]
         public RaiPolicyProperties Properties { get; set; }
     }
 }

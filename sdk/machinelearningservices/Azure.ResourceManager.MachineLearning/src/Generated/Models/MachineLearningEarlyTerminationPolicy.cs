@@ -68,8 +68,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Number of intervals by which to delay the first evaluation. </summary>
+        [WirePath("delayEvaluation")]
         public int? DelayEvaluation { get; set; }
         /// <summary> Interval (number of runs) between policy evaluations. </summary>
+        [WirePath("evaluationInterval")]
         public int? EvaluationInterval { get; set; }
         /// <summary> [Required] Name of policy configuration. </summary>
         internal EarlyTerminationPolicyType PolicyType { get; set; }

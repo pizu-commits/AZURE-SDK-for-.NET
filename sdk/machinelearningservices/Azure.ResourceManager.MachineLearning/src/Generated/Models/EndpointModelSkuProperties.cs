@@ -73,16 +73,22 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets the capacity. </summary>
+        [WirePath("capacity")]
         public EndpointModelSkuCapacityProperties Capacity { get; }
         /// <summary> The list of ARM id for the connection support this SKU. </summary>
+        [WirePath("connectionIds")]
         public IReadOnlyList<ResourceIdentifier> ConnectionIds { get; }
         /// <summary> The datetime of deprecation of the model SKU. </summary>
+        [WirePath("deprecationDate")]
         public DateTimeOffset? DeprecationOn { get; }
         /// <summary> The name of the model SKU. </summary>
+        [WirePath("name")]
         public string Name { get; }
         /// <summary> Gets the rate limits. </summary>
+        [WirePath("rateLimits")]
         public IReadOnlyList<EndpointModelSkuRateLimitProperties> RateLimits { get; }
         /// <summary> The usage name of the model SKU. </summary>
+        [WirePath("usageName")]
         public string UsageName { get; }
     }
 }

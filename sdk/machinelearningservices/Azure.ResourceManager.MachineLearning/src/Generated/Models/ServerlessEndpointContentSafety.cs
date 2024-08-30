@@ -67,6 +67,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Specifies the status of content safety. </summary>
+        [WirePath("contentSafetyStatus")]
         public ContentSafetyStatus ContentSafetyStatus { get; set; }
     }
 }

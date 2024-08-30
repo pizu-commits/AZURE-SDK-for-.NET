@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the collections throughput. </summary>
+        [WirePath("collectionsThroughput")]
         public int? CollectionsThroughput { get; set; }
     }
 }

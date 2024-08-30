@@ -32,8 +32,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> DockerCredential user password. </summary>
+        [WirePath("password")]
         public string Password { get; }
         /// <summary> DockerCredential user name. </summary>
+        [WirePath("userName")]
         public string UserName { get; }
     }
 }

@@ -64,10 +64,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Scaling factor for the learning rate. A smaller learning rate may be useful to avoid over fitting. </summary>
+        [WirePath("learningRateMultiplier")]
         public double? LearningRateMultiplier { get; set; }
         /// <summary> Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. </summary>
+        [WirePath("batchSize")]
         public int? BatchSize { get; set; }
         /// <summary> The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. </summary>
+        [WirePath("nEpochs")]
         public int? NEpochs { get; set; }
     }
 }

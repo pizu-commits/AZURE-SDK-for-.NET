@@ -70,6 +70,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the model id. </summary>
+        [WirePath("modelId")]
         public string ModelId { get; set; }
     }
 }

@@ -73,8 +73,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Dictionary of &lt;string&gt;. </summary>
+        [WirePath("headers")]
         public IReadOnlyDictionary<string, string> Headers { get; }
         /// <summary> Gets or sets the uri. </summary>
+        [WirePath("uri")]
         public Uri Uri { get; set; }
     }
 }

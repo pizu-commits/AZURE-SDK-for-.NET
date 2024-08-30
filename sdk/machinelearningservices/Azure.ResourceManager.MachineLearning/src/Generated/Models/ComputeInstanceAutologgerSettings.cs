@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Indicates whether mlflow autologger is enabled for notebooks. </summary>
+        [WirePath("mlflowAutologger")]
         public MachineLearningFlowAutoLogger? MlflowAutologger { get; set; }
     }
 }

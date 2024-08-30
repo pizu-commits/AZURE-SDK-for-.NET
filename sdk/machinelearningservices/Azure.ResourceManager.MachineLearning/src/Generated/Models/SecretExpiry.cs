@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Indicates if the secret is expirable. </summary>
+        [WirePath("expirableSecret")]
         public bool? ExpirableSecret { get; set; }
         /// <summary> Number of hours after which the secret will expire. </summary>
+        [WirePath("expireAfterHours")]
         public int? ExpireAfterHours { get; set; }
     }
 }

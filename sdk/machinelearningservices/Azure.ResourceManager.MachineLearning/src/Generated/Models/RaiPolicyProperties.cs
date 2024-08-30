@@ -73,16 +73,22 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Name of the base Content Filters. </summary>
+        [WirePath("basePolicyName")]
         public string BasePolicyName { get; set; }
         /// <summary> Gets the completion blocklists. </summary>
+        [WirePath("completionBlocklists")]
         public IList<RaiBlocklistConfig> CompletionBlocklists { get; }
         /// <summary> Gets the content filters. </summary>
+        [WirePath("contentFilters")]
         public IList<RaiPolicyContentFilter> ContentFilters { get; }
         /// <summary> Content Filters mode. </summary>
+        [WirePath("mode")]
         public RaiPolicyMode? Mode { get; set; }
         /// <summary> Gets the prompt blocklists. </summary>
+        [WirePath("promptBlocklists")]
         public IList<RaiBlocklistConfig> PromptBlocklists { get; }
         /// <summary> Content Filters policy type. </summary>
+        [WirePath("type")]
         public RaiPolicyType? PolicyType { get; set; }
     }
 }

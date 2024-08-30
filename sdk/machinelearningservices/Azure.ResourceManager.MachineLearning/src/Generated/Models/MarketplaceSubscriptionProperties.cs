@@ -76,12 +76,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Marketplace Plan associated with the Marketplace Subscription. </summary>
+        [WirePath("marketplacePlan")]
         public MarketplacePlan MarketplacePlan { get; }
         /// <summary> Current status of the Marketplace Subscription. </summary>
+        [WirePath("marketplaceSubscriptionStatus")]
         public MarketplaceSubscriptionStatus? MarketplaceSubscriptionStatus { get; }
         /// <summary> [Required] Target Marketplace Model ID to create a Marketplace Subscription for. </summary>
+        [WirePath("modelId")]
         public string ModelId { get; set; }
         /// <summary> Provisioning State of the Marketplace Subscription. </summary>
+        [WirePath("provisioningState")]
         public MarketplaceSubscriptionProvisioningState? ProvisioningState { get; }
     }
 }

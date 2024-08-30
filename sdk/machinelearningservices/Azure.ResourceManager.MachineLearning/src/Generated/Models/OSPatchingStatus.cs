@@ -69,14 +69,19 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The os patching status. </summary>
+        [WirePath("patchStatus")]
         public PatchStatus? PatchStatus { get; }
         /// <summary> Time of the latest os patching. </summary>
+        [WirePath("latestPatchTime")]
         public DateTimeOffset? LatestPatchOn { get; }
         /// <summary> Specifies whether this compute instance is pending for reboot to finish os patching. </summary>
+        [WirePath("rebootPending")]
         public bool? RebootPending { get; }
         /// <summary> Time of scheduled reboot. </summary>
+        [WirePath("scheduledRebootTime")]
         public DateTimeOffset? ScheduledRebootOn { get; }
         /// <summary> Collection of errors encountered when doing os patching. </summary>
+        [WirePath("osPatchingErrors")]
         public IReadOnlyList<MachineLearningError> OSPatchingErrors { get; }
     }
 }

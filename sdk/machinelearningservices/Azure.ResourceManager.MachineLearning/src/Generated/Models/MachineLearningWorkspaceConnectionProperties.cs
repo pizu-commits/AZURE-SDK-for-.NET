@@ -92,28 +92,40 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Authentication type of the connection target. </summary>
         internal MachineLearningConnectionAuthType AuthType { get; set; }
         /// <summary> Category of the connection. </summary>
+        [WirePath("category")]
         public MachineLearningConnectionCategory? Category { get; set; }
         /// <summary> Gets the created by workspace arm id. </summary>
+        [WirePath("createdByWorkspaceArmId")]
         public ResourceIdentifier CreatedByWorkspaceArmId { get; }
         /// <summary> Gets or sets the error. </summary>
+        [WirePath("error")]
         public string Error { get; set; }
         /// <summary> Gets or sets the expiry on. </summary>
+        [WirePath("expiryTime")]
         public DateTimeOffset? ExpiryOn { get; set; }
         /// <summary> Group based on connection category. </summary>
+        [WirePath("group")]
         public ConnectionGroup? Group { get; }
         /// <summary> Gets or sets the is shared to all. </summary>
+        [WirePath("isSharedToAll")]
         public bool? IsSharedToAll { get; set; }
         /// <summary> Store user metadata for this connection. </summary>
+        [WirePath("metadata")]
         public IDictionary<string, string> Metadata { get; }
         /// <summary> Gets or sets the pe requirement. </summary>
+        [WirePath("peRequirement")]
         public ManagedPERequirement? PeRequirement { get; set; }
         /// <summary> Gets or sets the pe status. </summary>
+        [WirePath("peStatus")]
         public ManagedPEStatus? PeStatus { get; set; }
         /// <summary> Gets the shared user list. </summary>
+        [WirePath("sharedUserList")]
         public IList<string> SharedUserList { get; }
         /// <summary> Gets or sets the target. </summary>
+        [WirePath("target")]
         public string Target { get; set; }
         /// <summary> Gets or sets the use workspace managed identity. </summary>
+        [WirePath("useWorkspaceManagedIdentity")]
         public bool? UseWorkspaceManagedIdentity { get; set; }
     }
 }

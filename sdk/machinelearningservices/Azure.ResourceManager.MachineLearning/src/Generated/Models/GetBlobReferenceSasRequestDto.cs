@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Id of the asset to be accessed. </summary>
+        [WirePath("assetId")]
         public string AssetId { get; set; }
         /// <summary> Blob uri of the asset to be accessed. </summary>
+        [WirePath("blobUri")]
         public Uri BlobUri { get; set; }
     }
 }

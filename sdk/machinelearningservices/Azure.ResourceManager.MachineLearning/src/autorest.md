@@ -8,7 +8,7 @@ azure-arm: true
 library-name: MachineLearning
 namespace: Azure.ResourceManager.MachineLearning
 require: https://github.com/Azure/azure-rest-api-specs/blob/edb7904bfead536c7aa9716d44dba15bdabd0b00/specification/machinelearningservices/resource-manager/readme.md
-#tag: package-preview-2023-06
+#tag: package-preview-2024-07
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
@@ -21,6 +21,7 @@ modelerfour:
   flatten-payloads: false
 deserialize-null-collection-as-null-value: true
 use-model-reader-writer: true
+enable-bicep-serialization: true
 
 #mgmt-debug:
 #  show-serialized-names: true

@@ -32,8 +32,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The specific type of random algorithm. </summary>
+        [WirePath("rule")]
         public RandomSamplingAlgorithmRule? Rule { get; set; }
         /// <summary> An optional integer to use as the seed for random number generation. </summary>
+        [WirePath("seed")]
         public int? Seed { get; set; }
     }
 }

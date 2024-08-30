@@ -45,6 +45,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Gets or sets the credentials. </summary>
         internal WorkspaceConnectionSharedAccessSignature Credentials { get; set; }
         /// <summary> Gets or sets the credentials sas. </summary>
+        [WirePath("credentials.sas")]
         public string CredentialsSas
         {
             get => Credentials is null ? default : Credentials.Sas;

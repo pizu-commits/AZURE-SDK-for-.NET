@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Description of the block list. </summary>
+        [WirePath("description")]
         public string Description { get; set; }
     }
 }

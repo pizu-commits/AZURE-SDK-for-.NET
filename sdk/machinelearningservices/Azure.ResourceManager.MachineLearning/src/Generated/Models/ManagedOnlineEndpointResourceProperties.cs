@@ -56,16 +56,22 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Enum to determine endpoint authentication mode. </summary>
+        [WirePath("authMode")]
         public MachineLearningEndpointAuthMode? AuthMode { get; set; }
         /// <summary> Gets or sets the compute. </summary>
+        [WirePath("compute")]
         public string Compute { get; set; }
         /// <summary> Gets or sets the description. </summary>
+        [WirePath("description")]
         public string Description { get; set; }
         /// <summary> Dictionary of &lt;integer&gt;. </summary>
+        [WirePath("mirrorTraffic")]
         public IDictionary<string, int> MirrorTraffic { get; }
         /// <summary> Gets or sets the scoring uri. </summary>
+        [WirePath("scoringUri")]
         public Uri ScoringUri { get; set; }
         /// <summary> Dictionary of &lt;integer&gt;. </summary>
+        [WirePath("traffic")]
         public IDictionary<string, int> Traffic { get; }
     }
 }

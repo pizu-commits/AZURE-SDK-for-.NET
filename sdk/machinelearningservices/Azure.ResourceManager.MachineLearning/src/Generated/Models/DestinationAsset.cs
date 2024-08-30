@@ -64,10 +64,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Destination asset name. </summary>
+        [WirePath("destinationName")]
         public string DestinationName { get; set; }
         /// <summary> Destination asset version. </summary>
+        [WirePath("destinationVersion")]
         public string DestinationVersion { get; set; }
         /// <summary> Destination registry name. </summary>
+        [WirePath("registryName")]
         public string RegistryName { get; set; }
     }
 }

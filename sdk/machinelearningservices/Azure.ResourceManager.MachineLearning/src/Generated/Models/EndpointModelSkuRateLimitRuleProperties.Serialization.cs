@@ -8,6 +8,8 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -180,6 +182,128 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 serializedAdditionalRawData);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Count), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  count: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Count))
+                {
+                    builder.Append("  count: ");
+                    builder.AppendLine($"'{Count.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(DynamicThrottlingEnabled), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  dynamicThrottlingEnabled: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(DynamicThrottlingEnabled))
+                {
+                    builder.Append("  dynamicThrottlingEnabled: ");
+                    var boolValue = DynamicThrottlingEnabled.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Key), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  key: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Key))
+                {
+                    builder.Append("  key: ");
+                    if (Key.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Key}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Key}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MatchPatterns), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  matchPatterns: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(MatchPatterns))
+                {
+                    if (MatchPatterns.Any())
+                    {
+                        builder.Append("  matchPatterns: ");
+                        builder.AppendLine("[");
+                        foreach (var item in MatchPatterns)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  matchPatterns: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MinCount), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  minCount: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MinCount))
+                {
+                    builder.Append("  minCount: ");
+                    builder.AppendLine($"'{MinCount.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(RenewalPeriod), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  renewalPeriod: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(RenewalPeriod))
+                {
+                    builder.Append("  renewalPeriod: ");
+                    builder.AppendLine($"'{RenewalPeriod.Value.ToString()}'");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<EndpointModelSkuRateLimitRuleProperties>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<EndpointModelSkuRateLimitRuleProperties>)this).GetFormatFromOptions(options) : options.Format;
@@ -188,6 +312,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(EndpointModelSkuRateLimitRuleProperties)} does not support writing '{options.Format}' format.");
             }

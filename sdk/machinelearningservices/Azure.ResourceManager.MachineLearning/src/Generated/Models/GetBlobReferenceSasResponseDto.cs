@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Blob reference for consumption details. </summary>
+        [WirePath("blobReferenceForConsumption")]
         public GetBlobReferenceForConsumptionDto BlobReferenceForConsumption { get; }
     }
 }

@@ -62,6 +62,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Gets or sets the cosmos db. </summary>
         internal CosmosDbSettings CosmosDb { get; set; }
         /// <summary> Gets or sets the cosmos db collections throughput. </summary>
+        [WirePath("cosmosDb.collectionsThroughput")]
         public int? CosmosDbCollectionsThroughput
         {
             get => CosmosDb is null ? default : CosmosDb.CollectionsThroughput;

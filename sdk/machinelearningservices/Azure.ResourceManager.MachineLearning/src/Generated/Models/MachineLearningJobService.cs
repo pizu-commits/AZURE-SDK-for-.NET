@@ -78,10 +78,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Url for endpoint. </summary>
+        [WirePath("endpoint")]
         public string Endpoint { get; set; }
         /// <summary> Any error in the service. </summary>
+        [WirePath("errorMessage")]
         public string ErrorMessage { get; }
         /// <summary> Endpoint type. </summary>
+        [WirePath("jobServiceType")]
         public string JobServiceType { get; set; }
         /// <summary>
         /// Nodes that user would like to start the service on.
@@ -89,12 +92,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// Please note <see cref="JobNodes"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="JobAllNodes"/>.
         /// </summary>
+        [WirePath("nodes")]
         public JobNodes Nodes { get; set; }
         /// <summary> Port for endpoint. </summary>
+        [WirePath("port")]
         public int? Port { get; set; }
         /// <summary> Additional properties to set on the endpoint. </summary>
+        [WirePath("properties")]
         public IDictionary<string, string> Properties { get; set; }
         /// <summary> Status of endpoint. </summary>
+        [WirePath("status")]
         public string Status { get; }
     }
 }

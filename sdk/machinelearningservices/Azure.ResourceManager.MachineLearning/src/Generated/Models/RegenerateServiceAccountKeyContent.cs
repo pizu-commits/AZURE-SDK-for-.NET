@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the key name. </summary>
+        [WirePath("keyName")]
         public ServiceAccountKeyName? KeyName { get; set; }
     }
 }

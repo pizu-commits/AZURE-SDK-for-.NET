@@ -86,14 +86,19 @@ namespace Azure.ResourceManager.MachineLearning
         }
 
         /// <summary> Managed service identity (system assigned and/or user assigned identities). </summary>
+        [WirePath("identity")]
         public ManagedServiceIdentity Identity { get; set; }
         /// <summary> Optional. This field is required to be implemented by the RP because AML is supporting more than one tier. </summary>
+        [WirePath("sku")]
         public MachineLearningSku Sku { get; set; }
         /// <summary> The Private Endpoint resource. </summary>
+        [WirePath("properties.privateEndpoint")]
         public MachineLearningPrivateEndpoint PrivateEndpoint { get; set; }
         /// <summary> The connection state. </summary>
+        [WirePath("properties.privateLinkServiceConnectionState")]
         public MachineLearningPrivateLinkServiceConnectionState ConnectionState { get; set; }
         /// <summary> The current provisioning state. </summary>
+        [WirePath("properties.provisioningState")]
         public MachineLearningPrivateEndpointConnectionProvisioningState? ProvisioningState { get; set; }
     }
 }

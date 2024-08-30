@@ -66,6 +66,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Description for the output. </summary>
+        [WirePath("description")]
         public string Description { get; set; }
         /// <summary> [Required] Specifies the type of job. </summary>
         internal JobOutputType JobOutputType { get; set; }

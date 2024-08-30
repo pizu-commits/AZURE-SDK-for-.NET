@@ -51,6 +51,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Custom Keys credential object. </summary>
         internal CustomKeys Credentials { get; set; }
         /// <summary> Dictionary of &lt;string&gt;. </summary>
+        [WirePath("credentials.keys")]
         public IDictionary<string, string> CredentialsKeys
         {
             get

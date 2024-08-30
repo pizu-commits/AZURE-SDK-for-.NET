@@ -86,14 +86,18 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Byo resource id for creating the built-in model service endpoints. </summary>
+        [WirePath("associatedResourceId")]
         public ResourceIdentifier AssociatedResourceId { get; set; }
         /// <summary> Deployments info. </summary>
+        [WirePath("deployments")]
         public IList<EndpointDeploymentResourcePropertiesBasicResourceData> Deployments { get; }
         /// <summary> Type of the endpoint. </summary>
         internal EndpointType EndpointType { get; set; }
         /// <summary> Uri of the endpoint. </summary>
+        [WirePath("endpointUri")]
         public Uri EndpointUri { get; set; }
         /// <summary> The failure reason if the creation failed. </summary>
+        [WirePath("failureReason")]
         public string FailureReason { get; set; }
         /// <summary>
         /// Location of the endpoint.
@@ -101,12 +105,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// this Location field is just for parse the endpoint resource info
         /// we won't let customer specify the endpoint resource location since we will create it the same location as workspace
         /// </summary>
+        [WirePath("location")]
         public AzureLocation? Location { get; set; }
         /// <summary> Name of the endpoint. </summary>
+        [WirePath("name")]
         public string Name { get; set; }
         /// <summary> Read-only provision state status property. </summary>
+        [WirePath("provisioningState")]
         public DefaultResourceProvisioningState? ProvisioningState { get; }
         /// <summary> Whether the proxy (non-byo) endpoint is a regular endpoint or a OneKeyV2 AI services account endpoint. </summary>
+        [WirePath("shouldCreateAiServicesEndpoint")]
         public bool? ShouldCreateAiServicesEndpoint { get; set; }
     }
 }

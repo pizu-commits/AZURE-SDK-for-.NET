@@ -43,6 +43,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the credentials. </summary>
+        [WirePath("credentials")]
         public MachineLearningWorkspaceConnectionManagedIdentity Credentials { get; set; }
     }
 }

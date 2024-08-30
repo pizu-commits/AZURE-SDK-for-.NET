@@ -45,6 +45,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Gets or sets the credentials. </summary>
         internal WorkspaceConnectionPersonalAccessToken Credentials { get; set; }
         /// <summary> Gets or sets the credentials pat. </summary>
+        [WirePath("credentials.pat")]
         public string CredentialsPat
         {
             get => Credentials is null ? default : Credentials.Pat;

@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The access key of the storage. </summary>
+        [WirePath("userStorageKey")]
         public string UserStorageKey { get; }
     }
 }

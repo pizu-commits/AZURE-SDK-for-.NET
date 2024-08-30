@@ -8,6 +8,7 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -146,6 +147,66 @@ namespace Azure.ResourceManager.MachineLearning.Models
             return new AzureOpenAiHyperParameters(learningRateMultiplier, batchSize, nEpochs, serializedAdditionalRawData);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(LearningRateMultiplier), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  learningRateMultiplier: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(LearningRateMultiplier))
+                {
+                    builder.Append("  learningRateMultiplier: ");
+                    builder.AppendLine($"'{LearningRateMultiplier.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(BatchSize), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  batchSize: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(BatchSize))
+                {
+                    builder.Append("  batchSize: ");
+                    builder.AppendLine($"{BatchSize.Value}");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(NEpochs), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  nEpochs: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(NEpochs))
+                {
+                    builder.Append("  nEpochs: ");
+                    builder.AppendLine($"{NEpochs.Value}");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<AzureOpenAiHyperParameters>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<AzureOpenAiHyperParameters>)this).GetFormatFromOptions(options) : options.Format;
@@ -154,6 +215,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(AzureOpenAiHyperParameters)} does not support writing '{options.Format}' format.");
             }

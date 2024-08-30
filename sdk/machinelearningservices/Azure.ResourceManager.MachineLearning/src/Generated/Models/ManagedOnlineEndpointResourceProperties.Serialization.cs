@@ -8,6 +8,8 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -327,6 +329,302 @@ namespace Azure.ResourceManager.MachineLearning.Models
                 traffic ?? new ChangeTrackingDictionary<string, int>());
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(AuthMode), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  authMode: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(AuthMode))
+                {
+                    builder.Append("  authMode: ");
+                    builder.AppendLine($"'{AuthMode.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Compute), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  compute: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Compute))
+                {
+                    builder.Append("  compute: ");
+                    if (Compute.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Compute}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Compute}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Description), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  description: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Description))
+                {
+                    builder.Append("  description: ");
+                    if (Description.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Description}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Description}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MirrorTraffic), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  mirrorTraffic: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(MirrorTraffic))
+                {
+                    if (MirrorTraffic.Any())
+                    {
+                        builder.Append("  mirrorTraffic: ");
+                        builder.AppendLine("{");
+                        foreach (var item in MirrorTraffic)
+                        {
+                            builder.Append($"    '{item.Key}': ");
+                            builder.AppendLine($"{item.Value}");
+                        }
+                        builder.AppendLine("  }");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ScoringUri), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  scoringUri: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ScoringUri))
+                {
+                    builder.Append("  scoringUri: ");
+                    builder.AppendLine($"'{ScoringUri.AbsoluteUri}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Traffic), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  traffic: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(Traffic))
+                {
+                    if (Traffic.Any())
+                    {
+                        builder.Append("  traffic: ");
+                        builder.AppendLine("{");
+                        foreach (var item in Traffic)
+                        {
+                            builder.Append($"    '{item.Key}': ");
+                            builder.AppendLine($"{item.Value}");
+                        }
+                        builder.AppendLine("  }");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(AssociatedResourceId), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  associatedResourceId: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(AssociatedResourceId))
+                {
+                    builder.Append("  associatedResourceId: ");
+                    builder.AppendLine($"'{AssociatedResourceId.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Deployments), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  deployments: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(Deployments))
+                {
+                    if (Deployments.Any())
+                    {
+                        builder.Append("  deployments: ");
+                        builder.AppendLine("[");
+                        foreach (var item in Deployments)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  deployments: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(EndpointType), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  endpointType: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                builder.Append("  endpointType: ");
+                builder.AppendLine($"'{EndpointType.ToString()}'");
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(EndpointUri), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  endpointUri: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(EndpointUri))
+                {
+                    builder.Append("  endpointUri: ");
+                    builder.AppendLine($"'{EndpointUri.AbsoluteUri}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(FailureReason), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  failureReason: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(FailureReason))
+                {
+                    builder.Append("  failureReason: ");
+                    if (FailureReason.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{FailureReason}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{FailureReason}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Location), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  location: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Location))
+                {
+                    builder.Append("  location: ");
+                    builder.AppendLine($"'{Location.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Name), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  name: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Name))
+                {
+                    builder.Append("  name: ");
+                    if (Name.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{Name}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{Name}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ProvisioningState), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  provisioningState: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ProvisioningState))
+                {
+                    builder.Append("  provisioningState: ");
+                    builder.AppendLine($"'{ProvisioningState.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ShouldCreateAiServicesEndpoint), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  shouldCreateAiServicesEndpoint: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ShouldCreateAiServicesEndpoint))
+                {
+                    builder.Append("  shouldCreateAiServicesEndpoint: ");
+                    var boolValue = ShouldCreateAiServicesEndpoint.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<ManagedOnlineEndpointResourceProperties>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<ManagedOnlineEndpointResourceProperties>)this).GetFormatFromOptions(options) : options.Format;
@@ -335,6 +633,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(ManagedOnlineEndpointResourceProperties)} does not support writing '{options.Format}' format.");
             }

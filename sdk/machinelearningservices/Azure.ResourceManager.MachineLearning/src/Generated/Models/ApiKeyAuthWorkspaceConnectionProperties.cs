@@ -66,6 +66,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// <summary> Api key object for workspace connection credential. </summary>
         internal WorkspaceConnectionApiKey Credentials { get; set; }
         /// <summary> Gets or sets the credentials key. </summary>
+        [WirePath("credentials.key")]
         public string CredentialsKey
         {
             get => Credentials is null ? default : Credentials.Key;

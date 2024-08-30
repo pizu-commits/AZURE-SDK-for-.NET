@@ -64,26 +64,36 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> If true, enables Application Insights logging. </summary>
+        [WirePath("appInsightsEnabled")]
         public bool? AppInsightsEnabled { get; set; }
         /// <summary> The mdc configuration, we disable mdc when it's null. </summary>
+        [WirePath("dataCollector")]
         public DataCollector DataCollector { get; set; }
         /// <summary> If Enabled, allow egress public network access. If Disabled, this will create secure egress. Default: Enabled. </summary>
+        [WirePath("egressPublicNetworkAccess")]
         public MachineLearningEgressPublicNetworkAccessType? EgressPublicNetworkAccess { get; set; }
         /// <summary> [Required] The compute type of the endpoint. </summary>
         internal MachineLearningEndpointComputeType EndpointComputeType { get; set; }
         /// <summary> Compute instance type. </summary>
+        [WirePath("instanceType")]
         public string InstanceType { get; set; }
         /// <summary> Liveness probe monitors the health of the container regularly. </summary>
+        [WirePath("livenessProbe")]
         public MachineLearningProbeSettings LivenessProbe { get; set; }
         /// <summary> The URI path to the model. </summary>
+        [WirePath("model")]
         public string Model { get; set; }
         /// <summary> The path to mount the model in custom container. </summary>
+        [WirePath("modelMountPath")]
         public string ModelMountPath { get; set; }
         /// <summary> Provisioning state for the endpoint deployment. </summary>
+        [WirePath("provisioningState")]
         public MachineLearningDeploymentProvisioningState? ProvisioningState { get; }
         /// <summary> Readiness probe validates if the container is ready to serve traffic. The properties and defaults are the same as liveness probe. </summary>
+        [WirePath("readinessProbe")]
         public MachineLearningProbeSettings ReadinessProbe { get; set; }
         /// <summary> Request settings for the deployment. </summary>
+        [WirePath("requestSettings")]
         public MachineLearningOnlineRequestSettings RequestSettings { get; set; }
         /// <summary>
         /// Scale settings for the deployment.
@@ -93,6 +103,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// Please note <see cref="MachineLearningOnlineScaleSettings"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MachineLearningDefaultScaleSettings"/> and <see cref="MachineLearningTargetUtilizationScaleSettings"/>.
         /// </summary>
+        [WirePath("scaleSettings")]
         public MachineLearningOnlineScaleSettings ScaleSettings { get; set; }
     }
 }

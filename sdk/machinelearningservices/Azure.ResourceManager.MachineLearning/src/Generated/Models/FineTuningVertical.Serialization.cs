@@ -7,6 +7,8 @@
 
 using System;
 using System.ClientModel.Primitives;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using Azure.Core;
 
@@ -95,6 +97,90 @@ namespace Azure.ResourceManager.MachineLearning.Models
             return UnknownFineTuningVertical.DeserializeUnknownFineTuningVertical(element, options);
         }
 
+        private BinaryData SerializeBicep(ModelReaderWriterOptions options)
+        {
+            StringBuilder builder = new StringBuilder();
+            BicepModelReaderWriterOptions bicepOptions = options as BicepModelReaderWriterOptions;
+            IDictionary<string, string> propertyOverrides = null;
+            bool hasObjectOverride = bicepOptions != null && bicepOptions.PropertyOverrides.TryGetValue(this, out propertyOverrides);
+            bool hasPropertyOverride = false;
+            string propertyOverride = null;
+
+            builder.AppendLine("{");
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ModelProvider), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  modelProvider: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                builder.Append("  modelProvider: ");
+                builder.AppendLine($"'{ModelProvider.ToString()}'");
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(TaskType), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  taskType: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                builder.Append("  taskType: ");
+                builder.AppendLine($"'{TaskType.ToString()}'");
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(TrainingData), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  trainingData: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(TrainingData))
+                {
+                    builder.Append("  trainingData: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, TrainingData, options, 2, false, "  trainingData: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ValidationData), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  validationData: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ValidationData))
+                {
+                    builder.Append("  validationData: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, ValidationData, options, 2, false, "  validationData: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Model), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  model: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Model))
+                {
+                    builder.Append("  model: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, Model, options, 2, false, "  model: ");
+                }
+            }
+
+            builder.AppendLine("}");
+            return BinaryData.FromString(builder.ToString());
+        }
+
         BinaryData IPersistableModel<FineTuningVertical>.Write(ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<FineTuningVertical>)this).GetFormatFromOptions(options) : options.Format;
@@ -103,6 +189,8 @@ namespace Azure.ResourceManager.MachineLearning.Models
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
+                case "bicep":
+                    return SerializeBicep(options);
                 default:
                     throw new FormatException($"The model {nameof(FineTuningVertical)} does not support writing '{options.Format}' format.");
             }

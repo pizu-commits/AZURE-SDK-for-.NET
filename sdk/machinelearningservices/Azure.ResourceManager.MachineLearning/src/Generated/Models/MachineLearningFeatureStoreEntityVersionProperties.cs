@@ -37,10 +37,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Specifies index columns. </summary>
+        [WirePath("indexColumns")]
         public IList<IndexColumn> IndexColumns { get; set; }
         /// <summary> Provisioning state for the featurestore entity version. </summary>
+        [WirePath("provisioningState")]
         public RegistryAssetProvisioningState? ProvisioningState { get; }
         /// <summary> Specifies the asset stage. </summary>
+        [WirePath("stage")]
         public string Stage { get; set; }
     }
 }

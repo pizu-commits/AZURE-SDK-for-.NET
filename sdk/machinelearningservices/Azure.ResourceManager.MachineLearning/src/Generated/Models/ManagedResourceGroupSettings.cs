@@ -61,6 +61,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> List of assigned identities for the managed resource group. </summary>
+        [WirePath("assignedIdentities")]
         public IList<ManagedResourceGroupAssignedIdentities> AssignedIdentities { get; set; }
     }
 }

@@ -78,24 +78,34 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Source of the ComputeInstance data mount. </summary>
+        [WirePath("source")]
         public string Source { get; set; }
         /// <summary> Data source type. </summary>
+        [WirePath("sourceType")]
         public MachineLearningSourceType? SourceType { get; set; }
         /// <summary> name of the ComputeInstance data mount. </summary>
+        [WirePath("mountName")]
         public string MountName { get; set; }
         /// <summary> Mount Action. </summary>
+        [WirePath("mountAction")]
         public MachineLearningMountAction? MountAction { get; set; }
         /// <summary> Mount Mode. </summary>
+        [WirePath("mountMode")]
         public MountMode? MountMode { get; set; }
         /// <summary> who this data mount created by. </summary>
+        [WirePath("createdBy")]
         public string CreatedBy { get; set; }
         /// <summary> Path of this data mount. </summary>
+        [WirePath("mountPath")]
         public string MountPath { get; set; }
         /// <summary> Mount state. </summary>
+        [WirePath("mountState")]
         public MachineLearningMountState? MountState { get; set; }
         /// <summary> The time when the disk mounted. </summary>
+        [WirePath("mountedOn")]
         public DateTimeOffset? MountedOn { get; set; }
         /// <summary> Error of this data mount. </summary>
+        [WirePath("error")]
         public string Error { get; set; }
     }
 }

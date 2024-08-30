@@ -63,8 +63,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The link to the next page constructed using the continuationToken.  If null, there are no additional pages. </summary>
+        [WirePath("nextLink")]
         public string NextLink { get; }
         /// <summary> List of models. </summary>
+        [WirePath("value")]
         public IReadOnlyList<EndpointModelProperties> Value { get; }
     }
 }

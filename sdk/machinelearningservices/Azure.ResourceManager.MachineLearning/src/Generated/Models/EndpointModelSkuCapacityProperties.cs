@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> The default capacity. </summary>
+        [WirePath("default")]
         public int? Default { get; }
         /// <summary> The maximum capacity. </summary>
+        [WirePath("maximum")]
         public int? Maximum { get; }
     }
 }

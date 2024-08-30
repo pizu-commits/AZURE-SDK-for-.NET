@@ -60,6 +60,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Identity principal Id. </summary>
+        [WirePath("principalId")]
         public Guid? PrincipalId { get; }
     }
 }

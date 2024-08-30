@@ -66,12 +66,16 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Model format. </summary>
+        [WirePath("format")]
         public string Format { get; set; }
         /// <summary> Model name. </summary>
+        [WirePath("name")]
         public string Name { get; set; }
         /// <summary> Optional. Deployment model source ARM resource ID. </summary>
+        [WirePath("source")]
         public string Source { get; set; }
         /// <summary> Model version. </summary>
+        [WirePath("version")]
         public string Version { get; set; }
     }
 }

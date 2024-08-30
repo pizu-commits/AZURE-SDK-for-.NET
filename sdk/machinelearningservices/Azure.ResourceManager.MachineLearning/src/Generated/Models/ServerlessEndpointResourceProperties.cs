@@ -60,12 +60,15 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the auth mode. </summary>
+        [WirePath("authMode")]
         public ServerlessInferenceEndpointAuthMode? AuthMode { get; set; }
         /// <summary> Gets or sets the capacity reservation. </summary>
+        [WirePath("capacityReservation")]
         public ServerlessEndpointCapacityReservation CapacityReservation { get; set; }
         /// <summary> Gets or sets the content safety. </summary>
         internal ServerlessEndpointContentSafety ContentSafety { get; set; }
         /// <summary> Specifies the status of content safety. </summary>
+        [WirePath("contentSafety.contentSafetyStatus")]
         public ContentSafetyStatus? ContentSafetyStatus
         {
             get => ContentSafety is null ? default(ContentSafetyStatus?) : ContentSafety.ContentSafetyStatus;
@@ -76,10 +79,13 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> State of the Serverless Endpoint. </summary>
+        [WirePath("endpointState")]
         public ServerlessEndpointState? EndpointState { get; set; }
         /// <summary> Gets or sets the inference endpoint. </summary>
+        [WirePath("inferenceEndpoint")]
         public ServerlessEndpointInferenceEndpoint InferenceEndpoint { get; set; }
         /// <summary> Gets or sets the marketplace subscription id. </summary>
+        [WirePath("marketplaceSubscriptionId")]
         public string MarketplaceSubscriptionId { get; set; }
         /// <summary>
         /// Anything
@@ -111,10 +117,12 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// </list>
         /// </para>
         /// </summary>
+        [WirePath("metadata")]
         public BinaryData Metadata { get; set; }
         /// <summary> Gets or sets the model settings. </summary>
         internal ServerlessEndpointModelSettings ModelSettings { get; set; }
         /// <summary> Gets or sets the model id. </summary>
+        [WirePath("modelSettings.modelId")]
         public string ModelId
         {
             get => ModelSettings is null ? default : ModelSettings.ModelId;
@@ -122,6 +130,7 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> Gets or sets the offer. </summary>
+        [WirePath("offer")]
         public ServerlessOffer Offer { get; set; }
     }
 }

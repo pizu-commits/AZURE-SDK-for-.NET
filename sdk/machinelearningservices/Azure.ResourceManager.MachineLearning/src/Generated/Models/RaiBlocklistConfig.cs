@@ -62,8 +62,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         }
 
         /// <summary> If blocking would occur. </summary>
+        [WirePath("blocking")]
         public bool? Blocking { get; set; }
         /// <summary> Name of ContentFilter. </summary>
+        [WirePath("blocklistName")]
         public string BlocklistName { get; set; }
     }
 }

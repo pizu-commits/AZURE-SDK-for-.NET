@@ -77,8 +77,10 @@ namespace Azure.ResourceManager.MachineLearning.Models
         /// Please note <see cref="MachineLearningEarlyTerminationPolicy"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="BanditPolicy"/>, <see cref="MedianStoppingPolicy"/> and <see cref="TruncationSelectionPolicy"/>.
         /// </summary>
+        [WirePath("earlyTermination")]
         public MachineLearningEarlyTerminationPolicy EarlyTermination { get; set; }
         /// <summary> [Required] Type of the hyperparameter sampling algorithms. </summary>
+        [WirePath("samplingAlgorithm")]
         public SamplingAlgorithmType SamplingAlgorithm { get; set; }
     }
 }
