@@ -114,6 +114,7 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
             Assert.Equal("localhost", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeHttpHost));
             Assert.Equal("8888", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeHttpHostPort));
             Assert.Equal("127.0.0.1", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeNetHostIp));
+            Assert.Equal("GET", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeHttpMethod));
         }
 
         [Fact]
@@ -166,6 +167,36 @@ namespace Azure.Monitor.OpenTelemetry.Exporter.Tests
             Assert.Equal("localhost", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeHttpHost));
             Assert.Equal("8888", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeHttpHostPort));
 
+            Assert.Equal("value", AzMonList.GetTagValue(ref activityTagsProcessor.UnMappedTags, "somekey"));
+        }
+
+        [Fact]
+        public void ActivityTagsProcessor_CategorizeTags_ExtractsRpcNamespace()
+        {
+            var activityTagsProcessor = new ActivityTagsProcessor();
+
+            IEnumerable<KeyValuePair<string, object?>> tagObjects = new Dictionary<string, object?>
+            {
+                [SemanticConventions.AttributeRpcSystem] = "mysystem",
+                [SemanticConventions.AttributeRpcService] = "myservice",
+                [SemanticConventions.AttributeRpcMethod] = "mymethod",
+                [SemanticConventions.AttributeRpcStatus] = "mystatus",
+                ["somekey"] = "value",
+            };
+
+            using var activity = CreateTestActivity(tagObjects, ActivityKind.Client);
+            activityTagsProcessor.CategorizeTags(activity);
+
+            Assert.Equal(OperationType.Rpc, activityTagsProcessor.activityType);
+
+            Assert.Equal(3, activityTagsProcessor.MappedTags.Length);
+            Assert.Equal(2, activityTagsProcessor.UnMappedTags.Length);
+
+            Assert.Equal("mysystem", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeRpcSystem));
+            Assert.Equal("myservice", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeRpcService));
+            Assert.Equal("mystatus", AzMonList.GetTagValue(ref activityTagsProcessor.MappedTags, SemanticConventions.AttributeRpcStatus));
+
+            Assert.Equal("mymethod", AzMonList.GetTagValue(ref activityTagsProcessor.UnMappedTags, SemanticConventions.AttributeRpcMethod));
             Assert.Equal("value", AzMonList.GetTagValue(ref activityTagsProcessor.UnMappedTags, "somekey"));
         }
 
