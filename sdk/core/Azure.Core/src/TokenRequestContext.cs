@@ -1,12 +1,15 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Azure.Core
 {
     /// <summary>
     /// Contains the details of an authentication token request.
     /// </summary>
-    public readonly struct TokenRequestContext
+    public readonly struct TokenRequestContext : IReadOnlyDictionary<string, object>
     {
         /// <summary>
         /// Creates a new TokenRequest with the specified scopes.
@@ -96,5 +99,63 @@ namespace Azure.Core
         /// If you don't handle CAE responses in these API calls, your app could end up in a loop retrying an API call with a token that is still in the returned lifespan of the token but has been revoked due to CAE.
         /// </remarks>
         public bool IsCaeEnabled { get; }
+
+        /// <summary>
+        /// Creates a <see cref="TokenRequestContext"/> from a dictionary.
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException"></exception>
+        public static TokenRequestContext FromDictionary(IReadOnlyDictionary<string, object> dictionary)
+        {
+            if (dictionary is TokenRequestContext tokenRequestContext)
+            {
+                return tokenRequestContext;
+            }
+
+            string[] scopes;
+            if (dictionary.TryGetValue("scopes", out var scopesValue) && scopesValue is string[] scopesArray)
+            {
+                scopes = scopesArray;
+            }
+            else
+            {
+                throw new System.ArgumentException("Missing required scopes in the dictionary.");
+            }
+            string? parentRequestId = dictionary.TryGetValue("parentRequestId", out var parentRequestIdValue) ? (string)parentRequestIdValue : default;
+            string? claims = dictionary.TryGetValue("claims", out var claimsValue) ? (string)claimsValue : default;
+            string? tenantId = dictionary.TryGetValue("tenantId", out var tenantIdValue) ? (string)tenantIdValue : default;
+            bool isCaeEnabled = dictionary.TryGetValue("isCaeEnabled", out var isCaeEnabledValue) ? (bool)isCaeEnabledValue : default;
+
+            return new TokenRequestContext(scopes, parentRequestId, claims, tenantId, isCaeEnabled);
+        }
+
+        object IReadOnlyDictionary<string, object>.this[string key] => throw new System.NotImplementedException();
+
+        IEnumerable<string> IReadOnlyDictionary<string, object>.Keys => throw new System.NotImplementedException();
+
+        IEnumerable<object> IReadOnlyDictionary<string, object>.Values => throw new System.NotImplementedException();
+
+        int IReadOnlyCollection<KeyValuePair<string, object>>.Count => throw new System.NotImplementedException();
+
+        bool IReadOnlyDictionary<string, object>.ContainsKey(string key)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        bool IReadOnlyDictionary<string, object>.TryGetValue(string key, out object value)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
