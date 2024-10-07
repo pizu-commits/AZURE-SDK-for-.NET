@@ -96,16 +96,26 @@ namespace System.ClientModel.Primitives
     {
         public ClientPipelineOptions() { }
         public System.TimeSpan? NetworkTimeout { get { throw null; } set { } }
+        public System.ClientModel.Primitives.ClientRetryOptions RetryOptions { get { throw null; } }
         public System.ClientModel.Primitives.PipelinePolicy? RetryPolicy { get { throw null; } set { } }
         public System.ClientModel.Primitives.PipelineTransport? Transport { get { throw null; } set { } }
         public void AddPolicy(System.ClientModel.Primitives.PipelinePolicy policy, System.ClientModel.Primitives.PipelinePosition position) { }
         protected void AssertNotFrozen() { }
         public virtual void Freeze() { }
     }
+    public partial class ClientRetryOptions
+    {
+        public ClientRetryOptions() { }
+        public bool? DisableRetries { get { throw null; } set { } }
+        public System.TimeSpan? MaxDelay { get { throw null; } set { } }
+        public int? MaxRetries { get { throw null; } set { } }
+    }
     public partial class ClientRetryPolicy : System.ClientModel.Primitives.PipelinePolicy
     {
+        public ClientRetryPolicy(System.ClientModel.Primitives.ClientRetryOptions options) { }
         public ClientRetryPolicy(int maxRetries = 3) { }
         public static System.ClientModel.Primitives.ClientRetryPolicy Default { get { throw null; } }
+        protected virtual System.ClientModel.Primitives.ClientRetryPolicy.ClientRetryOptionsVersion? SupportedOptionsVersion { get { throw null; } }
         protected virtual System.TimeSpan GetNextDelay(System.ClientModel.Primitives.PipelineMessage message, int tryCount) { throw null; }
         protected virtual void OnRequestSent(System.ClientModel.Primitives.PipelineMessage message) { }
         protected virtual System.Threading.Tasks.ValueTask OnRequestSentAsync(System.ClientModel.Primitives.PipelineMessage message) { throw null; }
@@ -118,6 +128,11 @@ namespace System.ClientModel.Primitives
         protected virtual System.Threading.Tasks.ValueTask<bool> ShouldRetryAsync(System.ClientModel.Primitives.PipelineMessage message, System.Exception? exception) { throw null; }
         protected virtual void Wait(System.TimeSpan time, System.Threading.CancellationToken cancellationToken) { }
         protected virtual System.Threading.Tasks.Task WaitAsync(System.TimeSpan time, System.Threading.CancellationToken cancellationToken) { throw null; }
+        protected enum ClientRetryOptionsVersion
+        {
+            V1_1_0 = 1,
+            V1_2_0 = 2,
+        }
     }
     public abstract partial class CollectionResult
     {

@@ -24,9 +24,13 @@ public class ClientRetryPolicy : PipelinePolicy
 
     private const int DefaultMaxRetries = 3;
     private static readonly TimeSpan DefaultInitialDelay = TimeSpan.FromSeconds(0.8);
+    private static readonly TimeSpan DefaultMaxDelay = TimeSpan.FromMinutes(1);
 
     private readonly int _maxRetries;
     private readonly TimeSpan _initialDelay;
+    private readonly TimeSpan _maxDelay;
+
+    private readonly bool _enabled;
 
     /// <summary>
     /// Creates a new instance of the <see cref="ClientRetryPolicy"/> class.
@@ -36,6 +40,45 @@ public class ClientRetryPolicy : PipelinePolicy
     {
         _maxRetries = maxRetries;
         _initialDelay = DefaultInitialDelay;
+    }
+
+    /// <summary>
+    /// Creates a new instance of the <see cref="ClientRetryPolicy"/> class.
+    /// </summary>
+    /// <param name="options">Options used to construct the
+    /// <see cref="ClientRetryPolicy"/>.</param>
+    public ClientRetryPolicy(ClientRetryOptions options)
+    {
+        AssertVersion(options);
+
+        bool disableRetries = options.DisableRetries.HasValue && options.DisableRetries.Value;
+        _enabled = !disableRetries;
+
+        _maxRetries = options.MaxRetries ?? DefaultMaxRetries;
+        _maxDelay = options.MaxDelay ?? DefaultMaxDelay;
+    }
+
+    private void AssertVersion(ClientRetryOptions options)
+    {
+        // if ("highest version set by user" > "highest version known to target type")
+        //    throw new NotSupportedException();
+
+        bool isDerivedType = GetType() != Default.GetType();
+        ClientRetryOptionsVersion supportedVersion = ClientRetryOptionsVersion.V1_2_0;
+
+        if (isDerivedType)
+        {
+            supportedVersion = SupportedOptionsVersion ?? ClientRetryOptionsVersion.V1_1_0;
+        }
+
+        ClientRetryOptionsVersion highestSetOptionVersion = GetHighestSetOptionVersion(options);
+
+        if (highestSetOptionVersion > supportedVersion)
+        {
+            throw new NotSupportedException($"Custom retry policy of type '{GetType()}' does " +
+                $"not support ClientRetryOptions version {highestSetOptionVersion}. " +
+                $"Highest options version this policy supports is {supportedVersion}.");
+        }
     }
 
     /// <inheritdoc/>
@@ -48,6 +91,24 @@ public class ClientRetryPolicy : PipelinePolicy
 
     private async ValueTask ProcessSyncOrAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int currentIndex, bool async)
     {
+        // If retries were disabled via ClientRetryOptions, behave as a base
+        // PipelinePolicy and simply pass the message on to the next policy.
+        if (!_enabled)
+        {
+            if (async)
+            {
+                await ProcessNextAsync(message, pipeline, currentIndex).ConfigureAwait(false);
+            }
+            else
+            {
+                ProcessNext(message, pipeline, currentIndex);
+            }
+
+            return;
+        }
+
+        // Policy is enabled, implement retry logic.
+
         List<Exception>? allTryExceptions = null;
 
         while (true)
@@ -98,6 +159,13 @@ public class ClientRetryPolicy : PipelinePolicy
             if (shouldRetry)
             {
                 TimeSpan delay = GetNextDelay(message, message.RetryCount);
+
+                // Reset delay so it doesn't exceed the configured max delay.
+                if (delay > _maxDelay)
+                {
+                    delay = _maxDelay;
+                }
+
                 if (delay > TimeSpan.Zero)
                 {
                     if (async)
@@ -317,5 +385,58 @@ public class ClientRetryPolicy : PipelinePolicy
         {
             CancellationHelper.ThrowIfCancellationRequested(cancellationToken);
         }
+    }
+
+    /// <summary>
+    /// Highest version supported by a derived type providing a customized
+    /// implementation of <see cref="ClientRetryPolicy"/>.
+    /// </summary>
+    protected virtual ClientRetryOptionsVersion? SupportedOptionsVersion => default;
+
+    /// <summary>
+    /// Get the highest version corresponding to an option that is set on the
+    /// options instance.  If an option is not set on the options instance, its
+    /// version is not considered.
+    /// </summary>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    private static ClientRetryOptionsVersion GetHighestSetOptionVersion(ClientRetryOptions options)
+    {
+        ClientRetryOptionsVersion maxVersionSet = ClientRetryOptionsVersion.V1_1_0;
+
+        if (options.DisableRetries != null && ClientRetryOptionsVersion.V1_2_0 > maxVersionSet)
+        {
+            maxVersionSet = ClientRetryOptionsVersion.V1_2_0;
+        }
+
+        if (options.MaxDelay != null && ClientRetryOptionsVersion.V1_2_0 > maxVersionSet)
+        {
+            maxVersionSet = ClientRetryOptionsVersion.V1_2_0;
+        }
+
+        if (options.MaxRetries != null && ClientRetryOptionsVersion.V1_2_0 > maxVersionSet)
+        {
+            maxVersionSet = ClientRetryOptionsVersion.V1_2_0;
+        }
+
+        return maxVersionSet;
+    }
+
+    /// <summary>
+    /// Mapping from option properties available in
+    /// <see cref="ClientRetryOptions"/> to the version that that option was
+    /// added to the options type.
+    /// </summary>
+    protected enum ClientRetryOptionsVersion
+    {
+        /// <summary>
+        /// No ClientRetryOptions available in SCM 1.1.0.
+        /// </summary>
+        V1_1_0 = 1,
+
+        /// <summary>
+        /// Added DisableRetries, MaxDelay, MaxRetries options in SCM 1.2.0.
+        /// </summary>
+        V1_2_0 = 2,
     }
 }
