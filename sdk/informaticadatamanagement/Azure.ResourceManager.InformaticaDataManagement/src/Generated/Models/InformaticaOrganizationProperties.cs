@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Properties specific to the Informatica DataManagement Organization resource. </summary>
+    /// <summary> The InformaticaOrganizationProperties. </summary>
     public partial class InformaticaOrganizationProperties
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaOrganizationProperties"/>. </summary>
-        /// <param name="provisioningState"> Provisioning State of the resource. </param>
-        /// <param name="informaticaProperties"> Informatica Organization properties. </param>
-        /// <param name="marketplaceDetails"> Marketplace details. </param>
-        /// <param name="userDetails"> User details. </param>
-        /// <param name="companyDetails"> Company details. </param>
-        /// <param name="linkOrganization"> Link Organization. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="informaticaProperties"></param>
+        /// <param name="marketplaceDetails"></param>
+        /// <param name="userDetails"></param>
+        /// <param name="companyDetails"></param>
+        /// <param name="linkOrganization"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaOrganizationProperties(InformaticaProvisioningState? provisioningState, InformaticaProperties informaticaProperties, InformaticaMarketplaceDetails marketplaceDetails, InformaticaUserDetails userDetails, InformaticaCompanyDetails companyDetails, LinkOrganization linkOrganization, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,19 +69,19 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Provisioning State of the resource. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public InformaticaProvisioningState? ProvisioningState { get; }
-        /// <summary> Informatica Organization properties. </summary>
+        /// <summary> Gets or sets the informatica properties. </summary>
         public InformaticaProperties InformaticaProperties { get; set; }
-        /// <summary> Marketplace details. </summary>
+        /// <summary> Gets or sets the marketplace details. </summary>
         public InformaticaMarketplaceDetails MarketplaceDetails { get; set; }
-        /// <summary> User details. </summary>
+        /// <summary> Gets or sets the user details. </summary>
         public InformaticaUserDetails UserDetails { get; set; }
-        /// <summary> Company details. </summary>
+        /// <summary> Gets or sets the company details. </summary>
         public InformaticaCompanyDetails CompanyDetails { get; set; }
-        /// <summary> Link Organization. </summary>
+        /// <summary> Gets or sets the link organization. </summary>
         internal LinkOrganization LinkOrganization { get; set; }
-        /// <summary> Link organization token. </summary>
+        /// <summary> Gets or sets the link organization token. </summary>
         public string LinkOrganizationToken
         {
             get => LinkOrganization is null ? default : LinkOrganization.Token;

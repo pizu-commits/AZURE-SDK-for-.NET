@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Details of a research facility where a clinical trial is conducted. </summary>
+    /// <summary> The ClinicalTrialResearchFacility. </summary>
     public partial class ClinicalTrialResearchFacility
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialResearchFacility"/>. </summary>
-        /// <param name="name"> The facility's name. </param>
-        /// <param name="countryOrRegion"> Country/region name. </param>
+        /// <param name="name"></param>
+        /// <param name="countryOrRegion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="countryOrRegion"/> is null. </exception>
         public ClinicalTrialResearchFacility(string name, string countryOrRegion)
         {
@@ -59,10 +59,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialResearchFacility"/>. </summary>
-        /// <param name="name"> The facility's name. </param>
-        /// <param name="city"> City name. </param>
-        /// <param name="state"> State name. </param>
-        /// <param name="countryOrRegion"> Country/region name. </param>
+        /// <param name="name"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="countryOrRegion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrialResearchFacility(string name, string city, string state, string countryOrRegion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The facility's name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> City name. </summary>
+        /// <summary> Gets or sets the city. </summary>
         public string City { get; set; }
-        /// <summary> State name. </summary>
+        /// <summary> Gets or sets the state. </summary>
         public string State { get; set; }
-        /// <summary> Country/region name. </summary>
+        /// <summary> Gets or sets the country or region. </summary>
         public string CountryOrRegion { get; set; }
     }
 }

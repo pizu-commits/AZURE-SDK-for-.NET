@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> The inference results for the Onco Phenotype request. </summary>
+    /// <summary> The OncoPhenotypeResults. </summary>
     public partial class OncoPhenotypeResults
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Health.Insights.CancerProfiling
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OncoPhenotypeResults"/>. </summary>
-        /// <param name="patients"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
+        /// <param name="patients"></param>
+        /// <param name="modelVersion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patients"/> or <paramref name="modelVersion"/> is null. </exception>
         internal OncoPhenotypeResults(IEnumerable<OncoPhenotypePatientResult> patients, string modelVersion)
         {
@@ -60,8 +60,8 @@ namespace Azure.Health.Insights.CancerProfiling
         }
 
         /// <summary> Initializes a new instance of <see cref="OncoPhenotypeResults"/>. </summary>
-        /// <param name="patients"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
+        /// <param name="patients"></param>
+        /// <param name="modelVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OncoPhenotypeResults(IReadOnlyList<OncoPhenotypePatientResult> patients, string modelVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Health.Insights.CancerProfiling
         {
         }
 
-        /// <summary> Results for the patients given in the request. </summary>
+        /// <summary> Gets the patients. </summary>
         public IReadOnlyList<OncoPhenotypePatientResult> Patients { get; }
-        /// <summary> The version of the model used for inference, expressed as the model date. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
     }
 }

@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// The type of the content's source.
-    /// In case the source type is 'inline', the content is given as a string (for instance, text).
-    /// In case the source type is 'reference', the content is given as a URI.
-    /// </summary>
+    /// <summary> The DocumentContentSourceType. </summary>
     public readonly partial struct DocumentContentSourceType : IEquatable<DocumentContentSourceType>
     {
         private readonly string _value;
@@ -29,9 +25,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string InlineValue = "inline";
         private const string ReferenceValue = "reference";
 
-        /// <summary> The content is given as a string (for instance, text). </summary>
+        /// <summary> inline. </summary>
         public static DocumentContentSourceType Inline { get; } = new DocumentContentSourceType(InlineValue);
-        /// <summary> The content is given as a URI. </summary>
+        /// <summary> reference. </summary>
         public static DocumentContentSourceType Reference { get; } = new DocumentContentSourceType(ReferenceValue);
         /// <summary> Determines if two <see cref="DocumentContentSourceType"/> values are the same. </summary>
         public static bool operator ==(DocumentContentSourceType left, DocumentContentSourceType right) => left.Equals(right);

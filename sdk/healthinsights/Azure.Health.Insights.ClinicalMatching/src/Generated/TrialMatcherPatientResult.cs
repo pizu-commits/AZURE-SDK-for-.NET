@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The results of the model's work for a single patient. </summary>
+    /// <summary> The TrialMatcherPatientResult. </summary>
     public partial class TrialMatcherPatientResult
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherPatientResult"/>. </summary>
-        /// <param name="id"> The identifier given for the patient in the request. </param>
-        /// <param name="inferences"> The model's inferences for the given patient. </param>
+        /// <param name="id"></param>
+        /// <param name="inferences"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="inferences"/> is null. </exception>
         internal TrialMatcherPatientResult(string id, IEnumerable<TrialMatcherInference> inferences)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherPatientResult"/>. </summary>
-        /// <param name="id"> The identifier given for the patient in the request. </param>
-        /// <param name="inferences"> The model's inferences for the given patient. </param>
-        /// <param name="neededClinicalInfo"> Clinical information which is needed to provide better trial matching results for the patient. </param>
+        /// <param name="id"></param>
+        /// <param name="inferences"></param>
+        /// <param name="neededClinicalInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherPatientResult(string id, IReadOnlyList<TrialMatcherInference> inferences, IReadOnlyList<ExtendedClinicalCodedElement> neededClinicalInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The identifier given for the patient in the request. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The model's inferences for the given patient. </summary>
+        /// <summary> Gets the inferences. </summary>
         public IReadOnlyList<TrialMatcherInference> Inferences { get; }
-        /// <summary> Clinical information which is needed to provide better trial matching results for the patient. </summary>
+        /// <summary> Gets the needed clinical info. </summary>
         public IReadOnlyList<ExtendedClinicalCodedElement> NeededClinicalInfo { get; }
     }
 }

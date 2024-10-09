@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// The base definition for all elements contained inside a resource.
-    /// Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_Element. </summary>
     public partial class FhirR4Element
     {
         /// <summary>
@@ -55,8 +52,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Element"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FhirR4Element(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,9 +62,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Unique id for inter-element referencing. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> Additional Content defined by implementations. </summary>
+        /// <summary> Gets the extension. </summary>
         public IList<FhirR4Extension> Extension { get; }
     }
 }

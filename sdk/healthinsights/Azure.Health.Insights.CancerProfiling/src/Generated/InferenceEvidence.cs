@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> A piece of evidence corresponding to an inference. </summary>
+    /// <summary> The InferenceEvidence. </summary>
     public partial class InferenceEvidence
     {
         /// <summary>
@@ -51,12 +51,9 @@ namespace Azure.Health.Insights.CancerProfiling
         }
 
         /// <summary> Initializes a new instance of <see cref="InferenceEvidence"/>. </summary>
-        /// <param name="patientDataEvidence"> A piece of evidence from a clinical note (text document). </param>
-        /// <param name="patientInfoEvidence">
-        /// A piece of clinical information, expressed as a code in a clinical coding
-        /// system.
-        /// </param>
-        /// <param name="importance"> A value indicating how important this piece of evidence is for the inference. </param>
+        /// <param name="patientDataEvidence"></param>
+        /// <param name="patientInfoEvidence"></param>
+        /// <param name="importance"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InferenceEvidence(ClinicalNoteEvidence patientDataEvidence, ClinicalCodedElement patientInfoEvidence, float? importance, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +63,11 @@ namespace Azure.Health.Insights.CancerProfiling
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A piece of evidence from a clinical note (text document). </summary>
+        /// <summary> Gets the patient data evidence. </summary>
         public ClinicalNoteEvidence PatientDataEvidence { get; }
-        /// <summary>
-        /// A piece of clinical information, expressed as a code in a clinical coding
-        /// system.
-        /// </summary>
+        /// <summary> Gets the patient info evidence. </summary>
         public ClinicalCodedElement PatientInfoEvidence { get; }
-        /// <summary> A value indicating how important this piece of evidence is for the inference. </summary>
+        /// <summary> Gets the importance. </summary>
         public float? Importance { get; }
     }
 }

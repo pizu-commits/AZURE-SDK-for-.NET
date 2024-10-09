@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Enum of supported Operation Types. </summary>
+    /// <summary> The OperationType. </summary>
     public readonly partial struct OperationType : IEquatable<OperationType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Health.Deidentification
         private const string SurrogateValue = "Surrogate";
         private const string TagValue = "Tag";
 
-        /// <summary> Redact Operation will remove all entities of PHI and replace them with a placeholder value. </summary>
+        /// <summary> Redact. </summary>
         public static OperationType Redact { get; } = new OperationType(RedactValue);
-        /// <summary> Surrogation Operation will replace all entities of PHI with a surrogate value. </summary>
+        /// <summary> Surrogate. </summary>
         public static OperationType Surrogate { get; } = new OperationType(SurrogateValue);
-        /// <summary> Tag Operation will detect all entities of PHI, their type, and return their locations in the document. </summary>
+        /// <summary> Tag. </summary>
         public static OperationType Tag { get; } = new OperationType(TagValue);
         /// <summary> Determines if two <see cref="OperationType"/> values are the same. </summary>
         public static bool operator ==(OperationType left, OperationType right) => left.Equals(right);

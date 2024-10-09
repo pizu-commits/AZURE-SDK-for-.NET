@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Marketplace details. </summary>
+    /// <summary> The InformaticaMarketplaceDetails. </summary>
     public partial class InformaticaMarketplaceDetails
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaMarketplaceDetails"/>. </summary>
-        /// <param name="offerDetails"> Marketplace offer details. </param>
+        /// <param name="offerDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="offerDetails"/> is null. </exception>
         public InformaticaMarketplaceDetails(InformaticaOfferDetails offerDetails)
         {
@@ -56,8 +56,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaMarketplaceDetails"/>. </summary>
-        /// <param name="marketplaceSubscriptionId"> Marketplace Subscription Id. </param>
-        /// <param name="offerDetails"> Marketplace offer details. </param>
+        /// <param name="marketplaceSubscriptionId"></param>
+        /// <param name="offerDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaMarketplaceDetails(string marketplaceSubscriptionId, InformaticaOfferDetails offerDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Marketplace Subscription Id. </summary>
+        /// <summary> Gets or sets the marketplace subscription id. </summary>
         public string MarketplaceSubscriptionId { get; set; }
-        /// <summary> Marketplace offer details. </summary>
+        /// <summary> Gets or sets the offer details. </summary>
         public InformaticaOfferDetails OfferDetails { get; set; }
     }
 }

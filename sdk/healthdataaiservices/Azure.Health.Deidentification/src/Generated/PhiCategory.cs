@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> List of PHI Entities. </summary>
+    /// <summary> The PhiCategory. </summary>
     public readonly partial struct PhiCategory : IEquatable<PhiCategory>
     {
         private readonly string _value;
@@ -52,63 +52,63 @@ namespace Azure.Health.Deidentification
         private const string VehicleValue = "Vehicle";
         private const string ZipValue = "Zip";
 
-        /// <summary> Unknown PHI Type. </summary>
+        /// <summary> Unknown. </summary>
         public static PhiCategory Unknown { get; } = new PhiCategory(UnknownValue);
-        /// <summary> Account Number. </summary>
+        /// <summary> Account. </summary>
         public static PhiCategory Account { get; } = new PhiCategory(AccountValue);
         /// <summary> Age. </summary>
         public static PhiCategory Age { get; } = new PhiCategory(AgeValue);
-        /// <summary> Biological Identifier, such as a fingerprint or retinal scan. </summary>
+        /// <summary> BioID. </summary>
         public static PhiCategory BioID { get; } = new PhiCategory(BioIDValue);
         /// <summary> City. </summary>
         public static PhiCategory City { get; } = new PhiCategory(CityValue);
-        /// <summary> Country or Region. </summary>
+        /// <summary> CountryOrRegion. </summary>
         public static PhiCategory CountryOrRegion { get; } = new PhiCategory(CountryOrRegionValue);
         /// <summary> Date. </summary>
         public static PhiCategory Date { get; } = new PhiCategory(DateValue);
-        /// <summary> Device ID or serial numbers. </summary>
+        /// <summary> Device. </summary>
         public static PhiCategory Device { get; } = new PhiCategory(DeviceValue);
-        /// <summary> Doctor's Name. </summary>
+        /// <summary> Doctor. </summary>
         public static PhiCategory Doctor { get; } = new PhiCategory(DoctorValue);
-        /// <summary> Email Addresses. </summary>
+        /// <summary> Email. </summary>
         public static PhiCategory Email { get; } = new PhiCategory(EmailValue);
-        /// <summary> Fax Number. </summary>
+        /// <summary> Fax. </summary>
         public static PhiCategory Fax { get; } = new PhiCategory(FaxValue);
-        /// <summary> Health Plan ID Numbers. </summary>
+        /// <summary> HealthPlan. </summary>
         public static PhiCategory HealthPlan { get; } = new PhiCategory(HealthPlanValue);
-        /// <summary> Hospital Name. </summary>
+        /// <summary> Hospital. </summary>
         public static PhiCategory Hospital { get; } = new PhiCategory(HospitalValue);
-        /// <summary> Id Number, eg. passport number. </summary>
+        /// <summary> IDNum. </summary>
         public static PhiCategory IDNum { get; } = new PhiCategory(IDNumValue);
-        /// <summary> IP Address. </summary>
+        /// <summary> IPAddress. </summary>
         public static PhiCategory IPAddress { get; } = new PhiCategory(IPAddressValue);
-        /// <summary> License, eg. Driver's license or medical license. </summary>
+        /// <summary> License. </summary>
         public static PhiCategory License { get; } = new PhiCategory(LicenseValue);
-        /// <summary> Location Other, eg. Golden Gate Park. </summary>
+        /// <summary> LocationOther. </summary>
         public static PhiCategory LocationOther { get; } = new PhiCategory(LocationOtherValue);
-        /// <summary> Medical Record Number. </summary>
+        /// <summary> MedicalRecord. </summary>
         public static PhiCategory MedicalRecord { get; } = new PhiCategory(MedicalRecordValue);
-        /// <summary> Organization, eg. Microsoft. </summary>
+        /// <summary> Organization. </summary>
         public static PhiCategory Organization { get; } = new PhiCategory(OrganizationValue);
-        /// <summary> Patient Name. </summary>
+        /// <summary> Patient. </summary>
         public static PhiCategory Patient { get; } = new PhiCategory(PatientValue);
-        /// <summary> Phone Number. </summary>
+        /// <summary> Phone. </summary>
         public static PhiCategory Phone { get; } = new PhiCategory(PhoneValue);
         /// <summary> Profession. </summary>
         public static PhiCategory Profession { get; } = new PhiCategory(ProfessionValue);
-        /// <summary> Social Security Number. </summary>
+        /// <summary> SocialSecurity. </summary>
         public static PhiCategory SocialSecurity { get; } = new PhiCategory(SocialSecurityValue);
         /// <summary> State. </summary>
         public static PhiCategory State { get; } = new PhiCategory(StateValue);
         /// <summary> Street. </summary>
         public static PhiCategory Street { get; } = new PhiCategory(StreetValue);
-        /// <summary> Web URL. </summary>
+        /// <summary> Url. </summary>
         public static PhiCategory Url { get; } = new PhiCategory(UrlValue);
-        /// <summary> Usernames, eg. a social media handle. </summary>
+        /// <summary> Username. </summary>
         public static PhiCategory Username { get; } = new PhiCategory(UsernameValue);
-        /// <summary> Vehicle IDs, eg. license plate or VIN number. </summary>
+        /// <summary> Vehicle. </summary>
         public static PhiCategory Vehicle { get; } = new PhiCategory(VehicleValue);
-        /// <summary> Zip Code. </summary>
+        /// <summary> Zip. </summary>
         public static PhiCategory Zip { get; } = new PhiCategory(ZipValue);
         /// <summary> Determines if two <see cref="PhiCategory"/> values are the same. </summary>
         public static bool operator ==(PhiCategory left, PhiCategory right) => left.Equals(right);

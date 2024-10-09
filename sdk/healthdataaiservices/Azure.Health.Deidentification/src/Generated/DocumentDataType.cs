@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Enum of supported Data Types. </summary>
+    /// <summary> The DocumentDataType. </summary>
     public readonly partial struct DocumentDataType : IEquatable<DocumentDataType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Health.Deidentification
 
         private const string PlaintextValue = "Plaintext";
 
-        /// <summary> Plain text data type. </summary>
+        /// <summary> Plaintext. </summary>
         public static DocumentDataType Plaintext { get; } = new DocumentDataType(PlaintextValue);
         /// <summary> Determines if two <see cref="DocumentDataType"/> values are the same. </summary>
         public static bool operator ==(DocumentDataType left, DocumentDataType right) => left.Equals(right);

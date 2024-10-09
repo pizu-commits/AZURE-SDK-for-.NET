@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime Regions Metadata. </summary>
+    /// <summary> The InformaticaRegionsMetadata. </summary>
     public partial class InformaticaRegionsMetadata
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaRegionsMetadata"/>. </summary>
-        /// <param name="id"> Region Id. </param>
-        /// <param name="name"> Region name. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaRegionsMetadata(string id, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Region Id. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Region name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

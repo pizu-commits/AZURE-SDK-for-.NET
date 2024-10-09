@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Imaging procedure. </summary>
+    /// <summary> The ImagingProcedure. </summary>
     public partial class ImagingProcedure
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ImagingProcedure"/>. </summary>
-        /// <param name="modality"> Modality : SNOMED CT code. </param>
-        /// <param name="anatomy"> Anatomy : SNOMED CT code. </param>
+        /// <param name="modality"></param>
+        /// <param name="anatomy"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="modality"/> or <paramref name="anatomy"/> is null. </exception>
         internal ImagingProcedure(FhirR4CodeableConcept modality, FhirR4CodeableConcept anatomy)
         {
@@ -59,11 +59,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ImagingProcedure"/>. </summary>
-        /// <param name="modality"> Modality : SNOMED CT code. </param>
-        /// <param name="anatomy"> Anatomy : SNOMED CT code. </param>
-        /// <param name="laterality"> Laterality : SNOMED CT code. </param>
-        /// <param name="contrast"> Contrast : see RadiologyCodeWithTypes (below). </param>
-        /// <param name="view"> View : see RadiologyCodeWithTypes (below). </param>
+        /// <param name="modality"></param>
+        /// <param name="anatomy"></param>
+        /// <param name="laterality"></param>
+        /// <param name="contrast"></param>
+        /// <param name="view"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImagingProcedure(FhirR4CodeableConcept modality, FhirR4CodeableConcept anatomy, FhirR4CodeableConcept laterality, RadiologyCodeWithTypes contrast, RadiologyCodeWithTypes view, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,15 +80,15 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Modality : SNOMED CT code. </summary>
+        /// <summary> Gets the modality. </summary>
         public FhirR4CodeableConcept Modality { get; }
-        /// <summary> Anatomy : SNOMED CT code. </summary>
+        /// <summary> Gets the anatomy. </summary>
         public FhirR4CodeableConcept Anatomy { get; }
-        /// <summary> Laterality : SNOMED CT code. </summary>
+        /// <summary> Gets the laterality. </summary>
         public FhirR4CodeableConcept Laterality { get; }
-        /// <summary> Contrast : see RadiologyCodeWithTypes (below). </summary>
+        /// <summary> Gets the contrast. </summary>
         public RadiologyCodeWithTypes Contrast { get; }
-        /// <summary> View : see RadiologyCodeWithTypes (below). </summary>
+        /// <summary> Gets the view. </summary>
         public RadiologyCodeWithTypes View { get; }
     }
 }

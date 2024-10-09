@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A laterality mismatch occurs when there is a discrepancy between the clinical documentation and the ordered procedure (orderLateralityMismatch), a contradiction within the clinical document (textLateralityContradiction), or when no laterality is mentioned (textLateralityMissing). </summary>
+    /// <summary> The LateralityDiscrepancyInference. </summary>
     public partial class LateralityDiscrepancyInference : RadiologyInsightsInference
     {
         /// <summary> Initializes a new instance of <see cref="LateralityDiscrepancyInference"/>. </summary>
-        /// <param name="discrepancyType"> Mismatch type : orderLateralityMismatch, textLateralityContradiction, textLateralityMissing. </param>
+        /// <param name="discrepancyType"></param>
         internal LateralityDiscrepancyInference(LateralityDiscrepancyType discrepancyType)
         {
             Kind = RadiologyInsightsInferenceType.LateralityDiscrepancy;
@@ -22,11 +22,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="LateralityDiscrepancyInference"/>. </summary>
-        /// <param name="kind"> Discriminator property for RadiologyInsightsInference. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="lateralityIndication"> Laterality indication : SNOMED CT code for laterality qualifier value. </param>
-        /// <param name="discrepancyType"> Mismatch type : orderLateralityMismatch, textLateralityContradiction, textLateralityMissing. </param>
+        /// <param name="lateralityIndication"></param>
+        /// <param name="discrepancyType"></param>
         internal LateralityDiscrepancyInference(RadiologyInsightsInferenceType kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4CodeableConcept lateralityIndication, LateralityDiscrepancyType discrepancyType) : base(kind, extension, serializedAdditionalRawData)
         {
             LateralityIndication = lateralityIndication;
@@ -38,9 +38,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Laterality indication : SNOMED CT code for laterality qualifier value. </summary>
+        /// <summary> Gets the laterality indication. </summary>
         public FhirR4CodeableConcept LateralityIndication { get; }
-        /// <summary> Mismatch type : orderLateralityMismatch, textLateralityContradiction, textLateralityMissing. </summary>
+        /// <summary> Gets the discrepancy type. </summary>
         public LateralityDiscrepancyType DiscrepancyType { get; }
     }
 }

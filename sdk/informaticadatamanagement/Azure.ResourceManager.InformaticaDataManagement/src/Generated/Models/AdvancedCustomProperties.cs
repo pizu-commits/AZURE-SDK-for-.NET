@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless advanced custom properties. </summary>
+    /// <summary> The AdvancedCustomProperties. </summary>
     public partial class AdvancedCustomProperties
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AdvancedCustomProperties"/>. </summary>
-        /// <param name="key"> advanced custom properties key. </param>
-        /// <param name="value"> advanced custom properties value. </param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AdvancedCustomProperties(string key, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> advanced custom properties key. </summary>
+        /// <summary> Gets or sets the key. </summary>
         public string Key { get; set; }
-        /// <summary> advanced custom properties value. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

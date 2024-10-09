@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime Network Profile. </summary>
+    /// <summary> The ServerlessRuntimeNetworkProfile. </summary>
     internal partial class ServerlessRuntimeNetworkProfile
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeNetworkProfile"/>. </summary>
-        /// <param name="networkInterfaceConfiguration"> Network Interface Configuration Profile. </param>
+        /// <param name="networkInterfaceConfiguration"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkInterfaceConfiguration"/> is null. </exception>
         public ServerlessRuntimeNetworkProfile(InformaticaNetworkInterfaceConfiguration networkInterfaceConfiguration)
         {
@@ -56,7 +56,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeNetworkProfile"/>. </summary>
-        /// <param name="networkInterfaceConfiguration"> Network Interface Configuration Profile. </param>
+        /// <param name="networkInterfaceConfiguration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeNetworkProfile(InformaticaNetworkInterfaceConfiguration networkInterfaceConfiguration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Network Interface Configuration Profile. </summary>
+        /// <summary> Gets or sets the network interface configuration. </summary>
         public InformaticaNetworkInterfaceConfiguration NetworkInterfaceConfiguration { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A person's contact details. </summary>
+    /// <summary> The ContactDetails. </summary>
     public partial class ContactDetails
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ContactDetails"/>. </summary>
-        /// <param name="name"> The person's name. </param>
-        /// <param name="email"> The person's email. </param>
-        /// <param name="phone"> A person's phone number. </param>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="phone"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContactDetails(string name, string email, string phone, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The person's name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The person's email. </summary>
+        /// <summary> Gets or sets the email. </summary>
         public string Email { get; set; }
-        /// <summary> A person's phone number. </summary>
+        /// <summary> Gets or sets the phone. </summary>
         public string Phone { get; set; }
     }
 }

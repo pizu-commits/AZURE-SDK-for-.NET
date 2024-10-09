@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> InfaServerlessFetchConfigProperties for the fetch all serverless API as received from informatica API response. </summary>
+    /// <summary> The InformaticaServerlessFetchConfigProperties. </summary>
     public partial class InformaticaServerlessFetchConfigProperties
     {
         /// <summary>
@@ -52,20 +52,20 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessFetchConfigProperties"/>. </summary>
-        /// <param name="subnet"> subnet name. </param>
-        /// <param name="applicationType"> applicationType name. </param>
-        /// <param name="resourceGroupName"> Resource group name. </param>
-        /// <param name="advancedCustomProperties"> Advanced custom properties. </param>
-        /// <param name="supplementaryFileLocation"> Supplementary File location. </param>
-        /// <param name="platform"> Serverless Account Platform. </param>
-        /// <param name="tags"> Tags for the resource. </param>
-        /// <param name="vnet"> virtual network. </param>
-        /// <param name="executionTimeout"> Execution timeout. </param>
-        /// <param name="computeUnits"> Compute Units. </param>
-        /// <param name="tenantId"> Tenant ID. </param>
-        /// <param name="subscriptionId"> subscription ID. </param>
-        /// <param name="region"> region name for the runtime environment. </param>
-        /// <param name="serverlessArmResourceId"> Serverless Arm Resource ID. </param>
+        /// <param name="subnet"></param>
+        /// <param name="applicationType"></param>
+        /// <param name="resourceGroupName"></param>
+        /// <param name="advancedCustomProperties"></param>
+        /// <param name="supplementaryFileLocation"></param>
+        /// <param name="platform"></param>
+        /// <param name="tags"></param>
+        /// <param name="vnet"></param>
+        /// <param name="executionTimeout"></param>
+        /// <param name="computeUnits"></param>
+        /// <param name="tenantId"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="region"></param>
+        /// <param name="serverlessArmResourceId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaServerlessFetchConfigProperties(string subnet, string applicationType, string resourceGroupName, string advancedCustomProperties, string supplementaryFileLocation, string platform, string tags, string vnet, string executionTimeout, string computeUnits, Guid? tenantId, string subscriptionId, string region, ResourceIdentifier serverlessArmResourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,33 +86,33 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> subnet name. </summary>
+        /// <summary> Gets the subnet. </summary>
         public string Subnet { get; }
-        /// <summary> applicationType name. </summary>
+        /// <summary> Gets the application type. </summary>
         public string ApplicationType { get; }
-        /// <summary> Resource group name. </summary>
+        /// <summary> Gets the resource group name. </summary>
         public string ResourceGroupName { get; }
-        /// <summary> Advanced custom properties. </summary>
+        /// <summary> Gets the advanced custom properties. </summary>
         public string AdvancedCustomProperties { get; }
-        /// <summary> Supplementary File location. </summary>
+        /// <summary> Gets the supplementary file location. </summary>
         public string SupplementaryFileLocation { get; }
-        /// <summary> Serverless Account Platform. </summary>
+        /// <summary> Gets the platform. </summary>
         public string Platform { get; }
-        /// <summary> Tags for the resource. </summary>
+        /// <summary> Gets the tags. </summary>
         public string Tags { get; }
-        /// <summary> virtual network. </summary>
+        /// <summary> Gets the vnet. </summary>
         public string Vnet { get; }
-        /// <summary> Execution timeout. </summary>
+        /// <summary> Gets the execution timeout. </summary>
         public string ExecutionTimeout { get; }
-        /// <summary> Compute Units. </summary>
+        /// <summary> Gets the compute units. </summary>
         public string ComputeUnits { get; }
-        /// <summary> Tenant ID. </summary>
+        /// <summary> Gets the tenant id. </summary>
         public Guid? TenantId { get; }
-        /// <summary> subscription ID. </summary>
+        /// <summary> Gets the subscription id. </summary>
         public string SubscriptionId { get; }
-        /// <summary> region name for the runtime environment. </summary>
+        /// <summary> Gets the region. </summary>
         public string Region { get; }
-        /// <summary> Serverless Arm Resource ID. </summary>
+        /// <summary> Gets the serverless arm resource id. </summary>
         public ResourceIdentifier ServerlessArmResourceId { get; }
     }
 }

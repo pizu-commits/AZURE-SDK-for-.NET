@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Component results
-    /// Based on [FHIR Observation.component](https://www.hl7.org/fhir/R4/observation.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_ObservationComponent. </summary>
     public partial class FhirR4ObservationComponent : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4ObservationComponent"/>. </summary>
-        /// <param name="code"> Type of component observation (code / type). </param>
+        /// <param name="code"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> is null. </exception>
         internal FhirR4ObservationComponent(FhirR4CodeableConcept code)
         {
@@ -29,25 +26,25 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ObservationComponent"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="code"> Type of component observation (code / type). </param>
-        /// <param name="valueQuantity"> Value as Quantity. </param>
-        /// <param name="valueCodeableConcept"> Value as CodeableConcept. </param>
-        /// <param name="valueString"> Value as string. </param>
-        /// <param name="valueBoolean"> Value as boolean. </param>
-        /// <param name="valueInteger"> Value as integer. </param>
-        /// <param name="valueRange"> Value as Range. </param>
-        /// <param name="valueRatio"> Value as Ratio. </param>
-        /// <param name="valueSampledData"> Value as SampledData. </param>
-        /// <param name="valueTime"> Value as time (hh:mm:ss). </param>
-        /// <param name="valueDateTime"> Value as dateTime. </param>
-        /// <param name="valuePeriod"> Value as Period. </param>
-        /// <param name="valueReference"> Value as reference. </param>
-        /// <param name="dataAbsentReason"> Why the component result is missing. </param>
-        /// <param name="interpretation"> High, low, normal, etc. </param>
-        /// <param name="referenceRange"> Provides guide for interpretation of component result. </param>
+        /// <param name="code"></param>
+        /// <param name="valueQuantity"></param>
+        /// <param name="valueCodeableConcept"></param>
+        /// <param name="valueString"></param>
+        /// <param name="valueBoolean"></param>
+        /// <param name="valueInteger"></param>
+        /// <param name="valueRange"></param>
+        /// <param name="valueRatio"></param>
+        /// <param name="valueSampledData"></param>
+        /// <param name="valueTime"></param>
+        /// <param name="valueDateTime"></param>
+        /// <param name="valuePeriod"></param>
+        /// <param name="valueReference"></param>
+        /// <param name="dataAbsentReason"></param>
+        /// <param name="interpretation"></param>
+        /// <param name="referenceRange"></param>
         internal FhirR4ObservationComponent(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4CodeableConcept code, FhirR4Quantity valueQuantity, FhirR4CodeableConcept valueCodeableConcept, string valueString, bool? valueBoolean, int? valueInteger, FhirR4Range valueRange, FhirR4Ratio valueRatio, FhirR4SampledData valueSampledData, TimeSpan? valueTime, string valueDateTime, FhirR4Period valuePeriod, FhirR4Reference valueReference, FhirR4CodeableConcept dataAbsentReason, IReadOnlyList<FhirR4CodeableConcept> interpretation, IReadOnlyList<FhirR4ObservationReferenceRange> referenceRange) : base(id, extension, serializedAdditionalRawData)
         {
             Code = code;
@@ -73,37 +70,37 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Type of component observation (code / type). </summary>
+        /// <summary> Gets the code. </summary>
         public FhirR4CodeableConcept Code { get; }
-        /// <summary> Value as Quantity. </summary>
+        /// <summary> Gets the value quantity. </summary>
         public FhirR4Quantity ValueQuantity { get; }
-        /// <summary> Value as CodeableConcept. </summary>
+        /// <summary> Gets the value codeable concept. </summary>
         public FhirR4CodeableConcept ValueCodeableConcept { get; }
-        /// <summary> Value as string. </summary>
+        /// <summary> Gets the value string. </summary>
         public string ValueString { get; }
-        /// <summary> Value as boolean. </summary>
+        /// <summary> Gets the value boolean. </summary>
         public bool? ValueBoolean { get; }
-        /// <summary> Value as integer. </summary>
+        /// <summary> Gets the value integer. </summary>
         public int? ValueInteger { get; }
-        /// <summary> Value as Range. </summary>
+        /// <summary> Gets the value range. </summary>
         public FhirR4Range ValueRange { get; }
-        /// <summary> Value as Ratio. </summary>
+        /// <summary> Gets the value ratio. </summary>
         public FhirR4Ratio ValueRatio { get; }
-        /// <summary> Value as SampledData. </summary>
+        /// <summary> Gets the value sampled data. </summary>
         public FhirR4SampledData ValueSampledData { get; }
-        /// <summary> Value as time (hh:mm:ss). </summary>
+        /// <summary> Gets the value time. </summary>
         public TimeSpan? ValueTime { get; }
-        /// <summary> Value as dateTime. </summary>
+        /// <summary> Gets the value date time. </summary>
         public string ValueDateTime { get; }
-        /// <summary> Value as Period. </summary>
+        /// <summary> Gets the value period. </summary>
         public FhirR4Period ValuePeriod { get; }
-        /// <summary> Value as reference. </summary>
+        /// <summary> Gets the value reference. </summary>
         public FhirR4Reference ValueReference { get; }
-        /// <summary> Why the component result is missing. </summary>
+        /// <summary> Gets the data absent reason. </summary>
         public FhirR4CodeableConcept DataAbsentReason { get; }
-        /// <summary> High, low, normal, etc. </summary>
+        /// <summary> Gets the interpretation. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Interpretation { get; }
-        /// <summary> Provides guide for interpretation of component result. </summary>
+        /// <summary> Gets the reference range. </summary>
         public IReadOnlyList<FhirR4ObservationReferenceRange> ReferenceRange { get; }
     }
 }

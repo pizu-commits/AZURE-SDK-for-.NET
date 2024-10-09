@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Various types of the Platform types. </summary>
+    /// <summary> The InformaticaPlatformType. </summary>
     public readonly partial struct InformaticaPlatformType : IEquatable<InformaticaPlatformType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
 
         private const string AzureValue = "AZURE";
 
-        /// <summary> Azure platform type. </summary>
+        /// <summary> AZURE. </summary>
         public static InformaticaPlatformType Azure { get; } = new InformaticaPlatformType(AzureValue);
         /// <summary> Determines if two <see cref="InformaticaPlatformType"/> values are the same. </summary>
         public static bool operator ==(InformaticaPlatformType left, InformaticaPlatformType right) => left.Equals(right);

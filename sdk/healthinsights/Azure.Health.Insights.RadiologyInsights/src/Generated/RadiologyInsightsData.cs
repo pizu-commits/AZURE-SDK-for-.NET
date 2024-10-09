@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Contains the list of patients, and configuration data. </summary>
+    /// <summary> The RadiologyInsightsData. </summary>
     public partial class RadiologyInsightsData
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
+        /// <param name="patients"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patients"/> is null. </exception>
         public RadiologyInsightsData(IEnumerable<PatientRecord> patients)
         {
@@ -57,8 +57,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
-        /// <param name="configuration"> Configuration affecting the Radiology Insights model's inference. </param>
+        /// <param name="patients"></param>
+        /// <param name="configuration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyInsightsData(IList<PatientRecord> patients, RadiologyInsightsModelConfiguration configuration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> The list of patients, including their clinical information and data. </summary>
+        /// <summary> Gets the patients. </summary>
         public IList<PatientRecord> Patients { get; }
-        /// <summary> Configuration affecting the Radiology Insights model's inference. </summary>
+        /// <summary> Gets or sets the configuration. </summary>
         public RadiologyInsightsModelConfiguration Configuration { get; set; }
     }
 }

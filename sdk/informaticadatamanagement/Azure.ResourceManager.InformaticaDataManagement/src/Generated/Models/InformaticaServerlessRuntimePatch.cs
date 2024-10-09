@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> The template for adding optional properties. </summary>
+    /// <summary> The InformaticaServerlessRuntimePatch. </summary>
     public partial class InformaticaServerlessRuntimePatch
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessRuntimePatch"/>. </summary>
-        /// <param name="properties"> Patchable PropertieInformaticaOrganizationPropertiesUpdates of the Organization observability resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaServerlessRuntimePatch(ServerlessRuntimePropertiesUpdate properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Patchable PropertieInformaticaOrganizationPropertiesUpdates of the Organization observability resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public ServerlessRuntimePropertiesUpdate Properties { get; set; }
     }
 }

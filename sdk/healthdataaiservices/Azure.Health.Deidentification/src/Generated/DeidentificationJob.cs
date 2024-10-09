@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> A job containing a batch of documents to de-identify. </summary>
+    /// <summary> The DeidentificationJob. </summary>
     public partial class DeidentificationJob
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeidentificationJob"/>. </summary>
-        /// <param name="sourceLocation"> Storage location to perform the operation on. </param>
-        /// <param name="targetLocation"> Target location to store output of operation. </param>
+        /// <param name="sourceLocation"></param>
+        /// <param name="targetLocation"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceLocation"/> or <paramref name="targetLocation"/> is null. </exception>
         public DeidentificationJob(SourceStorageLocation sourceLocation, TargetStorageLocation targetLocation)
         {
@@ -59,24 +59,18 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="DeidentificationJob"/>. </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="sourceLocation"> Storage location to perform the operation on. </param>
-        /// <param name="targetLocation"> Target location to store output of operation. </param>
-        /// <param name="operation"> Operation to perform on the input documents. </param>
-        /// <param name="dataType"> Data type of the input documents. </param>
-        /// <param name="redactionFormat"> Format of the redacted output. Only valid when Operation is Redact. </param>
-        /// <param name="status"> Current status of a job. </param>
-        /// <param name="error"> Error when job fails in it's entirety. </param>
-        /// <param name="lastUpdatedAt">
-        /// Date and time when the job was completed.
-        ///
-        /// If the job is canceled, this is the time when the job was canceled.
-        ///
-        /// If the job failed, this is the time when the job failed.
-        /// </param>
-        /// <param name="createdAt"> Date and time when the job was created. </param>
-        /// <param name="startedAt"> Date and time when the job was started. </param>
-        /// <param name="summary"> Summary of a job. Exists only when the job is completed. </param>
+        /// <param name="name"></param>
+        /// <param name="sourceLocation"></param>
+        /// <param name="targetLocation"></param>
+        /// <param name="operation"></param>
+        /// <param name="dataType"></param>
+        /// <param name="redactionFormat"></param>
+        /// <param name="status"></param>
+        /// <param name="error"></param>
+        /// <param name="lastUpdatedAt"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="startedAt"></param>
+        /// <param name="summary"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeidentificationJob(string name, SourceStorageLocation sourceLocation, TargetStorageLocation targetLocation, OperationType? operation, DocumentDataType? dataType, string redactionFormat, JobStatus status, ResponseError error, DateTimeOffset lastUpdatedAt, DateTimeOffset createdAt, DateTimeOffset? startedAt, JobSummary summary, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -100,35 +94,29 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> The name of a job. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Storage location to perform the operation on. </summary>
+        /// <summary> Gets or sets the source location. </summary>
         public SourceStorageLocation SourceLocation { get; set; }
-        /// <summary> Target location to store output of operation. </summary>
+        /// <summary> Gets or sets the target location. </summary>
         public TargetStorageLocation TargetLocation { get; set; }
-        /// <summary> Operation to perform on the input documents. </summary>
+        /// <summary> Gets or sets the operation. </summary>
         public OperationType? Operation { get; set; }
-        /// <summary> Data type of the input documents. </summary>
+        /// <summary> Gets or sets the data type. </summary>
         public DocumentDataType? DataType { get; set; }
-        /// <summary> Format of the redacted output. Only valid when Operation is Redact. </summary>
+        /// <summary> Gets or sets the redaction format. </summary>
         public string RedactionFormat { get; set; }
-        /// <summary> Current status of a job. </summary>
+        /// <summary> Gets the status. </summary>
         public JobStatus Status { get; }
-        /// <summary> Error when job fails in it's entirety. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
-        /// <summary>
-        /// Date and time when the job was completed.
-        ///
-        /// If the job is canceled, this is the time when the job was canceled.
-        ///
-        /// If the job failed, this is the time when the job failed.
-        /// </summary>
+        /// <summary> Gets the last updated at. </summary>
         public DateTimeOffset LastUpdatedAt { get; }
-        /// <summary> Date and time when the job was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> Date and time when the job was started. </summary>
+        /// <summary> Gets the started at. </summary>
         public DateTimeOffset? StartedAt { get; }
-        /// <summary> Summary of a job. Exists only when the job is completed. </summary>
+        /// <summary> Gets the summary. </summary>
         public JobSummary Summary { get; }
     }
 }

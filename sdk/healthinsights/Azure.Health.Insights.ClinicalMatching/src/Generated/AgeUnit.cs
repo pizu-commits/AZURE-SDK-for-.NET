@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Possible units for a person's age. </summary>
+    /// <summary> The AgeUnit. </summary>
     public readonly partial struct AgeUnit : IEquatable<AgeUnit>
     {
         private readonly string _value;

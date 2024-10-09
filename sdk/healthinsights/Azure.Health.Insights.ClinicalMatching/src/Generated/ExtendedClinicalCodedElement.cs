@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A piece of clinical information, expressed as a code in a clinical coding system, extended by semantic information. </summary>
+    /// <summary> The ExtendedClinicalCodedElement. </summary>
     public partial class ExtendedClinicalCodedElement
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExtendedClinicalCodedElement"/>. </summary>
-        /// <param name="system"> The clinical coding system, e.g. ICD-10, SNOMED-CT, UMLS. </param>
-        /// <param name="code"> The code within the given clinical coding system. </param>
+        /// <param name="system"></param>
+        /// <param name="code"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="system"/> or <paramref name="code"/> is null. </exception>
         internal ExtendedClinicalCodedElement(string system, string code)
         {
@@ -59,12 +59,12 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ExtendedClinicalCodedElement"/>. </summary>
-        /// <param name="system"> The clinical coding system, e.g. ICD-10, SNOMED-CT, UMLS. </param>
-        /// <param name="code"> The code within the given clinical coding system. </param>
-        /// <param name="name"> The name of this coded concept in the coding system. </param>
-        /// <param name="value"> A value associated with the code within the given clinical coding system. </param>
-        /// <param name="semanticType"> The [UMLS semantic type](https://www.nlm.nih.gov/research/umls/META3_current_semantic_types.html) associated with the coded concept. </param>
-        /// <param name="category"> The bio-medical category related to the coded concept, e.g. Diagnosis, Symptom, Medication, Examination. </param>
+        /// <param name="system"></param>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="semanticType"></param>
+        /// <param name="category"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExtendedClinicalCodedElement(string system, string code, string name, string value, string semanticType, string category, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,17 +82,17 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The clinical coding system, e.g. ICD-10, SNOMED-CT, UMLS. </summary>
+        /// <summary> Gets the system. </summary>
         public string System { get; }
-        /// <summary> The code within the given clinical coding system. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> The name of this coded concept in the coding system. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> A value associated with the code within the given clinical coding system. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary> The [UMLS semantic type](https://www.nlm.nih.gov/research/umls/META3_current_semantic_types.html) associated with the coded concept. </summary>
+        /// <summary> Gets the semantic type. </summary>
         public string SemanticType { get; }
-        /// <summary> The bio-medical category related to the coded concept, e.g. Diagnosis, Symptom, Medication, Examination. </summary>
+        /// <summary> Gets the category. </summary>
         public string Category { get; }
     }
 }

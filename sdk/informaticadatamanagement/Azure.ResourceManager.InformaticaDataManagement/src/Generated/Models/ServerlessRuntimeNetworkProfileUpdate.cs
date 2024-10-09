@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Network profile properties update. </summary>
+    /// <summary> The ServerlessRuntimeNetworkProfileUpdate. </summary>
     internal partial class ServerlessRuntimeNetworkProfileUpdate
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeNetworkProfileUpdate"/>. </summary>
-        /// <param name="networkInterfaceConfiguration"> Network Interface Configuration Profile Update. </param>
+        /// <param name="networkInterfaceConfiguration"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkInterfaceConfiguration"/> is null. </exception>
         public ServerlessRuntimeNetworkProfileUpdate(InformaticaNetworkInterfaceConfigurationUpdate networkInterfaceConfiguration)
         {
@@ -56,7 +56,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeNetworkProfileUpdate"/>. </summary>
-        /// <param name="networkInterfaceConfiguration"> Network Interface Configuration Profile Update. </param>
+        /// <param name="networkInterfaceConfiguration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeNetworkProfileUpdate(InformaticaNetworkInterfaceConfigurationUpdate networkInterfaceConfiguration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Network Interface Configuration Profile Update. </summary>
+        /// <summary> Gets the network interface configuration. </summary>
         public InformaticaNetworkInterfaceConfigurationUpdate NetworkInterfaceConfiguration { get; }
     }
 }

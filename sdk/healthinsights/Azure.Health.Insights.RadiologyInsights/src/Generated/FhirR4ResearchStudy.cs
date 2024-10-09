@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Detailed information about Research Study
-    /// Based on [FHIR ResearchStudy](https://www.hl7.org/fhir/R4/researchstudy.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_ResearchStudy. </summary>
     public partial class FhirR4ResearchStudy : FhirR4DomainResource
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4ResearchStudy"/>. </summary>
-        /// <param name="status"> active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn. </param>
+        /// <param name="status"></param>
         internal FhirR4ResearchStudy(ResearchStudyStatusCodeType status) : base("ResearchStudy")
         {
             Identifier = new ChangeTrackingList<FhirR4Identifier>();
@@ -38,39 +35,39 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ResearchStudy"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="meta"> Metadata about the resource. </param>
-        /// <param name="implicitRules"> A set of rules under which this content was created. </param>
-        /// <param name="language"> Language of the resource content. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="id"></param>
+        /// <param name="meta"></param>
+        /// <param name="implicitRules"></param>
+        /// <param name="language"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <param name="text"> Text summary of the resource, for human interpretation. </param>
-        /// <param name="contained"> Contained, inline Resources. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
-        /// <param name="modifierExtension"> Extensions that cannot be ignored. </param>
-        /// <param name="identifier"> Business Identifier for study. </param>
-        /// <param name="title"> Name for this study. </param>
-        /// <param name="protocol"> Steps followed in executing study. </param>
-        /// <param name="partOf"> Part of larger study. </param>
-        /// <param name="status"> active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn. </param>
-        /// <param name="primaryPurposeType"> treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility. </param>
-        /// <param name="phase"> n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4. </param>
-        /// <param name="category"> Classifications for the study. </param>
-        /// <param name="focus"> Drugs, devices, etc. under study. </param>
-        /// <param name="condition"> Condition being studied. </param>
-        /// <param name="contact"> Contact details for the study. </param>
-        /// <param name="keyword"> Used to search for the study. </param>
-        /// <param name="location"> Geographic region(s) for study. </param>
-        /// <param name="description"> What this is study doing. </param>
-        /// <param name="enrollment"> Inclusion &amp; exclusion criteria. </param>
-        /// <param name="period"> When the study began and ended. </param>
-        /// <param name="sponsor"> Organization that initiates and is legally responsible for the study. </param>
-        /// <param name="principalInvestigator"> Researcher who oversees multiple aspects of the study. </param>
-        /// <param name="site"> Facility where study activities are conducted. </param>
-        /// <param name="reasonStopped"> accrual-goal-met | closed-due-to-toxicity | closed-due-to-lack-of-study-progress | temporarily-closed-per-study-design. </param>
-        /// <param name="note"> Comments made about the study. </param>
-        /// <param name="arm"> Defined path through the study for a subject. </param>
-        /// <param name="objective"> A goal for the study. </param>
+        /// <param name="text"></param>
+        /// <param name="contained"></param>
+        /// <param name="extension"></param>
+        /// <param name="modifierExtension"></param>
+        /// <param name="identifier"></param>
+        /// <param name="title"></param>
+        /// <param name="protocol"></param>
+        /// <param name="partOf"></param>
+        /// <param name="status"></param>
+        /// <param name="primaryPurposeType"></param>
+        /// <param name="phase"></param>
+        /// <param name="category"></param>
+        /// <param name="focus"></param>
+        /// <param name="condition"></param>
+        /// <param name="contact"></param>
+        /// <param name="keyword"></param>
+        /// <param name="location"></param>
+        /// <param name="description"></param>
+        /// <param name="enrollment"></param>
+        /// <param name="period"></param>
+        /// <param name="sponsor"></param>
+        /// <param name="principalInvestigator"></param>
+        /// <param name="site"></param>
+        /// <param name="reasonStopped"></param>
+        /// <param name="note"></param>
+        /// <param name="arm"></param>
+        /// <param name="objective"></param>
         internal FhirR4ResearchStudy(string resourceType, string id, FhirR4Meta meta, string implicitRules, string language, IDictionary<string, BinaryData> additionalProperties, FhirR4Narrative text, IReadOnlyList<FhirR4Resource> contained, IReadOnlyList<FhirR4Extension> extension, IReadOnlyList<FhirR4Extension> modifierExtension, IReadOnlyList<FhirR4Identifier> identifier, string title, IReadOnlyList<FhirR4Reference> protocol, IReadOnlyList<FhirR4Reference> partOf, ResearchStudyStatusCodeType status, FhirR4CodeableConcept primaryPurposeType, FhirR4CodeableConcept phase, IReadOnlyList<FhirR4CodeableConcept> category, IReadOnlyList<FhirR4CodeableConcept> focus, IReadOnlyList<FhirR4CodeableConcept> condition, IReadOnlyList<FhirR4ContactDetail> contact, IReadOnlyList<FhirR4CodeableConcept> keyword, IReadOnlyList<FhirR4CodeableConcept> location, string description, IReadOnlyList<FhirR4Reference> enrollment, FhirR4Period period, FhirR4Reference sponsor, FhirR4Reference principalInvestigator, IReadOnlyList<FhirR4Reference> site, FhirR4CodeableConcept reasonStopped, IReadOnlyList<FhirR4Annotation> note, IReadOnlyList<ResearchStudyArm> arm, IReadOnlyList<ResearchStudyObjective> objective) : base(resourceType, id, meta, implicitRules, language, additionalProperties, text, contained, extension, modifierExtension)
         {
             Identifier = identifier;
@@ -103,51 +100,51 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Business Identifier for study. </summary>
+        /// <summary> Gets the identifier. </summary>
         public IReadOnlyList<FhirR4Identifier> Identifier { get; }
-        /// <summary> Name for this study. </summary>
+        /// <summary> Gets the title. </summary>
         public string Title { get; }
-        /// <summary> Steps followed in executing study. </summary>
+        /// <summary> Gets the protocol. </summary>
         public IReadOnlyList<FhirR4Reference> Protocol { get; }
-        /// <summary> Part of larger study. </summary>
+        /// <summary> Gets the part of. </summary>
         public IReadOnlyList<FhirR4Reference> PartOf { get; }
-        /// <summary> active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn. </summary>
+        /// <summary> Gets the status. </summary>
         public ResearchStudyStatusCodeType Status { get; }
-        /// <summary> treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility. </summary>
+        /// <summary> Gets the primary purpose type. </summary>
         public FhirR4CodeableConcept PrimaryPurposeType { get; }
-        /// <summary> n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4. </summary>
+        /// <summary> Gets the phase. </summary>
         public FhirR4CodeableConcept Phase { get; }
-        /// <summary> Classifications for the study. </summary>
+        /// <summary> Gets the category. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Category { get; }
-        /// <summary> Drugs, devices, etc. under study. </summary>
+        /// <summary> Gets the focus. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Focus { get; }
-        /// <summary> Condition being studied. </summary>
+        /// <summary> Gets the condition. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Condition { get; }
-        /// <summary> Contact details for the study. </summary>
+        /// <summary> Gets the contact. </summary>
         public IReadOnlyList<FhirR4ContactDetail> Contact { get; }
-        /// <summary> Used to search for the study. </summary>
+        /// <summary> Gets the keyword. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Keyword { get; }
-        /// <summary> Geographic region(s) for study. </summary>
+        /// <summary> Gets the location. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Location { get; }
-        /// <summary> What this is study doing. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Inclusion &amp; exclusion criteria. </summary>
+        /// <summary> Gets the enrollment. </summary>
         public IReadOnlyList<FhirR4Reference> Enrollment { get; }
-        /// <summary> When the study began and ended. </summary>
+        /// <summary> Gets the period. </summary>
         public FhirR4Period Period { get; }
-        /// <summary> Organization that initiates and is legally responsible for the study. </summary>
+        /// <summary> Gets the sponsor. </summary>
         public FhirR4Reference Sponsor { get; }
-        /// <summary> Researcher who oversees multiple aspects of the study. </summary>
+        /// <summary> Gets the principal investigator. </summary>
         public FhirR4Reference PrincipalInvestigator { get; }
-        /// <summary> Facility where study activities are conducted. </summary>
+        /// <summary> Gets the site. </summary>
         public IReadOnlyList<FhirR4Reference> Site { get; }
-        /// <summary> accrual-goal-met | closed-due-to-toxicity | closed-due-to-lack-of-study-progress | temporarily-closed-per-study-design. </summary>
+        /// <summary> Gets the reason stopped. </summary>
         public FhirR4CodeableConcept ReasonStopped { get; }
-        /// <summary> Comments made about the study. </summary>
+        /// <summary> Gets the note. </summary>
         public IReadOnlyList<FhirR4Annotation> Note { get; }
-        /// <summary> Defined path through the study for a subject. </summary>
+        /// <summary> Gets the arm. </summary>
         public IReadOnlyList<ResearchStudyArm> Arm { get; }
-        /// <summary> A goal for the study. </summary>
+        /// <summary> Gets the objective. </summary>
         public IReadOnlyList<ResearchStudyObjective> Objective { get; }
     }
 }

@@ -21,7 +21,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <returns> A new <see cref="Models.HealthDataAIServicesPrivateLinkResourceData"/> instance for mocking. </returns>
         public static HealthDataAIServicesPrivateLinkResourceData HealthDataAIServicesPrivateLinkResourceData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, HealthDataAIServicesPrivateLinkResourceProperties properties = null)
         {
@@ -35,9 +35,9 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.HealthDataAIServicesPrivateLinkResourceProperties"/>. </summary>
-        /// <param name="groupId"> The private link resource group id. </param>
-        /// <param name="requiredMembers"> The private link resource required member names. </param>
-        /// <param name="requiredZoneNames"> The private link resource private link DNS zone name. </param>
+        /// <param name="groupId"></param>
+        /// <param name="requiredMembers"></param>
+        /// <param name="requiredZoneNames"></param>
         /// <returns> A new <see cref="Models.HealthDataAIServicesPrivateLinkResourceProperties"/> instance for mocking. </returns>
         public static HealthDataAIServicesPrivateLinkResourceProperties HealthDataAIServicesPrivateLinkResourceProperties(string groupId = null, IEnumerable<string> requiredMembers = null, IEnumerable<string> requiredZoneNames = null)
         {
@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <returns> A new <see cref="HealthDataAIServices.HealthDataAIServicesPrivateEndpointConnectionResourceData"/> instance for mocking. </returns>
         public static HealthDataAIServicesPrivateEndpointConnectionResourceData HealthDataAIServicesPrivateEndpointConnectionResourceData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, PrivateEndpointConnectionProperties properties = null)
         {
@@ -66,10 +66,10 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.PrivateEndpointConnectionProperties"/>. </summary>
-        /// <param name="groupIds"> The group ids for the private endpoint resource. </param>
-        /// <param name="privateEndpointId"> The private endpoint resource. </param>
-        /// <param name="privateLinkServiceConnectionState"> A collection of information about the state of the connection between service consumer and provider. </param>
-        /// <param name="provisioningState"> The provisioning state of the private endpoint connection resource. </param>
+        /// <param name="groupIds"></param>
+        /// <param name="privateEndpointId"> Gets or sets the private endpoint. </param>
+        /// <param name="privateLinkServiceConnectionState"></param>
+        /// <param name="provisioningState"></param>
         /// <returns> A new <see cref="Models.PrivateEndpointConnectionProperties"/> instance for mocking. </returns>
         public static PrivateEndpointConnectionProperties PrivateEndpointConnectionProperties(IEnumerable<string> groupIds = null, ResourceIdentifier privateEndpointId = null, HealthDataAIServicesPrivateLinkServiceConnectionState privateLinkServiceConnectionState = null, HealthDataAIServicesPrivateEndpointConnectionProvisioningState? provisioningState = null)
         {
@@ -85,8 +85,8 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="identity"> The managed service identities assigned to this resource. </param>
+        /// <param name="properties"></param>
+        /// <param name="identity"></param>
         /// <returns> A new <see cref="HealthDataAIServices.DeidServiceData"/> instance for mocking. </returns>
         public static DeidServiceData DeidServiceData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, DeidServiceProperties properties = null, ManagedServiceIdentity identity = null)
         {
@@ -105,10 +105,10 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.DeidServiceProperties"/>. </summary>
-        /// <param name="provisioningState"> The status of the last operation. </param>
-        /// <param name="serviceUri"> Deid service url. </param>
-        /// <param name="privateEndpointConnections"> List of private endpoint connections. </param>
-        /// <param name="publicNetworkAccess"> Gets or sets allow or disallow public network access to resource. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="serviceUri"></param>
+        /// <param name="privateEndpointConnections"></param>
+        /// <param name="publicNetworkAccess"></param>
         /// <returns> A new <see cref="Models.DeidServiceProperties"/> instance for mocking. </returns>
         public static DeidServiceProperties DeidServiceProperties(HealthDataAIServicesProvisioningState? provisioningState = null, string serviceUri = null, IEnumerable<HealthDataAIServicesPrivateEndpointConnection> privateEndpointConnections = null, HealthDataAIServicesPublicNetworkAccess? publicNetworkAccess = null)
         {
@@ -122,7 +122,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The private endpoint connection properties. </param>
+        /// <param name="properties"></param>
         /// <returns> A new <see cref="Models.HealthDataAIServicesPrivateEndpointConnection"/> instance for mocking. </returns>
         public static HealthDataAIServicesPrivateEndpointConnection HealthDataAIServicesPrivateEndpointConnection(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, PrivateEndpointConnectionProperties properties = null)
         {

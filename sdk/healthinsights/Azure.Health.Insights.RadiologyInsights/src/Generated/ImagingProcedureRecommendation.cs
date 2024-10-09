@@ -11,11 +11,11 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Imaging procedures. </summary>
+    /// <summary> The ImagingProcedureRecommendation. </summary>
     public partial class ImagingProcedureRecommendation : ProcedureRecommendation
     {
         /// <summary> Initializes a new instance of <see cref="ImagingProcedureRecommendation"/>. </summary>
-        /// <param name="imagingProcedures"> Imaging procedures. </param>
+        /// <param name="imagingProcedures"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="imagingProcedures"/> is null. </exception>
         internal ImagingProcedureRecommendation(IEnumerable<ImagingProcedure> imagingProcedures)
         {
@@ -27,11 +27,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ImagingProcedureRecommendation"/>. </summary>
-        /// <param name="kind"> Discriminator property for ProcedureRecommendation. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="procedureCodes"> LOINC codes for the procedure. </param>
-        /// <param name="imagingProcedures"> Imaging procedures. </param>
+        /// <param name="procedureCodes"></param>
+        /// <param name="imagingProcedures"></param>
         internal ImagingProcedureRecommendation(string kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<FhirR4CodeableConcept> procedureCodes, IReadOnlyList<ImagingProcedure> imagingProcedures) : base(kind, extension, serializedAdditionalRawData)
         {
             ProcedureCodes = procedureCodes;
@@ -43,9 +43,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> LOINC codes for the procedure. </summary>
+        /// <summary> Gets the procedure codes. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> ProcedureCodes { get; }
-        /// <summary> Imaging procedures. </summary>
+        /// <summary> Gets the imaging procedures. </summary>
         public IReadOnlyList<ImagingProcedure> ImagingProcedures { get; }
     }
 }

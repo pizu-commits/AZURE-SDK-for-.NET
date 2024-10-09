@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Contact Point Use
-    /// See: 	http://hl7.org/fhir/ValueSet/contact-point-use
-    /// </summary>
+    /// <summary> The ContactPointUse. </summary>
     public readonly partial struct ContactPointUse : IEquatable<ContactPointUse>
     {
         private readonly string _value;
@@ -31,15 +28,15 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string OldValue = "old";
         private const string MobileValue = "mobile";
 
-        /// <summary> Home. </summary>
+        /// <summary> home. </summary>
         public static ContactPointUse Home { get; } = new ContactPointUse(HomeValue);
-        /// <summary> Work. </summary>
+        /// <summary> work. </summary>
         public static ContactPointUse Work { get; } = new ContactPointUse(WorkValue);
-        /// <summary> Temp. </summary>
+        /// <summary> temp. </summary>
         public static ContactPointUse Temp { get; } = new ContactPointUse(TempValue);
-        /// <summary> Old. </summary>
+        /// <summary> old. </summary>
         public static ContactPointUse Old { get; } = new ContactPointUse(OldValue);
-        /// <summary> Mobile. </summary>
+        /// <summary> mobile. </summary>
         public static ContactPointUse Mobile { get; } = new ContactPointUse(MobileValue);
         /// <summary> Determines if two <see cref="ContactPointUse"/> values are the same. </summary>
         public static bool operator ==(ContactPointUse left, ContactPointUse right) => left.Equals(right);

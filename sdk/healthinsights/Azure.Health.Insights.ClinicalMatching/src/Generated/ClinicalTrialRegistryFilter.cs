@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A filter defining a subset of clinical trials from a given clinical trial registry (e.g. clinicaltrials.gov). </summary>
+    /// <summary> The ClinicalTrialRegistryFilter. </summary>
     public partial class ClinicalTrialRegistryFilter
     {
         /// <summary>
@@ -62,50 +62,17 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialRegistryFilter"/>. </summary>
-        /// <param name="conditions">
-        /// Trials with any of the given medical conditions will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the medical conditions.
-        /// </param>
-        /// <param name="studyTypes">
-        /// Trials with any of the given study types will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the study types.
-        /// </param>
-        /// <param name="recruitmentStatuses">
-        /// Trials with any of the given recruitment statuses will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the recruitment statuses.
-        /// </param>
-        /// <param name="sponsors">
-        /// Trials with any of the given sponsors will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the sponsors.
-        /// </param>
-        /// <param name="phases">
-        /// Trials with any of the given phases will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the phases.
-        /// </param>
-        /// <param name="purposes">
-        /// Trials with any of the given purposes will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the purposes.
-        /// </param>
-        /// <param name="ids">
-        /// Trials with any of the given identifiers will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial identifiers.
-        /// </param>
-        /// <param name="sources">
-        /// Trials with any of the given sources will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the sources.
-        /// </param>
-        /// <param name="facilityNames">
-        /// Trials with any of the given facility names will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility names.
-        /// </param>
-        /// <param name="facilityLocations">
-        /// Trials with any of the given facility locations will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility locations.
-        /// </param>
-        /// <param name="facilityAreas">
-        /// Trials with any of the given facility area boundaries will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility area boundaries.
-        /// </param>
+        /// <param name="conditions"></param>
+        /// <param name="studyTypes"></param>
+        /// <param name="recruitmentStatuses"></param>
+        /// <param name="sponsors"></param>
+        /// <param name="phases"></param>
+        /// <param name="purposes"></param>
+        /// <param name="ids"></param>
+        /// <param name="sources"></param>
+        /// <param name="facilityNames"></param>
+        /// <param name="facilityLocations"></param>
+        /// <param name="facilityAreas"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrialRegistryFilter(IList<string> conditions, IList<ClinicalTrialStudyType> studyTypes, IList<ClinicalTrialRecruitmentStatus> recruitmentStatuses, IList<string> sponsors, IList<ClinicalTrialPhase> phases, IList<ClinicalTrialPurpose> purposes, IList<string> ids, IList<ClinicalTrialSource> sources, IList<string> facilityNames, IList<GeographicLocation> facilityLocations, IList<GeographicArea> facilityAreas, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -123,60 +90,27 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Trials with any of the given medical conditions will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the medical conditions.
-        /// </summary>
+        /// <summary> Gets the conditions. </summary>
         public IList<string> Conditions { get; }
-        /// <summary>
-        /// Trials with any of the given study types will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the study types.
-        /// </summary>
+        /// <summary> Gets the study types. </summary>
         public IList<ClinicalTrialStudyType> StudyTypes { get; }
-        /// <summary>
-        /// Trials with any of the given recruitment statuses will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the recruitment statuses.
-        /// </summary>
+        /// <summary> Gets the recruitment statuses. </summary>
         public IList<ClinicalTrialRecruitmentStatus> RecruitmentStatuses { get; }
-        /// <summary>
-        /// Trials with any of the given sponsors will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the sponsors.
-        /// </summary>
+        /// <summary> Gets the sponsors. </summary>
         public IList<string> Sponsors { get; }
-        /// <summary>
-        /// Trials with any of the given phases will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the phases.
-        /// </summary>
+        /// <summary> Gets the phases. </summary>
         public IList<ClinicalTrialPhase> Phases { get; }
-        /// <summary>
-        /// Trials with any of the given purposes will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the purposes.
-        /// </summary>
+        /// <summary> Gets the purposes. </summary>
         public IList<ClinicalTrialPurpose> Purposes { get; }
-        /// <summary>
-        /// Trials with any of the given identifiers will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial identifiers.
-        /// </summary>
+        /// <summary> Gets the ids. </summary>
         public IList<string> Ids { get; }
-        /// <summary>
-        /// Trials with any of the given sources will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the sources.
-        /// </summary>
+        /// <summary> Gets the sources. </summary>
         public IList<ClinicalTrialSource> Sources { get; }
-        /// <summary>
-        /// Trials with any of the given facility names will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility names.
-        /// </summary>
+        /// <summary> Gets the facility names. </summary>
         public IList<string> FacilityNames { get; }
-        /// <summary>
-        /// Trials with any of the given facility locations will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility locations.
-        /// </summary>
+        /// <summary> Gets the facility locations. </summary>
         public IList<GeographicLocation> FacilityLocations { get; }
-        /// <summary>
-        /// Trials with any of the given facility area boundaries will be included in the selection (provided that other limitations are satisfied).
-        /// Leaving this list empty will not limit the trial facility area boundaries.
-        /// </summary>
+        /// <summary> Gets the facility areas. </summary>
         public IList<GeographicArea> FacilityAreas { get; }
     }
 }

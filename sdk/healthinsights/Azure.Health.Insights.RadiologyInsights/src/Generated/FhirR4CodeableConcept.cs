@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Concept - reference to a terminology or just text
-    /// Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
-    /// </summary>
+    /// <summary> The Fhir_R4_CodeableConcept. </summary>
     public partial class FhirR4CodeableConcept : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4CodeableConcept"/>. </summary>
@@ -23,20 +20,20 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4CodeableConcept"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="coding"> Code defined by a terminology system. </param>
-        /// <param name="text"> Plain text representation of the concept. </param>
+        /// <param name="coding"></param>
+        /// <param name="text"></param>
         internal FhirR4CodeableConcept(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<FhirR4Coding> coding, string text) : base(id, extension, serializedAdditionalRawData)
         {
             Coding = coding;
             Text = text;
         }
 
-        /// <summary> Code defined by a terminology system. </summary>
+        /// <summary> Gets the coding. </summary>
         public IList<FhirR4Coding> Coding { get; }
-        /// <summary> Plain text representation of the concept. </summary>
+        /// <summary> Gets or sets the text. </summary>
         public string Text { get; set; }
     }
 }

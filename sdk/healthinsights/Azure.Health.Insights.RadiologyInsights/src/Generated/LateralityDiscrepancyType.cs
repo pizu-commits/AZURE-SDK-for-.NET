@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Laterality discrepancy type. </summary>
+    /// <summary> The LateralityDiscrepancyType. </summary>
     public readonly partial struct LateralityDiscrepancyType : IEquatable<LateralityDiscrepancyType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string TextLateralityContradictionValue = "textLateralityContradiction";
         private const string TextLateralityMissingValue = "textLateralityMissing";
 
-        /// <summary> Mismatch between order and text. </summary>
+        /// <summary> orderLateralityMismatch. </summary>
         public static LateralityDiscrepancyType OrderLateralityMismatch { get; } = new LateralityDiscrepancyType(OrderLateralityMismatchValue);
-        /// <summary> Contradiction in text. </summary>
+        /// <summary> textLateralityContradiction. </summary>
         public static LateralityDiscrepancyType TextLateralityContradiction { get; } = new LateralityDiscrepancyType(TextLateralityContradictionValue);
-        /// <summary> Missing laterality in text. </summary>
+        /// <summary> textLateralityMissing. </summary>
         public static LateralityDiscrepancyType TextLateralityMissing { get; } = new LateralityDiscrepancyType(TextLateralityMissingValue);
         /// <summary> Determines if two <see cref="LateralityDiscrepancyType"/> values are the same. </summary>
         public static bool operator ==(LateralityDiscrepancyType left, LateralityDiscrepancyType right) => left.Equals(right);

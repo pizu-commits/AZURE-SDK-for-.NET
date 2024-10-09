@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> The template for adding optional properties. </summary>
+    /// <summary> The DeidPropertiesUpdate. </summary>
     internal partial class DeidPropertiesUpdate
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DeidPropertiesUpdate"/>. </summary>
-        /// <param name="publicNetworkAccess"> Gets or sets allow or disallow public network access to resource. </param>
+        /// <param name="publicNetworkAccess"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeidPropertiesUpdate(HealthDataAIServicesPublicNetworkAccess? publicNetworkAccess, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets or sets allow or disallow public network access to resource. </summary>
+        /// <summary> Gets or sets the public network access. </summary>
         public HealthDataAIServicesPublicNetworkAccess? PublicNetworkAccess { get; set; }
     }
 }

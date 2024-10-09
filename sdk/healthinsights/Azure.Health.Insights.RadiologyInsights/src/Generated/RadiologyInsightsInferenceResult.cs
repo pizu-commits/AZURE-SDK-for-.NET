@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> The inference results for the Radiology Insights request. If field 'status' has value 'succeeded', then field 'result' will contain an instance of RadiologyInsightsInferenceResult. </summary>
+    /// <summary> The RadiologyInsightsInferenceResult. </summary>
     public partial class RadiologyInsightsInferenceResult
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsInferenceResult"/>. </summary>
-        /// <param name="patientResults"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
+        /// <param name="patientResults"></param>
+        /// <param name="modelVersion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patientResults"/> or <paramref name="modelVersion"/> is null. </exception>
         internal RadiologyInsightsInferenceResult(IEnumerable<RadiologyInsightsPatientResult> patientResults, string modelVersion)
         {
@@ -60,8 +60,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsInferenceResult"/>. </summary>
-        /// <param name="patientResults"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
+        /// <param name="patientResults"></param>
+        /// <param name="modelVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyInsightsInferenceResult(IReadOnlyList<RadiologyInsightsPatientResult> patientResults, string modelVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Results for the patients given in the request. </summary>
+        /// <summary> Gets the patient results. </summary>
         public IReadOnlyList<RadiologyInsightsPatientResult> PatientResults { get; }
-        /// <summary> The version of the model used for inference, expressed as the model date. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
     }
 }

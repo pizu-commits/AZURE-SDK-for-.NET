@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Metadata about a resource
-    /// Based on [FHIR Meta](https://www.hl7.org/fhir/R4/resource.html#Meta)
-    /// </summary>
+    /// <summary> The Fhir_R4_Meta. </summary>
     public partial class FhirR4Meta
     {
         /// <summary>
@@ -57,12 +54,12 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Meta"/>. </summary>
-        /// <param name="versionId"> The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. </param>
-        /// <param name="lastUpdated"> When the resource last changed - e.g. when the version changed. </param>
-        /// <param name="source"> A uri that identifies the source system of the resource. This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. </param>
-        /// <param name="profile"> A list of profiles (references to [StructureDefinition](https://www.hl7.org/fhir/structuredefinition.html) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](https://www.hl7.org/fhir/structuredefinition-definitions.html#StructureDefinition.url). </param>
-        /// <param name="security"> Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. </param>
-        /// <param name="tag"> Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. </param>
+        /// <param name="versionId"></param>
+        /// <param name="lastUpdated"></param>
+        /// <param name="source"></param>
+        /// <param name="profile"></param>
+        /// <param name="security"></param>
+        /// <param name="tag"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FhirR4Meta(string versionId, string lastUpdated, string source, IList<string> profile, IList<FhirR4Coding> security, IList<FhirR4Coding> tag, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,17 +72,17 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. </summary>
+        /// <summary> Gets or sets the version id. </summary>
         public string VersionId { get; set; }
-        /// <summary> When the resource last changed - e.g. when the version changed. </summary>
+        /// <summary> Gets or sets the last updated. </summary>
         public string LastUpdated { get; set; }
-        /// <summary> A uri that identifies the source system of the resource. This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. </summary>
+        /// <summary> Gets or sets the source. </summary>
         public string Source { get; set; }
-        /// <summary> A list of profiles (references to [StructureDefinition](https://www.hl7.org/fhir/structuredefinition.html) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](https://www.hl7.org/fhir/structuredefinition-definitions.html#StructureDefinition.url). </summary>
+        /// <summary> Gets the profile. </summary>
         public IList<string> Profile { get; }
-        /// <summary> Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. </summary>
+        /// <summary> Gets the security. </summary>
         public IList<FhirR4Coding> Security { get; }
-        /// <summary> Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. </summary>
+        /// <summary> Gets the tag. </summary>
         public IList<FhirR4Coding> Tag { get; }
     }
 }

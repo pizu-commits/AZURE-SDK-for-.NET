@@ -11,15 +11,14 @@ using System.Collections.Generic;
 namespace Azure.Health.Insights.RadiologyInsights
 {
     /// <summary>
-    /// A resource with narrative, extensions, and contained resources
-    /// Based on [FHIR DomainResource](https://www.hl7.org/fhir/domainresource.html)
+    /// The Fhir_R4_DomainResource.
     /// Please note <see cref="FhirR4DomainResource"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="FhirR4Condition"/>, <see cref="FhirR4Observation"/> and <see cref="FhirR4ResearchStudy"/>.
     /// </summary>
     public abstract partial class FhirR4DomainResource : FhirR4Resource
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4DomainResource"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
+        /// <param name="resourceType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceType"/> is null. </exception>
         protected FhirR4DomainResource(string resourceType) : base(resourceType)
         {
@@ -31,16 +30,16 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4DomainResource"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="meta"> Metadata about the resource. </param>
-        /// <param name="implicitRules"> A set of rules under which this content was created. </param>
-        /// <param name="language"> Language of the resource content. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="id"></param>
+        /// <param name="meta"></param>
+        /// <param name="implicitRules"></param>
+        /// <param name="language"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <param name="text"> Text summary of the resource, for human interpretation. </param>
-        /// <param name="contained"> Contained, inline Resources. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
-        /// <param name="modifierExtension"> Extensions that cannot be ignored. </param>
+        /// <param name="text"></param>
+        /// <param name="contained"></param>
+        /// <param name="extension"></param>
+        /// <param name="modifierExtension"></param>
         internal FhirR4DomainResource(string resourceType, string id, FhirR4Meta meta, string implicitRules, string language, IDictionary<string, BinaryData> additionalProperties, FhirR4Narrative text, IReadOnlyList<FhirR4Resource> contained, IReadOnlyList<FhirR4Extension> extension, IReadOnlyList<FhirR4Extension> modifierExtension) : base(resourceType, id, meta, implicitRules, language, additionalProperties)
         {
             Text = text;
@@ -54,13 +53,13 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Text summary of the resource, for human interpretation. </summary>
+        /// <summary> Gets the text. </summary>
         public FhirR4Narrative Text { get; }
-        /// <summary> Contained, inline Resources. </summary>
+        /// <summary> Gets the contained. </summary>
         public IReadOnlyList<FhirR4Resource> Contained { get; }
-        /// <summary> Additional Content defined by implementations. </summary>
+        /// <summary> Gets the extension. </summary>
         public IReadOnlyList<FhirR4Extension> Extension { get; }
-        /// <summary> Extensions that cannot be ignored. </summary>
+        /// <summary> Gets the modifier extension. </summary>
         public IReadOnlyList<FhirR4Extension> ModifierExtension { get; }
     }
 }

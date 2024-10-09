@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Resource is the ancestor of DomainResource from which most resources are derived. Bundle, Parameters, and Binary extend Resource directly.
-    /// Based on [FHIR Resource](https://www.hl7.org/fhir/r4/resource.html
-    /// </summary>
+    /// <summary> The Fhir_R4_Resource. </summary>
     public partial class FhirR4Resource
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Resource"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
+        /// <param name="resourceType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceType"/> is null. </exception>
         public FhirR4Resource(string resourceType)
         {
@@ -28,11 +25,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Resource"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="meta"> Metadata about the resource. </param>
-        /// <param name="implicitRules"> A set of rules under which this content was created. </param>
-        /// <param name="language"> Language of the resource content. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="id"></param>
+        /// <param name="meta"></param>
+        /// <param name="implicitRules"></param>
+        /// <param name="language"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
         internal FhirR4Resource(string resourceType, string id, FhirR4Meta meta, string implicitRules, string language, IDictionary<string, BinaryData> additionalProperties)
         {
@@ -49,15 +46,15 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> The type of resource. </summary>
+        /// <summary> Gets or sets the resource type. </summary>
         public string ResourceType { get; set; }
-        /// <summary> Resource Id. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> Metadata about the resource. </summary>
+        /// <summary> Gets or sets the meta. </summary>
         public FhirR4Meta Meta { get; set; }
-        /// <summary> A set of rules under which this content was created. </summary>
+        /// <summary> Gets or sets the implicit rules. </summary>
         public string ImplicitRules { get; set; }
-        /// <summary> Language of the resource content. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
         /// <summary>
         /// Additional Properties

@@ -15,9 +15,9 @@ namespace Azure.Health.Insights.ClinicalMatching
     public static partial class HealthInsightsClinicalMatchingModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.PatientRecord"/>. </summary>
-        /// <param name="id"> A given identifier for the patient. Has to be unique across all patients in a single request. </param>
-        /// <param name="info"> Patient structured information, including demographics and known structured clinical information. </param>
-        /// <param name="data"> Patient unstructured clinical data, given as documents. </param>
+        /// <param name="id"></param>
+        /// <param name="info"></param>
+        /// <param name="data"></param>
         /// <returns> A new <see cref="ClinicalMatching.PatientRecord"/> instance for mocking. </returns>
         public static PatientRecord PatientRecord(string id = null, PatientInfo info = null, IEnumerable<PatientDocument> data = null)
         {
@@ -27,12 +27,12 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.PatientDocument"/>. </summary>
-        /// <param name="type"> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </param>
-        /// <param name="clinicalType"> The type of the clinical document. </param>
-        /// <param name="id"> A given identifier for the document. Has to be unique across all documents for a single patient. </param>
-        /// <param name="language"> A 2 letter ISO 639-1 representation of the language of the document. </param>
-        /// <param name="createdDateTime"> The date and time when the document was created. </param>
-        /// <param name="content"> The content of the patient document. </param>
+        /// <param name="type"></param>
+        /// <param name="clinicalType"></param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="content"></param>
         /// <returns> A new <see cref="ClinicalMatching.PatientDocument"/> instance for mocking. </returns>
         public static PatientDocument PatientDocument(DocumentType type = default, ClinicalDocumentType? clinicalType = null, string id = null, string language = null, DateTimeOffset? createdDateTime = null, DocumentContent content = null)
         {
@@ -47,14 +47,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.TrialMatcherModelConfiguration"/>. </summary>
-        /// <param name="verbose"> An indication whether the model should produce verbose output. </param>
-        /// <param name="includeEvidence"> An indication whether the model's output should include evidence for the inferences. </param>
-        /// <param name="clinicalTrials">
-        /// The clinical trials that the patient(s) should be matched to. &lt;br /&gt;The trial
-        /// selection can be given as a list of custom clinical trials and/or a list of
-        /// filters to known clinical trial registries. In case both are given, the
-        /// resulting trial set is a union of the two sets.
-        /// </param>
+        /// <param name="verbose"></param>
+        /// <param name="includeEvidence"></param>
+        /// <param name="clinicalTrials"></param>
         /// <returns> A new <see cref="ClinicalMatching.TrialMatcherModelConfiguration"/> instance for mocking. </returns>
         public static TrialMatcherModelConfiguration TrialMatcherModelConfiguration(bool? verbose = null, bool? includeEvidence = null, ClinicalTrials clinicalTrials = null)
         {
@@ -62,10 +57,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.ClinicalTrialDetails"/>. </summary>
-        /// <param name="id"> A given identifier for the clinical trial. Has to be unique within a list of clinical trials. </param>
-        /// <param name="eligibilityCriteriaText"> The eligibility criteria of the clinical trial (inclusion and exclusion), given as text. </param>
-        /// <param name="demographics"> Demographic criteria for a clinical trial. </param>
-        /// <param name="metadata"> Trial data which is of interest to the potential participant. </param>
+        /// <param name="id"></param>
+        /// <param name="eligibilityCriteriaText"></param>
+        /// <param name="demographics"></param>
+        /// <param name="metadata"></param>
         /// <returns> A new <see cref="ClinicalMatching.ClinicalTrialDetails"/> instance for mocking. </returns>
         public static ClinicalTrialDetails ClinicalTrialDetails(string id = null, string eligibilityCriteriaText = null, ClinicalTrialDemographics demographics = null, ClinicalTrialMetadata metadata = null)
         {
@@ -73,9 +68,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.GeographicLocation"/>. </summary>
-        /// <param name="city"> City name. </param>
-        /// <param name="state"> State name. </param>
-        /// <param name="countryOrRegion"> Country/region name. </param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="countryOrRegion"></param>
         /// <returns> A new <see cref="ClinicalMatching.GeographicLocation"/> instance for mocking. </returns>
         public static GeographicLocation GeographicLocation(string city = null, string state = null, string countryOrRegion = null)
         {
@@ -83,9 +78,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.TrialMatcherResults"/>. </summary>
-        /// <param name="patients"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
-        /// <param name="knowledgeGraphLastUpdateDate"> The date when the clinical trials knowledge graph was last updated. </param>
+        /// <param name="patients"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="knowledgeGraphLastUpdateDate"></param>
         /// <returns> A new <see cref="ClinicalMatching.TrialMatcherResults"/> instance for mocking. </returns>
         public static TrialMatcherResults TrialMatcherResults(IEnumerable<TrialMatcherPatientResult> patients = null, string modelVersion = null, DateTimeOffset? knowledgeGraphLastUpdateDate = null)
         {
@@ -95,9 +90,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.TrialMatcherPatientResult"/>. </summary>
-        /// <param name="id"> The identifier given for the patient in the request. </param>
-        /// <param name="inferences"> The model's inferences for the given patient. </param>
-        /// <param name="neededClinicalInfo"> Clinical information which is needed to provide better trial matching results for the patient. </param>
+        /// <param name="id"></param>
+        /// <param name="inferences"></param>
+        /// <param name="neededClinicalInfo"></param>
         /// <returns> A new <see cref="ClinicalMatching.TrialMatcherPatientResult"/> instance for mocking. </returns>
         public static TrialMatcherPatientResult TrialMatcherPatientResult(string id = null, IEnumerable<TrialMatcherInference> inferences = null, IEnumerable<ExtendedClinicalCodedElement> neededClinicalInfo = null)
         {
@@ -108,14 +103,14 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.TrialMatcherInference"/>. </summary>
-        /// <param name="type"> The type of the Trial Matcher inference. </param>
-        /// <param name="value"> The value of the inference, as relevant for the given inference type. </param>
-        /// <param name="description"> The description corresponding to the inference value. </param>
-        /// <param name="confidenceScore"> Confidence score for this inference. </param>
-        /// <param name="evidence"> The evidence corresponding to the inference value. </param>
-        /// <param name="id"> The identifier of the clinical trial. </param>
-        /// <param name="source"> Possible sources of a clinical trial. </param>
-        /// <param name="metadata"> Trial data which is of interest to the potential participant. </param>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        /// <param name="description"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="evidence"></param>
+        /// <param name="id"></param>
+        /// <param name="source"></param>
+        /// <param name="metadata"></param>
         /// <returns> A new <see cref="ClinicalMatching.TrialMatcherInference"/> instance for mocking. </returns>
         public static TrialMatcherInference TrialMatcherInference(TrialMatcherInferenceType type = default, string value = null, string description = null, float? confidenceScore = null, IEnumerable<TrialMatcherInferenceEvidence> evidence = null, string id = null, ClinicalTrialSource? source = null, ClinicalTrialMetadata metadata = null)
         {
@@ -134,13 +129,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.TrialMatcherInferenceEvidence"/>. </summary>
-        /// <param name="eligibilityCriteriaEvidence"> A piece of evidence from the eligibility criteria text of a clinical trial. </param>
-        /// <param name="patientDataEvidence"> A piece of evidence from a clinical note (text document). </param>
-        /// <param name="patientInfoEvidence">
-        /// A piece of clinical information, expressed as a code in a clinical coding
-        /// system.
-        /// </param>
-        /// <param name="importance"> A value indicating how important this piece of evidence is for the inference. </param>
+        /// <param name="eligibilityCriteriaEvidence"></param>
+        /// <param name="patientDataEvidence"></param>
+        /// <param name="patientInfoEvidence"></param>
+        /// <param name="importance"></param>
         /// <returns> A new <see cref="ClinicalMatching.TrialMatcherInferenceEvidence"/> instance for mocking. </returns>
         public static TrialMatcherInferenceEvidence TrialMatcherInferenceEvidence(string eligibilityCriteriaEvidence = null, ClinicalNoteEvidence patientDataEvidence = null, ClinicalCodedElement patientInfoEvidence = null, float? importance = null)
         {
@@ -148,10 +140,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.ClinicalNoteEvidence"/>. </summary>
-        /// <param name="id"> The identifier of the document containing the evidence. </param>
-        /// <param name="text"> The actual text span which is evidence for the inference. </param>
-        /// <param name="offset"> The start index of the evidence text span in the document (0 based). </param>
-        /// <param name="length"> The length of the evidence text span. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <returns> A new <see cref="ClinicalMatching.ClinicalNoteEvidence"/> instance for mocking. </returns>
         public static ClinicalNoteEvidence ClinicalNoteEvidence(string id = null, string text = null, int offset = default, int length = default)
         {
@@ -159,12 +151,12 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalMatching.ExtendedClinicalCodedElement"/>. </summary>
-        /// <param name="system"> The clinical coding system, e.g. ICD-10, SNOMED-CT, UMLS. </param>
-        /// <param name="code"> The code within the given clinical coding system. </param>
-        /// <param name="name"> The name of this coded concept in the coding system. </param>
-        /// <param name="value"> A value associated with the code within the given clinical coding system. </param>
-        /// <param name="semanticType"> The [UMLS semantic type](https://www.nlm.nih.gov/research/umls/META3_current_semantic_types.html) associated with the coded concept. </param>
-        /// <param name="category"> The bio-medical category related to the coded concept, e.g. Diagnosis, Symptom, Medication, Examination. </param>
+        /// <param name="system"></param>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="semanticType"></param>
+        /// <param name="category"></param>
         /// <returns> A new <see cref="ClinicalMatching.ExtendedClinicalCodedElement"/> instance for mocking. </returns>
         public static ExtendedClinicalCodedElement ExtendedClinicalCodedElement(string system = null, string code = null, string name = null, string value = null, string semanticType = null, string category = null)
         {

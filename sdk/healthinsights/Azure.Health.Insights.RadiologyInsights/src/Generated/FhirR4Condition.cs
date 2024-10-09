@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Detailed information about conditions, problems or diagnoses
-    /// Based on [FHIR Condition](https://www.hl7.org/fhir/R4/condition.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_Condition. </summary>
     public partial class FhirR4Condition : FhirR4DomainResource
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Condition"/>. </summary>
@@ -27,37 +24,37 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Condition"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="meta"> Metadata about the resource. </param>
-        /// <param name="implicitRules"> A set of rules under which this content was created. </param>
-        /// <param name="language"> Language of the resource content. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="id"></param>
+        /// <param name="meta"></param>
+        /// <param name="implicitRules"></param>
+        /// <param name="language"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <param name="text"> Text summary of the resource, for human interpretation. </param>
-        /// <param name="contained"> Contained, inline Resources. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
-        /// <param name="modifierExtension"> Extensions that cannot be ignored. </param>
-        /// <param name="identifier"> External Ids for this condition. </param>
-        /// <param name="clinicalStatus"> active | recurrence | relapse | inactive | remission | resolved. </param>
-        /// <param name="verificationStatus"> unconfirmed | provisional | differential | confirmed | refuted | entered-in-error. </param>
-        /// <param name="category"> problem-list-item | encounter-diagnosis. </param>
-        /// <param name="severity"> Subjective severity of condition. </param>
-        /// <param name="code"> Identification of the condition, problem or diagnosis. </param>
-        /// <param name="bodySite"> Anatomical location, if relevant. </param>
-        /// <param name="encounter"> Encounter created as part of. </param>
-        /// <param name="onsetDateTime"> Estimated or actual date,  date-time, or age. </param>
-        /// <param name="onsetAge"> Estimated or actual date,  date-time, or age. </param>
-        /// <param name="onsetPeriod"> Estimated or actual date,  date-time, or age. </param>
-        /// <param name="onsetRange"> Estimated or actual date,  date-time, or age. </param>
-        /// <param name="onsetString"> Estimated or actual date,  date-time, or age. </param>
-        /// <param name="abatementDateTime"> When in resolution/remission. </param>
-        /// <param name="abatementAge"> When in resolution/remission. </param>
-        /// <param name="abatementPeriod"> When in resolution/remission. </param>
-        /// <param name="abatementRange"> When in resolution/remission. </param>
-        /// <param name="abatementString"> When in resolution/remission. </param>
-        /// <param name="recordedDate"> Date record was first recorded. </param>
-        /// <param name="stage"> stge/grade, usually assessed formally. </param>
-        /// <param name="note"> Additional information about the Condition. </param>
+        /// <param name="text"></param>
+        /// <param name="contained"></param>
+        /// <param name="extension"></param>
+        /// <param name="modifierExtension"></param>
+        /// <param name="identifier"></param>
+        /// <param name="clinicalStatus"></param>
+        /// <param name="verificationStatus"></param>
+        /// <param name="category"></param>
+        /// <param name="severity"></param>
+        /// <param name="code"></param>
+        /// <param name="bodySite"></param>
+        /// <param name="encounter"></param>
+        /// <param name="onsetDateTime"></param>
+        /// <param name="onsetAge"></param>
+        /// <param name="onsetPeriod"></param>
+        /// <param name="onsetRange"></param>
+        /// <param name="onsetString"></param>
+        /// <param name="abatementDateTime"></param>
+        /// <param name="abatementAge"></param>
+        /// <param name="abatementPeriod"></param>
+        /// <param name="abatementRange"></param>
+        /// <param name="abatementString"></param>
+        /// <param name="recordedDate"></param>
+        /// <param name="stage"></param>
+        /// <param name="note"></param>
         internal FhirR4Condition(string resourceType, string id, FhirR4Meta meta, string implicitRules, string language, IDictionary<string, BinaryData> additionalProperties, FhirR4Narrative text, IReadOnlyList<FhirR4Resource> contained, IReadOnlyList<FhirR4Extension> extension, IReadOnlyList<FhirR4Extension> modifierExtension, IReadOnlyList<FhirR4Identifier> identifier, FhirR4CodeableConcept clinicalStatus, FhirR4CodeableConcept verificationStatus, IReadOnlyList<FhirR4CodeableConcept> category, FhirR4CodeableConcept severity, FhirR4CodeableConcept code, IReadOnlyList<FhirR4CodeableConcept> bodySite, FhirR4Reference encounter, string onsetDateTime, FhirR4Quantity onsetAge, FhirR4Period onsetPeriod, FhirR4Range onsetRange, string onsetString, string abatementDateTime, FhirR4Quantity abatementAge, FhirR4Period abatementPeriod, FhirR4Range abatementRange, string abatementString, string recordedDate, IReadOnlyList<FhirR4ConditionStage> stage, IReadOnlyList<FhirR4Annotation> note) : base(resourceType, id, meta, implicitRules, language, additionalProperties, text, contained, extension, modifierExtension)
         {
             Identifier = identifier;
@@ -83,47 +80,47 @@ namespace Azure.Health.Insights.RadiologyInsights
             Note = note;
         }
 
-        /// <summary> External Ids for this condition. </summary>
+        /// <summary> Gets the identifier. </summary>
         public IReadOnlyList<FhirR4Identifier> Identifier { get; }
-        /// <summary> active | recurrence | relapse | inactive | remission | resolved. </summary>
+        /// <summary> Gets the clinical status. </summary>
         public FhirR4CodeableConcept ClinicalStatus { get; }
-        /// <summary> unconfirmed | provisional | differential | confirmed | refuted | entered-in-error. </summary>
+        /// <summary> Gets the verification status. </summary>
         public FhirR4CodeableConcept VerificationStatus { get; }
-        /// <summary> problem-list-item | encounter-diagnosis. </summary>
+        /// <summary> Gets the category. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Category { get; }
-        /// <summary> Subjective severity of condition. </summary>
+        /// <summary> Gets the severity. </summary>
         public FhirR4CodeableConcept Severity { get; }
-        /// <summary> Identification of the condition, problem or diagnosis. </summary>
+        /// <summary> Gets the code. </summary>
         public FhirR4CodeableConcept Code { get; }
-        /// <summary> Anatomical location, if relevant. </summary>
+        /// <summary> Gets the body site. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> BodySite { get; }
-        /// <summary> Encounter created as part of. </summary>
+        /// <summary> Gets the encounter. </summary>
         public FhirR4Reference Encounter { get; }
-        /// <summary> Estimated or actual date,  date-time, or age. </summary>
+        /// <summary> Gets the onset date time. </summary>
         public string OnsetDateTime { get; }
-        /// <summary> Estimated or actual date,  date-time, or age. </summary>
+        /// <summary> Gets the onset age. </summary>
         public FhirR4Quantity OnsetAge { get; }
-        /// <summary> Estimated or actual date,  date-time, or age. </summary>
+        /// <summary> Gets the onset period. </summary>
         public FhirR4Period OnsetPeriod { get; }
-        /// <summary> Estimated or actual date,  date-time, or age. </summary>
+        /// <summary> Gets the onset range. </summary>
         public FhirR4Range OnsetRange { get; }
-        /// <summary> Estimated or actual date,  date-time, or age. </summary>
+        /// <summary> Gets the onset string. </summary>
         public string OnsetString { get; }
-        /// <summary> When in resolution/remission. </summary>
+        /// <summary> Gets the abatement date time. </summary>
         public string AbatementDateTime { get; }
-        /// <summary> When in resolution/remission. </summary>
+        /// <summary> Gets the abatement age. </summary>
         public FhirR4Quantity AbatementAge { get; }
-        /// <summary> When in resolution/remission. </summary>
+        /// <summary> Gets the abatement period. </summary>
         public FhirR4Period AbatementPeriod { get; }
-        /// <summary> When in resolution/remission. </summary>
+        /// <summary> Gets the abatement range. </summary>
         public FhirR4Range AbatementRange { get; }
-        /// <summary> When in resolution/remission. </summary>
+        /// <summary> Gets the abatement string. </summary>
         public string AbatementString { get; }
-        /// <summary> Date record was first recorded. </summary>
+        /// <summary> Gets the recorded date. </summary>
         public string RecordedDate { get; }
-        /// <summary> stge/grade, usually assessed formally. </summary>
+        /// <summary> Gets the stage. </summary>
         public IReadOnlyList<FhirR4ConditionStage> Stage { get; }
-        /// <summary> Additional information about the Condition. </summary>
+        /// <summary> Gets the note. </summary>
         public IReadOnlyList<FhirR4Annotation> Note { get; }
     }
 }

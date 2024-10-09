@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Health.Insights.RadiologyInsights
 {
     /// <summary>
-    /// The procedure recommendation can be a generic procedure or an imaging procedure.
+    /// The ProcedureRecommendation.
     /// Please note <see cref="ProcedureRecommendation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="GenericProcedureRecommendation"/> and <see cref="ImagingProcedureRecommendation"/>.
     /// </summary>
@@ -56,8 +56,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ProcedureRecommendation"/>. </summary>
-        /// <param name="kind"> Discriminator property for ProcedureRecommendation. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ProcedureRecommendation(string kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,9 +66,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Discriminator property for ProcedureRecommendation. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal string Kind { get; set; }
-        /// <summary> Additional Content defined by implementations. </summary>
+        /// <summary> Gets the extension. </summary>
         public IReadOnlyList<FhirR4Extension> Extension { get; }
     }
 }

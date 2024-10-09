@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Marketplace details. </summary>
+    /// <summary> The InformaticaMarketplaceDetailsUpdate. </summary>
     public partial class InformaticaMarketplaceDetailsUpdate
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaMarketplaceDetailsUpdate"/>. </summary>
-        /// <param name="marketplaceSubscriptionId"> Marketplace Subscription Id. </param>
-        /// <param name="offerDetails"> Marketplace offer details. </param>
+        /// <param name="marketplaceSubscriptionId"></param>
+        /// <param name="offerDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaMarketplaceDetailsUpdate(string marketplaceSubscriptionId, InformaticaOfferDetailsUpdate offerDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Marketplace Subscription Id. </summary>
+        /// <summary> Gets or sets the marketplace subscription id. </summary>
         public string MarketplaceSubscriptionId { get; set; }
-        /// <summary> Marketplace offer details. </summary>
+        /// <summary> Gets or sets the offer details. </summary>
         public InformaticaOfferDetailsUpdate OfferDetails { get; set; }
     }
 }

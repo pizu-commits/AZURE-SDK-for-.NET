@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Dependency reference for a serverless runtime resource. </summary>
+    /// <summary> The ServerlessRuntimeDependency. </summary>
     public partial class ServerlessRuntimeDependency
     {
         /// <summary>
@@ -46,12 +46,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeDependency"/>. </summary>
-        /// <param name="id"> Dependency ID. </param>
-        /// <param name="appContextId"> Application context ID. </param>
-        /// <param name="path"> Dependency path. </param>
-        /// <param name="documentType"> document type. </param>
-        /// <param name="description"> description of Dependency. </param>
-        /// <param name="lastUpdatedTime"> Last Update Time. </param>
+        /// <param name="id"></param>
+        /// <param name="appContextId"></param>
+        /// <param name="path"></param>
+        /// <param name="documentType"></param>
+        /// <param name="description"></param>
+        /// <param name="lastUpdatedTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="appContextId"/>, <paramref name="path"/>, <paramref name="documentType"/>, <paramref name="description"/> or <paramref name="lastUpdatedTime"/> is null. </exception>
         internal ServerlessRuntimeDependency(string id, string appContextId, string path, string documentType, string description, string lastUpdatedTime)
         {
@@ -71,12 +71,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeDependency"/>. </summary>
-        /// <param name="id"> Dependency ID. </param>
-        /// <param name="appContextId"> Application context ID. </param>
-        /// <param name="path"> Dependency path. </param>
-        /// <param name="documentType"> document type. </param>
-        /// <param name="description"> description of Dependency. </param>
-        /// <param name="lastUpdatedTime"> Last Update Time. </param>
+        /// <param name="id"></param>
+        /// <param name="appContextId"></param>
+        /// <param name="path"></param>
+        /// <param name="documentType"></param>
+        /// <param name="description"></param>
+        /// <param name="lastUpdatedTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeDependency(string id, string appContextId, string path, string documentType, string description, string lastUpdatedTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,17 +94,17 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Dependency ID. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Application context ID. </summary>
+        /// <summary> Gets the app context id. </summary>
         public string AppContextId { get; }
-        /// <summary> Dependency path. </summary>
+        /// <summary> Gets the path. </summary>
         public string Path { get; }
-        /// <summary> document type. </summary>
+        /// <summary> Gets the document type. </summary>
         public string DocumentType { get; }
-        /// <summary> description of Dependency. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Last Update Time. </summary>
+        /// <summary> Gets the last updated time. </summary>
         public string LastUpdatedTime { get; }
     }
 }

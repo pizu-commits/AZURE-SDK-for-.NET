@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> User Info of Informatica Organization resource. </summary>
+    /// <summary> The InformaticaUserDetailsUpdate. </summary>
     public partial class InformaticaUserDetailsUpdate
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaUserDetailsUpdate"/>. </summary>
-        /// <param name="firstName"> User first name. </param>
-        /// <param name="lastName"> User last name. </param>
-        /// <param name="emailAddress"> User email address. </param>
-        /// <param name="upn"> UPN of user. </param>
-        /// <param name="phoneNumber"> Phone number of the user used by for contacting them if needed. </param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="emailAddress"></param>
+        /// <param name="upn"></param>
+        /// <param name="phoneNumber"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaUserDetailsUpdate(string firstName, string lastName, string emailAddress, string upn, string phoneNumber, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> User first name. </summary>
+        /// <summary> Gets or sets the first name. </summary>
         public string FirstName { get; set; }
-        /// <summary> User last name. </summary>
+        /// <summary> Gets or sets the last name. </summary>
         public string LastName { get; set; }
-        /// <summary> User email address. </summary>
+        /// <summary> Gets or sets the email address. </summary>
         public string EmailAddress { get; set; }
-        /// <summary> UPN of user. </summary>
+        /// <summary> Gets or sets the upn. </summary>
         public string Upn { get; set; }
-        /// <summary> Phone number of the user used by for contacting them if needed. </summary>
+        /// <summary> Gets or sets the phone number. </summary>
         public string PhoneNumber { get; set; }
     }
 }

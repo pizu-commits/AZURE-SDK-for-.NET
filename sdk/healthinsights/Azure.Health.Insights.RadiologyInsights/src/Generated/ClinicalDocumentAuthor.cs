@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Document author. </summary>
+    /// <summary> The ClinicalDocumentAuthor. </summary>
     public partial class ClinicalDocumentAuthor
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalDocumentAuthor"/>. </summary>
-        /// <param name="id"> author id. </param>
-        /// <param name="fullName"> Text representation of the full name. </param>
+        /// <param name="id"></param>
+        /// <param name="fullName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalDocumentAuthor(string id, string fullName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> author id. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> Text representation of the full name. </summary>
+        /// <summary> Gets or sets the full name. </summary>
         public string FullName { get; set; }
     }
 }

@@ -13,10 +13,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.InformaticaDataManagement
 {
-    /// <summary>
-    /// A class representing the InformaticaOrganization data model.
-    /// An Organization Resource by Informatica.
-    /// </summary>
+    /// <summary> A class representing the InformaticaOrganization data model. </summary>
     public partial class InformaticaOrganizationData : TrackedResourceData
     {
         /// <summary>
@@ -64,7 +61,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaOrganizationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, InformaticaOrganizationProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
@@ -77,7 +74,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         {
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public InformaticaOrganizationProperties Properties { get; set; }
     }
 }

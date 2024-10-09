@@ -10,16 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// A series of measurements taken by a device
-    /// Based on [FHIR SampledData](https://www.hl7.org/fhir/R4/datatypes.html#SampledData)
-    /// </summary>
+    /// <summary> The Fhir_R4_SampledData. </summary>
     public partial class FhirR4SampledData : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4SampledData"/>. </summary>
-        /// <param name="origin"> Zero value and units. </param>
-        /// <param name="period"> Number of milliseconds between samples. </param>
-        /// <param name="dimensions"> Number of sample points at each time point. </param>
+        /// <param name="origin"></param>
+        /// <param name="period"></param>
+        /// <param name="dimensions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="origin"/> is null. </exception>
         public FhirR4SampledData(FhirR4Quantity origin, double period, int dimensions)
         {
@@ -31,16 +28,16 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4SampledData"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="origin"> Zero value and units. </param>
-        /// <param name="period"> Number of milliseconds between samples. </param>
-        /// <param name="factor"> Multiply data by this before adding to origin. </param>
-        /// <param name="lowerLimit"> Lower limit of detection. </param>
-        /// <param name="upperLimit"> Upper limit of detection. </param>
-        /// <param name="dimensions"> Number of sample points at each time point. </param>
-        /// <param name="data"> Decimal values with spaces, or "E" | "U" | "L". </param>
+        /// <param name="origin"></param>
+        /// <param name="period"></param>
+        /// <param name="factor"></param>
+        /// <param name="lowerLimit"></param>
+        /// <param name="upperLimit"></param>
+        /// <param name="dimensions"></param>
+        /// <param name="data"></param>
         internal FhirR4SampledData(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4Quantity origin, double period, double? factor, double? lowerLimit, double? upperLimit, int dimensions, string data) : base(id, extension, serializedAdditionalRawData)
         {
             Origin = origin;
@@ -57,19 +54,19 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Zero value and units. </summary>
+        /// <summary> Gets or sets the origin. </summary>
         public FhirR4Quantity Origin { get; set; }
-        /// <summary> Number of milliseconds between samples. </summary>
+        /// <summary> Gets or sets the period. </summary>
         public double Period { get; set; }
-        /// <summary> Multiply data by this before adding to origin. </summary>
+        /// <summary> Gets or sets the factor. </summary>
         public double? Factor { get; set; }
-        /// <summary> Lower limit of detection. </summary>
+        /// <summary> Gets or sets the lower limit. </summary>
         public double? LowerLimit { get; set; }
-        /// <summary> Upper limit of detection. </summary>
+        /// <summary> Gets or sets the upper limit. </summary>
         public double? UpperLimit { get; set; }
-        /// <summary> Number of sample points at each time point. </summary>
+        /// <summary> Gets or sets the dimensions. </summary>
         public int Dimensions { get; set; }
-        /// <summary> Decimal values with spaces, or "E" | "U" | "L". </summary>
+        /// <summary> Gets or sets the data. </summary>
         public string Data { get; set; }
     }
 }

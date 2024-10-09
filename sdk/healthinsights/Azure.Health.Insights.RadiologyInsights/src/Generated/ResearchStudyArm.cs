@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResearchStudyArm"/>. </summary>
-        /// <param name="name"> Label for study arm. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal ResearchStudyArm(string name)
         {
@@ -56,9 +56,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ResearchStudyArm"/>. </summary>
-        /// <param name="name"> Label for study arm. </param>
-        /// <param name="type"> Categorization of study arm. </param>
-        /// <param name="description"> Short explanation of study path. </param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResearchStudyArm(string name, FhirR4CodeableConcept type, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Label for study arm. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Categorization of study arm. </summary>
+        /// <summary> Gets the type. </summary>
         public FhirR4CodeableConcept Type { get; }
-        /// <summary> Short explanation of study path. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
     }
 }

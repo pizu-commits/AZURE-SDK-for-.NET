@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> The body of the Onco Phenotype request. </summary>
+    /// <summary> The OncoPhenotypeData. </summary>
     public partial class OncoPhenotypeData
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Health.Insights.CancerProfiling
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OncoPhenotypeData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
+        /// <param name="patients"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patients"/> is null. </exception>
         public OncoPhenotypeData(IEnumerable<PatientRecord> patients)
         {
@@ -57,8 +57,8 @@ namespace Azure.Health.Insights.CancerProfiling
         }
 
         /// <summary> Initializes a new instance of <see cref="OncoPhenotypeData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
-        /// <param name="configuration"> Configuration affecting the Onco Phenotype model's inference. </param>
+        /// <param name="patients"></param>
+        /// <param name="configuration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OncoPhenotypeData(IList<PatientRecord> patients, OncoPhenotypeModelConfiguration configuration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.Health.Insights.CancerProfiling
         {
         }
 
-        /// <summary> The list of patients, including their clinical information and data. </summary>
+        /// <summary> Gets the patients. </summary>
         public IList<PatientRecord> Patients { get; }
-        /// <summary> Configuration affecting the Onco Phenotype model's inference. </summary>
+        /// <summary> Gets or sets the configuration. </summary>
         public OncoPhenotypeModelConfiguration Configuration { get; set; }
     }
 }

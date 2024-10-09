@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Possible phases of a clinical trial. </summary>
+    /// <summary> The ClinicalTrialPhase. </summary>
     public readonly partial struct ClinicalTrialPhase : IEquatable<ClinicalTrialPhase>
     {
         private readonly string _value;

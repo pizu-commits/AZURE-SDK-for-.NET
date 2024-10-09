@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// A set of ordered Quantities defined by a low and high limit
-    /// Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
-    /// </summary>
+    /// <summary> The Fhir_R4_Range. </summary>
     public partial class FhirR4Range : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Range"/>. </summary>
@@ -22,20 +19,20 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Range"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="low"> Low limit. </param>
-        /// <param name="high"> High limit. </param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
         internal FhirR4Range(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4Quantity low, FhirR4Quantity high) : base(id, extension, serializedAdditionalRawData)
         {
             Low = low;
             High = high;
         }
 
-        /// <summary> Low limit. </summary>
+        /// <summary> Gets or sets the low. </summary>
         public FhirR4Quantity Low { get; set; }
-        /// <summary> High limit. </summary>
+        /// <summary> Gets or sets the high. </summary>
         public FhirR4Quantity High { get; set; }
     }
 }

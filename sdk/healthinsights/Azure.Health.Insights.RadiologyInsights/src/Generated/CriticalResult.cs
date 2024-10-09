@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Critical Result consists of two properties. </summary>
+    /// <summary> The CriticalResult. </summary>
     public partial class CriticalResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CriticalResult"/>. </summary>
-        /// <param name="description"> Description : medical problem. </param>
+        /// <param name="description"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="description"/> is null. </exception>
         internal CriticalResult(string description)
         {
@@ -56,8 +56,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="CriticalResult"/>. </summary>
-        /// <param name="description"> Description : medical problem. </param>
-        /// <param name="finding"> Finding linked to the critical result. </param>
+        /// <param name="description"></param>
+        /// <param name="finding"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CriticalResult(string description, FhirR4Observation finding, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Description : medical problem. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Finding linked to the critical result. </summary>
+        /// <summary> Gets the finding. </summary>
         public FhirR4Observation Finding { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Radiology code with types : used in imaging procedure recommendation for contrast and view. </summary>
+    /// <summary> The RadiologyCodeWithTypes. </summary>
     public partial class RadiologyCodeWithTypes
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RadiologyCodeWithTypes"/>. </summary>
-        /// <param name="code"> The SNOMED CT code indicates whether imaging was conducted with or without contrast in the case of contrast, and in the case of views, it denotes the number of views. </param>
-        /// <param name="types"> The collection of types will indicate the contrast substance used in the case of contrast and, in the case of views, it will specify the types of views, such as lateral and frontal, etc. </param>
+        /// <param name="code"></param>
+        /// <param name="types"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="types"/> is null. </exception>
         internal RadiologyCodeWithTypes(FhirR4CodeableConcept code, IEnumerable<FhirR4CodeableConcept> types)
         {
@@ -60,8 +60,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyCodeWithTypes"/>. </summary>
-        /// <param name="code"> The SNOMED CT code indicates whether imaging was conducted with or without contrast in the case of contrast, and in the case of views, it denotes the number of views. </param>
-        /// <param name="types"> The collection of types will indicate the contrast substance used in the case of contrast and, in the case of views, it will specify the types of views, such as lateral and frontal, etc. </param>
+        /// <param name="code"></param>
+        /// <param name="types"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyCodeWithTypes(FhirR4CodeableConcept code, IReadOnlyList<FhirR4CodeableConcept> types, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> The SNOMED CT code indicates whether imaging was conducted with or without contrast in the case of contrast, and in the case of views, it denotes the number of views. </summary>
+        /// <summary> Gets the code. </summary>
         public FhirR4CodeableConcept Code { get; }
-        /// <summary> The collection of types will indicate the contrast substance used in the case of contrast and, in the case of views, it will specify the types of views, such as lateral and frontal, etc. </summary>
+        /// <summary> Gets the types. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Types { get; }
     }
 }

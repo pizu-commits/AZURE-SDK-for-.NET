@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Application configs. </summary>
+    /// <summary> The InformaticaApplicationConfigs. </summary>
     public partial class InformaticaApplicationConfigs
     {
         /// <summary>
@@ -46,12 +46,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaApplicationConfigs"/>. </summary>
-        /// <param name="applicationConfigsType"> Type of the application config. </param>
-        /// <param name="name"> Name of the application config. </param>
-        /// <param name="value"> Value of the application config. </param>
-        /// <param name="platform"> Platform type of the application config. </param>
-        /// <param name="customized"> Customized value of the application config. </param>
-        /// <param name="defaultValue"> Default value of the application config. </param>
+        /// <param name="applicationConfigsType"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="platform"></param>
+        /// <param name="customized"></param>
+        /// <param name="defaultValue"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationConfigsType"/>, <paramref name="name"/>, <paramref name="value"/>, <paramref name="platform"/>, <paramref name="customized"/> or <paramref name="defaultValue"/> is null. </exception>
         public InformaticaApplicationConfigs(string applicationConfigsType, string name, string value, string platform, string customized, string defaultValue)
         {
@@ -71,12 +71,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaApplicationConfigs"/>. </summary>
-        /// <param name="applicationConfigsType"> Type of the application config. </param>
-        /// <param name="name"> Name of the application config. </param>
-        /// <param name="value"> Value of the application config. </param>
-        /// <param name="platform"> Platform type of the application config. </param>
-        /// <param name="customized"> Customized value of the application config. </param>
-        /// <param name="defaultValue"> Default value of the application config. </param>
+        /// <param name="applicationConfigsType"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="platform"></param>
+        /// <param name="customized"></param>
+        /// <param name="defaultValue"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaApplicationConfigs(string applicationConfigsType, string name, string value, string platform, string customized, string defaultValue, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,17 +94,17 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Type of the application config. </summary>
+        /// <summary> Gets or sets the application configs type. </summary>
         public string ApplicationConfigsType { get; set; }
-        /// <summary> Name of the application config. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> Value of the application config. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
-        /// <summary> Platform type of the application config. </summary>
+        /// <summary> Gets or sets the platform. </summary>
         public string Platform { get; set; }
-        /// <summary> Customized value of the application config. </summary>
+        /// <summary> Gets or sets the customized. </summary>
         public string Customized { get; set; }
-        /// <summary> Default value of the application config. </summary>
+        /// <summary> Gets or sets the default value. </summary>
         public string DefaultValue { get; set; }
     }
 }

@@ -106,7 +106,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>ServerlessRuntimes_Get</description>
+        /// <description>InformaticaServerlessRuntimeResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -118,7 +118,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -137,7 +137,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>ServerlessRuntimes_Get</description>
+        /// <description>InformaticaServerlessRuntimeResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -149,7 +149,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -168,7 +168,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -208,7 +208,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -248,7 +248,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Delete</description>
+        /// <description>InformaticaOrganizationResource_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -290,7 +290,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Delete</description>
+        /// <description>InformaticaOrganizationResource_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -332,7 +332,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Update</description>
+        /// <description>InformaticaOrganizationResource_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -344,7 +344,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="InformaticaOrganizationPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<InformaticaOrganizationResource>> UpdateAsync(InformaticaOrganizationPatch patch, CancellationToken cancellationToken = default)
@@ -374,7 +374,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Update</description>
+        /// <description>InformaticaOrganizationResource_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -386,7 +386,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="InformaticaOrganizationPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<InformaticaOrganizationResource> Update(InformaticaOrganizationPatch patch, CancellationToken cancellationToken = default)
@@ -568,7 +568,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -630,7 +630,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -692,7 +692,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -749,7 +749,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -806,7 +806,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -866,7 +866,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>

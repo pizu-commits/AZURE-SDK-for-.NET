@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </summary>
+    /// <summary> The ClinicalDocumentContentType. </summary>
     public readonly partial struct ClinicalDocumentContentType : IEquatable<ClinicalDocumentContentType>
     {
         private readonly string _value;

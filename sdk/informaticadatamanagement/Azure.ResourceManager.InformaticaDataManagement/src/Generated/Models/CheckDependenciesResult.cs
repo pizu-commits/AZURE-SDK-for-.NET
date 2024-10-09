@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Model for the check dependencies API for an informatica serverless runtime resource. </summary>
+    /// <summary> The CheckDependenciesResult. </summary>
     public partial class CheckDependenciesResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CheckDependenciesResult"/>. </summary>
-        /// <param name="count"> Count of dependencies. </param>
-        /// <param name="id"> id of resource. </param>
-        /// <param name="references"> List of dependencies. </param>
+        /// <param name="count"></param>
+        /// <param name="id"></param>
+        /// <param name="references"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="references"/> is null. </exception>
         internal CheckDependenciesResult(int count, string id, IEnumerable<ServerlessRuntimeDependency> references)
         {
@@ -62,9 +62,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CheckDependenciesResult"/>. </summary>
-        /// <param name="count"> Count of dependencies. </param>
-        /// <param name="id"> id of resource. </param>
-        /// <param name="references"> List of dependencies. </param>
+        /// <param name="count"></param>
+        /// <param name="id"></param>
+        /// <param name="references"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CheckDependenciesResult(int count, string id, IReadOnlyList<ServerlessRuntimeDependency> references, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +79,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Count of dependencies. </summary>
+        /// <summary> Gets the count. </summary>
         public int Count { get; }
-        /// <summary> id of resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> List of dependencies. </summary>
+        /// <summary> Gets the references. </summary>
         public IReadOnlyList<ServerlessRuntimeDependency> References { get; }
     }
 }

@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Patchable Properties of the Informatica Organization resource. </summary>
+    /// <summary> The InformaticaOrganizationPropertiesUpdate. </summary>
     public partial class InformaticaOrganizationPropertiesUpdate
     {
         /// <summary>
@@ -52,11 +52,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaOrganizationPropertiesUpdate"/>. </summary>
-        /// <param name="informaticaOrganizationProperties"> Informatica Organization properties. </param>
-        /// <param name="marketplaceDetails"> Marketplace details. </param>
-        /// <param name="userDetails"> User details. </param>
-        /// <param name="companyDetails"> Company Details. </param>
-        /// <param name="existingResourceId"> Existing Resource Id. </param>
+        /// <param name="informaticaOrganizationProperties"></param>
+        /// <param name="marketplaceDetails"></param>
+        /// <param name="userDetails"></param>
+        /// <param name="companyDetails"></param>
+        /// <param name="existingResourceId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaOrganizationPropertiesUpdate(InformaticaOrganizationPatch informaticaOrganizationProperties, InformaticaMarketplaceDetailsUpdate marketplaceDetails, InformaticaUserDetailsUpdate userDetails, InformaticaCompanyDetailsUpdate companyDetails, ResourceIdentifier existingResourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,15 +68,15 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Informatica Organization properties. </summary>
+        /// <summary> Gets or sets the informatica organization properties. </summary>
         public InformaticaOrganizationPatch InformaticaOrganizationProperties { get; set; }
-        /// <summary> Marketplace details. </summary>
+        /// <summary> Gets or sets the marketplace details. </summary>
         public InformaticaMarketplaceDetailsUpdate MarketplaceDetails { get; set; }
-        /// <summary> User details. </summary>
+        /// <summary> Gets or sets the user details. </summary>
         public InformaticaUserDetailsUpdate UserDetails { get; set; }
-        /// <summary> Company Details. </summary>
+        /// <summary> Gets or sets the company details. </summary>
         public InformaticaCompanyDetailsUpdate CompanyDetails { get; set; }
-        /// <summary> Existing Resource Id. </summary>
+        /// <summary> Gets or sets the existing resource id. </summary>
         public ResourceIdentifier ExistingResourceId { get; set; }
     }
 }

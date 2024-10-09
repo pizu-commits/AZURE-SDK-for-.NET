@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica CDI Configuration Properties. </summary>
+    /// <summary> The CdiConfigProperties. </summary>
     public partial class CdiConfigProperties
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CdiConfigProperties"/>. </summary>
-        /// <param name="engineName"> EngineName of the application config. </param>
-        /// <param name="engineVersion"> EngineVersion of the application config. </param>
-        /// <param name="applicationConfigs"> ApplicationConfigs of the CDI or CDIE. </param>
+        /// <param name="engineName"></param>
+        /// <param name="engineVersion"></param>
+        /// <param name="applicationConfigs"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="engineName"/>, <paramref name="engineVersion"/> or <paramref name="applicationConfigs"/> is null. </exception>
         public CdiConfigProperties(string engineName, string engineVersion, IEnumerable<InformaticaApplicationConfigs> applicationConfigs)
         {
@@ -63,9 +63,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CdiConfigProperties"/>. </summary>
-        /// <param name="engineName"> EngineName of the application config. </param>
-        /// <param name="engineVersion"> EngineVersion of the application config. </param>
-        /// <param name="applicationConfigs"> ApplicationConfigs of the CDI or CDIE. </param>
+        /// <param name="engineName"></param>
+        /// <param name="engineVersion"></param>
+        /// <param name="applicationConfigs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CdiConfigProperties(string engineName, string engineVersion, IList<InformaticaApplicationConfigs> applicationConfigs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +80,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> EngineName of the application config. </summary>
+        /// <summary> Gets or sets the engine name. </summary>
         public string EngineName { get; set; }
-        /// <summary> EngineVersion of the application config. </summary>
+        /// <summary> Gets or sets the engine version. </summary>
         public string EngineVersion { get; set; }
-        /// <summary> ApplicationConfigs of the CDI or CDIE. </summary>
+        /// <summary> Gets the application configs. </summary>
         public IList<InformaticaApplicationConfigs> ApplicationConfigs { get; }
     }
 }

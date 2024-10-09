@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Procedure information. </summary>
+    /// <summary> The OrderedProcedure. </summary>
     public partial class OrderedProcedure
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="OrderedProcedure"/>. </summary>
-        /// <param name="code"> Procedure code. </param>
-        /// <param name="description"> Procedure description. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="code"></param>
+        /// <param name="description"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OrderedProcedure(FhirR4CodeableConcept code, string description, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Procedure code. </summary>
+        /// <summary> Gets or sets the code. </summary>
         public FhirR4CodeableConcept Code { get; set; }
-        /// <summary> Procedure description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Additional Content defined by implementations. </summary>
+        /// <summary> Gets the extension. </summary>
         public IList<FhirR4Extension> Extension { get; }
     }
 }

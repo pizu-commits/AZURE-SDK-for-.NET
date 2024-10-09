@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica runtime resource metadata as received via the informatica fetch all runtime environments API. </summary>
+    /// <summary> The InformaticaRuntimeResourceFetchMetadata. </summary>
     public partial class InformaticaRuntimeResourceFetchMetadata
     {
         /// <summary>
@@ -46,17 +46,17 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaRuntimeResourceFetchMetadata"/>. </summary>
-        /// <param name="name"> Environment name. </param>
-        /// <param name="createdTime"> Created time. </param>
-        /// <param name="updatedTime"> Updated Time. </param>
-        /// <param name="createdBy"> Created by. </param>
-        /// <param name="updatedBy"> Last Updated by. </param>
-        /// <param name="id"> Informatica serverless runtime id. </param>
-        /// <param name="runtimeType"> Environment Type. </param>
-        /// <param name="status"> Status of the environment. </param>
-        /// <param name="statusLocalized"> Display message for the given status. </param>
-        /// <param name="statusMessage"> status message. </param>
-        /// <param name="serverlessConfigProperties"> Serverless Config Properties. </param>
+        /// <param name="name"></param>
+        /// <param name="createdTime"></param>
+        /// <param name="updatedTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="id"></param>
+        /// <param name="runtimeType"></param>
+        /// <param name="status"></param>
+        /// <param name="statusLocalized"></param>
+        /// <param name="statusMessage"></param>
+        /// <param name="serverlessConfigProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="createdTime"/>, <paramref name="updatedTime"/>, <paramref name="createdBy"/>, <paramref name="updatedBy"/>, <paramref name="id"/>, <paramref name="status"/>, <paramref name="statusLocalized"/>, <paramref name="statusMessage"/> or <paramref name="serverlessConfigProperties"/> is null. </exception>
         internal InformaticaRuntimeResourceFetchMetadata(string name, string createdTime, string updatedTime, string createdBy, string updatedBy, string id, InformaticaRuntimeType runtimeType, string status, string statusLocalized, string statusMessage, InformaticaServerlessFetchConfigProperties serverlessConfigProperties)
         {
@@ -85,18 +85,18 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaRuntimeResourceFetchMetadata"/>. </summary>
-        /// <param name="name"> Environment name. </param>
-        /// <param name="createdTime"> Created time. </param>
-        /// <param name="updatedTime"> Updated Time. </param>
-        /// <param name="createdBy"> Created by. </param>
-        /// <param name="updatedBy"> Last Updated by. </param>
-        /// <param name="id"> Informatica serverless runtime id. </param>
-        /// <param name="runtimeType"> Environment Type. </param>
-        /// <param name="status"> Status of the environment. </param>
-        /// <param name="statusLocalized"> Display message for the given status. </param>
-        /// <param name="statusMessage"> status message. </param>
-        /// <param name="serverlessConfigProperties"> Serverless Config Properties. </param>
-        /// <param name="description"> Description of the runtime resource. </param>
+        /// <param name="name"></param>
+        /// <param name="createdTime"></param>
+        /// <param name="updatedTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="id"></param>
+        /// <param name="runtimeType"></param>
+        /// <param name="status"></param>
+        /// <param name="statusLocalized"></param>
+        /// <param name="statusMessage"></param>
+        /// <param name="serverlessConfigProperties"></param>
+        /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaRuntimeResourceFetchMetadata(string name, string createdTime, string updatedTime, string createdBy, string updatedBy, string id, InformaticaRuntimeType runtimeType, string status, string statusLocalized, string statusMessage, InformaticaServerlessFetchConfigProperties serverlessConfigProperties, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -120,29 +120,29 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Environment name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Created time. </summary>
+        /// <summary> Gets the created time. </summary>
         public string CreatedTime { get; }
-        /// <summary> Updated Time. </summary>
+        /// <summary> Gets the updated time. </summary>
         public string UpdatedTime { get; }
-        /// <summary> Created by. </summary>
+        /// <summary> Gets the created by. </summary>
         public string CreatedBy { get; }
-        /// <summary> Last Updated by. </summary>
+        /// <summary> Gets the updated by. </summary>
         public string UpdatedBy { get; }
-        /// <summary> Informatica serverless runtime id. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Environment Type. </summary>
+        /// <summary> Gets the runtime type. </summary>
         public InformaticaRuntimeType RuntimeType { get; }
-        /// <summary> Status of the environment. </summary>
+        /// <summary> Gets the status. </summary>
         public string Status { get; }
-        /// <summary> Display message for the given status. </summary>
+        /// <summary> Gets the status localized. </summary>
         public string StatusLocalized { get; }
-        /// <summary> status message. </summary>
+        /// <summary> Gets the status message. </summary>
         public string StatusMessage { get; }
-        /// <summary> Serverless Config Properties. </summary>
+        /// <summary> Gets the serverless config properties. </summary>
         public InformaticaServerlessFetchConfigProperties ServerlessConfigProperties { get; }
-        /// <summary> Description of the runtime resource. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
     }
 }

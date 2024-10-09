@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> The status of the processing job. </summary>
+    /// <summary> The JobStatus. </summary>
     public readonly partial struct JobStatus : IEquatable<JobStatus>
     {
         private readonly string _value;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Company details of Informatica Organization resource. </summary>
+    /// <summary> The InformaticaCompanyDetailsUpdate. </summary>
     public partial class InformaticaCompanyDetailsUpdate
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaCompanyDetailsUpdate"/>. </summary>
-        /// <param name="companyName"> company Name. </param>
-        /// <param name="officeAddress"> Office Address. </param>
-        /// <param name="country"> Country name. </param>
-        /// <param name="domain"> Domain name. </param>
-        /// <param name="business"> Business phone number. </param>
-        /// <param name="numberOfEmployees"> Number Of Employees. </param>
+        /// <param name="companyName"></param>
+        /// <param name="officeAddress"></param>
+        /// <param name="country"></param>
+        /// <param name="domain"></param>
+        /// <param name="business"></param>
+        /// <param name="numberOfEmployees"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaCompanyDetailsUpdate(string companyName, string officeAddress, string country, string domain, string business, int? numberOfEmployees, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> company Name. </summary>
+        /// <summary> Gets or sets the company name. </summary>
         public string CompanyName { get; set; }
-        /// <summary> Office Address. </summary>
+        /// <summary> Gets or sets the office address. </summary>
         public string OfficeAddress { get; set; }
-        /// <summary> Country name. </summary>
+        /// <summary> Gets or sets the country. </summary>
         public string Country { get; set; }
-        /// <summary> Domain name. </summary>
+        /// <summary> Gets or sets the domain. </summary>
         public string Domain { get; set; }
-        /// <summary> Business phone number. </summary>
+        /// <summary> Gets or sets the business. </summary>
         public string Business { get; set; }
-        /// <summary> Number Of Employees. </summary>
+        /// <summary> Gets or sets the number of employees. </summary>
         public int? NumberOfEmployees { get; set; }
     }
 }

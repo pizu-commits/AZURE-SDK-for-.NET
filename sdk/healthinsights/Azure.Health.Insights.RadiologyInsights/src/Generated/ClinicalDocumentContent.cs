@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> The content of the patient document. </summary>
+    /// <summary> The ClinicalDocumentContent. </summary>
     public partial class ClinicalDocumentContent
     {
         /// <summary>
@@ -46,12 +46,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClinicalDocumentContent"/>. </summary>
-        /// <param name="sourceType">
-        /// The type of the content's source.
-        /// In case the source type is 'inline', the content is given as a string (for instance, text).
-        /// In case the source type is 'reference', the content is given as a URI.
-        /// </param>
-        /// <param name="value"> The content of the document, given either inline (as a string) or as a reference (URI). </param>
+        /// <param name="sourceType"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         public ClinicalDocumentContent(DocumentContentSourceType sourceType, string value)
         {
@@ -62,12 +58,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalDocumentContent"/>. </summary>
-        /// <param name="sourceType">
-        /// The type of the content's source.
-        /// In case the source type is 'inline', the content is given as a string (for instance, text).
-        /// In case the source type is 'reference', the content is given as a URI.
-        /// </param>
-        /// <param name="value"> The content of the document, given either inline (as a string) or as a reference (URI). </param>
+        /// <param name="sourceType"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalDocumentContent(DocumentContentSourceType sourceType, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,13 +73,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary>
-        /// The type of the content's source.
-        /// In case the source type is 'inline', the content is given as a string (for instance, text).
-        /// In case the source type is 'reference', the content is given as a URI.
-        /// </summary>
+        /// <summary> Gets or sets the source type. </summary>
         public DocumentContentSourceType SourceType { get; set; }
-        /// <summary> The content of the document, given either inline (as a string) or as a reference (URI). </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

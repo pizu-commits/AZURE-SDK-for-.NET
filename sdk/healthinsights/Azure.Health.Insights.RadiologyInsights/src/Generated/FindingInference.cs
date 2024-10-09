@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Findings in a radiology report typically describe abnormalities, lesions, or other notable observations related to the anatomy or pathology of the imaged area. </summary>
+    /// <summary> The FindingInference. </summary>
     public partial class FindingInference : RadiologyInsightsInference
     {
         /// <summary> Initializes a new instance of <see cref="FindingInference"/>. </summary>
-        /// <param name="finding"> Finding data : contains extensions, fields and components linked with the finding. </param>
+        /// <param name="finding"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="finding"/> is null. </exception>
         internal FindingInference(FhirR4Observation finding)
         {
@@ -25,10 +25,10 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FindingInference"/>. </summary>
-        /// <param name="kind"> Discriminator property for RadiologyInsightsInference. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="finding"> Finding data : contains extensions, fields and components linked with the finding. </param>
+        /// <param name="finding"></param>
         internal FindingInference(RadiologyInsightsInferenceType kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4Observation finding) : base(kind, extension, serializedAdditionalRawData)
         {
             Finding = finding;
@@ -39,7 +39,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Finding data : contains extensions, fields and components linked with the finding. </summary>
+        /// <summary> Gets the finding. </summary>
         public FhirR4Observation Finding { get; }
     }
 }

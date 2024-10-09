@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> visit/encounter information. </summary>
+    /// <summary> The PatientEncounter. </summary>
     public partial class PatientEncounter
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PatientEncounter"/>. </summary>
-        /// <param name="id"> The id of the visit. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         public PatientEncounter(string id)
         {
@@ -56,12 +56,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="PatientEncounter"/>. </summary>
-        /// <param name="id"> The id of the visit. </param>
-        /// <param name="period">
-        /// Time period of the visit.
-        /// In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
-        /// </param>
-        /// <param name="class"> The class of the encounter. </param>
+        /// <param name="id"></param>
+        /// <param name="period"></param>
+        /// <param name="class"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PatientEncounter(string id, TimePeriod period, EncounterClass? @class, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,14 +73,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> The id of the visit. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary>
-        /// Time period of the visit.
-        /// In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
-        /// </summary>
+        /// <summary> Gets or sets the period. </summary>
         public TimePeriod Period { get; set; }
-        /// <summary> The class of the encounter. </summary>
+        /// <summary> Gets or sets the class. </summary>
         public EncounterClass? Class { get; set; }
     }
 }

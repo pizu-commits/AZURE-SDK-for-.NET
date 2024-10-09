@@ -11,12 +11,12 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Radiology procedures are the specific imaging studies or examinations ordered for the patient, extracted from the document information and text. </summary>
+    /// <summary> The RadiologyProcedureInference. </summary>
     public partial class RadiologyProcedureInference : RadiologyInsightsInference
     {
         /// <summary> Initializes a new instance of <see cref="RadiologyProcedureInference"/>. </summary>
-        /// <param name="imagingProcedures"> Imaging procedures. </param>
-        /// <param name="orderedProcedure"> Ordered procedure information from the document information or text. </param>
+        /// <param name="imagingProcedures"></param>
+        /// <param name="orderedProcedure"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="imagingProcedures"/> or <paramref name="orderedProcedure"/> is null. </exception>
         internal RadiologyProcedureInference(IEnumerable<ImagingProcedure> imagingProcedures, OrderedProcedure orderedProcedure)
         {
@@ -30,12 +30,12 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyProcedureInference"/>. </summary>
-        /// <param name="kind"> Discriminator property for RadiologyInsightsInference. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="procedureCodes"> LOINC codes for the procedure. </param>
-        /// <param name="imagingProcedures"> Imaging procedures. </param>
-        /// <param name="orderedProcedure"> Ordered procedure information from the document information or text. </param>
+        /// <param name="procedureCodes"></param>
+        /// <param name="imagingProcedures"></param>
+        /// <param name="orderedProcedure"></param>
         internal RadiologyProcedureInference(RadiologyInsightsInferenceType kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<FhirR4CodeableConcept> procedureCodes, IReadOnlyList<ImagingProcedure> imagingProcedures, OrderedProcedure orderedProcedure) : base(kind, extension, serializedAdditionalRawData)
         {
             ProcedureCodes = procedureCodes;
@@ -48,11 +48,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> LOINC codes for the procedure. </summary>
+        /// <summary> Gets the procedure codes. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> ProcedureCodes { get; }
-        /// <summary> Imaging procedures. </summary>
+        /// <summary> Gets the imaging procedures. </summary>
         public IReadOnlyList<ImagingProcedure> ImagingProcedures { get; }
-        /// <summary> Ordered procedure information from the document information or text. </summary>
+        /// <summary> Gets the ordered procedure. </summary>
         public OrderedProcedure OrderedProcedure { get; }
     }
 }

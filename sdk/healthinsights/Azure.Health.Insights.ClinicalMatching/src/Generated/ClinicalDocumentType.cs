@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The type of the clinical document. </summary>
+    /// <summary> The ClinicalDocumentType. </summary>
     public readonly partial struct ClinicalDocumentType : IEquatable<ClinicalDocumentType>
     {
         private readonly string _value;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> A piece of evidence from a clinical note (text document). </summary>
+    /// <summary> The ClinicalNoteEvidence. </summary>
     public partial class ClinicalNoteEvidence
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Health.Insights.CancerProfiling
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClinicalNoteEvidence"/>. </summary>
-        /// <param name="id"> The identifier of the document containing the evidence. </param>
-        /// <param name="offset"> The start index of the evidence text span in the document (0 based). </param>
-        /// <param name="length"> The length of the evidence text span. </param>
+        /// <param name="id"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         internal ClinicalNoteEvidence(string id, int offset, int length)
         {
@@ -60,10 +60,10 @@ namespace Azure.Health.Insights.CancerProfiling
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalNoteEvidence"/>. </summary>
-        /// <param name="id"> The identifier of the document containing the evidence. </param>
-        /// <param name="text"> The actual text span which is evidence for the inference. </param>
-        /// <param name="offset"> The start index of the evidence text span in the document (0 based). </param>
-        /// <param name="length"> The length of the evidence text span. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalNoteEvidence(string id, string text, int offset, int length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,13 +79,13 @@ namespace Azure.Health.Insights.CancerProfiling
         {
         }
 
-        /// <summary> The identifier of the document containing the evidence. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The actual text span which is evidence for the inference. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The start index of the evidence text span in the document (0 based). </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the evidence text span. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
     }
 }

@@ -12,7 +12,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> Private Links for DeidService resource. </summary>
+    /// <summary> The HealthDataAIServicesPrivateLinkResourceData. </summary>
     public partial class HealthDataAIServicesPrivateLinkResourceData : ResourceData
     {
         /// <summary>
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HealthDataAIServicesPrivateLinkResourceData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, HealthDataAIServicesPrivateLinkResourceProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
@@ -65,7 +65,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets the properties. </summary>
         public HealthDataAIServicesPrivateLinkResourceProperties Properties { get; }
     }
 }

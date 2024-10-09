@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Document administrative metadata. </summary>
+    /// <summary> The DocumentAdministrativeMetadata. </summary>
     public partial class DocumentAdministrativeMetadata
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentAdministrativeMetadata"/>. </summary>
-        /// <param name="orderedProcedures"> List of procedure information associated with the document. </param>
-        /// <param name="encounterId"> Reference to the encounter associated with the document. </param>
+        /// <param name="orderedProcedures"></param>
+        /// <param name="encounterId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentAdministrativeMetadata(IList<OrderedProcedure> orderedProcedures, string encounterId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> List of procedure information associated with the document. </summary>
+        /// <summary> Gets the ordered procedures. </summary>
         public IList<OrderedProcedure> OrderedProcedures { get; }
-        /// <summary> Reference to the encounter associated with the document. </summary>
+        /// <summary> Gets or sets the encounter id. </summary>
         public string EncounterId { get; set; }
     }
 }

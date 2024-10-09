@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Trial data which is of interest to the potential participant. </summary>
+    /// <summary> The ClinicalTrialMetadata. </summary>
     public partial class ClinicalTrialMetadata
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialMetadata"/>. </summary>
-        /// <param name="conditions"> Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. </param>
+        /// <param name="conditions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conditions"/> is null. </exception>
         public ClinicalTrialMetadata(IEnumerable<string> conditions)
         {
@@ -61,16 +61,13 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialMetadata"/>. </summary>
-        /// <param name="phases">
-        /// Phases which are relevant for the clinical trial.
-        /// Each clinical trial can be in a certain phase or in multiple phases.
-        /// </param>
-        /// <param name="studyType"> Possible study types of a clinical trial. </param>
-        /// <param name="recruitmentStatus"> Possible recruitment status of a clinical trial. </param>
-        /// <param name="conditions"> Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. </param>
-        /// <param name="sponsors"> Sponsors/collaborators involved with the trial. </param>
-        /// <param name="contacts"> Contact details of the trial administrators, for patients that want to participate in the trial. </param>
-        /// <param name="facilities"> Research facilities where the clinical trial is conducted. </param>
+        /// <param name="phases"></param>
+        /// <param name="studyType"></param>
+        /// <param name="recruitmentStatus"></param>
+        /// <param name="conditions"></param>
+        /// <param name="sponsors"></param>
+        /// <param name="contacts"></param>
+        /// <param name="facilities"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrialMetadata(IList<ClinicalTrialPhase> phases, ClinicalTrialStudyType? studyType, ClinicalTrialRecruitmentStatus? recruitmentStatus, IList<string> conditions, IList<string> sponsors, IList<ContactDetails> contacts, IList<ClinicalTrialResearchFacility> facilities, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -89,22 +86,19 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary>
-        /// Phases which are relevant for the clinical trial.
-        /// Each clinical trial can be in a certain phase or in multiple phases.
-        /// </summary>
+        /// <summary> Gets the phases. </summary>
         public IList<ClinicalTrialPhase> Phases { get; }
-        /// <summary> Possible study types of a clinical trial. </summary>
+        /// <summary> Gets or sets the study type. </summary>
         public ClinicalTrialStudyType? StudyType { get; set; }
-        /// <summary> Possible recruitment status of a clinical trial. </summary>
+        /// <summary> Gets or sets the recruitment status. </summary>
         public ClinicalTrialRecruitmentStatus? RecruitmentStatus { get; set; }
-        /// <summary> Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. </summary>
+        /// <summary> Gets the conditions. </summary>
         public IList<string> Conditions { get; }
-        /// <summary> Sponsors/collaborators involved with the trial. </summary>
+        /// <summary> Gets the sponsors. </summary>
         public IList<string> Sponsors { get; }
-        /// <summary> Contact details of the trial administrators, for patients that want to participate in the trial. </summary>
+        /// <summary> Gets the contacts. </summary>
         public IList<ContactDetails> Contacts { get; }
-        /// <summary> Research facilities where the clinical trial is conducted. </summary>
+        /// <summary> Gets the facilities. </summary>
         public IList<ClinicalTrialResearchFacility> Facilities { get; }
     }
 }

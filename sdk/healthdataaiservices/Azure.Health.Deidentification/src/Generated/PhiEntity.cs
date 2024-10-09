@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> PHI Entity tag in the input. </summary>
+    /// <summary> The PhiEntity. </summary>
     public partial class PhiEntity
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PhiEntity"/>. </summary>
-        /// <param name="category"> PHI Category of the entity. </param>
-        /// <param name="offset"> Starting index of the location from within the input text. </param>
-        /// <param name="length"> Length of the input text. </param>
+        /// <param name="category"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="offset"/> or <paramref name="length"/> is null. </exception>
         internal PhiEntity(PhiCategory category, StringIndex offset, StringIndex length)
         {
@@ -61,11 +61,11 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="PhiEntity"/>. </summary>
-        /// <param name="category"> PHI Category of the entity. </param>
-        /// <param name="offset"> Starting index of the location from within the input text. </param>
-        /// <param name="length"> Length of the input text. </param>
-        /// <param name="text"> Text of the entity. </param>
-        /// <param name="confidenceScore"> Confidence score of the category match. </param>
+        /// <param name="category"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="text"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PhiEntity(PhiCategory category, StringIndex offset, StringIndex length, string text, double? confidenceScore, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,15 +82,15 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> PHI Category of the entity. </summary>
+        /// <summary> Gets the category. </summary>
         public PhiCategory Category { get; }
-        /// <summary> Starting index of the location from within the input text. </summary>
+        /// <summary> Gets the offset. </summary>
         public StringIndex Offset { get; }
-        /// <summary> Length of the input text. </summary>
+        /// <summary> Gets the length. </summary>
         public StringIndex Length { get; }
-        /// <summary> Text of the entity. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Confidence score of the category match. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double? ConfidenceScore { get; }
     }
 }

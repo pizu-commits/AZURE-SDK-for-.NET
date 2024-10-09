@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime User context properties. </summary>
+    /// <summary> The ServerlessRuntimeUserContextProperties. </summary>
     internal partial class ServerlessRuntimeUserContextProperties
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeUserContextProperties"/>. </summary>
-        /// <param name="userContextToken"> User context token for OBO flow. </param>
+        /// <param name="userContextToken"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="userContextToken"/> is null. </exception>
         public ServerlessRuntimeUserContextProperties(string userContextToken)
         {
@@ -56,7 +56,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeUserContextProperties"/>. </summary>
-        /// <param name="userContextToken"> User context token for OBO flow. </param>
+        /// <param name="userContextToken"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeUserContextProperties(string userContextToken, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> User context token for OBO flow. </summary>
+        /// <summary> Gets or sets the user context token. </summary>
         public string UserContextToken { get; set; }
     }
 }

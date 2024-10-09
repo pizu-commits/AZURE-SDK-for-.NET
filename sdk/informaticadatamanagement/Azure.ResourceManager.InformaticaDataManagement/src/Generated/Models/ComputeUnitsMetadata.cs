@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime Application type Metadata. </summary>
+    /// <summary> The ComputeUnitsMetadata. </summary>
     public partial class ComputeUnitsMetadata
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeUnitsMetadata"/>. </summary>
-        /// <param name="name"> ComputeUnit name. </param>
-        /// <param name="value"> ComputeUnit value. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeUnitsMetadata(string name, IReadOnlyList<string> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> ComputeUnit name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> ComputeUnit value. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<string> Value { get; }
     }
 }

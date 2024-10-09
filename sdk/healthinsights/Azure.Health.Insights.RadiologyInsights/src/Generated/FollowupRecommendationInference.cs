@@ -10,16 +10,15 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Follow-up recommendations offer guidance to healthcare providers on managing and monitoring patients based on the findings of imaging studies. </summary>
+    /// <summary> The FollowupRecommendationInference. </summary>
     public partial class FollowupRecommendationInference : RadiologyInsightsInference
     {
         /// <summary> Initializes a new instance of <see cref="FollowupRecommendationInference"/>. </summary>
-        /// <param name="isConditional"> The conditional value indicates whether or not the sentence containing the recommendation includes a conditional statement. Keywords for conditional statements include 'if', 'when', 'unless', and so on. </param>
-        /// <param name="isOption"> The option value indicates whether or not the sentence containing the recommendation includes an optional statement. Keywords for optional statements include 'recommend', 'consider', and so on. </param>
-        /// <param name="isGuideline"> The guideline value indicates whether or not the recommendation is part of a guideline section that compiles all recommendations applicable to various findings. </param>
-        /// <param name="isHedging"> Hedging refers to ambiguous, vague or imprecise language within the sentence of the recommendation. Keywords for hedging are 'can be','may be',and so on. </param>
+        /// <param name="isConditional"></param>
+        /// <param name="isOption"></param>
+        /// <param name="isGuideline"></param>
+        /// <param name="isHedging"></param>
         /// <param name="recommendedProcedure">
-        /// The procedure recommendation can be a generic procedure or an imaging procedure.
         /// Please note <see cref="ProcedureRecommendation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="GenericProcedureRecommendation"/> and <see cref="ImagingProcedureRecommendation"/>.
         /// </param>
@@ -38,18 +37,17 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FollowupRecommendationInference"/>. </summary>
-        /// <param name="kind"> Discriminator property for RadiologyInsightsInference. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="effectiveAt"> Date and time are displayed when the procedure is recommended to be done at a specific point in time. </param>
-        /// <param name="effectivePeriod"> The period is shown if a specific period is mentioned, with a start and end date-time. </param>
-        /// <param name="findings"> Findings related to the recommendation. </param>
-        /// <param name="isConditional"> The conditional value indicates whether or not the sentence containing the recommendation includes a conditional statement. Keywords for conditional statements include 'if', 'when', 'unless', and so on. </param>
-        /// <param name="isOption"> The option value indicates whether or not the sentence containing the recommendation includes an optional statement. Keywords for optional statements include 'recommend', 'consider', and so on. </param>
-        /// <param name="isGuideline"> The guideline value indicates whether or not the recommendation is part of a guideline section that compiles all recommendations applicable to various findings. </param>
-        /// <param name="isHedging"> Hedging refers to ambiguous, vague or imprecise language within the sentence of the recommendation. Keywords for hedging are 'can be','may be',and so on. </param>
+        /// <param name="effectiveAt"></param>
+        /// <param name="effectivePeriod"></param>
+        /// <param name="findings"></param>
+        /// <param name="isConditional"></param>
+        /// <param name="isOption"></param>
+        /// <param name="isGuideline"></param>
+        /// <param name="isHedging"></param>
         /// <param name="recommendedProcedure">
-        /// The procedure recommendation can be a generic procedure or an imaging procedure.
         /// Please note <see cref="ProcedureRecommendation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="GenericProcedureRecommendation"/> and <see cref="ImagingProcedureRecommendation"/>.
         /// </param>
@@ -70,22 +68,22 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Date and time are displayed when the procedure is recommended to be done at a specific point in time. </summary>
+        /// <summary> Gets the effective at. </summary>
         public string EffectiveAt { get; }
-        /// <summary> The period is shown if a specific period is mentioned, with a start and end date-time. </summary>
+        /// <summary> Gets the effective period. </summary>
         public FhirR4Period EffectivePeriod { get; }
-        /// <summary> Findings related to the recommendation. </summary>
+        /// <summary> Gets the findings. </summary>
         public IReadOnlyList<RecommendationFinding> Findings { get; }
-        /// <summary> The conditional value indicates whether or not the sentence containing the recommendation includes a conditional statement. Keywords for conditional statements include 'if', 'when', 'unless', and so on. </summary>
+        /// <summary> Gets the is conditional. </summary>
         public bool IsConditional { get; }
-        /// <summary> The option value indicates whether or not the sentence containing the recommendation includes an optional statement. Keywords for optional statements include 'recommend', 'consider', and so on. </summary>
+        /// <summary> Gets the is option. </summary>
         public bool IsOption { get; }
-        /// <summary> The guideline value indicates whether or not the recommendation is part of a guideline section that compiles all recommendations applicable to various findings. </summary>
+        /// <summary> Gets the is guideline. </summary>
         public bool IsGuideline { get; }
-        /// <summary> Hedging refers to ambiguous, vague or imprecise language within the sentence of the recommendation. Keywords for hedging are 'can be','may be',and so on. </summary>
+        /// <summary> Gets the is hedging. </summary>
         public bool IsHedging { get; }
         /// <summary>
-        /// The procedure recommendation can be a generic procedure or an imaging procedure.
+        /// Gets the recommended procedure
         /// Please note <see cref="ProcedureRecommendation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="GenericProcedureRecommendation"/> and <see cref="ImagingProcedureRecommendation"/>.
         /// </summary>

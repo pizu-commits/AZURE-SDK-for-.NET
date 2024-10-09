@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> The response of a InformaticaServerlessRuntimeResource list operation. </summary>
+    /// <summary> The InformaticaServerlessRuntimeResourceListResult. </summary>
     internal partial class InformaticaServerlessRuntimeResourceListResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessRuntimeResourceListResult"/>. </summary>
-        /// <param name="value"> The InformaticaServerlessRuntimeResource items on this page. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal InformaticaServerlessRuntimeResourceListResult(IEnumerable<InformaticaServerlessRuntimeData> value)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessRuntimeResourceListResult"/>. </summary>
-        /// <param name="value"> The InformaticaServerlessRuntimeResource items on this page. </param>
-        /// <param name="nextLink"> The link to the next page of items. </param>
+        /// <param name="value"></param>
+        /// <param name="nextLink"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaServerlessRuntimeResourceListResult(IReadOnlyList<InformaticaServerlessRuntimeData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> The InformaticaServerlessRuntimeResource items on this page. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<InformaticaServerlessRuntimeData> Value { get; }
-        /// <summary> The link to the next page of items. </summary>
+        /// <summary> Gets the next link. </summary>
         public Uri NextLink { get; }
     }
 }

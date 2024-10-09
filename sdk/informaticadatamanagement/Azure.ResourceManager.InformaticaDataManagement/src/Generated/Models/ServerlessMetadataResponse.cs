@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Serverless Runtime environment Metadata response. </summary>
+    /// <summary> The ServerlessMetadataResponse. </summary>
     public partial class ServerlessMetadataResponse
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessMetadataResponse"/>. </summary>
-        /// <param name="runtimeType"> type of the runtime environment. </param>
-        /// <param name="serverlessConfigProperties"> serverless config properties. </param>
-        /// <param name="serverlessRuntimeConfigProperties"> serverless runtime config properties. </param>
+        /// <param name="runtimeType"></param>
+        /// <param name="serverlessConfigProperties"></param>
+        /// <param name="serverlessRuntimeConfigProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessMetadataResponse(InformaticaRuntimeType? runtimeType, ServerlessConfigProperties serverlessConfigProperties, ServerlessRuntimeConfigProperties serverlessRuntimeConfigProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> type of the runtime environment. </summary>
+        /// <summary> Gets the runtime type. </summary>
         public InformaticaRuntimeType? RuntimeType { get; }
-        /// <summary> serverless config properties. </summary>
+        /// <summary> Gets the serverless config properties. </summary>
         public ServerlessConfigProperties ServerlessConfigProperties { get; }
-        /// <summary> serverless runtime config properties. </summary>
+        /// <summary> Gets the serverless runtime config properties. </summary>
         public ServerlessRuntimeConfigProperties ServerlessRuntimeConfigProperties { get; }
     }
 }

@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime Network Interface configurations. </summary>
+    /// <summary> The InformaticaNetworkInterfaceConfiguration. </summary>
     public partial class InformaticaNetworkInterfaceConfiguration
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaNetworkInterfaceConfiguration"/>. </summary>
-        /// <param name="vnetId"> Virtual network resource id. </param>
-        /// <param name="subnetId"> Virtual network subnet resource id. </param>
+        /// <param name="vnetId"></param>
+        /// <param name="subnetId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="vnetId"/> or <paramref name="subnetId"/> is null. </exception>
         public InformaticaNetworkInterfaceConfiguration(ResourceIdentifier vnetId, ResourceIdentifier subnetId)
         {
@@ -60,9 +60,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaNetworkInterfaceConfiguration"/>. </summary>
-        /// <param name="vnetId"> Virtual network resource id. </param>
-        /// <param name="subnetId"> Virtual network subnet resource id. </param>
-        /// <param name="vnetResourceGuid"> Virtual network resource guid. </param>
+        /// <param name="vnetId"></param>
+        /// <param name="subnetId"></param>
+        /// <param name="vnetResourceGuid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaNetworkInterfaceConfiguration(ResourceIdentifier vnetId, ResourceIdentifier subnetId, string vnetResourceGuid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> Virtual network resource id. </summary>
+        /// <summary> Gets or sets the vnet id. </summary>
         public ResourceIdentifier VnetId { get; set; }
-        /// <summary> Virtual network subnet resource id. </summary>
+        /// <summary> Gets or sets the subnet id. </summary>
         public ResourceIdentifier SubnetId { get; set; }
-        /// <summary> Virtual network resource guid. </summary>
+        /// <summary> Gets or sets the vnet resource guid. </summary>
         public string VnetResourceGuid { get; set; }
     }
 }

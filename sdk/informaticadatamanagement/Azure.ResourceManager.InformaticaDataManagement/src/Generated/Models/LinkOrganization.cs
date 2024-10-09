@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Link Organization. </summary>
+    /// <summary> The LinkOrganization. </summary>
     internal partial class LinkOrganization
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="LinkOrganization"/>. </summary>
-        /// <param name="token"> Link organization token. </param>
+        /// <param name="token"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LinkOrganization(string token, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Link organization token. </summary>
+        /// <summary> Gets or sets the token. </summary>
         public string Token { get; set; }
     }
 }

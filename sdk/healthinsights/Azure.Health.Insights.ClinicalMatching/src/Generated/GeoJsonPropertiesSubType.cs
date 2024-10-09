@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> `GeoJSON` object sub-type. </summary>
+    /// <summary> The GeoJsonPropertiesSubType. </summary>
     public readonly partial struct GeoJsonPropertiesSubType : IEquatable<GeoJsonPropertiesSubType>
     {
         private readonly string _value;

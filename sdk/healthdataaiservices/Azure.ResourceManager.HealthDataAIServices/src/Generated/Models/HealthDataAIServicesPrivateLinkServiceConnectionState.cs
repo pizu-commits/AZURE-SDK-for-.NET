@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> A collection of information about the state of the connection between service consumer and provider. </summary>
+    /// <summary> The HealthDataAIServicesPrivateLinkServiceConnectionState. </summary>
     public partial class HealthDataAIServicesPrivateLinkServiceConnectionState
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="HealthDataAIServicesPrivateLinkServiceConnectionState"/>. </summary>
-        /// <param name="status"> Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. </param>
-        /// <param name="description"> The reason for approval/rejection of the connection. </param>
-        /// <param name="actionsRequired"> A message indicating if changes on the service provider require any updates on the consumer. </param>
+        /// <param name="status"></param>
+        /// <param name="description"></param>
+        /// <param name="actionsRequired"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HealthDataAIServicesPrivateLinkServiceConnectionState(HealthDataAIServicesPrivateEndpointServiceConnectionStatus? status, string description, string actionsRequired, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public HealthDataAIServicesPrivateEndpointServiceConnectionStatus? Status { get; set; }
-        /// <summary> The reason for approval/rejection of the connection. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> A message indicating if changes on the service provider require any updates on the consumer. </summary>
+        /// <summary> Gets or sets the actions required. </summary>
         public string ActionsRequired { get; set; }
     }
 }

@@ -7,12 +7,12 @@
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> State of the public network access. </summary>
+    /// <summary> The HealthDataAIServicesPublicNetworkAccess. </summary>
     public enum HealthDataAIServicesPublicNetworkAccess
     {
-        /// <summary> The public network access is enabled. </summary>
+        /// <summary> Enabled. </summary>
         Enabled,
-        /// <summary> The public network access is disabled. </summary>
+        /// <summary> Disabled. </summary>
         Disabled
     }
 }

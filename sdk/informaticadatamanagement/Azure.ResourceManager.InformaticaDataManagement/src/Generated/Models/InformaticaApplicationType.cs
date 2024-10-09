@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Various application types of the Serverless Runtime environments. </summary>
+    /// <summary> The InformaticaApplicationType. </summary>
     public readonly partial struct InformaticaApplicationType : IEquatable<InformaticaApplicationType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private const string CdiValue = "CDI";
         private const string CdieValue = "CDIE";
 
-        /// <summary> Data Integration. </summary>
+        /// <summary> CDI. </summary>
         public static InformaticaApplicationType Cdi { get; } = new InformaticaApplicationType(CdiValue);
-        /// <summary> Advanced Data Integration. </summary>
+        /// <summary> CDIE. </summary>
         public static InformaticaApplicationType Cdie { get; } = new InformaticaApplicationType(CdieValue);
         /// <summary> Determines if two <see cref="InformaticaApplicationType"/> values are the same. </summary>
         public static bool operator ==(InformaticaApplicationType left, InformaticaApplicationType right) => left.Equals(right);

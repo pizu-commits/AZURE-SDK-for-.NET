@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> The template for adding optional properties. </summary>
+    /// <summary> The ServerlessRuntimeUserContextPropertiesUpdate. </summary>
     internal partial class ServerlessRuntimeUserContextPropertiesUpdate
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeUserContextPropertiesUpdate"/>. </summary>
-        /// <param name="userContextToken"> User context token for OBO flow. </param>
+        /// <param name="userContextToken"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeUserContextPropertiesUpdate(string userContextToken, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> User context token for OBO flow. </summary>
+        /// <summary> Gets or sets the user context token. </summary>
         public string UserContextToken { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Recommendation finding status. </summary>
+    /// <summary> The RecommendationFindingStatusType. </summary>
     public readonly partial struct RecommendationFindingStatusType : IEquatable<RecommendationFindingStatusType>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string RuleOutValue = "ruleOut";
         private const string ConditionalValue = "conditional";
 
-        /// <summary> Present finding status. </summary>
+        /// <summary> present. </summary>
         public static RecommendationFindingStatusType Present { get; } = new RecommendationFindingStatusType(PresentValue);
-        /// <summary> Differential finding status. </summary>
+        /// <summary> differential. </summary>
         public static RecommendationFindingStatusType Differential { get; } = new RecommendationFindingStatusType(DifferentialValue);
-        /// <summary> Rule out finding status. </summary>
+        /// <summary> ruleOut. </summary>
         public static RecommendationFindingStatusType RuleOut { get; } = new RecommendationFindingStatusType(RuleOutValue);
-        /// <summary> Conditional finding status. </summary>
+        /// <summary> conditional. </summary>
         public static RecommendationFindingStatusType Conditional { get; } = new RecommendationFindingStatusType(ConditionalValue);
         /// <summary> Determines if two <see cref="RecommendationFindingStatusType"/> values are the same. </summary>
         public static bool operator ==(RecommendationFindingStatusType left, RecommendationFindingStatusType right) => left.Equals(right);

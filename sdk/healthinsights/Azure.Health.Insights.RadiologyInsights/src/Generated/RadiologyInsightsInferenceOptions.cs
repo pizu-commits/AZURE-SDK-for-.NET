@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Options regarding follow up recommendation inferences and finding inferences. </summary>
+    /// <summary> The RadiologyInsightsInferenceOptions. </summary>
     public partial class RadiologyInsightsInferenceOptions
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsInferenceOptions"/>. </summary>
-        /// <param name="followupRecommendationOptions"> Follow-up recommendation options. </param>
-        /// <param name="findingOptions"> Finding options. </param>
+        /// <param name="followupRecommendationOptions"></param>
+        /// <param name="findingOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyInsightsInferenceOptions(FollowupRecommendationOptions followupRecommendationOptions, FindingOptions findingOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Follow-up recommendation options. </summary>
+        /// <summary> Gets or sets the followup recommendation options. </summary>
         public FollowupRecommendationOptions FollowupRecommendationOptions { get; set; }
-        /// <summary> Finding options. </summary>
+        /// <summary> Gets or sets the finding options. </summary>
         public FindingOptions FindingOptions { get; set; }
     }
 }

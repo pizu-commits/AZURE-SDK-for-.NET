@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). </summary>
+    /// <summary> The PatientDocument. </summary>
     public partial class PatientDocument
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PatientDocument"/>. </summary>
-        /// <param name="type"> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </param>
-        /// <param name="id"> A given identifier for the document. Has to be unique across all documents for a single patient. </param>
-        /// <param name="content"> The content of the patient document. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="content"/> is null. </exception>
         public PatientDocument(DocumentType type, string id, DocumentContent content)
         {
@@ -61,12 +61,12 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="PatientDocument"/>. </summary>
-        /// <param name="type"> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </param>
-        /// <param name="clinicalType"> The type of the clinical document. </param>
-        /// <param name="id"> A given identifier for the document. Has to be unique across all documents for a single patient. </param>
-        /// <param name="language"> A 2 letter ISO 639-1 representation of the language of the document. </param>
-        /// <param name="createdDateTime"> The date and time when the document was created. </param>
-        /// <param name="content"> The content of the patient document. </param>
+        /// <param name="type"></param>
+        /// <param name="clinicalType"></param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="content"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PatientDocument(DocumentType type, ClinicalDocumentType? clinicalType, string id, string language, DateTimeOffset? createdDateTime, DocumentContent content, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,17 +84,17 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </summary>
+        /// <summary> Gets the type. </summary>
         public DocumentType Type { get; }
-        /// <summary> The type of the clinical document. </summary>
+        /// <summary> Gets or sets the clinical type. </summary>
         public ClinicalDocumentType? ClinicalType { get; set; }
-        /// <summary> A given identifier for the document. Has to be unique across all documents for a single patient. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> A 2 letter ISO 639-1 representation of the language of the document. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
-        /// <summary> The date and time when the document was created. </summary>
+        /// <summary> Gets or sets the created date time. </summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary> The content of the patient document. </summary>
+        /// <summary> Gets the content. </summary>
         public DocumentContent Content { get; }
     }
 }

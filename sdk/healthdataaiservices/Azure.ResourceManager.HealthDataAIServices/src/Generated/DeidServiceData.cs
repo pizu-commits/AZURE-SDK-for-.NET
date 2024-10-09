@@ -13,10 +13,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.HealthDataAIServices
 {
-    /// <summary>
-    /// A class representing the DeidService data model.
-    /// A HealthDataAIServicesProviderHub resource
-    /// </summary>
+    /// <summary> A class representing the DeidService data model. </summary>
     public partial class DeidServiceData : TrackedResourceData
     {
         /// <summary>
@@ -64,8 +61,8 @@ namespace Azure.ResourceManager.HealthDataAIServices
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="identity"> The managed service identities assigned to this resource. </param>
+        /// <param name="properties"></param>
+        /// <param name="identity"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeidServiceData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, DeidServiceProperties properties, ManagedServiceIdentity identity, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
@@ -79,9 +76,9 @@ namespace Azure.ResourceManager.HealthDataAIServices
         {
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public DeidServiceProperties Properties { get; set; }
-        /// <summary> The managed service identities assigned to this resource. </summary>
+        /// <summary> Gets or sets the identity. </summary>
         public ManagedServiceIdentity Identity { get; set; }
     }
 }

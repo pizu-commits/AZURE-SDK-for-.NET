@@ -62,7 +62,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Get a de-identification job. </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -78,7 +78,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Get a de-identification job. </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -108,7 +108,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -148,7 +148,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -174,7 +174,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Cancel a de-identification job. </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -196,7 +196,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Cancel a de-identification job. </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -232,7 +232,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -272,7 +272,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -308,7 +308,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -344,7 +344,7 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -370,7 +370,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> De-identify text. </summary>
-        /// <param name="body"> Request body for de-identification operation. </param>
+        /// <param name="body"> The <see cref="DeidentificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks> A remote procedure call (RPC) operation. </remarks>
@@ -386,7 +386,7 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> De-identify text. </summary>
-        /// <param name="body"> Request body for de-identification operation. </param>
+        /// <param name="body"> The <see cref="DeidentificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks> A remote procedure call (RPC) operation. </remarks>
@@ -480,8 +480,8 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> List de-identification jobs. </summary>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Resource list operation template. </remarks>
         /// <include file="Docs/DeidentificationClient.xml" path="doc/members/member[@name='GetJobsAsync(int?,string,CancellationToken)']/*" />
@@ -494,8 +494,8 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> List de-identification jobs. </summary>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Resource list operation template. </remarks>
         /// <include file="Docs/DeidentificationClient.xml" path="doc/members/member[@name='GetJobs(int?,string,CancellationToken)']/*" />
@@ -522,8 +522,8 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -550,8 +550,8 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -564,9 +564,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> List processed documents within a job. </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -583,9 +583,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> List processed documents within a job. </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -616,9 +616,9 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -649,9 +649,9 @@ namespace Azure.Health.Deidentification
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="continuationToken"> Token to continue a previous query. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="continuationToken"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -669,8 +669,8 @@ namespace Azure.Health.Deidentification
 
         /// <summary> Create a de-identification job. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="resource"> The resource instance. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="resource"> The <see cref="DeidentificationJob"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="resource"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -689,8 +689,8 @@ namespace Azure.Health.Deidentification
 
         /// <summary> Create a de-identification job. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="resource"> The resource instance. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="resource"> The <see cref="DeidentificationJob"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="resource"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -723,7 +723,7 @@ namespace Azure.Health.Deidentification
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -766,7 +766,7 @@ namespace Azure.Health.Deidentification
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="name"> The name of a job. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>

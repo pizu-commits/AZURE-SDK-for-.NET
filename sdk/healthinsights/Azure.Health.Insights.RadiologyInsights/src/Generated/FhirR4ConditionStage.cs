@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Stage/grade, usually assessed formally
-    /// Based on [FHIR Condition.Stage](https://www.hl7.org/fhir/R4/condition.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_ConditionStage. </summary>
     public partial class FhirR4ConditionStage
     {
         /// <summary>
@@ -54,8 +51,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ConditionStage"/>. </summary>
-        /// <param name="summary"> Simple summary (disease specific). </param>
-        /// <param name="type"> Kind of staging. </param>
+        /// <param name="summary"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FhirR4ConditionStage(FhirR4CodeableConcept summary, FhirR4CodeableConcept type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,9 +61,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Simple summary (disease specific). </summary>
+        /// <summary> Gets the summary. </summary>
         public FhirR4CodeableConcept Summary { get; }
-        /// <summary> Kind of staging. </summary>
+        /// <summary> Gets the type. </summary>
         public FhirR4CodeableConcept Type { get; }
     }
 }
