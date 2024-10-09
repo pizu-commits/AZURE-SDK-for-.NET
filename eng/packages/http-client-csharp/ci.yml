@@ -27,7 +27,7 @@ variables:
 extends:
   template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yml
   parameters:
-    EmitterPackagePath: /eng/packages/http-client-csharp
+    EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
     BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
     UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
     ${{ if eq(variables['Build.ProjectName'], 'internal') }}:
