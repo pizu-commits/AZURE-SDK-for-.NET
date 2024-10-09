@@ -42,5 +42,6 @@ extends:
     Packages:
       - name: http-client-csharp
         type: npm
-    TestMatrix: {}
- 
+    TestMatrix:
+        All:
+          TestArguments: -UnitTests -GenerationChecks -Filter .
