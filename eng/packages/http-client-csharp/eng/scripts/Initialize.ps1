@@ -15,6 +15,11 @@ if ($UseTypeSpecNext) {
     Write-Host "##vso[build.addbuildtag]typespec_next"
 }
 
+Write-Host "Running with:"
+Write-Host "  BuildArtifactsPath: $BuildArtifactsPath"
+Write-Host "  UseTypeSpecNext: $UseTypeSpecNext"
+Write-Host "  `$env:Build_ArtifactStagingDirectory: $env:Build_ArtifactStagingDirectory"
+
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
 Push-Location $emitterPackagePath
 try {
@@ -50,8 +55,7 @@ try {
     $artifactStagingDirectory = $env:Build_ArtifactStagingDirectory
     if ($artifactStagingDirectory -and !$BuildArtifactsPath) {
         $lockFilesPath = "$artifactStagingDirectory/lock-files"
-        New-Item -ItemType Directory -Path "$lockFilesPath/emitter" | Out-Null
-        New-Item -ItemType Directory -Path "$lockFilesPath/test" | Out-Null
+        New-Item -ItemType Directory -Path "$lockFilesPath" | Out-Null
         
         Write-Host "Copying package.json and package-lock.json to $lockFilesPath"
         Copy-Item './package.json'  "$lockFilesPath/package.json" -Force
