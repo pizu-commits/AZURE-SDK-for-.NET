@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The detailed information for a function invocation, as provided by a required action invoking a function tool, that includes the name of and arguments to the function. </summary>
+    /// <summary> The InternalRequiredFunctionToolCallDetails. </summary>
     internal partial class InternalRequiredFunctionToolCallDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalRequiredFunctionToolCallDetails"/>. </summary>
-        /// <param name="name"> The name of the function. </param>
-        /// <param name="arguments"> The arguments to use when invoking the named function, as provided by the model. Arguments are presented as a JSON document that should be validated and parsed for evaluation. </param>
+        /// <param name="name"></param>
+        /// <param name="arguments"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="arguments"/> is null. </exception>
         internal InternalRequiredFunctionToolCallDetails(string name, string arguments)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalRequiredFunctionToolCallDetails"/>. </summary>
-        /// <param name="name"> The name of the function. </param>
-        /// <param name="arguments"> The arguments to use when invoking the named function, as provided by the model. Arguments are presented as a JSON document that should be validated and parsed for evaluation. </param>
+        /// <param name="name"></param>
+        /// <param name="arguments"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalRequiredFunctionToolCallDetails(string name, string arguments, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The name of the function. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The arguments to use when invoking the named function, as provided by the model. Arguments are presented as a JSON document that should be validated and parsed for evaluation. </summary>
+        /// <summary> Gets the arguments. </summary>
         public string Arguments { get; }
     }
 }

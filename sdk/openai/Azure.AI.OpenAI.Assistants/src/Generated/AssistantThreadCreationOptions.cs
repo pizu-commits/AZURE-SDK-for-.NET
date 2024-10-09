@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The details used to create a new assistant thread. </summary>
+    /// <summary> The AssistantThreadCreationOptions. </summary>
     public partial class AssistantThreadCreationOptions
     {
         /// <summary>
@@ -53,8 +53,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="AssistantThreadCreationOptions"/>. </summary>
-        /// <param name="messages"> The initial messages to associate with the new thread. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="messages"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AssistantThreadCreationOptions(IList<ThreadInitializationMessage> messages, IDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,9 +63,9 @@ namespace Azure.AI.OpenAI.Assistants
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The initial messages to associate with the new thread. </summary>
+        /// <summary> Gets the messages. </summary>
         public IList<ThreadInitializationMessage> Messages { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets or sets the metadata. </summary>
         public IDictionary<string, string> Metadata { get; set; }
     }
 }

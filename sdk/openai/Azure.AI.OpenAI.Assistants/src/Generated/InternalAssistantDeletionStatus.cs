@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The status of an assistant deletion operation. </summary>
+    /// <summary> The InternalAssistantDeletionStatus. </summary>
     internal partial class InternalAssistantDeletionStatus
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalAssistantDeletionStatus"/>. </summary>
-        /// <param name="id"> The ID of the resource specified for deletion. </param>
-        /// <param name="deleted"> A value indicating whether deletion was successful. </param>
+        /// <param name="id"></param>
+        /// <param name="deleted"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         internal InternalAssistantDeletionStatus(string id, bool deleted)
         {
@@ -58,9 +58,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalAssistantDeletionStatus"/>. </summary>
-        /// <param name="id"> The ID of the resource specified for deletion. </param>
-        /// <param name="deleted"> A value indicating whether deletion was successful. </param>
-        /// <param name="object"> The object type, which is always 'assistant.deleted'. </param>
+        /// <param name="id"></param>
+        /// <param name="deleted"></param>
+        /// <param name="object"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalAssistantDeletionStatus(string id, bool deleted, InternalAssistantDeletionStatusObject @object, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,11 +75,11 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the resource specified for deletion. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> A value indicating whether deletion was successful. </summary>
+        /// <summary> Gets the deleted. </summary>
         public bool Deleted { get; }
-        /// <summary> The object type, which is always 'assistant.deleted'. </summary>
+        /// <summary> Gets the object. </summary>
         public InternalAssistantDeletionStatusObject Object { get; } = InternalAssistantDeletionStatusObject.AssistantDeleted;
     }
 }

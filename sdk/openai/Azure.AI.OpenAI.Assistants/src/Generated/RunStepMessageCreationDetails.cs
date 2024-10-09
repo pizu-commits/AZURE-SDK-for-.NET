@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The detailed information associated with a message creation run step. </summary>
+    /// <summary> The RunStepMessageCreationDetails. </summary>
     public partial class RunStepMessageCreationDetails : RunStepDetails
     {
         /// <summary> Initializes a new instance of <see cref="RunStepMessageCreationDetails"/>. </summary>
-        /// <param name="messageCreation"> Information about the message creation associated with this run step. </param>
+        /// <param name="messageCreation"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="messageCreation"/> is null. </exception>
         internal RunStepMessageCreationDetails(RunStepMessageCreationReference messageCreation)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepMessageCreationDetails"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="messageCreation"> Information about the message creation associated with this run step. </param>
+        /// <param name="messageCreation"></param>
         internal RunStepMessageCreationDetails(RunStepType type, IDictionary<string, BinaryData> serializedAdditionalRawData, RunStepMessageCreationReference messageCreation) : base(type, serializedAdditionalRawData)
         {
             MessageCreation = messageCreation;
@@ -38,7 +38,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> Information about the message creation associated with this run step. </summary>
+        /// <summary> Gets the message creation. </summary>
         public RunStepMessageCreationReference MessageCreation { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Possible values for the status of an assistant thread run. </summary>
+    /// <summary> The RunStatus. </summary>
     public readonly partial struct RunStatus : IEquatable<RunStatus>
     {
         private readonly string _value;
@@ -31,21 +31,21 @@ namespace Azure.AI.OpenAI.Assistants
         private const string CompletedValue = "completed";
         private const string ExpiredValue = "expired";
 
-        /// <summary> Represents a run that is queued to start. </summary>
+        /// <summary> queued. </summary>
         public static RunStatus Queued { get; } = new RunStatus(QueuedValue);
-        /// <summary> Represents a run that is in progress. </summary>
+        /// <summary> in_progress. </summary>
         public static RunStatus InProgress { get; } = new RunStatus(InProgressValue);
-        /// <summary> Represents a run that needs another operation, such as tool output submission, to continue. </summary>
+        /// <summary> requires_action. </summary>
         public static RunStatus RequiresAction { get; } = new RunStatus(RequiresActionValue);
-        /// <summary> Represents a run that is in the process of cancellation. </summary>
+        /// <summary> cancelling. </summary>
         public static RunStatus Cancelling { get; } = new RunStatus(CancellingValue);
-        /// <summary> Represents a run that has been cancelled. </summary>
+        /// <summary> cancelled. </summary>
         public static RunStatus Cancelled { get; } = new RunStatus(CancelledValue);
-        /// <summary> Represents a run that failed. </summary>
+        /// <summary> failed. </summary>
         public static RunStatus Failed { get; } = new RunStatus(FailedValue);
-        /// <summary> Represents a run that successfully completed. </summary>
+        /// <summary> completed. </summary>
         public static RunStatus Completed { get; } = new RunStatus(CompletedValue);
-        /// <summary> Represents a run that expired before it could otherwise finish. </summary>
+        /// <summary> expired. </summary>
         public static RunStatus Expired { get; } = new RunStatus(ExpiredValue);
         /// <summary> Determines if two <see cref="RunStatus"/> values are the same. </summary>
         public static bool operator ==(RunStatus left, RunStatus right) => left.Equals(right);

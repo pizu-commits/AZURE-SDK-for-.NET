@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CreateMessageRequest"/>. </summary>
-        /// <param name="role"> The role to associate with the new message. </param>
-        /// <param name="content"> The textual content for the new message. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         internal CreateMessageRequest(MessageRole role, string content)
         {
@@ -60,10 +60,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="CreateMessageRequest"/>. </summary>
-        /// <param name="role"> The role to associate with the new message. </param>
-        /// <param name="content"> The textual content for the new message. </param>
-        /// <param name="fileIds"> A list of up to 10 file IDs to associate with the message, as used by tools like 'code_interpreter' or 'retrieval' that can read files. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CreateMessageRequest(MessageRole role, string content, IReadOnlyList<string> fileIds, IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,13 +79,13 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The role to associate with the new message. </summary>
+        /// <summary> Gets the role. </summary>
         public MessageRole Role { get; }
-        /// <summary> The textual content for the new message. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> A list of up to 10 file IDs to associate with the message, as used by tools like 'code_interpreter' or 'retrieval' that can read files. </summary>
+        /// <summary> Gets the file ids. </summary>
         public IReadOnlyList<string> FileIds { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

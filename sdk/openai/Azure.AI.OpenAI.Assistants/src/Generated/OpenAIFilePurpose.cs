@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The possible values denoting the intended usage of a file. </summary>
+    /// <summary> The OpenAIFilePurpose. </summary>
     public readonly partial struct OpenAIFilePurpose : IEquatable<OpenAIFilePurpose>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.OpenAI.Assistants
         private const string AssistantsValue = "assistants";
         private const string AssistantsOutputValue = "assistants_output";
 
-        /// <summary> Indicates a file is used for fine tuning input. </summary>
+        /// <summary> fine-tune. </summary>
         public static OpenAIFilePurpose FineTune { get; } = new OpenAIFilePurpose(FineTuneValue);
-        /// <summary> Indicates a file is used for fine tuning results. </summary>
+        /// <summary> fine-tune-results. </summary>
         public static OpenAIFilePurpose FineTuneResults { get; } = new OpenAIFilePurpose(FineTuneResultsValue);
-        /// <summary> Indicates a file is used as input to assistants. </summary>
+        /// <summary> assistants. </summary>
         public static OpenAIFilePurpose Assistants { get; } = new OpenAIFilePurpose(AssistantsValue);
-        /// <summary> Indicates a file is used as output by assistants. </summary>
+        /// <summary> assistants_output. </summary>
         public static OpenAIFilePurpose AssistantsOutput { get; } = new OpenAIFilePurpose(AssistantsOutputValue);
         /// <summary> Determines if two <see cref="OpenAIFilePurpose"/> values are the same. </summary>
         public static bool operator ==(OpenAIFilePurpose left, OpenAIFilePurpose right) => left.Equals(right);

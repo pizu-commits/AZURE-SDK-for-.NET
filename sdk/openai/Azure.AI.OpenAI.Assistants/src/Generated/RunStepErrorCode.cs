@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Possible error code values attributable to a failed run step. </summary>
+    /// <summary> The RunStepErrorCode. </summary>
     public readonly partial struct RunStepErrorCode : IEquatable<RunStepErrorCode>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         private const string ServerErrorValue = "server_error";
         private const string RateLimitExceededValue = "rate_limit_exceeded";
 
-        /// <summary> Represents a server error. </summary>
+        /// <summary> server_error. </summary>
         public static RunStepErrorCode ServerError { get; } = new RunStepErrorCode(ServerErrorValue);
-        /// <summary> Represents an error indicating configured rate limits were exceeded. </summary>
+        /// <summary> rate_limit_exceeded. </summary>
         public static RunStepErrorCode RateLimitExceeded { get; } = new RunStepErrorCode(RateLimitExceededValue);
         /// <summary> Determines if two <see cref="RunStepErrorCode"/> values are the same. </summary>
         public static bool operator ==(RunStepErrorCode left, RunStepErrorCode right) => left.Equals(right);

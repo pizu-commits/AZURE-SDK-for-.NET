@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The input definition information for a function tool as used to configure an assistant. </summary>
+    /// <summary> The FunctionToolDefinition. </summary>
     public partial class FunctionToolDefinition : ToolDefinition
     {
         /// <summary> Initializes a new instance of <see cref="FunctionToolDefinition"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="internalFunction"> The definition of the concrete function that the function tool should call. </param>
+        /// <param name="internalFunction"></param>
         internal FunctionToolDefinition(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, InternalFunctionDefinition internalFunction) : base(type, serializedAdditionalRawData)
         {
             InternalFunction = internalFunction;

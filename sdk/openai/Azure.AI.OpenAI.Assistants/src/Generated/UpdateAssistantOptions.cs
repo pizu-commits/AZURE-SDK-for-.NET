@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The request details to use when modifying an existing assistant. </summary>
+    /// <summary> The UpdateAssistantOptions. </summary>
     public partial class UpdateAssistantOptions
     {
         /// <summary>
@@ -54,17 +54,16 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="UpdateAssistantOptions"/>. </summary>
-        /// <param name="model"> The ID of the model to use. </param>
-        /// <param name="name"> The modified name for the assistant to use. </param>
-        /// <param name="description"> The modified description for the assistant to use. </param>
-        /// <param name="instructions"> The modified system instructions for the new assistant to use. </param>
+        /// <param name="model"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="instructions"></param>
         /// <param name="tools">
-        /// The modified collection of tools to enable for the assistant.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="fileIds"> The modified list of previously uploaded fileIDs to attach to the assistant. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UpdateAssistantOptions(string model, string name, string description, string instructions, IList<ToolDefinition> tools, IList<string> fileIds, IDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,23 +77,23 @@ namespace Azure.AI.OpenAI.Assistants
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the model to use. </summary>
+        /// <summary> Gets or sets the model. </summary>
         public string Model { get; set; }
-        /// <summary> The modified name for the assistant to use. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The modified description for the assistant to use. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The modified system instructions for the new assistant to use. </summary>
+        /// <summary> Gets or sets the instructions. </summary>
         public string Instructions { get; set; }
         /// <summary>
-        /// The modified collection of tools to enable for the assistant.
+        /// Gets the tools
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </summary>
         public IList<ToolDefinition> Tools { get; }
-        /// <summary> The modified list of previously uploaded fileIDs to attach to the assistant. </summary>
+        /// <summary> Gets the file ids. </summary>
         public IList<string> FileIds { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets or sets the metadata. </summary>
         public IDictionary<string, string> Metadata { get; set; }
     }
 }

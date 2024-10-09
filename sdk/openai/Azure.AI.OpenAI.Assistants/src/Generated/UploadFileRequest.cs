@@ -47,8 +47,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UploadFileRequest"/>. </summary>
-        /// <param name="data"> The file data (not filename) to upload. </param>
-        /// <param name="purpose"> The intended purpose of the file. </param>
+        /// <param name="data"></param>
+        /// <param name="purpose"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         internal UploadFileRequest(Stream data, OpenAIFilePurpose purpose)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="UploadFileRequest"/>. </summary>
-        /// <param name="data"> The file data (not filename) to upload. </param>
-        /// <param name="purpose"> The intended purpose of the file. </param>
-        /// <param name="filename"> A filename to associate with the uploaded data. </param>
+        /// <param name="data"></param>
+        /// <param name="purpose"></param>
+        /// <param name="filename"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UploadFileRequest(Stream data, OpenAIFilePurpose purpose, string filename, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The file data (not filename) to upload. </summary>
+        /// <summary> Gets the data. </summary>
         public Stream Data { get; }
-        /// <summary> The intended purpose of the file. </summary>
+        /// <summary> Gets the purpose. </summary>
         public OpenAIFilePurpose Purpose { get; }
-        /// <summary> A filename to associate with the uploaded data. </summary>
+        /// <summary> Gets the filename. </summary>
         public string Filename { get; }
     }
 }

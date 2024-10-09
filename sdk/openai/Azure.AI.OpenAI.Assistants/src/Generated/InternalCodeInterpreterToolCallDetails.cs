@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The detailed information about a code interpreter invocation by the model. </summary>
+    /// <summary> The InternalCodeInterpreterToolCallDetails. </summary>
     internal partial class InternalCodeInterpreterToolCallDetails
     {
         /// <summary>
@@ -47,9 +47,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalCodeInterpreterToolCallDetails"/>. </summary>
-        /// <param name="input"> The input provided by the model to the code interpreter tool. </param>
+        /// <param name="input"></param>
         /// <param name="outputs">
-        /// The outputs produced by the code interpreter tool back to the model in response to the tool call.
         /// Please note <see cref="RunStepCodeInterpreterToolCallOutput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RunStepCodeInterpreterImageOutput"/> and <see cref="RunStepCodeInterpreterLogOutput"/>.
         /// </param>
@@ -64,9 +63,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalCodeInterpreterToolCallDetails"/>. </summary>
-        /// <param name="input"> The input provided by the model to the code interpreter tool. </param>
+        /// <param name="input"></param>
         /// <param name="outputs">
-        /// The outputs produced by the code interpreter tool back to the model in response to the tool call.
         /// Please note <see cref="RunStepCodeInterpreterToolCallOutput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RunStepCodeInterpreterImageOutput"/> and <see cref="RunStepCodeInterpreterLogOutput"/>.
         /// </param>
@@ -83,10 +81,10 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The input provided by the model to the code interpreter tool. </summary>
+        /// <summary> Gets the input. </summary>
         public string Input { get; }
         /// <summary>
-        /// The outputs produced by the code interpreter tool back to the model in response to the tool call.
+        /// Gets the outputs
         /// Please note <see cref="RunStepCodeInterpreterToolCallOutput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RunStepCodeInterpreterImageOutput"/> and <see cref="RunStepCodeInterpreterLogOutput"/>.
         /// </summary>

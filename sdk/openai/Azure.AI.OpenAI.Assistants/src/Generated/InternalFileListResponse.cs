@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The response data from a file list operation. </summary>
+    /// <summary> The InternalFileListResponse. </summary>
     internal partial class InternalFileListResponse
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalFileListResponse"/>. </summary>
-        /// <param name="data"> The files returned for the request. </param>
+        /// <param name="data"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         internal InternalFileListResponse(IEnumerable<OpenAIFile> data)
         {
@@ -57,8 +57,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalFileListResponse"/>. </summary>
-        /// <param name="object"> The object type, which is always 'list'. </param>
-        /// <param name="data"> The files returned for the request. </param>
+        /// <param name="object"></param>
+        /// <param name="data"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalFileListResponse(InternalFileListResponseObject @object, IReadOnlyList<OpenAIFile> data, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,10 +72,10 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The object type, which is always 'list'. </summary>
+        /// <summary> Gets the object. </summary>
         public InternalFileListResponseObject Object { get; } = InternalFileListResponseObject.List;
 
-        /// <summary> The files returned for the request. </summary>
+        /// <summary> Gets the data. </summary>
         public IReadOnlyList<OpenAIFile> Data { get; }
     }
 }

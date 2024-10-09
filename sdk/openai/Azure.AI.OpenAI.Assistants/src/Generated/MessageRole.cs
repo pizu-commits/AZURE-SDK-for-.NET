@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The possible values for roles attributed to messages in a thread. </summary>
+    /// <summary> The MessageRole. </summary>
     public readonly partial struct MessageRole : IEquatable<MessageRole>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         private const string UserValue = "user";
         private const string AssistantValue = "assistant";
 
-        /// <summary> The role representing the end-user. </summary>
+        /// <summary> user. </summary>
         public static MessageRole User { get; } = new MessageRole(UserValue);
-        /// <summary> The role representing the assistant. </summary>
+        /// <summary> assistant. </summary>
         public static MessageRole Assistant { get; } = new MessageRole(AssistantValue);
         /// <summary> Determines if two <see cref="MessageRole"/> values are the same. </summary>
         public static bool operator ==(MessageRole left, MessageRole right) => left.Equals(right);

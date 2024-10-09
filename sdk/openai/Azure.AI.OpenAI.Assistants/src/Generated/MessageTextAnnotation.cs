@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.OpenAI.Assistants
 {
     /// <summary>
-    /// An abstract representation of an annotation to text thread message content.
+    /// The MessageTextAnnotation.
     /// Please note <see cref="MessageTextAnnotation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="MessageTextFileCitationAnnotation"/> and <see cref="MessageTextFilePathAnnotation"/>.
     /// </summary>
@@ -50,9 +50,9 @@ namespace Azure.AI.OpenAI.Assistants
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageTextAnnotation"/>. </summary>
-        /// <param name="text"> The textual content associated with this text annotation item. </param>
-        /// <param name="startIndex"> The first text index associated with this text annotation. </param>
-        /// <param name="endIndex"> The last text index associated with this text annotation. </param>
+        /// <param name="text"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         protected MessageTextAnnotation(string text, int startIndex, int endIndex)
         {
@@ -64,10 +64,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTextAnnotation"/>. </summary>
-        /// <param name="type"> The object type. </param>
-        /// <param name="text"> The textual content associated with this text annotation item. </param>
-        /// <param name="startIndex"> The first text index associated with this text annotation. </param>
-        /// <param name="endIndex"> The last text index associated with this text annotation. </param>
+        /// <param name="type"></param>
+        /// <param name="text"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageTextAnnotation(string type, string text, int startIndex, int endIndex, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,13 +83,13 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The object type. </summary>
+        /// <summary> Gets or sets the type. </summary>
         internal string Type { get; set; }
-        /// <summary> The textual content associated with this text annotation item. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The first text index associated with this text annotation. </summary>
+        /// <summary> Gets the start index. </summary>
         public int StartIndex { get; }
-        /// <summary> The last text index associated with this text annotation. </summary>
+        /// <summary> Gets the end index. </summary>
         public int EndIndex { get; }
     }
 }

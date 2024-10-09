@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Data representing a single evaluation run of an assistant thread. </summary>
+    /// <summary> The ThreadRun. </summary>
     public partial class ThreadRun
     {
         /// <summary>
@@ -47,26 +47,25 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ThreadRun"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="threadId"> The ID of the thread associated with this run. </param>
-        /// <param name="assistantId"> The ID of the assistant associated with the thread this run was performed against. </param>
-        /// <param name="status"> The status of the assistant thread run. </param>
-        /// <param name="lastError"> The last error, if any, encountered by this assistant thread run. </param>
-        /// <param name="model"> The ID of the model to use. </param>
-        /// <param name="instructions"> The overridden system instructions used for this assistant thread run. </param>
+        /// <param name="id"></param>
+        /// <param name="threadId"></param>
+        /// <param name="assistantId"></param>
+        /// <param name="status"></param>
+        /// <param name="lastError"></param>
+        /// <param name="model"></param>
+        /// <param name="instructions"></param>
         /// <param name="tools">
-        /// The overridden enabled tools used for this assistant thread run.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="fileIds"> A list of attached file IDs, ordered by creation date in ascending order. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="expiresAt"> The Unix timestamp, in seconds, representing when this item expires. </param>
-        /// <param name="startedAt"> The Unix timestamp, in seconds, representing when this item was started. </param>
-        /// <param name="completedAt"> The Unix timestamp, in seconds, representing when this completed. </param>
-        /// <param name="cancelledAt"> The Unix timestamp, in seconds, representing when this was cancelled. </param>
-        /// <param name="failedAt"> The Unix timestamp, in seconds, representing when this failed. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="expiresAt"></param>
+        /// <param name="startedAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="cancelledAt"></param>
+        /// <param name="failedAt"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="threadId"/>, <paramref name="assistantId"/>, <paramref name="model"/>, <paramref name="instructions"/>, <paramref name="tools"/> or <paramref name="fileIds"/> is null. </exception>
         internal ThreadRun(string id, string threadId, string assistantId, RunStatus status, RunError lastError, string model, string instructions, IEnumerable<ToolDefinition> tools, IEnumerable<string> fileIds, DateTimeOffset createdAt, DateTimeOffset? expiresAt, DateTimeOffset? startedAt, DateTimeOffset? completedAt, DateTimeOffset? cancelledAt, DateTimeOffset? failedAt, IReadOnlyDictionary<string, string> metadata)
         {
@@ -97,32 +96,30 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="ThreadRun"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="object"> The object type, which is always 'thread.run'. </param>
-        /// <param name="threadId"> The ID of the thread associated with this run. </param>
-        /// <param name="assistantId"> The ID of the assistant associated with the thread this run was performed against. </param>
-        /// <param name="status"> The status of the assistant thread run. </param>
+        /// <param name="id"></param>
+        /// <param name="object"></param>
+        /// <param name="threadId"></param>
+        /// <param name="assistantId"></param>
+        /// <param name="status"></param>
         /// <param name="requiredAction">
-        /// The details of the action required for the assistant thread run to continue.
         /// Please note <see cref="Assistants.RequiredAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SubmitToolOutputsAction"/>.
         /// </param>
-        /// <param name="lastError"> The last error, if any, encountered by this assistant thread run. </param>
-        /// <param name="model"> The ID of the model to use. </param>
-        /// <param name="instructions"> The overridden system instructions used for this assistant thread run. </param>
+        /// <param name="lastError"></param>
+        /// <param name="model"></param>
+        /// <param name="instructions"></param>
         /// <param name="tools">
-        /// The overridden enabled tools used for this assistant thread run.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="fileIds"> A list of attached file IDs, ordered by creation date in ascending order. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="expiresAt"> The Unix timestamp, in seconds, representing when this item expires. </param>
-        /// <param name="startedAt"> The Unix timestamp, in seconds, representing when this item was started. </param>
-        /// <param name="completedAt"> The Unix timestamp, in seconds, representing when this completed. </param>
-        /// <param name="cancelledAt"> The Unix timestamp, in seconds, representing when this was cancelled. </param>
-        /// <param name="failedAt"> The Unix timestamp, in seconds, representing when this failed. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="expiresAt"></param>
+        /// <param name="startedAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="cancelledAt"></param>
+        /// <param name="failedAt"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ThreadRun(string id, string @object, string threadId, string assistantId, RunStatus status, RequiredAction requiredAction, RunError lastError, string model, string instructions, IReadOnlyList<ToolDefinition> tools, IReadOnlyList<string> fileIds, DateTimeOffset createdAt, DateTimeOffset? expiresAt, DateTimeOffset? startedAt, DateTimeOffset? completedAt, DateTimeOffset? cancelledAt, DateTimeOffset? failedAt, IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -152,48 +149,48 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The identifier, which can be referenced in API endpoints. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
 
-        /// <summary> The ID of the thread associated with this run. </summary>
+        /// <summary> Gets the thread id. </summary>
         public string ThreadId { get; }
-        /// <summary> The ID of the assistant associated with the thread this run was performed against. </summary>
+        /// <summary> Gets the assistant id. </summary>
         public string AssistantId { get; }
-        /// <summary> The status of the assistant thread run. </summary>
+        /// <summary> Gets the status. </summary>
         public RunStatus Status { get; }
         /// <summary>
-        /// The details of the action required for the assistant thread run to continue.
+        /// Gets the required action
         /// Please note <see cref="Assistants.RequiredAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SubmitToolOutputsAction"/>.
         /// </summary>
         public RequiredAction RequiredAction { get; }
-        /// <summary> The last error, if any, encountered by this assistant thread run. </summary>
+        /// <summary> Gets the last error. </summary>
         public RunError LastError { get; }
-        /// <summary> The ID of the model to use. </summary>
+        /// <summary> Gets the model. </summary>
         public string Model { get; }
-        /// <summary> The overridden system instructions used for this assistant thread run. </summary>
+        /// <summary> Gets the instructions. </summary>
         public string Instructions { get; }
         /// <summary>
-        /// The overridden enabled tools used for this assistant thread run.
+        /// Gets the tools
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </summary>
         public IReadOnlyList<ToolDefinition> Tools { get; }
-        /// <summary> A list of attached file IDs, ordered by creation date in ascending order. </summary>
+        /// <summary> Gets the file ids. </summary>
         public IReadOnlyList<string> FileIds { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this object was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this item expires. </summary>
+        /// <summary> Gets the expires at. </summary>
         public DateTimeOffset? ExpiresAt { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this item was started. </summary>
+        /// <summary> Gets the started at. </summary>
         public DateTimeOffset? StartedAt { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this completed. </summary>
+        /// <summary> Gets the completed at. </summary>
         public DateTimeOffset? CompletedAt { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this was cancelled. </summary>
+        /// <summary> Gets the cancelled at. </summary>
         public DateTimeOffset? CancelledAt { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this failed. </summary>
+        /// <summary> Gets the failed at. </summary>
         public DateTimeOffset? FailedAt { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

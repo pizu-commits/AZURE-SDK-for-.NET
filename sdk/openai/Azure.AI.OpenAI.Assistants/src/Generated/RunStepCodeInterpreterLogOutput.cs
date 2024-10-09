@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A representation of a log output emitted by a code interpreter tool in response to a tool call by the model. </summary>
+    /// <summary> The RunStepCodeInterpreterLogOutput. </summary>
     public partial class RunStepCodeInterpreterLogOutput : RunStepCodeInterpreterToolCallOutput
     {
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterLogOutput"/>. </summary>
-        /// <param name="logs"> The serialized log output emitted by the code interpreter. </param>
+        /// <param name="logs"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="logs"/> is null. </exception>
         internal RunStepCodeInterpreterLogOutput(string logs)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterLogOutput"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="logs"> The serialized log output emitted by the code interpreter. </param>
+        /// <param name="logs"></param>
         internal RunStepCodeInterpreterLogOutput(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, string logs) : base(type, serializedAdditionalRawData)
         {
             Logs = logs;
@@ -38,7 +38,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The serialized log output emitted by the code interpreter. </summary>
+        /// <summary> Gets the logs. </summary>
         public string Logs { get; }
     }
 }

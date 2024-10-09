@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The input definition information for a function. </summary>
+    /// <summary> The InternalFunctionDefinition. </summary>
     internal partial class InternalFunctionDefinition
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalFunctionDefinition"/>. </summary>
-        /// <param name="name"> The name of the function to be called. </param>
-        /// <param name="parameters"> The parameters the functions accepts, described as a JSON Schema object. </param>
+        /// <param name="name"></param>
+        /// <param name="parameters"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="parameters"/> is null. </exception>
         public InternalFunctionDefinition(string name, BinaryData parameters)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalFunctionDefinition"/>. </summary>
-        /// <param name="name"> The name of the function to be called. </param>
-        /// <param name="description"> A description of what the function does, used by the model to choose when and how to call the function. </param>
-        /// <param name="parameters"> The parameters the functions accepts, described as a JSON Schema object. </param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="parameters"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalFunctionDefinition(string name, string description, BinaryData parameters, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,12 +76,12 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The name of the function to be called. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> A description of what the function does, used by the model to choose when and how to call the function. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
         /// <summary>
-        /// The parameters the functions accepts, described as a JSON Schema object.
+        /// Gets or sets the parameters
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

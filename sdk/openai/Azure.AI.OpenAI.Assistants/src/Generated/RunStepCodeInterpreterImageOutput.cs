@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A representation of an image output emitted by a code interpreter tool in response to a tool call by the model. </summary>
+    /// <summary> The RunStepCodeInterpreterImageOutput. </summary>
     public partial class RunStepCodeInterpreterImageOutput : RunStepCodeInterpreterToolCallOutput
     {
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterImageOutput"/>. </summary>
-        /// <param name="image"> Referential information for the image associated with this output. </param>
+        /// <param name="image"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="image"/> is null. </exception>
         internal RunStepCodeInterpreterImageOutput(RunStepCodeInterpreterImageReference image)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterImageOutput"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="image"> Referential information for the image associated with this output. </param>
+        /// <param name="image"></param>
         internal RunStepCodeInterpreterImageOutput(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, RunStepCodeInterpreterImageReference image) : base(type, serializedAdditionalRawData)
         {
             Image = image;
@@ -38,7 +38,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> Referential information for the image associated with this output. </summary>
+        /// <summary> Gets the image. </summary>
         public RunStepCodeInterpreterImageReference Image { get; }
     }
 }

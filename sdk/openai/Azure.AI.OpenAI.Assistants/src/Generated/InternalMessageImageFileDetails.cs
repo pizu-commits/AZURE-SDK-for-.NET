@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> An image reference, as represented in thread message content. </summary>
+    /// <summary> The InternalMessageImageFileDetails. </summary>
     internal partial class InternalMessageImageFileDetails
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageImageFileDetails"/>. </summary>
-        /// <param name="internalDetails"> The ID for the file associated with this image. </param>
+        /// <param name="internalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="internalDetails"/> is null. </exception>
         internal InternalMessageImageFileDetails(string internalDetails)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageImageFileDetails"/>. </summary>
-        /// <param name="internalDetails"> The ID for the file associated with this image. </param>
+        /// <param name="internalDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalMessageImageFileDetails(string internalDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID for the file associated with this image. </summary>
+        /// <summary> Gets the internal details. </summary>
         public string InternalDetails { get; }
     }
 }

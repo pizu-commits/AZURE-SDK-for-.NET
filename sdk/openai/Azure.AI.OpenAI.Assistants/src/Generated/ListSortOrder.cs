@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The available sorting options when requesting a list of response objects. </summary>
+    /// <summary> The ListSortOrder. </summary>
     public readonly partial struct ListSortOrder : IEquatable<ListSortOrder>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         private const string AscendingValue = "asc";
         private const string DescendingValue = "desc";
 
-        /// <summary> Specifies an ascending sort order. </summary>
+        /// <summary> asc. </summary>
         public static ListSortOrder Ascending { get; } = new ListSortOrder(AscendingValue);
-        /// <summary> Specifies a descending sort order. </summary>
+        /// <summary> desc. </summary>
         public static ListSortOrder Descending { get; } = new ListSortOrder(DescendingValue);
         /// <summary> Determines if two <see cref="ListSortOrder"/> values are the same. </summary>
         public static bool operator ==(ListSortOrder left, ListSortOrder right) => left.Equals(right);

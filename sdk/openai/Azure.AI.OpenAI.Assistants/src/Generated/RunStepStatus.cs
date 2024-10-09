@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Possible values for the status of a run step. </summary>
+    /// <summary> The RunStepStatus. </summary>
     public readonly partial struct RunStepStatus : IEquatable<RunStepStatus>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.AI.OpenAI.Assistants
         private const string CompletedValue = "completed";
         private const string ExpiredValue = "expired";
 
-        /// <summary> Represents a run step still in progress. </summary>
+        /// <summary> in_progress. </summary>
         public static RunStepStatus InProgress { get; } = new RunStepStatus(InProgressValue);
-        /// <summary> Represents a run step that was cancelled. </summary>
+        /// <summary> cancelled. </summary>
         public static RunStepStatus Cancelled { get; } = new RunStepStatus(CancelledValue);
-        /// <summary> Represents a run step that failed. </summary>
+        /// <summary> failed. </summary>
         public static RunStepStatus Failed { get; } = new RunStepStatus(FailedValue);
-        /// <summary> Represents a run step that successfully completed. </summary>
+        /// <summary> completed. </summary>
         public static RunStepStatus Completed { get; } = new RunStepStatus(CompletedValue);
-        /// <summary> Represents a run step that expired before otherwise finishing. </summary>
+        /// <summary> expired. </summary>
         public static RunStepStatus Expired { get; } = new RunStepStatus(ExpiredValue);
         /// <summary> Determines if two <see cref="RunStepStatus"/> values are the same. </summary>
         public static bool operator ==(RunStepStatus left, RunStepStatus right) => left.Equals(right);
