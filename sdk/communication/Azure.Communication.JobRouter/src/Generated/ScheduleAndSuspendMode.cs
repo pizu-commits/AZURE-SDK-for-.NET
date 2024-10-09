@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes a matching mode used for scheduling jobs to be queued at a future time. At the specified time, matching worker to a job will not start automatically. </summary>
+    /// <summary> The ScheduleAndSuspendMode. </summary>
     public partial class ScheduleAndSuspendMode : JobMatchingMode
     {
         /// <summary> Initializes a new instance of <see cref="ScheduleAndSuspendMode"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of JobMatchingMode. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="scheduleAt"> Requested schedule time. </param>
+        /// <param name="scheduleAt"></param>
         internal ScheduleAndSuspendMode(JobMatchingModeKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset scheduleAt) : base(kind, serializedAdditionalRawData)
         {
             ScheduleAt = scheduleAt;
@@ -27,7 +27,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Requested schedule time. </summary>
+        /// <summary> Gets the schedule at. </summary>
         public DateTimeOffset ScheduleAt { get; }
     }
 }

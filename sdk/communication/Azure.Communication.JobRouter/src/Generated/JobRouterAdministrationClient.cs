@@ -38,7 +38,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -84,7 +84,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -121,7 +121,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing distribution policy by Id. </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -135,7 +135,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing distribution policy by Id. </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -163,7 +163,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -202,7 +202,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -237,7 +237,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -272,7 +272,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="distributionPolicyId"> Id of a distribution policy. </param>
+        /// <param name="distributionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="distributionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="distributionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -306,7 +306,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -352,7 +352,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -389,7 +389,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing classification policy by Id. </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -403,7 +403,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing classification policy by Id. </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -431,7 +431,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -470,7 +470,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -505,7 +505,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -540,7 +540,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classificationPolicyId"> Id of a classification policy. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classificationPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classificationPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -574,7 +574,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -620,7 +620,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -657,7 +657,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing exception policy by Id. </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -671,7 +671,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing exception policy by Id. </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -699,7 +699,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -738,7 +738,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -773,7 +773,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -808,7 +808,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="exceptionPolicyId"> Id of an exception policy. </param>
+        /// <param name="exceptionPolicyId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exceptionPolicyId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="exceptionPolicyId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -842,7 +842,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -888,7 +888,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -925,7 +925,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing queue by Id. </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -939,7 +939,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing queue by Id. </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -967,7 +967,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1006,7 +1006,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1041,7 +1041,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1076,7 +1076,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of a queue. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1101,7 +1101,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing distribution policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<DistributionPolicy> GetDistributionPoliciesAsync(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1112,7 +1112,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing distribution policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<DistributionPolicy> GetDistributionPolicies(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1137,7 +1137,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1163,7 +1163,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1175,7 +1175,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing classification policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<ClassificationPolicy> GetClassificationPoliciesAsync(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1186,7 +1186,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing classification policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<ClassificationPolicy> GetClassificationPolicies(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1211,7 +1211,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1237,7 +1237,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1249,7 +1249,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing exception policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<ExceptionPolicy> GetExceptionPoliciesAsync(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1260,7 +1260,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing exception policies. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<ExceptionPolicy> GetExceptionPolicies(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1285,7 +1285,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1311,7 +1311,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1323,7 +1323,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing queues. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<RouterQueue> GetQueuesAsync(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1334,7 +1334,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing queues. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<RouterQueue> GetQueues(int? maxpagesize = null, CancellationToken cancellationToken = default)
         {
@@ -1359,7 +1359,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1385,7 +1385,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

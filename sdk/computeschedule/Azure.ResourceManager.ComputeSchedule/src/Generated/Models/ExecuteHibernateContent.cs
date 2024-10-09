@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The ExecuteHibernateRequest request for executeHibernate operations. </summary>
+    /// <summary> The ExecuteHibernateContent. </summary>
     public partial class ExecuteHibernateContent
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExecuteHibernateContent"/>. </summary>
-        /// <param name="executionParameters"> The execution parameters for the request. </param>
-        /// <param name="resources"> The resources for the request. </param>
-        /// <param name="correlationId"> CorrelationId item. </param>
+        /// <param name="executionParameters"></param>
+        /// <param name="resources"></param>
+        /// <param name="correlationId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="executionParameters"/>, <paramref name="resources"/> or <paramref name="correlationId"/> is null. </exception>
         public ExecuteHibernateContent(ScheduledActionExecutionParameterDetail executionParameters, UserRequestResources resources, string correlationId)
         {
@@ -63,9 +63,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ExecuteHibernateContent"/>. </summary>
-        /// <param name="executionParameters"> The execution parameters for the request. </param>
-        /// <param name="resources"> The resources for the request. </param>
-        /// <param name="correlationId"> CorrelationId item. </param>
+        /// <param name="executionParameters"></param>
+        /// <param name="resources"></param>
+        /// <param name="correlationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExecuteHibernateContent(ScheduledActionExecutionParameterDetail executionParameters, UserRequestResources resources, string correlationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,17 +80,17 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The execution parameters for the request. </summary>
+        /// <summary> Gets the execution parameters. </summary>
         public ScheduledActionExecutionParameterDetail ExecutionParameters { get; }
-        /// <summary> The resources for the request. </summary>
+        /// <summary> Gets the resources. </summary>
         internal UserRequestResources Resources { get; }
-        /// <summary> The resource ids used for the request. </summary>
+        /// <summary> Gets the resources ids. </summary>
         public IList<ResourceIdentifier> ResourcesIds
         {
             get => Resources?.Ids;
         }
 
-        /// <summary> CorrelationId item. </summary>
+        /// <summary> Gets the correlation id. </summary>
         public string CorrelationId { get; }
     }
 }

@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a Virtual Machine Scale Set Extension. </summary>
+    /// <summary> The ComputeFleetVmssExtension. </summary>
     public partial class ComputeFleetVmssExtension
     {
         /// <summary>
@@ -52,10 +52,10 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssExtension"/>. </summary>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="name"> The name of the extension. </param>
-        /// <param name="extensionType"> Resource type. </param>
-        /// <param name="properties"> Describes the properties of a Virtual Machine Scale Set Extension. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="extensionType"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssExtension(ResourceIdentifier id, string name, string extensionType, ComputeFleetVmssExtensionProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,13 +66,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Resource Id. </summary>
+        /// <summary> Gets the id. </summary>
         public ResourceIdentifier Id { get; }
-        /// <summary> The name of the extension. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> Resource type. </summary>
+        /// <summary> Gets the extension type. </summary>
         public string ExtensionType { get; }
-        /// <summary> Describes the properties of a Virtual Machine Scale Set Extension. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public ComputeFleetVmssExtensionProperties Properties { get; set; }
     }
 }

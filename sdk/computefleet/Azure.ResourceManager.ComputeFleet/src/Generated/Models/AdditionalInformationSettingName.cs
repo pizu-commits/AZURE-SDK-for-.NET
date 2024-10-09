@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the name of the setting to which the content applies. Possible values
-    /// are: FirstLogonCommands and AutoLogon.
-    /// </summary>
+    /// <summary> The AdditionalInformationSettingNames. </summary>
     public readonly partial struct AdditionalInformationSettingName : IEquatable<AdditionalInformationSettingName>
     {
         private readonly string _value;
@@ -28,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string AutoLogonValue = "AutoLogon";
         private const string FirstLogonCommandsValue = "FirstLogonCommands";
 
-        /// <summary> AutoLogon setting. </summary>
+        /// <summary> AutoLogon. </summary>
         public static AdditionalInformationSettingName AutoLogon { get; } = new AdditionalInformationSettingName(AutoLogonValue);
-        /// <summary> FirstLogonCommands setting. </summary>
+        /// <summary> FirstLogonCommands. </summary>
         public static AdditionalInformationSettingName FirstLogonCommands { get; } = new AdditionalInformationSettingName(FirstLogonCommandsValue);
         /// <summary> Determines if two <see cref="AdditionalInformationSettingName"/> values are the same. </summary>
         public static bool operator ==(AdditionalInformationSettingName left, AdditionalInformationSettingName right) => left.Equals(right);

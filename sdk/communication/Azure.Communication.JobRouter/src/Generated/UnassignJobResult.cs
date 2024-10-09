@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Response payload after a job has been successfully unassigned. </summary>
+    /// <summary> The UnassignJobResult. </summary>
     public partial class UnassignJobResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UnassignJobResult"/>. </summary>
-        /// <param name="jobId"> Id of an unassigned job. </param>
-        /// <param name="unassignmentCount"> The number of times a job is unassigned. At a maximum 3. </param>
+        /// <param name="jobId"></param>
+        /// <param name="unassignmentCount"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         internal UnassignJobResult(string jobId, int unassignmentCount)
         {
@@ -58,8 +58,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="UnassignJobResult"/>. </summary>
-        /// <param name="jobId"> Id of an unassigned job. </param>
-        /// <param name="unassignmentCount"> The number of times a job is unassigned. At a maximum 3. </param>
+        /// <param name="jobId"></param>
+        /// <param name="unassignmentCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnassignJobResult(string jobId, int unassignmentCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of an unassigned job. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> The number of times a job is unassigned. At a maximum 3. </summary>
+        /// <summary> Gets the unassignment count. </summary>
         public int UnassignmentCount { get; }
     }
 }

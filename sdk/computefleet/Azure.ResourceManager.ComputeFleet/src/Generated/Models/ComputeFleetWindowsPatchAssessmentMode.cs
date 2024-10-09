@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the mode of VM Guest patch assessment for the IaaS virtual machine. </summary>
+    /// <summary> The ComputeFleetWindowsPatchAssessmentMode. </summary>
     public readonly partial struct ComputeFleetWindowsPatchAssessmentMode : IEquatable<ComputeFleetWindowsPatchAssessmentMode>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ImageDefaultValue = "ImageDefault";
         private const string AutomaticByPlatformValue = "AutomaticByPlatform";
 
-        /// <summary> You control the timing of patch assessments on a virtual machine. </summary>
+        /// <summary> ImageDefault. </summary>
         public static ComputeFleetWindowsPatchAssessmentMode ImageDefault { get; } = new ComputeFleetWindowsPatchAssessmentMode(ImageDefaultValue);
-        /// <summary> The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. </summary>
+        /// <summary> AutomaticByPlatform. </summary>
         public static ComputeFleetWindowsPatchAssessmentMode AutomaticByPlatform { get; } = new ComputeFleetWindowsPatchAssessmentMode(AutomaticByPlatformValue);
         /// <summary> Determines if two <see cref="ComputeFleetWindowsPatchAssessmentMode"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetWindowsPatchAssessmentMode left, ComputeFleetWindowsPatchAssessmentMode right) => left.Equals(right);

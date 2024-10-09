@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Request to verify number of device - second call. </summary>
+    /// <summary> The NumberVerificationWithCodeContent. </summary>
     public partial class NumberVerificationWithCodeContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationWithCodeContent"/>. </summary>
-        /// <param name="apcCode"> The code provided by APC in exchange for the operator code. </param>
+        /// <param name="apcCode"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcCode"/> is null. </exception>
         public NumberVerificationWithCodeContent(string apcCode)
         {
@@ -56,7 +56,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationWithCodeContent"/>. </summary>
-        /// <param name="apcCode"> The code provided by APC in exchange for the operator code. </param>
+        /// <param name="apcCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NumberVerificationWithCodeContent(string apcCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> The code provided by APC in exchange for the operator code. </summary>
+        /// <summary> Gets the apc code. </summary>
         public string ApcCode { get; }
     }
 }

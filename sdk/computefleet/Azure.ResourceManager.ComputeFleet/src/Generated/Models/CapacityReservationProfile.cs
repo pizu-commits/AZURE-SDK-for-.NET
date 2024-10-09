@@ -12,7 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> The parameters of a capacity reservation Profile. </summary>
+    /// <summary> The CapacityReservationProfile. </summary>
     internal partial class CapacityReservationProfile
     {
         /// <summary>
@@ -53,12 +53,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CapacityReservationProfile"/>. </summary>
-        /// <param name="capacityReservationGroup">
-        /// Specifies the capacity reservation group resource id that should be used for
-        /// allocating the virtual machine or scaleset vm instances provided enough
-        /// capacity has been reserved. Please refer to https://aka.ms/CapacityReservation
-        /// for more details.
-        /// </param>
+        /// <param name="capacityReservationGroup"> Gets or sets the capacity reservation group. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CapacityReservationProfile(WritableSubResource capacityReservationGroup, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,12 +61,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the capacity reservation group resource id that should be used for
-        /// allocating the virtual machine or scaleset vm instances provided enough
-        /// capacity has been reserved. Please refer to https://aka.ms/CapacityReservation
-        /// for more details.
-        /// </summary>
+        /// <summary> Gets or sets the capacity reservation group. </summary>
         internal WritableSubResource CapacityReservationGroup { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier CapacityReservationGroupId

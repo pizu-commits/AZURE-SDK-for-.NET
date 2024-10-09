@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. </summary>
+    /// <summary> The ComputeFleetDiagnosticsProfile. </summary>
     internal partial class ComputeFleetDiagnosticsProfile
     {
         /// <summary>
@@ -51,13 +51,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetDiagnosticsProfile"/>. </summary>
-        /// <param name="bootDiagnostics">
-        /// Boot Diagnostics is a debugging feature which allows you to view Console Output
-        /// and Screenshot to diagnose VM status. **NOTE**: If storageUri is being
-        /// specified then ensure that the storage account is in the same region and
-        /// subscription as the VM. You can easily view the output of your console log.
-        /// Azure also enables you to see a screenshot of the VM from the hypervisor.
-        /// </param>
+        /// <param name="bootDiagnostics"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetDiagnosticsProfile(ComputeFleetBootDiagnostics bootDiagnostics, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +59,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Boot Diagnostics is a debugging feature which allows you to view Console Output
-        /// and Screenshot to diagnose VM status. **NOTE**: If storageUri is being
-        /// specified then ensure that the storage account is in the same region and
-        /// subscription as the VM. You can easily view the output of your console log.
-        /// Azure also enables you to see a screenshot of the VM from the hypervisor.
-        /// </summary>
+        /// <summary> Gets or sets the boot diagnostics. </summary>
         public ComputeFleetBootDiagnostics BootDiagnostics { get; set; }
     }
 }

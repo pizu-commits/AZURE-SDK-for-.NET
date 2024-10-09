@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A policy that defines actions to execute when exception are triggered. </summary>
+    /// <summary> The ExceptionPolicy. </summary>
     public partial class ExceptionPolicy
     {
         /// <summary>
@@ -52,10 +52,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="ExceptionPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of an exception policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="exceptionRules"> A collection of exception rules on the exception policy. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="exceptionRules"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExceptionPolicy(ETag eTag, string id, string name, IList<ExceptionRule> exceptionRules, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,7 +65,7 @@ namespace Azure.Communication.JobRouter
             ExceptionRules = exceptionRules;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-        /// <summary> Id of an exception policy. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

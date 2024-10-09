@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> Values that define the states of operations in Scheduled Actions. </summary>
+    /// <summary> The ScheduledActionOperationState. </summary>
     public readonly partial struct ScheduledActionOperationState : IEquatable<ScheduledActionOperationState>
     {
         private readonly string _value;
@@ -32,23 +32,23 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private const string CancelledValue = "Cancelled";
         private const string BlockedValue = "Blocked";
 
-        /// <summary> The default value for the operation state enum. </summary>
+        /// <summary> Unknown. </summary>
         public static ScheduledActionOperationState Unknown { get; } = new ScheduledActionOperationState(UnknownValue);
-        /// <summary> Operations that are pending scheduling. </summary>
+        /// <summary> PendingScheduling. </summary>
         public static ScheduledActionOperationState PendingScheduling { get; } = new ScheduledActionOperationState(PendingSchedulingValue);
-        /// <summary> Operations that have been scheduled. </summary>
+        /// <summary> Scheduled. </summary>
         public static ScheduledActionOperationState Scheduled { get; } = new ScheduledActionOperationState(ScheduledValue);
-        /// <summary> Operations that are waiting to be executed. </summary>
+        /// <summary> PendingExecution. </summary>
         public static ScheduledActionOperationState PendingExecution { get; } = new ScheduledActionOperationState(PendingExecutionValue);
-        /// <summary> Operations that are in the process of being executed. </summary>
+        /// <summary> Executing. </summary>
         public static ScheduledActionOperationState Executing { get; } = new ScheduledActionOperationState(ExecutingValue);
-        /// <summary> Operations that suceeded. </summary>
+        /// <summary> Succeeded. </summary>
         public static ScheduledActionOperationState Succeeded { get; } = new ScheduledActionOperationState(SucceededValue);
-        /// <summary> Operations that have failed. </summary>
+        /// <summary> Failed. </summary>
         public static ScheduledActionOperationState Failed { get; } = new ScheduledActionOperationState(FailedValue);
-        /// <summary> Operations that have been cancelled by the user. </summary>
+        /// <summary> Cancelled. </summary>
         public static ScheduledActionOperationState Cancelled { get; } = new ScheduledActionOperationState(CancelledValue);
-        /// <summary> Operations that are blocked. </summary>
+        /// <summary> Blocked. </summary>
         public static ScheduledActionOperationState Blocked { get; } = new ScheduledActionOperationState(BlockedValue);
         /// <summary> Determines if two <see cref="ScheduledActionOperationState"/> values are the same. </summary>
         public static bool operator ==(ScheduledActionOperationState left, ScheduledActionOperationState right) => left.Equals(right);

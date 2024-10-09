@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> High level response from an operation on a resource. </summary>
+    /// <summary> The ResourceOperationResult. </summary>
     public partial class ResourceOperationResult
     {
         /// <summary>
@@ -52,10 +52,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceOperationResult"/>. </summary>
-        /// <param name="resourceId"> Unique identifier for the resource involved in the operation, eg ArmId. </param>
-        /// <param name="errorCode"> Resource level error code if it exists. </param>
-        /// <param name="errorDetails"> Resource level error details if they exist. </param>
-        /// <param name="operation"> Details of the operation performed on a resource. </param>
+        /// <param name="resourceId"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
+        /// <param name="operation"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceOperationResult(ResourceIdentifier resourceId, string errorCode, string errorDetails, ResourceOperationDetails operation, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,13 +66,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Unique identifier for the resource involved in the operation, eg ArmId. </summary>
+        /// <summary> Gets the resource id. </summary>
         public ResourceIdentifier ResourceId { get; }
-        /// <summary> Resource level error code if it exists. </summary>
+        /// <summary> Gets the error code. </summary>
         public string ErrorCode { get; }
-        /// <summary> Resource level error details if they exist. </summary>
+        /// <summary> Gets the error details. </summary>
         public string ErrorDetails { get; }
-        /// <summary> Details of the operation performed on a resource. </summary>
+        /// <summary> Gets the operation. </summary>
         public ResourceOperationDetails Operation { get; }
     }
 }

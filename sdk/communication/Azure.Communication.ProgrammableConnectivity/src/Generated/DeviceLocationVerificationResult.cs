@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Response verifying location. </summary>
+    /// <summary> The DeviceLocationVerificationResult. </summary>
     public partial class DeviceLocationVerificationResult
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceLocationVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the location is in the specified area, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         internal DeviceLocationVerificationResult(bool verificationResult)
         {
             VerificationResult = verificationResult;
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceLocationVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the location is in the specified area, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceLocationVerificationResult(bool verificationResult, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> True if the location is in the specified area, False otherwise. </summary>
+        /// <summary> Gets the verification result. </summary>
         public bool VerificationResult { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Contains the IP tag associated with the public IP address. </summary>
+    /// <summary> The ComputeFleetVmssIPTag. </summary>
     public partial class ComputeFleetVmssIPTag
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssIPTag"/>. </summary>
-        /// <param name="ipTagType"> IP tag type. Example: FirstPartyUsage. </param>
-        /// <param name="tag"> IP tag associated with the public IP. Example: SQL, Storage etc. </param>
+        /// <param name="ipTagType"></param>
+        /// <param name="tag"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssIPTag(string ipTagType, string tag, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> IP tag type. Example: FirstPartyUsage. </summary>
+        /// <summary> Gets or sets the ip tag type. </summary>
         public string IPTagType { get; set; }
-        /// <summary> IP tag associated with the public IP. Example: SQL, Storage etc. </summary>
+        /// <summary> Gets or sets the tag. </summary>
         public string Tag { get; set; }
     }
 }

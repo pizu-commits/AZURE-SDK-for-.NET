@@ -10,12 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the mode that ProxyAgent will execute on if the feature is enabled.
-    /// ProxyAgent will start to audit or monitor but not enforce access control over
-    /// requests to host endpoints in Audit mode, while in Enforce mode it will enforce
-    /// access control. The default value is Enforce mode.
-    /// </summary>
+    /// <summary> The ProxyAgentExecuteMode. </summary>
     public readonly partial struct ProxyAgentExecuteMode : IEquatable<ProxyAgentExecuteMode>
     {
         private readonly string _value;
@@ -30,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string AuditValue = "Audit";
         private const string EnforceValue = "Enforce";
 
-        /// <summary> Audit Mode. </summary>
+        /// <summary> Audit. </summary>
         public static ProxyAgentExecuteMode Audit { get; } = new ProxyAgentExecuteMode(AuditValue);
-        /// <summary> Enforce Mode. </summary>
+        /// <summary> Enforce. </summary>
         public static ProxyAgentExecuteMode Enforce { get; } = new ProxyAgentExecuteMode(EnforceValue);
         /// <summary> Determines if two <see cref="ProxyAgentExecuteMode"/> values are the same. </summary>
         public static bool operator ==(ProxyAgentExecuteMode left, ProxyAgentExecuteMode right) => left.Equals(right);

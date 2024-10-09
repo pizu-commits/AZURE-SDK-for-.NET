@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A container for the rules that govern how jobs are classified. </summary>
+    /// <summary> The ClassificationPolicy. </summary>
     public partial class ClassificationPolicy
     {
         /// <summary>
@@ -53,22 +53,19 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="ClassificationPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of a classification policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="fallbackQueueId"> Id of a fallback queue to select if queue selector attachments doesn't find a match. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="fallbackQueueId"></param>
         /// <param name="queueSelectorAttachments">
-        /// Queue selector attachments used to resolve a queue for a job.
         /// Please note <see cref="QueueSelectorAttachment"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConditionalQueueSelectorAttachment"/>, <see cref="PassThroughQueueSelectorAttachment"/>, <see cref="RuleEngineQueueSelectorAttachment"/>, <see cref="StaticQueueSelectorAttachment"/> and <see cref="WeightedAllocationQueueSelectorAttachment"/>.
         /// </param>
         /// <param name="prioritizationRule">
-        /// A rule to determine a priority score for a job.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="WebhookRouterRule"/>.
         /// </param>
         /// <param name="workerSelectorAttachments">
-        /// Worker selector attachments used to attach worker selectors to a job.
         /// Please note <see cref="WorkerSelectorAttachment"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConditionalWorkerSelectorAttachment"/>, <see cref="PassThroughWorkerSelectorAttachment"/>, <see cref="RuleEngineWorkerSelectorAttachment"/>, <see cref="StaticWorkerSelectorAttachment"/> and <see cref="WeightedAllocationWorkerSelectorAttachment"/>.
         /// </param>
@@ -84,7 +81,7 @@ namespace Azure.Communication.JobRouter
             WorkerSelectorAttachments = workerSelectorAttachments;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-        /// <summary> Id of a classification policy. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

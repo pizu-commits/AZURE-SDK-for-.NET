@@ -10,19 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the storage account type for the managed disk. Managed OS disk
-    /// storage account type can only be set when you create the scale set. NOTE:
-    /// UltraSSD_LRS can only be used with data disks. It cannot be used with OS Disk.
-    /// Standard_LRS uses Standard HDD. StandardSSD_LRS uses Standard SSD. Premium_LRS
-    /// uses Premium SSD. UltraSSD_LRS uses Ultra disk. Premium_ZRS uses Premium SSD
-    /// zone redundant storage. StandardSSD_ZRS uses Standard SSD zone redundant
-    /// storage. For more information regarding disks supported for Windows Virtual
-    /// Machines, refer to
-    /// https://docs.microsoft.com/azure/virtual-machines/windows/disks-types and, for
-    /// Linux Virtual Machines, refer to
-    /// https://docs.microsoft.com/azure/virtual-machines/linux/disks-types
-    /// </summary>
+    /// <summary> The ComputeFleetStorageAccountTypes. </summary>
     public readonly partial struct ComputeFleetStorageAccountType : IEquatable<ComputeFleetStorageAccountType>
     {
         private readonly string _value;
@@ -42,19 +30,19 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string StandardSsdZrsValue = "StandardSSD_ZRS";
         private const string PremiumV2LRSValue = "PremiumV2_LRS";
 
-        /// <summary> Standard_LRS option. </summary>
+        /// <summary> Standard_LRS. </summary>
         public static ComputeFleetStorageAccountType StandardLrs { get; } = new ComputeFleetStorageAccountType(StandardLrsValue);
-        /// <summary> Premium_LRS option. </summary>
+        /// <summary> Premium_LRS. </summary>
         public static ComputeFleetStorageAccountType PremiumLrs { get; } = new ComputeFleetStorageAccountType(PremiumLrsValue);
-        /// <summary> StandardSSD_LRS option. </summary>
+        /// <summary> StandardSSD_LRS. </summary>
         public static ComputeFleetStorageAccountType StandardSsdLrd { get; } = new ComputeFleetStorageAccountType(StandardSsdLrdValue);
-        /// <summary> UltraSSD_LRS option. </summary>
+        /// <summary> UltraSSD_LRS. </summary>
         public static ComputeFleetStorageAccountType UltraSsdLrs { get; } = new ComputeFleetStorageAccountType(UltraSsdLrsValue);
-        /// <summary> Premium_ZRS option. </summary>
+        /// <summary> Premium_ZRS. </summary>
         public static ComputeFleetStorageAccountType PremiumZrs { get; } = new ComputeFleetStorageAccountType(PremiumZrsValue);
-        /// <summary> StandardSSD_ZRS option. </summary>
+        /// <summary> StandardSSD_ZRS. </summary>
         public static ComputeFleetStorageAccountType StandardSsdZrs { get; } = new ComputeFleetStorageAccountType(StandardSsdZrsValue);
-        /// <summary> PremiumV2_LRS option. </summary>
+        /// <summary> PremiumV2_LRS. </summary>
         public static ComputeFleetStorageAccountType PremiumV2LRS { get; } = new ComputeFleetStorageAccountType(PremiumV2LRSValue);
         /// <summary> Determines if two <see cref="ComputeFleetStorageAccountType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetStorageAccountType left, ComputeFleetStorageAccountType right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the hardware settings for the virtual machine scale set. </summary>
+    /// <summary> The ComputeFleetVmssHardwareProfile. </summary>
     internal partial class ComputeFleetVmssHardwareProfile
     {
         /// <summary>
@@ -51,11 +51,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssHardwareProfile"/>. </summary>
-        /// <param name="vmSizeProperties">
-        /// Specifies the properties for customizing the size of the virtual machine.
-        /// Minimum api-version: 2021-11-01. Please follow the instructions in [VM
-        /// Customization](https://aka.ms/vmcustomization) for more details.
-        /// </param>
+        /// <param name="vmSizeProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssHardwareProfile(ComputeFleetVmSizeProperties vmSizeProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +59,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the properties for customizing the size of the virtual machine.
-        /// Minimum api-version: 2021-11-01. Please follow the instructions in [VM
-        /// Customization](https://aka.ms/vmcustomization) for more details.
-        /// </summary>
+        /// <summary> Gets or sets the vm size properties. </summary>
         public ComputeFleetVmSizeProperties VmSizeProperties { get; set; }
     }
 }

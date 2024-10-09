@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The preferences customers can select to optimize their requests to ScheduledActions. </summary>
+    /// <summary> The ScheduledActionOptimizationPreference. </summary>
     public readonly partial struct ScheduledActionOptimizationPreference : IEquatable<ScheduledActionOptimizationPreference>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private const string AvailabilityValue = "Availability";
         private const string CostAvailabilityBalancedValue = "CostAvailabilityBalanced";
 
-        /// <summary> Optimize while considering cost savings. </summary>
+        /// <summary> Cost. </summary>
         public static ScheduledActionOptimizationPreference Cost { get; } = new ScheduledActionOptimizationPreference(CostValue);
-        /// <summary> Optimize while considering availability of resources. </summary>
+        /// <summary> Availability. </summary>
         public static ScheduledActionOptimizationPreference Availability { get; } = new ScheduledActionOptimizationPreference(AvailabilityValue);
-        /// <summary> Optimize while considering a balance of cost and availability. </summary>
+        /// <summary> CostAvailabilityBalanced. </summary>
         public static ScheduledActionOptimizationPreference CostAvailabilityBalanced { get; } = new ScheduledActionOptimizationPreference(CostAvailabilityBalancedValue);
         /// <summary> Determines if two <see cref="ScheduledActionOptimizationPreference"/> values are the same. </summary>
         public static bool operator ==(ScheduledActionOptimizationPreference left, ScheduledActionOptimizationPreference right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes the various status of a job. </summary>
+    /// <summary> The RouterJobStatus. </summary>
     public readonly partial struct RouterJobStatus : IEquatable<RouterJobStatus>
     {
         private readonly string _value;
@@ -35,29 +35,29 @@ namespace Azure.Communication.JobRouter
         private const string ScheduleFailedValue = "scheduleFailed";
         private const string WaitingForActivationValue = "waitingForActivation";
 
-        /// <summary> Job is waiting to be classified. </summary>
+        /// <summary> pendingClassification. </summary>
         public static RouterJobStatus PendingClassification { get; } = new RouterJobStatus(PendingClassificationValue);
-        /// <summary> Job has been queued. </summary>
+        /// <summary> queued. </summary>
         public static RouterJobStatus Queued { get; } = new RouterJobStatus(QueuedValue);
-        /// <summary> Job has been assigned to a worker. </summary>
+        /// <summary> assigned. </summary>
         public static RouterJobStatus Assigned { get; } = new RouterJobStatus(AssignedValue);
-        /// <summary> Job has been completed by a worker. </summary>
+        /// <summary> completed. </summary>
         public static RouterJobStatus Completed { get; } = new RouterJobStatus(CompletedValue);
-        /// <summary> Job has been closed by a worker. </summary>
+        /// <summary> closed. </summary>
         public static RouterJobStatus Closed { get; } = new RouterJobStatus(ClosedValue);
-        /// <summary> Job has been cancelled. </summary>
+        /// <summary> cancelled. </summary>
         public static RouterJobStatus Cancelled { get; } = new RouterJobStatus(CancelledValue);
-        /// <summary> Classification process failed for the job. </summary>
+        /// <summary> classificationFailed. </summary>
         public static RouterJobStatus ClassificationFailed { get; } = new RouterJobStatus(ClassificationFailedValue);
-        /// <summary> Job has been created. </summary>
+        /// <summary> created. </summary>
         public static RouterJobStatus Created { get; } = new RouterJobStatus(CreatedValue);
-        /// <summary> Job has been created but not been scheduled yet. </summary>
+        /// <summary> pendingSchedule. </summary>
         public static RouterJobStatus PendingSchedule { get; } = new RouterJobStatus(PendingScheduleValue);
-        /// <summary> Job has been scheduled successfully. </summary>
+        /// <summary> scheduled. </summary>
         public static RouterJobStatus Scheduled { get; } = new RouterJobStatus(ScheduledValue);
-        /// <summary> Job scheduling failed. </summary>
+        /// <summary> scheduleFailed. </summary>
         public static RouterJobStatus ScheduleFailed { get; } = new RouterJobStatus(ScheduleFailedValue);
-        /// <summary> Job is in a suspended state and waiting for an update. </summary>
+        /// <summary> waitingForActivation. </summary>
         public static RouterJobStatus WaitingForActivation { get; } = new RouterJobStatus(WaitingForActivationValue);
         /// <summary> Determines if two <see cref="RouterJobStatus"/> values are the same. </summary>
         public static bool operator ==(RouterJobStatus left, RouterJobStatus right) => left.Equals(right);

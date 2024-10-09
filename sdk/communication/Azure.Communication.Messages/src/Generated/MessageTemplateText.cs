@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The message template's text value information. </summary>
+    /// <summary> The MessageTemplateText. </summary>
     public partial class MessageTemplateText : MessageTemplateValue
     {
         /// <summary> Initializes a new instance of <see cref="MessageTemplateText"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="text"> The text value. </param>
+        /// <param name="name"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="text"/> is null. </exception>
         public MessageTemplateText(string name, string text) : base(name)
         {
@@ -27,10 +27,10 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateText"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="kind"> The type discriminator describing a template parameter type. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="text"> The text value. </param>
+        /// <param name="text"></param>
         internal MessageTemplateText(string name, MessageTemplateValueKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, string text) : base(name, kind, serializedAdditionalRawData)
         {
             Text = text;
@@ -41,7 +41,7 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The text value. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

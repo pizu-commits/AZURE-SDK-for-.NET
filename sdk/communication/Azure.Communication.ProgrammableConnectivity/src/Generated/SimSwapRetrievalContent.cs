@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Request to retrieve SimSwap date. </summary>
+    /// <summary> The SimSwapRetrievalContent. </summary>
     public partial class SimSwapRetrievalContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SimSwapRetrievalContent"/>. </summary>
-        /// <param name="networkIdentifier"> Network to query for this device. </param>
+        /// <param name="networkIdentifier"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkIdentifier"/> is null. </exception>
         public SimSwapRetrievalContent(NetworkIdentifier networkIdentifier)
         {
@@ -56,8 +56,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="SimSwapRetrievalContent"/>. </summary>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="networkIdentifier"> Network to query for this device. </param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="networkIdentifier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SimSwapRetrievalContent(string phoneNumber, NetworkIdentifier networkIdentifier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </summary>
+        /// <summary> Gets or sets the phone number. </summary>
         public string PhoneNumber { get; set; }
-        /// <summary> Network to query for this device. </summary>
+        /// <summary> Gets the network identifier. </summary>
         public NetworkIdentifier NetworkIdentifier { get; }
     }
 }

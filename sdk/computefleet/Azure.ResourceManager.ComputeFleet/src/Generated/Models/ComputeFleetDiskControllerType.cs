@@ -10,17 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the disk controller type configured for the VM and
-    /// VirtualMachineScaleSet. This property is only supported for virtual machines
-    /// whose operating system disk and VM sku supports Generation 2
-    /// (https://docs.microsoft.com/en-us/azure/virtual-machines/generation-2), please
-    /// check the HyperVGenerations capability returned as part of VM sku capabilities
-    /// in the response of Microsoft.Compute SKUs api for the region contains V2
-    /// (https://docs.microsoft.com/rest/api/compute/resourceskus/list). For more
-    /// information about Disk Controller Types supported please refer to
-    /// https://aka.ms/azure-diskcontrollertypes.
-    /// </summary>
+    /// <summary> The ComputeFleetDiskControllerTypes. </summary>
     public readonly partial struct ComputeFleetDiskControllerType : IEquatable<ComputeFleetDiskControllerType>
     {
         private readonly string _value;
@@ -35,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ScsiValue = "SCSI";
         private const string NvmeValue = "NVMe";
 
-        /// <summary> SCSI disk type. </summary>
+        /// <summary> SCSI. </summary>
         public static ComputeFleetDiskControllerType Scsi { get; } = new ComputeFleetDiskControllerType(ScsiValue);
-        /// <summary> NVMe disk type. </summary>
+        /// <summary> NVMe. </summary>
         public static ComputeFleetDiskControllerType Nvme { get; } = new ComputeFleetDiskControllerType(NvmeValue);
         /// <summary> Determines if two <see cref="ComputeFleetDiskControllerType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDiskControllerType left, ComputeFleetDiskControllerType right) => left.Equals(right);

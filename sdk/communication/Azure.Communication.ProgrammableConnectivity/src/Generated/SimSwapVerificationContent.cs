@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Request to verify SimSwap in period. </summary>
+    /// <summary> The SimSwapVerificationContent. </summary>
     public partial class SimSwapVerificationContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SimSwapVerificationContent"/>. </summary>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
+        /// <param name="networkIdentifier"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkIdentifier"/> is null. </exception>
         public SimSwapVerificationContent(NetworkIdentifier networkIdentifier)
         {
@@ -56,9 +56,9 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="SimSwapVerificationContent"/>. </summary>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="maxAgeHours"> Maximum lookback for SimSwap verification. </param>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="maxAgeHours"></param>
+        /// <param name="networkIdentifier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SimSwapVerificationContent(string phoneNumber, int? maxAgeHours, NetworkIdentifier networkIdentifier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </summary>
+        /// <summary> Gets or sets the phone number. </summary>
         public string PhoneNumber { get; set; }
-        /// <summary> Maximum lookback for SimSwap verification. </summary>
+        /// <summary> Gets or sets the max age hours. </summary>
         public int? MaxAgeHours { get; set; }
-        /// <summary> Identifier for the network to query for this device. </summary>
+        /// <summary> Gets the network identifier. </summary>
         public NetworkIdentifier NetworkIdentifier { get; }
     }
 }

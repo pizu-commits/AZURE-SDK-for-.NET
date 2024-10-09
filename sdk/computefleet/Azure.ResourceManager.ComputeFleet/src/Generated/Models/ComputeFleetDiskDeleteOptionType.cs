@@ -10,13 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the behavior of the managed disk when the VM gets deleted, for
-    /// example whether the managed disk is deleted or detached. Supported values are:
-    /// **Delete.** If this value is used, the managed disk is deleted when VM gets
-    /// deleted. **Detach.** If this value is used, the managed disk is retained after
-    /// VM gets deleted. Minimum api-version: 2021-03-01.
-    /// </summary>
+    /// <summary> The ComputeFleetDiskDeleteOptionTypes. </summary>
     public readonly partial struct ComputeFleetDiskDeleteOptionType : IEquatable<ComputeFleetDiskDeleteOptionType>
     {
         private readonly string _value;
@@ -31,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string DeleteValue = "Delete";
         private const string DetachValue = "Detach";
 
-        /// <summary> If this value is used, the managed disk is deleted when VM gets deleted. </summary>
+        /// <summary> Delete. </summary>
         public static ComputeFleetDiskDeleteOptionType Delete { get; } = new ComputeFleetDiskDeleteOptionType(DeleteValue);
-        /// <summary> If this value is used, the managed disk is retained after VM gets deleted. </summary>
+        /// <summary> Detach. </summary>
         public static ComputeFleetDiskDeleteOptionType Detach { get; } = new ComputeFleetDiskDeleteOptionType(DetachValue);
         /// <summary> Determines if two <see cref="ComputeFleetDiskDeleteOptionType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDiskDeleteOptionType left, ComputeFleetDiskDeleteOptionType right) => left.Equals(right);

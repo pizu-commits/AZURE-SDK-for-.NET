@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported router rule types. </summary>
+    /// <summary> The RouterRuleKind. </summary>
     public readonly partial struct RouterRuleKind : IEquatable<RouterRuleKind>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Communication.JobRouter
         private const string StaticValue = "static";
         private const string WebhookValue = "webhook";
 
-        /// <summary> Discriminator value for DirectMapRouterRule. </summary>
+        /// <summary> directMap. </summary>
         public static RouterRuleKind DirectMap { get; } = new RouterRuleKind(DirectMapValue);
-        /// <summary> Discriminator value for ExpressionRouterRule. </summary>
+        /// <summary> expression. </summary>
         public static RouterRuleKind Expression { get; } = new RouterRuleKind(ExpressionValue);
-        /// <summary> Discriminator value for FunctionRouterRule. </summary>
+        /// <summary> function. </summary>
         public static RouterRuleKind Function { get; } = new RouterRuleKind(FunctionValue);
-        /// <summary> Discriminator value for StaticRouterRule. </summary>
+        /// <summary> static. </summary>
         public static RouterRuleKind Static { get; } = new RouterRuleKind(StaticValue);
-        /// <summary> Discriminator value for WebhookRouterRule. </summary>
+        /// <summary> webhook. </summary>
         public static RouterRuleKind Webhook { get; } = new RouterRuleKind(WebhookValue);
         /// <summary> Determines if two <see cref="RouterRuleKind"/> values are the same. </summary>
         public static bool operator ==(RouterRuleKind left, RouterRuleKind right) => left.Equals(right);

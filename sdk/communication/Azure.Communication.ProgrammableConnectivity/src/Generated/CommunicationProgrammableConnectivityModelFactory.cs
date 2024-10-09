@@ -15,8 +15,8 @@ namespace Azure.Communication.ProgrammableConnectivity
     public static partial class CommunicationProgrammableConnectivityModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.SimSwapRetrievalContent"/>. </summary>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="networkIdentifier"> Network to query for this device. </param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="networkIdentifier"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.SimSwapRetrievalContent"/> instance for mocking. </returns>
         public static SimSwapRetrievalContent SimSwapRetrievalContent(string phoneNumber = null, NetworkIdentifier networkIdentifier = null)
         {
@@ -24,7 +24,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.SimSwapRetrievalResult"/>. </summary>
-        /// <param name="date"> Datetime of most recent swap for SIM. </param>
+        /// <param name="date"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.SimSwapRetrievalResult"/> instance for mocking. </returns>
         public static SimSwapRetrievalResult SimSwapRetrievalResult(DateTimeOffset? date = null)
         {
@@ -32,9 +32,9 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.SimSwapVerificationContent"/>. </summary>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="maxAgeHours"> Maximum lookback for SimSwap verification. </param>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="maxAgeHours"></param>
+        /// <param name="networkIdentifier"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.SimSwapVerificationContent"/> instance for mocking. </returns>
         public static SimSwapVerificationContent SimSwapVerificationContent(string phoneNumber = null, int? maxAgeHours = null, NetworkIdentifier networkIdentifier = null)
         {
@@ -42,7 +42,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.SimSwapVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the SIM has swapped in the specified period, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.SimSwapVerificationResult"/> instance for mocking. </returns>
         public static SimSwapVerificationResult SimSwapVerificationResult(bool verificationResult = default)
         {
@@ -50,10 +50,10 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.NumberVerificationWithoutCodeContent"/>. </summary>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="hashedPhoneNumber"> Hashed phone number. SHA-256 (in hexadecimal representation) of the mobile phone number in **E.164 format (starting with country code)**. Optionally prefixed with '+'. </param>
-        /// <param name="redirectUri"> Redirect URI to backend application. </param>
+        /// <param name="networkIdentifier"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="hashedPhoneNumber"></param>
+        /// <param name="redirectUri"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.NumberVerificationWithoutCodeContent"/> instance for mocking. </returns>
         public static NumberVerificationWithoutCodeContent NumberVerificationWithoutCodeContent(NetworkIdentifier networkIdentifier = null, string phoneNumber = null, string hashedPhoneNumber = null, Uri redirectUri = null)
         {
@@ -61,7 +61,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.NumberVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if number if the phone number matches the device, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.NumberVerificationResult"/> instance for mocking. </returns>
         public static NumberVerificationResult NumberVerificationResult(bool verificationResult = default)
         {
@@ -69,7 +69,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.NetworkRetrievalResult"/>. </summary>
-        /// <param name="networkCode"> The identifier for the network. This can be used as the networkIdentifier for the service APIs. </param>
+        /// <param name="networkCode"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.NetworkRetrievalResult"/> instance for mocking. </returns>
         public static NetworkRetrievalResult NetworkRetrievalResult(string networkCode = null)
         {
@@ -77,7 +77,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="ProgrammableConnectivity.DeviceLocationVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the location is in the specified area, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <returns> A new <see cref="ProgrammableConnectivity.DeviceLocationVerificationResult"/> instance for mocking. </returns>
         public static DeviceLocationVerificationResult DeviceLocationVerificationResult(bool verificationResult = default)
         {

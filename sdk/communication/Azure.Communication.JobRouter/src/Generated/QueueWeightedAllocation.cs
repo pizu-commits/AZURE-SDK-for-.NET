@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Contains the weight percentage and queue selectors to be applied if selected for weighted distributions. </summary>
+    /// <summary> The QueueWeightedAllocation. </summary>
     public partial class QueueWeightedAllocation
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="QueueWeightedAllocation"/>. </summary>
-        /// <param name="weight"> The percentage of this weight, expressed as a fraction of 1. </param>
-        /// <param name="queueSelectors"> A collection of queue selectors that will be applied if this allocation is selected. </param>
+        /// <param name="weight"></param>
+        /// <param name="queueSelectors"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal QueueWeightedAllocation(double weight, IReadOnlyList<RouterQueueSelector> queueSelectors, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> The percentage of this weight, expressed as a fraction of 1. </summary>
+        /// <summary> Gets the weight. </summary>
         public double Weight { get; }
-        /// <summary> A collection of queue selectors that will be applied if this allocation is selected. </summary>
+        /// <summary> Gets the queue selectors. </summary>
         public IReadOnlyList<RouterQueueSelector> QueueSelectors { get; }
     }
 }

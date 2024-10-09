@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Enums for worker states. </summary>
+    /// <summary> The RouterWorkerState. </summary>
     public readonly partial struct RouterWorkerState : IEquatable<RouterWorkerState>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Communication.JobRouter
         private const string DrainingValue = "draining";
         private const string InactiveValue = "inactive";
 
-        /// <summary> Worker is active and available to take offers. </summary>
+        /// <summary> active. </summary>
         public static RouterWorkerState Active { get; } = new RouterWorkerState(ActiveValue);
-        /// <summary> Worker is not active, if there are existing offers they are being revoked. No new offers are sent. </summary>
+        /// <summary> draining. </summary>
         public static RouterWorkerState Draining { get; } = new RouterWorkerState(DrainingValue);
-        /// <summary> Worker is not active. No new offers are sent. </summary>
+        /// <summary> inactive. </summary>
         public static RouterWorkerState Inactive { get; } = new RouterWorkerState(InactiveValue);
         /// <summary> Determines if two <see cref="RouterWorkerState"/> values are the same. </summary>
         public static bool operator ==(RouterWorkerState left, RouterWorkerState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Position and estimated wait time for a job. </summary>
+    /// <summary> The RouterJobPositionDetails. </summary>
     public partial class RouterJobPositionDetails
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterJobPositionDetails"/>. </summary>
-        /// <param name="jobId"> Id of the job these details are about. </param>
-        /// <param name="position"> Position of the job in question within that queue. </param>
-        /// <param name="queueId"> Id of the queue this job is enqueued in. </param>
-        /// <param name="queueLength"> Length of the queue: total number of enqueued jobs. </param>
-        /// <param name="estimatedWaitTime"> Estimated wait time of the job rounded up to the nearest minute. </param>
+        /// <param name="jobId"></param>
+        /// <param name="position"></param>
+        /// <param name="queueId"></param>
+        /// <param name="queueLength"></param>
+        /// <param name="estimatedWaitTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="queueId"/> is null. </exception>
         internal RouterJobPositionDetails(string jobId, int position, string queueId, int queueLength, TimeSpan estimatedWaitTime)
         {
@@ -65,11 +65,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterJobPositionDetails"/>. </summary>
-        /// <param name="jobId"> Id of the job these details are about. </param>
-        /// <param name="position"> Position of the job in question within that queue. </param>
-        /// <param name="queueId"> Id of the queue this job is enqueued in. </param>
-        /// <param name="queueLength"> Length of the queue: total number of enqueued jobs. </param>
-        /// <param name="estimatedWaitTime"> Estimated wait time of the job rounded up to the nearest minute. </param>
+        /// <param name="jobId"></param>
+        /// <param name="position"></param>
+        /// <param name="queueId"></param>
+        /// <param name="queueLength"></param>
+        /// <param name="estimatedWaitTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterJobPositionDetails(string jobId, int position, string queueId, int queueLength, TimeSpan estimatedWaitTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,13 +86,13 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of the job these details are about. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> Position of the job in question within that queue. </summary>
+        /// <summary> Gets the position. </summary>
         public int Position { get; }
-        /// <summary> Id of the queue this job is enqueued in. </summary>
+        /// <summary> Gets the queue id. </summary>
         public string QueueId { get; }
-        /// <summary> Length of the queue: total number of enqueued jobs. </summary>
+        /// <summary> Gets the queue length. </summary>
         public int QueueLength { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> Extra details needed to run the user's request. </summary>
+    /// <summary> The ScheduledActionExecutionParameterDetail. </summary>
     public partial class ScheduledActionExecutionParameterDetail
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ScheduledActionExecutionParameterDetail"/>. </summary>
-        /// <param name="optimizationPreference"> Details that could optimize the user's request. </param>
-        /// <param name="retryPolicy"> Retry policy the user can pass. </param>
+        /// <param name="optimizationPreference"></param>
+        /// <param name="retryPolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ScheduledActionExecutionParameterDetail(ScheduledActionOptimizationPreference? optimizationPreference, UserRequestRetryPolicy retryPolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Details that could optimize the user's request. </summary>
+        /// <summary> Gets or sets the optimization preference. </summary>
         public ScheduledActionOptimizationPreference? OptimizationPreference { get; set; }
-        /// <summary> Retry policy the user can pass. </summary>
+        /// <summary> Gets or sets the retry policy. </summary>
         public UserRequestRetryPolicy RetryPolicy { get; set; }
     }
 }

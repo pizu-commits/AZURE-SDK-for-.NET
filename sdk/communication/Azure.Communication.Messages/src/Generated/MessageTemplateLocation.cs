@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The message template's location value information. </summary>
+    /// <summary> The MessageTemplateLocation. </summary>
     public partial class MessageTemplateLocation : MessageTemplateValue
     {
         /// <summary> Initializes a new instance of <see cref="MessageTemplateLocation"/> for deserialization. </summary>
@@ -18,9 +18,9 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The [Optional] name of the location. </summary>
+        /// <summary> Gets or sets the location name. </summary>
         public string LocationName { get; set; }
-        /// <summary> The [Optional] address of the location. </summary>
+        /// <summary> Gets or sets the address. </summary>
         public string Address { get; set; }
     }
 }

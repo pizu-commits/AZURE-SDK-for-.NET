@@ -12,7 +12,7 @@ using System.Linq;
 namespace Azure.Communication.Messages
 {
     /// <summary>
-    /// Details of the message to send.
+    /// The NotificationContent.
     /// Please note <see cref="NotificationContent"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="MediaNotificationContent"/>, <see cref="TemplateNotificationContent"/> and <see cref="TextNotificationContent"/>.
     /// </summary>
@@ -51,8 +51,8 @@ namespace Azure.Communication.Messages
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NotificationContent"/>. </summary>
-        /// <param name="channelRegistrationId"> The Channel Registration ID for the Business Identifier. </param>
-        /// <param name="to"> The native external platform user identifiers of the recipient. </param>
+        /// <param name="channelRegistrationId"></param>
+        /// <param name="to"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="to"/> is null. </exception>
         protected NotificationContent(Guid channelRegistrationId, IEnumerable<string> to)
         {
@@ -63,9 +63,9 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="NotificationContent"/>. </summary>
-        /// <param name="channelRegistrationId"> The Channel Registration ID for the Business Identifier. </param>
-        /// <param name="to"> The native external platform user identifiers of the recipient. </param>
-        /// <param name="kind"> The type discriminator describing a notification type. </param>
+        /// <param name="channelRegistrationId"></param>
+        /// <param name="to"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NotificationContent(Guid channelRegistrationId, IList<string> to, CommunicationMessageKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +80,11 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The Channel Registration ID for the Business Identifier. </summary>
+        /// <summary> Gets the channel registration id. </summary>
         public Guid ChannelRegistrationId { get; }
-        /// <summary> The native external platform user identifiers of the recipient. </summary>
+        /// <summary> Gets the to. </summary>
         public IList<string> To { get; }
-        /// <summary> The type discriminator describing a notification type. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal CommunicationMessageKind Kind { get; set; }
     }
 }

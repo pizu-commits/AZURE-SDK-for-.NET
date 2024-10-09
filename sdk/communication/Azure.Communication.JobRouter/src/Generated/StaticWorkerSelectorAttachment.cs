@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes a worker selector that will be attached to a job. </summary>
+    /// <summary> The StaticWorkerSelectorAttachment. </summary>
     public partial class StaticWorkerSelectorAttachment : WorkerSelectorAttachment
     {
         /// <summary> Initializes a new instance of <see cref="StaticWorkerSelectorAttachment"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of WorkerSelectorAttachment. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="workerSelector"> The worker selector to attach. </param>
+        /// <param name="workerSelector"></param>
         internal StaticWorkerSelectorAttachment(WorkerSelectorAttachmentKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, RouterWorkerSelector workerSelector) : base(kind, serializedAdditionalRawData)
         {
             WorkerSelector = workerSelector;
@@ -27,7 +27,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> The worker selector to attach. </summary>
+        /// <summary> Gets the worker selector. </summary>
         public RouterWorkerSelector WorkerSelector { get; }
     }
 }

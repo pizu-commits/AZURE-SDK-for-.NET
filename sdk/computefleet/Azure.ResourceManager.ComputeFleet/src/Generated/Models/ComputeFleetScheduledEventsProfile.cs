@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies Scheduled Event related configurations. </summary>
+    /// <summary> The ComputeFleetScheduledEventsProfile. </summary>
     public partial class ComputeFleetScheduledEventsProfile
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetScheduledEventsProfile"/>. </summary>
-        /// <param name="terminateNotificationProfile"> Specifies Terminate Scheduled Event related configurations. </param>
-        /// <param name="osImageNotificationProfile"> Specifies OS Image Scheduled Event related configurations. </param>
+        /// <param name="terminateNotificationProfile"></param>
+        /// <param name="osImageNotificationProfile"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetScheduledEventsProfile(ComputeFleetTerminateNotificationProfile terminateNotificationProfile, ComputeFleetOSImageNotificationProfile osImageNotificationProfile, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies Terminate Scheduled Event related configurations. </summary>
+        /// <summary> Gets or sets the terminate notification profile. </summary>
         public ComputeFleetTerminateNotificationProfile TerminateNotificationProfile { get; set; }
-        /// <summary> Specifies OS Image Scheduled Event related configurations. </summary>
+        /// <summary> Gets or sets the os image notification profile. </summary>
         public ComputeFleetOSImageNotificationProfile OSImageNotificationProfile { get; set; }
     }
 }

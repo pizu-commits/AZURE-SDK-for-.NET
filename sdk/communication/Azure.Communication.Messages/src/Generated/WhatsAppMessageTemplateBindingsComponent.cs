@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages.Models.Channels
 {
-    /// <summary> The template bindings component for WhatsApp. </summary>
+    /// <summary> The WhatsAppMessageTemplateBindingsComponent. </summary>
     public partial class WhatsAppMessageTemplateBindingsComponent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.Messages.Models.Channels
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindingsComponent"/>. </summary>
-        /// <param name="refValue"> The name of the referenced item in the template values. </param>
+        /// <param name="refValue"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="refValue"/> is null. </exception>
         public WhatsAppMessageTemplateBindingsComponent(string refValue)
         {
@@ -56,7 +56,7 @@ namespace Azure.Communication.Messages.Models.Channels
         }
 
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindingsComponent"/>. </summary>
-        /// <param name="refValue"> The name of the referenced item in the template values. </param>
+        /// <param name="refValue"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WhatsAppMessageTemplateBindingsComponent(string refValue, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Communication.Messages.Models.Channels
         {
         }
 
-        /// <summary> The name of the referenced item in the template values. </summary>
+        /// <summary> Gets the ref value. </summary>
         public string RefValue { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Request to verify number of device - first call. </summary>
+    /// <summary> The NumberVerificationWithoutCodeContent. </summary>
     public partial class NumberVerificationWithoutCodeContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationWithoutCodeContent"/>. </summary>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
-        /// <param name="redirectUri"> Redirect URI to backend application. </param>
+        /// <param name="networkIdentifier"></param>
+        /// <param name="redirectUri"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkIdentifier"/> or <paramref name="redirectUri"/> is null. </exception>
         public NumberVerificationWithoutCodeContent(NetworkIdentifier networkIdentifier, Uri redirectUri)
         {
@@ -59,10 +59,10 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationWithoutCodeContent"/>. </summary>
-        /// <param name="networkIdentifier"> Identifier for the network to query for this device. </param>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="hashedPhoneNumber"> Hashed phone number. SHA-256 (in hexadecimal representation) of the mobile phone number in **E.164 format (starting with country code)**. Optionally prefixed with '+'. </param>
-        /// <param name="redirectUri"> Redirect URI to backend application. </param>
+        /// <param name="networkIdentifier"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="hashedPhoneNumber"></param>
+        /// <param name="redirectUri"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NumberVerificationWithoutCodeContent(NetworkIdentifier networkIdentifier, string phoneNumber, string hashedPhoneNumber, Uri redirectUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> Identifier for the network to query for this device. </summary>
+        /// <summary> Gets the network identifier. </summary>
         public NetworkIdentifier NetworkIdentifier { get; }
-        /// <summary> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </summary>
+        /// <summary> Gets or sets the phone number. </summary>
         public string PhoneNumber { get; set; }
-        /// <summary> Hashed phone number. SHA-256 (in hexadecimal representation) of the mobile phone number in **E.164 format (starting with country code)**. Optionally prefixed with '+'. </summary>
+        /// <summary> Gets or sets the hashed phone number. </summary>
         public string HashedPhoneNumber { get; set; }
-        /// <summary> Redirect URI to backend application. </summary>
+        /// <summary> Gets the redirect uri. </summary>
         public Uri RedirectUri { get; }
     }
 }

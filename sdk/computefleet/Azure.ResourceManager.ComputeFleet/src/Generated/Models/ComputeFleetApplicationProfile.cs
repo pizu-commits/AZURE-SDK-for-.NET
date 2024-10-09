@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Contains the list of gallery applications that should be made available to the
-    /// VM/VMSS
-    /// </summary>
+    /// <summary> The ComputeFleetApplicationProfile. </summary>
     internal partial class ComputeFleetApplicationProfile
     {
         /// <summary>
@@ -55,7 +52,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetApplicationProfile"/>. </summary>
-        /// <param name="galleryApplications"> Specifies the gallery applications that should be made available to the VM/VMSS. </param>
+        /// <param name="galleryApplications"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetApplicationProfile(IList<ComputeFleetVmGalleryApplication> galleryApplications, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +60,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies the gallery applications that should be made available to the VM/VMSS. </summary>
+        /// <summary> Gets the gallery applications. </summary>
         public IList<ComputeFleetVmGalleryApplication> GalleryApplications { get; }
     }
 }

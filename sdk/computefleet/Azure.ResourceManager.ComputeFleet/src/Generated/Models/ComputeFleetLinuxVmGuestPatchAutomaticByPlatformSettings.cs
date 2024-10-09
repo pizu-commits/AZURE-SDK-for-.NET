@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies additional settings to be applied when patch mode AutomaticByPlatform
-    /// is selected in Linux patch settings.
-    /// </summary>
+    /// <summary> The ComputeFleetLinuxVmGuestPatchAutomaticByPlatformSettings. </summary>
     public partial class ComputeFleetLinuxVmGuestPatchAutomaticByPlatformSettings
     {
         /// <summary>
@@ -54,11 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetLinuxVmGuestPatchAutomaticByPlatformSettings"/>. </summary>
-        /// <param name="rebootSetting">
-        /// Specifies the reboot setting for all AutomaticByPlatform patch installation
-        /// operations.
-        /// </param>
-        /// <param name="isBypassPlatformSafetyChecksOnUserScheduleEnabled"> Enables customer to schedule patching without accidental upgrades. </param>
+        /// <param name="rebootSetting"></param>
+        /// <param name="isBypassPlatformSafetyChecksOnUserScheduleEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetLinuxVmGuestPatchAutomaticByPlatformSettings(ComputeFleetLinuxVmGuestPatchAutomaticByPlatformRebootSetting? rebootSetting, bool? isBypassPlatformSafetyChecksOnUserScheduleEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,12 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the reboot setting for all AutomaticByPlatform patch installation
-        /// operations.
-        /// </summary>
+        /// <summary> Gets or sets the reboot setting. </summary>
         public ComputeFleetLinuxVmGuestPatchAutomaticByPlatformRebootSetting? RebootSetting { get; set; }
-        /// <summary> Enables customer to schedule patching without accidental upgrades. </summary>
+        /// <summary> Gets or sets the is bypass platform safety checks on user schedule enabled. </summary>
         public bool? IsBypassPlatformSafetyChecksOnUserScheduleEnabled { get; set; }
     }
 }

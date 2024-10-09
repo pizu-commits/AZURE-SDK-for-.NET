@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machine scale set network profile's IP configuration. </summary>
+    /// <summary> The ComputeFleetVmssIPConfiguration. </summary>
     public partial class ComputeFleetVmssIPConfiguration
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssIPConfiguration"/>. </summary>
-        /// <param name="name"> The IP configuration name. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ComputeFleetVmssIPConfiguration(string name)
         {
@@ -56,11 +56,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssIPConfiguration"/>. </summary>
-        /// <param name="name"> The IP configuration name. </param>
-        /// <param name="properties">
-        /// Describes a virtual machine scale set network profile's IP configuration
-        /// properties.
-        /// </param>
+        /// <param name="name"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssIPConfiguration(string name, ComputeFleetVmssIPConfigurationProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,12 +71,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The IP configuration name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// Describes a virtual machine scale set network profile's IP configuration
-        /// properties.
-        /// </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public ComputeFleetVmssIPConfigurationProperties Properties { get; set; }
     }
 }

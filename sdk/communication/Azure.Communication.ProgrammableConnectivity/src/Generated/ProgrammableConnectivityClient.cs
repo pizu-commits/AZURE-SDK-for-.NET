@@ -12,7 +12,7 @@ using Azure.Core.Pipeline;
 namespace Azure.Communication.ProgrammableConnectivity
 {
     // Data plane generated client.
-    /// <summary> Azure Programmable Connectivity (APC) provides a unified interface to the Network APIs of multiple Telecom Operators. Note that Operators may deprecate a Network API with less advance notice than the Azure standard, in which case APC will also deprecate that Network API. </summary>
+    /// <summary> The ProgrammableConnectivity service client. </summary>
     public partial class ProgrammableConnectivityClient
     {
         private static readonly string[] AuthorizationScopes = new string[] { "https://management.azure.com//.default" };
@@ -57,7 +57,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of DeviceLocation. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual DeviceLocation GetDeviceLocationClient(string apiVersion = "2024-02-09-preview")
         {
@@ -67,7 +67,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of DeviceNetwork. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual DeviceNetwork GetDeviceNetworkClient(string apiVersion = "2024-02-09-preview")
         {
@@ -77,7 +77,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of NumberVerification. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual NumberVerification GetNumberVerificationClient(string apiVersion = "2024-02-09-preview")
         {
@@ -87,7 +87,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of SimSwap. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual SimSwap GetSimSwapClient(string apiVersion = "2024-02-09-preview")
         {

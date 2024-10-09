@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specify public IP sku name. </summary>
+    /// <summary> The ComputeFleetPublicIPAddressSkuName. </summary>
     public readonly partial struct ComputeFleetPublicIPAddressSkuName : IEquatable<ComputeFleetPublicIPAddressSkuName>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string BasicValue = "Basic";
         private const string StandardValue = "Standard";
 
-        /// <summary> Basic sku name. </summary>
+        /// <summary> Basic. </summary>
         public static ComputeFleetPublicIPAddressSkuName Basic { get; } = new ComputeFleetPublicIPAddressSkuName(BasicValue);
-        /// <summary> Standard sku name. </summary>
+        /// <summary> Standard. </summary>
         public static ComputeFleetPublicIPAddressSkuName Standard { get; } = new ComputeFleetPublicIPAddressSkuName(StandardValue);
         /// <summary> Determines if two <see cref="ComputeFleetPublicIPAddressSkuName"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetPublicIPAddressSkuName left, ComputeFleetPublicIPAddressSkuName right) => left.Equals(right);

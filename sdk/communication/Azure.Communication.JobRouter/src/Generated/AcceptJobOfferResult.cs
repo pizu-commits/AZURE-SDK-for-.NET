@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Response containing ids for the worker, job, and assignment from an accepted offer. </summary>
+    /// <summary> The AcceptJobOfferResult. </summary>
     public partial class AcceptJobOfferResult
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcceptJobOfferResult"/>. </summary>
-        /// <param name="assignmentId"> Id of job assignment that assigns a worker that has accepted an offer to a job. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="workerId"> Id of the worker that has been assigned this job. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="workerId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="assignmentId"/>, <paramref name="jobId"/> or <paramref name="workerId"/> is null. </exception>
         internal AcceptJobOfferResult(string assignmentId, string jobId, string workerId)
         {
@@ -62,9 +62,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="AcceptJobOfferResult"/>. </summary>
-        /// <param name="assignmentId"> Id of job assignment that assigns a worker that has accepted an offer to a job. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="workerId"> Id of the worker that has been assigned this job. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="workerId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcceptJobOfferResult(string assignmentId, string jobId, string workerId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +79,11 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of job assignment that assigns a worker that has accepted an offer to a job. </summary>
+        /// <summary> Gets the assignment id. </summary>
         public string AssignmentId { get; }
-        /// <summary> Id of the job assigned. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> Id of the worker that has been assigned this job. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
     }
 }

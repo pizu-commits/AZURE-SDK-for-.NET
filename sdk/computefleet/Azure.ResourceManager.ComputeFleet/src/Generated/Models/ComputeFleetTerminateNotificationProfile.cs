@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies Terminate Scheduled Event related configurations. </summary>
+    /// <summary> The ComputeFleetTerminateNotificationProfile. </summary>
     public partial class ComputeFleetTerminateNotificationProfile
     {
         /// <summary>
@@ -51,13 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetTerminateNotificationProfile"/>. </summary>
-        /// <param name="notBeforeTimeout">
-        /// Configurable length of time a Virtual Machine being deleted will have to
-        /// potentially approve the Terminate Scheduled Event before the event is auto
-        /// approved (timed out). The configuration must be specified in ISO 8601 format,
-        /// the default value is 5 minutes (PT5M)
-        /// </param>
-        /// <param name="isEnabled"> Specifies whether the Terminate Scheduled event is enabled or disabled. </param>
+        /// <param name="notBeforeTimeout"></param>
+        /// <param name="isEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetTerminateNotificationProfile(string notBeforeTimeout, bool? isEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Configurable length of time a Virtual Machine being deleted will have to
-        /// potentially approve the Terminate Scheduled Event before the event is auto
-        /// approved (timed out). The configuration must be specified in ISO 8601 format,
-        /// the default value is 5 minutes (PT5M)
-        /// </summary>
+        /// <summary> Gets or sets the not before timeout. </summary>
         public string NotBeforeTimeout { get; set; }
-        /// <summary> Specifies whether the Terminate Scheduled event is enabled or disabled. </summary>
+        /// <summary> Gets or sets the is enabled. </summary>
         public bool? IsEnabled { get; set; }
     }
 }

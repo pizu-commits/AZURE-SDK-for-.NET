@@ -12,7 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes the parameters of a ScaleSet managed disk. </summary>
+    /// <summary> The ComputeFleetVmssManagedDisk. </summary>
     public partial class ComputeFleetVmssManagedDisk
     {
         /// <summary>
@@ -53,15 +53,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssManagedDisk"/>. </summary>
-        /// <param name="storageAccountType">
-        /// Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can
-        /// only be used with data disks, it cannot be used with OS Disk.
-        /// </param>
-        /// <param name="diskEncryptionSet">
-        /// Specifies the customer managed disk encryption set resource id for the managed
-        /// disk.
-        /// </param>
-        /// <param name="securityProfile"> Specifies the security profile for the managed disk. </param>
+        /// <param name="storageAccountType"></param>
+        /// <param name="diskEncryptionSet"> Gets or sets the disk encryption set. </param>
+        /// <param name="securityProfile"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssManagedDisk(ComputeFleetStorageAccountType? storageAccountType, WritableSubResource diskEncryptionSet, ComputeFleetVmDiskSecurityProfile securityProfile, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,15 +65,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can
-        /// only be used with data disks, it cannot be used with OS Disk.
-        /// </summary>
+        /// <summary> Gets or sets the storage account type. </summary>
         public ComputeFleetStorageAccountType? StorageAccountType { get; set; }
-        /// <summary>
-        /// Specifies the customer managed disk encryption set resource id for the managed
-        /// disk.
-        /// </summary>
+        /// <summary> Gets or sets the disk encryption set. </summary>
         internal WritableSubResource DiskEncryptionSet { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier DiskEncryptionSetId
@@ -93,7 +81,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary> Specifies the security profile for the managed disk. </summary>
+        /// <summary> Gets or sets the security profile. </summary>
         public ComputeFleetVmDiskSecurityProfile SecurityProfile { get; set; }
     }
 }

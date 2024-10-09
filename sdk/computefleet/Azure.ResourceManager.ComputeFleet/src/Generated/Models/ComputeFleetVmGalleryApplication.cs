@@ -11,10 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the required information to reference a compute gallery application
-    /// version
-    /// </summary>
+    /// <summary> The ComputeFleetVmGalleryApplication. </summary>
     public partial class ComputeFleetVmGalleryApplication
     {
         /// <summary>
@@ -50,10 +47,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmGalleryApplication"/>. </summary>
-        /// <param name="packageReferenceId">
-        /// Specifies the GalleryApplicationVersion resource id on the form of
-        /// /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{application}/versions/{version}
-        /// </param>
+        /// <param name="packageReferenceId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="packageReferenceId"/> is null. </exception>
         public ComputeFleetVmGalleryApplication(ResourceIdentifier packageReferenceId)
         {
@@ -63,24 +57,12 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmGalleryApplication"/>. </summary>
-        /// <param name="tags"> Optional, Specifies a passthrough value for more generic context. </param>
-        /// <param name="order"> Optional, Specifies the order in which the packages have to be installed. </param>
-        /// <param name="packageReferenceId">
-        /// Specifies the GalleryApplicationVersion resource id on the form of
-        /// /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{application}/versions/{version}
-        /// </param>
-        /// <param name="configurationReference">
-        /// Optional, Specifies the uri to an azure blob that will replace the default
-        /// configuration for the package if provided
-        /// </param>
-        /// <param name="isTreatFailureAsDeploymentFailureEnabled">
-        /// Optional, If true, any failure for any operation in the VmApplication will fail
-        /// the deployment
-        /// </param>
-        /// <param name="isAutomaticUpgradeEnabled">
-        /// If set to true, when a new Gallery Application version is available in PIR/SIG,
-        /// it will be automatically updated for the VM/VMSS
-        /// </param>
+        /// <param name="tags"></param>
+        /// <param name="order"></param>
+        /// <param name="packageReferenceId"></param>
+        /// <param name="configurationReference"></param>
+        /// <param name="isTreatFailureAsDeploymentFailureEnabled"></param>
+        /// <param name="isAutomaticUpgradeEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmGalleryApplication(string tags, int? order, ResourceIdentifier packageReferenceId, string configurationReference, bool? isTreatFailureAsDeploymentFailureEnabled, bool? isAutomaticUpgradeEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -98,29 +80,17 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> Optional, Specifies a passthrough value for more generic context. </summary>
+        /// <summary> Gets or sets the tags. </summary>
         public string Tags { get; set; }
-        /// <summary> Optional, Specifies the order in which the packages have to be installed. </summary>
+        /// <summary> Gets or sets the order. </summary>
         public int? Order { get; set; }
-        /// <summary>
-        /// Specifies the GalleryApplicationVersion resource id on the form of
-        /// /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{application}/versions/{version}
-        /// </summary>
+        /// <summary> Gets or sets the package reference id. </summary>
         public ResourceIdentifier PackageReferenceId { get; set; }
-        /// <summary>
-        /// Optional, Specifies the uri to an azure blob that will replace the default
-        /// configuration for the package if provided
-        /// </summary>
+        /// <summary> Gets or sets the configuration reference. </summary>
         public string ConfigurationReference { get; set; }
-        /// <summary>
-        /// Optional, If true, any failure for any operation in the VmApplication will fail
-        /// the deployment
-        /// </summary>
+        /// <summary> Gets or sets the is treat failure as deployment failure enabled. </summary>
         public bool? IsTreatFailureAsDeploymentFailureEnabled { get; set; }
-        /// <summary>
-        /// If set to true, when a new Gallery Application version is available in PIR/SIG,
-        /// it will be automatically updated for the VM/VMSS
-        /// </summary>
+        /// <summary> Gets or sets the is automatic upgrade enabled. </summary>
         public bool? IsAutomaticUpgradeEnabled { get; set; }
     }
 }

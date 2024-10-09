@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.ComputeFleet.Samples
         public async Task Get_FleetsGet()
         {
             // Generated from example definition: 2024-05-01-preview/Fleets_Get.json
-            // this example is just showing the usage of "Fleets_Get" operation, for the dependent resources, they will have to be created separately.
+            // this example is just showing the usage of "Fleet_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
             TokenCredential cred = new DefaultAzureCredential();
@@ -55,7 +55,7 @@ namespace Azure.ResourceManager.ComputeFleet.Samples
         public async Task Update_FleetsUpdate()
         {
             // Generated from example definition: 2024-05-01-preview/Fleets_Update.json
-            // this example is just showing the usage of "Fleets_Update" operation, for the dependent resources, they will have to be created separately.
+            // this example is just showing the usage of "Fleet_Update" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
             TokenCredential cred = new DefaultAzureCredential();
@@ -233,8 +233,8 @@ SecurityEncryptionType = ComputeFleetSecurityEncryptionType.VmGuestStateOnly,
 DiskEncryptionSetId = new ResourceIdentifier("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskEncryptionSets/{diskEncryptionSetName}"),
 },
 },
-DiskIopsReadWrite = 27,
-DiskMbpsReadWrite = 2,
+DiskIopsReadWrite = 27L,
+DiskMbpsReadWrite = 2L,
 DeleteOption = ComputeFleetDiskDeleteOptionType.Delete,
 }
             },
@@ -441,7 +441,7 @@ IsAutomaticUpgradeEnabled = true,
                     {
                         Capacity = 20,
                         MinCapacity = 10,
-                        MaxPricePerVm = (float)0.00865,
+                        MaxPricePerVm = 0.00865F,
                         EvictionPolicy = ComputeFleetEvictionPolicy.Delete,
                         AllocationStrategy = SpotAllocationStrategy.PriceCapacityOptimized,
                         IsMaintainEnabled = true,
@@ -470,7 +470,7 @@ IsAutomaticUpgradeEnabled = true,
         public async Task Delete_FleetsDelete()
         {
             // Generated from example definition: 2024-05-01-preview/Fleets_Delete.json
-            // this example is just showing the usage of "Fleets_Delete" operation, for the dependent resources, they will have to be created separately.
+            // this example is just showing the usage of "Fleet_Delete" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
             TokenCredential cred = new DefaultAzureCredential();

@@ -100,7 +100,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -140,7 +140,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -180,7 +180,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Delete</description>
+        /// <description>Fleet_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -222,7 +222,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Delete</description>
+        /// <description>Fleet_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -264,7 +264,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Update</description>
+        /// <description>Fleet_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -277,7 +277,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="ComputeFleetPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<ComputeFleetResource>> UpdateAsync(WaitUntil waitUntil, ComputeFleetPatch patch, CancellationToken cancellationToken = default)
@@ -310,7 +310,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Update</description>
+        /// <description>Fleet_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -323,7 +323,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="ComputeFleetPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<ComputeFleetResource> Update(WaitUntil waitUntil, ComputeFleetPatch patch, CancellationToken cancellationToken = default)
@@ -416,7 +416,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -478,7 +478,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -540,7 +540,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -597,7 +597,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -654,7 +654,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -714,7 +714,7 @@ namespace Azure.ResourceManager.ComputeFleet
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>

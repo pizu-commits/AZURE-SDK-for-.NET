@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A rule providing a binding to an external web server. </summary>
+    /// <summary> The WebhookRouterRule. </summary>
     public partial class WebhookRouterRule : RouterRule
     {
         /// <summary> Initializes a new instance of <see cref="WebhookRouterRule"/>. </summary>
@@ -20,11 +20,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="WebhookRouterRule"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of RouterRule. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="authorizationServerUri"> Uri for Authorization Server. </param>
-        /// <param name="clientCredential"> OAuth2.0 Credentials used to Contoso's Authorization server. Reference: https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/. </param>
-        /// <param name="webhookUri"> Uri for Contoso's Web Server. </param>
+        /// <param name="authorizationServerUri"></param>
+        /// <param name="clientCredential"></param>
+        /// <param name="webhookUri"></param>
         internal WebhookRouterRule(RouterRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, Uri authorizationServerUri, OAuth2WebhookClientCredential clientCredential, Uri webhookUri) : base(kind, serializedAdditionalRawData)
         {
             AuthorizationServerUri = authorizationServerUri;
@@ -32,11 +32,11 @@ namespace Azure.Communication.JobRouter
             WebhookUri = webhookUri;
         }
 
-        /// <summary> Uri for Authorization Server. </summary>
+        /// <summary> Gets the authorization server uri. </summary>
         public Uri AuthorizationServerUri { get; }
-        /// <summary> OAuth2.0 Credentials used to Contoso's Authorization server. Reference: https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/. </summary>
+        /// <summary> Gets the client credential. </summary>
         public OAuth2WebhookClientCredential ClientCredential { get; }
-        /// <summary> Uri for Contoso's Web Server. </summary>
+        /// <summary> Gets the webhook uri. </summary>
         public Uri WebhookUri { get; }
     }
 }

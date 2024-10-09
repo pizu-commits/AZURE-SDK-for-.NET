@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> The assignment for a worker to a job. </summary>
+    /// <summary> The RouterWorkerAssignment. </summary>
     public partial class RouterWorkerAssignment
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterWorkerAssignment"/>. </summary>
-        /// <param name="assignmentId"> Id of the assignment. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="capacityCost"> The amount of capacity this assignment has consumed on the worker. </param>
-        /// <param name="assignedAt"> The assignment time of the job in UTC. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="capacityCost"></param>
+        /// <param name="assignedAt"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="assignmentId"/> or <paramref name="jobId"/> is null. </exception>
         internal RouterWorkerAssignment(string assignmentId, string jobId, int capacityCost, DateTimeOffset assignedAt)
         {
@@ -63,10 +63,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterWorkerAssignment"/>. </summary>
-        /// <param name="assignmentId"> Id of the assignment. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="capacityCost"> The amount of capacity this assignment has consumed on the worker. </param>
-        /// <param name="assignedAt"> The assignment time of the job in UTC. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="capacityCost"></param>
+        /// <param name="assignedAt"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterWorkerAssignment(string assignmentId, string jobId, int capacityCost, DateTimeOffset assignedAt, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of the assignment. </summary>
+        /// <summary> Gets the assignment id. </summary>
         public string AssignmentId { get; }
-        /// <summary> Id of the job assigned. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> The amount of capacity this assignment has consumed on the worker. </summary>
+        /// <summary> Gets the capacity cost. </summary>
         public int CapacityCost { get; }
-        /// <summary> The assignment time of the job in UTC. </summary>
+        /// <summary> Gets the assigned at. </summary>
         public DateTimeOffset AssignedAt { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This defines a list of operation errors associated with a unique operationId. </summary>
+    /// <summary> The OperationErrorDetails. </summary>
     public partial class OperationErrorDetails
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OperationErrorDetails"/>. </summary>
-        /// <param name="errorCode"> The error code of the operation. </param>
-        /// <param name="errorDetails"> The error details of the operation. </param>
-        /// <param name="timeStamp"> The timestamp of the error occurence. </param>
-        /// <param name="crpOperationId"> CRP operationid of the operation for deeper analysis. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
+        /// <param name="timeStamp"></param>
+        /// <param name="crpOperationId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="errorCode"/> or <paramref name="crpOperationId"/> is null. </exception>
         internal OperationErrorDetails(string errorCode, DateTimeOffset errorDetails, DateTimeOffset timeStamp, string crpOperationId)
         {
@@ -63,10 +63,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="OperationErrorDetails"/>. </summary>
-        /// <param name="errorCode"> The error code of the operation. </param>
-        /// <param name="errorDetails"> The error details of the operation. </param>
-        /// <param name="timeStamp"> The timestamp of the error occurence. </param>
-        /// <param name="crpOperationId"> CRP operationid of the operation for deeper analysis. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
+        /// <param name="timeStamp"></param>
+        /// <param name="crpOperationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OperationErrorDetails(string errorCode, DateTimeOffset errorDetails, DateTimeOffset timeStamp, string crpOperationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The error code of the operation. </summary>
+        /// <summary> Gets the error code. </summary>
         public string ErrorCode { get; }
-        /// <summary> The error details of the operation. </summary>
+        /// <summary> Gets the error details. </summary>
         public DateTimeOffset ErrorDetails { get; }
-        /// <summary> The timestamp of the error occurence. </summary>
+        /// <summary> Gets the time stamp. </summary>
         public DateTimeOffset TimeStamp { get; }
-        /// <summary> CRP operationid of the operation for deeper analysis. </summary>
+        /// <summary> Gets the crp operation id. </summary>
         public string CrpOperationId { get; }
     }
 }

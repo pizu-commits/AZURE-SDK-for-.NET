@@ -39,7 +39,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> An Azure Programmable Connectivity Endpoint providing access to Network APIs, for example https://{region}.apcgatewayapi.azure.com. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal DeviceLocation(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -50,8 +50,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies whether a device is within a specified location area, defined as an accuracy (radius) around a point, specified by longitude and latitude. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DeviceLocationVerificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/DeviceLocation.xml" path="doc/members/member[@name='VerifyAsync(string,DeviceLocationVerificationContent,CancellationToken)']/*" />
@@ -67,8 +67,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies whether a device is within a specified location area, defined as an accuracy (radius) around a point, specified by longitude and latitude. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DeviceLocationVerificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/DeviceLocation.xml" path="doc/members/member[@name='Verify(string,DeviceLocationVerificationContent,CancellationToken)']/*" />
@@ -98,7 +98,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>
@@ -139,7 +139,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>

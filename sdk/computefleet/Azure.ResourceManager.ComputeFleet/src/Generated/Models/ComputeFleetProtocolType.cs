@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the protocol of WinRM listener. Possible values are: **http,**
-    /// **https.**
-    /// </summary>
+    /// <summary> The ComputeFleetProtocolTypes. </summary>
     public readonly partial struct ComputeFleetProtocolType : IEquatable<ComputeFleetProtocolType>
     {
         private readonly string _value;
@@ -28,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string HttpValue = "Http";
         private const string HttpsValue = "Https";
 
-        /// <summary> Http protocol. </summary>
+        /// <summary> Http. </summary>
         public static ComputeFleetProtocolType Http { get; } = new ComputeFleetProtocolType(HttpValue);
-        /// <summary> Https protocol. </summary>
+        /// <summary> Https. </summary>
         public static ComputeFleetProtocolType Https { get; } = new ComputeFleetProtocolType(HttpsValue);
         /// <summary> Determines if two <see cref="ComputeFleetProtocolType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetProtocolType left, ComputeFleetProtocolType right) => left.Equals(right);

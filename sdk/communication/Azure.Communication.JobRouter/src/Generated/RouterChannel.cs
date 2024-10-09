@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Represents the capacity a job in this channel will consume from a worker. </summary>
+    /// <summary> The RouterChannel. </summary>
     public partial class RouterChannel
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterChannel"/>. </summary>
-        /// <param name="channelId"> Id of a channel. </param>
-        /// <param name="capacityCostPerJob"> The amount of capacity that an instance of a job of this channel will consume of the total worker capacity. </param>
-        /// <param name="maxNumberOfJobs"> The maximum number of jobs that can be supported concurrently for this channel. Value must be greater than zero. </param>
+        /// <param name="channelId"></param>
+        /// <param name="capacityCostPerJob"></param>
+        /// <param name="maxNumberOfJobs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterChannel(string channelId, int capacityCostPerJob, int? maxNumberOfJobs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,9 +63,9 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of a channel. </summary>
+        /// <summary> Gets the channel id. </summary>
         public string ChannelId { get; }
-        /// <summary> The amount of capacity that an instance of a job of this channel will consume of the total worker capacity. </summary>
+        /// <summary> Gets the capacity cost per job. </summary>
         public int CapacityCostPerJob { get; }
     }
 }

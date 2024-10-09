@@ -10,12 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Boot Diagnostics is a debugging feature which allows you to view Console Output
-    /// and Screenshot to diagnose VM status. You can easily view the output of your
-    /// console log. Azure also enables you to see a screenshot of the VM from the
-    /// hypervisor.
-    /// </summary>
+    /// <summary> The ComputeFleetBootDiagnostics. </summary>
     public partial class ComputeFleetBootDiagnostics
     {
         /// <summary>
@@ -56,12 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetBootDiagnostics"/>. </summary>
-        /// <param name="isEnabled"> Whether boot diagnostics should be enabled on the Virtual Machine. </param>
-        /// <param name="storageUri">
-        /// Uri of the storage account to use for placing the console output and
-        /// screenshot. If storageUri is not specified while enabling boot diagnostics,
-        /// managed storage will be used.
-        /// </param>
+        /// <param name="isEnabled"></param>
+        /// <param name="storageUri"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetBootDiagnostics(bool? isEnabled, Uri storageUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,13 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Whether boot diagnostics should be enabled on the Virtual Machine. </summary>
+        /// <summary> Gets or sets the is enabled. </summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>
-        /// Uri of the storage account to use for placing the console output and
-        /// screenshot. If storageUri is not specified while enabling boot diagnostics,
-        /// managed storage will be used.
-        /// </summary>
+        /// <summary> Gets or sets the storage uri. </summary>
         public Uri StorageUri { get; set; }
     }
 }

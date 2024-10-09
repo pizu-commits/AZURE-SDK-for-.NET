@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Available expression languages that can be configured. </summary>
+    /// <summary> The ExpressionRouterRuleLanguage. </summary>
     internal readonly partial struct ExpressionRouterRuleLanguage : IEquatable<ExpressionRouterRuleLanguage>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Communication.JobRouter
 
         private const string PowerFxValue = "powerFx";
 
-        /// <summary> PowerFx. </summary>
+        /// <summary> powerFx. </summary>
         public static ExpressionRouterRuleLanguage PowerFx { get; } = new ExpressionRouterRuleLanguage(PowerFxValue);
         /// <summary> Determines if two <see cref="ExpressionRouterRuleLanguage"/> values are the same. </summary>
         public static bool operator ==(ExpressionRouterRuleLanguage left, ExpressionRouterRuleLanguage right) => left.Equals(right);

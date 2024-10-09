@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specify what happens to the network interface when the VM is deleted. </summary>
+    /// <summary> The ComputeFleetVmDeleteOptions. </summary>
     public readonly partial struct ComputeFleetVmDeleteOption : IEquatable<ComputeFleetVmDeleteOption>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string DeleteValue = "Delete";
         private const string DetachValue = "Detach";
 
-        /// <summary> Delete Option. </summary>
+        /// <summary> Delete. </summary>
         public static ComputeFleetVmDeleteOption Delete { get; } = new ComputeFleetVmDeleteOption(DeleteValue);
-        /// <summary> Detach Option. </summary>
+        /// <summary> Detach. </summary>
         public static ComputeFleetVmDeleteOption Detach { get; } = new ComputeFleetVmDeleteOption(DetachValue);
         /// <summary> Determines if two <see cref="ComputeFleetVmDeleteOption"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetVmDeleteOption left, ComputeFleetVmDeleteOption right) => left.Equals(right);

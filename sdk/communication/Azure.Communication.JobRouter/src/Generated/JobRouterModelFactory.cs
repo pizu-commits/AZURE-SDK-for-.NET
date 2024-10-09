@@ -15,12 +15,11 @@ namespace Azure.Communication.JobRouter
     public static partial class JobRouterModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="JobRouter.DistributionPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of a distribution policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="offerExpiresAfter"> Number of seconds after which any offers created under this policy will be expired. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="offerExpiresAfter"></param>
         /// <param name="mode">
-        /// Mode governing the specific distribution method.
         /// Please note <see cref="DistributionMode"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="BestWorkerMode"/>, <see cref="LongestIdleMode"/> and <see cref="RoundRobinMode"/>.
         /// </param>
@@ -37,8 +36,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.FunctionRouterRule"/>. </summary>
-        /// <param name="functionUri"> URL for Azure Function. </param>
-        /// <param name="credential"> Credentials used to access Azure function rule. </param>
+        /// <param name="functionUri"></param>
+        /// <param name="credential"></param>
         /// <returns> A new <see cref="JobRouter.FunctionRouterRule"/> instance for mocking. </returns>
         public static FunctionRouterRule FunctionRouterRule(Uri functionUri = null, FunctionRouterRuleCredential credential = null)
         {
@@ -46,9 +45,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.WebhookRouterRule"/>. </summary>
-        /// <param name="authorizationServerUri"> Uri for Authorization Server. </param>
-        /// <param name="clientCredential"> OAuth2.0 Credentials used to Contoso's Authorization server. Reference: https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/. </param>
-        /// <param name="webhookUri"> Uri for Contoso's Web Server. </param>
+        /// <param name="authorizationServerUri"></param>
+        /// <param name="clientCredential"></param>
+        /// <param name="webhookUri"></param>
         /// <returns> A new <see cref="JobRouter.WebhookRouterRule"/> instance for mocking. </returns>
         public static WebhookRouterRule WebhookRouterRule(Uri authorizationServerUri = null, OAuth2WebhookClientCredential clientCredential = null, Uri webhookUri = null)
         {
@@ -56,22 +55,19 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ClassificationPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of a classification policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="fallbackQueueId"> Id of a fallback queue to select if queue selector attachments doesn't find a match. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="fallbackQueueId"></param>
         /// <param name="queueSelectorAttachments">
-        /// Queue selector attachments used to resolve a queue for a job.
         /// Please note <see cref="QueueSelectorAttachment"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="JobRouter.ConditionalQueueSelectorAttachment"/>, <see cref="JobRouter.PassThroughQueueSelectorAttachment"/>, <see cref="JobRouter.RuleEngineQueueSelectorAttachment"/>, <see cref="JobRouter.StaticQueueSelectorAttachment"/> and <see cref="JobRouter.WeightedAllocationQueueSelectorAttachment"/>.
         /// </param>
         /// <param name="prioritizationRule">
-        /// A rule to determine a priority score for a job.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="JobRouter.FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="JobRouter.WebhookRouterRule"/>.
         /// </param>
         /// <param name="workerSelectorAttachments">
-        /// Worker selector attachments used to attach worker selectors to a job.
         /// Please note <see cref="WorkerSelectorAttachment"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="JobRouter.ConditionalWorkerSelectorAttachment"/>, <see cref="JobRouter.PassThroughWorkerSelectorAttachment"/>, <see cref="JobRouter.RuleEngineWorkerSelectorAttachment"/>, <see cref="JobRouter.StaticWorkerSelectorAttachment"/> and <see cref="JobRouter.WeightedAllocationWorkerSelectorAttachment"/>.
         /// </param>
@@ -94,11 +90,10 @@ namespace Azure.Communication.JobRouter
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ConditionalQueueSelectorAttachment"/>. </summary>
         /// <param name="condition">
-        /// The condition that must be true for the queue selectors to be attached.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="JobRouter.FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="JobRouter.WebhookRouterRule"/>.
         /// </param>
-        /// <param name="queueSelectors"> The queue selectors to attach. </param>
+        /// <param name="queueSelectors"></param>
         /// <returns> A new <see cref="JobRouter.ConditionalQueueSelectorAttachment"/> instance for mocking. </returns>
         public static ConditionalQueueSelectorAttachment ConditionalQueueSelectorAttachment(RouterRule condition = null, IEnumerable<RouterQueueSelector> queueSelectors = null)
         {
@@ -108,8 +103,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.PassThroughQueueSelectorAttachment"/>. </summary>
-        /// <param name="key"> The label key to query against. </param>
-        /// <param name="labelOperator"> Describes how the value of the label is compared to the value pass through. </param>
+        /// <param name="key"></param>
+        /// <param name="labelOperator"></param>
         /// <returns> A new <see cref="JobRouter.PassThroughQueueSelectorAttachment"/> instance for mocking. </returns>
         public static PassThroughQueueSelectorAttachment PassThroughQueueSelectorAttachment(string key = null, LabelOperator labelOperator = default)
         {
@@ -118,7 +113,6 @@ namespace Azure.Communication.JobRouter
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RuleEngineQueueSelectorAttachment"/>. </summary>
         /// <param name="rule">
-        /// A RouterRule that resolves a collection of queue selectors to attach.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="JobRouter.FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="JobRouter.WebhookRouterRule"/>.
         /// </param>
@@ -129,7 +123,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.StaticQueueSelectorAttachment"/>. </summary>
-        /// <param name="queueSelector"> The queue selector to attach. </param>
+        /// <param name="queueSelector"></param>
         /// <returns> A new <see cref="JobRouter.StaticQueueSelectorAttachment"/> instance for mocking. </returns>
         public static StaticQueueSelectorAttachment StaticQueueSelectorAttachment(RouterQueueSelector queueSelector = null)
         {
@@ -137,7 +131,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.WeightedAllocationQueueSelectorAttachment"/>. </summary>
-        /// <param name="allocations"> A collection of percentage based weighted allocations. </param>
+        /// <param name="allocations"></param>
         /// <returns> A new <see cref="JobRouter.WeightedAllocationQueueSelectorAttachment"/> instance for mocking. </returns>
         public static WeightedAllocationQueueSelectorAttachment WeightedAllocationQueueSelectorAttachment(IEnumerable<QueueWeightedAllocation> allocations = null)
         {
@@ -147,8 +141,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.QueueWeightedAllocation"/>. </summary>
-        /// <param name="weight"> The percentage of this weight, expressed as a fraction of 1. </param>
-        /// <param name="queueSelectors"> A collection of queue selectors that will be applied if this allocation is selected. </param>
+        /// <param name="weight"></param>
+        /// <param name="queueSelectors"></param>
         /// <returns> A new <see cref="JobRouter.QueueWeightedAllocation"/> instance for mocking. </returns>
         public static QueueWeightedAllocation QueueWeightedAllocation(double weight = default, IEnumerable<RouterQueueSelector> queueSelectors = null)
         {
@@ -159,11 +153,10 @@ namespace Azure.Communication.JobRouter
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ConditionalWorkerSelectorAttachment"/>. </summary>
         /// <param name="condition">
-        /// The condition that must be true for the worker selectors to be attached.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="JobRouter.FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="JobRouter.WebhookRouterRule"/>.
         /// </param>
-        /// <param name="workerSelectors"> The worker selectors to attach. </param>
+        /// <param name="workerSelectors"></param>
         /// <returns> A new <see cref="JobRouter.ConditionalWorkerSelectorAttachment"/> instance for mocking. </returns>
         public static ConditionalWorkerSelectorAttachment ConditionalWorkerSelectorAttachment(RouterRule condition = null, IEnumerable<RouterWorkerSelector> workerSelectors = null)
         {
@@ -173,9 +166,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.PassThroughWorkerSelectorAttachment"/>. </summary>
-        /// <param name="key"> The label key to query against. </param>
-        /// <param name="labelOperator"> Describes how the value of the label is compared to the value pass through. </param>
-        /// <param name="expiresAfter"> Describes how long the attached label selector is valid in seconds. </param>
+        /// <param name="key"></param>
+        /// <param name="labelOperator"></param>
+        /// <param name="expiresAfter"></param>
         /// <returns> A new <see cref="JobRouter.PassThroughWorkerSelectorAttachment"/> instance for mocking. </returns>
         public static PassThroughWorkerSelectorAttachment PassThroughWorkerSelectorAttachment(string key = null, LabelOperator labelOperator = default, TimeSpan? expiresAfter = null)
         {
@@ -184,7 +177,6 @@ namespace Azure.Communication.JobRouter
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RuleEngineWorkerSelectorAttachment"/>. </summary>
         /// <param name="rule">
-        /// A RouterRule that resolves a collection of worker selectors to attach.
         /// Please note <see cref="RouterRule"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="DirectMapRouterRule"/>, <see cref="ExpressionRouterRule"/>, <see cref="JobRouter.FunctionRouterRule"/>, <see cref="StaticRouterRule"/> and <see cref="JobRouter.WebhookRouterRule"/>.
         /// </param>
@@ -195,7 +187,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.StaticWorkerSelectorAttachment"/>. </summary>
-        /// <param name="workerSelector"> The worker selector to attach. </param>
+        /// <param name="workerSelector"></param>
         /// <returns> A new <see cref="JobRouter.StaticWorkerSelectorAttachment"/> instance for mocking. </returns>
         public static StaticWorkerSelectorAttachment StaticWorkerSelectorAttachment(RouterWorkerSelector workerSelector = null)
         {
@@ -203,7 +195,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.WeightedAllocationWorkerSelectorAttachment"/>. </summary>
-        /// <param name="allocations"> A collection of percentage based weighted allocations. </param>
+        /// <param name="allocations"></param>
         /// <returns> A new <see cref="JobRouter.WeightedAllocationWorkerSelectorAttachment"/> instance for mocking. </returns>
         public static WeightedAllocationWorkerSelectorAttachment WeightedAllocationWorkerSelectorAttachment(IEnumerable<WorkerWeightedAllocation> allocations = null)
         {
@@ -213,8 +205,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.WorkerWeightedAllocation"/>. </summary>
-        /// <param name="weight"> The percentage of this weight, expressed as a fraction of 1. </param>
-        /// <param name="workerSelectors"> A collection of worker selectors that will be applied if this allocation is selected. </param>
+        /// <param name="weight"></param>
+        /// <param name="workerSelectors"></param>
         /// <returns> A new <see cref="JobRouter.WorkerWeightedAllocation"/> instance for mocking. </returns>
         public static WorkerWeightedAllocation WorkerWeightedAllocation(double weight = default, IEnumerable<RouterWorkerSelector> workerSelectors = null)
         {
@@ -224,10 +216,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ExceptionPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of an exception policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="exceptionRules"> A collection of exception rules on the exception policy. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="exceptionRules"></param>
         /// <returns> A new <see cref="JobRouter.ExceptionPolicy"/> instance for mocking. </returns>
         public static ExceptionPolicy ExceptionPolicy(ETag eTag = default, string id = null, string name = null, IEnumerable<ExceptionRule> exceptionRules = null)
         {
@@ -237,14 +229,12 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ExceptionRule"/>. </summary>
-        /// <param name="id"> Id of an exception rule. </param>
+        /// <param name="id"></param>
         /// <param name="trigger">
-        /// The trigger for this exception rule.
         /// Please note <see cref="ExceptionTrigger"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="JobRouter.QueueLengthExceptionTrigger"/> and <see cref="WaitTimeExceptionTrigger"/>.
         /// </param>
         /// <param name="actions">
-        /// A collection of actions to perform once the exception is triggered.
         /// Please note <see cref="JobRouter.ExceptionAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="JobRouter.CancelExceptionAction"/>, <see cref="JobRouter.ManualReclassifyExceptionAction"/> and <see cref="ReclassifyExceptionAction"/>.
         /// </param>
@@ -257,7 +247,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.QueueLengthExceptionTrigger"/>. </summary>
-        /// <param name="threshold"> Threshold of number of jobs ahead in the queue to for this trigger to fire. </param>
+        /// <param name="threshold"></param>
         /// <returns> A new <see cref="JobRouter.QueueLengthExceptionTrigger"/> instance for mocking. </returns>
         public static QueueLengthExceptionTrigger QueueLengthExceptionTrigger(int threshold = default)
         {
@@ -265,8 +255,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ExceptionAction"/>. </summary>
-        /// <param name="id"> Unique Id of the exception action. </param>
-        /// <param name="kind"> The type discriminator describing a sub-type of ExceptionAction. </param>
+        /// <param name="id"></param>
+        /// <param name="kind"></param>
         /// <returns> A new <see cref="JobRouter.ExceptionAction"/> instance for mocking. </returns>
         public static ExceptionAction ExceptionAction(string id = null, string kind = null)
         {
@@ -274,9 +264,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.CancelExceptionAction"/>. </summary>
-        /// <param name="id"> Unique Id of the exception action. </param>
-        /// <param name="note"> A note that will be appended to a job's notes collection with the current timestamp. </param>
-        /// <param name="dispositionCode"> Indicates the outcome of a job, populate this field with your own custom values. </param>
+        /// <param name="id"></param>
+        /// <param name="note"></param>
+        /// <param name="dispositionCode"></param>
         /// <returns> A new <see cref="JobRouter.CancelExceptionAction"/> instance for mocking. </returns>
         public static CancelExceptionAction CancelExceptionAction(string id = null, string note = null, string dispositionCode = null)
         {
@@ -284,10 +274,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ManualReclassifyExceptionAction"/>. </summary>
-        /// <param name="id"> Unique Id of the exception action. </param>
-        /// <param name="queueId"> Updated QueueId. </param>
-        /// <param name="priority"> Updated Priority. </param>
-        /// <param name="workerSelectors"> Updated WorkerSelectors. </param>
+        /// <param name="id"></param>
+        /// <param name="queueId"></param>
+        /// <param name="priority"></param>
+        /// <param name="workerSelectors"></param>
         /// <returns> A new <see cref="JobRouter.ManualReclassifyExceptionAction"/> instance for mocking. </returns>
         public static ManualReclassifyExceptionAction ManualReclassifyExceptionAction(string id = null, string queueId = null, int? priority = null, IEnumerable<RouterWorkerSelector> workerSelectors = null)
         {
@@ -303,11 +293,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterJobAssignment"/>. </summary>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="workerId"> Id of the Worker assigned to the job. </param>
-        /// <param name="assignedAt"> Timestamp when the job was assigned to a worker in UTC. </param>
-        /// <param name="completedAt"> Timestamp when the job was marked as completed after being assigned in UTC. </param>
-        /// <param name="closedAt"> Timestamp when the job was marked as closed after being completed in UTC. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="workerId"></param>
+        /// <param name="assignedAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="closedAt"></param>
         /// <returns> A new <see cref="JobRouter.RouterJobAssignment"/> instance for mocking. </returns>
         public static RouterJobAssignment RouterJobAssignment(string assignmentId = null, string workerId = null, DateTimeOffset assignedAt = default, DateTimeOffset? completedAt = null, DateTimeOffset? closedAt = null)
         {
@@ -321,8 +311,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterJobNote"/>. </summary>
-        /// <param name="message"> The message contained in the note. </param>
-        /// <param name="addedAt"> The time at which the note was added in UTC. If not provided, will default to the current time. </param>
+        /// <param name="message"></param>
+        /// <param name="addedAt"></param>
         /// <returns> A new <see cref="JobRouter.RouterJobNote"/> instance for mocking. </returns>
         public static RouterJobNote RouterJobNote(string message = null, DateTimeOffset? addedAt = null)
         {
@@ -330,7 +320,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.ScheduleAndSuspendMode"/>. </summary>
-        /// <param name="scheduleAt"> Requested schedule time. </param>
+        /// <param name="scheduleAt"></param>
         /// <returns> A new <see cref="JobRouter.ScheduleAndSuspendMode"/> instance for mocking. </returns>
         public static ScheduleAndSuspendMode ScheduleAndSuspendMode(DateTimeOffset scheduleAt = default)
         {
@@ -338,11 +328,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterJobPositionDetails"/>. </summary>
-        /// <param name="jobId"> Id of the job these details are about. </param>
-        /// <param name="position"> Position of the job in question within that queue. </param>
-        /// <param name="queueId"> Id of the queue this job is enqueued in. </param>
-        /// <param name="queueLength"> Length of the queue: total number of enqueued jobs. </param>
-        /// <param name="estimatedWaitTime"> Estimated wait time of the job rounded up to the nearest minute. </param>
+        /// <param name="jobId"></param>
+        /// <param name="position"></param>
+        /// <param name="queueId"></param>
+        /// <param name="queueLength"></param>
+        /// <param name="estimatedWaitTime"></param>
         /// <returns> A new <see cref="JobRouter.RouterJobPositionDetails"/> instance for mocking. </returns>
         public static RouterJobPositionDetails RouterJobPositionDetails(string jobId = null, int position = default, string queueId = null, int queueLength = default, TimeSpan estimatedWaitTime = default)
         {
@@ -356,8 +346,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.UnassignJobResult"/>. </summary>
-        /// <param name="jobId"> Id of an unassigned job. </param>
-        /// <param name="unassignmentCount"> The number of times a job is unassigned. At a maximum 3. </param>
+        /// <param name="jobId"></param>
+        /// <param name="unassignmentCount"></param>
         /// <returns> A new <see cref="JobRouter.UnassignJobResult"/> instance for mocking. </returns>
         public static UnassignJobResult UnassignJobResult(string jobId = null, int unassignmentCount = default)
         {
@@ -365,9 +355,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.AcceptJobOfferResult"/>. </summary>
-        /// <param name="assignmentId"> Id of job assignment that assigns a worker that has accepted an offer to a job. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="workerId"> Id of the worker that has been assigned this job. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="workerId"></param>
         /// <returns> A new <see cref="JobRouter.AcceptJobOfferResult"/> instance for mocking. </returns>
         public static AcceptJobOfferResult AcceptJobOfferResult(string assignmentId = null, string jobId = null, string workerId = null)
         {
@@ -375,10 +365,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterQueueStatistics"/>. </summary>
-        /// <param name="queueId"> Id of the queue these details are about. </param>
-        /// <param name="length"> Length of the queue: total number of enqueued jobs. </param>
-        /// <param name="estimatedWaitTimes"> The estimated wait time of this queue rounded up to the nearest minute, grouped by job priority. </param>
-        /// <param name="longestJobWaitTimeMinutes"> The wait time of the job that has been enqueued in this queue for the longest. </param>
+        /// <param name="queueId"></param>
+        /// <param name="length"></param>
+        /// <param name="estimatedWaitTimes"></param>
+        /// <param name="longestJobWaitTimeMinutes"></param>
         /// <returns> A new <see cref="JobRouter.RouterQueueStatistics"/> instance for mocking. </returns>
         public static RouterQueueStatistics RouterQueueStatistics(string queueId = null, int length = default, IDictionary<int, TimeSpan> estimatedWaitTimes = null, double? longestJobWaitTimeMinutes = null)
         {
@@ -388,9 +378,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterChannel"/>. </summary>
-        /// <param name="channelId"> Id of a channel. </param>
-        /// <param name="capacityCostPerJob"> The amount of capacity that an instance of a job of this channel will consume of the total worker capacity. </param>
-        /// <param name="maxNumberOfJobs"> The maximum number of jobs that can be supported concurrently for this channel. Value must be greater than zero. </param>
+        /// <param name="channelId"></param>
+        /// <param name="capacityCostPerJob"></param>
+        /// <param name="maxNumberOfJobs"></param>
         /// <returns> A new <see cref="JobRouter.RouterChannel"/> instance for mocking. </returns>
         public static RouterChannel RouterChannel(string channelId = null, int capacityCostPerJob = default, int? maxNumberOfJobs = null)
         {
@@ -398,11 +388,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterJobOffer"/>. </summary>
-        /// <param name="offerId"> Id of an offer. </param>
-        /// <param name="jobId"> Id of the job. </param>
-        /// <param name="capacityCost"> The capacity cost consumed by the job offer. </param>
-        /// <param name="offeredAt"> Timestamp when the offer was created in UTC. </param>
-        /// <param name="expiresAt"> Timestamp when the offer will expire in UTC. </param>
+        /// <param name="offerId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="capacityCost"></param>
+        /// <param name="offeredAt"></param>
+        /// <param name="expiresAt"></param>
         /// <returns> A new <see cref="JobRouter.RouterJobOffer"/> instance for mocking. </returns>
         public static RouterJobOffer RouterJobOffer(string offerId = null, string jobId = null, int capacityCost = default, DateTimeOffset? offeredAt = null, DateTimeOffset? expiresAt = null)
         {
@@ -416,10 +406,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="JobRouter.RouterWorkerAssignment"/>. </summary>
-        /// <param name="assignmentId"> Id of the assignment. </param>
-        /// <param name="jobId"> Id of the job assigned. </param>
-        /// <param name="capacityCost"> The amount of capacity this assignment has consumed on the worker. </param>
-        /// <param name="assignedAt"> The assignment time of the job in UTC. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="jobId"></param>
+        /// <param name="capacityCost"></param>
+        /// <param name="assignedAt"></param>
         /// <returns> A new <see cref="JobRouter.RouterWorkerAssignment"/> instance for mocking. </returns>
         public static RouterWorkerAssignment RouterWorkerAssignment(string assignmentId = null, string jobId = null, int capacityCost = default, DateTimeOffset assignedAt = default)
         {

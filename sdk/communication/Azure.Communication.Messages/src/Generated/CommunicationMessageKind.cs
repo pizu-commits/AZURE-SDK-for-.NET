@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The type of message. Supports text, image, template. </summary>
+    /// <summary> The CommunicationMessageKind. </summary>
     internal readonly partial struct CommunicationMessageKind : IEquatable<CommunicationMessageKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Communication.Messages
         private const string ImageValue = "image";
         private const string TemplateValue = "template";
 
-        /// <summary> Text message type. </summary>
+        /// <summary> text. </summary>
         public static CommunicationMessageKind Text { get; } = new CommunicationMessageKind(TextValue);
-        /// <summary> Image message type. </summary>
+        /// <summary> image. </summary>
         public static CommunicationMessageKind Image { get; } = new CommunicationMessageKind(ImageValue);
-        /// <summary> Template message type. </summary>
+        /// <summary> template. </summary>
         public static CommunicationMessageKind Template { get; } = new CommunicationMessageKind(TemplateValue);
         /// <summary> Determines if two <see cref="CommunicationMessageKind"/> values are the same. </summary>
         public static bool operator ==(CommunicationMessageKind left, CommunicationMessageKind right) => left.Equals(right);

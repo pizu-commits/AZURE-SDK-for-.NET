@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Enums used to filters workers by state. </summary>
+    /// <summary> The RouterWorkerStateSelector. </summary>
     public readonly partial struct RouterWorkerStateSelector : IEquatable<RouterWorkerStateSelector>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Communication.JobRouter
         private const string InactiveValue = "inactive";
         private const string AllValue = "all";
 
-        /// <summary> Worker is active and available to take offers. </summary>
+        /// <summary> active. </summary>
         public static RouterWorkerStateSelector Active { get; } = new RouterWorkerStateSelector(ActiveValue);
-        /// <summary> Worker is not active, if there are existing offers they are being revoked. No new offers are sent. </summary>
+        /// <summary> draining. </summary>
         public static RouterWorkerStateSelector Draining { get; } = new RouterWorkerStateSelector(DrainingValue);
-        /// <summary> Worker is not active. No new offers are sent. </summary>
+        /// <summary> inactive. </summary>
         public static RouterWorkerStateSelector Inactive { get; } = new RouterWorkerStateSelector(InactiveValue);
-        /// <summary> Worker is active or draining or inactive. </summary>
+        /// <summary> all. </summary>
         public static RouterWorkerStateSelector All { get; } = new RouterWorkerStateSelector(AllValue);
         /// <summary> Determines if two <see cref="RouterWorkerStateSelector"/> values are the same. </summary>
         public static bool operator ==(RouterWorkerStateSelector left, RouterWorkerStateSelector right) => left.Equals(right);

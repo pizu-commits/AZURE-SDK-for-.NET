@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A unit of work to be routed. </summary>
+    /// <summary> The RouterJob. </summary>
     public partial class RouterJob
     {
         /// <summary>
@@ -57,25 +57,24 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterJob"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of a job. </param>
-        /// <param name="channelReference"> Reference to an external parent context, eg. call ID. </param>
-        /// <param name="status"> The status of the job. </param>
-        /// <param name="enqueuedAt"> Timestamp a job was queued in UTC. </param>
-        /// <param name="channelId"> The channel identifier. eg. voice, chat, etc. </param>
-        /// <param name="classificationPolicyId"> Id of a classification policy used for classifying this job. </param>
-        /// <param name="queueId"> Id of a queue that this job is queued to. </param>
-        /// <param name="priority"> Priority of this job. Value must be between -100 to 100. </param>
-        /// <param name="dispositionCode"> Reason code for cancelled or closed jobs. </param>
-        /// <param name="requestedWorkerSelectors"> A collection of manually specified worker selectors, which a worker must satisfy in order to process this job. </param>
-        /// <param name="attachedWorkerSelectors"> A collection of worker selectors attached by a classification policy, which a worker must satisfy in order to process this job. </param>
-        /// <param name="labels"> A set of key/value pairs that are identifying attributes used by the rules engines to make decisions. Values must be primitive values - number, string, boolean. </param>
-        /// <param name="assignments"> A collection of the assignments of the job. Key is AssignmentId. </param>
-        /// <param name="tags"> A set of non-identifying attributes attached to this job. Values must be primitive values - number, string, boolean. </param>
-        /// <param name="notes"> Notes attached to a job, sorted by timestamp. </param>
-        /// <param name="scheduledAt"> If set, job will be scheduled to be enqueued at a given time. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="status"></param>
+        /// <param name="enqueuedAt"></param>
+        /// <param name="channelId"></param>
+        /// <param name="classificationPolicyId"></param>
+        /// <param name="queueId"></param>
+        /// <param name="priority"></param>
+        /// <param name="dispositionCode"></param>
+        /// <param name="requestedWorkerSelectors"></param>
+        /// <param name="attachedWorkerSelectors"></param>
+        /// <param name="labels"></param>
+        /// <param name="assignments"></param>
+        /// <param name="tags"></param>
+        /// <param name="notes"></param>
+        /// <param name="scheduledAt"></param>
         /// <param name="matchingMode">
-        /// If provided, will determine how job matching will be carried out. Default mode: QueueAndMatchMode.
         /// Please note <see cref="JobMatchingMode"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="QueueAndMatchMode"/>, <see cref="ScheduleAndSuspendMode"/> and <see cref="SuspendMode"/>.
         /// </param>
@@ -102,17 +101,17 @@ namespace Azure.Communication.JobRouter
             MatchingMode = matchingMode;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-        /// <summary> Id of a job. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The status of the job. </summary>
+        /// <summary> Gets the status. </summary>
         public RouterJobStatus? Status { get; }
-        /// <summary> Timestamp a job was queued in UTC. </summary>
+        /// <summary> Gets the enqueued at. </summary>
         public DateTimeOffset? EnqueuedAt { get; }
-        /// <summary> A collection of worker selectors attached by a classification policy, which a worker must satisfy in order to process this job. </summary>
+        /// <summary> Gets the attached worker selectors. </summary>
         public IReadOnlyList<RouterWorkerSelector> AttachedWorkerSelectors { get; }
-        /// <summary> A collection of the assignments of the job. Key is AssignmentId. </summary>
+        /// <summary> Gets the assignments. </summary>
         public IReadOnlyDictionary<string, RouterJobAssignment> Assignments { get; }
-        /// <summary> If set, job will be scheduled to be enqueued at a given time. </summary>
+        /// <summary> Gets the scheduled at. </summary>
         public DateTimeOffset? ScheduledAt { get; }
     }
 }

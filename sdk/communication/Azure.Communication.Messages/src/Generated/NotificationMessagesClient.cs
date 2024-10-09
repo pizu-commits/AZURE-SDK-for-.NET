@@ -66,7 +66,7 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Sends a notification message from Business to User. </summary>
-        /// <param name="notificationContent"> Details of the message to send. </param>
+        /// <param name="notificationContent"> The <see cref="NotificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="notificationContent"/> is null. </exception>
         /// <include file="Docs/NotificationMessagesClient.xml" path="doc/members/member[@name='SendAsync(NotificationContent,CancellationToken)']/*" />
@@ -81,7 +81,7 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Sends a notification message from Business to User. </summary>
-        /// <param name="notificationContent"> Details of the message to send. </param>
+        /// <param name="notificationContent"> The <see cref="NotificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="notificationContent"/> is null. </exception>
         /// <include file="Docs/NotificationMessagesClient.xml" path="doc/members/member[@name='Send(NotificationContent,CancellationToken)']/*" />
@@ -174,7 +174,7 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Download the Media payload from a User to Business message. </summary>
-        /// <param name="id"> The stream ID. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
@@ -188,7 +188,7 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Download the Media payload from a User to Business message. </summary>
-        /// <param name="id"> The stream ID. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
@@ -216,7 +216,7 @@ namespace Azure.Communication.Messages
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> The stream ID. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>
@@ -255,7 +255,7 @@ namespace Azure.Communication.Messages
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> The stream ID. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="id"/> is an empty string, and was expected to be non-empty. </exception>

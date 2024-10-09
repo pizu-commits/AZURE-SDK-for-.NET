@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Different kind of eviction policies. </summary>
+    /// <summary> The ComputeFleetEvictionPolicy. </summary>
     public readonly partial struct ComputeFleetEvictionPolicy : IEquatable<ComputeFleetEvictionPolicy>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string DeleteValue = "Delete";
         private const string DeallocateValue = "Deallocate";
 
-        /// <summary> When evicted, the Spot VM will be deleted and the corresponding capacity will be updated to reflect this. </summary>
+        /// <summary> Delete. </summary>
         public static ComputeFleetEvictionPolicy Delete { get; } = new ComputeFleetEvictionPolicy(DeleteValue);
-        /// <summary> When evicted, the Spot VM will be deallocated/stopped. </summary>
+        /// <summary> Deallocate. </summary>
         public static ComputeFleetEvictionPolicy Deallocate { get; } = new ComputeFleetEvictionPolicy(DeallocateValue);
         /// <summary> Determines if two <see cref="ComputeFleetEvictionPolicy"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetEvictionPolicy left, ComputeFleetEvictionPolicy right) => left.Equals(right);

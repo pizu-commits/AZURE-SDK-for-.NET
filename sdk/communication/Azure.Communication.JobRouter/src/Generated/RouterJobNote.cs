@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A note attached to a job. </summary>
+    /// <summary> The RouterJobNote. </summary>
     public partial class RouterJobNote
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterJobNote"/>. </summary>
-        /// <param name="message"> The message contained in the note. </param>
-        /// <param name="addedAt"> The time at which the note was added in UTC. If not provided, will default to the current time. </param>
+        /// <param name="message"></param>
+        /// <param name="addedAt"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterJobNote(string message, DateTimeOffset? addedAt, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,7 +61,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> The message contained in the note. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
     }
 }

@@ -13,7 +13,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machine scale set network profile's IP configuration. </summary>
+    /// <summary> The ComputeFleetVmssNetworkConfigurationProperties. </summary>
     public partial class ComputeFleetVmssNetworkConfigurationProperties
     {
         /// <summary>
@@ -49,7 +49,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssNetworkConfigurationProperties"/>. </summary>
-        /// <param name="ipConfigurations"> Specifies the IP configurations of the network interface. </param>
+        /// <param name="ipConfigurations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="ipConfigurations"/> is null. </exception>
         public ComputeFleetVmssNetworkConfigurationProperties(IEnumerable<ComputeFleetVmssIPConfiguration> ipConfigurations)
         {
@@ -59,26 +59,17 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssNetworkConfigurationProperties"/>. </summary>
-        /// <param name="isPrimary">
-        /// Specifies the primary network interface in case the virtual machine has more
-        /// than 1 network interface.
-        /// </param>
-        /// <param name="isAcceleratedNetworkingEnabled"> Specifies whether the network interface is accelerated networking-enabled. </param>
-        /// <param name="isTcpStateTrackingDisabled"> Specifies whether the network interface is disabled for tcp state tracking. </param>
-        /// <param name="isFpgaEnabled"> Specifies whether the network interface is FPGA networking-enabled. </param>
-        /// <param name="networkSecurityGroup"> The network security group. </param>
-        /// <param name="dnsSettings"> The dns settings to be applied on the network interfaces. </param>
-        /// <param name="ipConfigurations"> Specifies the IP configurations of the network interface. </param>
-        /// <param name="isIPForwardingEnabled"> Whether IP forwarding enabled on this NIC. </param>
-        /// <param name="deleteOption"> Specify what happens to the network interface when the VM is deleted. </param>
-        /// <param name="auxiliaryMode">
-        /// Specifies whether the Auxiliary mode is enabled for the Network Interface
-        /// resource.
-        /// </param>
-        /// <param name="auxiliarySku">
-        /// Specifies whether the Auxiliary sku is enabled for the Network Interface
-        /// resource.
-        /// </param>
+        /// <param name="isPrimary"></param>
+        /// <param name="isAcceleratedNetworkingEnabled"></param>
+        /// <param name="isTcpStateTrackingDisabled"></param>
+        /// <param name="isFpgaEnabled"></param>
+        /// <param name="networkSecurityGroup"> Gets or sets the network security group. </param>
+        /// <param name="dnsSettings"></param>
+        /// <param name="ipConfigurations"></param>
+        /// <param name="isIPForwardingEnabled"></param>
+        /// <param name="deleteOption"></param>
+        /// <param name="auxiliaryMode"></param>
+        /// <param name="auxiliarySku"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssNetworkConfigurationProperties(bool? isPrimary, bool? isAcceleratedNetworkingEnabled, bool? isTcpStateTrackingDisabled, bool? isFpgaEnabled, WritableSubResource networkSecurityGroup, ComputeFleetVmssNetworkDnsSettings dnsSettings, IList<ComputeFleetVmssIPConfiguration> ipConfigurations, bool? isIPForwardingEnabled, ComputeFleetVmDeleteOption? deleteOption, ComputeFleetNetworkInterfaceAuxiliaryMode? auxiliaryMode, ComputeFleetNetworkInterfaceAuxiliarySku? auxiliarySku, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -101,18 +92,15 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary>
-        /// Specifies the primary network interface in case the virtual machine has more
-        /// than 1 network interface.
-        /// </summary>
+        /// <summary> Gets or sets the is primary. </summary>
         public bool? IsPrimary { get; set; }
-        /// <summary> Specifies whether the network interface is accelerated networking-enabled. </summary>
+        /// <summary> Gets or sets the is accelerated networking enabled. </summary>
         public bool? IsAcceleratedNetworkingEnabled { get; set; }
-        /// <summary> Specifies whether the network interface is disabled for tcp state tracking. </summary>
+        /// <summary> Gets or sets the is tcp state tracking disabled. </summary>
         public bool? IsTcpStateTrackingDisabled { get; set; }
-        /// <summary> Specifies whether the network interface is FPGA networking-enabled. </summary>
+        /// <summary> Gets or sets the is fpga enabled. </summary>
         public bool? IsFpgaEnabled { get; set; }
-        /// <summary> The network security group. </summary>
+        /// <summary> Gets or sets the network security group. </summary>
         internal WritableSubResource NetworkSecurityGroup { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier NetworkSecurityGroupId
@@ -126,9 +114,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary> The dns settings to be applied on the network interfaces. </summary>
+        /// <summary> Gets or sets the dns settings. </summary>
         internal ComputeFleetVmssNetworkDnsSettings DnsSettings { get; set; }
-        /// <summary> List of DNS servers IP addresses. </summary>
+        /// <summary> Gets the dns servers. </summary>
         public IList<string> DnsServers
         {
             get
@@ -139,21 +127,15 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary> Specifies the IP configurations of the network interface. </summary>
+        /// <summary> Gets the ip configurations. </summary>
         public IList<ComputeFleetVmssIPConfiguration> IPConfigurations { get; }
-        /// <summary> Whether IP forwarding enabled on this NIC. </summary>
+        /// <summary> Gets or sets the is ip forwarding enabled. </summary>
         public bool? IsIPForwardingEnabled { get; set; }
-        /// <summary> Specify what happens to the network interface when the VM is deleted. </summary>
+        /// <summary> Gets or sets the delete option. </summary>
         public ComputeFleetVmDeleteOption? DeleteOption { get; set; }
-        /// <summary>
-        /// Specifies whether the Auxiliary mode is enabled for the Network Interface
-        /// resource.
-        /// </summary>
+        /// <summary> Gets or sets the auxiliary mode. </summary>
         public ComputeFleetNetworkInterfaceAuxiliaryMode? AuxiliaryMode { get; set; }
-        /// <summary>
-        /// Specifies whether the Auxiliary sku is enabled for the Network Interface
-        /// resource.
-        /// </summary>
+        /// <summary> Gets or sets the auxiliary sku. </summary>
         public ComputeFleetNetworkInterfaceAuxiliarySku? AuxiliarySku { get; set; }
     }
 }

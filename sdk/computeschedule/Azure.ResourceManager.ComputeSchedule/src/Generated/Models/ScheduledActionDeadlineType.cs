@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The types of deadlines supported by ScheduledActions. </summary>
+    /// <summary> The ScheduledActionDeadlineType. </summary>
     public readonly partial struct ScheduledActionDeadlineType : IEquatable<ScheduledActionDeadlineType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private const string InitiateAtValue = "InitiateAt";
         private const string CompleteByValue = "CompleteBy";
 
-        /// <summary> Default value of Unknown. </summary>
+        /// <summary> Unknown. </summary>
         public static ScheduledActionDeadlineType Unknown { get; } = new ScheduledActionDeadlineType(UnknownValue);
-        /// <summary> Initiate the operation at the given deadline. </summary>
+        /// <summary> InitiateAt. </summary>
         public static ScheduledActionDeadlineType InitiateAt { get; } = new ScheduledActionDeadlineType(InitiateAtValue);
-        /// <summary> Complete the operation by the given deadline. </summary>
+        /// <summary> CompleteBy. </summary>
         public static ScheduledActionDeadlineType CompleteBy { get; } = new ScheduledActionDeadlineType(CompleteByValue);
         /// <summary> Determines if two <see cref="ScheduledActionDeadlineType"/> values are the same. </summary>
         public static bool operator ==(ScheduledActionDeadlineType left, ScheduledActionDeadlineType right) => left.Equals(right);

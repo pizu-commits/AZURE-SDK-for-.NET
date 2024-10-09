@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Configuration Options for Regular instances in Compute Fleet. </summary>
+    /// <summary> The RegularPriorityProfile. </summary>
     public partial class RegularPriorityProfile
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="RegularPriorityProfile"/>. </summary>
-        /// <param name="capacity"> Total capacity to achieve. It is currently in terms of number of VMs. </param>
-        /// <param name="minCapacity"> Minimum capacity to achieve which cannot be updated. If we will not be able to "guarantee" minimum capacity, we will reject the request in the sync path itself. </param>
-        /// <param name="allocationStrategy"> Allocation strategy to follow when determining the VM sizes distribution for Regular VMs. </param>
+        /// <param name="capacity"></param>
+        /// <param name="minCapacity"></param>
+        /// <param name="allocationStrategy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RegularPriorityProfile(int? capacity, int? minCapacity, RegularPriorityAllocationStrategy? allocationStrategy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Total capacity to achieve. It is currently in terms of number of VMs. </summary>
+        /// <summary> Gets or sets the capacity. </summary>
         public int? Capacity { get; set; }
-        /// <summary> Minimum capacity to achieve which cannot be updated. If we will not be able to "guarantee" minimum capacity, we will reject the request in the sync path itself. </summary>
+        /// <summary> Gets or sets the min capacity. </summary>
         public int? MinCapacity { get; set; }
-        /// <summary> Allocation strategy to follow when determining the VM sizes distribution for Regular VMs. </summary>
+        /// <summary> Gets or sets the allocation strategy. </summary>
         public RegularPriorityAllocationStrategy? AllocationStrategy { get; set; }
     }
 }

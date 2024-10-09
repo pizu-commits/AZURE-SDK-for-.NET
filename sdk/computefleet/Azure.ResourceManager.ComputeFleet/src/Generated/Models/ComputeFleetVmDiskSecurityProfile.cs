@@ -12,10 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the security profile settings for the managed disk. **Note:** It can
-    /// only be set for Confidential VMs.
-    /// </summary>
+    /// <summary> The ComputeFleetVmDiskSecurityProfile. </summary>
     public partial class ComputeFleetVmDiskSecurityProfile
     {
         /// <summary>
@@ -56,18 +53,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmDiskSecurityProfile"/>. </summary>
-        /// <param name="securityEncryptionType">
-        /// Specifies the EncryptionType of the managed disk. It is set to
-        /// DiskWithVMGuestState for encryption of the managed disk along with VMGuestState
-        /// blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and
-        /// NonPersistedTPM for not persisting firmware state in the VMGuestState blob..
-        /// **Note:** It can be set for only Confidential VMs.
-        /// </param>
-        /// <param name="diskEncryptionSet">
-        /// Specifies the customer managed disk encryption set resource id for the managed
-        /// disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and
-        /// VMGuest blob.
-        /// </param>
+        /// <param name="securityEncryptionType"></param>
+        /// <param name="diskEncryptionSet"> Gets or sets the disk encryption set. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmDiskSecurityProfile(ComputeFleetSecurityEncryptionType? securityEncryptionType, WritableSubResource diskEncryptionSet, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,19 +63,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the EncryptionType of the managed disk. It is set to
-        /// DiskWithVMGuestState for encryption of the managed disk along with VMGuestState
-        /// blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and
-        /// NonPersistedTPM for not persisting firmware state in the VMGuestState blob..
-        /// **Note:** It can be set for only Confidential VMs.
-        /// </summary>
+        /// <summary> Gets or sets the security encryption type. </summary>
         public ComputeFleetSecurityEncryptionType? SecurityEncryptionType { get; set; }
-        /// <summary>
-        /// Specifies the customer managed disk encryption set resource id for the managed
-        /// disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and
-        /// VMGuest blob.
-        /// </summary>
+        /// <summary> Gets or sets the disk encryption set. </summary>
         internal WritableSubResource DiskEncryptionSet { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier DiskEncryptionSetId

@@ -16,10 +16,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
     public static partial class ArmComputeScheduleModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="Models.DeallocateResourceOperationResult"/>. </summary>
-        /// <param name="description"> The description of the operation response. </param>
-        /// <param name="resourceType"> The type of resources used in the deallocate request eg virtual machines. </param>
-        /// <param name="location"> The location of the deallocate request eg westus. </param>
-        /// <param name="results"> The results from the deallocate request if no errors exist. </param>
+        /// <param name="description"></param>
+        /// <param name="resourceType"></param>
+        /// <param name="location"></param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.DeallocateResourceOperationResult"/> instance for mocking. </returns>
         public static DeallocateResourceOperationResult DeallocateResourceOperationResult(string description = null, string resourceType = null, AzureLocation location = default, IEnumerable<ResourceOperationResult> results = null)
         {
@@ -29,10 +29,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.ResourceOperationResult"/>. </summary>
-        /// <param name="resourceId"> Unique identifier for the resource involved in the operation, eg ArmId. </param>
-        /// <param name="errorCode"> Resource level error code if it exists. </param>
-        /// <param name="errorDetails"> Resource level error details if they exist. </param>
-        /// <param name="operation"> Details of the operation performed on a resource. </param>
+        /// <param name="resourceId"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
+        /// <param name="operation"></param>
         /// <returns> A new <see cref="Models.ResourceOperationResult"/> instance for mocking. </returns>
         public static ResourceOperationResult ResourceOperationResult(ResourceIdentifier resourceId = null, string errorCode = null, string errorDetails = null, ResourceOperationDetails operation = null)
         {
@@ -40,17 +40,17 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.ResourceOperationDetails"/>. </summary>
-        /// <param name="operationId"> Operation identifier for the unique operation. </param>
-        /// <param name="resourceId"> Unique identifier for the resource involved in the operation, eg ArmId. </param>
-        /// <param name="opType"> Type of operation performed on the resources. </param>
-        /// <param name="subscriptionId"> Subscription id attached to the request. </param>
-        /// <param name="deadline"> Deadline for the operation. </param>
-        /// <param name="deadlineType"> Type of deadline of the operation. </param>
-        /// <param name="state"> Current state of the operation. </param>
-        /// <param name="timeZone"> Timezone for the operation. </param>
-        /// <param name="resourceOperationError"> Operation level errors if they exist. </param>
-        /// <param name="completedOn"> Time the operation was complete if errors are null. </param>
-        /// <param name="retryPolicy"> Retry policy the user can pass. </param>
+        /// <param name="operationId"></param>
+        /// <param name="resourceId"></param>
+        /// <param name="opType"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="deadline"></param>
+        /// <param name="deadlineType"></param>
+        /// <param name="state"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="resourceOperationError"></param>
+        /// <param name="completedOn"></param>
+        /// <param name="retryPolicy"></param>
         /// <returns> A new <see cref="Models.ResourceOperationDetails"/> instance for mocking. </returns>
         public static ResourceOperationDetails ResourceOperationDetails(string operationId = null, ResourceIdentifier resourceId = null, ResourceOperationType opType = default, string subscriptionId = null, DateTimeOffset deadline = default, ScheduledActionDeadlineType deadlineType = default, ScheduledActionOperationState state = default, string timeZone = null, ResourceOperationError resourceOperationError = null, DateTimeOffset? completedOn = null, UserRequestRetryPolicy retryPolicy = null)
         {
@@ -70,8 +70,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.ResourceOperationError"/>. </summary>
-        /// <param name="errorCode"> Code for the error eg 404, 500. </param>
-        /// <param name="errorDetails"> Detailed message about the error. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
         /// <returns> A new <see cref="Models.ResourceOperationError"/> instance for mocking. </returns>
         public static ResourceOperationError ResourceOperationError(string errorCode = null, string errorDetails = null)
         {
@@ -79,10 +79,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.HibernateResourceOperationResult"/>. </summary>
-        /// <param name="description"> The description of the operation response. </param>
-        /// <param name="resourceType"> The type of resources used in the Hibernate request eg virtual machines. </param>
-        /// <param name="location"> The location of the Hibernate request eg westus. </param>
-        /// <param name="results"> The results from the Hibernate request if no errors exist. </param>
+        /// <param name="description"></param>
+        /// <param name="resourceType"></param>
+        /// <param name="location"></param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.HibernateResourceOperationResult"/> instance for mocking. </returns>
         public static HibernateResourceOperationResult HibernateResourceOperationResult(string description = null, string resourceType = null, AzureLocation location = default, IEnumerable<ResourceOperationResult> results = null)
         {
@@ -92,10 +92,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.StartResourceOperationResult"/>. </summary>
-        /// <param name="description"> The description of the operation response. </param>
-        /// <param name="resourceType"> The type of resources used in the start request eg virtual machines. </param>
-        /// <param name="location"> The location of the start request eg westus. </param>
-        /// <param name="results"> The results from the start request if no errors exist. </param>
+        /// <param name="description"></param>
+        /// <param name="resourceType"></param>
+        /// <param name="location"></param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.StartResourceOperationResult"/> instance for mocking. </returns>
         public static StartResourceOperationResult StartResourceOperationResult(string description = null, string resourceType = null, AzureLocation location = default, IEnumerable<ResourceOperationResult> results = null)
         {
@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.GetOperationStatusResult"/>. </summary>
-        /// <param name="results"> An array of resource operations based on their operation ids. </param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.GetOperationStatusResult"/> instance for mocking. </returns>
         public static GetOperationStatusResult GetOperationStatusResult(IEnumerable<ResourceOperationResult> results = null)
         {
@@ -115,7 +115,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.CancelOperationsResult"/>. </summary>
-        /// <param name="results"> An array of resource operations that were successfully cancelled. </param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.CancelOperationsResult"/> instance for mocking. </returns>
         public static CancelOperationsResult CancelOperationsResult(IEnumerable<ResourceOperationResult> results = null)
         {
@@ -125,7 +125,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.GetOperationErrorsResult"/>. </summary>
-        /// <param name="results"> An array of operationids and their corresponding errors if any. </param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="Models.GetOperationErrorsResult"/> instance for mocking. </returns>
         public static GetOperationErrorsResult GetOperationErrorsResult(IEnumerable<OperationErrorsResult> results = null)
         {
@@ -135,13 +135,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.OperationErrorsResult"/>. </summary>
-        /// <param name="operationId"> The operationId identifying a vm operation. </param>
-        /// <param name="createdOn"> The creation time of the error result. </param>
-        /// <param name="activationOn"> The activation time of a vm operation. </param>
-        /// <param name="completedOn"> The completion time of the operation if the operation was completed. </param>
-        /// <param name="operationErrors"> A list of errors associated with the operationid. </param>
-        /// <param name="requestErrorCode"> Request level error code. </param>
-        /// <param name="requestErrorDetails"> Request level error details. </param>
+        /// <param name="operationId"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="activationOn"></param>
+        /// <param name="completedOn"></param>
+        /// <param name="operationErrors"></param>
+        /// <param name="requestErrorCode"></param>
+        /// <param name="requestErrorDetails"></param>
         /// <returns> A new <see cref="Models.OperationErrorsResult"/> instance for mocking. </returns>
         public static OperationErrorsResult OperationErrorsResult(string operationId = null, DateTimeOffset? createdOn = null, DateTimeOffset? activationOn = null, DateTimeOffset? completedOn = null, IEnumerable<OperationErrorDetails> operationErrors = null, string requestErrorCode = null, string requestErrorDetails = null)
         {
@@ -159,10 +159,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.OperationErrorDetails"/>. </summary>
-        /// <param name="errorCode"> The error code of the operation. </param>
-        /// <param name="errorDetails"> The error details of the operation. </param>
-        /// <param name="timeStamp"> The timestamp of the error occurence. </param>
-        /// <param name="crpOperationId"> CRP operationid of the operation for deeper analysis. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
+        /// <param name="timeStamp"></param>
+        /// <param name="crpOperationId"></param>
         /// <returns> A new <see cref="Models.OperationErrorDetails"/> instance for mocking. </returns>
         public static OperationErrorDetails OperationErrorDetails(string errorCode = null, DateTimeOffset errorDetails = default, DateTimeOffset timeStamp = default, string crpOperationId = null)
         {

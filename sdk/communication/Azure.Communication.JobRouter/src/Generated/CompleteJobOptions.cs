@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Request payload for completing jobs. </summary>
+    /// <summary> The CompleteJobOptions. </summary>
     public partial class CompleteJobOptions
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CompleteJobOptions"/>. </summary>
-        /// <param name="note"> A note that will be appended to a job's Notes collection with the current timestamp. </param>
+        /// <param name="note"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CompleteJobOptions(string note, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The kind of operation types that can be performed on resources using ScheduledActions. </summary>
+    /// <summary> The ResourceOperationType. </summary>
     public readonly partial struct ResourceOperationType : IEquatable<ResourceOperationType>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private const string DeallocateValue = "Deallocate";
         private const string HibernateValue = "Hibernate";
 
-        /// <summary> The default value for this enum type. </summary>
+        /// <summary> Unknown. </summary>
         public static ResourceOperationType Unknown { get; } = new ResourceOperationType(UnknownValue);
-        /// <summary> Start operations on the resources. </summary>
+        /// <summary> Start. </summary>
         public static ResourceOperationType Start { get; } = new ResourceOperationType(StartValue);
-        /// <summary> Deallocate operations on the resources. </summary>
+        /// <summary> Deallocate. </summary>
         public static ResourceOperationType Deallocate { get; } = new ResourceOperationType(DeallocateValue);
-        /// <summary> Hibernate operations on the resources. </summary>
+        /// <summary> Hibernate. </summary>
         public static ResourceOperationType Hibernate { get; } = new ResourceOperationType(HibernateValue);
         /// <summary> Determines if two <see cref="ResourceOperationType"/> values are the same. </summary>
         public static bool operator ==(ResourceOperationType left, ResourceOperationType right) => left.Equals(right);

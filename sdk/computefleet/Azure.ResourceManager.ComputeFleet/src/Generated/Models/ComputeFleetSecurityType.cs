@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the SecurityType of the virtual machine. It has to be set to any
-    /// specified value to enable UefiSettings. The default behavior is: UefiSettings
-    /// will not be enabled unless this property is set.
-    /// </summary>
+    /// <summary> The ComputeFleetSecurityTypes. </summary>
     public readonly partial struct ComputeFleetSecurityType : IEquatable<ComputeFleetSecurityType>
     {
         private readonly string _value;
@@ -29,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string TrustedLaunchValue = "TrustedLaunch";
         private const string ConfidentialVmValue = "ConfidentialVM";
 
-        /// <summary> TrustedLaunch security type. </summary>
+        /// <summary> TrustedLaunch. </summary>
         public static ComputeFleetSecurityType TrustedLaunch { get; } = new ComputeFleetSecurityType(TrustedLaunchValue);
-        /// <summary> ConfidentialVM security type. </summary>
+        /// <summary> ConfidentialVM. </summary>
         public static ComputeFleetSecurityType ConfidentialVm { get; } = new ComputeFleetSecurityType(ConfidentialVmValue);
         /// <summary> Determines if two <see cref="ComputeFleetSecurityType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetSecurityType left, ComputeFleetSecurityType right) => left.Equals(right);

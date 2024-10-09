@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> OAuth2.0 Credentials used to Contoso's Authorization server. Reference: https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/. </summary>
+    /// <summary> The OAuth2WebhookClientCredential. </summary>
     public partial class OAuth2WebhookClientCredential
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="OAuth2WebhookClientCredential"/>. </summary>
-        /// <param name="clientId"> ClientId for Contoso Authorization server. </param>
-        /// <param name="clientSecret"> Client secret for Contoso Authorization server. </param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OAuth2WebhookClientCredential(string clientId, string clientSecret, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Request to verify Location. </summary>
+    /// <summary> The DeviceLocationVerificationContent. </summary>
     public partial class DeviceLocationVerificationContent
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceLocationVerificationContent"/>. </summary>
-        /// <param name="networkIdentifier"> Network to query for this device, or device information to enable network routing. </param>
-        /// <param name="latitude"> Latitude of location to be verified. </param>
-        /// <param name="longitude"> Longitude of location to be verified. </param>
-        /// <param name="accuracy"> Accuracy expected for location verification in kilometers. </param>
-        /// <param name="device"> The device to find the location for. Exactly one of Network Access Code, Phone Number, IPv4 address, or IPv6 address. </param>
+        /// <param name="networkIdentifier"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <param name="accuracy"></param>
+        /// <param name="device"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkIdentifier"/> or <paramref name="device"/> is null. </exception>
         public DeviceLocationVerificationContent(NetworkIdentifier networkIdentifier, double latitude, double longitude, int accuracy, LocationDevice device)
         {
@@ -65,11 +65,11 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceLocationVerificationContent"/>. </summary>
-        /// <param name="networkIdentifier"> Network to query for this device, or device information to enable network routing. </param>
-        /// <param name="latitude"> Latitude of location to be verified. </param>
-        /// <param name="longitude"> Longitude of location to be verified. </param>
-        /// <param name="accuracy"> Accuracy expected for location verification in kilometers. </param>
-        /// <param name="device"> The device to find the location for. Exactly one of Network Access Code, Phone Number, IPv4 address, or IPv6 address. </param>
+        /// <param name="networkIdentifier"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <param name="accuracy"></param>
+        /// <param name="device"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceLocationVerificationContent(NetworkIdentifier networkIdentifier, double latitude, double longitude, int accuracy, LocationDevice device, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,15 +86,15 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> Network to query for this device, or device information to enable network routing. </summary>
+        /// <summary> Gets the network identifier. </summary>
         public NetworkIdentifier NetworkIdentifier { get; }
-        /// <summary> Latitude of location to be verified. </summary>
+        /// <summary> Gets the latitude. </summary>
         public double Latitude { get; }
-        /// <summary> Longitude of location to be verified. </summary>
+        /// <summary> Gets the longitude. </summary>
         public double Longitude { get; }
-        /// <summary> Accuracy expected for location verification in kilometers. </summary>
+        /// <summary> Gets the accuracy. </summary>
         public int Accuracy { get; }
-        /// <summary> The device to find the location for. Exactly one of Network Access Code, Phone Number, IPv4 address, or IPv6 address. </summary>
+        /// <summary> Gets the device. </summary>
         public LocationDevice Device { get; }
     }
 }

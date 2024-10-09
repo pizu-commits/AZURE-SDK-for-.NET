@@ -11,13 +11,13 @@ using System.Linq;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes multiple sets of queue selectors, of which one will be selected and attached according to a weighting. </summary>
+    /// <summary> The WeightedAllocationQueueSelectorAttachment. </summary>
     public partial class WeightedAllocationQueueSelectorAttachment : QueueSelectorAttachment
     {
         /// <summary> Initializes a new instance of <see cref="WeightedAllocationQueueSelectorAttachment"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of QueueSelectorAttachment. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="allocations"> A collection of percentage based weighted allocations. </param>
+        /// <param name="allocations"></param>
         internal WeightedAllocationQueueSelectorAttachment(QueueSelectorAttachmentKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<QueueWeightedAllocation> allocations) : base(kind, serializedAdditionalRawData)
         {
             Allocations = allocations;
@@ -28,7 +28,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> A collection of percentage based weighted allocations. </summary>
+        /// <summary> Gets the allocations. </summary>
         public IReadOnlyList<QueueWeightedAllocation> Allocations { get; }
     }
 }

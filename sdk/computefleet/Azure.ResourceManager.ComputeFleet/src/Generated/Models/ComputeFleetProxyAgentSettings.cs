@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies ProxyAgent settings while creating the virtual machine. Minimum
-    /// api-version: 2023-09-01.
-    /// </summary>
+    /// <summary> The ComputeFleetProxyAgentSettings. </summary>
     public partial class ComputeFleetProxyAgentSettings
     {
         /// <summary>
@@ -54,20 +51,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetProxyAgentSettings"/>. </summary>
-        /// <param name="isEnabled">
-        /// Specifies whether ProxyAgent feature should be enabled on the virtual machine
-        /// or virtual machine scale set.
-        /// </param>
-        /// <param name="mode">
-        /// Specifies the mode that ProxyAgent will execute on if the feature is enabled.
-        /// ProxyAgent will start to audit or monitor but not enforce access control over
-        /// requests to host endpoints in Audit mode, while in Enforce mode it will enforce
-        /// access control. The default value is Enforce mode.
-        /// </param>
-        /// <param name="keyIncarnationId">
-        /// Increase the value of this property allows user to reset the key used for
-        /// securing communication channel between guest and host.
-        /// </param>
+        /// <param name="isEnabled"></param>
+        /// <param name="mode"></param>
+        /// <param name="keyIncarnationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetProxyAgentSettings(bool? isEnabled, ProxyAgentExecuteMode? mode, int? keyIncarnationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,22 +63,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies whether ProxyAgent feature should be enabled on the virtual machine
-        /// or virtual machine scale set.
-        /// </summary>
+        /// <summary> Gets or sets the is enabled. </summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>
-        /// Specifies the mode that ProxyAgent will execute on if the feature is enabled.
-        /// ProxyAgent will start to audit or monitor but not enforce access control over
-        /// requests to host endpoints in Audit mode, while in Enforce mode it will enforce
-        /// access control. The default value is Enforce mode.
-        /// </summary>
+        /// <summary> Gets or sets the mode. </summary>
         public ProxyAgentExecuteMode? Mode { get; set; }
-        /// <summary>
-        /// Increase the value of this property allows user to reset the key used for
-        /// securing communication channel between guest and host.
-        /// </summary>
+        /// <summary> Gets or sets the key incarnation id. </summary>
         public int? KeyIncarnationId { get; set; }
     }
 }

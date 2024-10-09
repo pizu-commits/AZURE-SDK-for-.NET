@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Device information needed by operator to provide location information. Include exactly one of these properties to identify your device. </summary>
+    /// <summary> The LocationDevice. </summary>
     public partial class LocationDevice
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="LocationDevice"/>. </summary>
-        /// <param name="networkAccessIdentifier"> External identifier or network access identifier of the device. </param>
-        /// <param name="phoneNumber"> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </param>
-        /// <param name="ipv4Address"> The Ipv4 address. </param>
-        /// <param name="ipv6Address"> The Ipv6 address. </param>
+        /// <param name="networkAccessIdentifier"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="ipv4Address"></param>
+        /// <param name="ipv6Address"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LocationDevice(string networkAccessIdentifier, string phoneNumber, Ipv4Address ipv4Address, Ipv6Address ipv6Address, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Communication.ProgrammableConnectivity
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> External identifier or network access identifier of the device. </summary>
+        /// <summary> Gets or sets the network access identifier. </summary>
         public string NetworkAccessIdentifier { get; set; }
-        /// <summary> Phone number in E.164 format (starting with country code), and optionally prefixed with '+'. </summary>
+        /// <summary> Gets or sets the phone number. </summary>
         public string PhoneNumber { get; set; }
-        /// <summary> The Ipv4 address. </summary>
+        /// <summary> Gets or sets the ipv 4 address. </summary>
         public Ipv4Address Ipv4Address { get; set; }
-        /// <summary> The Ipv6 address. </summary>
+        /// <summary> Gets or sets the ipv 6 address. </summary>
         public Ipv6Address Ipv6Address { get; set; }
     }
 }

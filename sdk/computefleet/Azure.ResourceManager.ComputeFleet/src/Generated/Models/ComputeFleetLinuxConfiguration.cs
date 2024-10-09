@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the Linux operating system settings on the virtual machine. For a
-    /// list of supported Linux distributions, see [Linux on Azure-Endorsed
-    /// Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros).
-    /// </summary>
+    /// <summary> The ComputeFleetLinuxConfiguration. </summary>
     public partial class ComputeFleetLinuxConfiguration
     {
         /// <summary>
@@ -55,19 +51,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetLinuxConfiguration"/>. </summary>
-        /// <param name="isPasswordAuthenticationDisabled"> Specifies whether password authentication should be disabled. </param>
-        /// <param name="ssh"> Specifies the ssh key configuration for a Linux OS. </param>
-        /// <param name="isVmAgentProvisioned">
-        /// Indicates whether virtual machine agent should be provisioned on the virtual
-        /// machine. When this property is not specified in the request body, default
-        /// behavior is to set it to true. This will ensure that VM Agent is installed on
-        /// the VM so that extensions can be added to the VM later.
-        /// </param>
-        /// <param name="patchSettings"> [Preview Feature] Specifies settings related to VM Guest Patching on Linux. </param>
-        /// <param name="isVmAgentPlatformUpdatesEnabled">
-        /// Indicates whether VMAgent Platform Updates is enabled for the Linux virtual
-        /// machine. Default value is false.
-        /// </param>
+        /// <param name="isPasswordAuthenticationDisabled"></param>
+        /// <param name="ssh"></param>
+        /// <param name="isVmAgentProvisioned"></param>
+        /// <param name="patchSettings"></param>
+        /// <param name="isVmAgentPlatformUpdatesEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetLinuxConfiguration(bool? isPasswordAuthenticationDisabled, ComputeFleetSshConfiguration ssh, bool? isVmAgentProvisioned, ComputeFleetLinuxPatchSettings patchSettings, bool? isVmAgentPlatformUpdatesEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +67,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies whether password authentication should be disabled. </summary>
+        /// <summary> Gets or sets the is password authentication disabled. </summary>
         public bool? IsPasswordAuthenticationDisabled { get; set; }
-        /// <summary> Specifies the ssh key configuration for a Linux OS. </summary>
+        /// <summary> Gets or sets the ssh. </summary>
         internal ComputeFleetSshConfiguration Ssh { get; set; }
-        /// <summary> The list of SSH public keys used to authenticate with linux based VMs. </summary>
+        /// <summary> Gets the ssh public keys. </summary>
         public IList<ComputeFleetSshPublicKey> SshPublicKeys
         {
             get
@@ -94,19 +82,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary>
-        /// Indicates whether virtual machine agent should be provisioned on the virtual
-        /// machine. When this property is not specified in the request body, default
-        /// behavior is to set it to true. This will ensure that VM Agent is installed on
-        /// the VM so that extensions can be added to the VM later.
-        /// </summary>
+        /// <summary> Gets or sets the is vm agent provisioned. </summary>
         public bool? IsVmAgentProvisioned { get; set; }
-        /// <summary> [Preview Feature] Specifies settings related to VM Guest Patching on Linux. </summary>
+        /// <summary> Gets or sets the patch settings. </summary>
         public ComputeFleetLinuxPatchSettings PatchSettings { get; set; }
-        /// <summary>
-        /// Indicates whether VMAgent Platform Updates is enabled for the Linux virtual
-        /// machine. Default value is false.
-        /// </summary>
+        /// <summary> Gets or sets the is vm agent platform updates enabled. </summary>
         public bool? IsVmAgentPlatformUpdatesEnabled { get; set; }
     }
 }

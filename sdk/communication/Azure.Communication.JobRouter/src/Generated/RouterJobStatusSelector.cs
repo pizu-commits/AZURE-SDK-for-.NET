@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Enums used to filters jobs by status. </summary>
+    /// <summary> The RouterJobStatusSelector. </summary>
     public readonly partial struct RouterJobStatusSelector : IEquatable<RouterJobStatusSelector>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.Communication.JobRouter
         private const string WaitingForActivationValue = "waitingForActivation";
         private const string ActiveValue = "active";
 
-        /// <summary> Default. </summary>
+        /// <summary> all. </summary>
         public static RouterJobStatusSelector All { get; } = new RouterJobStatusSelector(AllValue);
-        /// <summary> Job is waiting to be classified. </summary>
+        /// <summary> pendingClassification. </summary>
         public static RouterJobStatusSelector PendingClassification { get; } = new RouterJobStatusSelector(PendingClassificationValue);
-        /// <summary> Job has been queued. </summary>
+        /// <summary> queued. </summary>
         public static RouterJobStatusSelector Queued { get; } = new RouterJobStatusSelector(QueuedValue);
-        /// <summary> Job has been assigned to a worker. </summary>
+        /// <summary> assigned. </summary>
         public static RouterJobStatusSelector Assigned { get; } = new RouterJobStatusSelector(AssignedValue);
-        /// <summary> Job has been completed by a worker. </summary>
+        /// <summary> completed. </summary>
         public static RouterJobStatusSelector Completed { get; } = new RouterJobStatusSelector(CompletedValue);
-        /// <summary> Job has been closed by a worker. </summary>
+        /// <summary> closed. </summary>
         public static RouterJobStatusSelector Closed { get; } = new RouterJobStatusSelector(ClosedValue);
-        /// <summary> Job has been cancelled. </summary>
+        /// <summary> cancelled. </summary>
         public static RouterJobStatusSelector Cancelled { get; } = new RouterJobStatusSelector(CancelledValue);
-        /// <summary> Classification process failed for the job. </summary>
+        /// <summary> classificationFailed. </summary>
         public static RouterJobStatusSelector ClassificationFailed { get; } = new RouterJobStatusSelector(ClassificationFailedValue);
-        /// <summary> Job has been created. </summary>
+        /// <summary> created. </summary>
         public static RouterJobStatusSelector Created { get; } = new RouterJobStatusSelector(CreatedValue);
-        /// <summary> Job has been created but not been scheduled yet. </summary>
+        /// <summary> pendingSchedule. </summary>
         public static RouterJobStatusSelector PendingSchedule { get; } = new RouterJobStatusSelector(PendingScheduleValue);
-        /// <summary> Job has been scheduled successfully. </summary>
+        /// <summary> scheduled. </summary>
         public static RouterJobStatusSelector Scheduled { get; } = new RouterJobStatusSelector(ScheduledValue);
-        /// <summary> Job scheduling failed. </summary>
+        /// <summary> scheduleFailed. </summary>
         public static RouterJobStatusSelector ScheduleFailed { get; } = new RouterJobStatusSelector(ScheduleFailedValue);
-        /// <summary> Job is in a suspended state and waiting for an update. </summary>
+        /// <summary> waitingForActivation. </summary>
         public static RouterJobStatusSelector WaitingForActivation { get; } = new RouterJobStatusSelector(WaitingForActivationValue);
-        /// <summary> Job is in a state of PendingClassification or Queued or Assigned or ClassificationFailed or Completed or PendingSchedule or Scheduled or ScheduleFailed or WaitingForActivation. </summary>
+        /// <summary> active. </summary>
         public static RouterJobStatusSelector Active { get; } = new RouterJobStatusSelector(ActiveValue);
         /// <summary> Determines if two <see cref="RouterJobStatusSelector"/> values are the same. </summary>
         public static bool operator ==(RouterJobStatusSelector left, RouterJobStatusSelector right) => left.Equals(right);

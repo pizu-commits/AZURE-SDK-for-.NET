@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the caching requirements. </summary>
+    /// <summary> The ComputeFleetCachingTypes. </summary>
     public readonly partial struct ComputeFleetCachingType : IEquatable<ComputeFleetCachingType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ReadOnlyValue = "ReadOnly";
         private const string ReadWriteValue = "ReadWrite";
 
-        /// <summary> 'None' is default for Standard Storage. </summary>
+        /// <summary> None. </summary>
         public static ComputeFleetCachingType None { get; } = new ComputeFleetCachingType(NoneValue);
-        /// <summary> 'ReadOnly' is default for Premium Storage. </summary>
+        /// <summary> ReadOnly. </summary>
         public static ComputeFleetCachingType ReadOnly { get; } = new ComputeFleetCachingType(ReadOnlyValue);
-        /// <summary> 'ReadWrite' is default for OS Disk. </summary>
+        /// <summary> ReadWrite. </summary>
         public static ComputeFleetCachingType ReadWrite { get; } = new ComputeFleetCachingType(ReadWriteValue);
         /// <summary> Determines if two <see cref="ComputeFleetCachingType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetCachingType left, ComputeFleetCachingType right) => left.Equals(right);

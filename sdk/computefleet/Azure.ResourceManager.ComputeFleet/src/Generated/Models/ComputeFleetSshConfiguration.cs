@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> SSH configuration for Linux based VMs running on Azure. </summary>
+    /// <summary> The ComputeFleetSshConfiguration. </summary>
     internal partial class ComputeFleetSshConfiguration
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetSshConfiguration"/>. </summary>
-        /// <param name="publicKeys"> The list of SSH public keys used to authenticate with linux based VMs. </param>
+        /// <param name="publicKeys"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetSshConfiguration(IList<ComputeFleetSshPublicKey> publicKeys, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The list of SSH public keys used to authenticate with linux based VMs. </summary>
+        /// <summary> Gets the public keys. </summary>
         public IList<ComputeFleetSshPublicKey> PublicKeys { get; }
     }
 }

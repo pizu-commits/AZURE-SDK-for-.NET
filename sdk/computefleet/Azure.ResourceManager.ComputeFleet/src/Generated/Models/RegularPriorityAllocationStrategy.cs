@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Regular VM Allocation strategy types for Compute Fleet. </summary>
+    /// <summary> The RegularPriorityAllocationStrategy. </summary>
     public readonly partial struct RegularPriorityAllocationStrategy : IEquatable<RegularPriorityAllocationStrategy>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string LowestPriceValue = "LowestPrice";
         private const string PrioritizedValue = "Prioritized";
 
-        /// <summary> Default. VM sizes distribution will be determined to optimize for price. </summary>
+        /// <summary> LowestPrice. </summary>
         public static RegularPriorityAllocationStrategy LowestPrice { get; } = new RegularPriorityAllocationStrategy(LowestPriceValue);
-        /// <summary> VM sizes distribution will be determined to optimize for the 'priority' as specified for each vm size. </summary>
+        /// <summary> Prioritized. </summary>
         public static RegularPriorityAllocationStrategy Prioritized { get; } = new RegularPriorityAllocationStrategy(PrioritizedValue);
         /// <summary> Determines if two <see cref="RegularPriorityAllocationStrategy"/> values are the same. </summary>
         public static bool operator ==(RegularPriorityAllocationStrategy left, RegularPriorityAllocationStrategy right) => left.Equals(right);

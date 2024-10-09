@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies how the virtual machine should be created. </summary>
+    /// <summary> The ComputeFleetDiskCreateOptionTypes. </summary>
     public readonly partial struct ComputeFleetDiskCreateOptionType : IEquatable<ComputeFleetDiskCreateOptionType>
     {
         private readonly string _value;
@@ -28,20 +28,15 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string CopyValue = "Copy";
         private const string RestoreValue = "Restore";
 
-        /// <summary>
-        /// This value is used when you are using an image to create the virtual machine.
-        /// If you are using a platform image, you also use the imageReference element
-        /// described above. If you are using a marketplace image, you also use the
-        /// plan element previously described.
-        /// </summary>
+        /// <summary> FromImage. </summary>
         public static ComputeFleetDiskCreateOptionType FromImage { get; } = new ComputeFleetDiskCreateOptionType(FromImageValue);
-        /// <summary> This value is used when creating an empty data disk. </summary>
+        /// <summary> Empty. </summary>
         public static ComputeFleetDiskCreateOptionType Empty { get; } = new ComputeFleetDiskCreateOptionType(EmptyValue);
-        /// <summary> This value is used when you are using a specialized disk to create the virtual machine. </summary>
+        /// <summary> Attach. </summary>
         public static ComputeFleetDiskCreateOptionType Attach { get; } = new ComputeFleetDiskCreateOptionType(AttachValue);
-        /// <summary> This value is used to create a data disk from a snapshot or another disk. </summary>
+        /// <summary> Copy. </summary>
         public static ComputeFleetDiskCreateOptionType Copy { get; } = new ComputeFleetDiskCreateOptionType(CopyValue);
-        /// <summary> This value is used to create a data disk from a disk restore point. </summary>
+        /// <summary> Restore. </summary>
         public static ComputeFleetDiskCreateOptionType Restore { get; } = new ComputeFleetDiskCreateOptionType(RestoreValue);
         /// <summary> Determines if two <see cref="ComputeFleetDiskCreateOptionType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDiskCreateOptionType left, ComputeFleetDiskCreateOptionType right) => left.Equals(right);

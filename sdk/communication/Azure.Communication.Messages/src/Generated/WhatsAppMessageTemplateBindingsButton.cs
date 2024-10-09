@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages.Models.Channels
 {
-    /// <summary> The template bindings component button for WhatsApp. </summary>
+    /// <summary> The WhatsAppMessageTemplateBindingsButton. </summary>
     public partial class WhatsAppMessageTemplateBindingsButton
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.Messages.Models.Channels
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindingsButton"/>. </summary>
-        /// <param name="subType"> The WhatsApp button sub type. </param>
-        /// <param name="refValue"> The name of the referenced item in the template values. </param>
+        /// <param name="subType"></param>
+        /// <param name="refValue"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="subType"/> or <paramref name="refValue"/> is null. </exception>
         public WhatsAppMessageTemplateBindingsButton(string subType, string refValue)
         {
@@ -59,8 +59,8 @@ namespace Azure.Communication.Messages.Models.Channels
         }
 
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindingsButton"/>. </summary>
-        /// <param name="subType"> The WhatsApp button sub type. </param>
-        /// <param name="refValue"> The name of the referenced item in the template values. </param>
+        /// <param name="subType"></param>
+        /// <param name="refValue"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WhatsAppMessageTemplateBindingsButton(string subType, string refValue, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,7 +73,7 @@ namespace Azure.Communication.Messages.Models.Channels
         internal WhatsAppMessageTemplateBindingsButton()
         {
         }
-        /// <summary> The name of the referenced item in the template values. </summary>
+        /// <summary> Gets the ref value. </summary>
         public string RefValue { get; }
     }
 }
