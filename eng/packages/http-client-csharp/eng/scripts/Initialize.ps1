@@ -23,6 +23,9 @@ Write-Host "  UseTypeSpecNext: $UseTypeSpecNext"
 Write-Host "  `$env:Build_ArtifactStagingDirectory: $artifactStagingDirectory"
 Write-Host "Should emit artifacts: $($artifactStagingDirectory -and !$BuildArtifactsPath)"
 
+Write-Host "Environment Variables:"
+Get-ChildItem env: | Sort-Object Name | ForEach-Object { Write-Host "  $($_.Name) = $($_.Value)" }
+
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
 Push-Location $emitterPackagePath
 try {
