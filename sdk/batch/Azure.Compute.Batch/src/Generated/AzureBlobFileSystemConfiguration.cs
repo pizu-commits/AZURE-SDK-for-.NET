@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information used to connect to an Azure Storage Container using Blobfuse. </summary>
+    /// <summary> The AzureBlobFileSystemConfiguration. </summary>
     public partial class AzureBlobFileSystemConfiguration
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobFileSystemConfiguration"/>. </summary>
-        /// <param name="accountName"> The Azure Storage Account name. </param>
-        /// <param name="containerName"> The Azure Blob Storage Container name. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
+        /// <param name="accountName"></param>
+        /// <param name="containerName"></param>
+        /// <param name="relativeMountPath"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="accountName"/>, <paramref name="containerName"/> or <paramref name="relativeMountPath"/> is null. </exception>
         public AzureBlobFileSystemConfiguration(string accountName, string containerName, string relativeMountPath)
         {
@@ -62,13 +62,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobFileSystemConfiguration"/>. </summary>
-        /// <param name="accountName"> The Azure Storage Account name. </param>
-        /// <param name="containerName"> The Azure Blob Storage Container name. </param>
-        /// <param name="accountKey"> The Azure Storage Account key. This property is mutually exclusive with both sasKey and identity; exactly one must be specified. </param>
-        /// <param name="sasKey"> The Azure Storage SAS token. This property is mutually exclusive with both accountKey and identity; exactly one must be specified. </param>
-        /// <param name="blobfuseOptions"> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
-        /// <param name="identityReference"> The reference to the user assigned identity to use to access containerName. This property is mutually exclusive with both accountKey and sasKey; exactly one must be specified. </param>
+        /// <param name="accountName"></param>
+        /// <param name="containerName"></param>
+        /// <param name="accountKey"></param>
+        /// <param name="sasKey"></param>
+        /// <param name="blobfuseOptions"></param>
+        /// <param name="relativeMountPath"></param>
+        /// <param name="identityReference"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AzureBlobFileSystemConfiguration(string accountName, string containerName, string accountKey, string sasKey, string blobfuseOptions, string relativeMountPath, BatchNodeIdentityReference identityReference, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,19 +87,19 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The Azure Storage Account name. </summary>
+        /// <summary> Gets or sets the account name. </summary>
         public string AccountName { get; set; }
-        /// <summary> The Azure Blob Storage Container name. </summary>
+        /// <summary> Gets or sets the container name. </summary>
         public string ContainerName { get; set; }
-        /// <summary> The Azure Storage Account key. This property is mutually exclusive with both sasKey and identity; exactly one must be specified. </summary>
+        /// <summary> Gets or sets the account key. </summary>
         public string AccountKey { get; set; }
-        /// <summary> The Azure Storage SAS token. This property is mutually exclusive with both accountKey and identity; exactly one must be specified. </summary>
+        /// <summary> Gets or sets the sas key. </summary>
         public string SasKey { get; set; }
-        /// <summary> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </summary>
+        /// <summary> Gets or sets the blobfuse options. </summary>
         public string BlobfuseOptions { get; set; }
-        /// <summary> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </summary>
+        /// <summary> Gets or sets the relative mount path. </summary>
         public string RelativeMountPath { get; set; }
-        /// <summary> The reference to the user assigned identity to use to access containerName. This property is mutually exclusive with both accountKey and sasKey; exactly one must be specified. </summary>
+        /// <summary> Gets or sets the identity reference. </summary>
         public BatchNodeIdentityReference IdentityReference { get; set; }
     }
 }

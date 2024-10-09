@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Human-readable error code. </summary>
+    /// <summary> The AnalyzeTextErrorCode. </summary>
     public readonly partial struct AnalyzeTextErrorCode : IEquatable<AnalyzeTextErrorCode>
     {
         private readonly string _value;
@@ -41,41 +41,41 @@ namespace Azure.AI.Language.Text
         private const string ConflictValue = "Conflict";
         private const string WarningValue = "Warning";
 
-        /// <summary> Invalid request error. </summary>
+        /// <summary> InvalidRequest. </summary>
         public static AnalyzeTextErrorCode InvalidRequest { get; } = new AnalyzeTextErrorCode(InvalidRequestValue);
-        /// <summary> Invalid argument error. </summary>
+        /// <summary> InvalidArgument. </summary>
         public static AnalyzeTextErrorCode InvalidArgument { get; } = new AnalyzeTextErrorCode(InvalidArgumentValue);
-        /// <summary> Unauthorized access error. </summary>
+        /// <summary> Unauthorized. </summary>
         public static AnalyzeTextErrorCode Unauthorized { get; } = new AnalyzeTextErrorCode(UnauthorizedValue);
-        /// <summary> Forbidden access error. </summary>
+        /// <summary> Forbidden. </summary>
         public static AnalyzeTextErrorCode Forbidden { get; } = new AnalyzeTextErrorCode(ForbiddenValue);
-        /// <summary> Not found error. </summary>
+        /// <summary> NotFound. </summary>
         public static AnalyzeTextErrorCode NotFound { get; } = new AnalyzeTextErrorCode(NotFoundValue);
-        /// <summary> Project not found error. </summary>
+        /// <summary> ProjectNotFound. </summary>
         public static AnalyzeTextErrorCode ProjectNotFound { get; } = new AnalyzeTextErrorCode(ProjectNotFoundValue);
-        /// <summary> Operation not found error. </summary>
+        /// <summary> OperationNotFound. </summary>
         public static AnalyzeTextErrorCode OperationNotFound { get; } = new AnalyzeTextErrorCode(OperationNotFoundValue);
-        /// <summary> Azure Cognitive Search not found error. </summary>
+        /// <summary> AzureCognitiveSearchNotFound. </summary>
         public static AnalyzeTextErrorCode AzureCognitiveSearchNotFound { get; } = new AnalyzeTextErrorCode(AzureCognitiveSearchNotFoundValue);
-        /// <summary> Azure Cognitive Search index not found error. </summary>
+        /// <summary> AzureCognitiveSearchIndexNotFound. </summary>
         public static AnalyzeTextErrorCode AzureCognitiveSearchIndexNotFound { get; } = new AnalyzeTextErrorCode(AzureCognitiveSearchIndexNotFoundValue);
-        /// <summary> Too many requests error. </summary>
+        /// <summary> TooManyRequests. </summary>
         public static AnalyzeTextErrorCode TooManyRequests { get; } = new AnalyzeTextErrorCode(TooManyRequestsValue);
-        /// <summary> Azure Cognitive Search throttling error. </summary>
+        /// <summary> AzureCognitiveSearchThrottling. </summary>
         public static AnalyzeTextErrorCode AzureCognitiveSearchThrottling { get; } = new AnalyzeTextErrorCode(AzureCognitiveSearchThrottlingValue);
-        /// <summary> Azure Cognitive Search index limit reached error. </summary>
+        /// <summary> AzureCognitiveSearchIndexLimitReached. </summary>
         public static AnalyzeTextErrorCode AzureCognitiveSearchIndexLimitReached { get; } = new AnalyzeTextErrorCode(AzureCognitiveSearchIndexLimitReachedValue);
-        /// <summary> Internal server error. </summary>
+        /// <summary> InternalServerError. </summary>
         public static AnalyzeTextErrorCode InternalServerError { get; } = new AnalyzeTextErrorCode(InternalServerErrorValue);
-        /// <summary> Service unavailable error. </summary>
+        /// <summary> ServiceUnavailable. </summary>
         public static AnalyzeTextErrorCode ServiceUnavailable { get; } = new AnalyzeTextErrorCode(ServiceUnavailableValue);
-        /// <summary> Timeout error. </summary>
+        /// <summary> Timeout. </summary>
         public static AnalyzeTextErrorCode Timeout { get; } = new AnalyzeTextErrorCode(TimeoutValue);
-        /// <summary> Quota exceeded error. </summary>
+        /// <summary> QuotaExceeded. </summary>
         public static AnalyzeTextErrorCode QuotaExceeded { get; } = new AnalyzeTextErrorCode(QuotaExceededValue);
-        /// <summary> Conflict error. </summary>
+        /// <summary> Conflict. </summary>
         public static AnalyzeTextErrorCode Conflict { get; } = new AnalyzeTextErrorCode(ConflictValue);
-        /// <summary> Warning error. </summary>
+        /// <summary> Warning. </summary>
         public static AnalyzeTextErrorCode Warning { get; } = new AnalyzeTextErrorCode(WarningValue);
         /// <summary> Determines if two <see cref="AnalyzeTextErrorCode"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextErrorCode left, AnalyzeTextErrorCode right) => left.Equals(right);

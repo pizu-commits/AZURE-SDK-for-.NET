@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Set to 'OR' or 'AND' for using corresponding logical operation. </summary>
+    /// <summary> The LogicalOperationKind. </summary>
     public readonly partial struct LogicalOperationKind : IEquatable<LogicalOperationKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Conversations.Models
         private const string AndValue = "AND";
         private const string OrValue = "OR";
 
-        /// <summary> Logical AND. </summary>
+        /// <summary> AND. </summary>
         public static LogicalOperationKind And { get; } = new LogicalOperationKind(AndValue);
-        /// <summary> Logical OR. </summary>
+        /// <summary> OR. </summary>
         public static LogicalOperationKind Or { get; } = new LogicalOperationKind(OrValue);
         /// <summary> Determines if two <see cref="LogicalOperationKind"/> values are the same. </summary>
         public static bool operator ==(LogicalOperationKind left, LogicalOperationKind right) => left.Equals(right);

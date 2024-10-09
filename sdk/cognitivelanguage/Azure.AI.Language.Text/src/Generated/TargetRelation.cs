@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the relation between assessments and/or targets. </summary>
+    /// <summary> The TargetRelation. </summary>
     public partial class TargetRelation
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TargetRelation"/>. </summary>
-        /// <param name="ref"> The JSON pointer indicating the linked object. </param>
-        /// <param name="relationType"> The type related to the target. </param>
+        /// <param name="ref"></param>
+        /// <param name="relationType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="ref"/> is null. </exception>
         internal TargetRelation(string @ref, TargetRelationType relationType)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TargetRelation"/>. </summary>
-        /// <param name="ref"> The JSON pointer indicating the linked object. </param>
-        /// <param name="relationType"> The type related to the target. </param>
+        /// <param name="ref"></param>
+        /// <param name="relationType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TargetRelation(string @ref, TargetRelationType relationType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The JSON pointer indicating the linked object. </summary>
+        /// <summary> Gets the ref. </summary>
         public string Ref { get; }
-        /// <summary> The type related to the target. </summary>
+        /// <summary> Gets the relation type. </summary>
         public TargetRelationType RelationType { get; }
     }
 }

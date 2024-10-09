@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary>
-    /// Detection request for batch inference. This is an asynchronous inference that
-    /// will need another API to get detection results.
-    /// </summary>
+    /// <summary> The MultivariateBatchDetectionOptions. </summary>
     public partial class MultivariateBatchDetectionOptions
     {
         /// <summary>
@@ -49,22 +46,9 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MultivariateBatchDetectionOptions"/>. </summary>
-        /// <param name="dataSource">
-        /// Source link to the input data to indicate an accessible Azure Storage URI.
-        /// It either points to an Azure Blob Storage folder or points to a CSV file in
-        /// Azure Blob Storage, based on your data schema selection. The data schema should
-        /// be exactly the same as those used in the training phase. The input data must
-        /// contain at least slidingWindow entries preceding the start time of the data
-        /// to be detected.
-        /// </param>
-        /// <param name="startTime">
-        /// Start date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </param>
-        /// <param name="endTime">
-        /// End date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </param>
+        /// <param name="dataSource"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         public MultivariateBatchDetectionOptions(Uri dataSource, DateTimeOffset startTime, DateTimeOffset endTime)
         {
@@ -76,23 +60,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="MultivariateBatchDetectionOptions"/>. </summary>
-        /// <param name="dataSource">
-        /// Source link to the input data to indicate an accessible Azure Storage URI.
-        /// It either points to an Azure Blob Storage folder or points to a CSV file in
-        /// Azure Blob Storage, based on your data schema selection. The data schema should
-        /// be exactly the same as those used in the training phase. The input data must
-        /// contain at least slidingWindow entries preceding the start time of the data
-        /// to be detected.
-        /// </param>
-        /// <param name="topContributorCount"> Number of top contributed variables for one anomalous time stamp in the response. </param>
-        /// <param name="startTime">
-        /// Start date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </param>
-        /// <param name="endTime">
-        /// End date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </param>
+        /// <param name="dataSource"></param>
+        /// <param name="topContributorCount"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultivariateBatchDetectionOptions(Uri dataSource, int? topContributorCount, DateTimeOffset startTime, DateTimeOffset endTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -108,26 +79,13 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary>
-        /// Source link to the input data to indicate an accessible Azure Storage URI.
-        /// It either points to an Azure Blob Storage folder or points to a CSV file in
-        /// Azure Blob Storage, based on your data schema selection. The data schema should
-        /// be exactly the same as those used in the training phase. The input data must
-        /// contain at least slidingWindow entries preceding the start time of the data
-        /// to be detected.
-        /// </summary>
+        /// <summary> Gets or sets the data source. </summary>
         public Uri DataSource { get; set; }
-        /// <summary> Number of top contributed variables for one anomalous time stamp in the response. </summary>
+        /// <summary> Gets or sets the top contributor count. </summary>
         public int? TopContributorCount { get; set; }
-        /// <summary>
-        /// Start date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </summary>
+        /// <summary> Gets or sets the start time. </summary>
         public DateTimeOffset StartTime { get; set; }
-        /// <summary>
-        /// End date/time of data for detection, which should
-        /// be in ISO 8601 format.
-        /// </summary>
+        /// <summary> Gets or sets the end time. </summary>
         public DateTimeOffset EndTime { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> AllocationState enums. </summary>
+    /// <summary> The AllocationState. </summary>
     public readonly partial struct AllocationState : IEquatable<AllocationState>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string ResizingValue = "resizing";
         private const string StoppingValue = "stopping";
 
-        /// <summary> The Pool is not resizing. There are no changes to the number of Compute Nodes in the Pool in progress. A Pool enters this state when it is created and when no operations are being performed on the Pool to change the number of Compute Nodes. </summary>
+        /// <summary> steady. </summary>
         public static AllocationState Steady { get; } = new AllocationState(SteadyValue);
-        /// <summary> The Pool is resizing; that is, Compute Nodes are being added to or removed from the Pool. </summary>
+        /// <summary> resizing. </summary>
         public static AllocationState Resizing { get; } = new AllocationState(ResizingValue);
-        /// <summary> The Pool was resizing, but the user has requested that the resize be stopped, but the stop request has not yet been completed. </summary>
+        /// <summary> stopping. </summary>
         public static AllocationState Stopping { get; } = new AllocationState(StoppingValue);
         /// <summary> Determines if two <see cref="AllocationState"/> values are the same. </summary>
         public static bool operator ==(AllocationState left, AllocationState right) => left.Equals(right);

@@ -10,22 +10,22 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> It is a wrap up a Question Answering KB response. </summary>
+    /// <summary> The QuestionAnsweringTargetIntentResult. </summary>
     public partial class QuestionAnsweringTargetIntentResult : TargetIntentResult
     {
         /// <summary> Initializes a new instance of <see cref="QuestionAnsweringTargetIntentResult"/>. </summary>
-        /// <param name="confidence"> The prediction score and it ranges from 0.0 to 1.0. </param>
+        /// <param name="confidence"></param>
         internal QuestionAnsweringTargetIntentResult(double confidence) : base(confidence)
         {
             TargetProjectKind = TargetProjectKind.QuestionAnswering;
         }
 
         /// <summary> Initializes a new instance of <see cref="QuestionAnsweringTargetIntentResult"/>. </summary>
-        /// <param name="targetProjectKind"> This is the base class of an intent prediction. </param>
-        /// <param name="apiVersion"> The API version used to call a target service. </param>
-        /// <param name="confidence"> The prediction score and it ranges from 0.0 to 1.0. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="result"> The generated answer by a Question Answering KB. </param>
+        /// <param name="result"></param>
         internal QuestionAnsweringTargetIntentResult(TargetProjectKind targetProjectKind, string apiVersion, double confidence, IDictionary<string, BinaryData> serializedAdditionalRawData, AnswersResult result) : base(targetProjectKind, apiVersion, confidence, serializedAdditionalRawData)
         {
             Result = result;
@@ -36,7 +36,7 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The generated answer by a Question Answering KB. </summary>
+        /// <summary> Gets the result. </summary>
         public AnswersResult Result { get; }
     }
 }

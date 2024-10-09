@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A collection of Azure Batch Tasks to add. </summary>
+    /// <summary> The BatchTaskGroup. </summary>
     public partial class BatchTaskGroup
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskGroup"/>. </summary>
-        /// <param name="value"> The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         public BatchTaskGroup(IEnumerable<BatchTaskCreateContent> value)
         {
@@ -57,7 +57,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskGroup"/>. </summary>
-        /// <param name="value"> The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskGroup(IList<BatchTaskCreateContent> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. </summary>
+        /// <summary> Gets the value. </summary>
         public IList<BatchTaskCreateContent> Value { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> This is a set of request parameters for LUIS Generally Available projects. </summary>
+    /// <summary> The LuisConfig. </summary>
     public partial class LuisConfig : AnalysisConfig
     {
         /// <summary> Initializes a new instance of <see cref="LuisConfig"/>. </summary>
@@ -20,20 +20,20 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="LuisConfig"/>. </summary>
-        /// <param name="targetProjectKind"> The type of a target service. </param>
-        /// <param name="apiVersion"> The API version to use when call a specific target service. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="query"> The utterance to predict. </param>
-        /// <param name="callingOptions"> This customizes how the service calls LUIS Generally Available projects. </param>
+        /// <param name="query"></param>
+        /// <param name="callingOptions"></param>
         internal LuisConfig(TargetProjectKind targetProjectKind, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData, string query, LuisCallingConfig callingOptions) : base(targetProjectKind, apiVersion, serializedAdditionalRawData)
         {
             Query = query;
             CallingOptions = callingOptions;
         }
 
-        /// <summary> The utterance to predict. </summary>
+        /// <summary> Gets or sets the query. </summary>
         public string Query { get; set; }
-        /// <summary> This customizes how the service calls LUIS Generally Available projects. </summary>
+        /// <summary> Gets or sets the calling options. </summary>
         public LuisCallingConfig CallingOptions { get; set; }
     }
 }

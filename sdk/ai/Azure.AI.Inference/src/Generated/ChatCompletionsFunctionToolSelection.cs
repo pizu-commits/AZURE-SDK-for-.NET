@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A tool selection of a specific, named function tool that will limit chat completions to using the named function. </summary>
+    /// <summary> The ChatCompletionsFunctionToolSelection. </summary>
     public partial class ChatCompletionsFunctionToolSelection
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsFunctionToolSelection"/>. </summary>
-        /// <param name="name"> The name of the function that should be called. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ChatCompletionsFunctionToolSelection(string name)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsFunctionToolSelection"/>. </summary>
-        /// <param name="name"> The name of the function that should be called. </param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsFunctionToolSelection(string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The name of the function that should be called. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

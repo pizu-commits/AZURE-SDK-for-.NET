@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// This is the base class of prediction
+    /// The PredictionBase.
     /// Please note <see cref="PredictionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ConversationPrediction"/> and <see cref="OrchestrationPrediction"/>.
     /// </summary>
@@ -55,8 +55,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="PredictionBase"/>. </summary>
-        /// <param name="projectKind"> The type of the project. </param>
-        /// <param name="topIntent"> The intent with the highest score. </param>
+        /// <param name="projectKind"></param>
+        /// <param name="topIntent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PredictionBase(ProjectKind projectKind, string topIntent, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,9 +65,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The type of the project. </summary>
+        /// <summary> Gets or sets the project kind. </summary>
         internal ProjectKind ProjectKind { get; set; }
-        /// <summary> The intent with the highest score. </summary>
+        /// <summary> Gets the top intent. </summary>
         public string TopIntent { get; }
     }
 }

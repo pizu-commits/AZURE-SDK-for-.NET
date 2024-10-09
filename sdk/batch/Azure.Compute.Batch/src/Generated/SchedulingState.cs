@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> SchedulingState enums. </summary>
+    /// <summary> The SchedulingState. </summary>
     public readonly partial struct SchedulingState : IEquatable<SchedulingState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string EnabledValue = "enabled";
         private const string DisabledValue = "disabled";
 
-        /// <summary> Tasks can be scheduled on the Compute Node. </summary>
+        /// <summary> enabled. </summary>
         public static SchedulingState Enabled { get; } = new SchedulingState(EnabledValue);
-        /// <summary> No new Tasks will be scheduled on the Compute Node. Tasks already running on the Compute Node may still run to completion. All Compute Nodes start with scheduling enabled. </summary>
+        /// <summary> disabled. </summary>
         public static SchedulingState Disabled { get; } = new SchedulingState(DisabledValue);
         /// <summary> Determines if two <see cref="SchedulingState"/> values are the same. </summary>
         public static bool operator ==(SchedulingState left, SchedulingState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> NetworkSecurityGroupRuleAccess enums. </summary>
+    /// <summary> The NetworkSecurityGroupRuleAccess. </summary>
     public readonly partial struct NetworkSecurityGroupRuleAccess : IEquatable<NetworkSecurityGroupRuleAccess>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string AllowValue = "allow";
         private const string DenyValue = "deny";
 
-        /// <summary> Allow access. </summary>
+        /// <summary> allow. </summary>
         public static NetworkSecurityGroupRuleAccess Allow { get; } = new NetworkSecurityGroupRuleAccess(AllowValue);
-        /// <summary> Deny access. </summary>
+        /// <summary> deny. </summary>
         public static NetworkSecurityGroupRuleAccess Deny { get; } = new NetworkSecurityGroupRuleAccess(DenyValue);
         /// <summary> Determines if two <see cref="NetworkSecurityGroupRuleAccess"/> values are the same. </summary>
         public static bool operator ==(NetworkSecurityGroupRuleAccess left, NetworkSecurityGroupRuleAccess right) => left.Equals(right);

@@ -7,12 +7,12 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Describes any conditionality on the entity. </summary>
+    /// <summary> The HealthcareAssertionConditionality. </summary>
     public enum HealthcareAssertionConditionality
     {
-        /// <summary> Hypothetical conditionality. </summary>
+        /// <summary> hypothetical. </summary>
         Hypothetical,
-        /// <summary> Conditional conditionality. </summary>
+        /// <summary> conditional. </summary>
         Conditional
     }
 }

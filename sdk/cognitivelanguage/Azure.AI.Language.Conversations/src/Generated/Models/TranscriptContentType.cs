@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Enumeration of supported transcript content types. </summary>
+    /// <summary> The TranscriptContentType. </summary>
     public readonly partial struct TranscriptContentType : IEquatable<TranscriptContentType>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Language.Conversations.Models
         private const string MaskedItnValue = "maskedItn";
         private const string TextValue = "text";
 
-        /// <summary> Lexical content type. </summary>
+        /// <summary> lexical. </summary>
         public static TranscriptContentType Lexical { get; } = new TranscriptContentType(LexicalValue);
-        /// <summary> ITN content type. </summary>
+        /// <summary> itn. </summary>
         public static TranscriptContentType Itn { get; } = new TranscriptContentType(ItnValue);
-        /// <summary> Masked ITN content type. </summary>
+        /// <summary> maskedItn. </summary>
         public static TranscriptContentType MaskedItn { get; } = new TranscriptContentType(MaskedItnValue);
-        /// <summary> Text content type. </summary>
+        /// <summary> text. </summary>
         public static TranscriptContentType Text { get; } = new TranscriptContentType(TextValue);
         /// <summary> Determines if two <see cref="TranscriptContentType"/> values are the same. </summary>
         public static bool operator ==(TranscriptContentType left, TranscriptContentType right) => left.Equals(right);

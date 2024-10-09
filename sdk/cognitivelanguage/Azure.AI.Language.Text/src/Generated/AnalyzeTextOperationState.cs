@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The object containing the analyze job LRO job state. </summary>
+    /// <summary> The AnalyzeTextOperationState. </summary>
     public partial class AnalyzeTextOperationState
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextOperationState"/>. </summary>
-        /// <param name="createdAt"> Date and time job created. </param>
-        /// <param name="lastUpdatedAt"> last updated date and time. </param>
-        /// <param name="status"> status. </param>
-        /// <param name="actions"> List of tasks. </param>
+        /// <param name="createdAt"></param>
+        /// <param name="lastUpdatedAt"></param>
+        /// <param name="status"></param>
+        /// <param name="actions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="actions"/> is null. </exception>
         internal AnalyzeTextOperationState(DateTimeOffset createdAt, DateTimeOffset lastUpdatedAt, TextActionState status, TextActions actions)
         {
@@ -63,16 +63,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextOperationState"/>. </summary>
-        /// <param name="displayName"> display name. </param>
-        /// <param name="createdAt"> Date and time job created. </param>
-        /// <param name="expiresOn"> Date and time job expires. </param>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="lastUpdatedAt"> last updated date and time. </param>
-        /// <param name="status"> status. </param>
-        /// <param name="errors"> errors. </param>
-        /// <param name="nextLink"> next link. </param>
-        /// <param name="actions"> List of tasks. </param>
-        /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the request payload. </param>
+        /// <param name="displayName"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="expiresOn"></param>
+        /// <param name="jobId"></param>
+        /// <param name="lastUpdatedAt"></param>
+        /// <param name="status"></param>
+        /// <param name="errors"></param>
+        /// <param name="nextLink"></param>
+        /// <param name="actions"></param>
+        /// <param name="statistics"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextOperationState(string displayName, DateTimeOffset createdAt, DateTimeOffset? expiresOn, Guid jobId, DateTimeOffset lastUpdatedAt, TextActionState status, IReadOnlyList<AnalyzeTextError> errors, string nextLink, TextActions actions, RequestStatistics statistics, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,25 +94,25 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> display name. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> Date and time job created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> Date and time job expires. </summary>
+        /// <summary> Gets the expires on. </summary>
         public DateTimeOffset? ExpiresOn { get; }
-        /// <summary> job ID. </summary>
+        /// <summary> Gets the job id. </summary>
         public Guid JobId { get; }
-        /// <summary> last updated date and time. </summary>
+        /// <summary> Gets the last updated at. </summary>
         public DateTimeOffset LastUpdatedAt { get; }
-        /// <summary> status. </summary>
+        /// <summary> Gets the status. </summary>
         public TextActionState Status { get; }
-        /// <summary> errors. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<AnalyzeTextError> Errors { get; }
-        /// <summary> next link. </summary>
+        /// <summary> Gets the next link. </summary>
         public string NextLink { get; }
-        /// <summary> List of tasks. </summary>
+        /// <summary> Gets the actions. </summary>
         public TextActions Actions { get; }
-        /// <summary> if showStats=true was specified in the request this field will contain information about the request payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public RequestStatistics Statistics { get; }
     }
 }

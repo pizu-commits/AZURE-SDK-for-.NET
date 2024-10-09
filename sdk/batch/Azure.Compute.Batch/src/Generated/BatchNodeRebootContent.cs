@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for rebooting an Azure Batch Compute Node. </summary>
+    /// <summary> The BatchNodeRebootContent. </summary>
     public partial class BatchNodeRebootContent
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeRebootContent"/>. </summary>
-        /// <param name="nodeRebootOption"> When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. </param>
+        /// <param name="nodeRebootOption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeRebootContent(BatchNodeRebootOption? nodeRebootOption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. </summary>
+        /// <summary> Gets or sets the node reboot option. </summary>
         public BatchNodeRebootOption? NodeRebootOption { get; set; }
     }
 }

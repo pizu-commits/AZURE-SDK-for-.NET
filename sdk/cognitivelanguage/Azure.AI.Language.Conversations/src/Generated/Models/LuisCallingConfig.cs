@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> This customizes how the service calls LUIS Generally Available projects. </summary>
+    /// <summary> The LuisCallingConfig. </summary>
     public partial class LuisCallingConfig
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="LuisCallingConfig"/>. </summary>
-        /// <param name="verbose"> Enable verbose response. </param>
-        /// <param name="log"> Save log to add in training utterances later. </param>
-        /// <param name="showAllIntents"> Set true to show all intents. </param>
-        /// <param name="timezoneOffset"> The timezone offset for the location of the request. </param>
-        /// <param name="spellCheck"> Enable spell checking. </param>
-        /// <param name="bingSpellCheckSubscriptionKey"> The subscription key to use when enabling Bing spell check. </param>
+        /// <param name="verbose"></param>
+        /// <param name="log"></param>
+        /// <param name="showAllIntents"></param>
+        /// <param name="timezoneOffset"></param>
+        /// <param name="spellCheck"></param>
+        /// <param name="bingSpellCheckSubscriptionKey"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LuisCallingConfig(bool? verbose, bool? log, bool? showAllIntents, int? timezoneOffset, bool? spellCheck, string bingSpellCheckSubscriptionKey, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Enable verbose response. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> Save log to add in training utterances later. </summary>
+        /// <summary> Gets or sets the log. </summary>
         public bool? Log { get; set; }
-        /// <summary> Set true to show all intents. </summary>
+        /// <summary> Gets or sets the show all intents. </summary>
         public bool? ShowAllIntents { get; set; }
-        /// <summary> The timezone offset for the location of the request. </summary>
+        /// <summary> Gets or sets the timezone offset. </summary>
         public int? TimezoneOffset { get; set; }
-        /// <summary> Enable spell checking. </summary>
+        /// <summary> Gets or sets the spell check. </summary>
         public bool? SpellCheck { get; set; }
-        /// <summary> The subscription key to use when enabling Bing spell check. </summary>
+        /// <summary> Gets or sets the bing spell check subscription key. </summary>
         public string BingSpellCheckSubscriptionKey { get; set; }
     }
 }

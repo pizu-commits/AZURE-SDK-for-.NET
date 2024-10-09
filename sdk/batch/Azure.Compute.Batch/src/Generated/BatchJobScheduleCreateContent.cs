@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for creating an Azure Batch Job Schedule. </summary>
+    /// <summary> The BatchJobScheduleCreateContent. </summary>
     public partial class BatchJobScheduleCreateContent
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchJobScheduleCreateContent"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the schedule within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="schedule"> The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. </param>
-        /// <param name="jobSpecification"> The details of the Jobs to be created on this schedule. </param>
+        /// <param name="id"></param>
+        /// <param name="schedule"></param>
+        /// <param name="jobSpecification"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="schedule"/> or <paramref name="jobSpecification"/> is null. </exception>
         public BatchJobScheduleCreateContent(string id, BatchJobScheduleConfiguration schedule, BatchJobSpecification jobSpecification)
         {
@@ -63,11 +63,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobScheduleCreateContent"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the schedule within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="displayName"> The display name for the schedule. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </param>
-        /// <param name="schedule"> The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. </param>
-        /// <param name="jobSpecification"> The details of the Jobs to be created on this schedule. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the schedule as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="schedule"></param>
+        /// <param name="jobSpecification"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobScheduleCreateContent(string id, string displayName, BatchJobScheduleConfiguration schedule, BatchJobSpecification jobSpecification, IList<MetadataItem> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,15 +84,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A string that uniquely identifies the schedule within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The display name for the schedule. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. </summary>
+        /// <summary> Gets the schedule. </summary>
         public BatchJobScheduleConfiguration Schedule { get; }
-        /// <summary> The details of the Jobs to be created on this schedule. </summary>
+        /// <summary> Gets the job specification. </summary>
         public BatchJobSpecification JobSpecification { get; }
-        /// <summary> A list of name-value pairs associated with the schedule as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
     }
 }

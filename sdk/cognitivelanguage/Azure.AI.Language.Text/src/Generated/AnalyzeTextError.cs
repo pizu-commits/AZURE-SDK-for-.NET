@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The error response object returned when the service encounters some errors during processing the request. </summary>
+    /// <summary> The AnalyzeTextError. </summary>
     public partial class AnalyzeTextError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextError"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal AnalyzeTextError(AnalyzeTextErrorCode code, string message)
         {
@@ -59,11 +59,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextError"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
-        /// <param name="target"> The target of the error. </param>
-        /// <param name="details"> An array of details about specific errors that led to this reported error. </param>
-        /// <param name="innererror"> An object containing more specific information than the current object about the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="target"></param>
+        /// <param name="details"></param>
+        /// <param name="innererror"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextError(AnalyzeTextErrorCode code, string message, string target, IReadOnlyList<AnalyzeTextError> details, InnerErrorModel innererror, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,15 +80,15 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> One of a server-defined set of error codes. </summary>
+        /// <summary> Gets the code. </summary>
         public AnalyzeTextErrorCode Code { get; }
-        /// <summary> A human-readable representation of the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> The target of the error. </summary>
+        /// <summary> Gets the target. </summary>
         public string Target { get; }
-        /// <summary> An array of details about specific errors that led to this reported error. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<AnalyzeTextError> Details { get; }
-        /// <summary> An object containing more specific information than the current object about the error. </summary>
+        /// <summary> Gets the innererror. </summary>
         public InnerErrorModel Innererror { get; }
     }
 }

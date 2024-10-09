@@ -10,12 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// Represents an update to a single prompt completion when the service is streaming updates
-    /// using Server Sent Events (SSE).
-    /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-    /// Token limits and other settings may limit the number of choices generated.
-    /// </summary>
+    /// <summary> The StreamingChatChoiceUpdate. </summary>
     public partial class StreamingChatChoiceUpdate
     {
         /// <summary>
@@ -51,9 +46,9 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StreamingChatChoiceUpdate"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="delta"> An update to the chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="delta"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="delta"/> is null. </exception>
         internal StreamingChatChoiceUpdate(int index, CompletionsFinishReason? finishReason, ChatResponseMessage delta)
         {
@@ -65,9 +60,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="StreamingChatChoiceUpdate"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="delta"> An update to the chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="delta"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StreamingChatChoiceUpdate(int index, CompletionsFinishReason? finishReason, ChatResponseMessage delta, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,11 +77,11 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The ordered index associated with this chat completions choice. </summary>
+        /// <summary> Gets the index. </summary>
         public int Index { get; }
-        /// <summary> The reason that this chat completions choice completed its generated. </summary>
+        /// <summary> Gets the finish reason. </summary>
         public CompletionsFinishReason? FinishReason { get; }
-        /// <summary> An update to the chat message for a given chat completions prompt. </summary>
+        /// <summary> Gets the delta. </summary>
         public ChatResponseMessage Delta { get; }
     }
 }

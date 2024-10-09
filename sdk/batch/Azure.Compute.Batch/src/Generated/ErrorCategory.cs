@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> ErrorCategory enums. </summary>
+    /// <summary> The ErrorCategory. </summary>
     public readonly partial struct ErrorCategory : IEquatable<ErrorCategory>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string UserErrorValue = "usererror";
         private const string ServerErrorValue = "servererror";
 
-        /// <summary> The error is due to a user issue, such as misconfiguration. </summary>
+        /// <summary> usererror. </summary>
         public static ErrorCategory UserError { get; } = new ErrorCategory(UserErrorValue);
-        /// <summary> The error is due to an internal server issue. </summary>
+        /// <summary> servererror. </summary>
         public static ErrorCategory ServerError { get; } = new ErrorCategory(ServerErrorValue);
         /// <summary> Determines if two <see cref="ErrorCategory"/> values are the same. </summary>
         public static bool operator ==(ErrorCategory left, ErrorCategory right) => left.Equals(right);

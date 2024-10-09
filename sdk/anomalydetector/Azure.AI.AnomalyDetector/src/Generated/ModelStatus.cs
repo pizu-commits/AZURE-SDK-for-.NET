@@ -27,13 +27,13 @@ namespace Azure.AI.AnomalyDetector
         private const string ReadyValue = "READY";
         private const string FailedValue = "FAILED";
 
-        /// <summary> The model has been created. Training has been scheduled but not yet started. </summary>
+        /// <summary> CREATED. </summary>
         public static ModelStatus Created { get; } = new ModelStatus(CreatedValue);
-        /// <summary> The model is being trained. </summary>
+        /// <summary> RUNNING. </summary>
         public static ModelStatus Running { get; } = new ModelStatus(RunningValue);
-        /// <summary> The model has been trained and is ready to be used for anomaly detection. </summary>
+        /// <summary> READY. </summary>
         public static ModelStatus Ready { get; } = new ModelStatus(ReadyValue);
-        /// <summary> The model training failed. </summary>
+        /// <summary> FAILED. </summary>
         public static ModelStatus Failed { get; } = new ModelStatus(FailedValue);
         /// <summary> Determines if two <see cref="ModelStatus"/> values are the same. </summary>
         public static bool operator ==(ModelStatus left, ModelStatus right) => left.Equals(right);

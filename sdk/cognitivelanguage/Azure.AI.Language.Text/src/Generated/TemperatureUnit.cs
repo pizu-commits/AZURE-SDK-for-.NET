@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The temperature Unit of measurement. </summary>
+    /// <summary> The TemperatureUnit. </summary>
     public readonly partial struct TemperatureUnit : IEquatable<TemperatureUnit>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.AI.Language.Text
         private const string RankineValue = "Rankine";
         private const string CelsiusValue = "Celsius";
 
-        /// <summary> Unspecified temperature unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static TemperatureUnit Unspecified { get; } = new TemperatureUnit(UnspecifiedValue);
-        /// <summary> Temperature unit in Fahrenheit. </summary>
+        /// <summary> Fahrenheit. </summary>
         public static TemperatureUnit Fahrenheit { get; } = new TemperatureUnit(FahrenheitValue);
-        /// <summary> Temperature unit in Kelvin. </summary>
+        /// <summary> Kelvin. </summary>
         public static TemperatureUnit Kelvin { get; } = new TemperatureUnit(KelvinValue);
-        /// <summary> Temperature unit in Rankine. </summary>
+        /// <summary> Rankine. </summary>
         public static TemperatureUnit Rankine { get; } = new TemperatureUnit(RankineValue);
-        /// <summary> Temperature unit in Celsius. </summary>
+        /// <summary> Celsius. </summary>
         public static TemperatureUnit Celsius { get; } = new TemperatureUnit(CelsiusValue);
         /// <summary> Determines if two <see cref="TemperatureUnit"/> values are the same. </summary>
         public static bool operator ==(TemperatureUnit left, TemperatureUnit right) => left.Equals(right);

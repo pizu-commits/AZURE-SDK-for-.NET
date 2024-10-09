@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An inbound endpoint on a Compute Node. </summary>
+    /// <summary> The InboundEndpoint. </summary>
     public partial class InboundEndpoint
     {
         /// <summary>
@@ -46,12 +46,12 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InboundEndpoint"/>. </summary>
-        /// <param name="name"> The name of the endpoint. </param>
-        /// <param name="protocol"> The protocol of the endpoint. </param>
-        /// <param name="publicIpAddress"> The public IP address of the Compute Node. </param>
-        /// <param name="publicFQDN"> The public fully qualified domain name for the Compute Node. </param>
-        /// <param name="frontendPort"> The public port number of the endpoint. </param>
-        /// <param name="backendPort"> The backend port number of the endpoint. </param>
+        /// <param name="name"></param>
+        /// <param name="protocol"></param>
+        /// <param name="publicIpAddress"></param>
+        /// <param name="publicFQDN"></param>
+        /// <param name="frontendPort"></param>
+        /// <param name="backendPort"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="publicIpAddress"/> or <paramref name="publicFQDN"/> is null. </exception>
         internal InboundEndpoint(string name, InboundEndpointProtocol protocol, string publicIpAddress, string publicFQDN, int frontendPort, int backendPort)
         {
@@ -68,12 +68,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="InboundEndpoint"/>. </summary>
-        /// <param name="name"> The name of the endpoint. </param>
-        /// <param name="protocol"> The protocol of the endpoint. </param>
-        /// <param name="publicIpAddress"> The public IP address of the Compute Node. </param>
-        /// <param name="publicFQDN"> The public fully qualified domain name for the Compute Node. </param>
-        /// <param name="frontendPort"> The public port number of the endpoint. </param>
-        /// <param name="backendPort"> The backend port number of the endpoint. </param>
+        /// <param name="name"></param>
+        /// <param name="protocol"></param>
+        /// <param name="publicIpAddress"></param>
+        /// <param name="publicFQDN"></param>
+        /// <param name="frontendPort"></param>
+        /// <param name="backendPort"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InboundEndpoint(string name, InboundEndpointProtocol protocol, string publicIpAddress, string publicFQDN, int frontendPort, int backendPort, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,17 +91,17 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The name of the endpoint. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The protocol of the endpoint. </summary>
+        /// <summary> Gets the protocol. </summary>
         public InboundEndpointProtocol Protocol { get; }
-        /// <summary> The public IP address of the Compute Node. </summary>
+        /// <summary> Gets the public ip address. </summary>
         public string PublicIpAddress { get; }
-        /// <summary> The public fully qualified domain name for the Compute Node. </summary>
+        /// <summary> Gets the public fqdn. </summary>
         public string PublicFQDN { get; }
-        /// <summary> The public port number of the endpoint. </summary>
+        /// <summary> Gets the frontend port. </summary>
         public int FrontendPort { get; }
-        /// <summary> The backend port number of the endpoint. </summary>
+        /// <summary> Gets the backend port. </summary>
         public int BackendPort { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// The abstract base object for entity extra information.
+    /// The ConversationEntityExtraInformation.
     /// Please note <see cref="ConversationEntityExtraInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="EntitySubtype"/>, <see cref="ListKey"/> and <see cref="RegexKey"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationEntityExtraInformation"/>. </summary>
-        /// <param name="extraInformationKind"> The extra information object kind. </param>
+        /// <param name="extraInformationKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationEntityExtraInformation(ExtraInformationKind extraInformationKind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The extra information object kind. </summary>
+        /// <summary> Gets or sets the extra information kind. </summary>
         internal ExtraInformationKind ExtraInformationKind { get; set; }
     }
 }

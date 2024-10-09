@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> This object contains information of the prebuilt component of the detected entity. </summary>
+    /// <summary> The PrebuiltComponent. </summary>
     public partial class PrebuiltComponent : EntityComponentInformation
     {
         /// <summary> Initializes a new instance of <see cref="PrebuiltComponent"/>. </summary>
@@ -20,15 +20,15 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="PrebuiltComponent"/>. </summary>
-        /// <param name="entityComponentKind"> Kind of entity component. </param>
+        /// <param name="entityComponentKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The prebuilt component of an extracted entity type. </param>
+        /// <param name="value"></param>
         internal PrebuiltComponent(EntityComponentKind entityComponentKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string value) : base(entityComponentKind, serializedAdditionalRawData)
         {
             Value = value;
         }
 
-        /// <summary> The prebuilt component of an extracted entity type. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

@@ -14,10 +14,10 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownConversationInput : ConversationInput
     {
         /// <summary> Initializes a new instance of <see cref="UnknownConversationInput"/>. </summary>
-        /// <param name="id"> Unique identifier for the conversation. </param>
-        /// <param name="language"> Language of the conversation item in BCP-47 format. </param>
-        /// <param name="modality"> modality. </param>
-        /// <param name="domain"> domain. </param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="modality"></param>
+        /// <param name="domain"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownConversationInput(string id, string language, InputModality modality, ConversationDomain? domain, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, language, modality, domain, serializedAdditionalRawData)
         {

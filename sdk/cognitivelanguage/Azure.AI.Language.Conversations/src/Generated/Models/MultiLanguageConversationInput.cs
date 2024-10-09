@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Multi Language Conversation Analysis Input. </summary>
+    /// <summary> The MultiLanguageConversationInput. </summary>
     public partial class MultiLanguageConversationInput
     {
         /// <summary>
@@ -48,7 +48,6 @@ namespace Azure.AI.Language.Conversations.Models
 
         /// <summary> Initializes a new instance of <see cref="MultiLanguageConversationInput"/>. </summary>
         /// <param name="conversations">
-        /// Array of conversation items
         /// Please note <see cref="ConversationInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="TextConversation"/> and <see cref="TranscriptConversation"/>.
         /// </param>
@@ -62,7 +61,6 @@ namespace Azure.AI.Language.Conversations.Models
 
         /// <summary> Initializes a new instance of <see cref="MultiLanguageConversationInput"/>. </summary>
         /// <param name="conversations">
-        /// Array of conversation items
         /// Please note <see cref="ConversationInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="TextConversation"/> and <see cref="TranscriptConversation"/>.
         /// </param>
@@ -79,7 +77,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary>
-        /// Array of conversation items
+        /// Gets the conversations
         /// Please note <see cref="ConversationInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="TextConversation"/> and <see cref="TranscriptConversation"/>.
         /// </summary>

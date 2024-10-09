@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The configuration for virtual machine extension instance view. </summary>
+    /// <summary> The BatchNodeVMExtension. </summary>
     public partial class BatchNodeVMExtension
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeVMExtension"/>. </summary>
-        /// <param name="provisioningState"> The provisioning state of the virtual machine extension. </param>
-        /// <param name="vmExtension"> The virtual machine extension. </param>
-        /// <param name="instanceView"> The vm extension instance view. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="vmExtension"></param>
+        /// <param name="instanceView"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeVMExtension(string provisioningState, VMExtension vmExtension, VMExtensionInstanceView instanceView, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The provisioning state of the virtual machine extension. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public string ProvisioningState { get; }
-        /// <summary> The virtual machine extension. </summary>
+        /// <summary> Gets the vm extension. </summary>
         public VMExtension VmExtension { get; }
-        /// <summary> The vm extension instance view. </summary>
+        /// <summary> Gets the instance view. </summary>
         public VMExtensionInstanceView InstanceView { get; }
     }
 }

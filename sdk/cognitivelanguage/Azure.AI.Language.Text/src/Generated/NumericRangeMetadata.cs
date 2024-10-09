@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> represents the Metadata of numeric intervals. </summary>
+    /// <summary> The NumericRangeMetadata. </summary>
     public partial class NumericRangeMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="NumericRangeMetadata"/>. </summary>
-        /// <param name="rangeKind"> Kind of numeric ranges supported - like Number, Speed, etc. </param>
-        /// <param name="minimum"> The beginning value of  the interval. </param>
-        /// <param name="maximum"> The ending value of the interval. </param>
+        /// <param name="rangeKind"></param>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
         internal NumericRangeMetadata(RangeKind rangeKind, double minimum, double maximum)
         {
             MetadataKind = MetadataKind.NumericRangeMetadata;
@@ -26,12 +26,12 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="NumericRangeMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="rangeKind"> Kind of numeric ranges supported - like Number, Speed, etc. </param>
-        /// <param name="minimum"> The beginning value of  the interval. </param>
-        /// <param name="maximum"> The ending value of the interval. </param>
-        /// <param name="rangeInclusivity"> The inclusiveness of this range. </param>
+        /// <param name="rangeKind"></param>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
+        /// <param name="rangeInclusivity"></param>
         internal NumericRangeMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, RangeKind rangeKind, double minimum, double maximum, RangeInclusivity? rangeInclusivity) : base(metadataKind, serializedAdditionalRawData)
         {
             RangeKind = rangeKind;
@@ -45,13 +45,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Kind of numeric ranges supported - like Number, Speed, etc. </summary>
+        /// <summary> Gets the range kind. </summary>
         public RangeKind RangeKind { get; }
-        /// <summary> The beginning value of  the interval. </summary>
+        /// <summary> Gets the minimum. </summary>
         public double Minimum { get; }
-        /// <summary> The ending value of the interval. </summary>
+        /// <summary> Gets the maximum. </summary>
         public double Maximum { get; }
-        /// <summary> The inclusiveness of this range. </summary>
+        /// <summary> Gets the range inclusivity. </summary>
         public RangeInclusivity? RangeInclusivity { get; }
     }
 }

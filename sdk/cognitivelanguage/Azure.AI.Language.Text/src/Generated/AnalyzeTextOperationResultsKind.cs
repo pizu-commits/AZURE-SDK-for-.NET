@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The kind of the response object returned by the analyze-text long running task. </summary>
+    /// <summary> The AnalyzeTextOperationResultsKind. </summary>
     internal readonly partial struct AnalyzeTextOperationResultsKind : IEquatable<AnalyzeTextOperationResultsKind>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.AI.Language.Text
         private const string CustomSentimentAnalysisOperationResultsValue = "CustomSentimentAnalysisLROResults";
         private const string CustomAbstractiveSummarizationOperationResultsValue = "CustomAbstractiveSummarizationLROResults";
 
-        /// <summary> Sentiment analysis LRO results. </summary>
+        /// <summary> SentimentAnalysisLROResults. </summary>
         public static AnalyzeTextOperationResultsKind SentimentAnalysisOperationResults { get; } = new AnalyzeTextOperationResultsKind(SentimentAnalysisOperationResultsValue);
-        /// <summary> Entity recognition LRO results. </summary>
+        /// <summary> EntityRecognitionLROResults. </summary>
         public static AnalyzeTextOperationResultsKind EntityRecognitionOperationResults { get; } = new AnalyzeTextOperationResultsKind(EntityRecognitionOperationResultsValue);
-        /// <summary> PII entity recognition LRO results. </summary>
+        /// <summary> PiiEntityRecognitionLROResults. </summary>
         public static AnalyzeTextOperationResultsKind PiiEntityRecognitionOperationResults { get; } = new AnalyzeTextOperationResultsKind(PiiEntityRecognitionOperationResultsValue);
-        /// <summary> Key phrase extraction LRO results. </summary>
+        /// <summary> KeyPhraseExtractionLROResults. </summary>
         public static AnalyzeTextOperationResultsKind KeyPhraseExtractionOperationResults { get; } = new AnalyzeTextOperationResultsKind(KeyPhraseExtractionOperationResultsValue);
-        /// <summary> Entity linking LRO results. </summary>
+        /// <summary> EntityLinkingLROResults. </summary>
         public static AnalyzeTextOperationResultsKind EntityLinkingOperationResults { get; } = new AnalyzeTextOperationResultsKind(EntityLinkingOperationResultsValue);
-        /// <summary> Healthcare LRO results. </summary>
+        /// <summary> HealthcareLROResults. </summary>
         public static AnalyzeTextOperationResultsKind HealthcareOperationResults { get; } = new AnalyzeTextOperationResultsKind(HealthcareOperationResultsValue);
-        /// <summary> Custom entity recognition LRO results. </summary>
+        /// <summary> CustomEntityRecognitionLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomEntityRecognitionOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomEntityRecognitionOperationResultsValue);
-        /// <summary> Custom single label classification LRO results. </summary>
+        /// <summary> CustomSingleLabelClassificationLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomSingleLabelClassificationOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomSingleLabelClassificationOperationResultsValue);
-        /// <summary> Custom multi label classification LRO results. </summary>
+        /// <summary> CustomMultiLabelClassificationLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomMultiLabelClassificationOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomMultiLabelClassificationOperationResultsValue);
-        /// <summary> Extractive summarization LRO results. </summary>
+        /// <summary> ExtractiveSummarizationLROResults. </summary>
         public static AnalyzeTextOperationResultsKind ExtractiveSummarizationOperationResults { get; } = new AnalyzeTextOperationResultsKind(ExtractiveSummarizationOperationResultsValue);
-        /// <summary> Abstractive summarization LRO results. </summary>
+        /// <summary> AbstractiveSummarizationLROResults. </summary>
         public static AnalyzeTextOperationResultsKind AbstractiveSummarizationOperationResults { get; } = new AnalyzeTextOperationResultsKind(AbstractiveSummarizationOperationResultsValue);
-        /// <summary> Custom healthcare LRO results. </summary>
+        /// <summary> CustomHealthcareLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomHealthcareOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomHealthcareOperationResultsValue);
-        /// <summary> Custom sentiment analysis LRO results. </summary>
+        /// <summary> CustomSentimentAnalysisLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomSentimentAnalysisOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomSentimentAnalysisOperationResultsValue);
-        /// <summary> Custom abstractive summarization LRO results. </summary>
+        /// <summary> CustomAbstractiveSummarizationLROResults. </summary>
         public static AnalyzeTextOperationResultsKind CustomAbstractiveSummarizationOperationResults { get; } = new AnalyzeTextOperationResultsKind(CustomAbstractiveSummarizationOperationResultsValue);
         /// <summary> Determines if two <see cref="AnalyzeTextOperationResultsKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextOperationResultsKind left, AnalyzeTextOperationResultsKind right) => left.Equals(right);

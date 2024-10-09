@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The entity resolution object kind. </summary>
+    /// <summary> The ResolutionKind. </summary>
     internal readonly partial struct ResolutionKind : IEquatable<ResolutionKind>
     {
         private readonly string _value;
@@ -38,35 +38,35 @@ namespace Azure.AI.Language.Conversations.Models
         private const string NumericRangeResolutionValue = "NumericRangeResolution";
         private const string TemporalSpanResolutionValue = "TemporalSpanResolution";
 
-        /// <summary> Resolution of a boolean entity. </summary>
+        /// <summary> BooleanResolution. </summary>
         public static ResolutionKind BooleanResolution { get; } = new ResolutionKind(BooleanResolutionValue);
-        /// <summary> Resolution of a date/time entity. </summary>
+        /// <summary> DateTimeResolution. </summary>
         public static ResolutionKind DateTimeResolution { get; } = new ResolutionKind(DateTimeResolutionValue);
-        /// <summary> Resolution of a number entity. </summary>
+        /// <summary> NumberResolution. </summary>
         public static ResolutionKind NumberResolution { get; } = new ResolutionKind(NumberResolutionValue);
-        /// <summary> Resolution of an ordinal entity. </summary>
+        /// <summary> OrdinalResolution. </summary>
         public static ResolutionKind OrdinalResolution { get; } = new ResolutionKind(OrdinalResolutionValue);
-        /// <summary> Resolution of a speed entity. </summary>
+        /// <summary> SpeedResolution. </summary>
         public static ResolutionKind SpeedResolution { get; } = new ResolutionKind(SpeedResolutionValue);
-        /// <summary> Resolution of a weight entity. </summary>
+        /// <summary> WeightResolution. </summary>
         public static ResolutionKind WeightResolution { get; } = new ResolutionKind(WeightResolutionValue);
-        /// <summary> Resolution of a length entity. </summary>
+        /// <summary> LengthResolution. </summary>
         public static ResolutionKind LengthResolution { get; } = new ResolutionKind(LengthResolutionValue);
-        /// <summary> Resolution of a volume entity. </summary>
+        /// <summary> VolumeResolution. </summary>
         public static ResolutionKind VolumeResolution { get; } = new ResolutionKind(VolumeResolutionValue);
-        /// <summary> Resolution of an area entity. </summary>
+        /// <summary> AreaResolution. </summary>
         public static ResolutionKind AreaResolution { get; } = new ResolutionKind(AreaResolutionValue);
-        /// <summary> Resolution of an age entity. </summary>
+        /// <summary> AgeResolution. </summary>
         public static ResolutionKind AgeResolution { get; } = new ResolutionKind(AgeResolutionValue);
-        /// <summary> Resolution of an information entity. </summary>
+        /// <summary> InformationResolution. </summary>
         public static ResolutionKind InformationResolution { get; } = new ResolutionKind(InformationResolutionValue);
-        /// <summary> Resolution of a temperature entity. </summary>
+        /// <summary> TemperatureResolution. </summary>
         public static ResolutionKind TemperatureResolution { get; } = new ResolutionKind(TemperatureResolutionValue);
-        /// <summary> Resolution of a currency entity. </summary>
+        /// <summary> CurrencyResolution. </summary>
         public static ResolutionKind CurrencyResolution { get; } = new ResolutionKind(CurrencyResolutionValue);
-        /// <summary> Resolution of a numeric range entity. </summary>
+        /// <summary> NumericRangeResolution. </summary>
         public static ResolutionKind NumericRangeResolution { get; } = new ResolutionKind(NumericRangeResolutionValue);
-        /// <summary> Resolution of a temporal span entity. </summary>
+        /// <summary> TemporalSpanResolution. </summary>
         public static ResolutionKind TemporalSpanResolution { get; } = new ResolutionKind(TemporalSpanResolutionValue);
         /// <summary> Determines if two <see cref="ResolutionKind"/> values are the same. </summary>
         public static bool operator ==(ResolutionKind left, ResolutionKind right) => left.Equals(right);

@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Text
     internal partial class UnknownEntityComponentInformation : EntityComponentInformation
     {
         /// <summary> Initializes a new instance of <see cref="UnknownEntityComponentInformation"/>. </summary>
-        /// <param name="entityComponentKind"> Kind of entity component. </param>
+        /// <param name="entityComponentKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownEntityComponentInformation(EntityComponentKind entityComponentKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(entityComponentKind, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The container settings for a Task. </summary>
+    /// <summary> The BatchTaskContainerSettings. </summary>
     public partial class BatchTaskContainerSettings
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskContainerSettings"/>. </summary>
-        /// <param name="imageName"> The Image to use to create the container in which the Task will run. This is the full Image reference, as would be specified to "docker pull". If no tag is provided as part of the Image name, the tag ":latest" is used as a default. </param>
+        /// <param name="imageName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="imageName"/> is null. </exception>
         public BatchTaskContainerSettings(string imageName)
         {
@@ -56,10 +56,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskContainerSettings"/>. </summary>
-        /// <param name="containerRunOptions"> Additional options to the container create command. These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service. </param>
-        /// <param name="imageName"> The Image to use to create the container in which the Task will run. This is the full Image reference, as would be specified to "docker pull". If no tag is provided as part of the Image name, the tag ":latest" is used as a default. </param>
-        /// <param name="registry"> The private registry which contains the container Image. This setting can be omitted if was already provided at Pool creation. </param>
-        /// <param name="workingDirectory"> The location of the container Task working directory. The default is 'taskWorkingDirectory'. </param>
+        /// <param name="containerRunOptions"></param>
+        /// <param name="imageName"></param>
+        /// <param name="registry"></param>
+        /// <param name="workingDirectory"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskContainerSettings(string containerRunOptions, string imageName, ContainerRegistryReference registry, ContainerWorkingDirectory? workingDirectory, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,13 +75,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> Additional options to the container create command. These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service. </summary>
+        /// <summary> Gets or sets the container run options. </summary>
         public string ContainerRunOptions { get; set; }
-        /// <summary> The Image to use to create the container in which the Task will run. This is the full Image reference, as would be specified to "docker pull". If no tag is provided as part of the Image name, the tag ":latest" is used as a default. </summary>
+        /// <summary> Gets or sets the image name. </summary>
         public string ImageName { get; set; }
-        /// <summary> The private registry which contains the container Image. This setting can be omitted if was already provided at Pool creation. </summary>
+        /// <summary> Gets or sets the registry. </summary>
         public ContainerRegistryReference Registry { get; set; }
-        /// <summary> The location of the container Task working directory. The default is 'taskWorkingDirectory'. </summary>
+        /// <summary> Gets or sets the working directory. </summary>
         public ContainerWorkingDirectory? WorkingDirectory { get; set; }
     }
 }

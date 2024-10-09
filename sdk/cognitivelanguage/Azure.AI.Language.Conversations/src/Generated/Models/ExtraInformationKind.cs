@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The extra information object kind. </summary>
+    /// <summary> The ExtraInformationKind. </summary>
     internal readonly partial struct ExtraInformationKind : IEquatable<ExtraInformationKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string ListKeyValue = "ListKey";
         private const string RegexKeyValue = "RegexKey";
 
-        /// <summary> Entity subtype extra information kind. </summary>
+        /// <summary> EntitySubtype. </summary>
         public static ExtraInformationKind EntitySubtype { get; } = new ExtraInformationKind(EntitySubtypeValue);
-        /// <summary> List key extra information kind. </summary>
+        /// <summary> ListKey. </summary>
         public static ExtraInformationKind ListKey { get; } = new ExtraInformationKind(ListKeyValue);
-        /// <summary> Regex key extra information kind. </summary>
+        /// <summary> RegexKey. </summary>
         public static ExtraInformationKind RegexKey { get; } = new ExtraInformationKind(RegexKeyValue);
         /// <summary> Determines if two <see cref="ExtraInformationKind"/> values are the same. </summary>
         public static bool operator ==(ExtraInformationKind left, ExtraInformationKind right) => left.Equals(right);

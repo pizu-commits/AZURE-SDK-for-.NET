@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents the currency entity resolution model. </summary>
+    /// <summary> The CurrencyResolution. </summary>
     public partial class CurrencyResolution : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="CurrencyResolution"/>. </summary>
-        /// <param name="value"> The money amount captured in the extracted entity. </param>
-        /// <param name="unit"> The unit of the amount captured in the extracted entity. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="unit"/> is null. </exception>
         internal CurrencyResolution(double value, string unit)
         {
@@ -27,11 +27,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CurrencyResolution"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="iso4217"> The alphabetic code based on another ISO standard, ISO 3166, which lists the codes for country names. The first two letters of the ISO 4217 three-letter code are the same as the code for the country name, and, where possible, the third letter corresponds to the first letter of the currency name. </param>
-        /// <param name="value"> The money amount captured in the extracted entity. </param>
-        /// <param name="unit"> The unit of the amount captured in the extracted entity. </param>
+        /// <param name="iso4217"></param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal CurrencyResolution(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string iso4217, double value, string unit) : base(resolutionKind, serializedAdditionalRawData)
         {
             Iso4217 = iso4217;
@@ -44,11 +44,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The alphabetic code based on another ISO standard, ISO 3166, which lists the codes for country names. The first two letters of the ISO 4217 three-letter code are the same as the code for the country name, and, where possible, the third letter corresponds to the first letter of the currency name. </summary>
+        /// <summary> Gets the iso 4217. </summary>
         public string Iso4217 { get; }
-        /// <summary> The money amount captured in the extracted entity. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
-        /// <summary> The unit of the amount captured in the extracted entity. </summary>
+        /// <summary> Gets the unit. </summary>
         public string Unit { get; }
     }
 }

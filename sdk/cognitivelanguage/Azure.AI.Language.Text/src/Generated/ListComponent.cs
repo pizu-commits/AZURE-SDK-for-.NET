@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> This object contains information of the list component of the detected entity. </summary>
+    /// <summary> The ListComponent. </summary>
     public partial class ListComponent : EntityComponentInformation
     {
         /// <summary> Initializes a new instance of <see cref="ListComponent"/>. </summary>
@@ -20,15 +20,15 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="ListComponent"/>. </summary>
-        /// <param name="entityComponentKind"> Kind of entity component. </param>
+        /// <param name="entityComponentKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The list key of an extracted entity type. </param>
+        /// <param name="value"></param>
         internal ListComponent(EntityComponentKind entityComponentKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string value) : base(entityComponentKind, serializedAdditionalRawData)
         {
             Value = value;
         }
 
-        /// <summary> The list key of an extracted entity type. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

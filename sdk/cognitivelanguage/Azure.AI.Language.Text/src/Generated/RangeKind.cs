@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The kind of the number range entity. </summary>
+    /// <summary> The RangeKind. </summary>
     public readonly partial struct RangeKind : IEquatable<RangeKind>
     {
         private readonly string _value;
@@ -33,25 +33,25 @@ namespace Azure.AI.Language.Text
         private const string TemperatureValue = "Temperature";
         private const string CurrencyValue = "Currency";
 
-        /// <summary> Number range. </summary>
+        /// <summary> Number. </summary>
         public static RangeKind Number { get; } = new RangeKind(NumberValue);
-        /// <summary> Speed range. </summary>
+        /// <summary> Speed. </summary>
         public static RangeKind Speed { get; } = new RangeKind(SpeedValue);
-        /// <summary> Weight range. </summary>
+        /// <summary> Weight. </summary>
         public static RangeKind Weight { get; } = new RangeKind(WeightValue);
-        /// <summary> Length range. </summary>
+        /// <summary> Length. </summary>
         public static RangeKind Length { get; } = new RangeKind(LengthValue);
-        /// <summary> Volume range. </summary>
+        /// <summary> Volume. </summary>
         public static RangeKind Volume { get; } = new RangeKind(VolumeValue);
-        /// <summary> Area range. </summary>
+        /// <summary> Area. </summary>
         public static RangeKind Area { get; } = new RangeKind(AreaValue);
-        /// <summary> Age range. </summary>
+        /// <summary> Age. </summary>
         public static RangeKind Age { get; } = new RangeKind(AgeValue);
-        /// <summary> Information range. </summary>
+        /// <summary> Information. </summary>
         public static RangeKind Information { get; } = new RangeKind(InformationValue);
-        /// <summary> Temperature range. </summary>
+        /// <summary> Temperature. </summary>
         public static RangeKind Temperature { get; } = new RangeKind(TemperatureValue);
-        /// <summary> Currency range. </summary>
+        /// <summary> Currency. </summary>
         public static RangeKind Currency { get; } = new RangeKind(CurrencyValue);
         /// <summary> Determines if two <see cref="RangeKind"/> values are the same. </summary>
         public static bool operator ==(RangeKind left, RangeKind right) => left.Equals(right);

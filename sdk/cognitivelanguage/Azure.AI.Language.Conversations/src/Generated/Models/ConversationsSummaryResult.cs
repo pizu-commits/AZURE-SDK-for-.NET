@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Conversations Summary Result. </summary>
+    /// <summary> The ConversationsSummaryResult. </summary>
     public partial class ConversationsSummaryResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationsSummaryResult"/>. </summary>
-        /// <param name="id"> Unique, non-empty conversation identifier. </param>
-        /// <param name="warnings"> Warnings encountered in processing the document. </param>
-        /// <param name="summaries"> array of summaries. </param>
+        /// <param name="id"></param>
+        /// <param name="warnings"></param>
+        /// <param name="summaries"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/> or <paramref name="summaries"/> is null. </exception>
         internal ConversationsSummaryResult(string id, IEnumerable<InputWarning> warnings, IEnumerable<SummaryResultItem> summaries)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationsSummaryResult"/>. </summary>
-        /// <param name="id"> Unique, non-empty conversation identifier. </param>
-        /// <param name="warnings"> Warnings encountered in processing the document. </param>
-        /// <param name="statistics"> If showStats=true was specified in the request this field will contain information about the conversation payload. </param>
-        /// <param name="summaries"> array of summaries. </param>
+        /// <param name="id"></param>
+        /// <param name="warnings"></param>
+        /// <param name="statistics"></param>
+        /// <param name="summaries"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationsSummaryResult(string id, IReadOnlyList<InputWarning> warnings, ConversationStatistics statistics, IReadOnlyList<SummaryResultItem> summaries, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Unique, non-empty conversation identifier. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Warnings encountered in processing the document. </summary>
+        /// <summary> Gets the warnings. </summary>
         public IReadOnlyList<InputWarning> Warnings { get; }
-        /// <summary> If showStats=true was specified in the request this field will contain information about the conversation payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public ConversationStatistics Statistics { get; }
-        /// <summary> array of summaries. </summary>
+        /// <summary> Gets the summaries. </summary>
         public IReadOnlyList<SummaryResultItem> Summaries { get; }
     }
 }

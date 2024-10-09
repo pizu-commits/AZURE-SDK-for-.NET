@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> ContainerType enums. </summary>
+    /// <summary> The ContainerType. </summary>
     public readonly partial struct ContainerType : IEquatable<ContainerType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string DockerCompatibleValue = "dockerCompatible";
         private const string CriCompatibleValue = "criCompatible";
 
-        /// <summary> A Docker compatible container technology will be used to launch the containers. </summary>
+        /// <summary> dockerCompatible. </summary>
         public static ContainerType DockerCompatible { get; } = new ContainerType(DockerCompatibleValue);
-        /// <summary> A CRI based technology will be used to launch the containers. </summary>
+        /// <summary> criCompatible. </summary>
         public static ContainerType CriCompatible { get; } = new ContainerType(CriCompatibleValue);
         /// <summary> Determines if two <see cref="ContainerType"/> values are the same. </summary>
         public static bool operator ==(ContainerType left, ContainerType right) => left.Equals(right);

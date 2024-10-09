@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Summary Result Item. </summary>
+    /// <summary> The SummaryResultItem. </summary>
     public partial class SummaryResultItem
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SummaryResultItem"/>. </summary>
-        /// <param name="aspect"> aspect. </param>
-        /// <param name="text"> text. </param>
+        /// <param name="aspect"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="aspect"/> or <paramref name="text"/> is null. </exception>
         internal SummaryResultItem(string aspect, string text)
         {
@@ -60,9 +60,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="SummaryResultItem"/>. </summary>
-        /// <param name="aspect"> aspect. </param>
-        /// <param name="text"> text. </param>
-        /// <param name="contexts"> Context list of the summary. </param>
+        /// <param name="aspect"></param>
+        /// <param name="text"></param>
+        /// <param name="contexts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SummaryResultItem(string aspect, string text, IReadOnlyList<ItemizedSummaryContext> contexts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> aspect. </summary>
+        /// <summary> Gets the aspect. </summary>
         public string Aspect { get; }
-        /// <summary> text. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Context list of the summary. </summary>
+        /// <summary> Gets the contexts. </summary>
         public IReadOnlyList<ItemizedSummaryContext> Contexts { get; }
     }
 }

@@ -121,7 +121,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect anomaly status of the latest point in time series. </summary>
-        /// <param name="options"> Method of univariate anomaly detection. </param>
+        /// <param name="options"> The <see cref="UnivariateDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks>
@@ -140,7 +140,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect anomaly status of the latest point in time series. </summary>
-        /// <param name="options"> Method of univariate anomaly detection. </param>
+        /// <param name="options"> The <see cref="UnivariateDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks>
@@ -237,7 +237,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect change point for the entire series. </summary>
-        /// <param name="options"> Method of univariate anomaly detection. </param>
+        /// <param name="options"> The <see cref="UnivariateChangePointDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> Evaluate the change point score of every series point. </remarks>
@@ -253,7 +253,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect change point for the entire series. </summary>
-        /// <param name="options"> Method of univariate anomaly detection. </param>
+        /// <param name="options"> The <see cref="UnivariateChangePointDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> Evaluate the change point score of every series point. </remarks>

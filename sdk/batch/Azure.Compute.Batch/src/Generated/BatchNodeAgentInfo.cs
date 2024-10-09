@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// The Batch Compute Node agent is a program that runs on each Compute Node in the
-    /// Pool and provides Batch capability on the Compute Node.
-    /// </summary>
+    /// <summary> The BatchNodeAgentInfo. </summary>
     public partial class BatchNodeAgentInfo
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeAgentInfo"/>. </summary>
-        /// <param name="version"> The version of the Batch Compute Node agent running on the Compute Node. This version number can be checked against the Compute Node agent release notes located at https://github.com/Azure/Batch/blob/master/changelogs/nodeagent/CHANGELOG.md. </param>
-        /// <param name="lastUpdateTime"> The time when the Compute Node agent was updated on the Compute Node. This is the most recent time that the Compute Node agent was updated to a new version. </param>
+        /// <param name="version"></param>
+        /// <param name="lastUpdateTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="version"/> is null. </exception>
         internal BatchNodeAgentInfo(string version, DateTimeOffset lastUpdateTime)
         {
@@ -61,8 +58,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeAgentInfo"/>. </summary>
-        /// <param name="version"> The version of the Batch Compute Node agent running on the Compute Node. This version number can be checked against the Compute Node agent release notes located at https://github.com/Azure/Batch/blob/master/changelogs/nodeagent/CHANGELOG.md. </param>
-        /// <param name="lastUpdateTime"> The time when the Compute Node agent was updated on the Compute Node. This is the most recent time that the Compute Node agent was updated to a new version. </param>
+        /// <param name="version"></param>
+        /// <param name="lastUpdateTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeAgentInfo(string version, DateTimeOffset lastUpdateTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,9 +73,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The version of the Batch Compute Node agent running on the Compute Node. This version number can be checked against the Compute Node agent release notes located at https://github.com/Azure/Batch/blob/master/changelogs/nodeagent/CHANGELOG.md. </summary>
+        /// <summary> Gets the version. </summary>
         public string Version { get; }
-        /// <summary> The time when the Compute Node agent was updated on the Compute Node. This is the most recent time that the Compute Node agent was updated to a new version. </summary>
+        /// <summary> Gets the last update time. </summary>
         public DateTimeOffset LastUpdateTime { get; }
     }
 }

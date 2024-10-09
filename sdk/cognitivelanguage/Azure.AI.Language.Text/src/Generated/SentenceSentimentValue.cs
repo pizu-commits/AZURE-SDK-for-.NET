@@ -7,14 +7,14 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The predicted Sentiment for the sentence. </summary>
+    /// <summary> The SentenceSentimentValue. </summary>
     public enum SentenceSentimentValue
     {
-        /// <summary> Positive sentiment. </summary>
+        /// <summary> positive. </summary>
         Positive,
-        /// <summary> Neutral sentiment. </summary>
+        /// <summary> neutral. </summary>
         Neutral,
-        /// <summary> Negative sentiment. </summary>
+        /// <summary> negative. </summary>
         Negative
     }
 }

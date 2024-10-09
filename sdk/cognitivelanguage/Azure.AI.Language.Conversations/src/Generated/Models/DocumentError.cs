@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Contains details of errors encountered during a job execution. </summary>
+    /// <summary> The DocumentError. </summary>
     public partial class DocumentError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentError"/>. </summary>
-        /// <param name="id"> The ID of the input document. </param>
-        /// <param name="error"> Error encountered. </param>
+        /// <param name="id"></param>
+        /// <param name="error"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="error"/> is null. </exception>
         internal DocumentError(string id, ConversationError error)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentError"/>. </summary>
-        /// <param name="id"> The ID of the input document. </param>
-        /// <param name="error"> Error encountered. </param>
+        /// <param name="id"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentError(string id, ConversationError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The ID of the input document. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Error encountered. </summary>
+        /// <summary> Gets the error. </summary>
         public ConversationError Error { get; }
     }
 }

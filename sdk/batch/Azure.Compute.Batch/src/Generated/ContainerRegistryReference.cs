@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A private container registry. </summary>
+    /// <summary> The ContainerRegistryReference. </summary>
     public partial class ContainerRegistryReference
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerRegistryReference"/>. </summary>
-        /// <param name="username"> The user name to log into the registry server. </param>
-        /// <param name="password"> The password to log into the registry server. </param>
-        /// <param name="registryServer"> The registry URL. If omitted, the default is "docker.io". </param>
-        /// <param name="identityReference"> The reference to the user assigned identity to use to access an Azure Container Registry instead of username and password. </param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="registryServer"></param>
+        /// <param name="identityReference"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerRegistryReference(string username, string password, string registryServer, BatchNodeIdentityReference identityReference, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The user name to log into the registry server. </summary>
+        /// <summary> Gets or sets the username. </summary>
         public string Username { get; set; }
-        /// <summary> The password to log into the registry server. </summary>
+        /// <summary> Gets or sets the password. </summary>
         public string Password { get; set; }
-        /// <summary> The registry URL. If omitted, the default is "docker.io". </summary>
+        /// <summary> Gets or sets the registry server. </summary>
         public string RegistryServer { get; set; }
-        /// <summary> The reference to the user assigned identity to use to access an Azure Container Registry instead of username and password. </summary>
+        /// <summary> Gets or sets the identity reference. </summary>
         public BatchNodeIdentityReference IdentityReference { get; set; }
     }
 }

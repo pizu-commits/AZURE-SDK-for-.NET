@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The speed Unit of measurement. </summary>
+    /// <summary> The SpeedUnit. </summary>
     public readonly partial struct SpeedUnit : IEquatable<SpeedUnit>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.AI.Language.Text
         private const string CentimetersPerMillisecondValue = "CentimetersPerMillisecond";
         private const string KilometersPerMillisecondValue = "KilometersPerMillisecond";
 
-        /// <summary> Unspecified speed unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static SpeedUnit Unspecified { get; } = new SpeedUnit(UnspecifiedValue);
-        /// <summary> Speed unit in meters per second. </summary>
+        /// <summary> MetersPerSecond. </summary>
         public static SpeedUnit MetersPerSecond { get; } = new SpeedUnit(MetersPerSecondValue);
-        /// <summary> Speed unit in kilometers per hour. </summary>
+        /// <summary> KilometersPerHour. </summary>
         public static SpeedUnit KilometersPerHour { get; } = new SpeedUnit(KilometersPerHourValue);
-        /// <summary> Speed unit in kilometers per minute. </summary>
+        /// <summary> KilometersPerMinute. </summary>
         public static SpeedUnit KilometersPerMinute { get; } = new SpeedUnit(KilometersPerMinuteValue);
-        /// <summary> Speed unit in kilometers per second. </summary>
+        /// <summary> KilometersPerSecond. </summary>
         public static SpeedUnit KilometersPerSecond { get; } = new SpeedUnit(KilometersPerSecondValue);
-        /// <summary> Speed unit in miles per hour. </summary>
+        /// <summary> MilesPerHour. </summary>
         public static SpeedUnit MilesPerHour { get; } = new SpeedUnit(MilesPerHourValue);
-        /// <summary> Speed unit in knots. </summary>
+        /// <summary> Knots. </summary>
         public static SpeedUnit Knots { get; } = new SpeedUnit(KnotsValue);
-        /// <summary> Speed unit in feet per second. </summary>
+        /// <summary> FeetPerSecond. </summary>
         public static SpeedUnit FeetPerSecond { get; } = new SpeedUnit(FeetPerSecondValue);
-        /// <summary> Speed unit in feet per minute. </summary>
+        /// <summary> FeetPerMinute. </summary>
         public static SpeedUnit FeetPerMinute { get; } = new SpeedUnit(FeetPerMinuteValue);
-        /// <summary> Speed unit in yards per minute. </summary>
+        /// <summary> YardsPerMinute. </summary>
         public static SpeedUnit YardsPerMinute { get; } = new SpeedUnit(YardsPerMinuteValue);
-        /// <summary> Speed unit in yards per second. </summary>
+        /// <summary> YardsPerSecond. </summary>
         public static SpeedUnit YardsPerSecond { get; } = new SpeedUnit(YardsPerSecondValue);
-        /// <summary> Speed unit in meters per millisecond. </summary>
+        /// <summary> MetersPerMillisecond. </summary>
         public static SpeedUnit MetersPerMillisecond { get; } = new SpeedUnit(MetersPerMillisecondValue);
-        /// <summary> Speed unit in centimeters per millisecond. </summary>
+        /// <summary> CentimetersPerMillisecond. </summary>
         public static SpeedUnit CentimetersPerMillisecond { get; } = new SpeedUnit(CentimetersPerMillisecondValue);
-        /// <summary> Speed unit in Kilometers per millisecond. </summary>
+        /// <summary> KilometersPerMillisecond. </summary>
         public static SpeedUnit KilometersPerMillisecond { get; } = new SpeedUnit(KilometersPerMillisecondValue);
         /// <summary> Determines if two <see cref="SpeedUnit"/> values are the same. </summary>
         public static bool operator ==(SpeedUnit left, SpeedUnit right) => left.Equals(right);

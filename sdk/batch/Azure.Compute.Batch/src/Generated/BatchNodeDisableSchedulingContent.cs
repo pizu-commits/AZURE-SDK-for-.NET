@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for disabling scheduling on an Azure Batch Compute Node. </summary>
+    /// <summary> The BatchNodeDisableSchedulingContent. </summary>
     public partial class BatchNodeDisableSchedulingContent
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeDisableSchedulingContent"/>. </summary>
-        /// <param name="nodeDisableSchedulingOption"> What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. </param>
+        /// <param name="nodeDisableSchedulingOption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeDisableSchedulingContent(BatchNodeDisableSchedulingOption? nodeDisableSchedulingOption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. </summary>
+        /// <summary> Gets or sets the node disable scheduling option. </summary>
         public BatchNodeDisableSchedulingOption? NodeDisableSchedulingOption { get; set; }
     }
 }

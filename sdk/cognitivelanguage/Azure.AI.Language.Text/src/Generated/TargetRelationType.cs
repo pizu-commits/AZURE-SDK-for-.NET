@@ -7,12 +7,12 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The type related to the target. </summary>
+    /// <summary> The TargetRelationType. </summary>
     public enum TargetRelationType
     {
-        /// <summary> Assessment relation. </summary>
+        /// <summary> assessment. </summary>
         Assessment,
-        /// <summary> Target relation. </summary>
+        /// <summary> target. </summary>
         Target
     }
 }

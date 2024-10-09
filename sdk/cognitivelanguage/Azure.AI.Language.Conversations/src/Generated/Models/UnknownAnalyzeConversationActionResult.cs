@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownAnalyzeConversationActionResult : AnalyzeConversationActionResult
     {
         /// <summary> Initializes a new instance of <see cref="UnknownAnalyzeConversationActionResult"/>. </summary>
-        /// <param name="kind"> The base class of a conversation input task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownAnalyzeConversationActionResult(AnalyzeConversationResultKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(kind, serializedAdditionalRawData)
         {

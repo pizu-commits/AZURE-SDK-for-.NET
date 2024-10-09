@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Tags express similarities between entity categories for the extracted entity type. </summary>
+    /// <summary> The EntityTag. </summary>
     public partial class EntityTag
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EntityTag"/>. </summary>
-        /// <param name="name"> The name of the tag. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal EntityTag(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityTag"/>. </summary>
-        /// <param name="name"> The name of the tag. </param>
-        /// <param name="confidenceScore"> The confidence score of the tag for the extracted entity between 0.0 and 1.0. </param>
+        /// <param name="name"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityTag(string name, double? confidenceScore, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The name of the tag. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The confidence score of the tag for the extracted entity between 0.0 and 1.0. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double? ConfidenceScore { get; }
     }
 }

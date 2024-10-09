@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Type of ranker to be used. </summary>
+    /// <summary> The RankerKind. </summary>
     public readonly partial struct RankerKind : IEquatable<RankerKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Conversations.Models
         private const string DefaultValue = "Default";
         private const string QuestionOnlyValue = "QuestionOnly";
 
-        /// <summary> Default ranker. </summary>
+        /// <summary> Default. </summary>
         public static RankerKind Default { get; } = new RankerKind(DefaultValue);
-        /// <summary> Question only ranker. </summary>
+        /// <summary> QuestionOnly. </summary>
         public static RankerKind QuestionOnly { get; } = new RankerKind(QuestionOnlyValue);
         /// <summary> Determines if two <see cref="RankerKind"/> values are the same. </summary>
         public static bool operator ==(RankerKind left, RankerKind right) => left.Equals(right);

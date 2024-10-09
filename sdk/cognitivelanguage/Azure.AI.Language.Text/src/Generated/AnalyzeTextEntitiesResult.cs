@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the entity task. </summary>
+    /// <summary> The AnalyzeTextEntitiesResult. </summary>
     public partial class AnalyzeTextEntitiesResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextEntitiesResult"/>. </summary>
-        /// <param name="results"> Results for entity recognition. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal AnalyzeTextEntitiesResult(EntitiesResult results)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextEntitiesResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="results"> Results for entity recognition. </param>
+        /// <param name="results"></param>
         internal AnalyzeTextEntitiesResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, EntitiesResult results) : base(kind, serializedAdditionalRawData)
         {
             Results = results;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Results for entity recognition. </summary>
+        /// <summary> Gets the results. </summary>
         public EntitiesResult Results { get; }
     }
 }

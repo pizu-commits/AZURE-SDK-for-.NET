@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchPoolIdentityType enums. </summary>
+    /// <summary> The BatchPoolIdentityType. </summary>
     public readonly partial struct BatchPoolIdentityType : IEquatable<BatchPoolIdentityType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string UserAssignedValue = "UserAssigned";
         private const string NoneValue = "None";
 
-        /// <summary> Batch pool has user assigned identities with it. </summary>
+        /// <summary> UserAssigned. </summary>
         public static BatchPoolIdentityType UserAssigned { get; } = new BatchPoolIdentityType(UserAssignedValue);
-        /// <summary> Batch pool has no identity associated with it. Setting `None` in update pool will remove existing identities. </summary>
+        /// <summary> None. </summary>
         public static BatchPoolIdentityType None { get; } = new BatchPoolIdentityType(NoneValue);
         /// <summary> Determines if two <see cref="BatchPoolIdentityType"/> values are the same. </summary>
         public static bool operator ==(BatchPoolIdentityType left, BatchPoolIdentityType right) => left.Equals(right);

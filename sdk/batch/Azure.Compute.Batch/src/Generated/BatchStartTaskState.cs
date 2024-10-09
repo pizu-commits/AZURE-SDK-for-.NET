@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchStartTaskState enums. </summary>
+    /// <summary> The BatchStartTaskState. </summary>
     public readonly partial struct BatchStartTaskState : IEquatable<BatchStartTaskState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string RunningValue = "running";
         private const string CompletedValue = "completed";
 
-        /// <summary> The StartTask is currently running. </summary>
+        /// <summary> running. </summary>
         public static BatchStartTaskState Running { get; } = new BatchStartTaskState(RunningValue);
-        /// <summary> The StartTask has exited with exit code 0, or the StartTask has failed and the retry limit has reached, or the StartTask process did not run due to Task preparation errors (such as resource file download failures). </summary>
+        /// <summary> completed. </summary>
         public static BatchStartTaskState Completed { get; } = new BatchStartTaskState(CompletedValue);
         /// <summary> Determines if two <see cref="BatchStartTaskState"/> values are the same. </summary>
         public static bool operator ==(BatchStartTaskState left, BatchStartTaskState right) => left.Equals(right);

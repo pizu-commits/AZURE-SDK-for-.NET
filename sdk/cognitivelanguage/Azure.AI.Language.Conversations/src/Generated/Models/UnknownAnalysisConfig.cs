@@ -14,8 +14,8 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownAnalysisConfig : AnalysisConfig
     {
         /// <summary> Initializes a new instance of <see cref="UnknownAnalysisConfig"/>. </summary>
-        /// <param name="targetProjectKind"> The type of a target service. </param>
-        /// <param name="apiVersion"> The API version to use when call a specific target service. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownAnalysisConfig(TargetProjectKind targetProjectKind, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(targetProjectKind, apiVersion, serializedAdditionalRawData)
         {

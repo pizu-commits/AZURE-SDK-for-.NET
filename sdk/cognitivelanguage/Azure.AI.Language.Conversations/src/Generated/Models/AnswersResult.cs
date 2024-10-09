@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents List of Question Answers. </summary>
+    /// <summary> The AnswersResult. </summary>
     public partial class AnswersResult
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnswersResult"/>. </summary>
-        /// <param name="answers"> Represents Answer Result list. </param>
+        /// <param name="answers"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnswersResult(IReadOnlyList<KnowledgeBaseAnswer> answers, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Represents Answer Result list. </summary>
+        /// <summary> Gets the answers. </summary>
         public IReadOnlyList<KnowledgeBaseAnswer> Answers { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The FHIR Spec version. </summary>
+    /// <summary> The fhirVersion. </summary>
     public readonly partial struct FhirVersion : IEquatable<FhirVersion>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.AI.Language.Text
 
         private const string _401Value = "4.0.1";
 
-        /// <summary> Version 4.0.1. </summary>
+        /// <summary> 4.0.1. </summary>
         public static FhirVersion _401 { get; } = new FhirVersion(_401Value);
         /// <summary> Determines if two <see cref="FhirVersion"/> values are the same. </summary>
         public static bool operator ==(FhirVersion left, FhirVersion right) => left.Equals(right);

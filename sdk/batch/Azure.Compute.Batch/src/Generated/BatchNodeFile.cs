@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about a file or directory on a Compute Node. </summary>
+    /// <summary> The BatchNodeFile. </summary>
     public partial class BatchNodeFile
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeFile"/>. </summary>
-        /// <param name="name"> The file path. </param>
-        /// <param name="url"> The URL of the file. </param>
-        /// <param name="isDirectory"> Whether the object represents a directory. </param>
-        /// <param name="properties"> The file properties. </param>
+        /// <param name="name"></param>
+        /// <param name="url"></param>
+        /// <param name="isDirectory"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeFile(string name, string url, bool? isDirectory, FileProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The file path. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The URL of the file. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> Whether the object represents a directory. </summary>
+        /// <summary> Gets the is directory. </summary>
         public bool? IsDirectory { get; }
-        /// <summary> The file properties. </summary>
+        /// <summary> Gets the properties. </summary>
         public FileProperties Properties { get; }
     }
 }

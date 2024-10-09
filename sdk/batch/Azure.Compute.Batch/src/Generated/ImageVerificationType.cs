@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> ImageVerificationType enums. </summary>
+    /// <summary> The ImageVerificationType. </summary>
     public readonly partial struct ImageVerificationType : IEquatable<ImageVerificationType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string VerifiedValue = "verified";
         private const string UnverifiedValue = "unverified";
 
-        /// <summary> The Image is guaranteed to be compatible with the associated Compute Node agent SKU and all Batch features have been confirmed to work as expected. </summary>
+        /// <summary> verified. </summary>
         public static ImageVerificationType Verified { get; } = new ImageVerificationType(VerifiedValue);
-        /// <summary> The associated Compute Node agent SKU should have binary compatibility with the Image, but specific functionality has not been verified. </summary>
+        /// <summary> unverified. </summary>
         public static ImageVerificationType Unverified { get; } = new ImageVerificationType(UnverifiedValue);
         /// <summary> Determines if two <see cref="ImageVerificationType"/> values are the same. </summary>
         public static bool operator ==(ImageVerificationType left, ImageVerificationType right) => left.Equals(right);

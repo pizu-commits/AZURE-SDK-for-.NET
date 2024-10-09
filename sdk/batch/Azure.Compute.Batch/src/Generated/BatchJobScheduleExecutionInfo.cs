@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// Contains information about Jobs that have been and will be run under a Job
-    /// Schedule.
-    /// </summary>
+    /// <summary> The BatchJobScheduleExecutionInfo. </summary>
     public partial class BatchJobScheduleExecutionInfo
     {
         /// <summary>
@@ -54,9 +51,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobScheduleExecutionInfo"/>. </summary>
-        /// <param name="nextRunTime"> The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. </param>
-        /// <param name="recentJob"> Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. </param>
-        /// <param name="endTime"> The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. </param>
+        /// <param name="nextRunTime"></param>
+        /// <param name="recentJob"></param>
+        /// <param name="endTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobScheduleExecutionInfo(DateTimeOffset? nextRunTime, RecentBatchJob recentJob, DateTimeOffset? endTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,11 +63,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. </summary>
+        /// <summary> Gets the next run time. </summary>
         public DateTimeOffset? NextRunTime { get; }
-        /// <summary> Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. </summary>
+        /// <summary> Gets the recent job. </summary>
         public RecentBatchJob RecentJob { get; }
-        /// <summary> The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. </summary>
+        /// <summary> Gets the end time. </summary>
         public DateTimeOffset? EndTime { get; }
     }
 }

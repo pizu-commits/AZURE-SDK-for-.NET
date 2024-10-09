@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodeCommunicationMode enums. </summary>
+    /// <summary> The BatchNodeCommunicationMode. </summary>
     public readonly partial struct BatchNodeCommunicationMode : IEquatable<BatchNodeCommunicationMode>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string ClassicValue = "classic";
         private const string SimplifiedValue = "simplified";
 
-        /// <summary> The node communication mode is automatically set by the Batch service. </summary>
+        /// <summary> default. </summary>
         public static BatchNodeCommunicationMode Default { get; } = new BatchNodeCommunicationMode(DefaultValue);
-        /// <summary> Nodes using the classic communication mode require inbound TCP communication on ports 29876 and 29877 from the "BatchNodeManagement.{region}" service tag and outbound TCP communication on port 443 to the "Storage.region" and "BatchNodeManagement.{region}" service tags. </summary>
+        /// <summary> classic. </summary>
         public static BatchNodeCommunicationMode Classic { get; } = new BatchNodeCommunicationMode(ClassicValue);
-        /// <summary> Nodes using the simplified communication mode require outbound TCP communication on port 443 to the "BatchNodeManagement.{region}" service tag. No open inbound ports are required. </summary>
+        /// <summary> simplified. </summary>
         public static BatchNodeCommunicationMode Simplified { get; } = new BatchNodeCommunicationMode(SimplifiedValue);
         /// <summary> Determines if two <see cref="BatchNodeCommunicationMode"/> values are the same. </summary>
         public static bool operator ==(BatchNodeCommunicationMode left, BatchNodeCommunicationMode right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Prompt for an answer. </summary>
+    /// <summary> The KnowledgeBaseAnswerPrompt. </summary>
     public partial class KnowledgeBaseAnswerPrompt
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="KnowledgeBaseAnswerPrompt"/>. </summary>
-        /// <param name="displayOrder"> Index of the prompt - used in ordering of the prompts. </param>
-        /// <param name="qnaId"> QnA ID corresponding to the prompt. </param>
-        /// <param name="displayText"> Text displayed to represent a follow up question prompt. </param>
+        /// <param name="displayOrder"></param>
+        /// <param name="qnaId"></param>
+        /// <param name="displayText"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal KnowledgeBaseAnswerPrompt(int? displayOrder, int? qnaId, string displayText, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Index of the prompt - used in ordering of the prompts. </summary>
+        /// <summary> Gets the display order. </summary>
         public int? DisplayOrder { get; }
-        /// <summary> QnA ID corresponding to the prompt. </summary>
+        /// <summary> Gets the qna id. </summary>
         public int? QnaId { get; }
-        /// <summary> Text displayed to represent a follow up question prompt. </summary>
+        /// <summary> Gets the display text. </summary>
         public string DisplayText { get; }
     }
 }

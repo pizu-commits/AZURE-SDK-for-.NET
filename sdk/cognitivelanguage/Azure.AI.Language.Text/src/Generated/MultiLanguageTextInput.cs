@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Collection of input documents to be analyzed by the service. </summary>
+    /// <summary> The MultiLanguageTextInput. </summary>
     public partial class MultiLanguageTextInput
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="MultiLanguageTextInput"/>. </summary>
-        /// <param name="multiLanguageInputs"> The input documents to be analyzed. </param>
+        /// <param name="multiLanguageInputs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultiLanguageTextInput(IList<MultiLanguageInput> multiLanguageInputs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The input documents to be analyzed. </summary>
+        /// <summary> Gets the multi language inputs. </summary>
         public IList<MultiLanguageInput> MultiLanguageInputs { get; }
     }
 }

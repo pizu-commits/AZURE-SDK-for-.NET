@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchJobAction enums. </summary>
+    /// <summary> The BatchJobAction. </summary>
     public readonly partial struct BatchJobAction : IEquatable<BatchJobAction>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string DisableValue = "disable";
         private const string TerminateValue = "terminate";
 
-        /// <summary> Take no action. </summary>
+        /// <summary> none. </summary>
         public static BatchJobAction None { get; } = new BatchJobAction(NoneValue);
-        /// <summary> Disable the Job. This is equivalent to calling the disable Job API, with a disableTasks value of requeue. </summary>
+        /// <summary> disable. </summary>
         public static BatchJobAction Disable { get; } = new BatchJobAction(DisableValue);
-        /// <summary> Terminate the Job. The terminationReason in the Job's executionInfo is set to "TaskFailed". </summary>
+        /// <summary> terminate. </summary>
         public static BatchJobAction Terminate { get; } = new BatchJobAction(TerminateValue);
         /// <summary> Determines if two <see cref="BatchJobAction"/> values are the same. </summary>
         public static bool operator ==(BatchJobAction left, BatchJobAction right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Model status. </summary>
+    /// <summary> The ModelState. </summary>
     public partial class ModelState
     {
         /// <summary>
@@ -55,19 +55,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="ModelState"/>. </summary>
-        /// <param name="epochIds">
-        /// Number of passes of the entire training dataset that the
-        /// algorithm has completed.
-        /// </param>
-        /// <param name="trainLosses">
-        /// List of metrics used to assess how the model fits the training data for each
-        /// epoch.
-        /// </param>
-        /// <param name="validationLosses">
-        /// List of metrics used to assess how the model fits the validation set for each
-        /// epoch.
-        /// </param>
-        /// <param name="latenciesInSeconds"> Latency for each epoch. </param>
+        /// <param name="epochIds"></param>
+        /// <param name="trainLosses"></param>
+        /// <param name="validationLosses"></param>
+        /// <param name="latenciesInSeconds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ModelState(IReadOnlyList<int> epochIds, IReadOnlyList<float> trainLosses, IReadOnlyList<float> validationLosses, IReadOnlyList<float> latenciesInSeconds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,22 +69,13 @@ namespace Azure.AI.AnomalyDetector
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Number of passes of the entire training dataset that the
-        /// algorithm has completed.
-        /// </summary>
+        /// <summary> Gets the epoch ids. </summary>
         public IReadOnlyList<int> EpochIds { get; }
-        /// <summary>
-        /// List of metrics used to assess how the model fits the training data for each
-        /// epoch.
-        /// </summary>
+        /// <summary> Gets the train losses. </summary>
         public IReadOnlyList<float> TrainLosses { get; }
-        /// <summary>
-        /// List of metrics used to assess how the model fits the validation set for each
-        /// epoch.
-        /// </summary>
+        /// <summary> Gets the validation losses. </summary>
         public IReadOnlyList<float> ValidationLosses { get; }
-        /// <summary> Latency for each epoch. </summary>
+        /// <summary> Gets the latencies in seconds. </summary>
         public IReadOnlyList<float> LatenciesInSeconds { get; }
     }
 }

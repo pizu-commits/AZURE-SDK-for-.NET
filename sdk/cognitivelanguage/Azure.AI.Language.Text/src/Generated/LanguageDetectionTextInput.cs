@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the language detection document analysis input. </summary>
+    /// <summary> The LanguageDetectionTextInput. </summary>
     public partial class LanguageDetectionTextInput
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="LanguageDetectionTextInput"/>. </summary>
-        /// <param name="languageInputs"> List of documents to be analyzed. </param>
+        /// <param name="languageInputs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LanguageDetectionTextInput(IList<LanguageInput> languageInputs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> List of documents to be analyzed. </summary>
+        /// <summary> Gets the language inputs. </summary>
         public IList<LanguageInput> LanguageInputs { get; }
     }
 }

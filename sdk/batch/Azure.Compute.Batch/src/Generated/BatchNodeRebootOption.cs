@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodeRebootOption enums. </summary>
+    /// <summary> The BatchNodeRebootOption. </summary>
     public readonly partial struct BatchNodeRebootOption : IEquatable<BatchNodeRebootOption>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Compute.Batch
         private const string TaskCompletionValue = "taskcompletion";
         private const string RetainedDataValue = "retaineddata";
 
-        /// <summary> Terminate running Task processes and requeue the Tasks. The Tasks will run again when a Compute Node is available. Restart the Compute Node as soon as Tasks have been terminated. </summary>
+        /// <summary> requeue. </summary>
         public static BatchNodeRebootOption Requeue { get; } = new BatchNodeRebootOption(RequeueValue);
-        /// <summary> Terminate running Tasks. The Tasks will be completed with failureInfo indicating that they were terminated, and will not run again. Restart the Compute Node as soon as Tasks have been terminated. </summary>
+        /// <summary> terminate. </summary>
         public static BatchNodeRebootOption Terminate { get; } = new BatchNodeRebootOption(TerminateValue);
-        /// <summary> Allow currently running Tasks to complete. Schedule no new Tasks while waiting. Restart the Compute Node when all Tasks have completed. </summary>
+        /// <summary> taskcompletion. </summary>
         public static BatchNodeRebootOption TaskCompletion { get; } = new BatchNodeRebootOption(TaskCompletionValue);
-        /// <summary> Allow currently running Tasks to complete, then wait for all Task data retention periods to expire. Schedule no new Tasks while waiting. Restart the Compute Node when all Task retention periods have expired. </summary>
+        /// <summary> retaineddata. </summary>
         public static BatchNodeRebootOption RetainedData { get; } = new BatchNodeRebootOption(RetainedDataValue);
         /// <summary> Determines if two <see cref="BatchNodeRebootOption"/> values are the same. </summary>
         public static bool operator ==(BatchNodeRebootOption left, BatchNodeRebootOption right) => left.Equals(right);

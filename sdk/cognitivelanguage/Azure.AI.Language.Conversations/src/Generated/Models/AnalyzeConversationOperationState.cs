@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Contains the status of the submitted job for analyzing a conversation, along with related statistics. </summary>
+    /// <summary> The AnalyzeConversationOperationState. </summary>
     public partial class AnalyzeConversationOperationState
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationState"/>. </summary>
-        /// <param name="createdDateTime"> Date and time job created. </param>
-        /// <param name="lastUpdatedDateTime"> last updated date and time. </param>
-        /// <param name="status"> status. </param>
-        /// <param name="actions"> Contains the state for the tasks that are being executed as part of the submitted job for analyzing a conversation. </param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="lastUpdatedDateTime"></param>
+        /// <param name="status"></param>
+        /// <param name="actions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="actions"/> is null. </exception>
         internal AnalyzeConversationOperationState(DateTimeOffset createdDateTime, DateTimeOffset lastUpdatedDateTime, ConversationActionState status, ConversationActions actions)
         {
@@ -63,16 +63,16 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationState"/>. </summary>
-        /// <param name="displayName"> display name. </param>
-        /// <param name="createdDateTime"> Date and time job created. </param>
-        /// <param name="expirationDateTime"> Date and time job expires. </param>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="lastUpdatedDateTime"> last updated date and time. </param>
-        /// <param name="status"> status. </param>
-        /// <param name="errors"> errors. </param>
-        /// <param name="nextLink"> next link. </param>
-        /// <param name="actions"> Contains the state for the tasks that are being executed as part of the submitted job for analyzing a conversation. </param>
-        /// <param name="statistics"> Contains the statistics for the submitted job. </param>
+        /// <param name="displayName"></param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="expirationDateTime"></param>
+        /// <param name="jobId"></param>
+        /// <param name="lastUpdatedDateTime"></param>
+        /// <param name="status"></param>
+        /// <param name="errors"></param>
+        /// <param name="nextLink"></param>
+        /// <param name="actions"></param>
+        /// <param name="statistics"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeConversationOperationState(string displayName, DateTimeOffset createdDateTime, DateTimeOffset? expirationDateTime, Guid jobId, DateTimeOffset lastUpdatedDateTime, ConversationActionState status, IReadOnlyList<ConversationError> errors, string nextLink, ConversationActions actions, ConversationRequestStatistics statistics, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,25 +94,25 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> display name. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> Date and time job created. </summary>
+        /// <summary> Gets the created date time. </summary>
         public DateTimeOffset CreatedDateTime { get; }
-        /// <summary> Date and time job expires. </summary>
+        /// <summary> Gets the expiration date time. </summary>
         public DateTimeOffset? ExpirationDateTime { get; }
-        /// <summary> job ID. </summary>
+        /// <summary> Gets the job id. </summary>
         public Guid JobId { get; }
-        /// <summary> last updated date and time. </summary>
+        /// <summary> Gets the last updated date time. </summary>
         public DateTimeOffset LastUpdatedDateTime { get; }
-        /// <summary> status. </summary>
+        /// <summary> Gets the status. </summary>
         public ConversationActionState Status { get; }
-        /// <summary> errors. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<ConversationError> Errors { get; }
-        /// <summary> next link. </summary>
+        /// <summary> Gets the next link. </summary>
         public string NextLink { get; }
-        /// <summary> Contains the state for the tasks that are being executed as part of the submitted job for analyzing a conversation. </summary>
+        /// <summary> Gets the actions. </summary>
         public ConversationActions Actions { get; }
-        /// <summary> Contains the statistics for the submitted job. </summary>
+        /// <summary> Gets the statistics. </summary>
         public ConversationRequestStatistics Statistics { get; }
     }
 }

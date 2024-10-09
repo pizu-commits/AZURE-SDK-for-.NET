@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text PIIEntityRecognition LRO task. </summary>
+    /// <summary> The PiiOperationAction. </summary>
     public partial class PiiOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="PiiOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="PiiOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Pii task parameters. </param>
+        /// <param name="actionContent"></param>
         internal PiiOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, PiiActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Pii task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public PiiActionContent ActionContent { get; set; }
     }
 }

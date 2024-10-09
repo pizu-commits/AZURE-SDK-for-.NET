@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Enumeration of supported analysis tasks on a collection of conversations. </summary>
+    /// <summary> The AnalyzeConversationOperationActionKind. </summary>
     internal readonly partial struct AnalyzeConversationOperationActionKind : IEquatable<AnalyzeConversationOperationActionKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string ConversationalPIITaskValue = "ConversationalPIITask";
         private const string CustomConversationalSummarizationTaskValue = "CustomConversationalSummarizationTask";
 
-        /// <summary> Conversational Summarization Task. </summary>
+        /// <summary> ConversationalSummarizationTask. </summary>
         public static AnalyzeConversationOperationActionKind ConversationalSummarizationTask { get; } = new AnalyzeConversationOperationActionKind(ConversationalSummarizationTaskValue);
-        /// <summary> Conversational PII Task. </summary>
+        /// <summary> ConversationalPIITask. </summary>
         public static AnalyzeConversationOperationActionKind ConversationalPIITask { get; } = new AnalyzeConversationOperationActionKind(ConversationalPIITaskValue);
-        /// <summary> Custom Conversational Summarization Task. </summary>
+        /// <summary> CustomConversationalSummarizationTask. </summary>
         public static AnalyzeConversationOperationActionKind CustomConversationalSummarizationTask { get; } = new AnalyzeConversationOperationActionKind(CustomConversationalSummarizationTaskValue);
         /// <summary> Determines if two <see cref="AnalyzeConversationOperationActionKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeConversationOperationActionKind left, AnalyzeConversationOperationActionKind right) => left.Equals(right);

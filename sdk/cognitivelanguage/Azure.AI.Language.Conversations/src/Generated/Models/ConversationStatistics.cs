@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> If showStats=true was specified in the request, this field contains information about the conversation payload. </summary>
+    /// <summary> The ConversationStatistics. </summary>
     public partial class ConversationStatistics
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationStatistics"/>. </summary>
-        /// <param name="transactionsCount"> Number of text units for the request. </param>
+        /// <param name="transactionsCount"></param>
         internal ConversationStatistics(int transactionsCount)
         {
             TransactionsCount = transactionsCount;
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationStatistics"/>. </summary>
-        /// <param name="transactionsCount"> Number of text units for the request. </param>
+        /// <param name="transactionsCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationStatistics(int transactionsCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Number of text units for the request. </summary>
+        /// <summary> Gets the transactions count. </summary>
         public int TransactionsCount { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The Azure Batch service log files upload parameters for a Compute Node. </summary>
+    /// <summary> The UploadBatchServiceLogsContent. </summary>
     public partial class UploadBatchServiceLogsContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UploadBatchServiceLogsContent"/>. </summary>
-        /// <param name="containerUrl"> The URL of the container within Azure Blob Storage to which to upload the Batch Service log file(s). If a user assigned managed identity is not being used, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. The SAS duration must allow enough time for the upload to finish. The start time for SAS is optional and recommended to not be specified. </param>
-        /// <param name="startTime"> The start of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. </param>
+        /// <param name="containerUrl"></param>
+        /// <param name="startTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="containerUrl"/> is null. </exception>
         public UploadBatchServiceLogsContent(string containerUrl, DateTimeOffset startTime)
         {
@@ -58,10 +58,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UploadBatchServiceLogsContent"/>. </summary>
-        /// <param name="containerUrl"> The URL of the container within Azure Blob Storage to which to upload the Batch Service log file(s). If a user assigned managed identity is not being used, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. The SAS duration must allow enough time for the upload to finish. The start time for SAS is optional and recommended to not be specified. </param>
-        /// <param name="startTime"> The start of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. </param>
-        /// <param name="endTime"> The end of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. If omitted, the default is to upload all logs available after the startTime. </param>
-        /// <param name="identityReference"> The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. </param>
+        /// <param name="containerUrl"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="identityReference"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UploadBatchServiceLogsContent(string containerUrl, DateTimeOffset startTime, DateTimeOffset? endTime, BatchNodeIdentityReference identityReference, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The URL of the container within Azure Blob Storage to which to upload the Batch Service log file(s). If a user assigned managed identity is not being used, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. The SAS duration must allow enough time for the upload to finish. The start time for SAS is optional and recommended to not be specified. </summary>
+        /// <summary> Gets the container url. </summary>
         public string ContainerUrl { get; }
-        /// <summary> The start of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. </summary>
+        /// <summary> Gets the start time. </summary>
         public DateTimeOffset StartTime { get; }
-        /// <summary> The end of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. If omitted, the default is to upload all logs available after the startTime. </summary>
+        /// <summary> Gets or sets the end time. </summary>
         public DateTimeOffset? EndTime { get; set; }
-        /// <summary> The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. </summary>
+        /// <summary> Gets or sets the identity reference. </summary>
         public BatchNodeIdentityReference IdentityReference { get; set; }
     }
 }

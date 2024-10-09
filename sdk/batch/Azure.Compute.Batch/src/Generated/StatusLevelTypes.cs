@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Level code. </summary>
+    /// <summary> The StatusLevelTypes. </summary>
     public readonly partial struct StatusLevelTypes : IEquatable<StatusLevelTypes>
     {
         private readonly string _value;

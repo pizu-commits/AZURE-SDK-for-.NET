@@ -16,7 +16,7 @@ using Azure.Core.Pipeline;
 namespace Azure.AI.Language.Text
 {
     // Data plane generated client.
-    /// <summary> The language service API is a suite of natural language processing (NLP) skills built with best-in-class Microsoft machine learning algorithms.  The API can be used to analyze unstructured text for tasks such as sentiment analysis, key phrase extraction, language detection and question answering. Further documentation can be found in &lt;a href=\"https://docs.microsoft.com/azure/cognitive-services/language-service/overview\"&gt;https://docs.microsoft.com/azure/cognitive-services/language-service/overview&lt;/a&gt;.0. </summary>
+    /// <summary> The TextAnalysis service client. </summary>
     public partial class TextAnalysisClient
     {
         private const string AuthorizationHeader = "Ocp-Apim-Subscription-Key";
@@ -73,8 +73,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Request text analysis over a collection of documents. </summary>
-        /// <param name="analyzeTextInput"> The input documents to analyze. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="analyzeTextInput"> The <see cref="AnalyzeTextInput"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeTextInput"/> is null. </exception>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeTextAsync(AnalyzeTextInput,bool?,CancellationToken)']/*" />
@@ -89,8 +89,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Request text analysis over a collection of documents. </summary>
-        /// <param name="analyzeTextInput"> The input documents to analyze. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="analyzeTextInput"> The <see cref="AnalyzeTextInput"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeTextInput"/> is null. </exception>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeText(AnalyzeTextInput,bool?,CancellationToken)']/*" />
@@ -120,7 +120,7 @@ namespace Azure.AI.Language.Text
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -160,7 +160,7 @@ namespace Azure.AI.Language.Text
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -185,10 +185,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Get analysis status and results. </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStats"> (Optional) if set to true, response will contain request and document level statistics. </param>
-        /// <param name="top"> The maximum number of resources to return from the collection. </param>
-        /// <param name="skip"> An offset into the collection of the first resource to be returned. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStats"> The <see cref="bool"/>? to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task. </remarks>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeTextOperationStatusAsync(Guid,bool?,int?,int?,CancellationToken)']/*" />
@@ -200,10 +200,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Get analysis status and results. </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStats"> (Optional) if set to true, response will contain request and document level statistics. </param>
-        /// <param name="top"> The maximum number of resources to return from the collection. </param>
-        /// <param name="skip"> An offset into the collection of the first resource to be returned. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStats"> The <see cref="bool"/>? to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task. </remarks>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeTextOperationStatus(Guid,bool?,int?,int?,CancellationToken)']/*" />
@@ -229,10 +229,10 @@ namespace Azure.AI.Language.Text
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStats"> (Optional) if set to true, response will contain request and document level statistics. </param>
-        /// <param name="top"> The maximum number of resources to return from the collection. </param>
-        /// <param name="skip"> An offset into the collection of the first resource to be returned. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStats"> The <see cref="bool"/>? to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -268,10 +268,10 @@ namespace Azure.AI.Language.Text
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStats"> (Optional) if set to true, response will contain request and document level statistics. </param>
-        /// <param name="top"> The maximum number of resources to return from the collection. </param>
-        /// <param name="skip"> An offset into the collection of the first resource to be returned. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStats"> The <see cref="bool"/>? to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -294,10 +294,10 @@ namespace Azure.AI.Language.Text
 
         /// <summary> Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed as a long-running operation. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="textInput"> Contains the input to be analyzed. </param>
-        /// <param name="actions"> List of tasks to be performed as part of the LRO. </param>
-        /// <param name="displayName"> Name for the task. </param>
-        /// <param name="defaultLanguage"> Default language to use for records requesting automatic language detection. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actions"></param>
+        /// <param name="displayName"></param>
+        /// <param name="defaultLanguage"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="textInput"/> or <paramref name="actions"/> is null. </exception>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeTextSubmitOperationAsync(WaitUntil,MultiLanguageTextInput,IEnumerable{AnalyzeTextOperationAction},string,string,CancellationToken)']/*" />
@@ -313,10 +313,10 @@ namespace Azure.AI.Language.Text
 
         /// <summary> Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed as a long-running operation. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="textInput"> Contains the input to be analyzed. </param>
-        /// <param name="actions"> List of tasks to be performed as part of the LRO. </param>
-        /// <param name="displayName"> Name for the task. </param>
-        /// <param name="defaultLanguage"> Default language to use for records requesting automatic language detection. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actions"></param>
+        /// <param name="displayName"></param>
+        /// <param name="defaultLanguage"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="textInput"/> or <paramref name="actions"/> is null. </exception>
         /// <include file="Docs/TextAnalysisClient.xml" path="doc/members/member[@name='AnalyzeTextSubmitOperation(WaitUntil,MultiLanguageTextInput,IEnumerable{AnalyzeTextOperationAction},string,string,CancellationToken)']/*" />
@@ -422,7 +422,7 @@ namespace Azure.AI.Language.Text
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="jobId"> The job ID to cancel. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
@@ -455,7 +455,7 @@ namespace Azure.AI.Language.Text
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="jobId"> The job ID to cancel. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>

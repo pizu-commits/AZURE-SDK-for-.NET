@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Specifies the security profile settings for the virtual machine or virtual machine scale set. </summary>
+    /// <summary> The SecurityProfile. </summary>
     public partial class SecurityProfile
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SecurityProfile"/>. </summary>
-        /// <param name="encryptionAtHost"> This property can be used by user in the request to enable or disable the Host Encryption for the virtual machine or virtual machine scale set. This will enable the encryption for all the disks including Resource/Temp disk at host itself. </param>
-        /// <param name="securityType"> Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. </param>
-        /// <param name="uefiSettings"> Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Specifies the security settings like secure boot and vTPM used while creating the virtual machine. </param>
+        /// <param name="encryptionAtHost"></param>
+        /// <param name="securityType"></param>
+        /// <param name="uefiSettings"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="uefiSettings"/> is null. </exception>
         public SecurityProfile(bool encryptionAtHost, SecurityTypes securityType, UefiSettings uefiSettings)
         {
@@ -60,9 +60,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="SecurityProfile"/>. </summary>
-        /// <param name="encryptionAtHost"> This property can be used by user in the request to enable or disable the Host Encryption for the virtual machine or virtual machine scale set. This will enable the encryption for all the disks including Resource/Temp disk at host itself. </param>
-        /// <param name="securityType"> Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. </param>
-        /// <param name="uefiSettings"> Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Specifies the security settings like secure boot and vTPM used while creating the virtual machine. </param>
+        /// <param name="encryptionAtHost"></param>
+        /// <param name="securityType"></param>
+        /// <param name="uefiSettings"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SecurityProfile(bool encryptionAtHost, SecurityTypes securityType, UefiSettings uefiSettings, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> This property can be used by user in the request to enable or disable the Host Encryption for the virtual machine or virtual machine scale set. This will enable the encryption for all the disks including Resource/Temp disk at host itself. </summary>
+        /// <summary> Gets or sets the encryption at host. </summary>
         public bool EncryptionAtHost { get; set; }
-        /// <summary> Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. </summary>
+        /// <summary> Gets or sets the security type. </summary>
         public SecurityTypes SecurityType { get; set; }
-        /// <summary> Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Specifies the security settings like secure boot and vTPM used while creating the virtual machine. </summary>
+        /// <summary> Gets or sets the uefi settings. </summary>
         public UefiSettings UefiSettings { get; set; }
     }
 }

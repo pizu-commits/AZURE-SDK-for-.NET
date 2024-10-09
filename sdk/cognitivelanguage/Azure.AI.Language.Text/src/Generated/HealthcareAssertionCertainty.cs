@@ -7,18 +7,18 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Describes the entities certainty and polarity. </summary>
+    /// <summary> The HealthcareAssertionCertainty. </summary>
     public enum HealthcareAssertionCertainty
     {
-        /// <summary> Positive certainty. </summary>
+        /// <summary> positive. </summary>
         Positive,
-        /// <summary> Possibly positive certainty. </summary>
+        /// <summary> positivePossible. </summary>
         PositivePossible,
-        /// <summary> Possibly neutral certainty. </summary>
+        /// <summary> neutralPossible. </summary>
         NeutralPossible,
-        /// <summary> Possibly negative certainty. </summary>
+        /// <summary> negativePossible. </summary>
         NegativePossible,
-        /// <summary> Negative certainty. </summary>
+        /// <summary> negative. </summary>
         Negative
     }
 }

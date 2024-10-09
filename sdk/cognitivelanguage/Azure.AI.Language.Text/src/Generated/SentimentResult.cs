@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Sentiment analysis results for the input documents. </summary>
+    /// <summary> The SentimentResult. </summary>
     public partial class SentimentResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SentimentResult"/>. </summary>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="modelVersion"> This field indicates which model is used for scoring. </param>
-        /// <param name="documents"> The sentiment analysis results for each document in the input. </param>
+        /// <param name="errors"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="documents"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="errors"/>, <paramref name="modelVersion"/> or <paramref name="documents"/> is null. </exception>
         internal SentimentResult(IEnumerable<DocumentError> errors, string modelVersion, IEnumerable<SentimentActionResult> documents)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentimentResult"/>. </summary>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the request payload. </param>
-        /// <param name="modelVersion"> This field indicates which model is used for scoring. </param>
-        /// <param name="documents"> The sentiment analysis results for each document in the input. </param>
+        /// <param name="errors"></param>
+        /// <param name="statistics"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="documents"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentimentResult(IReadOnlyList<DocumentError> errors, RequestStatistics statistics, string modelVersion, IReadOnlyList<SentimentActionResult> documents, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Errors by document id. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<DocumentError> Errors { get; }
-        /// <summary> if showStats=true was specified in the request this field will contain information about the request payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public RequestStatistics Statistics { get; }
-        /// <summary> This field indicates which model is used for scoring. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
-        /// <summary> The sentiment analysis results for each document in the input. </summary>
+        /// <summary> Gets the documents. </summary>
         public IReadOnlyList<SentimentActionResult> Documents { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for a Sentiment Analysis task. </summary>
+    /// <summary> The SentimentAnalysisActionContent. </summary>
     public partial class SentimentAnalysisActionContent
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentimentAnalysisActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="opinionMining"> Whether to use opinion mining in the request or not. </param>
-        /// <param name="stringIndexType"> Specifies the method used to interpret string offsets. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="opinionMining"></param>
+        /// <param name="stringIndexType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentimentAnalysisActionContent(bool? loggingOptOut, string modelVersion, bool? opinionMining, StringIndexType? stringIndexType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Whether to use opinion mining in the request or not. </summary>
+        /// <summary> Gets or sets the opinion mining. </summary>
         public bool? OpinionMining { get; set; }
-        /// <summary> Specifies the method used to interpret string offsets. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
     }
 }

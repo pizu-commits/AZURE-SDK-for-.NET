@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchJobPreparationTaskState enums. </summary>
+    /// <summary> The BatchJobPreparationTaskState. </summary>
     public readonly partial struct BatchJobPreparationTaskState : IEquatable<BatchJobPreparationTaskState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string RunningValue = "running";
         private const string CompletedValue = "completed";
 
-        /// <summary> The Task is currently running (including retrying). </summary>
+        /// <summary> running. </summary>
         public static BatchJobPreparationTaskState Running { get; } = new BatchJobPreparationTaskState(RunningValue);
-        /// <summary> The Task has exited with exit code 0, or the Task has exhausted its retry limit, or the Batch service was unable to start the Task due to Task preparation errors (such as resource file download failures). </summary>
+        /// <summary> completed. </summary>
         public static BatchJobPreparationTaskState Completed { get; } = new BatchJobPreparationTaskState(CompletedValue);
         /// <summary> Determines if two <see cref="BatchJobPreparationTaskState"/> values are the same. </summary>
         public static bool operator ==(BatchJobPreparationTaskState left, BatchJobPreparationTaskState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The configuration for virtual machine extensions. </summary>
+    /// <summary> The VMExtension. </summary>
     public partial class VMExtension
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="VMExtension"/>. </summary>
-        /// <param name="name"> The name of the virtual machine extension. </param>
-        /// <param name="publisher"> The name of the extension handler publisher. </param>
-        /// <param name="type"> The type of the extension. </param>
+        /// <param name="name"></param>
+        /// <param name="publisher"></param>
+        /// <param name="type"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="publisher"/> or <paramref name="type"/> is null. </exception>
         public VMExtension(string name, string publisher, string type)
         {
@@ -65,15 +65,15 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="VMExtension"/>. </summary>
-        /// <param name="name"> The name of the virtual machine extension. </param>
-        /// <param name="publisher"> The name of the extension handler publisher. </param>
-        /// <param name="type"> The type of the extension. </param>
-        /// <param name="typeHandlerVersion"> The version of script handler. </param>
-        /// <param name="autoUpgradeMinorVersion"> Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. </param>
-        /// <param name="enableAutomaticUpgrade"> Indicates whether the extension should be automatically upgraded by the platform if there is a newer version of the extension available. </param>
-        /// <param name="settings"> JSON formatted public settings for the extension. </param>
-        /// <param name="protectedSettings"> The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. </param>
-        /// <param name="provisionAfterExtensions"> The collection of extension names. Collection of extension names after which this extension needs to be provisioned. </param>
+        /// <param name="name"></param>
+        /// <param name="publisher"></param>
+        /// <param name="type"></param>
+        /// <param name="typeHandlerVersion"></param>
+        /// <param name="autoUpgradeMinorVersion"></param>
+        /// <param name="enableAutomaticUpgrade"></param>
+        /// <param name="settings"></param>
+        /// <param name="protectedSettings"></param>
+        /// <param name="provisionAfterExtensions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal VMExtension(string name, string publisher, string type, string typeHandlerVersion, bool? autoUpgradeMinorVersion, bool? enableAutomaticUpgrade, IDictionary<string, string> settings, IDictionary<string, string> protectedSettings, IList<string> provisionAfterExtensions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,23 +94,23 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The name of the virtual machine extension. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The name of the extension handler publisher. </summary>
+        /// <summary> Gets or sets the publisher. </summary>
         public string Publisher { get; set; }
-        /// <summary> The type of the extension. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public string Type { get; set; }
-        /// <summary> The version of script handler. </summary>
+        /// <summary> Gets or sets the type handler version. </summary>
         public string TypeHandlerVersion { get; set; }
-        /// <summary> Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. </summary>
+        /// <summary> Gets or sets the auto upgrade minor version. </summary>
         public bool? AutoUpgradeMinorVersion { get; set; }
-        /// <summary> Indicates whether the extension should be automatically upgraded by the platform if there is a newer version of the extension available. </summary>
+        /// <summary> Gets or sets the enable automatic upgrade. </summary>
         public bool? EnableAutomaticUpgrade { get; set; }
-        /// <summary> JSON formatted public settings for the extension. </summary>
+        /// <summary> Gets the settings. </summary>
         public IDictionary<string, string> Settings { get; }
-        /// <summary> The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. </summary>
+        /// <summary> Gets the protected settings. </summary>
         public IDictionary<string, string> ProtectedSettings { get; }
-        /// <summary> The collection of extension names. Collection of extension names after which this extension needs to be provisioned. </summary>
+        /// <summary> Gets the provision after extensions. </summary>
         public IList<string> ProvisionAfterExtensions { get; }
     }
 }

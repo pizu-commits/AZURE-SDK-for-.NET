@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An HTTP header name-value pair. </summary>
+    /// <summary> The HttpHeader. </summary>
     public partial class HttpHeader
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HttpHeader"/>. </summary>
-        /// <param name="name"> The case-insensitive name of the header to be used while uploading output files. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public HttpHeader(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="HttpHeader"/>. </summary>
-        /// <param name="name"> The case-insensitive name of the header to be used while uploading output files. </param>
-        /// <param name="value"> The value of the header to be used while uploading output files. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HttpHeader(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The case-insensitive name of the header to be used while uploading output files. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The value of the header to be used while uploading output files. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

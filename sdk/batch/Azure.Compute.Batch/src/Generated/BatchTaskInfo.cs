@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about a Task running on a Compute Node. </summary>
+    /// <summary> The BatchTaskInfo. </summary>
     public partial class BatchTaskInfo
     {
         /// <summary>
@@ -46,19 +46,19 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskInfo"/>. </summary>
-        /// <param name="taskState"> The current state of the Task. </param>
+        /// <param name="taskState"></param>
         internal BatchTaskInfo(BatchTaskState taskState)
         {
             TaskState = taskState;
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskInfo"/>. </summary>
-        /// <param name="taskUrl"> The URL of the Task. </param>
-        /// <param name="jobId"> The ID of the Job to which the Task belongs. </param>
-        /// <param name="taskId"> The ID of the Task. </param>
-        /// <param name="subtaskId"> The ID of the subtask if the Task is a multi-instance Task. </param>
-        /// <param name="taskState"> The current state of the Task. </param>
-        /// <param name="executionInfo"> Information about the execution of the Task. </param>
+        /// <param name="taskUrl"></param>
+        /// <param name="jobId"></param>
+        /// <param name="taskId"></param>
+        /// <param name="subtaskId"></param>
+        /// <param name="taskState"></param>
+        /// <param name="executionInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskInfo(string taskUrl, string jobId, string taskId, int? subtaskId, BatchTaskState taskState, BatchTaskExecutionInfo executionInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,17 +76,17 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The URL of the Task. </summary>
+        /// <summary> Gets the task url. </summary>
         public string TaskUrl { get; }
-        /// <summary> The ID of the Job to which the Task belongs. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> The ID of the Task. </summary>
+        /// <summary> Gets the task id. </summary>
         public string TaskId { get; }
-        /// <summary> The ID of the subtask if the Task is a multi-instance Task. </summary>
+        /// <summary> Gets the subtask id. </summary>
         public int? SubtaskId { get; }
-        /// <summary> The current state of the Task. </summary>
+        /// <summary> Gets the task state. </summary>
         public BatchTaskState TaskState { get; }
-        /// <summary> Information about the execution of the Task. </summary>
+        /// <summary> Gets the execution info. </summary>
         public BatchTaskExecutionInfo ExecutionInfo { get; }
     }
 }

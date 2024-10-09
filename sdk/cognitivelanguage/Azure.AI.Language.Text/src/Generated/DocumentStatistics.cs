@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> if showStats=true was specified in the request this field will contain information about the document payload. </summary>
+    /// <summary> The DocumentStatistics. </summary>
     public partial class DocumentStatistics
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentStatistics"/>. </summary>
-        /// <param name="charactersCount"> Number of text elements recognized in the document. </param>
-        /// <param name="transactionsCount"> Number of transactions for the document. </param>
+        /// <param name="charactersCount"></param>
+        /// <param name="transactionsCount"></param>
         internal DocumentStatistics(int charactersCount, int transactionsCount)
         {
             CharactersCount = charactersCount;
@@ -55,8 +55,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentStatistics"/>. </summary>
-        /// <param name="charactersCount"> Number of text elements recognized in the document. </param>
-        /// <param name="transactionsCount"> Number of transactions for the document. </param>
+        /// <param name="charactersCount"></param>
+        /// <param name="transactionsCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentStatistics(int charactersCount, int transactionsCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Number of text elements recognized in the document. </summary>
+        /// <summary> Gets the characters count. </summary>
         public int CharactersCount { get; }
-        /// <summary> Number of transactions for the document. </summary>
+        /// <summary> Gets the transactions count. </summary>
         public int TransactionsCount { get; }
     }
 }

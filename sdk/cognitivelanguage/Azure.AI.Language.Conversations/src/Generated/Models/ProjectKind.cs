@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The type of the project. </summary>
+    /// <summary> The projectKind. </summary>
     internal readonly partial struct ProjectKind : IEquatable<ProjectKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Conversations.Models
         private const string ConversationValue = "Conversation";
         private const string OrchestrationValue = "Orchestration";
 
-        /// <summary> Conversation type. </summary>
+        /// <summary> Conversation. </summary>
         public static ProjectKind Conversation { get; } = new ProjectKind(ConversationValue);
-        /// <summary> Orchestration type. </summary>
+        /// <summary> Orchestration. </summary>
         public static ProjectKind Orchestration { get; } = new ProjectKind(OrchestrationValue);
         /// <summary> Determines if two <see cref="ProjectKind"/> values are the same. </summary>
         public static bool operator ==(ProjectKind left, ProjectKind right) => left.Equals(right);

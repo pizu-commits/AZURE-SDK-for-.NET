@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for an Extractive Summarization task. </summary>
+    /// <summary> The ExtractiveSummarizationActionContent. </summary>
     public partial class ExtractiveSummarizationActionContent
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="ExtractiveSummarizationActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="sentenceCount"> Specifies the number of sentences in the extracted summary. </param>
-        /// <param name="sortBy"> Specifies how to sort the extracted summaries. </param>
-        /// <param name="stringIndexType"> Specifies the method used to interpret string offsets. </param>
-        /// <param name="query"> (Optional) If provided, the query will be used to extract most relevant sentences from the document. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="sentenceCount"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="query"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExtractiveSummarizationActionContent(bool? loggingOptOut, string modelVersion, long? sentenceCount, ExtractiveSummarizationSortingCriteria? sortBy, StringIndexType? stringIndexType, string query, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Specifies the number of sentences in the extracted summary. </summary>
+        /// <summary> Gets or sets the sentence count. </summary>
         public long? SentenceCount { get; set; }
-        /// <summary> Specifies how to sort the extracted summaries. </summary>
+        /// <summary> Gets or sets the sort by. </summary>
         public ExtractiveSummarizationSortingCriteria? SortBy { get; set; }
-        /// <summary> Specifies the method used to interpret string offsets. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> (Optional) If provided, the query will be used to extract most relevant sentences from the document. </summary>
+        /// <summary> Gets or sets the query. </summary>
         public string Query { get; set; }
     }
 }

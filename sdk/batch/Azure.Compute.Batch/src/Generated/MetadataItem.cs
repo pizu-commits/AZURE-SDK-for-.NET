@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// The Batch service does not assign any meaning to this metadata; it is solely
-    /// for the use of user code.
-    /// </summary>
+    /// <summary> The MetadataItem. </summary>
     public partial class MetadataItem
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MetadataItem"/>. </summary>
-        /// <param name="name"> The name of the metadata item. </param>
-        /// <param name="value"> The value of the metadata item. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="value"/> is null. </exception>
         public MetadataItem(string name, string value)
         {
@@ -62,8 +59,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="MetadataItem"/>. </summary>
-        /// <param name="name"> The name of the metadata item. </param>
-        /// <param name="value"> The value of the metadata item. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetadataItem(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,9 +74,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The name of the metadata item. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The value of the metadata item. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for removing nodes from an Azure Batch Pool. </summary>
+    /// <summary> The BatchNodeRemoveContent. </summary>
     public partial class BatchNodeRemoveContent
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeRemoveContent"/>. </summary>
-        /// <param name="nodeList"> A list containing the IDs of the Compute Nodes to be removed from the specified Pool. A maximum of 100 nodes may be removed per request. </param>
+        /// <param name="nodeList"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="nodeList"/> is null. </exception>
         public BatchNodeRemoveContent(IEnumerable<string> nodeList)
         {
@@ -57,9 +57,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeRemoveContent"/>. </summary>
-        /// <param name="nodeList"> A list containing the IDs of the Compute Nodes to be removed from the specified Pool. A maximum of 100 nodes may be removed per request. </param>
-        /// <param name="resizeTimeout"> The timeout for removal of Compute Nodes to the Pool. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </param>
-        /// <param name="nodeDeallocationOption"> Determines what to do with a Compute Node and its running task(s) after it has been selected for deallocation. The default value is requeue. </param>
+        /// <param name="nodeList"></param>
+        /// <param name="resizeTimeout"></param>
+        /// <param name="nodeDeallocationOption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeRemoveContent(IList<string> nodeList, TimeSpan? resizeTimeout, BatchNodeDeallocationOption? nodeDeallocationOption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A list containing the IDs of the Compute Nodes to be removed from the specified Pool. A maximum of 100 nodes may be removed per request. </summary>
+        /// <summary> Gets the node list. </summary>
         public IList<string> NodeList { get; }
-        /// <summary> The timeout for removal of Compute Nodes to the Pool. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </summary>
+        /// <summary> Gets or sets the resize timeout. </summary>
         public TimeSpan? ResizeTimeout { get; set; }
-        /// <summary> Determines what to do with a Compute Node and its running task(s) after it has been selected for deallocation. The default value is requeue. </summary>
+        /// <summary> Gets or sets the node deallocation option. </summary>
         public BatchNodeDeallocationOption? NodeDeallocationOption { get; set; }
     }
 }

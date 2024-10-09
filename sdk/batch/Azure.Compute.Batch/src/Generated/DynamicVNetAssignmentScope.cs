@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> DynamicVNetAssignmentScope enums. </summary>
+    /// <summary> The DynamicVNetAssignmentScope. </summary>
     public readonly partial struct DynamicVNetAssignmentScope : IEquatable<DynamicVNetAssignmentScope>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string NoneValue = "none";
         private const string JobValue = "job";
 
-        /// <summary> No dynamic VNet assignment is enabled. </summary>
+        /// <summary> none. </summary>
         public static DynamicVNetAssignmentScope None { get; } = new DynamicVNetAssignmentScope(NoneValue);
-        /// <summary> Dynamic VNet assignment is done per-job. </summary>
+        /// <summary> job. </summary>
         public static DynamicVNetAssignmentScope Job { get; } = new DynamicVNetAssignmentScope(JobValue);
         /// <summary> Determines if two <see cref="DynamicVNetAssignmentScope"/> values are the same. </summary>
         public static bool operator ==(DynamicVNetAssignmentScope left, DynamicVNetAssignmentScope right) => left.Equals(right);

@@ -11,8 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Inference
 {
     /// <summary>
-    /// An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
-    /// chat completion.
+    /// The ChatCompletionsToolCall.
     /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
     /// </summary>
@@ -51,7 +50,7 @@ namespace Azure.AI.Inference
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsToolCall"/>. </summary>
-        /// <param name="id"> The ID of the tool call. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         protected ChatCompletionsToolCall(string id)
         {
@@ -61,8 +60,8 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsToolCall"/>. </summary>
-        /// <param name="type"> The object type. </param>
-        /// <param name="id"> The ID of the tool call. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsToolCall(string type, string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,9 +75,9 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The object type. </summary>
+        /// <summary> Gets or sets the type. </summary>
         internal string Type { get; set; }
-        /// <summary> The ID of the tool call. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
     }
 }

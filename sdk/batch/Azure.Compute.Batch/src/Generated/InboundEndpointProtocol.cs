@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> InboundEndpointProtocol enums. </summary>
+    /// <summary> The InboundEndpointProtocol. </summary>
     public readonly partial struct InboundEndpointProtocol : IEquatable<InboundEndpointProtocol>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string TcpValue = "tcp";
         private const string UdpValue = "udp";
 
-        /// <summary> Use TCP for the endpoint. </summary>
+        /// <summary> tcp. </summary>
         public static InboundEndpointProtocol Tcp { get; } = new InboundEndpointProtocol(TcpValue);
-        /// <summary> Use UDP for the endpoint. </summary>
+        /// <summary> udp. </summary>
         public static InboundEndpointProtocol Udp { get; } = new InboundEndpointProtocol(UdpValue);
         /// <summary> Determines if two <see cref="InboundEndpointProtocol"/> values are the same. </summary>
         public static bool operator ==(InboundEndpointProtocol left, InboundEndpointProtocol right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains an input document to be analyzed by the service. </summary>
+    /// <summary> The MultiLanguageInput. </summary>
     public partial class MultiLanguageInput
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MultiLanguageInput"/>. </summary>
-        /// <param name="id"> A unique, non-empty document identifier. </param>
-        /// <param name="text"> The input text to process. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="text"/> is null. </exception>
         public MultiLanguageInput(string id, string text)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="MultiLanguageInput"/>. </summary>
-        /// <param name="id"> A unique, non-empty document identifier. </param>
-        /// <param name="text"> The input text to process. </param>
-        /// <param name="language"> (Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use \"en\" for English; \"es\" for Spanish etc. If not set, use \"en\" for English as default. (Following only applies to 2023-04-15-preview and above) For Auto Language Detection, use \"auto\". If not set, use \"en\" for English as default. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
+        /// <param name="language"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultiLanguageInput(string id, string text, string language, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> A unique, non-empty document identifier. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The input text to process. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> (Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use \"en\" for English; \"es\" for Spanish etc. If not set, use \"en\" for English as default. (Following only applies to 2023-04-15-preview and above) For Auto Language Detection, use \"auto\". If not set, use \"en\" for English as default. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
     }
 }

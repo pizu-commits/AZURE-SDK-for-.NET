@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the language detection for a document. </summary>
+    /// <summary> The LanguageDetectionDocumentResult. </summary>
     public partial class LanguageDetectionDocumentResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LanguageDetectionDocumentResult"/>. </summary>
-        /// <param name="id"> Unique, non-empty document identifier. </param>
-        /// <param name="warnings"> Warnings encountered while processing document. </param>
-        /// <param name="detectedLanguage"> Detected Language. </param>
+        /// <param name="id"></param>
+        /// <param name="warnings"></param>
+        /// <param name="detectedLanguage"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="warnings"/> or <paramref name="detectedLanguage"/> is null. </exception>
         internal LanguageDetectionDocumentResult(string id, IEnumerable<DocumentWarning> warnings, DetectedLanguage detectedLanguage)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="LanguageDetectionDocumentResult"/>. </summary>
-        /// <param name="id"> Unique, non-empty document identifier. </param>
-        /// <param name="warnings"> Warnings encountered while processing document. </param>
-        /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the document payload. </param>
-        /// <param name="detectedLanguage"> Detected Language. </param>
+        /// <param name="id"></param>
+        /// <param name="warnings"></param>
+        /// <param name="statistics"></param>
+        /// <param name="detectedLanguage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LanguageDetectionDocumentResult(string id, IReadOnlyList<DocumentWarning> warnings, DocumentStatistics statistics, DetectedLanguage detectedLanguage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Unique, non-empty document identifier. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Warnings encountered while processing document. </summary>
+        /// <summary> Gets the warnings. </summary>
         public IReadOnlyList<DocumentWarning> Warnings { get; }
-        /// <summary> if showStats=true was specified in the request this field will contain information about the document payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public DocumentStatistics Statistics { get; }
-        /// <summary> Detected Language. </summary>
+        /// <summary> Gets the detected language. </summary>
         public DetectedLanguage DetectedLanguage { get; }
     }
 }

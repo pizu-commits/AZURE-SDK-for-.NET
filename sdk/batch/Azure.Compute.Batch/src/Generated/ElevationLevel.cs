@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> ElevationLevel enums. </summary>
+    /// <summary> The ElevationLevel. </summary>
     public readonly partial struct ElevationLevel : IEquatable<ElevationLevel>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string NonAdminValue = "nonadmin";
         private const string AdminValue = "admin";
 
-        /// <summary> The user is a standard user without elevated access. </summary>
+        /// <summary> nonadmin. </summary>
         public static ElevationLevel NonAdmin { get; } = new ElevationLevel(NonAdminValue);
-        /// <summary> The user is a user with elevated access and operates with full Administrator permissions. </summary>
+        /// <summary> admin. </summary>
         public static ElevationLevel Admin { get; } = new ElevationLevel(AdminValue);
         /// <summary> Determines if two <see cref="ElevationLevel"/> values are the same. </summary>
         public static bool operator ==(ElevationLevel left, ElevationLevel right) => left.Equals(right);

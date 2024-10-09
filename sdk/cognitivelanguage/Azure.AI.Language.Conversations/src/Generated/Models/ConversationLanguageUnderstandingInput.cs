@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The input for a conversation language understanding task. </summary>
+    /// <summary> The ConversationLanguageUnderstandingInput. </summary>
     public partial class ConversationLanguageUnderstandingInput : AnalyzeConversationInput
     {
         /// <summary> Initializes a new instance of <see cref="ConversationLanguageUnderstandingInput"/>. </summary>
-        /// <param name="conversationInput"> The input ConversationItem and its optional parameters. </param>
-        /// <param name="actionContent"> Input parameters necessary for a Conversation language understanding task. </param>
+        /// <param name="conversationInput"></param>
+        /// <param name="actionContent"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conversationInput"/> or <paramref name="actionContent"/> is null. </exception>
         public ConversationLanguageUnderstandingInput(ConversationAnalysisInput conversationInput, ConversationLanguageUnderstandingActionContent actionContent)
         {
@@ -28,10 +28,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationLanguageUnderstandingInput"/>. </summary>
-        /// <param name="kind"> The base class of a conversation input task. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="conversationInput"> The input ConversationItem and its optional parameters. </param>
-        /// <param name="actionContent"> Input parameters necessary for a Conversation language understanding task. </param>
+        /// <param name="conversationInput"></param>
+        /// <param name="actionContent"></param>
         internal ConversationLanguageUnderstandingInput(AnalyzeConversationInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, ConversationAnalysisInput conversationInput, ConversationLanguageUnderstandingActionContent actionContent) : base(kind, serializedAdditionalRawData)
         {
             ConversationInput = conversationInput;
@@ -43,9 +43,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The input ConversationItem and its optional parameters. </summary>
+        /// <summary> Gets the conversation input. </summary>
         public ConversationAnalysisInput ConversationInput { get; }
-        /// <summary> Input parameters necessary for a Conversation language understanding task. </summary>
+        /// <summary> Gets the action content. </summary>
         public ConversationLanguageUnderstandingActionContent ActionContent { get; }
     }
 }

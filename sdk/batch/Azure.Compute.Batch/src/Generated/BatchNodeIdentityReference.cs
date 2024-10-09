@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// The reference to a user assigned identity associated with the Batch pool which
-    /// a compute node will use.
-    /// </summary>
+    /// <summary> The BatchNodeIdentityReference. </summary>
     public partial class BatchNodeIdentityReference
     {
         /// <summary>
@@ -54,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeIdentityReference"/>. </summary>
-        /// <param name="resourceId"> The ARM resource id of the user assigned identity. </param>
+        /// <param name="resourceId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeIdentityReference(string resourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ARM resource id of the user assigned identity. </summary>
+        /// <summary> Gets or sets the resource id. </summary>
         public string ResourceId { get; set; }
     }
 }

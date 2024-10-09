@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodePlacementPolicyType enums. </summary>
+    /// <summary> The BatchNodePlacementPolicyType. </summary>
     public readonly partial struct BatchNodePlacementPolicyType : IEquatable<BatchNodePlacementPolicyType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string RegionalValue = "regional";
         private const string ZonalValue = "zonal";
 
-        /// <summary> All nodes in the pool will be allocated in the same region. </summary>
+        /// <summary> regional. </summary>
         public static BatchNodePlacementPolicyType Regional { get; } = new BatchNodePlacementPolicyType(RegionalValue);
-        /// <summary> Nodes in the pool will be spread across different availability zones with best effort balancing. </summary>
+        /// <summary> zonal. </summary>
         public static BatchNodePlacementPolicyType Zonal { get; } = new BatchNodePlacementPolicyType(ZonalValue);
         /// <summary> Determines if two <see cref="BatchNodePlacementPolicyType"/> values are the same. </summary>
         public static bool operator ==(BatchNodePlacementPolicyType left, BatchNodePlacementPolicyType right) => left.Equals(right);

@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A tool selection of a specific, named function tool that will limit chat completions to using the named function. </summary>
+    /// <summary> The ChatCompletionsNamedFunctionToolSelection. </summary>
     public partial class ChatCompletionsNamedFunctionToolSelection : ChatCompletionsNamedToolSelection
     {
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsNamedFunctionToolSelection"/>. </summary>
-        /// <param name="function"> The function that should be called. </param>
+        /// <param name="function"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="function"/> is null. </exception>
         public ChatCompletionsNamedFunctionToolSelection(ChatCompletionsFunctionToolSelection function)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsNamedFunctionToolSelection"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="function"> The function that should be called. </param>
+        /// <param name="function"></param>
         internal ChatCompletionsNamedFunctionToolSelection(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, ChatCompletionsFunctionToolSelection function) : base(type, serializedAdditionalRawData)
         {
             Function = function;
@@ -38,7 +38,7 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The function that should be called. </summary>
+        /// <summary> Gets the function. </summary>
         public ChatCompletionsFunctionToolSelection Function { get; }
     }
 }

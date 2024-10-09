@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Multivariate anomaly detection status. </summary>
+    /// <summary> The MultivariateBatchDetectionResultSummary. </summary>
     public partial class MultivariateBatchDetectionResultSummary
     {
         /// <summary>
@@ -46,11 +46,8 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MultivariateBatchDetectionResultSummary"/>. </summary>
-        /// <param name="status"> Status of detection results. </param>
-        /// <param name="setupInfo">
-        /// Detection request for batch inference. This is an asynchronous inference that
-        /// will need another API to get detection results.
-        /// </param>
+        /// <param name="status"></param>
+        /// <param name="setupInfo"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="setupInfo"/> is null. </exception>
         internal MultivariateBatchDetectionResultSummary(MultivariateBatchDetectionStatus status, MultivariateBatchDetectionOptions setupInfo)
         {
@@ -63,13 +60,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="MultivariateBatchDetectionResultSummary"/>. </summary>
-        /// <param name="status"> Status of detection results. </param>
-        /// <param name="errors"> Error message when detection fails. </param>
-        /// <param name="variableStates"> Variable status. </param>
-        /// <param name="setupInfo">
-        /// Detection request for batch inference. This is an asynchronous inference that
-        /// will need another API to get detection results.
-        /// </param>
+        /// <param name="status"></param>
+        /// <param name="errors"></param>
+        /// <param name="variableStates"></param>
+        /// <param name="setupInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultivariateBatchDetectionResultSummary(MultivariateBatchDetectionStatus status, IReadOnlyList<ErrorResponse> errors, IReadOnlyList<VariableState> variableStates, MultivariateBatchDetectionOptions setupInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,16 +79,13 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary> Status of detection results. </summary>
+        /// <summary> Gets the status. </summary>
         public MultivariateBatchDetectionStatus Status { get; }
-        /// <summary> Error message when detection fails. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<ErrorResponse> Errors { get; }
-        /// <summary> Variable status. </summary>
+        /// <summary> Gets the variable states. </summary>
         public IReadOnlyList<VariableState> VariableStates { get; }
-        /// <summary>
-        /// Detection request for batch inference. This is an asynchronous inference that
-        /// will need another API to get detection results.
-        /// </summary>
+        /// <summary> Gets the setup info. </summary>
         public MultivariateBatchDetectionOptions SetupInfo { get; }
     }
 }

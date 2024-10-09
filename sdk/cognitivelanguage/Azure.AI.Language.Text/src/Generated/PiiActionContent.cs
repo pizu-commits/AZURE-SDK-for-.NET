@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for a PII Entities Recognition task. </summary>
+    /// <summary> The PiiActionContent. </summary>
     public partial class PiiActionContent
     {
         /// <summary>
@@ -53,13 +53,13 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="PiiActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="domain"> Domain for PII task. </param>
-        /// <param name="piiCategories"> Enumeration of PII categories to be returned in the response. </param>
-        /// <param name="stringIndexType"> StringIndexType to be used for analysis. </param>
-        /// <param name="excludePiiCategories"> Enumeration of PII categories to be excluded in the response. </param>
-        /// <param name="redactionCharacter"> Character to be used for redaction. Default in '*'. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="domain"></param>
+        /// <param name="piiCategories"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="excludePiiCategories"></param>
+        /// <param name="redactionCharacter"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PiiActionContent(bool? loggingOptOut, string modelVersion, PiiDomain? domain, IList<PiiCategory> piiCategories, StringIndexType? stringIndexType, IList<PiiCategoriesExclude> excludePiiCategories, RedactionCharacter? redactionCharacter, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,19 +73,19 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Domain for PII task. </summary>
+        /// <summary> Gets or sets the domain. </summary>
         public PiiDomain? Domain { get; set; }
-        /// <summary> Enumeration of PII categories to be returned in the response. </summary>
+        /// <summary> Gets the pii categories. </summary>
         public IList<PiiCategory> PiiCategories { get; }
-        /// <summary> StringIndexType to be used for analysis. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> Enumeration of PII categories to be excluded in the response. </summary>
+        /// <summary> Gets the exclude pii categories. </summary>
         public IList<PiiCategoriesExclude> ExcludePiiCategories { get; }
-        /// <summary> Character to be used for redaction. Default in '*'. </summary>
+        /// <summary> Gets or sets the redaction character. </summary>
         public RedactionCharacter? RedactionCharacter { get; set; }
     }
 }

@@ -11,12 +11,12 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents the prediction section of a Conversation project. </summary>
+    /// <summary> The ConversationPrediction. </summary>
     public partial class ConversationPrediction : PredictionBase
     {
         /// <summary> Initializes a new instance of <see cref="ConversationPrediction"/>. </summary>
-        /// <param name="intents"> The intent classification results. </param>
-        /// <param name="entities"> The entity extraction results. </param>
+        /// <param name="intents"></param>
+        /// <param name="entities"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="intents"/> or <paramref name="entities"/> is null. </exception>
         internal ConversationPrediction(IEnumerable<ConversationIntent> intents, IEnumerable<ConversationEntity> entities)
         {
@@ -29,11 +29,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationPrediction"/>. </summary>
-        /// <param name="projectKind"> The type of the project. </param>
-        /// <param name="topIntent"> The intent with the highest score. </param>
+        /// <param name="projectKind"></param>
+        /// <param name="topIntent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="intents"> The intent classification results. </param>
-        /// <param name="entities"> The entity extraction results. </param>
+        /// <param name="intents"></param>
+        /// <param name="entities"></param>
         internal ConversationPrediction(ProjectKind projectKind, string topIntent, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<ConversationIntent> intents, IReadOnlyList<ConversationEntity> entities) : base(projectKind, topIntent, serializedAdditionalRawData)
         {
             Intents = intents;
@@ -45,9 +45,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The intent classification results. </summary>
+        /// <summary> Gets the intents. </summary>
         public IReadOnlyList<ConversationIntent> Intents { get; }
-        /// <summary> The entity extraction results. </summary>
+        /// <summary> Gets the entities. </summary>
         public IReadOnlyList<ConversationEntity> Entities { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about the Compute Node on which a Task ran. </summary>
+    /// <summary> The BatchNodeInfo. </summary>
     public partial class BatchNodeInfo
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeInfo"/>. </summary>
-        /// <param name="affinityId"> An identifier for the Node on which the Task ran, which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. </param>
-        /// <param name="nodeUrl"> The URL of the Compute Node on which the Task ran. </param>
-        /// <param name="poolId"> The ID of the Pool on which the Task ran. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which the Task ran. </param>
-        /// <param name="taskRootDirectory"> The root directory of the Task on the Compute Node. </param>
-        /// <param name="taskRootDirectoryUrl"> The URL to the root directory of the Task on the Compute Node. </param>
+        /// <param name="affinityId"></param>
+        /// <param name="nodeUrl"></param>
+        /// <param name="poolId"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="taskRootDirectory"></param>
+        /// <param name="taskRootDirectoryUrl"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeInfo(string affinityId, string nodeUrl, string poolId, string nodeId, string taskRootDirectory, string taskRootDirectoryUrl, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An identifier for the Node on which the Task ran, which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. </summary>
+        /// <summary> Gets the affinity id. </summary>
         public string AffinityId { get; }
-        /// <summary> The URL of the Compute Node on which the Task ran. </summary>
+        /// <summary> Gets the node url. </summary>
         public string NodeUrl { get; }
-        /// <summary> The ID of the Pool on which the Task ran. </summary>
+        /// <summary> Gets the pool id. </summary>
         public string PoolId { get; }
-        /// <summary> The ID of the Compute Node on which the Task ran. </summary>
+        /// <summary> Gets the node id. </summary>
         public string NodeId { get; }
-        /// <summary> The root directory of the Task on the Compute Node. </summary>
+        /// <summary> Gets the task root directory. </summary>
         public string TaskRootDirectory { get; }
-        /// <summary> The URL to the root directory of the Task on the Compute Node. </summary>
+        /// <summary> Gets the task root directory url. </summary>
         public string TaskRootDirectoryUrl { get; }
     }
 }

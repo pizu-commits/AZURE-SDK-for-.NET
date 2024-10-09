@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text PIIEntityRecognition LRO task. </summary>
+    /// <summary> The AnalyzeTextPiiResult. </summary>
     public partial class AnalyzeTextPiiResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextPiiResult"/>. </summary>
-        /// <param name="results"> The list of pii results. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal AnalyzeTextPiiResult(PiiResult results)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextPiiResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="results"> The list of pii results. </param>
+        /// <param name="results"></param>
         internal AnalyzeTextPiiResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, PiiResult results) : base(kind, serializedAdditionalRawData)
         {
             Results = results;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The list of pii results. </summary>
+        /// <summary> Gets the results. </summary>
         public PiiResult Results { get; }
     }
 }

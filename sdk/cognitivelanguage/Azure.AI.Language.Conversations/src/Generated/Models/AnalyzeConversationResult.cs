@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents a conversation analysis response. </summary>
+    /// <summary> The AnalyzeConversationResult. </summary>
     public partial class AnalyzeConversationResult
     {
         /// <summary>
@@ -46,9 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationResult"/>. </summary>
-        /// <param name="query"> The conversation utterance given by the caller. </param>
+        /// <param name="query"></param>
         /// <param name="prediction">
-        /// The prediction result of a conversation project.
         /// Please note <see cref="PredictionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationPrediction"/> and <see cref="OrchestrationPrediction"/>.
         /// </param>
@@ -63,10 +62,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationResult"/>. </summary>
-        /// <param name="query"> The conversation utterance given by the caller. </param>
-        /// <param name="detectedLanguage"> The system detected language for the query in BCP 47 language representation.. </param>
+        /// <param name="query"></param>
+        /// <param name="detectedLanguage"></param>
         /// <param name="prediction">
-        /// The prediction result of a conversation project.
         /// Please note <see cref="PredictionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationPrediction"/> and <see cref="OrchestrationPrediction"/>.
         /// </param>
@@ -84,12 +82,12 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The conversation utterance given by the caller. </summary>
+        /// <summary> Gets the query. </summary>
         public string Query { get; }
-        /// <summary> The system detected language for the query in BCP 47 language representation.. </summary>
+        /// <summary> Gets the detected language. </summary>
         public string DetectedLanguage { get; }
         /// <summary>
-        /// The prediction result of a conversation project.
+        /// Gets the prediction
         /// Please note <see cref="PredictionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationPrediction"/> and <see cref="OrchestrationPrediction"/>.
         /// </summary>

@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// Settings which will be used by the data disks associated to Compute Nodes in
-    /// the Pool. When using attached data disks, you need to mount and format the
-    /// disks from within a VM to use them.
-    /// </summary>
+    /// <summary> The DataDisk. </summary>
     public partial class DataDisk
     {
         /// <summary>
@@ -50,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DataDisk"/>. </summary>
-        /// <param name="logicalUnitNumber"> The logical unit number. The logicalUnitNumber is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct logicalUnitNumber. The value must be between 0 and 63, inclusive. </param>
-        /// <param name="diskSizeGb"> The initial disk size in gigabytes. </param>
+        /// <param name="logicalUnitNumber"></param>
+        /// <param name="diskSizeGb"></param>
         public DataDisk(int logicalUnitNumber, int diskSizeGb)
         {
             LogicalUnitNumber = logicalUnitNumber;
@@ -59,10 +55,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="DataDisk"/>. </summary>
-        /// <param name="logicalUnitNumber"> The logical unit number. The logicalUnitNumber is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct logicalUnitNumber. The value must be between 0 and 63, inclusive. </param>
-        /// <param name="caching"> The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. </param>
-        /// <param name="diskSizeGb"> The initial disk size in gigabytes. </param>
-        /// <param name="storageAccountType"> The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". </param>
+        /// <param name="logicalUnitNumber"></param>
+        /// <param name="caching"></param>
+        /// <param name="diskSizeGb"></param>
+        /// <param name="storageAccountType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DataDisk(int logicalUnitNumber, CachingType? caching, int diskSizeGb, StorageAccountType? storageAccountType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +74,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The logical unit number. The logicalUnitNumber is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct logicalUnitNumber. The value must be between 0 and 63, inclusive. </summary>
+        /// <summary> Gets or sets the logical unit number. </summary>
         public int LogicalUnitNumber { get; set; }
-        /// <summary> The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. </summary>
+        /// <summary> Gets or sets the caching. </summary>
         public CachingType? Caching { get; set; }
-        /// <summary> The initial disk size in gigabytes. </summary>
+        /// <summary> Gets or sets the disk size gb. </summary>
         public int DiskSizeGb { get; set; }
-        /// <summary> The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". </summary>
+        /// <summary> Gets or sets the storage account type. </summary>
         public StorageAccountType? StorageAccountType { get; set; }
     }
 }

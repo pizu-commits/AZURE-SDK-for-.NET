@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Answer span object of QnA. </summary>
+    /// <summary> The AnswerSpan. </summary>
     public partial class AnswerSpan
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnswerSpan"/>. </summary>
-        /// <param name="text"> Predicted text of answer span. </param>
-        /// <param name="confidenceScore"> Predicted score of answer span, value ranges from 0 to 1. </param>
-        /// <param name="offset"> The answer span offset from the start of answer. </param>
-        /// <param name="length"> The length of the answer span. </param>
+        /// <param name="text"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnswerSpan(string text, double? confidenceScore, int? offset, int? length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Predicted text of answer span. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Predicted score of answer span, value ranges from 0 to 1. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double? ConfidenceScore { get; }
-        /// <summary> The answer span offset from the start of answer. </summary>
+        /// <summary> Gets the offset. </summary>
         public int? Offset { get; }
-        /// <summary> The length of the answer span. </summary>
+        /// <summary> Gets the length. </summary>
         public int? Length { get; }
     }
 }

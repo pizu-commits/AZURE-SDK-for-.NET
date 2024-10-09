@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Variable status. </summary>
+    /// <summary> The VariableState. </summary>
     public partial class VariableState
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="VariableState"/>. </summary>
-        /// <param name="variable"> Variable name in variable states. </param>
-        /// <param name="filledNARatio"> Proportion of missing values that need to be filled by fillNAMethod. </param>
-        /// <param name="effectiveCount"> Number of effective data points before fillNAMethod is applied. </param>
-        /// <param name="firstTimestamp"> First valid time stamp with a value of input data. </param>
-        /// <param name="lastTimestamp"> Last valid time stamp with a value of input data. </param>
+        /// <param name="variable"></param>
+        /// <param name="filledNARatio"></param>
+        /// <param name="effectiveCount"></param>
+        /// <param name="firstTimestamp"></param>
+        /// <param name="lastTimestamp"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal VariableState(string variable, float? filledNARatio, int? effectiveCount, DateTimeOffset? firstTimestamp, DateTimeOffset? lastTimestamp, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.AI.AnomalyDetector
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Variable name in variable states. </summary>
+        /// <summary> Gets the variable. </summary>
         public string Variable { get; }
-        /// <summary> Proportion of missing values that need to be filled by fillNAMethod. </summary>
+        /// <summary> Gets the filled na ratio. </summary>
         public float? FilledNARatio { get; }
-        /// <summary> Number of effective data points before fillNAMethod is applied. </summary>
+        /// <summary> Gets the effective count. </summary>
         public int? EffectiveCount { get; }
-        /// <summary> First valid time stamp with a value of input data. </summary>
+        /// <summary> Gets the first timestamp. </summary>
         public DateTimeOffset? FirstTimestamp { get; }
-        /// <summary> Last valid time stamp with a value of input data. </summary>
+        /// <summary> Gets the last timestamp. </summary>
         public DateTimeOffset? LastTimestamp { get; }
     }
 }

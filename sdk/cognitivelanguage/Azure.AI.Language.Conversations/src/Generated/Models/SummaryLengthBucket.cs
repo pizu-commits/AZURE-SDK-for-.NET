@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Enum that defines the length of the output summaries. </summary>
+    /// <summary> The SummaryLengthBucket. </summary>
     public readonly partial struct SummaryLengthBucket : IEquatable<SummaryLengthBucket>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string MediumValue = "medium";
         private const string LongValue = "long";
 
-        /// <summary> Instructs model to generate shorter length summaries. </summary>
+        /// <summary> short. </summary>
         public static SummaryLengthBucket Short { get; } = new SummaryLengthBucket(ShortValue);
-        /// <summary> Instructs model to generate medium length summaries. </summary>
+        /// <summary> medium. </summary>
         public static SummaryLengthBucket Medium { get; } = new SummaryLengthBucket(MediumValue);
-        /// <summary> Instructs model to generate longer length summaries. </summary>
+        /// <summary> long. </summary>
         public static SummaryLengthBucket Long { get; } = new SummaryLengthBucket(LongValue);
         /// <summary> Determines if two <see cref="SummaryLengthBucket"/> values are the same. </summary>
         public static bool operator ==(SummaryLengthBucket left, SummaryLengthBucket right) => left.Equals(right);

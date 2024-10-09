@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about an Azure Batch subtask. </summary>
+    /// <summary> The BatchSubtask. </summary>
     public partial class BatchSubtask
     {
         /// <summary>
@@ -51,18 +51,18 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchSubtask"/>. </summary>
-        /// <param name="id"> The ID of the subtask. </param>
-        /// <param name="nodeInfo"> Information about the Compute Node on which the subtask ran. </param>
-        /// <param name="startTime"> The time at which the subtask started running. If the subtask has been restarted or retried, this is the most recent time at which the subtask started running. </param>
-        /// <param name="endTime"> The time at which the subtask completed. This property is set only if the subtask is in the Completed state. </param>
-        /// <param name="exitCode"> The exit code of the program specified on the subtask command line. This property is set only if the subtask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the subtask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. </param>
-        /// <param name="containerInfo"> Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. </param>
-        /// <param name="failureInfo"> Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. </param>
-        /// <param name="state"> The current state of the subtask. </param>
-        /// <param name="stateTransitionTime"> The time at which the subtask entered its current state. </param>
-        /// <param name="previousState"> The previous state of the subtask. This property is not set if the subtask is in its initial running state. </param>
-        /// <param name="previousStateTransitionTime"> The time at which the subtask entered its previous state. This property is not set if the subtask is in its initial running state. </param>
-        /// <param name="result"> The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. </param>
+        /// <param name="id"></param>
+        /// <param name="nodeInfo"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="exitCode"></param>
+        /// <param name="containerInfo"></param>
+        /// <param name="failureInfo"></param>
+        /// <param name="state"></param>
+        /// <param name="stateTransitionTime"></param>
+        /// <param name="previousState"></param>
+        /// <param name="previousStateTransitionTime"></param>
+        /// <param name="result"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchSubtask(int? id, BatchNodeInfo nodeInfo, DateTimeOffset? startTime, DateTimeOffset? endTime, int? exitCode, BatchTaskContainerExecutionInfo containerInfo, BatchTaskFailureInfo failureInfo, BatchSubtaskState? state, DateTimeOffset? stateTransitionTime, BatchSubtaskState? previousState, DateTimeOffset? previousStateTransitionTime, BatchTaskExecutionResult? result, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,29 +81,29 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the subtask. </summary>
+        /// <summary> Gets the id. </summary>
         public int? Id { get; }
-        /// <summary> Information about the Compute Node on which the subtask ran. </summary>
+        /// <summary> Gets the node info. </summary>
         public BatchNodeInfo NodeInfo { get; }
-        /// <summary> The time at which the subtask started running. If the subtask has been restarted or retried, this is the most recent time at which the subtask started running. </summary>
+        /// <summary> Gets the start time. </summary>
         public DateTimeOffset? StartTime { get; }
-        /// <summary> The time at which the subtask completed. This property is set only if the subtask is in the Completed state. </summary>
+        /// <summary> Gets the end time. </summary>
         public DateTimeOffset? EndTime { get; }
-        /// <summary> The exit code of the program specified on the subtask command line. This property is set only if the subtask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the subtask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. </summary>
+        /// <summary> Gets the exit code. </summary>
         public int? ExitCode { get; }
-        /// <summary> Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. </summary>
+        /// <summary> Gets the container info. </summary>
         public BatchTaskContainerExecutionInfo ContainerInfo { get; }
-        /// <summary> Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. </summary>
+        /// <summary> Gets the failure info. </summary>
         public BatchTaskFailureInfo FailureInfo { get; }
-        /// <summary> The current state of the subtask. </summary>
+        /// <summary> Gets the state. </summary>
         public BatchSubtaskState? State { get; }
-        /// <summary> The time at which the subtask entered its current state. </summary>
+        /// <summary> Gets the state transition time. </summary>
         public DateTimeOffset? StateTransitionTime { get; }
-        /// <summary> The previous state of the subtask. This property is not set if the subtask is in its initial running state. </summary>
+        /// <summary> Gets the previous state. </summary>
         public BatchSubtaskState? PreviousState { get; }
-        /// <summary> The time at which the subtask entered its previous state. This property is not set if the subtask is in its initial running state. </summary>
+        /// <summary> Gets the previous state transition time. </summary>
         public DateTimeOffset? PreviousStateTransitionTime { get; }
-        /// <summary> The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. </summary>
+        /// <summary> Gets the result. </summary>
         public BatchTaskExecutionResult? Result { get; }
     }
 }

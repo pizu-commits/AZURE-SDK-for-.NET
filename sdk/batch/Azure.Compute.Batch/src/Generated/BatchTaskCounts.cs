@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The Task counts for a Job. </summary>
+    /// <summary> The BatchTaskCounts. </summary>
     public partial class BatchTaskCounts
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskCounts"/>. </summary>
-        /// <param name="active"> The number of Tasks in the active state. </param>
-        /// <param name="running"> The number of Tasks in the running or preparing state. </param>
-        /// <param name="completed"> The number of Tasks in the completed state. </param>
-        /// <param name="succeeded"> The number of Tasks which succeeded. A Task succeeds if its result (found in the executionInfo property) is 'success'. </param>
-        /// <param name="failed"> The number of Tasks which failed. A Task fails if its result (found in the executionInfo property) is 'failure'. </param>
+        /// <param name="active"></param>
+        /// <param name="running"></param>
+        /// <param name="completed"></param>
+        /// <param name="succeeded"></param>
+        /// <param name="failed"></param>
         internal BatchTaskCounts(int active, int running, int completed, int succeeded, int failed)
         {
             Active = active;
@@ -61,11 +61,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskCounts"/>. </summary>
-        /// <param name="active"> The number of Tasks in the active state. </param>
-        /// <param name="running"> The number of Tasks in the running or preparing state. </param>
-        /// <param name="completed"> The number of Tasks in the completed state. </param>
-        /// <param name="succeeded"> The number of Tasks which succeeded. A Task succeeds if its result (found in the executionInfo property) is 'success'. </param>
-        /// <param name="failed"> The number of Tasks which failed. A Task fails if its result (found in the executionInfo property) is 'failure'. </param>
+        /// <param name="active"></param>
+        /// <param name="running"></param>
+        /// <param name="completed"></param>
+        /// <param name="succeeded"></param>
+        /// <param name="failed"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskCounts(int active, int running, int completed, int succeeded, int failed, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,15 +82,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The number of Tasks in the active state. </summary>
+        /// <summary> Gets the active. </summary>
         public int Active { get; }
-        /// <summary> The number of Tasks in the running or preparing state. </summary>
+        /// <summary> Gets the running. </summary>
         public int Running { get; }
-        /// <summary> The number of Tasks in the completed state. </summary>
+        /// <summary> Gets the completed. </summary>
         public int Completed { get; }
-        /// <summary> The number of Tasks which succeeded. A Task succeeds if its result (found in the executionInfo property) is 'success'. </summary>
+        /// <summary> Gets the succeeded. </summary>
         public int Succeeded { get; }
-        /// <summary> The number of Tasks which failed. A Task fails if its result (found in the executionInfo property) is 'failure'. </summary>
+        /// <summary> Gets the failed. </summary>
         public int Failed { get; }
     }
 }

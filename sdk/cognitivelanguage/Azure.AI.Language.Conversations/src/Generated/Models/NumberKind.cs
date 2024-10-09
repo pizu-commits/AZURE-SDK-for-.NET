@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The type of the extracted number entity. </summary>
+    /// <summary> The NumberKind. </summary>
     public readonly partial struct NumberKind : IEquatable<NumberKind>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.AI.Language.Conversations.Models
         private const string PercentValue = "Percent";
         private const string UnspecifiedValue = "Unspecified";
 
-        /// <summary> Integer number. </summary>
+        /// <summary> Integer. </summary>
         public static NumberKind Integer { get; } = new NumberKind(IntegerValue);
-        /// <summary> Decimal number. </summary>
+        /// <summary> Decimal. </summary>
         public static NumberKind Decimal { get; } = new NumberKind(DecimalValue);
-        /// <summary> Power number. </summary>
+        /// <summary> Power. </summary>
         public static NumberKind Power { get; } = new NumberKind(PowerValue);
-        /// <summary> Fraction number. </summary>
+        /// <summary> Fraction. </summary>
         public static NumberKind Fraction { get; } = new NumberKind(FractionValue);
-        /// <summary> Percent number. </summary>
+        /// <summary> Percent. </summary>
         public static NumberKind Percent { get; } = new NumberKind(PercentValue);
-        /// <summary> Unspecified number kind. </summary>
+        /// <summary> Unspecified. </summary>
         public static NumberKind Unspecified { get; } = new NumberKind(UnspecifiedValue);
         /// <summary> Determines if two <see cref="NumberKind"/> values are the same. </summary>
         public static bool operator ==(NumberKind left, NumberKind right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the details of the detected language for the text. </summary>
+    /// <summary> The DetectedLanguage. </summary>
     public partial class DetectedLanguage
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedLanguage"/>. </summary>
-        /// <param name="name"> Long name of a detected language (e.g. English, French). </param>
-        /// <param name="iso6391Name"> A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr). </param>
-        /// <param name="confidenceScore"> A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. </param>
+        /// <param name="name"></param>
+        /// <param name="iso6391Name"></param>
+        /// <param name="confidenceScore"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="iso6391Name"/> is null. </exception>
         internal DetectedLanguage(string name, string iso6391Name, double confidenceScore)
         {
@@ -61,11 +61,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedLanguage"/>. </summary>
-        /// <param name="name"> Long name of a detected language (e.g. English, French). </param>
-        /// <param name="iso6391Name"> A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr). </param>
-        /// <param name="confidenceScore"> A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. </param>
-        /// <param name="script"> Identifies the script of the input document. </param>
-        /// <param name="scriptCode"> Identifies the script of the input document. </param>
+        /// <param name="name"></param>
+        /// <param name="iso6391Name"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="script"></param>
+        /// <param name="scriptCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedLanguage(string name, string iso6391Name, double confidenceScore, ScriptKind? script, ScriptCode? scriptCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,15 +82,15 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Long name of a detected language (e.g. English, French). </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr). </summary>
+        /// <summary> Gets the iso 6391 name. </summary>
         public string Iso6391Name { get; }
-        /// <summary> A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double ConfidenceScore { get; }
-        /// <summary> Identifies the script of the input document. </summary>
+        /// <summary> Gets the script. </summary>
         public ScriptKind? Script { get; }
-        /// <summary> Identifies the script of the input document. </summary>
+        /// <summary> Gets the script code. </summary>
         public ScriptCode? ScriptCode { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the custom healthcare entity. </summary>
+    /// <summary> The CustomHealthcareEntity. </summary>
     public partial class CustomHealthcareEntity
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareEntity"/>. </summary>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="category"> Healthcare Entity Category. </param>
-        /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the extracted entity. </param>
+        /// <param name="text"></param>
+        /// <param name="category"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidenceScore"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal CustomHealthcareEntity(string text, HealthcareEntityCategory category, int offset, int length, double confidenceScore)
         {
@@ -66,17 +66,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareEntity"/>. </summary>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="category"> Healthcare Entity Category. </param>
-        /// <param name="subcategory"> (Optional) Entity sub type. </param>
-        /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the extracted entity. </param>
-        /// <param name="assertion"> Assertion of the entity. </param>
-        /// <param name="name"> Preferred name for the entity. Example: 'histologically' would have a 'name' of 'histologic'. </param>
-        /// <param name="links"> Entity references in known data sources. </param>
+        /// <param name="text"></param>
+        /// <param name="category"></param>
+        /// <param name="subcategory"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="assertion"></param>
+        /// <param name="name"></param>
+        /// <param name="links"></param>
         /// <param name="entityComponentInformation">
-        /// (Optional) Entity component information listing fired components of the extracted entity. This object only applies for custom healthcare.
         /// Please note <see cref="Text.EntityComponentInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="LearnedComponent"/>, <see cref="ListComponent"/> and <see cref="PrebuiltComponent"/>.
         /// </param>
@@ -101,26 +100,26 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Entity text as appears in the request. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Healthcare Entity Category. </summary>
+        /// <summary> Gets the category. </summary>
         public HealthcareEntityCategory Category { get; }
-        /// <summary> (Optional) Entity sub type. </summary>
+        /// <summary> Gets the subcategory. </summary>
         public string Subcategory { get; }
-        /// <summary> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> Confidence score between 0 and 1 of the extracted entity. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double ConfidenceScore { get; }
-        /// <summary> Assertion of the entity. </summary>
+        /// <summary> Gets the assertion. </summary>
         public HealthcareAssertion Assertion { get; }
-        /// <summary> Preferred name for the entity. Example: 'histologically' would have a 'name' of 'histologic'. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Entity references in known data sources. </summary>
+        /// <summary> Gets the links. </summary>
         public IReadOnlyList<HealthcareEntityLink> Links { get; }
         /// <summary>
-        /// (Optional) Entity component information listing fired components of the extracted entity. This object only applies for custom healthcare.
+        /// Gets the entity component information
         /// Please note <see cref="Text.EntityComponentInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="LearnedComponent"/>, <see cref="ListComponent"/> and <see cref="PrebuiltComponent"/>.
         /// </summary>

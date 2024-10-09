@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. </summary>
+    /// <summary> The UserIdentity. </summary>
     public partial class UserIdentity
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UserIdentity"/>. </summary>
-        /// <param name="username"> The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. </param>
-        /// <param name="autoUser"> The auto user under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. </param>
+        /// <param name="username"></param>
+        /// <param name="autoUser"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UserIdentity(string username, AutoUserSpecification autoUser, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. </summary>
+        /// <summary> Gets or sets the username. </summary>
         public string Username { get; set; }
-        /// <summary> The auto user under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. </summary>
+        /// <summary> Gets or sets the auto user. </summary>
         public AutoUserSpecification AutoUser { get; set; }
     }
 }

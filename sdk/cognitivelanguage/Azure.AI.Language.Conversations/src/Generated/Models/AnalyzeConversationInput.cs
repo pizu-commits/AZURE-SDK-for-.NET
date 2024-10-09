@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// The base class of a conversation input task.
+    /// The AnalyzeConversationInput.
     /// Please note <see cref="AnalyzeConversationInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ConversationLanguageUnderstandingInput"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationInput"/>. </summary>
-        /// <param name="kind"> The base class of a conversation input task. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeConversationInput(AnalyzeConversationInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The base class of a conversation input task. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeConversationInputKind Kind { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> JSON bundle containing a FHIR compatible object for consumption in other Healthcare tools. For additional information see https://www.hl7.org/fhir/overview.html. </summary>
+    /// <summary> The FhirBundle. </summary>
     public partial class FhirBundle
     {
         /// <summary> Initializes a new instance of <see cref="FhirBundle"/>. </summary>

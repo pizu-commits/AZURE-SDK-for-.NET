@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The text modality of an input conversation. </summary>
+    /// <summary> The TextConversationItem. </summary>
     public partial class TextConversationItem
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TextConversationItem"/>. </summary>
-        /// <param name="id"> The ID of a conversation item. </param>
-        /// <param name="participantId"> The participant ID of a conversation item. </param>
-        /// <param name="text"> The text input. </param>
+        /// <param name="id"></param>
+        /// <param name="participantId"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="participantId"/> or <paramref name="text"/> is null. </exception>
         public TextConversationItem(string id, string participantId, string text)
         {
@@ -62,12 +62,12 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="TextConversationItem"/>. </summary>
-        /// <param name="id"> The ID of a conversation item. </param>
-        /// <param name="participantId"> The participant ID of a conversation item. </param>
-        /// <param name="language"> The override language of a conversation item in BCP 47 language representation. </param>
-        /// <param name="modality"> Enumeration of supported conversational modalities. </param>
-        /// <param name="role"> Role of the participant. </param>
-        /// <param name="text"> The text input. </param>
+        /// <param name="id"></param>
+        /// <param name="participantId"></param>
+        /// <param name="language"></param>
+        /// <param name="modality"></param>
+        /// <param name="role"></param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TextConversationItem(string id, string participantId, string language, InputModality? modality, ParticipantRole? role, string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,17 +85,17 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The ID of a conversation item. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The participant ID of a conversation item. </summary>
+        /// <summary> Gets the participant id. </summary>
         public string ParticipantId { get; }
-        /// <summary> The override language of a conversation item in BCP 47 language representation. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
-        /// <summary> Enumeration of supported conversational modalities. </summary>
+        /// <summary> Gets or sets the modality. </summary>
         public InputModality? Modality { get; set; }
-        /// <summary> Role of the participant. </summary>
+        /// <summary> Gets or sets the role. </summary>
         public ParticipantRole? Role { get; set; }
-        /// <summary> The text input. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

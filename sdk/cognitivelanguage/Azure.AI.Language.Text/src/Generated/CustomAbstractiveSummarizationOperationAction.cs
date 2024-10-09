@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An object representing the task definition for an Custom Abstractive Summarization task. </summary>
+    /// <summary> The CustomAbstractiveSummarizationOperationAction. </summary>
     public partial class CustomAbstractiveSummarizationOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="CustomAbstractiveSummarizationOperationAction"/>. </summary>
-        /// <param name="actionContent"> Parameters for the Custom Abstractive Summarization task. </param>
+        /// <param name="actionContent"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="actionContent"/> is null. </exception>
         public CustomAbstractiveSummarizationOperationAction(CustomAbstractiveSummarizationActionContent actionContent)
         {
@@ -25,10 +25,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomAbstractiveSummarizationOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Parameters for the Custom Abstractive Summarization task. </param>
+        /// <param name="actionContent"></param>
         internal CustomAbstractiveSummarizationOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, CustomAbstractiveSummarizationActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
@@ -39,7 +39,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Parameters for the Custom Abstractive Summarization task. </summary>
+        /// <summary> Gets the action content. </summary>
         public CustomAbstractiveSummarizationActionContent ActionContent { get; }
     }
 }

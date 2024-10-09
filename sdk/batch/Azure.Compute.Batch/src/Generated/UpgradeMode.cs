@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> UpgradeMode enums. </summary>
+    /// <summary> The UpgradeMode. </summary>
     public readonly partial struct UpgradeMode : IEquatable<UpgradeMode>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string ManualValue = "manual";
         private const string RollingValue = "rolling";
 
-        /// <summary> TAll virtual machines in the scale set are automatically updated at the same time. </summary>
+        /// <summary> automatic. </summary>
         public static UpgradeMode Automatic { get; } = new UpgradeMode(AutomaticValue);
-        /// <summary> You control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action. </summary>
+        /// <summary> manual. </summary>
         public static UpgradeMode Manual { get; } = new UpgradeMode(ManualValue);
-        /// <summary> The existing instances in a scale set are brought down in batches to be upgraded. Once the upgraded batch is complete, the instances will begin taking traffic again and the next batch will begin. This continues until all instances brought up-to-date. </summary>
+        /// <summary> rolling. </summary>
         public static UpgradeMode Rolling { get; } = new UpgradeMode(RollingValue);
         /// <summary> Determines if two <see cref="UpgradeMode"/> values are the same. </summary>
         public static bool operator ==(UpgradeMode left, UpgradeMode right) => left.Equals(right);

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Detection results for the resultId value. </summary>
+    /// <summary> The MultivariateDetectionResult. </summary>
     public partial class MultivariateDetectionResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MultivariateDetectionResult"/>. </summary>
-        /// <param name="resultId"> Result identifier that's used to fetch the results of an inference call. </param>
-        /// <param name="summary"> Multivariate anomaly detection status. </param>
-        /// <param name="results"> Detection result for each time stamp. </param>
+        /// <param name="resultId"></param>
+        /// <param name="summary"></param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="summary"/> or <paramref name="results"/> is null. </exception>
         internal MultivariateDetectionResult(Guid resultId, MultivariateBatchDetectionResultSummary summary, IEnumerable<AnomalyState> results)
         {
@@ -62,9 +62,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="MultivariateDetectionResult"/>. </summary>
-        /// <param name="resultId"> Result identifier that's used to fetch the results of an inference call. </param>
-        /// <param name="summary"> Multivariate anomaly detection status. </param>
-        /// <param name="results"> Detection result for each time stamp. </param>
+        /// <param name="resultId"></param>
+        /// <param name="summary"></param>
+        /// <param name="results"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultivariateDetectionResult(Guid resultId, MultivariateBatchDetectionResultSummary summary, IReadOnlyList<AnomalyState> results, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +79,11 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary> Result identifier that's used to fetch the results of an inference call. </summary>
+        /// <summary> Gets the result id. </summary>
         public Guid ResultId { get; }
-        /// <summary> Multivariate anomaly detection status. </summary>
+        /// <summary> Gets the summary. </summary>
         public MultivariateBatchDetectionResultSummary Summary { get; }
-        /// <summary> Detection result for each time stamp. </summary>
+        /// <summary> Gets the results. </summary>
         public IReadOnlyList<AnomalyState> Results { get; }
     }
 }

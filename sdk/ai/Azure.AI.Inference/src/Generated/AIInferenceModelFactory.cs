@@ -15,7 +15,7 @@ namespace Azure.AI.Inference
     public static partial class AIInferenceModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="Inference.ChatRequestSystemMessage"/>. </summary>
-        /// <param name="content"> The contents of the system message. </param>
+        /// <param name="content"></param>
         /// <returns> A new <see cref="Inference.ChatRequestSystemMessage"/> instance for mocking. </returns>
         public static ChatRequestSystemMessage ChatRequestSystemMessage(string content = null)
         {
@@ -23,7 +23,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatMessageTextContentItem"/>. </summary>
-        /// <param name="text"> The content of the message. </param>
+        /// <param name="text"></param>
         /// <returns> A new <see cref="Inference.ChatMessageTextContentItem"/> instance for mocking. </returns>
         public static ChatMessageTextContentItem ChatMessageTextContentItem(string text = null)
         {
@@ -31,8 +31,8 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatRequestToolMessage"/>. </summary>
-        /// <param name="content"> The content of the message. </param>
-        /// <param name="toolCallId"> The ID of the tool call resolved by the provided content. </param>
+        /// <param name="content"></param>
+        /// <param name="toolCallId"></param>
         /// <returns> A new <see cref="Inference.ChatRequestToolMessage"/> instance for mocking. </returns>
         public static ChatRequestToolMessage ChatRequestToolMessage(string content = null, string toolCallId = null)
         {
@@ -40,7 +40,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatCompletionsFunctionToolDefinition"/>. </summary>
-        /// <param name="function"> The function definition details for the function tool. </param>
+        /// <param name="function"></param>
         /// <returns> A new <see cref="Inference.ChatCompletionsFunctionToolDefinition"/> instance for mocking. </returns>
         public static ChatCompletionsFunctionToolDefinition ChatCompletionsFunctionToolDefinition(FunctionDefinition function = null)
         {
@@ -48,7 +48,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatCompletionsNamedFunctionToolSelection"/>. </summary>
-        /// <param name="function"> The function that should be called. </param>
+        /// <param name="function"></param>
         /// <returns> A new <see cref="Inference.ChatCompletionsNamedFunctionToolSelection"/> instance for mocking. </returns>
         public static ChatCompletionsNamedFunctionToolSelection ChatCompletionsNamedFunctionToolSelection(ChatCompletionsFunctionToolSelection function = null)
         {
@@ -56,18 +56,11 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatCompletions"/>. </summary>
-        /// <param name="id"> A unique identifier associated with this chat completions response. </param>
-        /// <param name="created">
-        /// The first timestamp associated with generation activity for this completions response,
-        /// represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-        /// </param>
-        /// <param name="model"> The model used for the chat completion. </param>
-        /// <param name="usage"> Usage information for tokens processed and generated as part of this completions operation. </param>
-        /// <param name="choices">
-        /// The collection of completions choices associated with this completions response.
-        /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-        /// Token limits and other settings may limit the number of choices generated.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="created"></param>
+        /// <param name="model"></param>
+        /// <param name="usage"></param>
+        /// <param name="choices"></param>
         /// <returns> A new <see cref="Inference.ChatCompletions"/> instance for mocking. </returns>
         public static ChatCompletions ChatCompletions(string id = null, DateTimeOffset created = default, string model = null, CompletionsUsage usage = null, IEnumerable<ChatChoice> choices = null)
         {
@@ -83,9 +76,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.CompletionsUsage"/>. </summary>
-        /// <param name="completionTokens"> The number of tokens generated across all completions emissions. </param>
-        /// <param name="promptTokens"> The number of tokens in the provided prompts for the completions request. </param>
-        /// <param name="totalTokens"> The total number of tokens processed for the completions request and response. </param>
+        /// <param name="completionTokens"></param>
+        /// <param name="promptTokens"></param>
+        /// <param name="totalTokens"></param>
         /// <returns> A new <see cref="Inference.CompletionsUsage"/> instance for mocking. </returns>
         public static CompletionsUsage CompletionsUsage(int completionTokens = default, int promptTokens = default, int totalTokens = default)
         {
@@ -93,9 +86,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatChoice"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="message"> The chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="message"></param>
         /// <returns> A new <see cref="Inference.ChatChoice"/> instance for mocking. </returns>
         public static ChatChoice ChatChoice(int index = default, CompletionsFinishReason? finishReason = null, ChatResponseMessage message = null)
         {
@@ -103,11 +96,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ChatResponseMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with the message. </param>
-        /// <param name="content"> The content of the message. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
         /// <param name="toolCalls">
-        /// The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
-        /// completions request to resolve as configured.
         /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
         /// </param>
@@ -120,9 +111,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.ModelInfo"/>. </summary>
-        /// <param name="modelName"> The name of the AI model. For example: `Phi21`. </param>
-        /// <param name="modelType"> The type of the AI model. A Unique identifier for the profile. </param>
-        /// <param name="modelProviderName"> The model provider name. For example: `Microsoft Research`. </param>
+        /// <param name="modelName"></param>
+        /// <param name="modelType"></param>
+        /// <param name="modelProviderName"></param>
         /// <returns> A new <see cref="Inference.ModelInfo"/> instance for mocking. </returns>
         public static ModelInfo ModelInfo(string modelName = null, ModelType modelType = default, string modelProviderName = null)
         {
@@ -130,18 +121,11 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.StreamingChatCompletionsUpdate"/>. </summary>
-        /// <param name="id"> A unique identifier associated with this chat completions response. </param>
-        /// <param name="created">
-        /// The first timestamp associated with generation activity for this completions response,
-        /// represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-        /// </param>
-        /// <param name="model"> The model used for the chat completion. </param>
-        /// <param name="usage"> Usage information for tokens processed and generated as part of this completions operation. </param>
-        /// <param name="choices">
-        /// An update to the collection of completion choices associated with this completions response.
-        /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-        /// Token limits and other settings may limit the number of choices generated.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="created"></param>
+        /// <param name="model"></param>
+        /// <param name="usage"></param>
+        /// <param name="choices"></param>
         /// <returns> A new <see cref="Inference.StreamingChatCompletionsUpdate"/> instance for mocking. </returns>
         public static StreamingChatCompletionsUpdate StreamingChatCompletionsUpdate(string id = null, DateTimeOffset created = default, string model = null, CompletionsUsage usage = null, IEnumerable<StreamingChatChoiceUpdate> choices = null)
         {
@@ -157,9 +141,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="Inference.StreamingChatChoiceUpdate"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="delta"> An update to the chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="delta"></param>
         /// <returns> A new <see cref="Inference.StreamingChatChoiceUpdate"/> instance for mocking. </returns>
         public static StreamingChatChoiceUpdate StreamingChatChoiceUpdate(int index = default, CompletionsFinishReason? finishReason = null, ChatResponseMessage delta = null)
         {

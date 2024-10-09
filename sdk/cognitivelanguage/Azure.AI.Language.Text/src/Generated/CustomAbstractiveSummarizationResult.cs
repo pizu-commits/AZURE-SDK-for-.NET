@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An object representing the custom summarization results of each document. </summary>
+    /// <summary> The CustomAbstractiveSummarizationResult. </summary>
     public partial class CustomAbstractiveSummarizationResult
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomAbstractiveSummarizationResult"/>. </summary>
-        /// <param name="documents"> Response by document. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
+        /// <param name="documents"></param>
+        /// <param name="errors"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="documents"/>, <paramref name="errors"/>, <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         internal CustomAbstractiveSummarizationResult(IEnumerable<AbstractiveSummaryActionResult> documents, IEnumerable<DocumentError> errors, string projectName, string deploymentName)
         {
@@ -66,11 +66,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomAbstractiveSummarizationResult"/>. </summary>
-        /// <param name="documents"> Response by document. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the request payload. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
+        /// <param name="documents"></param>
+        /// <param name="errors"></param>
+        /// <param name="statistics"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CustomAbstractiveSummarizationResult(IReadOnlyList<AbstractiveSummaryActionResult> documents, IReadOnlyList<DocumentError> errors, RequestStatistics statistics, string projectName, string deploymentName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,15 +87,15 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Response by document. </summary>
+        /// <summary> Gets the documents. </summary>
         public IReadOnlyList<AbstractiveSummaryActionResult> Documents { get; }
-        /// <summary> Errors by document id. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<DocumentError> Errors { get; }
-        /// <summary> if showStats=true was specified in the request this field will contain information about the request payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public RequestStatistics Statistics { get; }
-        /// <summary> This field indicates the project name for the model. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> This field indicates the deployment name for the model. </summary>
+        /// <summary> Gets the deployment name. </summary>
         public string DeploymentName { get; }
     }
 }

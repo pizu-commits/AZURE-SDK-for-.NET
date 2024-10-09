@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Entity object with tags and metadata. </summary>
+    /// <summary> The NamedEntityWithMetadata. </summary>
     public partial class NamedEntityWithMetadata
     {
         /// <summary>
@@ -47,13 +47,13 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NamedEntityWithMetadata"/>. </summary>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="category"> Entity type. </param>
-        /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the extracted entity. </param>
-        /// <param name="type"> An entity type is the lowest (or finest) granularity at which the entity has been detected. The type maps to the specific metadata attributes associated with the entity detected. </param>
-        /// <param name="tags"> List of entity tags. Tags are to express some similarities/affinity between entities. </param>
+        /// <param name="text"></param>
+        /// <param name="category"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="type"></param>
+        /// <param name="tags"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/>, <paramref name="category"/>, <paramref name="type"/> or <paramref name="tags"/> is null. </exception>
         internal NamedEntityWithMetadata(string text, string category, int offset, int length, double confidenceScore, string type, IEnumerable<EntityTag> tags)
         {
@@ -72,16 +72,15 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="NamedEntityWithMetadata"/>. </summary>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="category"> Entity type. </param>
-        /// <param name="subcategory"> (Optional) Entity sub type. </param>
-        /// <param name="offset"> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the extracted entity. </param>
-        /// <param name="type"> An entity type is the lowest (or finest) granularity at which the entity has been detected. The type maps to the specific metadata attributes associated with the entity detected. </param>
-        /// <param name="tags"> List of entity tags. Tags are to express some similarities/affinity between entities. </param>
+        /// <param name="text"></param>
+        /// <param name="category"></param>
+        /// <param name="subcategory"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="type"></param>
+        /// <param name="tags"></param>
         /// <param name="metadata">
-        /// The entity metadata object.
         /// Please note <see cref="BaseMetadata"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeMetadata"/>, <see cref="AreaMetadata"/>, <see cref="CurrencyMetadata"/>, <see cref="DateMetadata"/>, <see cref="DateTimeMetadata"/>, <see cref="InformationMetadata"/>, <see cref="LengthMetadata"/>, <see cref="NumberMetadata"/>, <see cref="NumericRangeMetadata"/>, <see cref="OrdinalMetadata"/>, <see cref="SpeedMetadata"/>, <see cref="TemperatureMetadata"/>, <see cref="TemporalSetMetadata"/>, <see cref="TemporalSpanMetadata"/>, <see cref="TimeMetadata"/>, <see cref="VolumeMetadata"/> and <see cref="WeightMetadata"/>.
         /// </param>
@@ -105,24 +104,24 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Entity text as appears in the request. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Entity type. </summary>
+        /// <summary> Gets the category. </summary>
         public string Category { get; }
-        /// <summary> (Optional) Entity sub type. </summary>
+        /// <summary> Gets the subcategory. </summary>
         public string Subcategory { get; }
-        /// <summary> Start position for the entity text. Use of different 'stringIndexType' values can affect the offset returned. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> Length for the entity text. Use of different 'stringIndexType' values can affect the length returned. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> Confidence score between 0 and 1 of the extracted entity. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double ConfidenceScore { get; }
-        /// <summary> An entity type is the lowest (or finest) granularity at which the entity has been detected. The type maps to the specific metadata attributes associated with the entity detected. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
-        /// <summary> List of entity tags. Tags are to express some similarities/affinity between entities. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyList<EntityTag> Tags { get; }
         /// <summary>
-        /// The entity metadata object.
+        /// Gets the metadata
         /// Please note <see cref="BaseMetadata"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeMetadata"/>, <see cref="AreaMetadata"/>, <see cref="CurrencyMetadata"/>, <see cref="DateMetadata"/>, <see cref="DateTimeMetadata"/>, <see cref="InformationMetadata"/>, <see cref="LengthMetadata"/>, <see cref="NumberMetadata"/>, <see cref="NumericRangeMetadata"/>, <see cref="OrdinalMetadata"/>, <see cref="SpeedMetadata"/>, <see cref="TemperatureMetadata"/>, <see cref="TemporalSetMetadata"/>, <see cref="TemporalSpanMetadata"/>, <see cref="TimeMetadata"/>, <see cref="VolumeMetadata"/> and <see cref="WeightMetadata"/>.
         /// </summary>

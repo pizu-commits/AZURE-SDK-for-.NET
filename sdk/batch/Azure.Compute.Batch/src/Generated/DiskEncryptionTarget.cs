@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> DiskEncryptionTarget enums. </summary>
+    /// <summary> The DiskEncryptionTarget. </summary>
     public readonly partial struct DiskEncryptionTarget : IEquatable<DiskEncryptionTarget>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string OsDiskValue = "osdisk";
         private const string TemporaryDiskValue = "temporarydisk";
 
-        /// <summary> The OS Disk on the compute node is encrypted. </summary>
+        /// <summary> osdisk. </summary>
         public static DiskEncryptionTarget OsDisk { get; } = new DiskEncryptionTarget(OsDiskValue);
-        /// <summary> The temporary disk on the compute node is encrypted. On Linux this encryption applies to other partitions (such as those on mounted data disks) when encryption occurs at boot time. </summary>
+        /// <summary> temporarydisk. </summary>
         public static DiskEncryptionTarget TemporaryDisk { get; } = new DiskEncryptionTarget(TemporaryDiskValue);
         /// <summary> Determines if two <see cref="DiskEncryptionTarget"/> values are the same. </summary>
         public static bool operator ==(DiskEncryptionTarget left, DiskEncryptionTarget right) => left.Equals(right);

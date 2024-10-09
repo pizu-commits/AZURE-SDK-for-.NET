@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The result from PII detection and redaction operation for each conversation. </summary>
+    /// <summary> The ConversationPiiItemResult. </summary>
     public partial class ConversationPiiItemResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationPiiItemResult"/>. </summary>
-        /// <param name="id"> Id of the result. </param>
-        /// <param name="redactedContent"> Transcript content response that the service generates, with all necessary personally identifiable information redacted. </param>
-        /// <param name="entities"> Array of Entities. </param>
+        /// <param name="id"></param>
+        /// <param name="redactedContent"></param>
+        /// <param name="entities"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="redactedContent"/> or <paramref name="entities"/> is null. </exception>
         internal ConversationPiiItemResult(string id, RedactedTranscriptContent redactedContent, IEnumerable<NamedEntity> entities)
         {
@@ -63,9 +63,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationPiiItemResult"/>. </summary>
-        /// <param name="id"> Id of the result. </param>
-        /// <param name="redactedContent"> Transcript content response that the service generates, with all necessary personally identifiable information redacted. </param>
-        /// <param name="entities"> Array of Entities. </param>
+        /// <param name="id"></param>
+        /// <param name="redactedContent"></param>
+        /// <param name="entities"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationPiiItemResult(string id, RedactedTranscriptContent redactedContent, IReadOnlyList<NamedEntity> entities, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +80,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Id of the result. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Transcript content response that the service generates, with all necessary personally identifiable information redacted. </summary>
+        /// <summary> Gets the redacted content. </summary>
         public RedactedTranscriptContent RedactedContent { get; }
-        /// <summary> Array of Entities. </summary>
+        /// <summary> Gets the entities. </summary>
         public IReadOnlyList<NamedEntity> Entities { get; }
     }
 }

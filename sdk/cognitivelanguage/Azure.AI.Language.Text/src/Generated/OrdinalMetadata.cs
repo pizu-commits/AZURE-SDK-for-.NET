@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> A metadata for numeric entity instances. </summary>
+    /// <summary> The OrdinalMetadata. </summary>
     public partial class OrdinalMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="OrdinalMetadata"/>. </summary>
-        /// <param name="offset"> The offset with respect to the reference (e.g., offset = -1 indicates the second to last). </param>
-        /// <param name="relativeTo"> The reference point that the ordinal number denotes. </param>
-        /// <param name="value"> A simple arithmetic expression that the ordinal denotes. </param>
+        /// <param name="offset"></param>
+        /// <param name="relativeTo"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="offset"/> or <paramref name="value"/> is null. </exception>
         internal OrdinalMetadata(string offset, RelativeTo relativeTo, string value)
         {
@@ -30,11 +30,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="OrdinalMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="offset"> The offset with respect to the reference (e.g., offset = -1 indicates the second to last). </param>
-        /// <param name="relativeTo"> The reference point that the ordinal number denotes. </param>
-        /// <param name="value"> A simple arithmetic expression that the ordinal denotes. </param>
+        /// <param name="offset"></param>
+        /// <param name="relativeTo"></param>
+        /// <param name="value"></param>
         internal OrdinalMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string offset, RelativeTo relativeTo, string value) : base(metadataKind, serializedAdditionalRawData)
         {
             Offset = offset;
@@ -47,11 +47,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The offset with respect to the reference (e.g., offset = -1 indicates the second to last). </summary>
+        /// <summary> Gets the offset. </summary>
         public string Offset { get; }
-        /// <summary> The reference point that the ordinal number denotes. </summary>
+        /// <summary> Gets the relative to. </summary>
         public RelativeTo RelativeTo { get; }
-        /// <summary> A simple arithmetic expression that the ordinal denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

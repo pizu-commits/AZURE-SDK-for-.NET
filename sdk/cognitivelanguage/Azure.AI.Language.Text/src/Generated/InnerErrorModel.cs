@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. </summary>
+    /// <summary> The InnerErrorModel. </summary>
     public partial class InnerErrorModel
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InnerErrorModel"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> Error message. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal InnerErrorModel(InnerErrorCode code, string message)
         {
@@ -59,11 +59,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="InnerErrorModel"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> Error message. </param>
-        /// <param name="details"> Error details. </param>
-        /// <param name="target"> Error target. </param>
-        /// <param name="innererror"> An object containing more specific information than the current object about the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="details"></param>
+        /// <param name="target"></param>
+        /// <param name="innererror"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InnerErrorModel(InnerErrorCode code, string message, IReadOnlyDictionary<string, string> details, string target, InnerErrorModel innererror, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,15 +80,15 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> One of a server-defined set of error codes. </summary>
+        /// <summary> Gets the code. </summary>
         public InnerErrorCode Code { get; }
-        /// <summary> Error message. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> Error details. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyDictionary<string, string> Details { get; }
-        /// <summary> Error target. </summary>
+        /// <summary> Gets the target. </summary>
         public string Target { get; }
-        /// <summary> An object containing more specific information than the current object about the error. </summary>
+        /// <summary> Gets the innererror. </summary>
         public InnerErrorModel Innererror { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The Match object containing the detected entity text with the offset and the length. </summary>
+    /// <summary> The EntityLinkingMatch. </summary>
     public partial class EntityLinkingMatch
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EntityLinkingMatch"/>. </summary>
-        /// <param name="confidenceScore"> If a well known item is recognized, a decimal number denoting the confidence level between 0 and 1 will be returned. </param>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="offset"> Start position for the entity match text. </param>
-        /// <param name="length"> Length for the entity match text. </param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal EntityLinkingMatch(double confidenceScore, string text, int offset, int length)
         {
@@ -62,10 +62,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityLinkingMatch"/>. </summary>
-        /// <param name="confidenceScore"> If a well known item is recognized, a decimal number denoting the confidence level between 0 and 1 will be returned. </param>
-        /// <param name="text"> Entity text as appears in the request. </param>
-        /// <param name="offset"> Start position for the entity match text. </param>
-        /// <param name="length"> Length for the entity match text. </param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityLinkingMatch(double confidenceScore, string text, int offset, int length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,13 +81,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> If a well known item is recognized, a decimal number denoting the confidence level between 0 and 1 will be returned. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double ConfidenceScore { get; }
-        /// <summary> Entity text as appears in the request. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Start position for the entity match text. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> Length for the entity match text. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
     }
 }

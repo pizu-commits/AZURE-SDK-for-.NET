@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Request of the last detection. </summary>
+    /// <summary> The MultivariateLastDetectionOptions. </summary>
     public partial class MultivariateLastDetectionOptions
     {
         /// <summary>
@@ -47,10 +47,7 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MultivariateLastDetectionOptions"/>. </summary>
-        /// <param name="variables">
-        /// Contains the inference data, including the name, time stamps (ISO 8601), and
-        /// values of variables.
-        /// </param>
+        /// <param name="variables"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="variables"/> is null. </exception>
         public MultivariateLastDetectionOptions(IEnumerable<VariableValues> variables)
         {
@@ -60,15 +57,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="MultivariateLastDetectionOptions"/>. </summary>
-        /// <param name="variables">
-        /// Contains the inference data, including the name, time stamps (ISO 8601), and
-        /// values of variables.
-        /// </param>
-        /// <param name="topContributorCount">
-        /// Number of top contributed
-        /// variables for one anomalous time stamp in the response. The default is
-        /// 10.
-        /// </param>
+        /// <param name="variables"></param>
+        /// <param name="topContributorCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MultivariateLastDetectionOptions(IList<VariableValues> variables, int? topContributorCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,16 +72,9 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary>
-        /// Contains the inference data, including the name, time stamps (ISO 8601), and
-        /// values of variables.
-        /// </summary>
+        /// <summary> Gets the variables. </summary>
         public IList<VariableValues> Variables { get; }
-        /// <summary>
-        /// Number of top contributed
-        /// variables for one anomalous time stamp in the response. The default is
-        /// 10.
-        /// </summary>
+        /// <summary> Gets or sets the top contributor count. </summary>
         public int? TopContributorCount { get; set; }
     }
 }

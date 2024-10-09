@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// Complete ordered set of utterances (spoken or written) by one or more speakers to be used for analysis.
+    /// The ConversationInput.
     /// Please note <see cref="ConversationInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="TextConversation"/> and <see cref="TranscriptConversation"/>.
     /// </summary>
@@ -50,8 +50,8 @@ namespace Azure.AI.Language.Conversations.Models
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationInput"/>. </summary>
-        /// <param name="id"> Unique identifier for the conversation. </param>
-        /// <param name="language"> Language of the conversation item in BCP-47 format. </param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="language"/> is null. </exception>
         protected ConversationInput(string id, string language)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationInput"/>. </summary>
-        /// <param name="id"> Unique identifier for the conversation. </param>
-        /// <param name="language"> Language of the conversation item in BCP-47 format. </param>
-        /// <param name="modality"> modality. </param>
-        /// <param name="domain"> domain. </param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="modality"></param>
+        /// <param name="domain"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationInput(string id, string language, InputModality modality, ConversationDomain? domain, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Unique identifier for the conversation. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Language of the conversation item in BCP-47 format. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
-        /// <summary> modality. </summary>
+        /// <summary> Gets or sets the modality. </summary>
         internal InputModality Modality { get; set; }
-        /// <summary> domain. </summary>
+        /// <summary> Gets or sets the domain. </summary>
         public ConversationDomain? Domain { get; set; }
     }
 }

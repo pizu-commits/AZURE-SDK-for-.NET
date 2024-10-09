@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// A reference to the Azure Virtual Machines Marketplace Image and additional
-    /// information about the Image.
-    /// </summary>
+    /// <summary> The BatchSupportedImage. </summary>
     public partial class BatchSupportedImage
     {
         /// <summary>
@@ -49,10 +46,10 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchSupportedImage"/>. </summary>
-        /// <param name="nodeAgentSkuId"> The ID of the Compute Node agent SKU which the Image supports. </param>
-        /// <param name="imageReference"> The reference to the Azure Virtual Machine's Marketplace Image. </param>
-        /// <param name="osType"> The type of operating system (e.g. Windows or Linux) of the Image. </param>
-        /// <param name="verificationType"> Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. </param>
+        /// <param name="nodeAgentSkuId"></param>
+        /// <param name="imageReference"></param>
+        /// <param name="osType"></param>
+        /// <param name="verificationType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="nodeAgentSkuId"/> or <paramref name="imageReference"/> is null. </exception>
         internal BatchSupportedImage(string nodeAgentSkuId, ImageReference imageReference, OSType osType, ImageVerificationType verificationType)
         {
@@ -67,12 +64,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchSupportedImage"/>. </summary>
-        /// <param name="nodeAgentSkuId"> The ID of the Compute Node agent SKU which the Image supports. </param>
-        /// <param name="imageReference"> The reference to the Azure Virtual Machine's Marketplace Image. </param>
-        /// <param name="osType"> The type of operating system (e.g. Windows or Linux) of the Image. </param>
-        /// <param name="capabilities"> The capabilities or features which the Image supports. Not every capability of the Image is listed. Capabilities in this list are considered of special interest and are generally related to integration with other features in the Azure Batch service. </param>
-        /// <param name="batchSupportEndOfLife"> The time when the Azure Batch service will stop accepting create Pool requests for the Image. </param>
-        /// <param name="verificationType"> Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. </param>
+        /// <param name="nodeAgentSkuId"></param>
+        /// <param name="imageReference"></param>
+        /// <param name="osType"></param>
+        /// <param name="capabilities"></param>
+        /// <param name="batchSupportEndOfLife"></param>
+        /// <param name="verificationType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchSupportedImage(string nodeAgentSkuId, ImageReference imageReference, OSType osType, IReadOnlyList<string> capabilities, DateTimeOffset? batchSupportEndOfLife, ImageVerificationType verificationType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,17 +87,17 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The ID of the Compute Node agent SKU which the Image supports. </summary>
+        /// <summary> Gets the node agent sku id. </summary>
         public string NodeAgentSkuId { get; }
-        /// <summary> The reference to the Azure Virtual Machine's Marketplace Image. </summary>
+        /// <summary> Gets the image reference. </summary>
         public ImageReference ImageReference { get; }
-        /// <summary> The type of operating system (e.g. Windows or Linux) of the Image. </summary>
+        /// <summary> Gets the os type. </summary>
         public OSType OsType { get; }
-        /// <summary> The capabilities or features which the Image supports. Not every capability of the Image is listed. Capabilities in this list are considered of special interest and are generally related to integration with other features in the Azure Batch service. </summary>
+        /// <summary> Gets the capabilities. </summary>
         public IReadOnlyList<string> Capabilities { get; }
-        /// <summary> The time when the Azure Batch service will stop accepting create Pool requests for the Image. </summary>
+        /// <summary> Gets the batch support end of life. </summary>
         public DateTimeOffset? BatchSupportEndOfLife { get; }
-        /// <summary> Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. </summary>
+        /// <summary> Gets the verification type. </summary>
         public ImageVerificationType VerificationType { get; }
     }
 }

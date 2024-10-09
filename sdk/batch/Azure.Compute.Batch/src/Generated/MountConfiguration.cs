@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The file system to mount on each node. </summary>
+    /// <summary> The MountConfiguration. </summary>
     public partial class MountConfiguration
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="MountConfiguration"/>. </summary>
-        /// <param name="azureBlobFileSystemConfiguration"> The Azure Storage Container to mount using blob FUSE on each node. This property is mutually exclusive with all other properties. </param>
-        /// <param name="nfsMountConfiguration"> The NFS file system to mount on each node. This property is mutually exclusive with all other properties. </param>
-        /// <param name="cifsMountConfiguration"> The CIFS/SMB file system to mount on each node. This property is mutually exclusive with all other properties. </param>
-        /// <param name="azureFileShareConfiguration"> The Azure File Share to mount on each node. This property is mutually exclusive with all other properties. </param>
+        /// <param name="azureBlobFileSystemConfiguration"></param>
+        /// <param name="nfsMountConfiguration"></param>
+        /// <param name="cifsMountConfiguration"></param>
+        /// <param name="azureFileShareConfiguration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MountConfiguration(AzureBlobFileSystemConfiguration azureBlobFileSystemConfiguration, NfsMountConfiguration nfsMountConfiguration, CifsMountConfiguration cifsMountConfiguration, AzureFileShareConfiguration azureFileShareConfiguration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Azure Storage Container to mount using blob FUSE on each node. This property is mutually exclusive with all other properties. </summary>
+        /// <summary> Gets or sets the azure blob file system configuration. </summary>
         public AzureBlobFileSystemConfiguration AzureBlobFileSystemConfiguration { get; set; }
-        /// <summary> The NFS file system to mount on each node. This property is mutually exclusive with all other properties. </summary>
+        /// <summary> Gets or sets the nfs mount configuration. </summary>
         public NfsMountConfiguration NfsMountConfiguration { get; set; }
-        /// <summary> The CIFS/SMB file system to mount on each node. This property is mutually exclusive with all other properties. </summary>
+        /// <summary> Gets or sets the cifs mount configuration. </summary>
         public CifsMountConfiguration CifsMountConfiguration { get; set; }
-        /// <summary> The Azure File Share to mount on each node. This property is mutually exclusive with all other properties. </summary>
+        /// <summary> Gets or sets the azure file share configuration. </summary>
         public AzureFileShareConfiguration AzureFileShareConfiguration { get; set; }
     }
 }

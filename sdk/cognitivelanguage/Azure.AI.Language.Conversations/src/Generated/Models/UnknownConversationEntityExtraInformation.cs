@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownConversationEntityExtraInformation : ConversationEntityExtraInformation
     {
         /// <summary> Initializes a new instance of <see cref="UnknownConversationEntityExtraInformation"/>. </summary>
-        /// <param name="extraInformationKind"> The extra information object kind. </param>
+        /// <param name="extraInformationKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownConversationEntityExtraInformation(ExtraInformationKind extraInformationKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(extraInformationKind, serializedAdditionalRawData)
         {

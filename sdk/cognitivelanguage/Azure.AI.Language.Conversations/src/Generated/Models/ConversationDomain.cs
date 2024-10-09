@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Enumeration of supported conversational domains. </summary>
+    /// <summary> The ConversationDomain. </summary>
     public readonly partial struct ConversationDomain : IEquatable<ConversationDomain>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string HealthcareValue = "healthcare";
         private const string GenericValue = "generic";
 
-        /// <summary> Enumeration of supported conversational domains. </summary>
+        /// <summary> finance. </summary>
         public static ConversationDomain Finance { get; } = new ConversationDomain(FinanceValue);
-        /// <summary> Enumeration of supported conversational domains. </summary>
+        /// <summary> healthcare. </summary>
         public static ConversationDomain Healthcare { get; } = new ConversationDomain(HealthcareValue);
-        /// <summary> Enumeration of supported conversational domains. </summary>
+        /// <summary> generic. </summary>
         public static ConversationDomain Generic { get; } = new ConversationDomain(GenericValue);
         /// <summary> Determines if two <see cref="ConversationDomain"/> values are the same. </summary>
         public static bool operator ==(ConversationDomain left, ConversationDomain right) => left.Equals(right);

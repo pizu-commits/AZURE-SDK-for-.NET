@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchJobScheduleState enums. </summary>
+    /// <summary> The BatchJobScheduleState. </summary>
     public readonly partial struct BatchJobScheduleState : IEquatable<BatchJobScheduleState>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Compute.Batch
         private const string TerminatingValue = "terminating";
         private const string DeletingValue = "deleting";
 
-        /// <summary> The Job Schedule is active and will create Jobs as per its schedule. </summary>
+        /// <summary> active. </summary>
         public static BatchJobScheduleState Active { get; } = new BatchJobScheduleState(ActiveValue);
-        /// <summary> The Job Schedule has terminated, either by reaching its end time or by the user terminating it explicitly. </summary>
+        /// <summary> completed. </summary>
         public static BatchJobScheduleState Completed { get; } = new BatchJobScheduleState(CompletedValue);
-        /// <summary> The user has disabled the Job Schedule. The scheduler will not initiate any new Jobs will on this schedule, but any existing active Job will continue to run. </summary>
+        /// <summary> disabled. </summary>
         public static BatchJobScheduleState Disabled { get; } = new BatchJobScheduleState(DisabledValue);
-        /// <summary> The Job Schedule has no more work to do, or has been explicitly terminated by the user, but the termination operation is still in progress. The scheduler will not initiate any new Jobs for this Job Schedule, nor is any existing Job active. </summary>
+        /// <summary> terminating. </summary>
         public static BatchJobScheduleState Terminating { get; } = new BatchJobScheduleState(TerminatingValue);
-        /// <summary> The user has requested that the Job Schedule be deleted, but the delete operation is still in progress. The scheduler will not initiate any new Jobs for this Job Schedule, and will delete any existing Jobs and Tasks under the Job Schedule, including any active Job. The Job Schedule will be deleted when all Jobs and Tasks under the Job Schedule have been deleted. </summary>
+        /// <summary> deleting. </summary>
         public static BatchJobScheduleState Deleting { get; } = new BatchJobScheduleState(DeletingValue);
         /// <summary> Determines if two <see cref="BatchJobScheduleState"/> values are the same. </summary>
         public static bool operator ==(BatchJobScheduleState left, BatchJobScheduleState right) => left.Equals(right);

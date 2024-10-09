@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// This is the base class of an intent prediction
+    /// The TargetIntentResult.
     /// Please note <see cref="TargetIntentResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ConversationTargetIntentResult"/>, <see cref="LuisTargetIntentResult"/>, <see cref="NoneLinkedTargetIntentResult"/> and <see cref="QuestionAnsweringTargetIntentResult"/>.
     /// </summary>
@@ -50,16 +50,16 @@ namespace Azure.AI.Language.Conversations.Models
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TargetIntentResult"/>. </summary>
-        /// <param name="confidence"> The prediction score and it ranges from 0.0 to 1.0. </param>
+        /// <param name="confidence"></param>
         protected TargetIntentResult(double confidence)
         {
             Confidence = confidence;
         }
 
         /// <summary> Initializes a new instance of <see cref="TargetIntentResult"/>. </summary>
-        /// <param name="targetProjectKind"> This is the base class of an intent prediction. </param>
-        /// <param name="apiVersion"> The API version used to call a target service. </param>
-        /// <param name="confidence"> The prediction score and it ranges from 0.0 to 1.0. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TargetIntentResult(TargetProjectKind targetProjectKind, string apiVersion, double confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> This is the base class of an intent prediction. </summary>
+        /// <summary> Gets or sets the target project kind. </summary>
         internal TargetProjectKind TargetProjectKind { get; set; }
-        /// <summary> The API version used to call a target service. </summary>
+        /// <summary> Gets the api version. </summary>
         public string ApiVersion { get; }
-        /// <summary> The prediction score and it ranges from 0.0 to 1.0. </summary>
+        /// <summary> Gets the confidence. </summary>
         public double Confidence { get; }
     }
 }

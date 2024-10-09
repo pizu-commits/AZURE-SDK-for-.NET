@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for disabling an Azure Batch Job. </summary>
+    /// <summary> The BatchJobDisableContent. </summary>
     public partial class BatchJobDisableContent
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchJobDisableContent"/>. </summary>
-        /// <param name="disableTasks"> What to do with active Tasks associated with the Job. </param>
+        /// <param name="disableTasks"></param>
         public BatchJobDisableContent(DisableBatchJobOption disableTasks)
         {
             DisableTasks = disableTasks;
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobDisableContent"/>. </summary>
-        /// <param name="disableTasks"> What to do with active Tasks associated with the Job. </param>
+        /// <param name="disableTasks"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobDisableContent(DisableBatchJobOption disableTasks, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> What to do with active Tasks associated with the Job. </summary>
+        /// <summary> Gets the disable tasks. </summary>
         public DisableBatchJobOption DisableTasks { get; }
     }
 }

@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the language detection task result for the request. </summary>
+    /// <summary> The AnalyzeTextLanguageDetectionResult. </summary>
     public partial class AnalyzeTextLanguageDetectionResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextLanguageDetectionResult"/>. </summary>
-        /// <param name="results"> Contains the language detection results. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal AnalyzeTextLanguageDetectionResult(LanguageDetectionResult results)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextLanguageDetectionResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="results"> Contains the language detection results. </param>
+        /// <param name="results"></param>
         internal AnalyzeTextLanguageDetectionResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, LanguageDetectionResult results) : base(kind, serializedAdditionalRawData)
         {
             Results = results;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Contains the language detection results. </summary>
+        /// <summary> Gets the results. </summary>
         public LanguageDetectionResult Results { get; }
     }
 }

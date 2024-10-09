@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The intent classification result of a Conversation project. </summary>
+    /// <summary> The ConversationIntent. </summary>
     public partial class ConversationIntent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationIntent"/>. </summary>
-        /// <param name="category"> A predicted class. </param>
-        /// <param name="confidence"> The confidence score of the class from 0.0 to 1.0. </param>
+        /// <param name="category"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="category"/> is null. </exception>
         internal ConversationIntent(string category, float confidence)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationIntent"/>. </summary>
-        /// <param name="category"> A predicted class. </param>
-        /// <param name="confidence"> The confidence score of the class from 0.0 to 1.0. </param>
+        /// <param name="category"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationIntent(string category, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> A predicted class. </summary>
+        /// <summary> Gets the category. </summary>
         public string Category { get; }
-        /// <summary> The confidence score of the class from 0.0 to 1.0. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

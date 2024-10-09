@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Properties used to create a user Account on a Windows Compute Node. </summary>
+    /// <summary> The WindowsUserConfiguration. </summary>
     public partial class WindowsUserConfiguration
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="WindowsUserConfiguration"/>. </summary>
-        /// <param name="loginMode"> The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch'. </param>
+        /// <param name="loginMode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WindowsUserConfiguration(LoginMode? loginMode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch'. </summary>
+        /// <summary> Gets or sets the login mode. </summary>
         public LoginMode? LoginMode { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Entity tag object which contains the name of the tags abd any associated confidence score. Entity Tags are used to express some similarities/affinity between entities. </summary>
+    /// <summary> The EntityTag. </summary>
     public partial class EntityTag
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EntityTag"/>. </summary>
-        /// <param name="name"> Name of the tag. Entity Tag names will be unique globally. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal EntityTag(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityTag"/>. </summary>
-        /// <param name="name"> Name of the tag. Entity Tag names will be unique globally. </param>
-        /// <param name="confidenceScore"> Detection score between 0 and 1 of the extracted entity. </param>
+        /// <param name="name"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityTag(string name, double? confidenceScore, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Name of the tag. Entity Tag names will be unique globally. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Detection score between 0 and 1 of the extracted entity. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double? ConfidenceScore { get; }
     }
 }

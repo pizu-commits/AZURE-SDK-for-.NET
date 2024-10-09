@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for an Entity Recognition task. </summary>
+    /// <summary> The EntitiesActionContent. </summary>
     public partial class EntitiesActionContent
     {
         /// <summary>
@@ -53,17 +53,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntitiesActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="stringIndexType"> (Optional) parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </param>
-        /// <param name="inclusions"> (Optional) request parameter that limits the output to the requested entity types included in this list. We will apply inclusionList before exclusionList. </param>
-        /// <param name="exclusions"> (Optional) request parameter that filters out any entities that are included the excludeList. When a user specifies an excludeList, they cannot get a prediction returned with an entity in that list. We will apply inclusionList before exclusionList. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="inclusions"></param>
+        /// <param name="exclusions"></param>
         /// <param name="overlapPolicy">
-        /// (Optional) describes the type of overlap policy to apply to the ner output.
         /// Please note <see cref="EntityOverlapPolicy"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AllowOverlapEntityPolicyType"/> and <see cref="MatchLongestEntityPolicyType"/>.
         /// </param>
-        /// <param name="inferenceOptions"> (Optional) request parameter that allows the user to provide settings for running the inference. </param>
+        /// <param name="inferenceOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntitiesActionContent(bool? loggingOptOut, string modelVersion, StringIndexType? stringIndexType, IList<EntityCategory> inclusions, IList<EntityCategory> exclusions, EntityOverlapPolicy overlapPolicy, EntityInferenceConfig inferenceOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,23 +76,23 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> (Optional) parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> (Optional) request parameter that limits the output to the requested entity types included in this list. We will apply inclusionList before exclusionList. </summary>
+        /// <summary> Gets the inclusions. </summary>
         public IList<EntityCategory> Inclusions { get; }
-        /// <summary> (Optional) request parameter that filters out any entities that are included the excludeList. When a user specifies an excludeList, they cannot get a prediction returned with an entity in that list. We will apply inclusionList before exclusionList. </summary>
+        /// <summary> Gets the exclusions. </summary>
         public IList<EntityCategory> Exclusions { get; }
         /// <summary>
-        /// (Optional) describes the type of overlap policy to apply to the ner output.
+        /// Gets or sets the overlap policy
         /// Please note <see cref="EntityOverlapPolicy"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AllowOverlapEntityPolicyType"/> and <see cref="MatchLongestEntityPolicyType"/>.
         /// </summary>
         public EntityOverlapPolicy OverlapPolicy { get; set; }
-        /// <summary> (Optional) request parameter that allows the user to provide settings for running the inference. </summary>
+        /// <summary> Gets or sets the inference options. </summary>
         public EntityInferenceConfig InferenceOptions { get; set; }
     }
 }

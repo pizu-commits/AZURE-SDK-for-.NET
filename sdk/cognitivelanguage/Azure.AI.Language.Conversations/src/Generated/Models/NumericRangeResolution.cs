@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> represents the resolution of numeric intervals. </summary>
+    /// <summary> The NumericRangeResolution. </summary>
     public partial class NumericRangeResolution : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="NumericRangeResolution"/>. </summary>
-        /// <param name="rangeKind"> The kind of range that the resolution object represents. </param>
-        /// <param name="minimum"> The beginning value of  the interval. </param>
-        /// <param name="maximum"> The ending value of the interval. </param>
+        /// <param name="rangeKind"></param>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
         internal NumericRangeResolution(RangeKind rangeKind, double minimum, double maximum)
         {
             ResolutionKind = ResolutionKind.NumericRangeResolution;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="NumericRangeResolution"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="rangeKind"> The kind of range that the resolution object represents. </param>
-        /// <param name="minimum"> The beginning value of  the interval. </param>
-        /// <param name="maximum"> The ending value of the interval. </param>
+        /// <param name="rangeKind"></param>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
         internal NumericRangeResolution(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData, RangeKind rangeKind, double minimum, double maximum) : base(resolutionKind, serializedAdditionalRawData)
         {
             RangeKind = rangeKind;
@@ -43,11 +43,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The kind of range that the resolution object represents. </summary>
+        /// <summary> Gets the range kind. </summary>
         public RangeKind RangeKind { get; }
-        /// <summary> The beginning value of  the interval. </summary>
+        /// <summary> Gets the minimum. </summary>
         public double Minimum { get; }
-        /// <summary> The ending value of the interval. </summary>
+        /// <summary> Gets the maximum. </summary>
         public double Maximum { get; }
     }
 }

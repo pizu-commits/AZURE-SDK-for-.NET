@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The configuration for container-enabled Pools. </summary>
+    /// <summary> The ContainerConfiguration. </summary>
     public partial class ContainerConfiguration
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ContainerConfiguration"/>. </summary>
-        /// <param name="type"> The container technology to be used. </param>
+        /// <param name="type"></param>
         public ContainerConfiguration(ContainerType type)
         {
             Type = type;
@@ -55,9 +55,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerConfiguration"/>. </summary>
-        /// <param name="type"> The container technology to be used. </param>
-        /// <param name="containerImageNames"> The collection of container Image names. This is the full Image reference, as would be specified to "docker pull". An Image will be sourced from the default Docker registry unless the Image is fully qualified with an alternative registry. </param>
-        /// <param name="containerRegistries"> Additional private registries from which containers can be pulled. If any Images must be downloaded from a private registry which requires credentials, then those credentials must be provided here. </param>
+        /// <param name="type"></param>
+        /// <param name="containerImageNames"></param>
+        /// <param name="containerRegistries"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerConfiguration(ContainerType type, IList<string> containerImageNames, IList<ContainerRegistryReference> containerRegistries, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,11 +72,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The container technology to be used. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public ContainerType Type { get; set; }
-        /// <summary> The collection of container Image names. This is the full Image reference, as would be specified to "docker pull". An Image will be sourced from the default Docker registry unless the Image is fully qualified with an alternative registry. </summary>
+        /// <summary> Gets the container image names. </summary>
         public IList<string> ContainerImageNames { get; }
-        /// <summary> Additional private registries from which containers can be pulled. If any Images must be downloaded from a private registry which requires credentials, then those credentials must be provided here. </summary>
+        /// <summary> Gets the container registries. </summary>
         public IList<ContainerRegistryReference> ContainerRegistries { get; }
     }
 }

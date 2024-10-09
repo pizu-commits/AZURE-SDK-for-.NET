@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents knowledge base answer. </summary>
+    /// <summary> The KnowledgeBaseAnswer. </summary>
     public partial class KnowledgeBaseAnswer
     {
         /// <summary>
@@ -53,14 +53,14 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="KnowledgeBaseAnswer"/>. </summary>
-        /// <param name="questions"> List of questions associated with the answer. </param>
-        /// <param name="answer"> Answer text. </param>
-        /// <param name="confidence"> Answer confidence score, value ranges from 0 to 1. </param>
-        /// <param name="qnaId"> ID of the QnA result. </param>
-        /// <param name="source"> Source of QnA result. </param>
-        /// <param name="metadata"> Metadata associated with the answer, useful to categorize or filter question answers. </param>
-        /// <param name="dialog"> Dialog associated with Answer. </param>
-        /// <param name="shortAnswer"> Answer span object of QnA with respect to user's question. </param>
+        /// <param name="questions"></param>
+        /// <param name="answer"></param>
+        /// <param name="confidence"></param>
+        /// <param name="qnaId"></param>
+        /// <param name="source"></param>
+        /// <param name="metadata"></param>
+        /// <param name="dialog"></param>
+        /// <param name="shortAnswer"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal KnowledgeBaseAnswer(IReadOnlyList<string> questions, string answer, double? confidence, int? qnaId, string source, IReadOnlyDictionary<string, string> metadata, KnowledgeBaseAnswerDialog dialog, AnswerSpan shortAnswer, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,21 +75,21 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> List of questions associated with the answer. </summary>
+        /// <summary> Gets the questions. </summary>
         public IReadOnlyList<string> Questions { get; }
-        /// <summary> Answer text. </summary>
+        /// <summary> Gets the answer. </summary>
         public string Answer { get; }
-        /// <summary> Answer confidence score, value ranges from 0 to 1. </summary>
+        /// <summary> Gets the confidence. </summary>
         public double? Confidence { get; }
-        /// <summary> ID of the QnA result. </summary>
+        /// <summary> Gets the qna id. </summary>
         public int? QnaId { get; }
-        /// <summary> Source of QnA result. </summary>
+        /// <summary> Gets the source. </summary>
         public string Source { get; }
-        /// <summary> Metadata associated with the answer, useful to categorize or filter question answers. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
-        /// <summary> Dialog associated with Answer. </summary>
+        /// <summary> Gets the dialog. </summary>
         public KnowledgeBaseAnswerDialog Dialog { get; }
-        /// <summary> Answer span object of QnA with respect to user's question. </summary>
+        /// <summary> Gets the short answer. </summary>
         public AnswerSpan ShortAnswer { get; }
     }
 }

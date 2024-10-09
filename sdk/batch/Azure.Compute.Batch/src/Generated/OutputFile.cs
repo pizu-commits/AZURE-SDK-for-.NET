@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. </summary>
+    /// <summary> The OutputFile. </summary>
     public partial class OutputFile
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OutputFile"/>. </summary>
-        /// <param name="filePattern"> A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. Brackets can include a negation to match any character not specified (for example [!abc] matches any character but a, b, or c). If a file name starts with "." it is ignored by default but may be matched by specifying it explicitly (for example *.gif will not match .a.gif, but .*.gif will). A simple example: **\*.txt matches any file that does not start in '.' and ends with .txt in the Task working directory or any subdirectory. If the filename contains a wildcard character it can be escaped using brackets (for example abc[*] would match a file named abc*). Note that both \ and / are treated as directory separators on Windows, but only / is on Linux. Environment variables (%var% on Windows or $var on Linux) are expanded prior to the pattern being applied. </param>
-        /// <param name="destination"> The destination for the output file(s). </param>
-        /// <param name="uploadOptions"> Additional options for the upload operation, including under what conditions to perform the upload. </param>
+        /// <param name="filePattern"></param>
+        /// <param name="destination"></param>
+        /// <param name="uploadOptions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="filePattern"/>, <paramref name="destination"/> or <paramref name="uploadOptions"/> is null. </exception>
         public OutputFile(string filePattern, OutputFileDestination destination, OutputFileUploadConfig uploadOptions)
         {
@@ -62,9 +62,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="OutputFile"/>. </summary>
-        /// <param name="filePattern"> A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. Brackets can include a negation to match any character not specified (for example [!abc] matches any character but a, b, or c). If a file name starts with "." it is ignored by default but may be matched by specifying it explicitly (for example *.gif will not match .a.gif, but .*.gif will). A simple example: **\*.txt matches any file that does not start in '.' and ends with .txt in the Task working directory or any subdirectory. If the filename contains a wildcard character it can be escaped using brackets (for example abc[*] would match a file named abc*). Note that both \ and / are treated as directory separators on Windows, but only / is on Linux. Environment variables (%var% on Windows or $var on Linux) are expanded prior to the pattern being applied. </param>
-        /// <param name="destination"> The destination for the output file(s). </param>
-        /// <param name="uploadOptions"> Additional options for the upload operation, including under what conditions to perform the upload. </param>
+        /// <param name="filePattern"></param>
+        /// <param name="destination"></param>
+        /// <param name="uploadOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OutputFile(string filePattern, OutputFileDestination destination, OutputFileUploadConfig uploadOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +79,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. Brackets can include a negation to match any character not specified (for example [!abc] matches any character but a, b, or c). If a file name starts with "." it is ignored by default but may be matched by specifying it explicitly (for example *.gif will not match .a.gif, but .*.gif will). A simple example: **\*.txt matches any file that does not start in '.' and ends with .txt in the Task working directory or any subdirectory. If the filename contains a wildcard character it can be escaped using brackets (for example abc[*] would match a file named abc*). Note that both \ and / are treated as directory separators on Windows, but only / is on Linux. Environment variables (%var% on Windows or $var on Linux) are expanded prior to the pattern being applied. </summary>
+        /// <summary> Gets or sets the file pattern. </summary>
         public string FilePattern { get; set; }
-        /// <summary> The destination for the output file(s). </summary>
+        /// <summary> Gets or sets the destination. </summary>
         public OutputFileDestination Destination { get; set; }
-        /// <summary> Additional options for the upload operation, including under what conditions to perform the upload. </summary>
+        /// <summary> Gets or sets the upload options. </summary>
         public OutputFileUploadConfig UploadOptions { get; set; }
     }
 }

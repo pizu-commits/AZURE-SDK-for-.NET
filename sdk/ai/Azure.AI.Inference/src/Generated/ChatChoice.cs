@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// The representation of a single prompt completion as part of an overall chat completions request.
-    /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-    /// Token limits and other settings may limit the number of choices generated.
-    /// </summary>
+    /// <summary> The ChatChoice. </summary>
     public partial class ChatChoice
     {
         /// <summary>
@@ -50,9 +46,9 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ChatChoice"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="message"> The chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal ChatChoice(int index, CompletionsFinishReason? finishReason, ChatResponseMessage message)
         {
@@ -64,9 +60,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatChoice"/>. </summary>
-        /// <param name="index"> The ordered index associated with this chat completions choice. </param>
-        /// <param name="finishReason"> The reason that this chat completions choice completed its generated. </param>
-        /// <param name="message"> The chat message for a given chat completions prompt. </param>
+        /// <param name="index"></param>
+        /// <param name="finishReason"></param>
+        /// <param name="message"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatChoice(int index, CompletionsFinishReason? finishReason, ChatResponseMessage message, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,11 +77,11 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The ordered index associated with this chat completions choice. </summary>
+        /// <summary> Gets the index. </summary>
         public int Index { get; }
-        /// <summary> The reason that this chat completions choice completed its generated. </summary>
+        /// <summary> Gets the finish reason. </summary>
         public CompletionsFinishReason? FinishReason { get; }
-        /// <summary> The chat message for a given chat completions prompt. </summary>
+        /// <summary> Gets the message. </summary>
         public ChatResponseMessage Message { get; }
     }
 }

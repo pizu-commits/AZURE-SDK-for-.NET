@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Text
     internal partial class UnknownAnalyzeTextResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="UnknownAnalyzeTextResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownAnalyzeTextResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(kind, serializedAdditionalRawData)
         {

@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the Currency ) entity Metadata model. </summary>
+    /// <summary> The CurrencyMetadata. </summary>
     public partial class CurrencyMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="CurrencyMetadata"/>. </summary>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Currency unit. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="unit"/> is null. </exception>
         internal CurrencyMetadata(double value, string unit)
         {
@@ -27,11 +27,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CurrencyMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Currency unit. </param>
-        /// <param name="iso4217"> The alphabetic code based on another ISO standard, ISO 3166, which lists the codes for country names. The first two letters of the ISO 4217 three-letter code are the same as the code for the country name, and, where possible, the third letter corresponds to the first letter of the currency name. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
+        /// <param name="iso4217"></param>
         internal CurrencyMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, double value, string unit, string iso4217) : base(metadataKind, serializedAdditionalRawData)
         {
             Value = value;
@@ -44,11 +44,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The numeric value that the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
-        /// <summary> Currency unit. </summary>
+        /// <summary> Gets the unit. </summary>
         public string Unit { get; }
-        /// <summary> The alphabetic code based on another ISO standard, ISO 3166, which lists the codes for country names. The first two letters of the ISO 4217 three-letter code are the same as the code for the country name, and, where possible, the third letter corresponds to the first letter of the currency name. </summary>
+        /// <summary> Gets the iso 4217. </summary>
         public string Iso4217 { get; }
     }
 }

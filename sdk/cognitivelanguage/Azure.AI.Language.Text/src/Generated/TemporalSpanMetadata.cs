@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> represents the Metadata of a date and/or time span. </summary>
+    /// <summary> The TemporalSpanMetadata. </summary>
     public partial class TemporalSpanMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="TemporalSpanMetadata"/>. </summary>
@@ -21,15 +21,15 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TemporalSpanMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="spanValues"> List of temporal spans detected. </param>
+        /// <param name="spanValues"></param>
         internal TemporalSpanMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<TemporalSpanValues> spanValues) : base(metadataKind, serializedAdditionalRawData)
         {
             SpanValues = spanValues;
         }
 
-        /// <summary> List of temporal spans detected. </summary>
+        /// <summary> Gets the span values. </summary>
         public IReadOnlyList<TemporalSpanValues> SpanValues { get; }
     }
 }

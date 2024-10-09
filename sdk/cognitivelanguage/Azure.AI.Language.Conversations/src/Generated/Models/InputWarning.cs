@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Contains details of warnings encountered during a job execution. </summary>
+    /// <summary> The InputWarning. </summary>
     public partial class InputWarning
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InputWarning"/>. </summary>
-        /// <param name="code"> Warning code. </param>
-        /// <param name="message"> Warning message. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal InputWarning(string code, string message)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InputWarning"/>. </summary>
-        /// <param name="code"> Warning code. </param>
-        /// <param name="message"> Warning message. </param>
-        /// <param name="targetRef"> A JSON pointer reference indicating the target object. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="targetRef"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InputWarning(string code, string message, string targetRef, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Warning code. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> Warning message. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> A JSON pointer reference indicating the target object. </summary>
+        /// <summary> Gets the target ref. </summary>
         public string TargetRef { get; }
     }
 }

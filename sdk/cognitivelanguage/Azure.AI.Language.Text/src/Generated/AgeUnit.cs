@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The Age Unit of measurement. </summary>
+    /// <summary> The AgeUnit. </summary>
     public readonly partial struct AgeUnit : IEquatable<AgeUnit>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.AI.Language.Text
         private const string WeekValue = "Week";
         private const string DayValue = "Day";
 
-        /// <summary> Unspecified time period. </summary>
+        /// <summary> Unspecified. </summary>
         public static AgeUnit Unspecified { get; } = new AgeUnit(UnspecifiedValue);
-        /// <summary> Time period of a year. </summary>
+        /// <summary> Year. </summary>
         public static AgeUnit Year { get; } = new AgeUnit(YearValue);
-        /// <summary> Time period of a month. </summary>
+        /// <summary> Month. </summary>
         public static AgeUnit Month { get; } = new AgeUnit(MonthValue);
-        /// <summary> Time period of a week. </summary>
+        /// <summary> Week. </summary>
         public static AgeUnit Week { get; } = new AgeUnit(WeekValue);
-        /// <summary> Time period of a day. </summary>
+        /// <summary> Day. </summary>
         public static AgeUnit Day { get; } = new AgeUnit(DayValue);
         /// <summary> Determines if two <see cref="AgeUnit"/> values are the same. </summary>
         public static bool operator ==(AgeUnit left, AgeUnit right) => left.Equals(right);

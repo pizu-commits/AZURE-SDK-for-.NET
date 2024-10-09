@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Represents the temperature entity resolution model. </summary>
+    /// <summary> The TemperatureResolution. </summary>
     public partial class TemperatureResolution : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="TemperatureResolution"/>. </summary>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> The temperature Unit of measurement. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal TemperatureResolution(double value, TemperatureUnit unit)
         {
             ResolutionKind = ResolutionKind.TemperatureResolution;
@@ -24,10 +24,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="TemperatureResolution"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> The temperature Unit of measurement. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal TemperatureResolution(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData, double value, TemperatureUnit unit) : base(resolutionKind, serializedAdditionalRawData)
         {
             Value = value;
@@ -39,9 +39,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The numeric value that the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
-        /// <summary> The temperature Unit of measurement. </summary>
+        /// <summary> Gets the unit. </summary>
         public TemperatureUnit Unit { get; }
     }
 }

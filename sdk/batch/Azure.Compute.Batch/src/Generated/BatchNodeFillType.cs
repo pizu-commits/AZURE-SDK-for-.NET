@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodeFillType enums. </summary>
+    /// <summary> The BatchNodeFillType. </summary>
     public readonly partial struct BatchNodeFillType : IEquatable<BatchNodeFillType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string SpreadValue = "spread";
         private const string PackValue = "pack";
 
-        /// <summary> Tasks should be assigned evenly across all Compute Nodes in the Pool. </summary>
+        /// <summary> spread. </summary>
         public static BatchNodeFillType Spread { get; } = new BatchNodeFillType(SpreadValue);
-        /// <summary> As many Tasks as possible (taskSlotsPerNode) should be assigned to each Compute Node in the Pool before any Tasks are assigned to the next Compute Node in the Pool. </summary>
+        /// <summary> pack. </summary>
         public static BatchNodeFillType Pack { get; } = new BatchNodeFillType(PackValue);
         /// <summary> Determines if two <see cref="BatchNodeFillType"/> values are the same. </summary>
         public static bool operator ==(BatchNodeFillType left, BatchNodeFillType right) => left.Equals(right);

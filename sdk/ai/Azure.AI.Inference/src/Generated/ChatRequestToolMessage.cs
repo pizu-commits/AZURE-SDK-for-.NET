@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A request chat message representing requested output from a configured tool. </summary>
+    /// <summary> The ChatRequestToolMessage. </summary>
     public partial class ChatRequestToolMessage : ChatRequestMessage
     {
         /// <summary> Initializes a new instance of <see cref="ChatRequestToolMessage"/>. </summary>
-        /// <param name="content"> The content of the message. </param>
-        /// <param name="toolCallId"> The ID of the tool call resolved by the provided content. </param>
+        /// <param name="content"></param>
+        /// <param name="toolCallId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="toolCallId"/> is null. </exception>
         public ChatRequestToolMessage(string content, string toolCallId)
         {
@@ -27,10 +27,10 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatRequestToolMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with this message. </param>
+        /// <param name="role"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="content"> The content of the message. </param>
-        /// <param name="toolCallId"> The ID of the tool call resolved by the provided content. </param>
+        /// <param name="content"></param>
+        /// <param name="toolCallId"></param>
         internal ChatRequestToolMessage(ChatRole role, IDictionary<string, BinaryData> serializedAdditionalRawData, string content, string toolCallId) : base(role, serializedAdditionalRawData)
         {
             Content = content;
@@ -42,9 +42,9 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The content of the message. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> The ID of the tool call resolved by the provided content. </summary>
+        /// <summary> Gets the tool call id. </summary>
         public string ToolCallId { get; }
     }
 }

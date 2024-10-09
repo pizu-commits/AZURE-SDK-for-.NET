@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Context of the summary with a conversation item ID. </summary>
+    /// <summary> The ItemizedSummaryContext. </summary>
     public partial class ItemizedSummaryContext
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ItemizedSummaryContext"/>. </summary>
-        /// <param name="offset"> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="conversationItemId"> Reference to the ID of ConversationItem. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="conversationItemId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conversationItemId"/> is null. </exception>
         internal ItemizedSummaryContext(int offset, int length, string conversationItemId)
         {
@@ -60,9 +60,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ItemizedSummaryContext"/>. </summary>
-        /// <param name="offset"> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </param>
-        /// <param name="conversationItemId"> Reference to the ID of ConversationItem. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="conversationItemId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ItemizedSummaryContext(int offset, int length, string conversationItemId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> Reference to the ID of ConversationItem. </summary>
+        /// <summary> Gets the conversation item id. </summary>
         public string ConversationItemId { get; }
     }
 }

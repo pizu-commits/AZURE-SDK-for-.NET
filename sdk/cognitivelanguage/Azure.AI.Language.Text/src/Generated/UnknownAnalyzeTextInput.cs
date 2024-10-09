@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Text
     internal partial class UnknownAnalyzeTextInput : AnalyzeTextInput
     {
         /// <summary> Initializes a new instance of <see cref="UnknownAnalyzeTextInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownAnalyzeTextInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(kind, serializedAdditionalRawData)
         {

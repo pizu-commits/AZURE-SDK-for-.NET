@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the Volume entity Metadata model. </summary>
+    /// <summary> The VolumeMetadata. </summary>
     public partial class VolumeMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="VolumeMetadata"/>. </summary>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Unit of measure for volume. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal VolumeMetadata(double value, VolumeUnit unit)
         {
             MetadataKind = MetadataKind.VolumeMetadata;
@@ -24,10 +24,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="VolumeMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Unit of measure for volume. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal VolumeMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, double value, VolumeUnit unit) : base(metadataKind, serializedAdditionalRawData)
         {
             Value = value;
@@ -39,9 +39,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The numeric value that the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
-        /// <summary> Unit of measure for volume. </summary>
+        /// <summary> Gets the unit. </summary>
         public VolumeUnit Unit { get; }
     }
 }

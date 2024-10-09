@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Result for Dynamic Classification task. </summary>
+    /// <summary> The AnalyzeTextDynamicClassificationResult. </summary>
     public partial class AnalyzeTextDynamicClassificationResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextDynamicClassificationResult"/>. </summary>
-        /// <param name="results"> Results for Dynamic Classification task. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal AnalyzeTextDynamicClassificationResult(DynamicClassificationResult results)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextDynamicClassificationResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="results"> Results for Dynamic Classification task. </param>
+        /// <param name="results"></param>
         internal AnalyzeTextDynamicClassificationResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, DynamicClassificationResult results) : base(kind, serializedAdditionalRawData)
         {
             Results = results;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Results for Dynamic Classification task. </summary>
+        /// <summary> Gets the results. </summary>
         public DynamicClassificationResult Results { get; }
     }
 }

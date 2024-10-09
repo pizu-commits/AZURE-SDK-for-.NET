@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// Base class for a long-running conversation input task.
+    /// The AnalyzeConversationOperationAction.
     /// Please note <see cref="AnalyzeConversationOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="PiiOperationAction"/>, <see cref="SummarizationOperationAction"/> and <see cref="CustomSummarizationOperationAction"/>.
     /// </summary>
@@ -55,8 +55,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> Enumeration of supported analysis tasks on a collection of conversations. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeConversationOperationAction(string name, AnalyzeConversationOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,9 +65,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> task name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> Enumeration of supported analysis tasks on a collection of conversations. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeConversationOperationActionKind Kind { get; set; }
     }
 }

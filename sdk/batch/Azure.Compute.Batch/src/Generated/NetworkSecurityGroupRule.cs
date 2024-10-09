@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A network security group rule to apply to an inbound endpoint. </summary>
+    /// <summary> The NetworkSecurityGroupRule. </summary>
     public partial class NetworkSecurityGroupRule
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NetworkSecurityGroupRule"/>. </summary>
-        /// <param name="priority"> The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. </param>
-        /// <param name="access"> The action that should be taken for a specified IP address, subnet range or tag. </param>
-        /// <param name="sourceAddressPrefix"> The source address prefix or tag to match for the rule. Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e. 192.168.1.0/24), default tag, or * (for all addresses).  If any other values are provided the request fails with HTTP status code 400. </param>
+        /// <param name="priority"></param>
+        /// <param name="access"></param>
+        /// <param name="sourceAddressPrefix"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceAddressPrefix"/> is null. </exception>
         public NetworkSecurityGroupRule(int priority, NetworkSecurityGroupRuleAccess access, string sourceAddressPrefix)
         {
@@ -61,10 +61,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="NetworkSecurityGroupRule"/>. </summary>
-        /// <param name="priority"> The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. </param>
-        /// <param name="access"> The action that should be taken for a specified IP address, subnet range or tag. </param>
-        /// <param name="sourceAddressPrefix"> The source address prefix or tag to match for the rule. Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e. 192.168.1.0/24), default tag, or * (for all addresses).  If any other values are provided the request fails with HTTP status code 400. </param>
-        /// <param name="sourcePortRanges"> The source port ranges to match for the rule. Valid values are '*' (for all ports 0 - 65535), a specific port (i.e. 22), or a port range (i.e. 100-200). The ports must be in the range of 0 to 65535. Each entry in this collection must not overlap any other entry (either a range or an individual port). If any other values are provided the request fails with HTTP status code 400. The default value is '*'. </param>
+        /// <param name="priority"></param>
+        /// <param name="access"></param>
+        /// <param name="sourceAddressPrefix"></param>
+        /// <param name="sourcePortRanges"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NetworkSecurityGroupRule(int priority, NetworkSecurityGroupRuleAccess access, string sourceAddressPrefix, IList<string> sourcePortRanges, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,13 +80,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. </summary>
+        /// <summary> Gets or sets the priority. </summary>
         public int Priority { get; set; }
-        /// <summary> The action that should be taken for a specified IP address, subnet range or tag. </summary>
+        /// <summary> Gets or sets the access. </summary>
         public NetworkSecurityGroupRuleAccess Access { get; set; }
-        /// <summary> The source address prefix or tag to match for the rule. Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e. 192.168.1.0/24), default tag, or * (for all addresses).  If any other values are provided the request fails with HTTP status code 400. </summary>
+        /// <summary> Gets or sets the source address prefix. </summary>
         public string SourceAddressPrefix { get; set; }
-        /// <summary> The source port ranges to match for the rule. Valid values are '*' (for all ports 0 - 65535), a specific port (i.e. 22), or a port range (i.e. 100-200). The ports must be in the range of 0 to 65535. Each entry in this collection must not overlap any other entry (either a range or an individual port). If any other values are provided the request fails with HTTP status code 400. The default value is '*'. </summary>
+        /// <summary> Gets the source port ranges. </summary>
         public IList<string> SourcePortRanges { get; }
     }
 }

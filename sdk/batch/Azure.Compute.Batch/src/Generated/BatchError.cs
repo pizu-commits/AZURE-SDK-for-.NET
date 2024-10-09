@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An error response received from the Azure Batch service. </summary>
+    /// <summary> The BatchError. </summary>
     public partial class BatchError
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchError"/>. </summary>
-        /// <param name="code"> An identifier for the error. Codes are invariant and are intended to be consumed programmatically. </param>
+        /// <param name="code"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> is null. </exception>
         internal BatchError(string code)
         {
@@ -57,9 +57,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchError"/>. </summary>
-        /// <param name="code"> An identifier for the error. Codes are invariant and are intended to be consumed programmatically. </param>
-        /// <param name="message"> A message describing the error, intended to be suitable for display in a user interface. </param>
-        /// <param name="values"> A collection of key-value pairs containing additional details about the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchError(string code, BatchErrorMessage message, IReadOnlyList<BatchErrorDetail> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> An identifier for the error. Codes are invariant and are intended to be consumed programmatically. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A message describing the error, intended to be suitable for display in a user interface. </summary>
+        /// <summary> Gets the message. </summary>
         public BatchErrorMessage Message { get; }
-        /// <summary> A collection of key-value pairs containing additional details about the error. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<BatchErrorDetail> Values { get; }
     }
 }

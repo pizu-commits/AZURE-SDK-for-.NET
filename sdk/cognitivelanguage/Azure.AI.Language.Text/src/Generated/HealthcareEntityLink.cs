@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Reference to an entity in known data sources. </summary>
+    /// <summary> The HealthcareEntityLink. </summary>
     public partial class HealthcareEntityLink
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HealthcareEntityLink"/>. </summary>
-        /// <param name="dataSource"> Entity Catalog. Examples include: UMLS, CHV, MSH, etc. </param>
-        /// <param name="id"> Entity id in the given source catalog. </param>
+        /// <param name="dataSource"></param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> or <paramref name="id"/> is null. </exception>
         internal HealthcareEntityLink(string dataSource, string id)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="HealthcareEntityLink"/>. </summary>
-        /// <param name="dataSource"> Entity Catalog. Examples include: UMLS, CHV, MSH, etc. </param>
-        /// <param name="id"> Entity id in the given source catalog. </param>
+        /// <param name="dataSource"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HealthcareEntityLink(string dataSource, string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Entity Catalog. Examples include: UMLS, CHV, MSH, etc. </summary>
+        /// <summary> Gets the data source. </summary>
         public string DataSource { get; }
-        /// <summary> Entity id in the given source catalog. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

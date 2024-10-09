@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Kinds of overlap policies supported. </summary>
+    /// <summary> The policyKind. </summary>
     internal readonly partial struct PolicyKind : IEquatable<PolicyKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         private const string MatchLongestValue = "matchLongest";
         private const string AllowOverlapValue = "allowOverlap";
 
-        /// <summary> Represents MatchLongestEntityPolicyType. </summary>
+        /// <summary> matchLongest. </summary>
         public static PolicyKind MatchLongest { get; } = new PolicyKind(MatchLongestValue);
-        /// <summary> Represents AllowOverlapEntityPolicyType. </summary>
+        /// <summary> allowOverlap. </summary>
         public static PolicyKind AllowOverlap { get; } = new PolicyKind(AllowOverlapValue);
         /// <summary> Determines if two <see cref="PolicyKind"/> values are the same. </summary>
         public static bool operator ==(PolicyKind left, PolicyKind right) => left.Equals(right);

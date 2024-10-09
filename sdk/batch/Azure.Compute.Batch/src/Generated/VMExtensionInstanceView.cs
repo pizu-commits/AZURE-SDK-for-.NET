@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The vm extension instance view. </summary>
+    /// <summary> The VMExtensionInstanceView. </summary>
     public partial class VMExtensionInstanceView
     {
         /// <summary>
@@ -53,9 +53,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="VMExtensionInstanceView"/>. </summary>
-        /// <param name="name"> The name of the vm extension instance view. </param>
-        /// <param name="statuses"> The resource status information. </param>
-        /// <param name="subStatuses"> The resource status information. </param>
+        /// <param name="name"></param>
+        /// <param name="statuses"></param>
+        /// <param name="subStatuses"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal VMExtensionInstanceView(string name, IReadOnlyList<InstanceViewStatus> statuses, IReadOnlyList<InstanceViewStatus> subStatuses, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,11 +65,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the vm extension instance view. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The resource status information. </summary>
+        /// <summary> Gets the statuses. </summary>
         public IReadOnlyList<InstanceViewStatus> Statuses { get; }
-        /// <summary> The resource status information. </summary>
+        /// <summary> Gets the sub statuses. </summary>
         public IReadOnlyList<InstanceViewStatus> SubStatuses { get; }
     }
 }

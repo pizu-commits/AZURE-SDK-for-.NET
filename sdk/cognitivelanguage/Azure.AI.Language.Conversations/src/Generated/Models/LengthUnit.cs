@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The length unit of measurement. </summary>
+    /// <summary> The LengthUnit. </summary>
     public readonly partial struct LengthUnit : IEquatable<LengthUnit>
     {
         private readonly string _value;
@@ -40,39 +40,39 @@ namespace Azure.AI.Language.Conversations.Models
         private const string LightYearValue = "LightYear";
         private const string PointValue = "Pt";
 
-        /// <summary> Unspecified length unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static LengthUnit Unspecified { get; } = new LengthUnit(UnspecifiedValue);
-        /// <summary> Kilometer length unit. </summary>
+        /// <summary> Kilometer. </summary>
         public static LengthUnit Kilometer { get; } = new LengthUnit(KilometerValue);
-        /// <summary> Hectometer length unit. </summary>
+        /// <summary> Hectometer. </summary>
         public static LengthUnit Hectometer { get; } = new LengthUnit(HectometerValue);
-        /// <summary> Decameter length unit. </summary>
+        /// <summary> Decameter. </summary>
         public static LengthUnit Decameter { get; } = new LengthUnit(DecameterValue);
-        /// <summary> Meter length unit. </summary>
+        /// <summary> Meter. </summary>
         public static LengthUnit Meter { get; } = new LengthUnit(MeterValue);
-        /// <summary> Decimeter length unit. </summary>
+        /// <summary> Decimeter. </summary>
         public static LengthUnit Decimeter { get; } = new LengthUnit(DecimeterValue);
-        /// <summary> Centimeter length unit. </summary>
+        /// <summary> Centimeter. </summary>
         public static LengthUnit Centimeter { get; } = new LengthUnit(CentimeterValue);
-        /// <summary> Millimeter length unit. </summary>
+        /// <summary> Millimeter. </summary>
         public static LengthUnit Millimeter { get; } = new LengthUnit(MillimeterValue);
-        /// <summary> Micrometer length unit. </summary>
+        /// <summary> Micrometer. </summary>
         public static LengthUnit Micrometer { get; } = new LengthUnit(MicrometerValue);
-        /// <summary> Nanometer length unit. </summary>
+        /// <summary> Nanometer. </summary>
         public static LengthUnit Nanometer { get; } = new LengthUnit(NanometerValue);
-        /// <summary> Picometer length unit. </summary>
+        /// <summary> Picometer. </summary>
         public static LengthUnit Picometer { get; } = new LengthUnit(PicometerValue);
-        /// <summary> Mile length unit. </summary>
+        /// <summary> Mile. </summary>
         public static LengthUnit Mile { get; } = new LengthUnit(MileValue);
-        /// <summary> Yard length unit. </summary>
+        /// <summary> Yard. </summary>
         public static LengthUnit Yard { get; } = new LengthUnit(YardValue);
-        /// <summary> Inch length unit. </summary>
+        /// <summary> Inch. </summary>
         public static LengthUnit Inch { get; } = new LengthUnit(InchValue);
-        /// <summary> Foot length unit. </summary>
+        /// <summary> Foot. </summary>
         public static LengthUnit Foot { get; } = new LengthUnit(FootValue);
-        /// <summary> Light year length unit. </summary>
+        /// <summary> LightYear. </summary>
         public static LengthUnit LightYear { get; } = new LengthUnit(LightYearValue);
-        /// <summary> Point length unit. </summary>
+        /// <summary> Pt. </summary>
         public static LengthUnit Point { get; } = new LengthUnit(PointValue);
         /// <summary> Determines if two <see cref="LengthUnit"/> values are the same. </summary>
         public static bool operator ==(LengthUnit left, LengthUnit right) => left.Equals(right);

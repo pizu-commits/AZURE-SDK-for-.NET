@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The entity recognition analyze text input task request. </summary>
+    /// <summary> The TextEntityRecognitionInput. </summary>
     public partial class TextEntityRecognitionInput : AnalyzeTextInput
     {
         /// <summary> Initializes a new instance of <see cref="TextEntityRecognitionInput"/>. </summary>
@@ -20,19 +20,19 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TextEntityRecognitionInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="textInput"> The input to be analyzed. </param>
-        /// <param name="actionContent"> Task parameters. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actionContent"></param>
         internal TextEntityRecognitionInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, MultiLanguageTextInput textInput, EntitiesActionContent actionContent) : base(kind, serializedAdditionalRawData)
         {
             TextInput = textInput;
             ActionContent = actionContent;
         }
 
-        /// <summary> The input to be analyzed. </summary>
+        /// <summary> Gets or sets the text input. </summary>
         public MultiLanguageTextInput TextInput { get; set; }
-        /// <summary> Task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public EntitiesActionContent ActionContent { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An error encountered by the Batch service when scheduling a Job. </summary>
+    /// <summary> The BatchJobSchedulingError. </summary>
     public partial class BatchJobSchedulingError
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchJobSchedulingError"/>. </summary>
-        /// <param name="category"> The category of the Job scheduling error. </param>
+        /// <param name="category"></param>
         internal BatchJobSchedulingError(ErrorCategory category)
         {
             Category = category;
@@ -54,10 +54,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobSchedulingError"/>. </summary>
-        /// <param name="category"> The category of the Job scheduling error. </param>
-        /// <param name="code"> An identifier for the Job scheduling error. Codes are invariant and are intended to be consumed programmatically. </param>
-        /// <param name="message"> A message describing the Job scheduling error, intended to be suitable for display in a user interface. </param>
-        /// <param name="details"> A list of additional error details related to the scheduling error. </param>
+        /// <param name="category"></param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="details"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobSchedulingError(ErrorCategory category, string code, string message, IReadOnlyList<NameValuePair> details, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,13 +73,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The category of the Job scheduling error. </summary>
+        /// <summary> Gets the category. </summary>
         public ErrorCategory Category { get; }
-        /// <summary> An identifier for the Job scheduling error. Codes are invariant and are intended to be consumed programmatically. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A message describing the Job scheduling error, intended to be suitable for display in a user interface. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> A list of additional error details related to the scheduling error. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<NameValuePair> Details { get; }
     }
 }

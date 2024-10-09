@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A Pool in the Azure Batch service. </summary>
+    /// <summary> The BatchPool. </summary>
     public partial class BatchPool
     {
         /// <summary>
@@ -57,43 +57,43 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPool"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the Pool within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="displayName"> The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </param>
-        /// <param name="url"> The URL of the Pool. </param>
-        /// <param name="eTag"> The ETag of the Pool. This is an opaque string. You can use it to detect whether the Pool has changed between requests. In particular, you can be pass the ETag when updating a Pool to specify that your changes should take effect only if nobody else has modified the Pool in the meantime. </param>
-        /// <param name="lastModified"> The last modified time of the Pool. This is the last time at which the Pool level data, such as the targetDedicatedNodes or enableAutoscale settings, changed. It does not factor in node-level changes such as a Compute Node changing state. </param>
-        /// <param name="creationTime"> The creation time of the Pool. </param>
-        /// <param name="state"> The current state of the Pool. </param>
-        /// <param name="stateTransitionTime"> The time at which the Pool entered its current state. </param>
-        /// <param name="allocationState"> Whether the Pool is resizing. </param>
-        /// <param name="allocationStateTransitionTime"> The time at which the Pool entered its current allocation state. </param>
-        /// <param name="vmSize"> The size of virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </param>
-        /// <param name="virtualMachineConfiguration"> The virtual machine configuration for the Pool. This property must be specified. </param>
-        /// <param name="resizeTimeout"> The timeout for allocation of Compute Nodes to the Pool. This is the timeout for the most recent resize operation. (The initial sizing when the Pool is created counts as a resize.) The default value is 15 minutes. </param>
-        /// <param name="resizeErrors"> A list of errors encountered while performing the last resize on the Pool. This property is set only if one or more errors occurred during the last Pool resize, and only when the Pool allocationState is Steady. </param>
-        /// <param name="resourceTags"> The user-specified tags associated with the pool. The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to the backing Azure resources associated with the pool. This property can only be specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'. </param>
-        /// <param name="currentDedicatedNodes"> The number of dedicated Compute Nodes currently in the Pool. </param>
-        /// <param name="currentLowPriorityNodes"> The number of Spot/Low-priority Compute Nodes currently in the Pool. Spot/Low-priority Compute Nodes which have been preempted are included in this count. </param>
-        /// <param name="targetDedicatedNodes"> The desired number of dedicated Compute Nodes in the Pool. </param>
-        /// <param name="targetLowPriorityNodes"> The desired number of Spot/Low-priority Compute Nodes in the Pool. </param>
-        /// <param name="enableAutoScale"> Whether the Pool size should automatically adjust over time. If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must be specified. If true, the autoScaleFormula property is required and the Pool automatically resizes according to the formula. The default value is false. </param>
-        /// <param name="autoScaleFormula"> A formula for the desired number of Compute Nodes in the Pool. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </param>
-        /// <param name="autoScaleEvaluationInterval"> The time interval at which to automatically adjust the Pool size according to the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </param>
-        /// <param name="autoScaleRun"> The results and errors from the last execution of the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </param>
-        /// <param name="enableInterNodeCommunication"> Whether the Pool permits direct communication between Compute Nodes. This imposes restrictions on which Compute Nodes can be assigned to the Pool. Specifying this value can reduce the chance of the requested number of Compute Nodes to be allocated in the Pool. </param>
-        /// <param name="networkConfiguration"> The network configuration for the Pool. </param>
-        /// <param name="startTask"> A Task specified to run on each Compute Node as it joins the Pool. </param>
-        /// <param name="applicationPackageReferences"> The list of Packages to be installed on each Compute Node in the Pool. Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Package references on any given Pool. </param>
-        /// <param name="taskSlotsPerNode"> The number of task slots that can be used to run concurrent tasks on a single compute node in the pool. The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256. </param>
-        /// <param name="taskSchedulingPolicy"> How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. </param>
-        /// <param name="userAccounts"> The list of user Accounts to be created on each Compute Node in the Pool. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Pool as metadata. </param>
-        /// <param name="stats"> Utilization and resource usage statistics for the entire lifetime of the Pool. This property is populated only if the CloudPool was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes. </param>
-        /// <param name="mountConfiguration"> A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. </param>
-        /// <param name="identity"> The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. </param>
-        /// <param name="targetNodeCommunicationMode"> The desired node communication mode for the pool. If omitted, the default value is Default. </param>
-        /// <param name="currentNodeCommunicationMode"> The current state of the pool communication mode. </param>
-        /// <param name="upgradePolicy"> The upgrade policy for the Pool. Describes an upgrade policy - automatic, manual, or rolling. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="url"></param>
+        /// <param name="eTag"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="creationTime"></param>
+        /// <param name="state"></param>
+        /// <param name="stateTransitionTime"></param>
+        /// <param name="allocationState"></param>
+        /// <param name="allocationStateTransitionTime"></param>
+        /// <param name="vmSize"></param>
+        /// <param name="virtualMachineConfiguration"></param>
+        /// <param name="resizeTimeout"></param>
+        /// <param name="resizeErrors"></param>
+        /// <param name="resourceTags"></param>
+        /// <param name="currentDedicatedNodes"></param>
+        /// <param name="currentLowPriorityNodes"></param>
+        /// <param name="targetDedicatedNodes"></param>
+        /// <param name="targetLowPriorityNodes"></param>
+        /// <param name="enableAutoScale"></param>
+        /// <param name="autoScaleFormula"></param>
+        /// <param name="autoScaleEvaluationInterval"></param>
+        /// <param name="autoScaleRun"></param>
+        /// <param name="enableInterNodeCommunication"></param>
+        /// <param name="networkConfiguration"></param>
+        /// <param name="startTask"></param>
+        /// <param name="applicationPackageReferences"></param>
+        /// <param name="taskSlotsPerNode"></param>
+        /// <param name="taskSchedulingPolicy"></param>
+        /// <param name="userAccounts"></param>
+        /// <param name="metadata"></param>
+        /// <param name="stats"></param>
+        /// <param name="mountConfiguration"></param>
+        /// <param name="identity"></param>
+        /// <param name="targetNodeCommunicationMode"></param>
+        /// <param name="currentNodeCommunicationMode"></param>
+        /// <param name="upgradePolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPool(string id, string displayName, string url, string eTag, DateTimeOffset? lastModified, DateTimeOffset? creationTime, BatchPoolState? state, DateTimeOffset? stateTransitionTime, AllocationState? allocationState, DateTimeOffset? allocationStateTransitionTime, string vmSize, VirtualMachineConfiguration virtualMachineConfiguration, TimeSpan? resizeTimeout, IReadOnlyList<ResizeError> resizeErrors, IReadOnlyDictionary<string, string> resourceTags, int? currentDedicatedNodes, int? currentLowPriorityNodes, int? targetDedicatedNodes, int? targetLowPriorityNodes, bool? enableAutoScale, string autoScaleFormula, TimeSpan? autoScaleEvaluationInterval, AutoScaleRun autoScaleRun, bool? enableInterNodeCommunication, NetworkConfiguration networkConfiguration, BatchStartTask startTask, IReadOnlyList<BatchApplicationPackageReference> applicationPackageReferences, int? taskSlotsPerNode, BatchTaskSchedulingPolicy taskSchedulingPolicy, IReadOnlyList<UserAccount> userAccounts, IReadOnlyList<MetadataItem> metadata, BatchPoolStatistics stats, IReadOnlyList<MountConfiguration> mountConfiguration, BatchPoolIdentity identity, BatchNodeCommunicationMode? targetNodeCommunicationMode, BatchNodeCommunicationMode? currentNodeCommunicationMode, UpgradePolicy upgradePolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -137,79 +137,79 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A string that uniquely identifies the Pool within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The URL of the Pool. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The ETag of the Pool. This is an opaque string. You can use it to detect whether the Pool has changed between requests. In particular, you can be pass the ETag when updating a Pool to specify that your changes should take effect only if nobody else has modified the Pool in the meantime. </summary>
+        /// <summary> Gets the e tag. </summary>
         public string ETag { get; }
-        /// <summary> The last modified time of the Pool. This is the last time at which the Pool level data, such as the targetDedicatedNodes or enableAutoscale settings, changed. It does not factor in node-level changes such as a Compute Node changing state. </summary>
+        /// <summary> Gets the last modified. </summary>
         public DateTimeOffset? LastModified { get; }
-        /// <summary> The creation time of the Pool. </summary>
+        /// <summary> Gets the creation time. </summary>
         public DateTimeOffset? CreationTime { get; }
-        /// <summary> The current state of the Pool. </summary>
+        /// <summary> Gets the state. </summary>
         public BatchPoolState? State { get; }
-        /// <summary> The time at which the Pool entered its current state. </summary>
+        /// <summary> Gets the state transition time. </summary>
         public DateTimeOffset? StateTransitionTime { get; }
-        /// <summary> Whether the Pool is resizing. </summary>
+        /// <summary> Gets the allocation state. </summary>
         public AllocationState? AllocationState { get; }
-        /// <summary> The time at which the Pool entered its current allocation state. </summary>
+        /// <summary> Gets the allocation state transition time. </summary>
         public DateTimeOffset? AllocationStateTransitionTime { get; }
-        /// <summary> The size of virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </summary>
+        /// <summary> Gets the vm size. </summary>
         public string VmSize { get; }
-        /// <summary> The virtual machine configuration for the Pool. This property must be specified. </summary>
+        /// <summary> Gets the virtual machine configuration. </summary>
         public VirtualMachineConfiguration VirtualMachineConfiguration { get; }
-        /// <summary> The timeout for allocation of Compute Nodes to the Pool. This is the timeout for the most recent resize operation. (The initial sizing when the Pool is created counts as a resize.) The default value is 15 minutes. </summary>
+        /// <summary> Gets the resize timeout. </summary>
         public TimeSpan? ResizeTimeout { get; }
-        /// <summary> A list of errors encountered while performing the last resize on the Pool. This property is set only if one or more errors occurred during the last Pool resize, and only when the Pool allocationState is Steady. </summary>
+        /// <summary> Gets the resize errors. </summary>
         public IReadOnlyList<ResizeError> ResizeErrors { get; }
-        /// <summary> The user-specified tags associated with the pool. The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to the backing Azure resources associated with the pool. This property can only be specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'. </summary>
+        /// <summary> Gets the resource tags. </summary>
         public IReadOnlyDictionary<string, string> ResourceTags { get; }
-        /// <summary> The number of dedicated Compute Nodes currently in the Pool. </summary>
+        /// <summary> Gets the current dedicated nodes. </summary>
         public int? CurrentDedicatedNodes { get; }
-        /// <summary> The number of Spot/Low-priority Compute Nodes currently in the Pool. Spot/Low-priority Compute Nodes which have been preempted are included in this count. </summary>
+        /// <summary> Gets the current low priority nodes. </summary>
         public int? CurrentLowPriorityNodes { get; }
-        /// <summary> The desired number of dedicated Compute Nodes in the Pool. </summary>
+        /// <summary> Gets the target dedicated nodes. </summary>
         public int? TargetDedicatedNodes { get; }
-        /// <summary> The desired number of Spot/Low-priority Compute Nodes in the Pool. </summary>
+        /// <summary> Gets the target low priority nodes. </summary>
         public int? TargetLowPriorityNodes { get; }
-        /// <summary> Whether the Pool size should automatically adjust over time. If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must be specified. If true, the autoScaleFormula property is required and the Pool automatically resizes according to the formula. The default value is false. </summary>
+        /// <summary> Gets the enable auto scale. </summary>
         public bool? EnableAutoScale { get; }
-        /// <summary> A formula for the desired number of Compute Nodes in the Pool. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </summary>
+        /// <summary> Gets the auto scale formula. </summary>
         public string AutoScaleFormula { get; }
-        /// <summary> The time interval at which to automatically adjust the Pool size according to the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </summary>
+        /// <summary> Gets the auto scale evaluation interval. </summary>
         public TimeSpan? AutoScaleEvaluationInterval { get; }
-        /// <summary> The results and errors from the last execution of the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true. </summary>
+        /// <summary> Gets the auto scale run. </summary>
         public AutoScaleRun AutoScaleRun { get; }
-        /// <summary> Whether the Pool permits direct communication between Compute Nodes. This imposes restrictions on which Compute Nodes can be assigned to the Pool. Specifying this value can reduce the chance of the requested number of Compute Nodes to be allocated in the Pool. </summary>
+        /// <summary> Gets the enable inter node communication. </summary>
         public bool? EnableInterNodeCommunication { get; }
-        /// <summary> The network configuration for the Pool. </summary>
+        /// <summary> Gets the network configuration. </summary>
         public NetworkConfiguration NetworkConfiguration { get; }
-        /// <summary> A Task specified to run on each Compute Node as it joins the Pool. </summary>
+        /// <summary> Gets the start task. </summary>
         public BatchStartTask StartTask { get; }
-        /// <summary> The list of Packages to be installed on each Compute Node in the Pool. Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Package references on any given Pool. </summary>
+        /// <summary> Gets the application package references. </summary>
         public IReadOnlyList<BatchApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary> The number of task slots that can be used to run concurrent tasks on a single compute node in the pool. The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256. </summary>
+        /// <summary> Gets the task slots per node. </summary>
         public int? TaskSlotsPerNode { get; }
-        /// <summary> How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. </summary>
+        /// <summary> Gets the task scheduling policy. </summary>
         public BatchTaskSchedulingPolicy TaskSchedulingPolicy { get; }
-        /// <summary> The list of user Accounts to be created on each Compute Node in the Pool. </summary>
+        /// <summary> Gets the user accounts. </summary>
         public IReadOnlyList<UserAccount> UserAccounts { get; }
-        /// <summary> A list of name-value pairs associated with the Pool as metadata. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyList<MetadataItem> Metadata { get; }
-        /// <summary> Utilization and resource usage statistics for the entire lifetime of the Pool. This property is populated only if the CloudPool was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes. </summary>
+        /// <summary> Gets the stats. </summary>
         public BatchPoolStatistics Stats { get; }
-        /// <summary> A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. </summary>
+        /// <summary> Gets the mount configuration. </summary>
         public IReadOnlyList<MountConfiguration> MountConfiguration { get; }
-        /// <summary> The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. </summary>
+        /// <summary> Gets the identity. </summary>
         public BatchPoolIdentity Identity { get; }
-        /// <summary> The desired node communication mode for the pool. If omitted, the default value is Default. </summary>
+        /// <summary> Gets the target node communication mode. </summary>
         public BatchNodeCommunicationMode? TargetNodeCommunicationMode { get; }
-        /// <summary> The current state of the pool communication mode. </summary>
+        /// <summary> Gets the current node communication mode. </summary>
         public BatchNodeCommunicationMode? CurrentNodeCommunicationMode { get; }
-        /// <summary> The upgrade policy for the Pool. Describes an upgrade policy - automatic, manual, or rolling. </summary>
+        /// <summary> Gets the upgrade policy. </summary>
         public UpgradePolicy UpgradePolicy { get; }
     }
 }

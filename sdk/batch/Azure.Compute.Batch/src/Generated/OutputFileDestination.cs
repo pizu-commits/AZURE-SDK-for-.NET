@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The destination to which a file should be uploaded. </summary>
+    /// <summary> The OutputFileDestination. </summary>
     public partial class OutputFileDestination
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="OutputFileDestination"/>. </summary>
-        /// <param name="container"> A location in Azure blob storage to which files are uploaded. </param>
+        /// <param name="container"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OutputFileDestination(OutputFileBlobContainerDestination container, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A location in Azure blob storage to which files are uploaded. </summary>
+        /// <summary> Gets or sets the container. </summary>
         public OutputFileBlobContainerDestination Container { get; set; }
     }
 }

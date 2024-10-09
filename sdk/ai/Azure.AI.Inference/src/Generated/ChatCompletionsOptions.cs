@@ -11,19 +11,11 @@ using System.Linq;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// The configuration information for a chat completions request.
-    /// Completions support a wide variety of tasks and generate text that continues from or "completes"
-    /// provided prompt data.
-    /// </summary>
+    /// <summary> The ChatCompletionsOptions. </summary>
     public partial class ChatCompletionsOptions
     {
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsOptions"/>. </summary>
         /// <param name="messages">
-        /// The collection of context messages associated with this chat completions request.
-        /// Typical usage begins with a chat message for the System role that provides instructions for
-        /// the behavior of the assistant, followed by alternating messages between the User and
-        /// Assistant roles.
         /// Please note <see cref="ChatRequestMessage"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatRequestAssistantMessage"/>, <see cref="ChatRequestSystemMessage"/>, <see cref="ChatRequestToolMessage"/> and <see cref="ChatRequestUserMessage"/>.
         /// </param>
@@ -40,65 +32,27 @@ namespace Azure.AI.Inference
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsOptions"/>. </summary>
         /// <param name="messages">
-        /// The collection of context messages associated with this chat completions request.
-        /// Typical usage begins with a chat message for the System role that provides instructions for
-        /// the behavior of the assistant, followed by alternating messages between the User and
-        /// Assistant roles.
         /// Please note <see cref="ChatRequestMessage"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatRequestAssistantMessage"/>, <see cref="ChatRequestSystemMessage"/>, <see cref="ChatRequestToolMessage"/> and <see cref="ChatRequestUserMessage"/>.
         /// </param>
-        /// <param name="frequencyPenalty">
-        /// A value that influences the probability of generated tokens appearing based on their cumulative
-        /// frequency in generated text.
-        /// Positive values will make tokens less likely to appear as their frequency increases and
-        /// decrease the likelihood of the model repeating the same statements verbatim.
-        /// Supported range is [-2, 2].
-        /// </param>
-        /// <param name="internalShouldStreamResponse"> A value indicating whether chat completions should be streamed for this request. </param>
-        /// <param name="presencePenalty">
-        /// A value that influences the probability of generated tokens appearing based on their existing
-        /// presence in generated text.
-        /// Positive values will make tokens less likely to appear when they already exist and increase the
-        /// model's likelihood to output new topics.
-        /// Supported range is [-2, 2].
-        /// </param>
-        /// <param name="temperature">
-        /// The sampling temperature to use that controls the apparent creativity of generated completions.
-        /// Higher values will make output more random while lower values will make results more focused
-        /// and deterministic.
-        /// It is not recommended to modify temperature and top_p for the same completions request as the
-        /// interaction of these two settings is difficult to predict.
-        /// Supported range is [0, 1].
-        /// </param>
-        /// <param name="nucleusSamplingFactor">
-        /// An alternative to sampling with temperature called nucleus sampling. This value causes the
-        /// model to consider the results of tokens with the provided probability mass. As an example, a
-        /// value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
-        /// considered.
-        /// It is not recommended to modify temperature and top_p for the same completions request as the
-        /// interaction of these two settings is difficult to predict.
-        /// Supported range is [0, 1].
-        /// </param>
-        /// <param name="maxTokens"> The maximum number of tokens to generate. </param>
+        /// <param name="frequencyPenalty"></param>
+        /// <param name="internalShouldStreamResponse"></param>
+        /// <param name="presencePenalty"></param>
+        /// <param name="temperature"></param>
+        /// <param name="nucleusSamplingFactor"></param>
+        /// <param name="maxTokens"></param>
         /// <param name="responseFormat">
-        /// The format that the model must output. Use this to enable JSON mode instead of the default text mode.
-        /// Note that to enable JSON mode, some AI models may also require you to instruct the model to produce JSON
-        /// via a system or user message.
         /// Please note <see cref="ChatCompletionsResponseFormat"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsResponseFormatJSON"/> and <see cref="ChatCompletionsResponseFormatText"/>.
         /// </param>
-        /// <param name="stopSequences"> A collection of textual sequences that will end completions generation. </param>
+        /// <param name="stopSequences"></param>
         /// <param name="tools">
-        /// The available tool definitions that the chat completions request can use, including caller-defined functions.
         /// Please note <see cref="ChatCompletionsToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolDefinition"/>.
         /// </param>
-        /// <param name="internalSuppressedToolChoice"> If specified, the model will configure which of the provided tools it can use for the chat completions response. </param>
-        /// <param name="seed">
-        /// If specified, the system will make a best effort to sample deterministically such that repeated requests with the
-        /// same seed and parameters should return the same result. Determinism is not guaranteed.
-        /// </param>
-        /// <param name="model"> ID of the specific AI model to use, if more than one model is available on the endpoint. </param>
+        /// <param name="internalSuppressedToolChoice"></param>
+        /// <param name="seed"></param>
+        /// <param name="model"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
         internal ChatCompletionsOptions(IList<ChatRequestMessage> messages, float? frequencyPenalty, bool? internalShouldStreamResponse, float? presencePenalty, float? temperature, float? nucleusSamplingFactor, int? maxTokens, ChatCompletionsResponseFormat responseFormat, IList<string> stopSequences, IList<ChatCompletionsToolDefinition> tools, BinaryData internalSuppressedToolChoice, long? seed, string model, IDictionary<string, BinaryData> additionalProperties)
         {
@@ -119,73 +73,38 @@ namespace Azure.AI.Inference
         }
 
         /// <summary>
-        /// The collection of context messages associated with this chat completions request.
-        /// Typical usage begins with a chat message for the System role that provides instructions for
-        /// the behavior of the assistant, followed by alternating messages between the User and
-        /// Assistant roles.
+        /// Gets the messages
         /// Please note <see cref="ChatRequestMessage"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatRequestAssistantMessage"/>, <see cref="ChatRequestSystemMessage"/>, <see cref="ChatRequestToolMessage"/> and <see cref="ChatRequestUserMessage"/>.
         /// </summary>
         public IList<ChatRequestMessage> Messages { get; }
-        /// <summary>
-        /// A value that influences the probability of generated tokens appearing based on their cumulative
-        /// frequency in generated text.
-        /// Positive values will make tokens less likely to appear as their frequency increases and
-        /// decrease the likelihood of the model repeating the same statements verbatim.
-        /// Supported range is [-2, 2].
-        /// </summary>
+        /// <summary> Gets or sets the frequency penalty. </summary>
         public float? FrequencyPenalty { get; set; }
-        /// <summary>
-        /// A value that influences the probability of generated tokens appearing based on their existing
-        /// presence in generated text.
-        /// Positive values will make tokens less likely to appear when they already exist and increase the
-        /// model's likelihood to output new topics.
-        /// Supported range is [-2, 2].
-        /// </summary>
+        /// <summary> Gets or sets the presence penalty. </summary>
         public float? PresencePenalty { get; set; }
-        /// <summary>
-        /// The sampling temperature to use that controls the apparent creativity of generated completions.
-        /// Higher values will make output more random while lower values will make results more focused
-        /// and deterministic.
-        /// It is not recommended to modify temperature and top_p for the same completions request as the
-        /// interaction of these two settings is difficult to predict.
-        /// Supported range is [0, 1].
-        /// </summary>
+        /// <summary> Gets or sets the temperature. </summary>
         public float? Temperature { get; set; }
-        /// <summary>
-        /// An alternative to sampling with temperature called nucleus sampling. This value causes the
-        /// model to consider the results of tokens with the provided probability mass. As an example, a
-        /// value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
-        /// considered.
-        /// It is not recommended to modify temperature and top_p for the same completions request as the
-        /// interaction of these two settings is difficult to predict.
-        /// Supported range is [0, 1].
-        /// </summary>
+        /// <summary> Gets or sets the nucleus sampling factor. </summary>
         public float? NucleusSamplingFactor { get; set; }
-        /// <summary> The maximum number of tokens to generate. </summary>
+        /// <summary> Gets or sets the max tokens. </summary>
         public int? MaxTokens { get; set; }
         /// <summary>
-        /// The format that the model must output. Use this to enable JSON mode instead of the default text mode.
-        /// Note that to enable JSON mode, some AI models may also require you to instruct the model to produce JSON
-        /// via a system or user message.
+        /// Gets or sets the response format
         /// Please note <see cref="ChatCompletionsResponseFormat"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsResponseFormatJSON"/> and <see cref="ChatCompletionsResponseFormatText"/>.
         /// </summary>
         public ChatCompletionsResponseFormat ResponseFormat { get; set; }
-        /// <summary> A collection of textual sequences that will end completions generation. </summary>
+        /// <summary> Gets the stop sequences. </summary>
         public IList<string> StopSequences { get; }
         /// <summary>
-        /// The available tool definitions that the chat completions request can use, including caller-defined functions.
+        /// Gets the tools
         /// Please note <see cref="ChatCompletionsToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolDefinition"/>.
         /// </summary>
         public IList<ChatCompletionsToolDefinition> Tools { get; }
-        /// <summary>
-        /// If specified, the system will make a best effort to sample deterministically such that repeated requests with the
-        /// same seed and parameters should return the same result. Determinism is not guaranteed.
-        /// </summary>
+        /// <summary> Gets or sets the seed. </summary>
         public long? Seed { get; set; }
-        /// <summary> ID of the specific AI model to use, if more than one model is available on the endpoint. </summary>
+        /// <summary> Gets or sets the model. </summary>
         public string Model { get; set; }
         /// <summary>
         /// Additional Properties

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An environment variable to be set on a Task process. </summary>
+    /// <summary> The EnvironmentSetting. </summary>
     public partial class EnvironmentSetting
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentSetting"/>. </summary>
-        /// <param name="name"> The name of the environment variable. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public EnvironmentSetting(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentSetting"/>. </summary>
-        /// <param name="name"> The name of the environment variable. </param>
-        /// <param name="value"> The value of the environment variable. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EnvironmentSetting(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The name of the environment variable. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The value of the environment variable. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

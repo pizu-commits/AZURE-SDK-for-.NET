@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Text
     internal partial class UnknownEntityOverlapPolicy : EntityOverlapPolicy
     {
         /// <summary> Initializes a new instance of <see cref="UnknownEntityOverlapPolicy"/>. </summary>
-        /// <param name="policyKind"> The entity OverlapPolicy object kind. </param>
+        /// <param name="policyKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownEntityOverlapPolicy(PolicyKind policyKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(policyKind, serializedAdditionalRawData)
         {

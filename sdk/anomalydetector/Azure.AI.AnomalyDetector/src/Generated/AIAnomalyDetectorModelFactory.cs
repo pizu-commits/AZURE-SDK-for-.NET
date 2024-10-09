@@ -15,9 +15,9 @@ namespace Azure.AI.AnomalyDetector
     public static partial class AIAnomalyDetectorModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.MultivariateDetectionResult"/>. </summary>
-        /// <param name="resultId"> Result identifier that's used to fetch the results of an inference call. </param>
-        /// <param name="summary"> Multivariate anomaly detection status. </param>
-        /// <param name="results"> Detection result for each time stamp. </param>
+        /// <param name="resultId"></param>
+        /// <param name="summary"></param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="AnomalyDetector.MultivariateDetectionResult"/> instance for mocking. </returns>
         public static MultivariateDetectionResult MultivariateDetectionResult(Guid resultId = default, MultivariateBatchDetectionResultSummary summary = null, IEnumerable<AnomalyState> results = null)
         {
@@ -27,13 +27,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.MultivariateBatchDetectionResultSummary"/>. </summary>
-        /// <param name="status"> Status of detection results. </param>
-        /// <param name="errors"> Error message when detection fails. </param>
-        /// <param name="variableStates"> Variable status. </param>
-        /// <param name="setupInfo">
-        /// Detection request for batch inference. This is an asynchronous inference that
-        /// will need another API to get detection results.
-        /// </param>
+        /// <param name="status"></param>
+        /// <param name="errors"></param>
+        /// <param name="variableStates"></param>
+        /// <param name="setupInfo"></param>
         /// <returns> A new <see cref="AnomalyDetector.MultivariateBatchDetectionResultSummary"/> instance for mocking. </returns>
         public static MultivariateBatchDetectionResultSummary MultivariateBatchDetectionResultSummary(MultivariateBatchDetectionStatus status = default, IEnumerable<ErrorResponse> errors = null, IEnumerable<VariableState> variableStates = null, MultivariateBatchDetectionOptions setupInfo = null)
         {
@@ -44,8 +41,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.ErrorResponse"/>. </summary>
-        /// <param name="code"> Error code. </param>
-        /// <param name="message"> Message that explains the error that the service reported. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <returns> A new <see cref="AnomalyDetector.ErrorResponse"/> instance for mocking. </returns>
         public static ErrorResponse ErrorResponse(string code = null, string message = null)
         {
@@ -53,11 +50,11 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.VariableState"/>. </summary>
-        /// <param name="variable"> Variable name in variable states. </param>
-        /// <param name="filledNARatio"> Proportion of missing values that need to be filled by fillNAMethod. </param>
-        /// <param name="effectiveCount"> Number of effective data points before fillNAMethod is applied. </param>
-        /// <param name="firstTimestamp"> First valid time stamp with a value of input data. </param>
-        /// <param name="lastTimestamp"> Last valid time stamp with a value of input data. </param>
+        /// <param name="variable"></param>
+        /// <param name="filledNARatio"></param>
+        /// <param name="effectiveCount"></param>
+        /// <param name="firstTimestamp"></param>
+        /// <param name="lastTimestamp"></param>
         /// <returns> A new <see cref="AnomalyDetector.VariableState"/> instance for mocking. </returns>
         public static VariableState VariableState(string variable = null, float? filledNARatio = null, int? effectiveCount = null, DateTimeOffset? firstTimestamp = null, DateTimeOffset? lastTimestamp = null)
         {
@@ -71,9 +68,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.AnomalyState"/>. </summary>
-        /// <param name="timestamp"> Time stamp for this anomaly. </param>
-        /// <param name="value"> Detailed value of this anomalous time stamp. </param>
-        /// <param name="errors"> Error message for the current time stamp. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="value"></param>
+        /// <param name="errors"></param>
         /// <returns> A new <see cref="AnomalyDetector.AnomalyState"/> instance for mocking. </returns>
         public static AnomalyState AnomalyState(DateTimeOffset timestamp = default, AnomalyValue value = null, IEnumerable<ErrorResponse> errors = null)
         {
@@ -83,13 +80,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.AnomalyValue"/>. </summary>
-        /// <param name="isAnomaly"> True if an anomaly is detected at the current time stamp. </param>
-        /// <param name="severity">
-        /// Indicates the significance of the anomaly. The higher the severity, the more
-        /// significant the anomaly is.
-        /// </param>
-        /// <param name="score"> Raw anomaly score of severity, to help indicate the degree of abnormality. </param>
-        /// <param name="interpretation"> Interpretation of this anomalous time stamp. </param>
+        /// <param name="isAnomaly"></param>
+        /// <param name="severity"></param>
+        /// <param name="score"></param>
+        /// <param name="interpretation"></param>
         /// <returns> A new <see cref="AnomalyDetector.AnomalyValue"/> instance for mocking. </returns>
         public static AnomalyValue AnomalyValue(bool isAnomaly = default, float severity = default, float score = default, IEnumerable<AnomalyInterpretation> interpretation = null)
         {
@@ -99,12 +93,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.AnomalyInterpretation"/>. </summary>
-        /// <param name="variable"> Variable. </param>
-        /// <param name="contributionScore">
-        /// This score shows the percentage that contributes to the anomalous time stamp. It's a
-        /// number between 0 and 1.
-        /// </param>
-        /// <param name="correlationChanges"> Correlation changes among the anomalous variables. </param>
+        /// <param name="variable"></param>
+        /// <param name="contributionScore"></param>
+        /// <param name="correlationChanges"></param>
         /// <returns> A new <see cref="AnomalyDetector.AnomalyInterpretation"/> instance for mocking. </returns>
         public static AnomalyInterpretation AnomalyInterpretation(string variable = null, float? contributionScore = null, CorrelationChanges correlationChanges = null)
         {
@@ -112,7 +103,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.CorrelationChanges"/>. </summary>
-        /// <param name="changedVariables"> Correlated variables that have correlation changes under an anomaly. </param>
+        /// <param name="changedVariables"></param>
         /// <returns> A new <see cref="AnomalyDetector.CorrelationChanges"/> instance for mocking. </returns>
         public static CorrelationChanges CorrelationChanges(IEnumerable<string> changedVariables = null)
         {
@@ -122,35 +113,16 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.ModelInfo"/>. </summary>
-        /// <param name="dataSource">
-        /// Source link to the input data to indicate an accessible Azure Storage URI.
-        /// It either points to an Azure Blob Storage folder or points to a CSV file in
-        /// Azure Blob Storage, based on your data schema selection.
-        /// </param>
-        /// <param name="dataSchema">
-        /// Data schema of the input data source. The default
-        /// is OneTable.
-        /// </param>
-        /// <param name="startTime">
-        /// Start date/time of training data, which should be
-        /// in ISO 8601 format.
-        /// </param>
-        /// <param name="endTime">
-        /// End date/time of training data, which should be
-        /// in ISO 8601 format.
-        /// </param>
-        /// <param name="displayName">
-        /// Display name of the model. Maximum length is 24
-        /// characters.
-        /// </param>
-        /// <param name="slidingWindow">
-        /// Number of previous time stamps that will be used to
-        /// detect whether the time stamp is an anomaly or not.
-        /// </param>
-        /// <param name="alignPolicy"> Manner of aligning multiple variables. </param>
-        /// <param name="status"> Model status. </param>
-        /// <param name="errors"> Error messages after failure to create a model. </param>
-        /// <param name="diagnosticsInfo"> Diagnostics information to help inspect the states of a model or variable. </param>
+        /// <param name="dataSource"></param>
+        /// <param name="dataSchema"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="displayName"></param>
+        /// <param name="slidingWindow"></param>
+        /// <param name="alignPolicy"></param>
+        /// <param name="status"></param>
+        /// <param name="errors"></param>
+        /// <param name="diagnosticsInfo"></param>
         /// <returns> A new <see cref="AnomalyDetector.ModelInfo"/> instance for mocking. </returns>
         public static ModelInfo ModelInfo(Uri dataSource = null, DataSchema? dataSchema = null, DateTimeOffset startTime = default, DateTimeOffset endTime = default, string displayName = null, int? slidingWindow = null, AlignPolicy alignPolicy = null, ModelStatus? status = null, IEnumerable<ErrorResponse> errors = null, DiagnosticsInfo diagnosticsInfo = null)
         {
@@ -171,8 +143,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.DiagnosticsInfo"/>. </summary>
-        /// <param name="modelState"> Model status. </param>
-        /// <param name="variableStates"> Variable status. </param>
+        /// <param name="modelState"></param>
+        /// <param name="variableStates"></param>
         /// <returns> A new <see cref="AnomalyDetector.DiagnosticsInfo"/> instance for mocking. </returns>
         public static DiagnosticsInfo DiagnosticsInfo(ModelState modelState = null, IEnumerable<VariableState> variableStates = null)
         {
@@ -182,19 +154,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.ModelState"/>. </summary>
-        /// <param name="epochIds">
-        /// Number of passes of the entire training dataset that the
-        /// algorithm has completed.
-        /// </param>
-        /// <param name="trainLosses">
-        /// List of metrics used to assess how the model fits the training data for each
-        /// epoch.
-        /// </param>
-        /// <param name="validationLosses">
-        /// List of metrics used to assess how the model fits the validation set for each
-        /// epoch.
-        /// </param>
-        /// <param name="latenciesInSeconds"> Latency for each epoch. </param>
+        /// <param name="epochIds"></param>
+        /// <param name="trainLosses"></param>
+        /// <param name="validationLosses"></param>
+        /// <param name="latenciesInSeconds"></param>
         /// <returns> A new <see cref="AnomalyDetector.ModelState"/> instance for mocking. </returns>
         public static ModelState ModelState(IEnumerable<int> epochIds = null, IEnumerable<float> trainLosses = null, IEnumerable<float> validationLosses = null, IEnumerable<float> latenciesInSeconds = null)
         {
@@ -207,13 +170,10 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.AnomalyDetectionModel"/>. </summary>
-        /// <param name="modelId"> Model identifier. </param>
-        /// <param name="createdTime"> Date and time (UTC) when the model was created. </param>
-        /// <param name="lastUpdatedTime"> Date and time (UTC) when the model was last updated. </param>
-        /// <param name="modelInfo">
-        /// Training result of a model, including its status, errors, and diagnostics
-        /// information.
-        /// </param>
+        /// <param name="modelId"></param>
+        /// <param name="createdTime"></param>
+        /// <param name="lastUpdatedTime"></param>
+        /// <param name="modelInfo"></param>
         /// <returns> A new <see cref="AnomalyDetector.AnomalyDetectionModel"/> instance for mocking. </returns>
         public static AnomalyDetectionModel AnomalyDetectionModel(Guid modelId = default, DateTimeOffset createdTime = default, DateTimeOffset lastUpdatedTime = default, ModelInfo modelInfo = null)
         {
@@ -221,8 +181,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.MultivariateLastDetectionResult"/>. </summary>
-        /// <param name="variableStates"> Variable status. </param>
-        /// <param name="results"> Anomaly status and information. </param>
+        /// <param name="variableStates"></param>
+        /// <param name="results"></param>
         /// <returns> A new <see cref="AnomalyDetector.MultivariateLastDetectionResult"/> instance for mocking. </returns>
         public static MultivariateLastDetectionResult MultivariateLastDetectionResult(IEnumerable<VariableState> variableStates = null, IEnumerable<AnomalyState> results = null)
         {
@@ -233,8 +193,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.TimeSeriesPoint"/>. </summary>
-        /// <param name="timestamp"> Argument that indicates the time stamp of a data point (ISO8601 format). </param>
-        /// <param name="value"> Measurement of that point. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="AnomalyDetector.TimeSeriesPoint"/> instance for mocking. </returns>
         public static TimeSeriesPoint TimeSeriesPoint(DateTimeOffset? timestamp = null, float value = default)
         {
@@ -242,39 +202,15 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.UnivariateLastDetectionResult"/>. </summary>
-        /// <param name="period">
-        /// Frequency extracted from the series. Zero means no recurrent pattern has been
-        /// found.
-        /// </param>
-        /// <param name="suggestedWindow"> Suggested input series points needed for detecting the latest point. </param>
-        /// <param name="expectedValue"> Expected value of the latest point. </param>
-        /// <param name="upperMargin">
-        /// Upper margin of the latest point. UpperMargin is used to calculate
-        /// upperBoundary, which is equal to expectedValue + (100 - marginScale)*upperMargin.
-        /// If the value of latest point is between upperBoundary and lowerBoundary, it
-        /// should be treated as a normal value. Adjusting the marginScale value enables the anomaly
-        /// status of the latest point to be changed.
-        /// </param>
-        /// <param name="lowerMargin">
-        /// Lower margin of the latest point. LowerMargin is used to calculate
-        /// lowerBoundary, which is equal to expectedValue - (100 - marginScale)*lowerMargin.
-        /// </param>
-        /// <param name="isAnomaly">
-        /// Anomaly status of the latest point. True means the latest point is an anomaly,
-        /// either in the negative direction or in the positive direction.
-        /// </param>
-        /// <param name="isNegativeAnomaly">
-        /// Anomaly status of the latest point in a negative direction. True means the latest
-        /// point is an anomaly and its real value is smaller than the expected one.
-        /// </param>
-        /// <param name="isPositiveAnomaly">
-        /// Anomaly status of the latest point in a positive direction. True means the latest
-        /// point is an anomaly and its real value is larger than the expected one.
-        /// </param>
-        /// <param name="severity">
-        /// Severity score for the last input point. The larger the value is, the more
-        /// severe the anomaly is. For normal points, the severity is always 0.
-        /// </param>
+        /// <param name="period"></param>
+        /// <param name="suggestedWindow"></param>
+        /// <param name="expectedValue"></param>
+        /// <param name="upperMargin"></param>
+        /// <param name="lowerMargin"></param>
+        /// <param name="isAnomaly"></param>
+        /// <param name="isNegativeAnomaly"></param>
+        /// <param name="isPositiveAnomaly"></param>
+        /// <param name="severity"></param>
         /// <returns> A new <see cref="AnomalyDetector.UnivariateLastDetectionResult"/> instance for mocking. </returns>
         public static UnivariateLastDetectionResult UnivariateLastDetectionResult(int period = default, int suggestedWindow = default, float expectedValue = default, float upperMargin = default, float lowerMargin = default, bool isAnomaly = default, bool isNegativeAnomaly = default, bool isPositiveAnomaly = default, float? severity = null)
         {
@@ -292,29 +228,12 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.UnivariateChangePointDetectionOptions"/>. </summary>
-        /// <param name="series">
-        /// Time series data points. Points should be sorted by time stamp in ascending
-        /// order to match the change point detection result.
-        /// </param>
-        /// <param name="granularity"> Granularity is used to verify whether the input series is valid. </param>
-        /// <param name="customInterval">
-        /// A custom interval is used to set a nonstandard time interval. For example, if the
-        /// series is 5 minutes, the request can be set as {"granularity":"minutely",
-        /// "customInterval":5}.
-        /// </param>
-        /// <param name="period">
-        /// Argument that indicates the periodic value of a time series. If the value is null or
-        /// not present, the API will determine the period automatically.
-        /// </param>
-        /// <param name="stableTrendWindow">
-        /// Argument that indicates an advanced model parameter. A default stableTrendWindow value will
-        /// be used in detection.
-        /// </param>
-        /// <param name="threshold">
-        /// Argument that indicates an advanced model parameter between 0.0 and 1.0. The lower the
-        /// value is, the larger the trend error is, which means less change point will
-        /// be accepted.
-        /// </param>
+        /// <param name="series"></param>
+        /// <param name="granularity"></param>
+        /// <param name="customInterval"></param>
+        /// <param name="period"></param>
+        /// <param name="stableTrendWindow"></param>
+        /// <param name="threshold"></param>
         /// <returns> A new <see cref="AnomalyDetector.UnivariateChangePointDetectionOptions"/> instance for mocking. </returns>
         public static UnivariateChangePointDetectionOptions UnivariateChangePointDetectionOptions(IEnumerable<TimeSeriesPoint> series = null, TimeGranularity granularity = default, int? customInterval = null, int? period = null, int? stableTrendWindow = null, float? threshold = null)
         {
@@ -331,16 +250,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyDetector.UnivariateChangePointDetectionResult"/>. </summary>
-        /// <param name="period">
-        /// Frequency extracted from the series. Zero means no recurrent pattern has been
-        /// found.
-        /// </param>
-        /// <param name="isChangePoint">
-        /// Change point properties for each input point. True means
-        /// an anomaly (either negative or positive) has been detected. The index of the
-        /// array is consistent with the input series.
-        /// </param>
-        /// <param name="confidenceScores"> Change point confidence of each point. </param>
+        /// <param name="period"></param>
+        /// <param name="isChangePoint"></param>
+        /// <param name="confidenceScores"></param>
         /// <returns> A new <see cref="AnomalyDetector.UnivariateChangePointDetectionResult"/> instance for mocking. </returns>
         public static UnivariateChangePointDetectionResult UnivariateChangePointDetectionResult(int? period = null, IEnumerable<bool> isChangePoint = null, IEnumerable<float> confidenceScores = null)
         {

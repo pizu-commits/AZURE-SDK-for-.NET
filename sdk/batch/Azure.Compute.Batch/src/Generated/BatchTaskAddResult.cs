@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Result for a single Task added as part of an add Task collection operation. </summary>
+    /// <summary> The BatchTaskAddResult. </summary>
     public partial class BatchTaskAddResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskAddResult"/>. </summary>
-        /// <param name="status"> The status of the add Task request. </param>
-        /// <param name="taskId"> The ID of the Task for which this is the result. </param>
+        /// <param name="status"></param>
+        /// <param name="taskId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         internal BatchTaskAddResult(BatchTaskAddStatus status, string taskId)
         {
@@ -58,12 +58,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskAddResult"/>. </summary>
-        /// <param name="status"> The status of the add Task request. </param>
-        /// <param name="taskId"> The ID of the Task for which this is the result. </param>
-        /// <param name="eTag"> The ETag of the Task, if the Task was successfully added. You can use this to detect whether the Task has changed between requests. In particular, you can be pass the ETag with an Update Task request to specify that your changes should take effect only if nobody else has modified the Job in the meantime. </param>
-        /// <param name="lastModified"> The last modified time of the Task. </param>
-        /// <param name="location"> The URL of the Task, if the Task was successfully added. </param>
-        /// <param name="error"> The error encountered while attempting to add the Task. </param>
+        /// <param name="status"></param>
+        /// <param name="taskId"></param>
+        /// <param name="eTag"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="location"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskAddResult(BatchTaskAddStatus status, string taskId, string eTag, DateTimeOffset? lastModified, string location, BatchError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,17 +81,17 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The status of the add Task request. </summary>
+        /// <summary> Gets the status. </summary>
         public BatchTaskAddStatus Status { get; }
-        /// <summary> The ID of the Task for which this is the result. </summary>
+        /// <summary> Gets the task id. </summary>
         public string TaskId { get; }
-        /// <summary> The ETag of the Task, if the Task was successfully added. You can use this to detect whether the Task has changed between requests. In particular, you can be pass the ETag with an Update Task request to specify that your changes should take effect only if nobody else has modified the Job in the meantime. </summary>
+        /// <summary> Gets the e tag. </summary>
         public string ETag { get; }
-        /// <summary> The last modified time of the Task. </summary>
+        /// <summary> Gets the last modified. </summary>
         public DateTimeOffset? LastModified { get; }
-        /// <summary> The URL of the Task, if the Task was successfully added. </summary>
+        /// <summary> Gets the location. </summary>
         public string Location { get; }
-        /// <summary> The error encountered while attempting to add the Task. </summary>
+        /// <summary> Gets the error. </summary>
         public BatchError Error { get; }
     }
 }

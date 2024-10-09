@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> The definition of a caller-specified function that chat completions may invoke in response to matching user input. </summary>
+    /// <summary> The FunctionDefinition. </summary>
     public partial class FunctionDefinition
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FunctionDefinition"/>. </summary>
-        /// <param name="name"> The name of the function to be called. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public FunctionDefinition(string name)
         {
@@ -56,12 +56,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="FunctionDefinition"/>. </summary>
-        /// <param name="name"> The name of the function to be called. </param>
-        /// <param name="description">
-        /// A description of what the function does. The model will use this description when selecting the function and
-        /// interpreting its parameters.
-        /// </param>
-        /// <param name="parameters"> The parameters the function accepts, described as a JSON Schema object. </param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="parameters"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FunctionDefinition(string name, string description, BinaryData parameters, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,13 +67,10 @@ namespace Azure.AI.Inference
             Parameters = parameters;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-        /// <summary>
-        /// A description of what the function does. The model will use this description when selecting the function and
-        /// interpreting its parameters.
-        /// </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
         /// <summary>
-        /// The parameters the function accepts, described as a JSON Schema object.
+        /// Gets or sets the parameters
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

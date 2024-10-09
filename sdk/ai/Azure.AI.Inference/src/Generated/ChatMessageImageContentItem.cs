@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A structured chat content item containing an image reference. </summary>
+    /// <summary> The ChatMessageImageContentItem. </summary>
     public partial class ChatMessageImageContentItem : ChatMessageContentItem
     {
         /// <summary> Initializes a new instance of <see cref="ChatMessageImageContentItem"/>. </summary>
-        /// <param name="type"> The discriminated object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="imageUrl"> An internet location, which must be accessible to the model,from which the image may be retrieved. </param>
+        /// <param name="imageUrl"></param>
         internal ChatMessageImageContentItem(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, ChatMessageImageUrl imageUrl) : base(type, serializedAdditionalRawData)
         {
             ImageUrl = imageUrl;

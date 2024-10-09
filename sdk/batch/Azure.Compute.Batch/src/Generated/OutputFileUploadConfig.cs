@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// Options for an output file upload operation, including under what conditions
-    /// to perform the upload.
-    /// </summary>
+    /// <summary> The OutputFileUploadConfig. </summary>
     public partial class OutputFileUploadConfig
     {
         /// <summary>
@@ -49,14 +46,14 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OutputFileUploadConfig"/>. </summary>
-        /// <param name="uploadCondition"> The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. </param>
+        /// <param name="uploadCondition"></param>
         public OutputFileUploadConfig(OutputFileUploadCondition uploadCondition)
         {
             UploadCondition = uploadCondition;
         }
 
         /// <summary> Initializes a new instance of <see cref="OutputFileUploadConfig"/>. </summary>
-        /// <param name="uploadCondition"> The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. </param>
+        /// <param name="uploadCondition"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OutputFileUploadConfig(OutputFileUploadCondition uploadCondition, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +66,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. </summary>
+        /// <summary> Gets or sets the upload condition. </summary>
         public OutputFileUploadCondition UploadCondition { get; set; }
     }
 }

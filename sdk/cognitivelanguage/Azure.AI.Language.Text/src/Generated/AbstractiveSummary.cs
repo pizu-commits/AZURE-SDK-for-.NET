@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An object representing a single summary with context for given document. </summary>
+    /// <summary> The AbstractiveSummary. </summary>
     public partial class AbstractiveSummary
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AbstractiveSummary"/>. </summary>
-        /// <param name="text"> The text of the summary. </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal AbstractiveSummary(string text)
         {
@@ -57,8 +57,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AbstractiveSummary"/>. </summary>
-        /// <param name="text"> The text of the summary. </param>
-        /// <param name="contexts"> The context list of the summary. </param>
+        /// <param name="text"></param>
+        /// <param name="contexts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AbstractiveSummary(string text, IReadOnlyList<SummaryContext> contexts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The text of the summary. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The context list of the summary. </summary>
+        /// <summary> Gets the contexts. </summary>
         public IReadOnlyList<SummaryContext> Contexts { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Human-readable error code. </summary>
+    /// <summary> The ConversationErrorCode. </summary>
     public readonly partial struct ConversationErrorCode : IEquatable<ConversationErrorCode>
     {
         private readonly string _value;
@@ -41,41 +41,41 @@ namespace Azure.AI.Language.Conversations.Models
         private const string ConflictValue = "Conflict";
         private const string WarningValue = "Warning";
 
-        /// <summary> Invalid request error. </summary>
+        /// <summary> InvalidRequest. </summary>
         public static ConversationErrorCode InvalidRequest { get; } = new ConversationErrorCode(InvalidRequestValue);
-        /// <summary> Invalid argument error. </summary>
+        /// <summary> InvalidArgument. </summary>
         public static ConversationErrorCode InvalidArgument { get; } = new ConversationErrorCode(InvalidArgumentValue);
-        /// <summary> Unauthorized access error. </summary>
+        /// <summary> Unauthorized. </summary>
         public static ConversationErrorCode Unauthorized { get; } = new ConversationErrorCode(UnauthorizedValue);
-        /// <summary> Forbidden access error. </summary>
+        /// <summary> Forbidden. </summary>
         public static ConversationErrorCode Forbidden { get; } = new ConversationErrorCode(ForbiddenValue);
-        /// <summary> Not found error. </summary>
+        /// <summary> NotFound. </summary>
         public static ConversationErrorCode NotFound { get; } = new ConversationErrorCode(NotFoundValue);
-        /// <summary> Project not found error. </summary>
+        /// <summary> ProjectNotFound. </summary>
         public static ConversationErrorCode ProjectNotFound { get; } = new ConversationErrorCode(ProjectNotFoundValue);
-        /// <summary> Operation not found error. </summary>
+        /// <summary> OperationNotFound. </summary>
         public static ConversationErrorCode OperationNotFound { get; } = new ConversationErrorCode(OperationNotFoundValue);
-        /// <summary> Azure Cognitive Search not found error. </summary>
+        /// <summary> AzureCognitiveSearchNotFound. </summary>
         public static ConversationErrorCode AzureCognitiveSearchNotFound { get; } = new ConversationErrorCode(AzureCognitiveSearchNotFoundValue);
-        /// <summary> Azure Cognitive Search index not found error. </summary>
+        /// <summary> AzureCognitiveSearchIndexNotFound. </summary>
         public static ConversationErrorCode AzureCognitiveSearchIndexNotFound { get; } = new ConversationErrorCode(AzureCognitiveSearchIndexNotFoundValue);
-        /// <summary> Too many requests error. </summary>
+        /// <summary> TooManyRequests. </summary>
         public static ConversationErrorCode TooManyRequests { get; } = new ConversationErrorCode(TooManyRequestsValue);
-        /// <summary> Azure Cognitive Search throttling error. </summary>
+        /// <summary> AzureCognitiveSearchThrottling. </summary>
         public static ConversationErrorCode AzureCognitiveSearchThrottling { get; } = new ConversationErrorCode(AzureCognitiveSearchThrottlingValue);
-        /// <summary> Azure Cognitive Search index limit reached error. </summary>
+        /// <summary> AzureCognitiveSearchIndexLimitReached. </summary>
         public static ConversationErrorCode AzureCognitiveSearchIndexLimitReached { get; } = new ConversationErrorCode(AzureCognitiveSearchIndexLimitReachedValue);
-        /// <summary> Internal server error. </summary>
+        /// <summary> InternalServerError. </summary>
         public static ConversationErrorCode InternalServerError { get; } = new ConversationErrorCode(InternalServerErrorValue);
-        /// <summary> Service unavailable error. </summary>
+        /// <summary> ServiceUnavailable. </summary>
         public static ConversationErrorCode ServiceUnavailable { get; } = new ConversationErrorCode(ServiceUnavailableValue);
-        /// <summary> Timeout error. </summary>
+        /// <summary> Timeout. </summary>
         public static ConversationErrorCode Timeout { get; } = new ConversationErrorCode(TimeoutValue);
-        /// <summary> Quota exceeded error. </summary>
+        /// <summary> QuotaExceeded. </summary>
         public static ConversationErrorCode QuotaExceeded { get; } = new ConversationErrorCode(QuotaExceededValue);
-        /// <summary> Conflict error. </summary>
+        /// <summary> Conflict. </summary>
         public static ConversationErrorCode Conflict { get; } = new ConversationErrorCode(ConflictValue);
-        /// <summary> Warning error. </summary>
+        /// <summary> Warning. </summary>
         public static ConversationErrorCode Warning { get; } = new ConversationErrorCode(WarningValue);
         /// <summary> Determines if two <see cref="ConversationErrorCode"/> values are the same. </summary>
         public static bool operator ==(ConversationErrorCode left, ConversationErrorCode right) => left.Equals(right);

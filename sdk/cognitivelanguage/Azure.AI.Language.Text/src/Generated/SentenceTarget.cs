@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents a sentence target and the assessments or target objects related to it. </summary>
+    /// <summary> The SentenceTarget. </summary>
     public partial class SentenceTarget
     {
         /// <summary>
@@ -47,12 +47,12 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SentenceTarget"/>. </summary>
-        /// <param name="sentiment"> The sentiment of the sentence. </param>
-        /// <param name="confidenceScores"> Represents the confidence scores across all sentiment classes: positive and negative. </param>
-        /// <param name="offset"> The target offset from the start of the sentence. </param>
-        /// <param name="length"> The length of the target. </param>
-        /// <param name="text"> The target text detected. </param>
-        /// <param name="relations"> The array of either assessment or target objects which is related to the target. </param>
+        /// <param name="sentiment"></param>
+        /// <param name="confidenceScores"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="text"></param>
+        /// <param name="relations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="confidenceScores"/>, <paramref name="text"/> or <paramref name="relations"/> is null. </exception>
         internal SentenceTarget(TokenSentiment sentiment, TargetConfidenceScoreLabel confidenceScores, int offset, int length, string text, IEnumerable<TargetRelation> relations)
         {
@@ -69,12 +69,12 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentenceTarget"/>. </summary>
-        /// <param name="sentiment"> The sentiment of the sentence. </param>
-        /// <param name="confidenceScores"> Represents the confidence scores across all sentiment classes: positive and negative. </param>
-        /// <param name="offset"> The target offset from the start of the sentence. </param>
-        /// <param name="length"> The length of the target. </param>
-        /// <param name="text"> The target text detected. </param>
-        /// <param name="relations"> The array of either assessment or target objects which is related to the target. </param>
+        /// <param name="sentiment"></param>
+        /// <param name="confidenceScores"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="text"></param>
+        /// <param name="relations"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentenceTarget(TokenSentiment sentiment, TargetConfidenceScoreLabel confidenceScores, int offset, int length, string text, IReadOnlyList<TargetRelation> relations, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -92,17 +92,17 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The sentiment of the sentence. </summary>
+        /// <summary> Gets the sentiment. </summary>
         public TokenSentiment Sentiment { get; }
-        /// <summary> Represents the confidence scores across all sentiment classes: positive and negative. </summary>
+        /// <summary> Gets the confidence scores. </summary>
         public TargetConfidenceScoreLabel ConfidenceScores { get; }
-        /// <summary> The target offset from the start of the sentence. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the target. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> The target text detected. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The array of either assessment or target objects which is related to the target. </summary>
+        /// <summary> Gets the relations. </summary>
         public IReadOnlyList<TargetRelation> Relations { get; }
     }
 }

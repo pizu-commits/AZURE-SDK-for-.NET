@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Interpretation of the anomalous time stamp. </summary>
+    /// <summary> The AnomalyInterpretation. </summary>
     public partial class AnomalyInterpretation
     {
         /// <summary>
@@ -51,12 +51,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyInterpretation"/>. </summary>
-        /// <param name="variable"> Variable. </param>
-        /// <param name="contributionScore">
-        /// This score shows the percentage that contributes to the anomalous time stamp. It's a
-        /// number between 0 and 1.
-        /// </param>
-        /// <param name="correlationChanges"> Correlation changes among the anomalous variables. </param>
+        /// <param name="variable"></param>
+        /// <param name="contributionScore"></param>
+        /// <param name="correlationChanges"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnomalyInterpretation(string variable, float? contributionScore, CorrelationChanges correlationChanges, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +63,11 @@ namespace Azure.AI.AnomalyDetector
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Variable. </summary>
+        /// <summary> Gets the variable. </summary>
         public string Variable { get; }
-        /// <summary>
-        /// This score shows the percentage that contributes to the anomalous time stamp. It's a
-        /// number between 0 and 1.
-        /// </summary>
+        /// <summary> Gets the contribution score. </summary>
         public float? ContributionScore { get; }
-        /// <summary> Correlation changes among the anomalous variables. </summary>
+        /// <summary> Gets the correlation changes. </summary>
         public CorrelationChanges CorrelationChanges { get; }
     }
 }

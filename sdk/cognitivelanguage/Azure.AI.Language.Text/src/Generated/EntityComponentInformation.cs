@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// This object contains information of the detected entity components. The possible component types may expand in the future. Parsing code should handle unexpected values gracefully
+    /// The EntityComponentInformation.
     /// Please note <see cref="EntityComponentInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="LearnedComponent"/>, <see cref="ListComponent"/> and <see cref="PrebuiltComponent"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityComponentInformation"/>. </summary>
-        /// <param name="entityComponentKind"> Kind of entity component. </param>
+        /// <param name="entityComponentKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityComponentInformation(EntityComponentKind entityComponentKind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Kind of entity component. </summary>
+        /// <summary> Gets or sets the entity component kind. </summary>
         internal EntityComponentKind EntityComponentKind { get; set; }
     }
 }

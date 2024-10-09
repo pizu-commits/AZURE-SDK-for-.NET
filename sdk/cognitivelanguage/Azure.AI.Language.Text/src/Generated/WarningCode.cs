@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Defines the list of the warning codes. </summary>
+    /// <summary> The WarningCode. </summary>
     public readonly partial struct WarningCode : IEquatable<WarningCode>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         private const string LongWordsInDocumentValue = "LongWordsInDocument";
         private const string DocumentTruncatedValue = "DocumentTruncated";
 
-        /// <summary> Long words in document warning. </summary>
+        /// <summary> LongWordsInDocument. </summary>
         public static WarningCode LongWordsInDocument { get; } = new WarningCode(LongWordsInDocumentValue);
-        /// <summary> Document truncated warning. </summary>
+        /// <summary> DocumentTruncated. </summary>
         public static WarningCode DocumentTruncated { get; } = new WarningCode(DocumentTruncatedValue);
         /// <summary> Determines if two <see cref="WarningCode"/> values are the same. </summary>
         public static bool operator ==(WarningCode left, WarningCode right) => left.Equals(right);

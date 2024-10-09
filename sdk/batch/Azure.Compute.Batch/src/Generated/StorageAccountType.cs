@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> StorageAccountType enums. </summary>
+    /// <summary> The StorageAccountType. </summary>
     public readonly partial struct StorageAccountType : IEquatable<StorageAccountType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string PremiumLRSValue = "premium_lrs";
         private const string StandardSSDLRSValue = "standardssd_lrs";
 
-        /// <summary> The data disk should use standard locally redundant storage. </summary>
+        /// <summary> standard_lrs. </summary>
         public static StorageAccountType StandardLRS { get; } = new StorageAccountType(StandardLRSValue);
-        /// <summary> The data disk should use premium locally redundant storage. </summary>
+        /// <summary> premium_lrs. </summary>
         public static StorageAccountType PremiumLRS { get; } = new StorageAccountType(PremiumLRSValue);
-        /// <summary> The data disk / OS disk should use standard SSD locally redundant storage. </summary>
+        /// <summary> standardssd_lrs. </summary>
         public static StorageAccountType StandardSSDLRS { get; } = new StorageAccountType(StandardSSDLRSValue);
         /// <summary> Determines if two <see cref="StorageAccountType"/> values are the same. </summary>
         public static bool operator ==(StorageAccountType left, StorageAccountType right) => left.Equals(right);

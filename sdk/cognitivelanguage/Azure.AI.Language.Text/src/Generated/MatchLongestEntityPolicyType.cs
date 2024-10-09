@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the Match longest overlap policy. No overlapping entities as far as it is possible. 1. If there are overlapping entities, the longest one will be returned. 2. If the set of characters predicted for 2 or more entities are exactly the same, select the entity that has the higher confidence score.3. If the entity scores are identical, return all entities that are still present after applying the previous rules. 3. If there is partial overlap (as in Hello Text Analytics) follow the above steps starting from 1. </summary>
+    /// <summary> The MatchLongestEntityPolicyType. </summary>
     public partial class MatchLongestEntityPolicyType : EntityOverlapPolicy
     {
         /// <summary> Initializes a new instance of <see cref="MatchLongestEntityPolicyType"/>. </summary>
@@ -20,7 +20,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="MatchLongestEntityPolicyType"/>. </summary>
-        /// <param name="policyKind"> The entity OverlapPolicy object kind. </param>
+        /// <param name="policyKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MatchLongestEntityPolicyType(PolicyKind policyKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(policyKind, serializedAdditionalRawData)
         {

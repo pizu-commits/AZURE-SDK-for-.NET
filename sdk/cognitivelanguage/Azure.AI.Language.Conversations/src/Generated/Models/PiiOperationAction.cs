@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Task definition for a PII redaction in conversations. </summary>
+    /// <summary> The PiiOperationAction. </summary>
     public partial class PiiOperationAction : AnalyzeConversationOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="PiiOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="PiiOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> Enumeration of supported analysis tasks on a collection of conversations. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> parameters. </param>
+        /// <param name="actionContent"></param>
         internal PiiOperationAction(string name, AnalyzeConversationOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, ConversationPiiActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public ConversationPiiActionContent ActionContent { get; set; }
     }
 }

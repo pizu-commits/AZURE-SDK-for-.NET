@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// A request chat message containing system instructions that influence how the model will generate a chat completions
-    /// response.
-    /// </summary>
+    /// <summary> The ChatRequestSystemMessage. </summary>
     public partial class ChatRequestSystemMessage : ChatRequestMessage
     {
         /// <summary> Initializes a new instance of <see cref="ChatRequestSystemMessage"/>. </summary>
-        /// <param name="content"> The contents of the system message. </param>
+        /// <param name="content"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public ChatRequestSystemMessage(string content)
         {
@@ -28,9 +25,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatRequestSystemMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with this message. </param>
+        /// <param name="role"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="content"> The contents of the system message. </param>
+        /// <param name="content"></param>
         internal ChatRequestSystemMessage(ChatRole role, IDictionary<string, BinaryData> serializedAdditionalRawData, string content) : base(role, serializedAdditionalRawData)
         {
             Content = content;
@@ -41,7 +38,7 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The contents of the system message. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
     }
 }

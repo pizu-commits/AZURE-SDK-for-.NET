@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The input ConversationItem and its optional parameters. </summary>
+    /// <summary> The ConversationAnalysisInput. </summary>
     public partial class ConversationAnalysisInput
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationAnalysisInput"/>. </summary>
-        /// <param name="conversationItem"> The abstract base for a user input formatted conversation (e.g., Text, Transcript). </param>
+        /// <param name="conversationItem"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conversationItem"/> is null. </exception>
         public ConversationAnalysisInput(TextConversationItem conversationItem)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationAnalysisInput"/>. </summary>
-        /// <param name="conversationItem"> The abstract base for a user input formatted conversation (e.g., Text, Transcript). </param>
+        /// <param name="conversationItem"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationAnalysisInput(TextConversationItem conversationItem, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The abstract base for a user input formatted conversation (e.g., Text, Transcript). </summary>
+        /// <summary> Gets the conversation item. </summary>
         public TextConversationItem ConversationItem { get; }
     }
 }

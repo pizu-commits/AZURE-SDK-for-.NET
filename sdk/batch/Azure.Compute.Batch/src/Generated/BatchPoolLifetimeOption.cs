@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchPoolLifetimeOption enums. </summary>
+    /// <summary> The BatchPoolLifetimeOption. </summary>
     public readonly partial struct BatchPoolLifetimeOption : IEquatable<BatchPoolLifetimeOption>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string JobScheduleValue = "jobschedule";
         private const string JobValue = "job";
 
-        /// <summary> The Pool exists for the lifetime of the Job Schedule. The Batch Service creates the Pool when it creates the first Job on the schedule. You may apply this option only to Job Schedules, not to Jobs. </summary>
+        /// <summary> jobschedule. </summary>
         public static BatchPoolLifetimeOption JobSchedule { get; } = new BatchPoolLifetimeOption(JobScheduleValue);
-        /// <summary> The Pool exists for the lifetime of the Job to which it is dedicated. The Batch service creates the Pool when it creates the Job. If the 'job' option is applied to a Job Schedule, the Batch service creates a new auto Pool for every Job created on the schedule. </summary>
+        /// <summary> job. </summary>
         public static BatchPoolLifetimeOption Job { get; } = new BatchPoolLifetimeOption(JobValue);
         /// <summary> Determines if two <see cref="BatchPoolLifetimeOption"/> values are the same. </summary>
         public static bool operator ==(BatchPoolLifetimeOption left, BatchPoolLifetimeOption right) => left.Equals(right);

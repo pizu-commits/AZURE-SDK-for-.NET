@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Contains information about the container which a Task is executing. </summary>
+    /// <summary> The BatchTaskContainerExecutionInfo. </summary>
     public partial class BatchTaskContainerExecutionInfo
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskContainerExecutionInfo"/>. </summary>
-        /// <param name="containerId"> The ID of the container. </param>
-        /// <param name="state"> The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". </param>
-        /// <param name="error"> Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". </param>
+        /// <param name="containerId"></param>
+        /// <param name="state"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskContainerExecutionInfo(string containerId, string state, string error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the container. </summary>
+        /// <summary> Gets the container id. </summary>
         public string ContainerId { get; }
-        /// <summary> The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". </summary>
+        /// <summary> Gets the state. </summary>
         public string State { get; }
-        /// <summary> Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". </summary>
+        /// <summary> Gets the error. </summary>
         public string Error { get; }
     }
 }

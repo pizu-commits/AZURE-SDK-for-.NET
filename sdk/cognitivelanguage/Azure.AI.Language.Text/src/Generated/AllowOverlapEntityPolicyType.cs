@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the allow overlap policy. Will apply no post processing logic for the entities. Whatever the model predicts is what will be returned to the user. This allows the user to get a full view of every single model's possible values and apply their own custom logic on entity selection. </summary>
+    /// <summary> The AllowOverlapEntityPolicyType. </summary>
     public partial class AllowOverlapEntityPolicyType : EntityOverlapPolicy
     {
         /// <summary> Initializes a new instance of <see cref="AllowOverlapEntityPolicyType"/>. </summary>
@@ -20,7 +20,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AllowOverlapEntityPolicyType"/>. </summary>
-        /// <param name="policyKind"> The entity OverlapPolicy object kind. </param>
+        /// <param name="policyKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AllowOverlapEntityPolicyType(PolicyKind policyKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(policyKind, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The configuration parameters used while performing a rolling upgrade. </summary>
+    /// <summary> The RollingUpgradePolicy. </summary>
     public partial class RollingUpgradePolicy
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="RollingUpgradePolicy"/>. </summary>
-        /// <param name="enableCrossZoneUpgrade"> Allow VMSS to ignore AZ boundaries when constructing upgrade batches. Take into consideration the Update Domain and maxBatchInstancePercent to determine the batch size. This field is able to be set to true or false only when using NodePlacementConfiguration as Zonal. </param>
-        /// <param name="maxBatchInstancePercent"> The maximum percent of total virtual machine instances that will be upgraded simultaneously by the rolling upgrade in one batch. As this is a maximum, unhealthy instances in previous or future batches can cause the percentage of instances in a batch to decrease to ensure higher reliability. The value of this field should be between 5 and 100, inclusive. If both maxBatchInstancePercent and maxUnhealthyInstancePercent are assigned with value, the value of maxBatchInstancePercent should not be more than maxUnhealthyInstancePercent. </param>
-        /// <param name="maxUnhealthyInstancePercent"> The maximum percentage of the total virtual machine instances in the scale set that can be simultaneously unhealthy, either as a result of being upgraded, or by being found in an unhealthy state by the virtual machine health checks before the rolling upgrade aborts. This constraint will be checked prior to starting any batch. The value of this field should be between 5 and 100, inclusive. If both maxBatchInstancePercent and maxUnhealthyInstancePercent are assigned with value, the value of maxBatchInstancePercent should not be more than maxUnhealthyInstancePercent. </param>
-        /// <param name="maxUnhealthyUpgradedInstancePercent"> The maximum percentage of upgraded virtual machine instances that can be found to be in an unhealthy state. This check will happen after each batch is upgraded. If this percentage is ever exceeded, the rolling update aborts. The value of this field should be between 0 and 100, inclusive. </param>
-        /// <param name="pauseTimeBetweenBatches"> The wait time between completing the update for all virtual machines in one batch and starting the next batch. The time duration should be specified in ISO 8601 format.. </param>
-        /// <param name="prioritizeUnhealthyInstances"> Upgrade all unhealthy instances in a scale set before any healthy instances. </param>
-        /// <param name="rollbackFailedInstancesOnPolicyBreach"> Rollback failed instances to previous model if the Rolling Upgrade policy is violated. </param>
+        /// <param name="enableCrossZoneUpgrade"></param>
+        /// <param name="maxBatchInstancePercent"></param>
+        /// <param name="maxUnhealthyInstancePercent"></param>
+        /// <param name="maxUnhealthyUpgradedInstancePercent"></param>
+        /// <param name="pauseTimeBetweenBatches"></param>
+        /// <param name="prioritizeUnhealthyInstances"></param>
+        /// <param name="rollbackFailedInstancesOnPolicyBreach"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RollingUpgradePolicy(bool? enableCrossZoneUpgrade, int? maxBatchInstancePercent, int? maxUnhealthyInstancePercent, int? maxUnhealthyUpgradedInstancePercent, TimeSpan? pauseTimeBetweenBatches, bool? prioritizeUnhealthyInstances, bool? rollbackFailedInstancesOnPolicyBreach, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Allow VMSS to ignore AZ boundaries when constructing upgrade batches. Take into consideration the Update Domain and maxBatchInstancePercent to determine the batch size. This field is able to be set to true or false only when using NodePlacementConfiguration as Zonal. </summary>
+        /// <summary> Gets or sets the enable cross zone upgrade. </summary>
         public bool? EnableCrossZoneUpgrade { get; set; }
-        /// <summary> The maximum percent of total virtual machine instances that will be upgraded simultaneously by the rolling upgrade in one batch. As this is a maximum, unhealthy instances in previous or future batches can cause the percentage of instances in a batch to decrease to ensure higher reliability. The value of this field should be between 5 and 100, inclusive. If both maxBatchInstancePercent and maxUnhealthyInstancePercent are assigned with value, the value of maxBatchInstancePercent should not be more than maxUnhealthyInstancePercent. </summary>
+        /// <summary> Gets or sets the max batch instance percent. </summary>
         public int? MaxBatchInstancePercent { get; set; }
-        /// <summary> The maximum percentage of the total virtual machine instances in the scale set that can be simultaneously unhealthy, either as a result of being upgraded, or by being found in an unhealthy state by the virtual machine health checks before the rolling upgrade aborts. This constraint will be checked prior to starting any batch. The value of this field should be between 5 and 100, inclusive. If both maxBatchInstancePercent and maxUnhealthyInstancePercent are assigned with value, the value of maxBatchInstancePercent should not be more than maxUnhealthyInstancePercent. </summary>
+        /// <summary> Gets or sets the max unhealthy instance percent. </summary>
         public int? MaxUnhealthyInstancePercent { get; set; }
-        /// <summary> The maximum percentage of upgraded virtual machine instances that can be found to be in an unhealthy state. This check will happen after each batch is upgraded. If this percentage is ever exceeded, the rolling update aborts. The value of this field should be between 0 and 100, inclusive. </summary>
+        /// <summary> Gets or sets the max unhealthy upgraded instance percent. </summary>
         public int? MaxUnhealthyUpgradedInstancePercent { get; set; }
-        /// <summary> The wait time between completing the update for all virtual machines in one batch and starting the next batch. The time duration should be specified in ISO 8601 format.. </summary>
+        /// <summary> Gets or sets the pause time between batches. </summary>
         public TimeSpan? PauseTimeBetweenBatches { get; set; }
-        /// <summary> Upgrade all unhealthy instances in a scale set before any healthy instances. </summary>
+        /// <summary> Gets or sets the prioritize unhealthy instances. </summary>
         public bool? PrioritizeUnhealthyInstances { get; set; }
-        /// <summary> Rollback failed instances to previous model if the Rolling Upgrade policy is violated. </summary>
+        /// <summary> Gets or sets the rollback failed instances on policy breach. </summary>
         public bool? RollbackFailedInstancesOnPolicyBreach { get; set; }
     }
 }

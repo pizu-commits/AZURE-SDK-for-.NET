@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An error message received in an Azure Batch error response. </summary>
+    /// <summary> The BatchErrorMessage. </summary>
     public partial class BatchErrorMessage
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchErrorMessage"/>. </summary>
-        /// <param name="lang"> The language code of the error message. </param>
-        /// <param name="value"> The text of the message. </param>
+        /// <param name="lang"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchErrorMessage(string lang, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The language code of the error message. </summary>
+        /// <summary> Gets the lang. </summary>
         public string Lang { get; }
-        /// <summary> The text of the message. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

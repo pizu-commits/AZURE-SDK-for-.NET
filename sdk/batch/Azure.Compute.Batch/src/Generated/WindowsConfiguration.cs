@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Windows operating system settings to apply to the virtual machine. </summary>
+    /// <summary> The WindowsConfiguration. </summary>
     public partial class WindowsConfiguration
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="WindowsConfiguration"/>. </summary>
-        /// <param name="enableAutomaticUpdates"> Whether automatic updates are enabled on the virtual machine. If omitted, the default value is true. </param>
+        /// <param name="enableAutomaticUpdates"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WindowsConfiguration(bool? enableAutomaticUpdates, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Whether automatic updates are enabled on the virtual machine. If omitted, the default value is true. </summary>
+        /// <summary> Gets or sets the enable automatic updates. </summary>
         public bool? EnableAutomaticUpdates { get; set; }
     }
 }

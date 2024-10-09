@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An error that occurred when resizing a Pool. </summary>
+    /// <summary> The ResizeError. </summary>
     public partial class ResizeError
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ResizeError"/>. </summary>
-        /// <param name="code"> An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. </param>
-        /// <param name="message"> A message describing the Pool resize error, intended to be suitable for display in a user interface. </param>
-        /// <param name="values"> A list of additional error details related to the Pool resize error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResizeError(string code, string message, IReadOnlyList<NameValuePair> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A message describing the Pool resize error, intended to be suitable for display in a user interface. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> A list of additional error details related to the Pool resize error. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<NameValuePair> Values { get; }
     }
 }

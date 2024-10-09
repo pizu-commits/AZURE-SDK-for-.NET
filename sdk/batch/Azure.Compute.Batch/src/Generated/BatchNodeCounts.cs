@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The number of Compute Nodes in each Compute Node state. </summary>
+    /// <summary> The BatchNodeCounts. </summary>
     public partial class BatchNodeCounts
     {
         /// <summary>
@@ -46,21 +46,21 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeCounts"/>. </summary>
-        /// <param name="creating"> The number of Compute Nodes in the creating state. </param>
-        /// <param name="idle"> The number of Compute Nodes in the idle state. </param>
-        /// <param name="offline"> The number of Compute Nodes in the offline state. </param>
-        /// <param name="preempted"> The number of Compute Nodes in the preempted state. </param>
-        /// <param name="rebooting"> The count of Compute Nodes in the rebooting state. </param>
-        /// <param name="reimaging"> The number of Compute Nodes in the reimaging state. </param>
-        /// <param name="running"> The number of Compute Nodes in the running state. </param>
-        /// <param name="starting"> The number of Compute Nodes in the starting state. </param>
-        /// <param name="startTaskFailed"> The number of Compute Nodes in the startTaskFailed state. </param>
-        /// <param name="leavingPool"> The number of Compute Nodes in the leavingPool state. </param>
-        /// <param name="unknown"> The number of Compute Nodes in the unknown state. </param>
-        /// <param name="unusable"> The number of Compute Nodes in the unusable state. </param>
-        /// <param name="waitingForStartTask"> The number of Compute Nodes in the waitingForStartTask state. </param>
-        /// <param name="total"> The total number of Compute Nodes. </param>
-        /// <param name="upgradingOs"> The number of Compute Nodes in the upgradingOS state. </param>
+        /// <param name="creating"></param>
+        /// <param name="idle"></param>
+        /// <param name="offline"></param>
+        /// <param name="preempted"></param>
+        /// <param name="rebooting"></param>
+        /// <param name="reimaging"></param>
+        /// <param name="running"></param>
+        /// <param name="starting"></param>
+        /// <param name="startTaskFailed"></param>
+        /// <param name="leavingPool"></param>
+        /// <param name="unknown"></param>
+        /// <param name="unusable"></param>
+        /// <param name="waitingForStartTask"></param>
+        /// <param name="total"></param>
+        /// <param name="upgradingOs"></param>
         internal BatchNodeCounts(int creating, int idle, int offline, int preempted, int rebooting, int reimaging, int running, int starting, int startTaskFailed, int leavingPool, int unknown, int unusable, int waitingForStartTask, int total, int upgradingOs)
         {
             Creating = creating;
@@ -81,21 +81,21 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeCounts"/>. </summary>
-        /// <param name="creating"> The number of Compute Nodes in the creating state. </param>
-        /// <param name="idle"> The number of Compute Nodes in the idle state. </param>
-        /// <param name="offline"> The number of Compute Nodes in the offline state. </param>
-        /// <param name="preempted"> The number of Compute Nodes in the preempted state. </param>
-        /// <param name="rebooting"> The count of Compute Nodes in the rebooting state. </param>
-        /// <param name="reimaging"> The number of Compute Nodes in the reimaging state. </param>
-        /// <param name="running"> The number of Compute Nodes in the running state. </param>
-        /// <param name="starting"> The number of Compute Nodes in the starting state. </param>
-        /// <param name="startTaskFailed"> The number of Compute Nodes in the startTaskFailed state. </param>
-        /// <param name="leavingPool"> The number of Compute Nodes in the leavingPool state. </param>
-        /// <param name="unknown"> The number of Compute Nodes in the unknown state. </param>
-        /// <param name="unusable"> The number of Compute Nodes in the unusable state. </param>
-        /// <param name="waitingForStartTask"> The number of Compute Nodes in the waitingForStartTask state. </param>
-        /// <param name="total"> The total number of Compute Nodes. </param>
-        /// <param name="upgradingOs"> The number of Compute Nodes in the upgradingOS state. </param>
+        /// <param name="creating"></param>
+        /// <param name="idle"></param>
+        /// <param name="offline"></param>
+        /// <param name="preempted"></param>
+        /// <param name="rebooting"></param>
+        /// <param name="reimaging"></param>
+        /// <param name="running"></param>
+        /// <param name="starting"></param>
+        /// <param name="startTaskFailed"></param>
+        /// <param name="leavingPool"></param>
+        /// <param name="unknown"></param>
+        /// <param name="unusable"></param>
+        /// <param name="waitingForStartTask"></param>
+        /// <param name="total"></param>
+        /// <param name="upgradingOs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeCounts(int creating, int idle, int offline, int preempted, int rebooting, int reimaging, int running, int starting, int startTaskFailed, int leavingPool, int unknown, int unusable, int waitingForStartTask, int total, int upgradingOs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -122,35 +122,35 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The number of Compute Nodes in the creating state. </summary>
+        /// <summary> Gets the creating. </summary>
         public int Creating { get; }
-        /// <summary> The number of Compute Nodes in the idle state. </summary>
+        /// <summary> Gets the idle. </summary>
         public int Idle { get; }
-        /// <summary> The number of Compute Nodes in the offline state. </summary>
+        /// <summary> Gets the offline. </summary>
         public int Offline { get; }
-        /// <summary> The number of Compute Nodes in the preempted state. </summary>
+        /// <summary> Gets the preempted. </summary>
         public int Preempted { get; }
-        /// <summary> The count of Compute Nodes in the rebooting state. </summary>
+        /// <summary> Gets the rebooting. </summary>
         public int Rebooting { get; }
-        /// <summary> The number of Compute Nodes in the reimaging state. </summary>
+        /// <summary> Gets the reimaging. </summary>
         public int Reimaging { get; }
-        /// <summary> The number of Compute Nodes in the running state. </summary>
+        /// <summary> Gets the running. </summary>
         public int Running { get; }
-        /// <summary> The number of Compute Nodes in the starting state. </summary>
+        /// <summary> Gets the starting. </summary>
         public int Starting { get; }
-        /// <summary> The number of Compute Nodes in the startTaskFailed state. </summary>
+        /// <summary> Gets the start task failed. </summary>
         public int StartTaskFailed { get; }
-        /// <summary> The number of Compute Nodes in the leavingPool state. </summary>
+        /// <summary> Gets the leaving pool. </summary>
         public int LeavingPool { get; }
-        /// <summary> The number of Compute Nodes in the unknown state. </summary>
+        /// <summary> Gets the unknown. </summary>
         public int Unknown { get; }
-        /// <summary> The number of Compute Nodes in the unusable state. </summary>
+        /// <summary> Gets the unusable. </summary>
         public int Unusable { get; }
-        /// <summary> The number of Compute Nodes in the waitingForStartTask state. </summary>
+        /// <summary> Gets the waiting for start task. </summary>
         public int WaitingForStartTask { get; }
-        /// <summary> The total number of Compute Nodes. </summary>
+        /// <summary> Gets the total. </summary>
         public int Total { get; }
-        /// <summary> The number of Compute Nodes in the upgradingOS state. </summary>
+        /// <summary> Gets the upgrading os. </summary>
         public int UpgradingOs { get; }
     }
 }

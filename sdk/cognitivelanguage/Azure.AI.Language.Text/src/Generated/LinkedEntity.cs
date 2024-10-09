@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The LinkedEntity object containing the detected entity with the associated sources/links. </summary>
+    /// <summary> The LinkedEntity. </summary>
     public partial class LinkedEntity
     {
         /// <summary>
@@ -47,11 +47,11 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LinkedEntity"/>. </summary>
-        /// <param name="name"> Entity Linking formal name. </param>
-        /// <param name="matches"> List of instances this entity appears in the text. </param>
-        /// <param name="language"> Language used in the data source. </param>
-        /// <param name="url"> URL for the entity's page from the data source. </param>
-        /// <param name="dataSource"> Data source used to extract entity linking, such as Wiki/Bing etc. </param>
+        /// <param name="name"></param>
+        /// <param name="matches"></param>
+        /// <param name="language"></param>
+        /// <param name="url"></param>
+        /// <param name="dataSource"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="matches"/>, <paramref name="language"/>, <paramref name="url"/> or <paramref name="dataSource"/> is null. </exception>
         internal LinkedEntity(string name, IEnumerable<EntityLinkingMatch> matches, string language, string url, string dataSource)
         {
@@ -69,13 +69,13 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="LinkedEntity"/>. </summary>
-        /// <param name="name"> Entity Linking formal name. </param>
-        /// <param name="matches"> List of instances this entity appears in the text. </param>
-        /// <param name="language"> Language used in the data source. </param>
-        /// <param name="id"> Unique identifier of the recognized entity from the data source. </param>
-        /// <param name="url"> URL for the entity's page from the data source. </param>
-        /// <param name="dataSource"> Data source used to extract entity linking, such as Wiki/Bing etc. </param>
-        /// <param name="bingId"> Bing Entity Search API unique identifier of the recognized entity. </param>
+        /// <param name="name"></param>
+        /// <param name="matches"></param>
+        /// <param name="language"></param>
+        /// <param name="id"></param>
+        /// <param name="url"></param>
+        /// <param name="dataSource"></param>
+        /// <param name="bingId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LinkedEntity(string name, IReadOnlyList<EntityLinkingMatch> matches, string language, string id, string url, string dataSource, string bingId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,19 +94,19 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Entity Linking formal name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> List of instances this entity appears in the text. </summary>
+        /// <summary> Gets the matches. </summary>
         public IReadOnlyList<EntityLinkingMatch> Matches { get; }
-        /// <summary> Language used in the data source. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
-        /// <summary> Unique identifier of the recognized entity from the data source. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> URL for the entity's page from the data source. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> Data source used to extract entity linking, such as Wiki/Bing etc. </summary>
+        /// <summary> Gets the data source. </summary>
         public string DataSource { get; }
-        /// <summary> Bing Entity Search API unique identifier of the recognized entity. </summary>
+        /// <summary> Gets the bing id. </summary>
         public string BingId { get; }
     }
 }

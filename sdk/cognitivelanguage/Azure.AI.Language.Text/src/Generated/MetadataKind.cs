@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The entity Metadata object kind. </summary>
+    /// <summary> The MetadataKind. </summary>
     internal readonly partial struct MetadataKind : IEquatable<MetadataKind>
     {
         private readonly string _value;
@@ -40,39 +40,39 @@ namespace Azure.AI.Language.Text
         private const string NumericRangeMetadataValue = "NumericRangeMetadata";
         private const string TemporalSpanMetadataValue = "TemporalSpanMetadata";
 
-        /// <summary> Metadata for date-related values. </summary>
+        /// <summary> DateMetadata. </summary>
         public static MetadataKind DateMetadata { get; } = new MetadataKind(DateMetadataValue);
-        /// <summary> Metadata for date and time-related values. </summary>
+        /// <summary> DateTimeMetadata. </summary>
         public static MetadataKind DateTimeMetadata { get; } = new MetadataKind(DateTimeMetadataValue);
-        /// <summary> Metadata for time-related values. </summary>
+        /// <summary> TimeMetadata. </summary>
         public static MetadataKind TimeMetadata { get; } = new MetadataKind(TimeMetadataValue);
-        /// <summary> Metadata for set of time-related values. </summary>
+        /// <summary> TemporalSetMetadata. </summary>
         public static MetadataKind TemporalSetMetadata { get; } = new MetadataKind(TemporalSetMetadataValue);
-        /// <summary> Metadata for numeric values. </summary>
+        /// <summary> NumberMetadata. </summary>
         public static MetadataKind NumberMetadata { get; } = new MetadataKind(NumberMetadataValue);
-        /// <summary> Metadata for ordinal numbers. </summary>
+        /// <summary> OrdinalMetadata. </summary>
         public static MetadataKind OrdinalMetadata { get; } = new MetadataKind(OrdinalMetadataValue);
-        /// <summary> Metadata for speed-related values. </summary>
+        /// <summary> SpeedMetadata. </summary>
         public static MetadataKind SpeedMetadata { get; } = new MetadataKind(SpeedMetadataValue);
-        /// <summary> Metadata for weight-related values. </summary>
+        /// <summary> WeightMetadata. </summary>
         public static MetadataKind WeightMetadata { get; } = new MetadataKind(WeightMetadataValue);
-        /// <summary> Metadata for length-related values. </summary>
+        /// <summary> LengthMetadata. </summary>
         public static MetadataKind LengthMetadata { get; } = new MetadataKind(LengthMetadataValue);
-        /// <summary> Metadata for volume-related values. </summary>
+        /// <summary> VolumeMetadata. </summary>
         public static MetadataKind VolumeMetadata { get; } = new MetadataKind(VolumeMetadataValue);
-        /// <summary> Metadata for area-related values. </summary>
+        /// <summary> AreaMetadata. </summary>
         public static MetadataKind AreaMetadata { get; } = new MetadataKind(AreaMetadataValue);
-        /// <summary> Metadata for age-related values. </summary>
+        /// <summary> AgeMetadata. </summary>
         public static MetadataKind AgeMetadata { get; } = new MetadataKind(AgeMetadataValue);
-        /// <summary> Metadata for information-related values. </summary>
+        /// <summary> InformationMetadata. </summary>
         public static MetadataKind InformationMetadata { get; } = new MetadataKind(InformationMetadataValue);
-        /// <summary> Metadata for temperature-related values. </summary>
+        /// <summary> TemperatureMetadata. </summary>
         public static MetadataKind TemperatureMetadata { get; } = new MetadataKind(TemperatureMetadataValue);
-        /// <summary> Metadata for currency-related values. </summary>
+        /// <summary> CurrencyMetadata. </summary>
         public static MetadataKind CurrencyMetadata { get; } = new MetadataKind(CurrencyMetadataValue);
-        /// <summary> Metadata for numeric range values. </summary>
+        /// <summary> NumericRangeMetadata. </summary>
         public static MetadataKind NumericRangeMetadata { get; } = new MetadataKind(NumericRangeMetadataValue);
-        /// <summary> Metadata for temporal span values. </summary>
+        /// <summary> TemporalSpanMetadata. </summary>
         public static MetadataKind TemporalSpanMetadata { get; } = new MetadataKind(TemporalSpanMetadataValue);
         /// <summary> Determines if two <see cref="MetadataKind"/> values are the same. </summary>
         public static bool operator ==(MetadataKind left, MetadataKind right) => left.Equals(right);

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The endpoint configuration for a Pool. </summary>
+    /// <summary> The BatchPoolEndpointConfiguration. </summary>
     public partial class BatchPoolEndpointConfiguration
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolEndpointConfiguration"/>. </summary>
-        /// <param name="inboundNatPools"> A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. </param>
+        /// <param name="inboundNatPools"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="inboundNatPools"/> is null. </exception>
         public BatchPoolEndpointConfiguration(IEnumerable<InboundNatPool> inboundNatPools)
         {
@@ -57,7 +57,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolEndpointConfiguration"/>. </summary>
-        /// <param name="inboundNatPools"> A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. </param>
+        /// <param name="inboundNatPools"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolEndpointConfiguration(IList<InboundNatPool> inboundNatPools, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. </summary>
+        /// <summary> Gets the inbound nat pools. </summary>
         public IList<InboundNatPool> InboundNatPools { get; }
     }
 }

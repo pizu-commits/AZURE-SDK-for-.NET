@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> Represents some basic information about the AI model. </summary>
+    /// <summary> The ModelInfo. </summary>
     public partial class ModelInfo
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ModelInfo"/>. </summary>
-        /// <param name="modelName"> The name of the AI model. For example: `Phi21`. </param>
-        /// <param name="modelType"> The type of the AI model. A Unique identifier for the profile. </param>
-        /// <param name="modelProviderName"> The model provider name. For example: `Microsoft Research`. </param>
+        /// <param name="modelName"></param>
+        /// <param name="modelType"></param>
+        /// <param name="modelProviderName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelName"/> or <paramref name="modelProviderName"/> is null. </exception>
         internal ModelInfo(string modelName, ModelType modelType, string modelProviderName)
         {
@@ -61,9 +61,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ModelInfo"/>. </summary>
-        /// <param name="modelName"> The name of the AI model. For example: `Phi21`. </param>
-        /// <param name="modelType"> The type of the AI model. A Unique identifier for the profile. </param>
-        /// <param name="modelProviderName"> The model provider name. For example: `Microsoft Research`. </param>
+        /// <param name="modelName"></param>
+        /// <param name="modelType"></param>
+        /// <param name="modelProviderName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ModelInfo(string modelName, ModelType modelType, string modelProviderName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The name of the AI model. For example: `Phi21`. </summary>
+        /// <summary> Gets the model name. </summary>
         public string ModelName { get; }
-        /// <summary> The type of the AI model. A Unique identifier for the profile. </summary>
+        /// <summary> Gets the model type. </summary>
         public ModelType ModelType { get; }
-        /// <summary> The model provider name. For example: `Microsoft Research`. </summary>
+        /// <summary> Gets the model provider name. </summary>
         public string ModelProviderName { get; }
     }
 }

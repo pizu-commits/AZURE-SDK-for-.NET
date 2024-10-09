@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// Specifies the service artifact reference id used to set same image version
-    /// for all virtual machines in the scale set when using 'latest' image version.
-    /// </summary>
+    /// <summary> The ServiceArtifactReference. </summary>
     public partial class ServiceArtifactReference
     {
         /// <summary>
@@ -49,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ServiceArtifactReference"/>. </summary>
-        /// <param name="id"> The service artifact reference id of ServiceArtifactReference. The service artifact reference id in the form of /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/serviceArtifacts/{serviceArtifactName}/vmArtifactsProfiles/{vmArtifactsProfilesName}. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         public ServiceArtifactReference(string id)
         {
@@ -59,7 +56,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ServiceArtifactReference"/>. </summary>
-        /// <param name="id"> The service artifact reference id of ServiceArtifactReference. The service artifact reference id in the form of /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/serviceArtifacts/{serviceArtifactName}/vmArtifactsProfiles/{vmArtifactsProfilesName}. </param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServiceArtifactReference(string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,7 +69,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The service artifact reference id of ServiceArtifactReference. The service artifact reference id in the form of /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/serviceArtifacts/{serviceArtifactName}/vmArtifactsProfiles/{vmArtifactsProfilesName}. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
     }
 }

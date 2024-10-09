@@ -14,8 +14,8 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownPredictionBase : PredictionBase
     {
         /// <summary> Initializes a new instance of <see cref="UnknownPredictionBase"/>. </summary>
-        /// <param name="projectKind"> The type of the project. </param>
-        /// <param name="topIntent"> The intent with the highest score. </param>
+        /// <param name="projectKind"></param>
+        /// <param name="topIntent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownPredictionBase(ProjectKind projectKind, string topIntent, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(projectKind, topIntent, serializedAdditionalRawData)
         {

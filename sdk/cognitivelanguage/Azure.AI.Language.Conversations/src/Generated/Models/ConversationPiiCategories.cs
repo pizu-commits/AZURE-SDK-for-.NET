@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Describes the PII categories to return for detection. If not provided, 'default' categories will be returned which will vary with the language. </summary>
+    /// <summary> The ConversationPiiCategories. </summary>
     public readonly partial struct ConversationPiiCategories : IEquatable<ConversationPiiCategories>
     {
         private readonly string _value;
@@ -33,25 +33,25 @@ namespace Azure.AI.Language.Conversations.Models
         private const string AllValue = "All";
         private const string DefaultValue = "Default";
 
-        /// <summary> Address category. </summary>
+        /// <summary> Address. </summary>
         public static ConversationPiiCategories Address { get; } = new ConversationPiiCategories(AddressValue);
-        /// <summary> Credit card number category. </summary>
+        /// <summary> CreditCardNumber. </summary>
         public static ConversationPiiCategories CreditCardNumber { get; } = new ConversationPiiCategories(CreditCardNumberValue);
-        /// <summary> Email category. </summary>
+        /// <summary> Email. </summary>
         public static ConversationPiiCategories Email { get; } = new ConversationPiiCategories(EmailValue);
-        /// <summary> Person category. </summary>
+        /// <summary> Person. </summary>
         public static ConversationPiiCategories Person { get; } = new ConversationPiiCategories(PersonValue);
-        /// <summary> Numeric identifier category. </summary>
+        /// <summary> NumericIdentifier. </summary>
         public static ConversationPiiCategories NumericIdentifier { get; } = new ConversationPiiCategories(NumericIdentifierValue);
-        /// <summary> Phone number category. </summary>
+        /// <summary> PhoneNumber. </summary>
         public static ConversationPiiCategories PhoneNumber { get; } = new ConversationPiiCategories(PhoneNumberValue);
-        /// <summary> US social security number category. </summary>
+        /// <summary> USSocialSecurityNumber. </summary>
         public static ConversationPiiCategories UsSocialSecurityNumber { get; } = new ConversationPiiCategories(UsSocialSecurityNumberValue);
-        /// <summary> Miscellaneous category. </summary>
+        /// <summary> Miscellaneous. </summary>
         public static ConversationPiiCategories Miscellaneous { get; } = new ConversationPiiCategories(MiscellaneousValue);
-        /// <summary> All categories. </summary>
+        /// <summary> All. </summary>
         public static ConversationPiiCategories All { get; } = new ConversationPiiCategories(AllValue);
-        /// <summary> Default categories. </summary>
+        /// <summary> Default. </summary>
         public static ConversationPiiCategories Default { get; } = new ConversationPiiCategories(DefaultValue);
         /// <summary> Determines if two <see cref="ConversationPiiCategories"/> values are the same. </summary>
         public static bool operator ==(ConversationPiiCategories left, ConversationPiiCategories right) => left.Equals(right);

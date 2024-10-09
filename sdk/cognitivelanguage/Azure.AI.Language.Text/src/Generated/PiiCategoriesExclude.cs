@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> (Optional) describes the PII categories to return. </summary>
+    /// <summary> The PiiCategoriesExclude. </summary>
     public readonly partial struct PiiCategoriesExclude : IEquatable<PiiCategoriesExclude>
     {
         private readonly string _value;
@@ -194,329 +194,329 @@ namespace Azure.AI.Language.Text
         private const string PersonValue = "Person";
         private const string AddressValue = "Address";
 
-        /// <summary> ABA Routing number. </summary>
+        /// <summary> ABARoutingNumber. </summary>
         public static PiiCategoriesExclude AbaRoutingNumber { get; } = new PiiCategoriesExclude(AbaRoutingNumberValue);
-        /// <summary> AR National Identity Number. </summary>
+        /// <summary> ARNationalIdentityNumber. </summary>
         public static PiiCategoriesExclude ArNationalIdentityNumber { get; } = new PiiCategoriesExclude(ArNationalIdentityNumberValue);
-        /// <summary> AT Identity Card. </summary>
+        /// <summary> AUBankAccountNumber. </summary>
         public static PiiCategoriesExclude AuBankAccountNumber { get; } = new PiiCategoriesExclude(AuBankAccountNumberValue);
-        /// <summary> AU Driver's License Number. </summary>
+        /// <summary> AUDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude AuDriversLicenseNumber { get; } = new PiiCategoriesExclude(AuDriversLicenseNumberValue);
-        /// <summary> AU Medical Account Number. </summary>
+        /// <summary> AUMedicalAccountNumber. </summary>
         public static PiiCategoriesExclude AuMedicalAccountNumber { get; } = new PiiCategoriesExclude(AuMedicalAccountNumberValue);
-        /// <summary> AU Passport Number. </summary>
+        /// <summary> AUPassportNumber. </summary>
         public static PiiCategoriesExclude AuPassportNumber { get; } = new PiiCategoriesExclude(AuPassportNumberValue);
-        /// <summary> AU Tax File Number. </summary>
+        /// <summary> AUTaxFileNumber. </summary>
         public static PiiCategoriesExclude AuTaxFileNumber { get; } = new PiiCategoriesExclude(AuTaxFileNumberValue);
-        /// <summary> AU Business Number. </summary>
+        /// <summary> AUBusinessNumber. </summary>
         public static PiiCategoriesExclude AuBusinessNumber { get; } = new PiiCategoriesExclude(AuBusinessNumberValue);
-        /// <summary> AU Company Number. </summary>
+        /// <summary> AUCompanyNumber. </summary>
         public static PiiCategoriesExclude AuCompanyNumber { get; } = new PiiCategoriesExclude(AuCompanyNumberValue);
-        /// <summary> AT Identity Card. </summary>
+        /// <summary> ATIdentityCard. </summary>
         public static PiiCategoriesExclude AtIdentityCard { get; } = new PiiCategoriesExclude(AtIdentityCardValue);
-        /// <summary> AT Tax Identification Number. </summary>
+        /// <summary> ATTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude AtTaxIdentificationNumber { get; } = new PiiCategoriesExclude(AtTaxIdentificationNumberValue);
-        /// <summary> AT Value Added Tax Number. </summary>
+        /// <summary> ATValueAddedTaxNumber. </summary>
         public static PiiCategoriesExclude AtValueAddedTaxNumber { get; } = new PiiCategoriesExclude(AtValueAddedTaxNumberValue);
-        /// <summary> Azure Document DB Auth Key. </summary>
+        /// <summary> AzureDocumentDBAuthKey. </summary>
         public static PiiCategoriesExclude AzureDocumentDbauthKey { get; } = new PiiCategoriesExclude(AzureDocumentDbauthKeyValue);
-        /// <summary> Azure IAAS Database Connection And SQL String. </summary>
+        /// <summary> AzureIAASDatabaseConnectionAndSQLString. </summary>
         public static PiiCategoriesExclude AzureIaasDatabaseConnectionAndSqlString { get; } = new PiiCategoriesExclude(AzureIaasDatabaseConnectionAndSqlStringValue);
-        /// <summary> Azure IoT Connection String. </summary>
+        /// <summary> AzureIoTConnectionString. </summary>
         public static PiiCategoriesExclude AzureIoTConnectionString { get; } = new PiiCategoriesExclude(AzureIoTConnectionStringValue);
-        /// <summary> Azure Publish Setting Password. </summary>
+        /// <summary> AzurePublishSettingPassword. </summary>
         public static PiiCategoriesExclude AzurePublishSettingPassword { get; } = new PiiCategoriesExclude(AzurePublishSettingPasswordValue);
-        /// <summary> Azure Redis Cache String. </summary>
+        /// <summary> AzureRedisCacheString. </summary>
         public static PiiCategoriesExclude AzureRedisCacheString { get; } = new PiiCategoriesExclude(AzureRedisCacheStringValue);
-        /// <summary> Azure SAS. </summary>
+        /// <summary> AzureSAS. </summary>
         public static PiiCategoriesExclude AzureSas { get; } = new PiiCategoriesExclude(AzureSasValue);
-        /// <summary> Azure Service Bus String. </summary>
+        /// <summary> AzureServiceBusString. </summary>
         public static PiiCategoriesExclude AzureServiceBusString { get; } = new PiiCategoriesExclude(AzureServiceBusStringValue);
-        /// <summary> Azure Storage Account Key. </summary>
+        /// <summary> AzureStorageAccountKey. </summary>
         public static PiiCategoriesExclude AzureStorageAccountKey { get; } = new PiiCategoriesExclude(AzureStorageAccountKeyValue);
-        /// <summary> Azure Storage Account Generic. </summary>
+        /// <summary> AzureStorageAccountGeneric. </summary>
         public static PiiCategoriesExclude AzureStorageAccountGeneric { get; } = new PiiCategoriesExclude(AzureStorageAccountGenericValue);
-        /// <summary> BE National Number. </summary>
+        /// <summary> BENationalNumber. </summary>
         public static PiiCategoriesExclude BeNationalNumber { get; } = new PiiCategoriesExclude(BeNationalNumberValue);
-        /// <summary> BE National Number V2. </summary>
+        /// <summary> BENationalNumberV2. </summary>
         public static PiiCategoriesExclude BeNationalNumberV2 { get; } = new PiiCategoriesExclude(BeNationalNumberV2Value);
-        /// <summary> BE Value Added Tax Number. </summary>
+        /// <summary> BEValueAddedTaxNumber. </summary>
         public static PiiCategoriesExclude BeValueAddedTaxNumber { get; } = new PiiCategoriesExclude(BeValueAddedTaxNumberValue);
-        /// <summary> BR CPF Number. </summary>
+        /// <summary> BRCPFNumber. </summary>
         public static PiiCategoriesExclude BrCpfNumber { get; } = new PiiCategoriesExclude(BrCpfNumberValue);
-        /// <summary> BR Legal Entity Number. </summary>
+        /// <summary> BRLegalEntityNumber. </summary>
         public static PiiCategoriesExclude BrLegalEntityNumber { get; } = new PiiCategoriesExclude(BrLegalEntityNumberValue);
-        /// <summary> BR National ID RG. </summary>
+        /// <summary> BRNationalIDRG. </summary>
         public static PiiCategoriesExclude BrNationalIdRg { get; } = new PiiCategoriesExclude(BrNationalIdRgValue);
-        /// <summary> BG Uniform Civil Number. </summary>
+        /// <summary> BGUniformCivilNumber. </summary>
         public static PiiCategoriesExclude BgUniformCivilNumber { get; } = new PiiCategoriesExclude(BgUniformCivilNumberValue);
-        /// <summary> CA Bank Account Number. </summary>
+        /// <summary> CABankAccountNumber. </summary>
         public static PiiCategoriesExclude CaBankAccountNumber { get; } = new PiiCategoriesExclude(CaBankAccountNumberValue);
-        /// <summary> CA Driver's License Number. </summary>
+        /// <summary> CADriversLicenseNumber. </summary>
         public static PiiCategoriesExclude CaDriversLicenseNumber { get; } = new PiiCategoriesExclude(CaDriversLicenseNumberValue);
-        /// <summary> CA Health Service Number. </summary>
+        /// <summary> CAHealthServiceNumber. </summary>
         public static PiiCategoriesExclude CaHealthServiceNumber { get; } = new PiiCategoriesExclude(CaHealthServiceNumberValue);
-        /// <summary> CA Passport Number. </summary>
+        /// <summary> CAPassportNumber. </summary>
         public static PiiCategoriesExclude CaPassportNumber { get; } = new PiiCategoriesExclude(CaPassportNumberValue);
-        /// <summary> CA Personal Health Identification. </summary>
+        /// <summary> CAPersonalHealthIdentification. </summary>
         public static PiiCategoriesExclude CaPersonalHealthIdentification { get; } = new PiiCategoriesExclude(CaPersonalHealthIdentificationValue);
-        /// <summary> CA Social Insurance Number. </summary>
+        /// <summary> CASocialInsuranceNumber. </summary>
         public static PiiCategoriesExclude CaSocialInsuranceNumber { get; } = new PiiCategoriesExclude(CaSocialInsuranceNumberValue);
-        /// <summary> CL Identity Card Number. </summary>
+        /// <summary> CLIdentityCardNumber. </summary>
         public static PiiCategoriesExclude ClIdentityCardNumber { get; } = new PiiCategoriesExclude(ClIdentityCardNumberValue);
-        /// <summary> CN Resident Identity Card Number. </summary>
+        /// <summary> CNResidentIdentityCardNumber. </summary>
         public static PiiCategoriesExclude CnResidentIdentityCardNumber { get; } = new PiiCategoriesExclude(CnResidentIdentityCardNumberValue);
-        /// <summary> Credit Card Number. </summary>
+        /// <summary> CreditCardNumber. </summary>
         public static PiiCategoriesExclude CreditCardNumber { get; } = new PiiCategoriesExclude(CreditCardNumberValue);
-        /// <summary> HR Identity Card Number. </summary>
+        /// <summary> HRIdentityCardNumber. </summary>
         public static PiiCategoriesExclude HrIdentityCardNumber { get; } = new PiiCategoriesExclude(HrIdentityCardNumberValue);
-        /// <summary> HR National ID Number. </summary>
+        /// <summary> HRNationalIDNumber. </summary>
         public static PiiCategoriesExclude HrNationalIdNumber { get; } = new PiiCategoriesExclude(HrNationalIdNumberValue);
-        /// <summary> HR Personal Identification Number. </summary>
+        /// <summary> HRPersonalIdentificationNumber. </summary>
         public static PiiCategoriesExclude HrPersonalIdentificationNumber { get; } = new PiiCategoriesExclude(HrPersonalIdentificationNumberValue);
-        /// <summary> HR Personal Identification OIB Number V2. </summary>
+        /// <summary> HRPersonalIdentificationOIBNumberV2. </summary>
         public static PiiCategoriesExclude HrPersonalIdentificationOIBNumberV2 { get; } = new PiiCategoriesExclude(HrPersonalIdentificationOIBNumberV2Value);
-        /// <summary> CY Identity Card. </summary>
+        /// <summary> CYIdentityCard. </summary>
         public static PiiCategoriesExclude CyIdentityCard { get; } = new PiiCategoriesExclude(CyIdentityCardValue);
-        /// <summary> CY Tax Identification Number. </summary>
+        /// <summary> CYTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude CyTaxIdentificationNumber { get; } = new PiiCategoriesExclude(CyTaxIdentificationNumberValue);
-        /// <summary> CZ Personal Identity Number. </summary>
+        /// <summary> CZPersonalIdentityNumber. </summary>
         public static PiiCategoriesExclude CzPersonalIdentityNumber { get; } = new PiiCategoriesExclude(CzPersonalIdentityNumberValue);
-        /// <summary> CZ Personal Identity V2. </summary>
+        /// <summary> CZPersonalIdentityV2. </summary>
         public static PiiCategoriesExclude CzPersonalIdentityV2 { get; } = new PiiCategoriesExclude(CzPersonalIdentityV2Value);
-        /// <summary> DK Personal Identification Number. </summary>
+        /// <summary> DKPersonalIdentificationNumber. </summary>
         public static PiiCategoriesExclude DkPersonalIdentificationNumber { get; } = new PiiCategoriesExclude(DkPersonalIdentificationNumberValue);
-        /// <summary> DK Personal Identification V2. </summary>
+        /// <summary> DKPersonalIdentificationV2. </summary>
         public static PiiCategoriesExclude DkPersonalIdentificationV2 { get; } = new PiiCategoriesExclude(DkPersonalIdentificationV2Value);
-        /// <summary> Drug Enforcement Agency Number. </summary>
+        /// <summary> DrugEnforcementAgencyNumber. </summary>
         public static PiiCategoriesExclude DrugEnforcementAgencyNumber { get; } = new PiiCategoriesExclude(DrugEnforcementAgencyNumberValue);
-        /// <summary> EE Personal Identification Code. </summary>
+        /// <summary> EEPersonalIdentificationCode. </summary>
         public static PiiCategoriesExclude EePersonalIdentificationCode { get; } = new PiiCategoriesExclude(EePersonalIdentificationCodeValue);
-        /// <summary> EU Debit Card Number. </summary>
+        /// <summary> EUDebitCardNumber. </summary>
         public static PiiCategoriesExclude EuDebitCardNumber { get; } = new PiiCategoriesExclude(EuDebitCardNumberValue);
-        /// <summary> EU Driver's License Number. </summary>
+        /// <summary> EUDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude EuDriversLicenseNumber { get; } = new PiiCategoriesExclude(EuDriversLicenseNumberValue);
-        /// <summary> EU GPS Coordinates. </summary>
+        /// <summary> EUGPSCoordinates. </summary>
         public static PiiCategoriesExclude EuGpsCoordinates { get; } = new PiiCategoriesExclude(EuGpsCoordinatesValue);
-        /// <summary> EU National Identification Number. </summary>
+        /// <summary> EUNationalIdentificationNumber. </summary>
         public static PiiCategoriesExclude EuNationalIdentificationNumber { get; } = new PiiCategoriesExclude(EuNationalIdentificationNumberValue);
-        /// <summary> EU Passport Number. </summary>
+        /// <summary> EUPassportNumber. </summary>
         public static PiiCategoriesExclude EuPassportNumber { get; } = new PiiCategoriesExclude(EuPassportNumberValue);
-        /// <summary> EU Social Security Number. </summary>
+        /// <summary> EUSocialSecurityNumber. </summary>
         public static PiiCategoriesExclude EuSocialSecurityNumber { get; } = new PiiCategoriesExclude(EuSocialSecurityNumberValue);
-        /// <summary> EU Tax Identification Number. </summary>
+        /// <summary> EUTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude EuTaxIdentificationNumber { get; } = new PiiCategoriesExclude(EuTaxIdentificationNumberValue);
-        /// <summary> FI European Health Number. </summary>
+        /// <summary> FIEuropeanHealthNumber. </summary>
         public static PiiCategoriesExclude FiEuropeanHealthNumber { get; } = new PiiCategoriesExclude(FiEuropeanHealthNumberValue);
-        /// <summary> FI National ID. </summary>
+        /// <summary> FINationalID. </summary>
         public static PiiCategoriesExclude FiNationalId { get; } = new PiiCategoriesExclude(FiNationalIdValue);
-        /// <summary> FI National ID V2. </summary>
+        /// <summary> FINationalIDV2. </summary>
         public static PiiCategoriesExclude FiNationalIdV2 { get; } = new PiiCategoriesExclude(FiNationalIdV2Value);
-        /// <summary> FI Passport Number. </summary>
+        /// <summary> FIPassportNumber. </summary>
         public static PiiCategoriesExclude FiPassportNumber { get; } = new PiiCategoriesExclude(FiPassportNumberValue);
-        /// <summary> FR Driver's License Number. </summary>
+        /// <summary> FRDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude FrDriversLicenseNumber { get; } = new PiiCategoriesExclude(FrDriversLicenseNumberValue);
-        /// <summary> FR Health Insurance Number. </summary>
+        /// <summary> FRHealthInsuranceNumber. </summary>
         public static PiiCategoriesExclude FrHealthInsuranceNumber { get; } = new PiiCategoriesExclude(FrHealthInsuranceNumberValue);
-        /// <summary> FR National ID. </summary>
+        /// <summary> FRNationalID. </summary>
         public static PiiCategoriesExclude FrNationalId { get; } = new PiiCategoriesExclude(FrNationalIdValue);
-        /// <summary> FR Passport Number. </summary>
+        /// <summary> FRPassportNumber. </summary>
         public static PiiCategoriesExclude FrPassportNumber { get; } = new PiiCategoriesExclude(FrPassportNumberValue);
-        /// <summary> FR Social Security Number. </summary>
+        /// <summary> FRSocialSecurityNumber. </summary>
         public static PiiCategoriesExclude FrSocialSecurityNumber { get; } = new PiiCategoriesExclude(FrSocialSecurityNumberValue);
-        /// <summary> FR Tax Identification Number. </summary>
+        /// <summary> FRTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude FrTaxIdentificationNumber { get; } = new PiiCategoriesExclude(FrTaxIdentificationNumberValue);
-        /// <summary> FR Value Added Tax Number. </summary>
+        /// <summary> FRValueAddedTaxNumber. </summary>
         public static PiiCategoriesExclude FrValueAddedTaxNumber { get; } = new PiiCategoriesExclude(FrValueAddedTaxNumberValue);
-        /// <summary> DE Driver's License Number. </summary>
+        /// <summary> DEDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude DeDriversLicenseNumber { get; } = new PiiCategoriesExclude(DeDriversLicenseNumberValue);
-        /// <summary> DE Passport Number. </summary>
+        /// <summary> DEPassportNumber. </summary>
         public static PiiCategoriesExclude DePassportNumber { get; } = new PiiCategoriesExclude(DePassportNumberValue);
-        /// <summary> DE Identity Card Number. </summary>
+        /// <summary> DEIdentityCardNumber. </summary>
         public static PiiCategoriesExclude DeIdentityCardNumber { get; } = new PiiCategoriesExclude(DeIdentityCardNumberValue);
-        /// <summary> DE Tax Identification Number. </summary>
+        /// <summary> DETaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude DeTaxIdentificationNumber { get; } = new PiiCategoriesExclude(DeTaxIdentificationNumberValue);
-        /// <summary> DE Value Added Number. </summary>
+        /// <summary> DEValueAddedNumber. </summary>
         public static PiiCategoriesExclude DeValueAddedNumber { get; } = new PiiCategoriesExclude(DeValueAddedNumberValue);
-        /// <summary> GR National ID Card. </summary>
+        /// <summary> GRNationalIDCard. </summary>
         public static PiiCategoriesExclude GrNationalIdCard { get; } = new PiiCategoriesExclude(GrNationalIdCardValue);
-        /// <summary> GR National ID V2. </summary>
+        /// <summary> GRNationalIDV2. </summary>
         public static PiiCategoriesExclude GrNationalIdV2 { get; } = new PiiCategoriesExclude(GrNationalIdV2Value);
-        /// <summary> GR Tax Identification Number. </summary>
+        /// <summary> GRTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude GrTaxIdentificationNumber { get; } = new PiiCategoriesExclude(GrTaxIdentificationNumberValue);
-        /// <summary> HK Identity Card Number. </summary>
+        /// <summary> HKIdentityCardNumber. </summary>
         public static PiiCategoriesExclude HkIdentityCardNumber { get; } = new PiiCategoriesExclude(HkIdentityCardNumberValue);
-        /// <summary> HU Value Added Number. </summary>
+        /// <summary> HUValueAddedNumber. </summary>
         public static PiiCategoriesExclude HuValueAddedNumber { get; } = new PiiCategoriesExclude(HuValueAddedNumberValue);
-        /// <summary> HU Personal Identification Number. </summary>
+        /// <summary> HUPersonalIdentificationNumber. </summary>
         public static PiiCategoriesExclude HuPersonalIdentificationNumber { get; } = new PiiCategoriesExclude(HuPersonalIdentificationNumberValue);
-        /// <summary> HU Tax Identification Number. </summary>
+        /// <summary> HUTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude HuTaxIdentificationNumber { get; } = new PiiCategoriesExclude(HuTaxIdentificationNumberValue);
-        /// <summary> IN Permanent Account. </summary>
+        /// <summary> INPermanentAccount. </summary>
         public static PiiCategoriesExclude InPermanentAccount { get; } = new PiiCategoriesExclude(InPermanentAccountValue);
-        /// <summary> IN Unique Identification Number. </summary>
+        /// <summary> INUniqueIdentificationNumber. </summary>
         public static PiiCategoriesExclude InUniqueIdentificationNumber { get; } = new PiiCategoriesExclude(InUniqueIdentificationNumberValue);
-        /// <summary> ID Identity Card Number. </summary>
+        /// <summary> IDIdentityCardNumber. </summary>
         public static PiiCategoriesExclude IdIdentityCardNumber { get; } = new PiiCategoriesExclude(IdIdentityCardNumberValue);
-        /// <summary> International Banking Account Number. </summary>
+        /// <summary> InternationalBankingAccountNumber. </summary>
         public static PiiCategoriesExclude InternationalBankingAccountNumber { get; } = new PiiCategoriesExclude(InternationalBankingAccountNumberValue);
-        /// <summary> IE Personal Public Service Number. </summary>
+        /// <summary> IEPersonalPublicServiceNumber. </summary>
         public static PiiCategoriesExclude IePersonalPublicServiceNumber { get; } = new PiiCategoriesExclude(IePersonalPublicServiceNumberValue);
-        /// <summary> IE Personal Public Service Number V2. </summary>
+        /// <summary> IEPersonalPublicServiceNumberV2. </summary>
         public static PiiCategoriesExclude IePersonalPublicServiceNumberV2 { get; } = new PiiCategoriesExclude(IePersonalPublicServiceNumberV2Value);
-        /// <summary> IL Bank Account Number. </summary>
+        /// <summary> ILBankAccountNumber. </summary>
         public static PiiCategoriesExclude IlBankAccountNumber { get; } = new PiiCategoriesExclude(IlBankAccountNumberValue);
-        /// <summary> IL National ID. </summary>
+        /// <summary> ILNationalID. </summary>
         public static PiiCategoriesExclude IlNationalId { get; } = new PiiCategoriesExclude(IlNationalIdValue);
-        /// <summary> IT Driver's License Number. </summary>
+        /// <summary> ITDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude ItDriversLicenseNumber { get; } = new PiiCategoriesExclude(ItDriversLicenseNumberValue);
-        /// <summary> IT Fiscal Code. </summary>
+        /// <summary> ITFiscalCode. </summary>
         public static PiiCategoriesExclude ItFiscalCode { get; } = new PiiCategoriesExclude(ItFiscalCodeValue);
-        /// <summary> IT Value Added Tax Number. </summary>
+        /// <summary> ITValueAddedTaxNumber. </summary>
         public static PiiCategoriesExclude ItValueAddedTaxNumber { get; } = new PiiCategoriesExclude(ItValueAddedTaxNumberValue);
-        /// <summary> JP Bank Account Number. </summary>
+        /// <summary> JPBankAccountNumber. </summary>
         public static PiiCategoriesExclude JpBankAccountNumber { get; } = new PiiCategoriesExclude(JpBankAccountNumberValue);
-        /// <summary> JP Driver's License Number. </summary>
+        /// <summary> JPDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude JpDriversLicenseNumber { get; } = new PiiCategoriesExclude(JpDriversLicenseNumberValue);
-        /// <summary> JP Passport Number. </summary>
+        /// <summary> JPPassportNumber. </summary>
         public static PiiCategoriesExclude JpPassportNumber { get; } = new PiiCategoriesExclude(JpPassportNumberValue);
-        /// <summary> JP Resident Registration Number. </summary>
+        /// <summary> JPResidentRegistrationNumber. </summary>
         public static PiiCategoriesExclude JpResidentRegistrationNumber { get; } = new PiiCategoriesExclude(JpResidentRegistrationNumberValue);
-        /// <summary> JP Social Insurance Number. </summary>
+        /// <summary> JPSocialInsuranceNumber. </summary>
         public static PiiCategoriesExclude JpSocialInsuranceNumber { get; } = new PiiCategoriesExclude(JpSocialInsuranceNumberValue);
-        /// <summary> JP My Number Corporate. </summary>
+        /// <summary> JPMyNumberCorporate. </summary>
         public static PiiCategoriesExclude JpMyNumberCorporate { get; } = new PiiCategoriesExclude(JpMyNumberCorporateValue);
-        /// <summary> JP My Number Personal. </summary>
+        /// <summary> JPMyNumberPersonal. </summary>
         public static PiiCategoriesExclude JpMyNumberPersonal { get; } = new PiiCategoriesExclude(JpMyNumberPersonalValue);
-        /// <summary> JP Residence Card Number. </summary>
+        /// <summary> JPResidenceCardNumber. </summary>
         public static PiiCategoriesExclude JpResidenceCardNumber { get; } = new PiiCategoriesExclude(JpResidenceCardNumberValue);
-        /// <summary> LV Personal Code. </summary>
+        /// <summary> LVPersonalCode. </summary>
         public static PiiCategoriesExclude LvPersonalCode { get; } = new PiiCategoriesExclude(LvPersonalCodeValue);
-        /// <summary> LT Personal Code. </summary>
+        /// <summary> LTPersonalCode. </summary>
         public static PiiCategoriesExclude LtPersonalCode { get; } = new PiiCategoriesExclude(LtPersonalCodeValue);
-        /// <summary> LU National Identification Number Natural. </summary>
+        /// <summary> LUNationalIdentificationNumberNatural. </summary>
         public static PiiCategoriesExclude LuNationalIdentificationNumberNatural { get; } = new PiiCategoriesExclude(LuNationalIdentificationNumberNaturalValue);
-        /// <summary> LU National Identification Number Non Natural. </summary>
+        /// <summary> LUNationalIdentificationNumberNonNatural. </summary>
         public static PiiCategoriesExclude LuNationalIdentificationNumberNonNatural { get; } = new PiiCategoriesExclude(LuNationalIdentificationNumberNonNaturalValue);
-        /// <summary> MY Identity Card Number. </summary>
+        /// <summary> MYIdentityCardNumber. </summary>
         public static PiiCategoriesExclude MyIdentityCardNumber { get; } = new PiiCategoriesExclude(MyIdentityCardNumberValue);
-        /// <summary> MT Identity Card Number. </summary>
+        /// <summary> MTIdentityCardNumber. </summary>
         public static PiiCategoriesExclude MtIdentityCardNumber { get; } = new PiiCategoriesExclude(MtIdentityCardNumberValue);
-        /// <summary> MT Tax ID Number. </summary>
+        /// <summary> MTTaxIDNumber. </summary>
         public static PiiCategoriesExclude MtTaxIdNumber { get; } = new PiiCategoriesExclude(MtTaxIdNumberValue);
-        /// <summary> NL Citizens Service Number. </summary>
+        /// <summary> NLCitizensServiceNumber. </summary>
         public static PiiCategoriesExclude NlCitizensServiceNumber { get; } = new PiiCategoriesExclude(NlCitizensServiceNumberValue);
-        /// <summary> NL Citizens Service Number V2. </summary>
+        /// <summary> NLCitizensServiceNumberV2. </summary>
         public static PiiCategoriesExclude NlCitizensServiceNumberV2 { get; } = new PiiCategoriesExclude(NlCitizensServiceNumberV2Value);
-        /// <summary> NL Tax Identification Number. </summary>
+        /// <summary> NLTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude NlTaxIdentificationNumber { get; } = new PiiCategoriesExclude(NlTaxIdentificationNumberValue);
-        /// <summary> NL Value Added Tax Number. </summary>
+        /// <summary> NLValueAddedTaxNumber. </summary>
         public static PiiCategoriesExclude NlValueAddedTaxNumber { get; } = new PiiCategoriesExclude(NlValueAddedTaxNumberValue);
-        /// <summary> NZ Bank Account Number. </summary>
+        /// <summary> NZBankAccountNumber. </summary>
         public static PiiCategoriesExclude NzBankAccountNumber { get; } = new PiiCategoriesExclude(NzBankAccountNumberValue);
-        /// <summary> NZ Driver's License Number. </summary>
+        /// <summary> NZDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude NzDriversLicenseNumber { get; } = new PiiCategoriesExclude(NzDriversLicenseNumberValue);
-        /// <summary> NZ Inland Revenue Number. </summary>
+        /// <summary> NZInlandRevenueNumber. </summary>
         public static PiiCategoriesExclude NzInlandRevenueNumber { get; } = new PiiCategoriesExclude(NzInlandRevenueNumberValue);
-        /// <summary> NZ Ministry Of Health Number. </summary>
+        /// <summary> NZMinistryOfHealthNumber. </summary>
         public static PiiCategoriesExclude NzMinistryOfHealthNumber { get; } = new PiiCategoriesExclude(NzMinistryOfHealthNumberValue);
-        /// <summary> NZ Social Welfare Number. </summary>
+        /// <summary> NZSocialWelfareNumber. </summary>
         public static PiiCategoriesExclude NzSocialWelfareNumber { get; } = new PiiCategoriesExclude(NzSocialWelfareNumberValue);
-        /// <summary> NO Identity Number. </summary>
+        /// <summary> NOIdentityNumber. </summary>
         public static PiiCategoriesExclude NoIdentityNumber { get; } = new PiiCategoriesExclude(NoIdentityNumberValue);
-        /// <summary> PH Unified Multi Purpose ID Number. </summary>
+        /// <summary> PHUnifiedMultiPurposeIDNumber. </summary>
         public static PiiCategoriesExclude PhUnifiedMultiPurposeIdNumber { get; } = new PiiCategoriesExclude(PhUnifiedMultiPurposeIdNumberValue);
-        /// <summary> PL Identity Card. </summary>
+        /// <summary> PLIdentityCard. </summary>
         public static PiiCategoriesExclude PlIdentityCard { get; } = new PiiCategoriesExclude(PlIdentityCardValue);
-        /// <summary> PL National ID. </summary>
+        /// <summary> PLNationalID. </summary>
         public static PiiCategoriesExclude PlNationalId { get; } = new PiiCategoriesExclude(PlNationalIdValue);
-        /// <summary> PL National ID V2. </summary>
+        /// <summary> PLNationalIDV2. </summary>
         public static PiiCategoriesExclude PlNationalIdV2 { get; } = new PiiCategoriesExclude(PlNationalIdV2Value);
-        /// <summary> PL Passport Number. </summary>
+        /// <summary> PLPassportNumber. </summary>
         public static PiiCategoriesExclude PlPassportNumber { get; } = new PiiCategoriesExclude(PlPassportNumberValue);
-        /// <summary> PL Tax Identification Number. </summary>
+        /// <summary> PLTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude PlTaxIdentificationNumber { get; } = new PiiCategoriesExclude(PlTaxIdentificationNumberValue);
-        /// <summary> PL REGON Number. </summary>
+        /// <summary> PLREGONNumber. </summary>
         public static PiiCategoriesExclude PlRegonNumber { get; } = new PiiCategoriesExclude(PlRegonNumberValue);
-        /// <summary> PT Citizen Card Number. </summary>
+        /// <summary> PTCitizenCardNumber. </summary>
         public static PiiCategoriesExclude PtCitizenCardNumber { get; } = new PiiCategoriesExclude(PtCitizenCardNumberValue);
-        /// <summary> PT Citizen Card Number V2. </summary>
+        /// <summary> PTCitizenCardNumberV2. </summary>
         public static PiiCategoriesExclude PtCitizenCardNumberV2 { get; } = new PiiCategoriesExclude(PtCitizenCardNumberV2Value);
-        /// <summary> PT Tax Identification Number. </summary>
+        /// <summary> PTTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude PtTaxIdentificationNumber { get; } = new PiiCategoriesExclude(PtTaxIdentificationNumberValue);
-        /// <summary> RO Personal Numerical Code. </summary>
+        /// <summary> ROPersonalNumericalCode. </summary>
         public static PiiCategoriesExclude RoPersonalNumericalCode { get; } = new PiiCategoriesExclude(RoPersonalNumericalCodeValue);
-        /// <summary> RU Passport Number Domestic. </summary>
+        /// <summary> RUPassportNumberDomestic. </summary>
         public static PiiCategoriesExclude RuPassportNumberDomestic { get; } = new PiiCategoriesExclude(RuPassportNumberDomesticValue);
-        /// <summary> RU Passport Number International. </summary>
+        /// <summary> RUPassportNumberInternational. </summary>
         public static PiiCategoriesExclude RuPassportNumberInternational { get; } = new PiiCategoriesExclude(RuPassportNumberInternationalValue);
-        /// <summary> SA National ID. </summary>
+        /// <summary> SANationalID. </summary>
         public static PiiCategoriesExclude SaNationalId { get; } = new PiiCategoriesExclude(SaNationalIdValue);
-        /// <summary> SG National Registration Identity Card Number. </summary>
+        /// <summary> SGNationalRegistrationIdentityCardNumber. </summary>
         public static PiiCategoriesExclude SgNationalRegistrationIdentityCardNumber { get; } = new PiiCategoriesExclude(SgNationalRegistrationIdentityCardNumberValue);
-        /// <summary> SK Personal Number. </summary>
+        /// <summary> SKPersonalNumber. </summary>
         public static PiiCategoriesExclude SkPersonalNumber { get; } = new PiiCategoriesExclude(SkPersonalNumberValue);
-        /// <summary> SI Tax Identification Number. </summary>
+        /// <summary> SITaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude SiTaxIdentificationNumber { get; } = new PiiCategoriesExclude(SiTaxIdentificationNumberValue);
-        /// <summary> SI Unique Master Citizen Number. </summary>
+        /// <summary> SIUniqueMasterCitizenNumber. </summary>
         public static PiiCategoriesExclude SiUniqueMasterCitizenNumber { get; } = new PiiCategoriesExclude(SiUniqueMasterCitizenNumberValue);
-        /// <summary> ZA Identification Number. </summary>
+        /// <summary> ZAIdentificationNumber. </summary>
         public static PiiCategoriesExclude ZaIdentificationNumber { get; } = new PiiCategoriesExclude(ZaIdentificationNumberValue);
-        /// <summary> KR Resident Registration Number. </summary>
+        /// <summary> KRResidentRegistrationNumber. </summary>
         public static PiiCategoriesExclude KrResidentRegistrationNumber { get; } = new PiiCategoriesExclude(KrResidentRegistrationNumberValue);
-        /// <summary> ES DNI. </summary>
+        /// <summary> ESDNI. </summary>
         public static PiiCategoriesExclude EsDni { get; } = new PiiCategoriesExclude(EsDniValue);
-        /// <summary> ES Social Security Number. </summary>
+        /// <summary> ESSocialSecurityNumber. </summary>
         public static PiiCategoriesExclude EsSocialSecurityNumber { get; } = new PiiCategoriesExclude(EsSocialSecurityNumberValue);
-        /// <summary> ES Tax Identification Number. </summary>
+        /// <summary> ESTaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude EsTaxIdentificationNumber { get; } = new PiiCategoriesExclude(EsTaxIdentificationNumberValue);
-        /// <summary> SQL Server Connection String. </summary>
+        /// <summary> SQLServerConnectionString. </summary>
         public static PiiCategoriesExclude SqlServerConnectionString { get; } = new PiiCategoriesExclude(SqlServerConnectionStringValue);
-        /// <summary> SE National ID. </summary>
+        /// <summary> SENationalID. </summary>
         public static PiiCategoriesExclude SeNationalId { get; } = new PiiCategoriesExclude(SeNationalIdValue);
-        /// <summary> SE National ID V2. </summary>
+        /// <summary> SENationalIDV2. </summary>
         public static PiiCategoriesExclude SeNationalIdV2 { get; } = new PiiCategoriesExclude(SeNationalIdV2Value);
-        /// <summary> SE Passport Number. </summary>
+        /// <summary> SEPassportNumber. </summary>
         public static PiiCategoriesExclude SePassportNumber { get; } = new PiiCategoriesExclude(SePassportNumberValue);
-        /// <summary> SE Tax Identification Number. </summary>
+        /// <summary> SETaxIdentificationNumber. </summary>
         public static PiiCategoriesExclude SeTaxIdentificationNumber { get; } = new PiiCategoriesExclude(SeTaxIdentificationNumberValue);
-        /// <summary> SWIFT Code. </summary>
+        /// <summary> SWIFTCode. </summary>
         public static PiiCategoriesExclude SwiftCode { get; } = new PiiCategoriesExclude(SwiftCodeValue);
-        /// <summary> CH Social Security Number. </summary>
+        /// <summary> CHSocialSecurityNumber. </summary>
         public static PiiCategoriesExclude ChSocialSecurityNumber { get; } = new PiiCategoriesExclude(ChSocialSecurityNumberValue);
-        /// <summary> TW National ID. </summary>
+        /// <summary> TWNationalID. </summary>
         public static PiiCategoriesExclude TwNationalId { get; } = new PiiCategoriesExclude(TwNationalIdValue);
-        /// <summary> TW Passport Number. </summary>
+        /// <summary> TWPassportNumber. </summary>
         public static PiiCategoriesExclude TwPassportNumber { get; } = new PiiCategoriesExclude(TwPassportNumberValue);
-        /// <summary> TW Resident Certificate. </summary>
+        /// <summary> TWResidentCertificate. </summary>
         public static PiiCategoriesExclude TwResidentCertificate { get; } = new PiiCategoriesExclude(TwResidentCertificateValue);
-        /// <summary> TH Population Identification Code. </summary>
+        /// <summary> THPopulationIdentificationCode. </summary>
         public static PiiCategoriesExclude ThPopulationIdentificationCode { get; } = new PiiCategoriesExclude(ThPopulationIdentificationCodeValue);
-        /// <summary> TR National Identification Number. </summary>
+        /// <summary> TRNationalIdentificationNumber. </summary>
         public static PiiCategoriesExclude TrNationalIdentificationNumber { get; } = new PiiCategoriesExclude(TrNationalIdentificationNumberValue);
-        /// <summary> UK Driver's License Number. </summary>
+        /// <summary> UKDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude UkDriversLicenseNumber { get; } = new PiiCategoriesExclude(UkDriversLicenseNumberValue);
-        /// <summary> UK Electoral Roll Number. </summary>
+        /// <summary> UKElectoralRollNumber. </summary>
         public static PiiCategoriesExclude UkElectoralRollNumber { get; } = new PiiCategoriesExclude(UkElectoralRollNumberValue);
-        /// <summary> UK National Health Number. </summary>
+        /// <summary> UKNationalHealthNumber. </summary>
         public static PiiCategoriesExclude UkNationalHealthNumber { get; } = new PiiCategoriesExclude(UkNationalHealthNumberValue);
-        /// <summary> UK National Insurance Number. </summary>
+        /// <summary> UKNationalInsuranceNumber. </summary>
         public static PiiCategoriesExclude UkNationalInsuranceNumber { get; } = new PiiCategoriesExclude(UkNationalInsuranceNumberValue);
-        /// <summary> UK Unique Taxpayer Number. </summary>
+        /// <summary> UKUniqueTaxpayerNumber. </summary>
         public static PiiCategoriesExclude UkUniqueTaxpayerNumber { get; } = new PiiCategoriesExclude(UkUniqueTaxpayerNumberValue);
-        /// <summary> US UK Passport Number. </summary>
+        /// <summary> USUKPassportNumber. </summary>
         public static PiiCategoriesExclude UsUkPassportNumber { get; } = new PiiCategoriesExclude(UsUkPassportNumberValue);
-        /// <summary> US Bank Account Number. </summary>
+        /// <summary> USBankAccountNumber. </summary>
         public static PiiCategoriesExclude UsBankAccountNumber { get; } = new PiiCategoriesExclude(UsBankAccountNumberValue);
-        /// <summary> US Driver's License Number. </summary>
+        /// <summary> USDriversLicenseNumber. </summary>
         public static PiiCategoriesExclude UsDriversLicenseNumber { get; } = new PiiCategoriesExclude(UsDriversLicenseNumberValue);
-        /// <summary> US Individual Taxpayer Identification. </summary>
+        /// <summary> USIndividualTaxpayerIdentification. </summary>
         public static PiiCategoriesExclude UsIndividualTaxpayerIdentification { get; } = new PiiCategoriesExclude(UsIndividualTaxpayerIdentificationValue);
-        /// <summary> US Social Security Number. </summary>
+        /// <summary> USSocialSecurityNumber. </summary>
         public static PiiCategoriesExclude UsSocialSecurityNumber { get; } = new PiiCategoriesExclude(UsSocialSecurityNumberValue);
-        /// <summary> UA Passport Number Domestic. </summary>
+        /// <summary> UAPassportNumberDomestic. </summary>
         public static PiiCategoriesExclude UaPassportNumberDomestic { get; } = new PiiCategoriesExclude(UaPassportNumberDomesticValue);
-        /// <summary> UA Passport Number International. </summary>
+        /// <summary> UAPassportNumberInternational. </summary>
         public static PiiCategoriesExclude UaPassportNumberInternational { get; } = new PiiCategoriesExclude(UaPassportNumberInternationalValue);
         /// <summary> Organization. </summary>
         public static PiiCategoriesExclude Organization { get; } = new PiiCategoriesExclude(OrganizationValue);
@@ -526,9 +526,9 @@ namespace Azure.AI.Language.Text
         public static PiiCategoriesExclude URL { get; } = new PiiCategoriesExclude(URLValue);
         /// <summary> Age. </summary>
         public static PiiCategoriesExclude Age { get; } = new PiiCategoriesExclude(AgeValue);
-        /// <summary> Phone Number. </summary>
+        /// <summary> PhoneNumber. </summary>
         public static PiiCategoriesExclude PhoneNumber { get; } = new PiiCategoriesExclude(PhoneNumberValue);
-        /// <summary> IP Address. </summary>
+        /// <summary> IPAddress. </summary>
         public static PiiCategoriesExclude IPAddress { get; } = new PiiCategoriesExclude(IPAddressValue);
         /// <summary> Date. </summary>
         public static PiiCategoriesExclude Date { get; } = new PiiCategoriesExclude(DateValue);

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// A locality hint that can be used by the Batch service to select a Compute Node
-    /// on which to start a Task.
-    /// </summary>
+    /// <summary> The AffinityInfo. </summary>
     public partial class AffinityInfo
     {
         /// <summary>
@@ -49,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AffinityInfo"/>. </summary>
-        /// <param name="affinityId"> An opaque string representing the location of a Compute Node or a Task that has run previously. You can pass the affinityId of a Node to indicate that this Task needs to run on that Compute Node. Note that this is just a soft affinity. If the target Compute Node is busy or unavailable at the time the Task is scheduled, then the Task will be scheduled elsewhere. </param>
+        /// <param name="affinityId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="affinityId"/> is null. </exception>
         public AffinityInfo(string affinityId)
         {
@@ -59,7 +56,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="AffinityInfo"/>. </summary>
-        /// <param name="affinityId"> An opaque string representing the location of a Compute Node or a Task that has run previously. You can pass the affinityId of a Node to indicate that this Task needs to run on that Compute Node. Note that this is just a soft affinity. If the target Compute Node is busy or unavailable at the time the Task is scheduled, then the Task will be scheduled elsewhere. </param>
+        /// <param name="affinityId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AffinityInfo(string affinityId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,7 +69,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> An opaque string representing the location of a Compute Node or a Task that has run previously. You can pass the affinityId of a Node to indicate that this Task needs to run on that Compute Node. Note that this is just a soft affinity. If the target Compute Node is busy or unavailable at the time the Task is scheduled, then the Task will be scheduled elsewhere. </summary>
+        /// <summary> Gets or sets the affinity id. </summary>
         public string AffinityId { get; set; }
     }
 }
