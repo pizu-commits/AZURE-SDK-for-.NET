@@ -15,14 +15,6 @@ if ($UseTypeSpecNext) {
     Write-Host "##vso[build.addbuildtag]typespec_next"
 }
 
-$artifactStagingDirectory = $env:BUILD_ARTIFACTSTAGINGDIRECTORY
-
-Write-Host "Running with:"
-Write-Host "  BuildArtifactsPath: $BuildArtifactsPath"
-Write-Host "  UseTypeSpecNext: $UseTypeSpecNext"
-Write-Host "  `$env:BUILD_ARTIFACTSTAGINGDIRECTORY: $artifactStagingDirectory"
-Write-Host "Should emit artifacts: $($artifactStagingDirectory -and !$BuildArtifactsPath)"
-
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
 Push-Location $emitterPackagePath
 try {
@@ -55,7 +47,7 @@ try {
 
     Invoke-LoggedCommand "npm ls -a" -GroupOutput
 
-    $artifactStagingDirectory = $env:Build_ArtifactStagingDirectory
+    $artifactStagingDirectory = $env:BUILD_ARTIFACTSTAGINGDIRECTORY
     if ($artifactStagingDirectory -and !$BuildArtifactsPath) {
         $lockFilesPath = "$artifactStagingDirectory/lock-files"
         New-Item -ItemType Directory -Path "$lockFilesPath" | Out-Null
