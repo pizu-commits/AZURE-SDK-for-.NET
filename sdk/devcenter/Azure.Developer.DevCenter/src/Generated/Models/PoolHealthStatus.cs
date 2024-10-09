@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Pool status indicating whether a pool is available to create Dev Boxes. </summary>
+    /// <summary> The PoolHealthStatus. </summary>
     public readonly partial struct PoolHealthStatus : IEquatable<PoolHealthStatus>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Developer.DevCenter.Models
         private const string WarningValue = "Warning";
         private const string UnhealthyValue = "Unhealthy";
 
-        /// <summary> The pool health status is not known. </summary>
+        /// <summary> Unknown. </summary>
         public static PoolHealthStatus Unknown { get; } = new PoolHealthStatus(UnknownValue);
-        /// <summary> The pool health status waiting for health checks to run. </summary>
+        /// <summary> Pending. </summary>
         public static PoolHealthStatus Pending { get; } = new PoolHealthStatus(PendingValue);
-        /// <summary> The pool health status is healthy. </summary>
+        /// <summary> Healthy. </summary>
         public static PoolHealthStatus Healthy { get; } = new PoolHealthStatus(HealthyValue);
-        /// <summary> The pool health status has one or more warnings. </summary>
+        /// <summary> Warning. </summary>
         public static PoolHealthStatus Warning { get; } = new PoolHealthStatus(WarningValue);
-        /// <summary> The pool health status is not healthy. </summary>
+        /// <summary> Unhealthy. </summary>
         public static PoolHealthStatus Unhealthy { get; } = new PoolHealthStatus(UnhealthyValue);
         /// <summary> Determines if two <see cref="PoolHealthStatus"/> values are the same. </summary>
         public static bool operator ==(PoolHealthStatus left, PoolHealthStatus right) => left.Equals(right);

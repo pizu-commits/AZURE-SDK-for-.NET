@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> The Response body of the service parameters. </summary>
+    /// <summary> The ParametersResult. </summary>
     public partial class ParametersResult
     {
         /// <summary>

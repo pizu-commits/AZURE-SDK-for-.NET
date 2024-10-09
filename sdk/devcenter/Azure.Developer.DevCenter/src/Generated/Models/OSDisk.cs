@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Settings for the operating system disk. </summary>
+    /// <summary> The OSDisk. </summary>
     public partial class OSDisk
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="OSDisk"/>. </summary>
-        /// <param name="diskSizeGB"> The size of the OS Disk in gigabytes. </param>
+        /// <param name="diskSizeGB"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OSDisk(int? diskSizeGB, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The size of the OS Disk in gigabytes. </summary>
+        /// <summary> Gets the disk size gb. </summary>
         public int? DiskSizeGB { get; }
     }
 }

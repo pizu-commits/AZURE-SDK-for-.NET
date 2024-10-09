@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> A DID document. </summary>
+    /// <summary> The DidDocument. </summary>
     public partial class DidDocument
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DidDocument"/>. </summary>
-        /// <param name="id"> String representing a DID issuer. </param>
-        /// <param name="assertionMethod"> List of public keys used for receipt endorsement verification. </param>
+        /// <param name="id"></param>
+        /// <param name="assertionMethod"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="assertionMethod"/> is null. </exception>
         internal DidDocument(string id, IEnumerable<DidDocumentKey> assertionMethod)
         {
@@ -60,8 +60,8 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="DidDocument"/>. </summary>
-        /// <param name="id"> String representing a DID issuer. </param>
-        /// <param name="assertionMethod"> List of public keys used for receipt endorsement verification. </param>
+        /// <param name="id"></param>
+        /// <param name="assertionMethod"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DidDocument(string id, IReadOnlyList<DidDocumentKey> assertionMethod, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> String representing a DID issuer. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> List of public keys used for receipt endorsement verification. </summary>
+        /// <summary> Gets the assertion method. </summary>
         public IReadOnlyList<DidDocumentKey> AssertionMethod { get; }
     }
 }

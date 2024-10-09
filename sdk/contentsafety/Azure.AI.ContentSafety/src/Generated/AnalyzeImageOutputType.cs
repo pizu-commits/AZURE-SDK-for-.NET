@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The type of image analysis output. </summary>
+    /// <summary> The AnalyzeImageOutputType. </summary>
     public readonly partial struct AnalyzeImageOutputType : IEquatable<AnalyzeImageOutputType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.AI.ContentSafety
 
         private const string FourSeverityLevelsValue = "FourSeverityLevels";
 
-        /// <summary> Output severities in four levels, the value could be 0,2,4,6. </summary>
+        /// <summary> FourSeverityLevels. </summary>
         public static AnalyzeImageOutputType FourSeverityLevels { get; } = new AnalyzeImageOutputType(FourSeverityLevelsValue);
         /// <summary> Determines if two <see cref="AnalyzeImageOutputType"/> values are the same. </summary>
         public static bool operator ==(AnalyzeImageOutputType left, AnalyzeImageOutputType right) => left.Equals(right);

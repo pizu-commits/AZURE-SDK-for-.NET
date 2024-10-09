@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The response of adding blocklistItems to the text blocklist. </summary>
+    /// <summary> The AddOrUpdateTextBlocklistItemsResult. </summary>
     public partial class AddOrUpdateTextBlocklistItemsResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AddOrUpdateTextBlocklistItemsResult"/>. </summary>
-        /// <param name="blocklistItems"> Array of blocklistItems have been added. </param>
+        /// <param name="blocklistItems"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="blocklistItems"/> is null. </exception>
         internal AddOrUpdateTextBlocklistItemsResult(IEnumerable<TextBlocklistItem> blocklistItems)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="AddOrUpdateTextBlocklistItemsResult"/>. </summary>
-        /// <param name="blocklistItems"> Array of blocklistItems have been added. </param>
+        /// <param name="blocklistItems"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AddOrUpdateTextBlocklistItemsResult(IReadOnlyList<TextBlocklistItem> blocklistItems, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> Array of blocklistItems have been added. </summary>
+        /// <summary> Gets the blocklist items. </summary>
         public IReadOnlyList<TextBlocklistItem> BlocklistItems { get; }
     }
 }

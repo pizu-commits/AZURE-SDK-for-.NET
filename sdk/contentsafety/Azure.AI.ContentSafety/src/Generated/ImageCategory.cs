@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> Image analyze category. </summary>
+    /// <summary> The ImageCategory. </summary>
     public readonly partial struct ImageCategory : IEquatable<ImageCategory>
     {
         private readonly string _value;

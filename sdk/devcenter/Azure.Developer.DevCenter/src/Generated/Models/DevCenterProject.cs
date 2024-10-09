@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Project details. </summary>
+    /// <summary> The DevCenterProject. </summary>
     public partial class DevCenterProject
     {
         /// <summary>
@@ -51,12 +51,9 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevCenterProject"/>. </summary>
-        /// <param name="name"> Name of the project. </param>
-        /// <param name="description"> Description of the project. </param>
-        /// <param name="maxDevBoxesPerUser">
-        /// When specified, indicates the maximum number of Dev Boxes a single user can
-        /// create across all pools in the project.
-        /// </param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="maxDevBoxesPerUser"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevCenterProject(string name, string description, int? maxDevBoxesPerUser, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +63,11 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Name of the project. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Description of the project. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary>
-        /// When specified, indicates the maximum number of Dev Boxes a single user can
-        /// create across all pools in the project.
-        /// </summary>
+        /// <summary> Gets the max dev boxes per user. </summary>
         public int? MaxDevBoxesPerUser { get; }
     }
 }

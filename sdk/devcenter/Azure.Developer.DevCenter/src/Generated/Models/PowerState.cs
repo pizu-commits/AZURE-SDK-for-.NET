@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The power states of a Dev Box. </summary>
+    /// <summary> The PowerState. </summary>
     public readonly partial struct PowerState : IEquatable<PowerState>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Developer.DevCenter.Models
         private const string PoweredOffValue = "PoweredOff";
         private const string HibernatedValue = "Hibernated";
 
-        /// <summary> The Dev Box power state is not known. </summary>
+        /// <summary> Unknown. </summary>
         public static PowerState Unknown { get; } = new PowerState(UnknownValue);
-        /// <summary> The Dev Box is running. </summary>
+        /// <summary> Running. </summary>
         public static PowerState Running { get; } = new PowerState(RunningValue);
-        /// <summary> The Dev Box is deallocated. </summary>
+        /// <summary> Deallocated. </summary>
         public static PowerState Deallocated { get; } = new PowerState(DeallocatedValue);
-        /// <summary> The Dev Box is powered off. </summary>
+        /// <summary> PoweredOff. </summary>
         public static PowerState PoweredOff { get; } = new PowerState(PoweredOffValue);
-        /// <summary> The Dev Box is hibernated. </summary>
+        /// <summary> Hibernated. </summary>
         public static PowerState Hibernated { get; } = new PowerState(HibernatedValue);
         /// <summary> Determines if two <see cref="PowerState"/> values are the same. </summary>
         public static bool operator ==(PowerState left, PowerState right) => left.Equals(right);

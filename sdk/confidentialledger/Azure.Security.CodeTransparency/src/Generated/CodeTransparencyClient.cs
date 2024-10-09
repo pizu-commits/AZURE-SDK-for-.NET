@@ -45,7 +45,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get the status the entry operation. </summary>
-        /// <param name="operationId"> ID of the operation to retrieve. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -60,7 +60,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get the status the entry operation. </summary>
-        /// <param name="operationId"> ID of the operation to retrieve. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -89,7 +89,7 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="operationId"> ID of the operation to retrieve. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -129,7 +129,7 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="operationId"> ID of the operation to retrieve. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -245,8 +245,8 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get Entry with or without receipt embedded in its unprotected header. </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
-        /// <param name="embedReceipt"> Embed a receipt as part of the response. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
+        /// <param name="embedReceipt"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -261,8 +261,8 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get Entry with or without receipt embedded in its unprotected header. </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
-        /// <param name="embedReceipt"> Embed a receipt as part of the response. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
+        /// <param name="embedReceipt"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -291,8 +291,8 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
-        /// <param name="embedReceipt"> Embed a receipt as part of the response. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
+        /// <param name="embedReceipt"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -332,8 +332,8 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
-        /// <param name="embedReceipt"> Embed a receipt as part of the response. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
+        /// <param name="embedReceipt"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -359,7 +359,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get the receipt of an entry given a specific entry id. </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -374,7 +374,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Get the receipt of an entry given a specific entry id. </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -403,7 +403,7 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -443,7 +443,7 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="entryId"> ID of the entry to retrieve. </param>
+        /// <param name="entryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="entryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="entryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -829,8 +829,8 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Historical query to get a list of entries of a given range. </summary>
-        /// <param name="from"> Starting Transaction Id. </param>
-        /// <param name="to"> Ending Transaction Id. </param>
+        /// <param name="from"> The <see cref="long"/>? to use. </param>
+        /// <param name="to"> The <see cref="long"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/CodeTransparencyClient.xml" path="doc/members/member[@name='GetEntryIdsAsync(long?,long?,CancellationToken)']/*" />
         public virtual AsyncPageable<string> GetEntryIdsAsync(long? @from = null, long? to = null, CancellationToken cancellationToken = default)
@@ -842,8 +842,8 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Historical query to get a list of entries of a given range. </summary>
-        /// <param name="from"> Starting Transaction Id. </param>
-        /// <param name="to"> Ending Transaction Id. </param>
+        /// <param name="from"> The <see cref="long"/>? to use. </param>
+        /// <param name="to"> The <see cref="long"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/CodeTransparencyClient.xml" path="doc/members/member[@name='GetEntryIds(long?,long?,CancellationToken)']/*" />
         public virtual Pageable<string> GetEntryIds(long? @from = null, long? to = null, CancellationToken cancellationToken = default)
@@ -869,8 +869,8 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="from"> Starting Transaction Id. </param>
-        /// <param name="to"> Ending Transaction Id. </param>
+        /// <param name="from"> The <see cref="long"/>? to use. </param>
+        /// <param name="to"> The <see cref="long"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -897,8 +897,8 @@ namespace Azure.Security.CodeTransparency
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="from"> Starting Transaction Id. </param>
-        /// <param name="to"> Ending Transaction Id. </param>
+        /// <param name="from"> The <see cref="long"/>? to use. </param>
+        /// <param name="to"> The <see cref="long"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

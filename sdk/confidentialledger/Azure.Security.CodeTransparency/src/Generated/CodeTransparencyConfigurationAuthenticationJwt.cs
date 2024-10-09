@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> Configuration of JWT claims. </summary>
+    /// <summary> The CodeTransparencyConfigurationAuthenticationJwt. </summary>
     public partial class CodeTransparencyConfigurationAuthenticationJwt
     {
         /// <summary>

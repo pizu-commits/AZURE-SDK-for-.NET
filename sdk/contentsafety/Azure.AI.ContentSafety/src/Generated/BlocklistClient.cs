@@ -102,8 +102,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Add or update BlocklistItems To Text Blocklist. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="options"> Options for adding or updating blocklist items. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="AddOrUpdateTextBlocklistItemsOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -121,8 +121,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Add or update BlocklistItems To Text Blocklist. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="options"> Options for adding or updating blocklist items. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="AddOrUpdateTextBlocklistItemsOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -154,7 +154,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -196,7 +196,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -233,7 +233,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -270,7 +270,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -308,7 +308,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -344,7 +344,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -370,7 +370,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get Text Blocklist By blocklistName. </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -386,7 +386,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get Text Blocklist By blocklistName. </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -416,7 +416,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -456,7 +456,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -482,8 +482,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get BlocklistItem By blocklistName And blocklistItemId. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="blocklistItemId"> The service will generate a BlocklistItemId, which will be a UUID. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="blocklistItemId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -500,8 +500,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get BlocklistItem By blocklistName And blocklistItemId. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="blocklistItemId"> The service will generate a BlocklistItemId, which will be a UUID. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="blocklistItemId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -532,8 +532,8 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="blocklistItemId"> The service will generate a BlocklistItemId, which will be a UUID. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="blocklistItemId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -574,8 +574,8 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="blocklistItemId"> The service will generate a BlocklistItemId, which will be a UUID. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="blocklistItemId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> or <paramref name="blocklistItemId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -602,8 +602,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Remove BlocklistItems From Text Blocklist. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="options"> Options for removing blocklist items. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="RemoveTextBlocklistItemsOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -621,8 +621,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Remove BlocklistItems From Text Blocklist. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="options"> Options for removing blocklist items. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="RemoveTextBlocklistItemsOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -654,7 +654,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -696,7 +696,7 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -724,10 +724,10 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get All BlocklistItems By blocklistName. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -744,10 +744,10 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Get All BlocklistItems By blocklistName. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -778,10 +778,10 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
@@ -812,10 +812,10 @@ namespace Azure.AI.ContentSafety
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>

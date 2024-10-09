@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Indicates the Dev Box compute. </summary>
+    /// <summary> The SkuName. </summary>
     public readonly partial struct SkuName : IEquatable<SkuName>
     {
         private readonly string _value;
@@ -45,49 +45,49 @@ namespace Azure.Developer.DevCenter.Models
         private const string GeneralA32c128gb1024ssdV2Value = "general_a_32c128gb1024ssd_v2";
         private const string GeneralA32c128gb2048ssdV2Value = "general_a_32c128gb2048ssd_v2";
 
-        /// <summary> Intel, 8 vCPU, 32 GB RAM, 256 GB Storage. </summary>
+        /// <summary> general_i_8c32gb256ssd_v2. </summary>
         public static SkuName GeneralI8c32gb256ssdV2 { get; } = new SkuName(GeneralI8c32gb256ssdV2Value);
-        /// <summary> Intel, 8 vCPU, 32 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_i_8c32gb512ssd_v2. </summary>
         public static SkuName GeneralI8c32gb512ssdV2 { get; } = new SkuName(GeneralI8c32gb512ssdV2Value);
-        /// <summary> Intel, 8 vCPU, 32 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_i_8c32gb1024ssd_v2. </summary>
         public static SkuName GeneralI8c32gb1024ssdV2 { get; } = new SkuName(GeneralI8c32gb1024ssdV2Value);
-        /// <summary> Intel, 8 vCPU, 32 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_i_8c32gb2048ssd_v2. </summary>
         public static SkuName GeneralI8c32gb2048ssdV2 { get; } = new SkuName(GeneralI8c32gb2048ssdV2Value);
-        /// <summary> Intel, 16 vCPU, 64 GB RAM, 256 GB Storage. </summary>
+        /// <summary> general_i_16c64gb256ssd_v2. </summary>
         public static SkuName GeneralI16c64gb256ssdV2 { get; } = new SkuName(GeneralI16c64gb256ssdV2Value);
-        /// <summary> Intel, 16 vCPU, 64 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_i_16c64gb512ssd_v2. </summary>
         public static SkuName GeneralI16c64gb512ssdV2 { get; } = new SkuName(GeneralI16c64gb512ssdV2Value);
-        /// <summary> Intel, 16 vCPU, 64 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_i_16c64gb1024ssd_v2. </summary>
         public static SkuName GeneralI16c64gb1024ssdV2 { get; } = new SkuName(GeneralI16c64gb1024ssdV2Value);
-        /// <summary> Intel, 16 vCPU, 64 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_i_16c64gb2048ssd_v2. </summary>
         public static SkuName GeneralI16c64gb2048ssdV2 { get; } = new SkuName(GeneralI16c64gb2048ssdV2Value);
-        /// <summary> Intel, 32 vCPU, 128 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_i_32c128gb512ssd_v2. </summary>
         public static SkuName GeneralI32c128gb512ssdV2 { get; } = new SkuName(GeneralI32c128gb512ssdV2Value);
-        /// <summary> Intel, 32 vCPU, 128 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_i_32c128gb1024ssd_v2. </summary>
         public static SkuName GeneralI32c128gb1024ssdV2 { get; } = new SkuName(GeneralI32c128gb1024ssdV2Value);
-        /// <summary> Intel, 32 vCPU, 128 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_i_32c128gb2048ssd_v2. </summary>
         public static SkuName GeneralI32c128gb2048ssdV2 { get; } = new SkuName(GeneralI32c128gb2048ssdV2Value);
-        /// <summary> AMD, 8 vCPU, 32 GB RAM, 256 GB Storage. </summary>
+        /// <summary> general_a_8c32gb256ssd_v2. </summary>
         public static SkuName GeneralA8c32gb256ssdV2 { get; } = new SkuName(GeneralA8c32gb256ssdV2Value);
-        /// <summary> AMD, 8 vCPU, 32 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_a_8c32gb512ssd_v2. </summary>
         public static SkuName GeneralA8c32gb512ssdV2 { get; } = new SkuName(GeneralA8c32gb512ssdV2Value);
-        /// <summary> AMD, 8 vCPU, 32 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_a_8c32gb1024ssd_v2. </summary>
         public static SkuName GeneralA8c32gb1024ssdV2 { get; } = new SkuName(GeneralA8c32gb1024ssdV2Value);
-        /// <summary> AMD, 8 vCPU, 32 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_a_8c32gb2048ssd_v2. </summary>
         public static SkuName GeneralA8c32gb2048ssdV2 { get; } = new SkuName(GeneralA8c32gb2048ssdV2Value);
-        /// <summary> AMD, 16 vCPU, 64 GB RAM, 256 GB Storage. </summary>
+        /// <summary> general_a_16c64gb256ssd_v2. </summary>
         public static SkuName GeneralA16c64gb256ssdV2 { get; } = new SkuName(GeneralA16c64gb256ssdV2Value);
-        /// <summary> AMD, 16 vCPU, 64 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_a_16c64gb512ssd_v2. </summary>
         public static SkuName GeneralA16c64gb512ssdV2 { get; } = new SkuName(GeneralA16c64gb512ssdV2Value);
-        /// <summary> AMD, 16 vCPU, 64 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_a_16c64gb1024ssd_v2. </summary>
         public static SkuName GeneralA16c64gb1024ssdV2 { get; } = new SkuName(GeneralA16c64gb1024ssdV2Value);
-        /// <summary> AMD, 16 vCPU, 64 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_a_16c64gb2048ssd_v2. </summary>
         public static SkuName GeneralA16c64gb2048ssdV2 { get; } = new SkuName(GeneralA16c64gb2048ssdV2Value);
-        /// <summary> AMD, 32 vCPU, 128 GB RAM, 512 GB Storage. </summary>
+        /// <summary> general_a_32c128gb512ssd_v2. </summary>
         public static SkuName GeneralA32c128gb512ssdV2 { get; } = new SkuName(GeneralA32c128gb512ssdV2Value);
-        /// <summary> AMD, 32 vCPU, 128 GB RAM, 1024 GB Storage. </summary>
+        /// <summary> general_a_32c128gb1024ssd_v2. </summary>
         public static SkuName GeneralA32c128gb1024ssdV2 { get; } = new SkuName(GeneralA32c128gb1024ssdV2Value);
-        /// <summary> AMD, 32 vCPU, 128 GB RAM, 2048 GB Storage. </summary>
+        /// <summary> general_a_32c128gb2048ssd_v2. </summary>
         public static SkuName GeneralA32c128gb2048ssdV2 { get; } = new SkuName(GeneralA32c128gb2048ssdV2Value);
         /// <summary> Determines if two <see cref="SkuName"/> values are the same. </summary>
         public static bool operator ==(SkuName left, SkuName right) => left.Equals(right);

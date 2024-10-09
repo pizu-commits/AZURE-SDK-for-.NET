@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The type of text analysis output. </summary>
+    /// <summary> The AnalyzeTextOutputType. </summary>
     public readonly partial struct AnalyzeTextOutputType : IEquatable<AnalyzeTextOutputType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.ContentSafety
         private const string FourSeverityLevelsValue = "FourSeverityLevels";
         private const string EightSeverityLevelsValue = "EightSeverityLevels";
 
-        /// <summary> Output severities in four levels, the value could be 0,2,4,6. </summary>
+        /// <summary> FourSeverityLevels. </summary>
         public static AnalyzeTextOutputType FourSeverityLevels { get; } = new AnalyzeTextOutputType(FourSeverityLevelsValue);
-        /// <summary> Output severities in eight levels, the value could be 0,1,2,3,4,5,6,7. </summary>
+        /// <summary> EightSeverityLevels. </summary>
         public static AnalyzeTextOutputType EightSeverityLevels { get; } = new AnalyzeTextOutputType(EightSeverityLevelsValue);
         /// <summary> Determines if two <see cref="AnalyzeTextOutputType"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextOutputType left, AnalyzeTextOutputType right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The image analysis request. </summary>
+    /// <summary> The AnalyzeImageOptions. </summary>
     public partial class AnalyzeImageOptions
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeImageOptions"/>. </summary>
-        /// <param name="image"> The image needs to be analyzed. </param>
+        /// <param name="image"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="image"/> is null. </exception>
         public AnalyzeImageOptions(ContentSafetyImageData image)
         {
@@ -57,9 +57,9 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeImageOptions"/>. </summary>
-        /// <param name="image"> The image needs to be analyzed. </param>
-        /// <param name="categories"> The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. </param>
-        /// <param name="outputType"> This refers to the type of image analysis output. If no value is assigned, the default value will be "FourSeverityLevels". </param>
+        /// <param name="image"></param>
+        /// <param name="categories"></param>
+        /// <param name="outputType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeImageOptions(ContentSafetyImageData image, IList<ImageCategory> categories, AnalyzeImageOutputType? outputType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> The image needs to be analyzed. </summary>
+        /// <summary> Gets the image. </summary>
         public ContentSafetyImageData Image { get; }
-        /// <summary> The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. </summary>
+        /// <summary> Gets the categories. </summary>
         public IList<ImageCategory> Categories { get; }
-        /// <summary> This refers to the type of image analysis output. If no value is assigned, the default value will be "FourSeverityLevels". </summary>
+        /// <summary> Gets or sets the output type. </summary>
         public AnalyzeImageOutputType? OutputType { get; set; }
     }
 }

@@ -63,8 +63,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a pool. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -80,8 +80,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a pool. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -111,8 +111,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -153,8 +153,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -181,9 +181,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a schedule. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
-        /// <param name="scheduleName"> Display name for the Schedule. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduleName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -200,9 +200,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a schedule. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
-        /// <param name="scheduleName"> Display name for the Schedule. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduleName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -233,9 +233,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
-        /// <param name="scheduleName"> Display name for the Schedule. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduleName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -277,9 +277,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
-        /// <param name="scheduleName"> Display name for the Schedule. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduleName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="poolName"/> or <paramref name="scheduleName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -307,9 +307,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a Dev Box. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -326,9 +326,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets a Dev Box. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -359,9 +359,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -403,9 +403,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -433,9 +433,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets RDP Connection info. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -452,9 +452,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets RDP Connection info. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -485,9 +485,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -529,9 +529,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -559,10 +559,10 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets an action. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -580,10 +580,10 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets an action. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -615,10 +615,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -661,10 +661,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -703,10 +703,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -745,10 +745,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -777,11 +777,11 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Delays the occurrence of an action. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -799,11 +799,11 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Delays the occurrence of an action. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -835,11 +835,11 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -882,11 +882,11 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="actionName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="actionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -915,7 +915,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists available pools. </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -931,7 +931,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists available pools. </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -961,7 +961,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -992,7 +992,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1009,8 +1009,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists available schedules for a pool. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1027,8 +1027,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists available schedules for a pool. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1059,8 +1059,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1092,8 +1092,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="poolName"> Pool name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="poolName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="poolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="poolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1185,7 +1185,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists Dev Boxes in the Dev Center for a particular user. </summary>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1201,7 +1201,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists Dev Boxes in the Dev Center for a particular user. </summary>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1231,7 +1231,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1262,7 +1262,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1279,8 +1279,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists Dev Boxes in the project for a particular user. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1297,8 +1297,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists Dev Boxes in the project for a particular user. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1329,8 +1329,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1362,8 +1362,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1381,9 +1381,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists actions on a Dev Box. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1401,9 +1401,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists actions on a Dev Box. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1435,9 +1435,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1470,9 +1470,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1491,10 +1491,10 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Delays all actions. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1512,10 +1512,10 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Delays all actions. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1547,10 +1547,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1583,10 +1583,10 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="delayUntil"> The time to delay the Dev Box action or actions until. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="delayUntil"> The <see cref="DateTimeOffset"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1615,9 +1615,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute the operation. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="content"/> is null. </exception>
@@ -1657,9 +1657,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute the operation. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="devBoxName"/> or <paramref name="content"/> is null. </exception>
@@ -1700,9 +1700,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1741,9 +1741,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> The name of a Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1782,9 +1782,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1823,9 +1823,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1864,10 +1864,10 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="hibernate"> Optional parameter to hibernate the dev box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="hibernate"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1906,10 +1906,10 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
-        /// <param name="hibernate"> Optional parameter to hibernate the dev box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
+        /// <param name="hibernate"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1948,9 +1948,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1989,9 +1989,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="devBoxName"> Display name for the Dev Box. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="devBoxName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="devBoxName"/> is an empty string, and was expected to be non-empty. </exception>

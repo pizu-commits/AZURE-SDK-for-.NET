@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> The Response body of the Version API. </summary>
+    /// <summary> The VersionResult. </summary>
     public partial class VersionResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="VersionResult"/>. </summary>
-        /// <param name="scittVersion"> Version of the CodeTransparency service. </param>
+        /// <param name="scittVersion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="scittVersion"/> is null. </exception>
         internal VersionResult(string scittVersion)
         {
@@ -56,7 +56,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="VersionResult"/>. </summary>
-        /// <param name="scittVersion"> Version of the CodeTransparency service. </param>
+        /// <param name="scittVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal VersionResult(string scittVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> Version of the CodeTransparency service. </summary>
+        /// <summary> Gets the scitt version. </summary>
         public string ScittVersion { get; }
     }
 }

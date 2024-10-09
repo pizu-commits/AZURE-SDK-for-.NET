@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> The Response body of the Configuration API. </summary>
+    /// <summary> The CodeTransparencyConfiguration. </summary>
     public partial class CodeTransparencyConfiguration
     {
         /// <summary>
@@ -53,7 +53,7 @@ namespace Azure.Security.CodeTransparency
         /// <summary> Initializes a new instance of <see cref="CodeTransparencyConfiguration"/>. </summary>
         /// <param name="policy"></param>
         /// <param name="authentication"></param>
-        /// <param name="serviceIdentifier"> did:web identifier. </param>
+        /// <param name="serviceIdentifier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CodeTransparencyConfiguration(CodeTransparencyConfigurationPolicy policy, CodeTransparencyConfigurationAuthentication authentication, string serviceIdentifier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,7 +67,7 @@ namespace Azure.Security.CodeTransparency
         public CodeTransparencyConfigurationPolicy Policy { get; }
         /// <summary> Gets the authentication. </summary>
         public CodeTransparencyConfigurationAuthentication Authentication { get; }
-        /// <summary> did:web identifier. </summary>
+        /// <summary> Gets the service identifier. </summary>
         public string ServiceIdentifier { get; }
     }
 }

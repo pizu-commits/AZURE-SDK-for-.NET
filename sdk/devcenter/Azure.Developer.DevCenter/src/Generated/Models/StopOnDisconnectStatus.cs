@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Indicates whether the feature to stop the devbox on disconnect once the grace period has lapsed is enabled. </summary>
+    /// <summary> The StopOnDisconnectStatus. </summary>
     public readonly partial struct StopOnDisconnectStatus : IEquatable<StopOnDisconnectStatus>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Developer.DevCenter.Models
         private const string EnabledValue = "Enabled";
         private const string DisabledValue = "Disabled";
 
-        /// <summary> Stop on disconnect is enabled on the Dev Box. </summary>
+        /// <summary> Enabled. </summary>
         public static StopOnDisconnectStatus Enabled { get; } = new StopOnDisconnectStatus(EnabledValue);
-        /// <summary> Stop on disconnect is not enabled on the Dev Box. </summary>
+        /// <summary> Disabled. </summary>
         public static StopOnDisconnectStatus Disabled { get; } = new StopOnDisconnectStatus(DisabledValue);
         /// <summary> Determines if two <see cref="StopOnDisconnectStatus"/> values are the same. </summary>
         public static bool operator ==(StopOnDisconnectStatus left, StopOnDisconnectStatus right) => left.Equals(right);
