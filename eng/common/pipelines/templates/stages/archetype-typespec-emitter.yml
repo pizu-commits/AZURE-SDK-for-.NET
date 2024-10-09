@@ -71,10 +71,10 @@ stages:
 # Build stage
 # Responsible for building the autorest generator and typespec emitter packages
 # Produces the artifact `build_artifacts` which contains the following:
-#   emitter-package.json: Will be used to generate the emitter-package-lock.json file and placed in the `/eng` folder
-#                         of the sdk repository.
+#   package-versions.json: Contains a map of package name to version for the packages that were built
 #   overrides.json: Contains npm package version overrides for the emitter and generator
 #   packages/: Contains the packages to publish
+#   lock-files/: Contains package.json and package-lock.json files for use in the test stage to ensure tests are run against the correct dependency versions
 - stage: Build
   jobs:
   - job: Build
@@ -111,17 +111,6 @@ stages:
           -Output "$(Build.ArtifactStagingDirectory)"
           -PublishInternal:$${{ parameters.PublishInternal }}
           -Prerelease:$${{ parameters.BuildPrereleaseVersion }}
-
-    - task: PowerShell@2
-      displayName: Create emitter-package.json
-      inputs:
-        pwsh: true
-        filePath: ./eng/common/scripts/typespec/New-EmitterPackageJson.ps1
-        arguments: >
-          -PackageJsonPath '${{ parameters.EmitterPackagePath }}/package.json'
-          -OverridesPath '$(Build.ArtifactStagingDirectory)/overrides.json'
-          -OutputDirectory '$(Build.ArtifactStagingDirectory)'
-        workingDirectory: $(Build.SourcesDirectory)
 
     - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
       parameters:
@@ -217,8 +206,8 @@ stages:
 # Publish stage
 # Responsible for publishing the packages in `build_artifacts/packages` and producing `emitter-package-lock.json`
 # Produces the artifact `publish_artifacts` which contains the following:
-#   emitter-package-lock.json: Created by calling `npm install` using `build_artifacts/emitter-package.json` and will
-#                              be placed in the `/eng` folder of the sdk repository.
+#   emitter-package.json: Created using the package json from the build step. 
+#   emitter-package-lock.json: Created by calling `npm install` using `emitter-package.json`
 - ${{ if parameters.ShouldPublish }}:
   - stage: Publish
     dependsOn:
@@ -268,12 +257,23 @@ stages:
               publishVstsFeed: '29ec6040-b234-4e31-b139-33dc4287b756/fa8c16a3-dbe0-4de2-a297-03065ec1ba3f'
 
         - task: PowerShell@2
+          displayName: Create emitter-package.json
+          inputs:
+            pwsh: true
+            filePath: ./eng/common/scripts/typespec/New-EmitterPackageJson.ps1
+            arguments: >
+              -PackageJsonPath '$(buildArtifactsPath)/lock-files/package.json"
+              -OverridesPath '$(buildArtifactsPath)/overrides.json'
+              -OutputDirectory '$(Build.ArtifactStagingDirectory)'
+            workingDirectory: $(Build.SourcesDirectory)
+
+        - task: PowerShell@2
           displayName: Create emitter-package-lock.json
           inputs:
             pwsh: true
             filePath: ./eng/common/scripts/typespec/New-EmitterPackageLock.ps1
             arguments: >
-              -EmitterPackageJsonPath "$(buildArtifactsPath)/emitter-package.json"
+              -EmitterPackageJsonPath "$(Build.ArtifactStagingDirectory)/package.json"
               -OutputDirectory "$(Build.ArtifactStagingDirectory)"
             workingDirectory: $(Build.SourcesDirectory)
 
