@@ -15,10 +15,13 @@ if ($UseTypeSpecNext) {
     Write-Host "##vso[build.addbuildtag]typespec_next"
 }
 
+$artifactStagingDirectory = $env:Build_ArtifactStagingDirectory
+
 Write-Host "Running with:"
 Write-Host "  BuildArtifactsPath: $BuildArtifactsPath"
 Write-Host "  UseTypeSpecNext: $UseTypeSpecNext"
-Write-Host "  `$env:Build_ArtifactStagingDirectory: $env:Build_ArtifactStagingDirectory"
+Write-Host "  `$env:Build_ArtifactStagingDirectory: $artifactStagingDirectory"
+Write-Host "Should emit artifacts: $($artifactStagingDirectory -and !$BuildArtifactsPath)"
 
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
 Push-Location $emitterPackagePath
