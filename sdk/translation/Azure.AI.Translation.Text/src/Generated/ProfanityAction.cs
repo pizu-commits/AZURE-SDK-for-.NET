@@ -7,14 +7,14 @@
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Translator profanity actions. </summary>
+    /// <summary> The ProfanityAction. </summary>
     public enum ProfanityAction
     {
-        /// <summary> No Action is taken on profanity. </summary>
+        /// <summary> NoAction. </summary>
         NoAction,
-        /// <summary> Profanity is marked. </summary>
+        /// <summary> Marked. </summary>
         Marked,
-        /// <summary> Profanity is deleted from the translated text. </summary>
+        /// <summary> Deleted. </summary>
         Deleted
     }
 }

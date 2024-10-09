@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a generated phrase that describes the content of the whole image. </summary>
+    /// <summary> The CaptionResult. </summary>
     public partial class CaptionResult
     {
         /// <summary>
@@ -46,11 +46,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CaptionResult"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="text"> The text of the caption. </param>
+        /// <param name="confidence"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal CaptionResult(float confidence, string text)
         {
@@ -61,11 +58,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="CaptionResult"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="text"> The text of the caption. </param>
+        /// <param name="confidence"></param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CaptionResult(float confidence, string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,12 +73,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary>
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
-        /// <summary> The text of the caption. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

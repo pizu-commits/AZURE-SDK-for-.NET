@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> An object returning sentence boundaries in the input and output texts. </summary>
+    /// <summary> The SentenceBoundaries. </summary>
     public partial class SentenceBoundaries
     {
         /// <summary>
@@ -47,14 +47,8 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SentenceBoundaries"/>. </summary>
-        /// <param name="sourceSentencesLengths">
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
-        /// <param name="translatedSentencesLengths">
-        /// An integer array representing the lengths of the sentences in the translated text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
+        /// <param name="sourceSentencesLengths"></param>
+        /// <param name="translatedSentencesLengths"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceSentencesLengths"/> or <paramref name="translatedSentencesLengths"/> is null. </exception>
         internal SentenceBoundaries(IEnumerable<int> sourceSentencesLengths, IEnumerable<int> translatedSentencesLengths)
         {
@@ -66,14 +60,8 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentenceBoundaries"/>. </summary>
-        /// <param name="sourceSentencesLengths">
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
-        /// <param name="translatedSentencesLengths">
-        /// An integer array representing the lengths of the sentences in the translated text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
+        /// <param name="sourceSentencesLengths"></param>
+        /// <param name="translatedSentencesLengths"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentenceBoundaries(IReadOnlyList<int> sourceSentencesLengths, IReadOnlyList<int> translatedSentencesLengths, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,15 +75,9 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </summary>
+        /// <summary> Gets the source sentences lengths. </summary>
         public IReadOnlyList<int> SourceSentencesLengths { get; }
-        /// <summary>
-        /// An integer array representing the lengths of the sentences in the translated text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </summary>
+        /// <summary> Gets the translated sentences lengths. </summary>
         public IReadOnlyList<int> TranslatedSentencesLengths { get; }
     }
 }

@@ -11,10 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary>
-    /// Smart cropping result. A list of crop regions at the desired as aspect ratios (if provided) that can be used as image thumbnails.
-    /// These regions preserve as much content as possible from the analyzed image, with priority given to detected faces.
-    /// </summary>
+    /// <summary> The SmartCropsResult. </summary>
     public partial class SmartCropsResult
     {
         /// <summary>
@@ -50,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SmartCropsResult"/>. </summary>
-        /// <param name="values"> A list of crop regions. </param>
+        /// <param name="values"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="values"/> is null. </exception>
         internal SmartCropsResult(IEnumerable<CropRegion> values)
         {
@@ -60,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="SmartCropsResult"/>. </summary>
-        /// <param name="values"> A list of crop regions. </param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SmartCropsResult(IReadOnlyList<CropRegion> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A list of crop regions. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<CropRegion> Values { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Translation job submission batch request. </summary>
+    /// <summary> The StartTranslationDetails. </summary>
     public partial class StartTranslationDetails
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StartTranslationDetails"/>. </summary>
-        /// <param name="inputs"> The input list of documents or folders containing documents. </param>
+        /// <param name="inputs"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="inputs"/> is null. </exception>
         public StartTranslationDetails(IEnumerable<DocumentTranslationInput> inputs)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="StartTranslationDetails"/>. </summary>
-        /// <param name="inputs"> The input list of documents or folders containing documents. </param>
+        /// <param name="inputs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StartTranslationDetails(IList<DocumentTranslationInput> inputs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.Translation.Document
         {
         }
 
-        /// <summary> The input list of documents or folders containing documents. </summary>
+        /// <summary> Gets the inputs. </summary>
         public IList<DocumentTranslationInput> Inputs { get; }
     }
 }

@@ -11,10 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary>
-    /// A list of entities observed in the image. Tags can be physical objects, living being, scenery, or actions
-    /// that appear in the image.
-    /// </summary>
+    /// <summary> The TagsResult. </summary>
     public partial class TagsResult
     {
         /// <summary>
@@ -50,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TagsResult"/>. </summary>
-        /// <param name="values"> A list of tags. </param>
+        /// <param name="values"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="values"/> is null. </exception>
         internal TagsResult(IEnumerable<DetectedTag> values)
         {
@@ -60,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="TagsResult"/>. </summary>
-        /// <param name="values"> A list of tags. </param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TagsResult(IReadOnlyList<DetectedTag> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A list of tags. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<DetectedTag> Values { get; }
     }
 }

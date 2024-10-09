@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Back Translation. </summary>
+    /// <summary> The BackTranslation. </summary>
     public partial class BackTranslation
     {
         /// <summary>
@@ -46,27 +46,10 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BackTranslation"/>. </summary>
-        /// <param name="normalizedText">
-        /// A string giving the normalized form of the source term that is a back-translation of the target.
-        /// This value should be used as input to lookup examples.
-        /// </param>
-        /// <param name="displayText">
-        /// A string giving the source term that is a back-translation of the target in a form best
-        /// suited for end-user display.
-        /// </param>
-        /// <param name="examplesCount">
-        /// An integer representing the number of examples that are available for this translation pair.
-        /// Actual examples must be retrieved with a separate call to lookup examples. The number is mostly
-        /// intended to facilitate display in a UX. For example, a user interface may add a hyperlink
-        /// to the back-translation if the number of examples is greater than zero and show the back-translation
-        /// as plain text if there are no examples. Note that the actual number of examples returned
-        /// by a call to lookup examples may be less than numExamples, because additional filtering may be
-        /// applied on the fly to remove "bad" examples.
-        /// </param>
-        /// <param name="frequencyCount">
-        /// An integer representing the frequency of this translation pair in the data. The main purpose of this
-        /// field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
-        /// </param>
+        /// <param name="normalizedText"></param>
+        /// <param name="displayText"></param>
+        /// <param name="examplesCount"></param>
+        /// <param name="frequencyCount"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="normalizedText"/> or <paramref name="displayText"/> is null. </exception>
         internal BackTranslation(string normalizedText, string displayText, int examplesCount, int frequencyCount)
         {
@@ -80,27 +63,10 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="BackTranslation"/>. </summary>
-        /// <param name="normalizedText">
-        /// A string giving the normalized form of the source term that is a back-translation of the target.
-        /// This value should be used as input to lookup examples.
-        /// </param>
-        /// <param name="displayText">
-        /// A string giving the source term that is a back-translation of the target in a form best
-        /// suited for end-user display.
-        /// </param>
-        /// <param name="examplesCount">
-        /// An integer representing the number of examples that are available for this translation pair.
-        /// Actual examples must be retrieved with a separate call to lookup examples. The number is mostly
-        /// intended to facilitate display in a UX. For example, a user interface may add a hyperlink
-        /// to the back-translation if the number of examples is greater than zero and show the back-translation
-        /// as plain text if there are no examples. Note that the actual number of examples returned
-        /// by a call to lookup examples may be less than numExamples, because additional filtering may be
-        /// applied on the fly to remove "bad" examples.
-        /// </param>
-        /// <param name="frequencyCount">
-        /// An integer representing the frequency of this translation pair in the data. The main purpose of this
-        /// field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
-        /// </param>
+        /// <param name="normalizedText"></param>
+        /// <param name="displayText"></param>
+        /// <param name="examplesCount"></param>
+        /// <param name="frequencyCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BackTranslation(string normalizedText, string displayText, int examplesCount, int frequencyCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -116,30 +82,13 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// A string giving the normalized form of the source term that is a back-translation of the target.
-        /// This value should be used as input to lookup examples.
-        /// </summary>
+        /// <summary> Gets the normalized text. </summary>
         public string NormalizedText { get; }
-        /// <summary>
-        /// A string giving the source term that is a back-translation of the target in a form best
-        /// suited for end-user display.
-        /// </summary>
+        /// <summary> Gets the display text. </summary>
         public string DisplayText { get; }
-        /// <summary>
-        /// An integer representing the number of examples that are available for this translation pair.
-        /// Actual examples must be retrieved with a separate call to lookup examples. The number is mostly
-        /// intended to facilitate display in a UX. For example, a user interface may add a hyperlink
-        /// to the back-translation if the number of examples is greater than zero and show the back-translation
-        /// as plain text if there are no examples. Note that the actual number of examples returned
-        /// by a call to lookup examples may be less than numExamples, because additional filtering may be
-        /// applied on the fly to remove "bad" examples.
-        /// </summary>
+        /// <summary> Gets the examples count. </summary>
         public int ExamplesCount { get; }
-        /// <summary>
-        /// An integer representing the frequency of this translation pair in the data. The main purpose of this
-        /// field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
-        /// </summary>
+        /// <summary> Gets the frequency count. </summary>
         public int FrequencyCount { get; }
     }
 }

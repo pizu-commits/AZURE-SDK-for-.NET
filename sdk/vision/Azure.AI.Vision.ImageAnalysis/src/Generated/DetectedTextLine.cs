@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a single line of text in the image. </summary>
+    /// <summary> The DetectedTextLine. </summary>
     public partial class DetectedTextLine
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedTextLine"/>. </summary>
-        /// <param name="text"> Text content of the detected text line. </param>
-        /// <param name="boundingPolygon"> A bounding polygon around the text line. At the moment only quadrilaterals are supported (represented by 4 image points). </param>
-        /// <param name="words"> A list of words in this line. </param>
+        /// <param name="text"></param>
+        /// <param name="boundingPolygon"></param>
+        /// <param name="words"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/>, <paramref name="boundingPolygon"/> or <paramref name="words"/> is null. </exception>
         internal DetectedTextLine(string text, IEnumerable<ImagePoint> boundingPolygon, IEnumerable<DetectedTextWord> words)
         {
@@ -63,9 +63,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedTextLine"/>. </summary>
-        /// <param name="text"> Text content of the detected text line. </param>
-        /// <param name="boundingPolygon"> A bounding polygon around the text line. At the moment only quadrilaterals are supported (represented by 4 image points). </param>
-        /// <param name="words"> A list of words in this line. </param>
+        /// <param name="text"></param>
+        /// <param name="boundingPolygon"></param>
+        /// <param name="words"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedTextLine(string text, IReadOnlyList<ImagePoint> boundingPolygon, IReadOnlyList<DetectedTextWord> words, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +80,11 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> Text content of the detected text line. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> A bounding polygon around the text line. At the moment only quadrilaterals are supported (represented by 4 image points). </summary>
+        /// <summary> Gets the bounding polygon. </summary>
         public IReadOnlyList<ImagePoint> BoundingPolygon { get; }
-        /// <summary> A list of words in this line. </summary>
+        /// <summary> Gets the words. </summary>
         public IReadOnlyList<DetectedTextWord> Words { get; }
     }
 }

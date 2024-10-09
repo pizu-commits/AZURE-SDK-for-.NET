@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a generated phrase that describes the content of the whole image or a region in the image. </summary>
+    /// <summary> The DenseCaption. </summary>
     public partial class DenseCaption
     {
         /// <summary>
@@ -46,12 +46,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DenseCaption"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="text"> The text of the caption. </param>
-        /// <param name="boundingBox"> The image region of which this caption applies. </param>
+        /// <param name="confidence"></param>
+        /// <param name="text"></param>
+        /// <param name="boundingBox"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> or <paramref name="boundingBox"/> is null. </exception>
         internal DenseCaption(float confidence, string text, ImageBoundingBox boundingBox)
         {
@@ -64,12 +61,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DenseCaption"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="text"> The text of the caption. </param>
-        /// <param name="boundingBox"> The image region of which this caption applies. </param>
+        /// <param name="confidence"></param>
+        /// <param name="text"></param>
+        /// <param name="boundingBox"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DenseCaption(float confidence, string text, ImageBoundingBox boundingBox, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,14 +78,11 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary>
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this description is accurate.
-        /// Higher values indicating higher confidence.
-        /// </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
-        /// <summary> The text of the caption. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The image region of which this caption applies. </summary>
+        /// <summary> Gets the bounding box. </summary>
         public ImageBoundingBox BoundingBox { get; }
     }
 }

@@ -102,35 +102,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Performs a single Image Analysis operation. </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
-        /// <param name="imageData"> The image to be analyzed. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
+        /// <param name="imageData"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="imageData"/> is null. </exception>
         internal virtual async Task<Response<ImageAnalysisResult>> AnalyzeFromImageDataAsync(IEnumerable<VisualFeaturesImpl> visualFeatures, BinaryData imageData, string language = null, bool? genderNeutralCaption = null, IEnumerable<float> smartCropsAspectRatios = null, string modelVersion = null, CancellationToken cancellationToken = default)
@@ -145,35 +122,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Performs a single Image Analysis operation. </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
-        /// <param name="imageData"> The image to be analyzed. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
+        /// <param name="imageData"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="imageData"/> is null. </exception>
         internal virtual Response<ImageAnalysisResult> AnalyzeFromImageData(IEnumerable<VisualFeaturesImpl> visualFeatures, BinaryData imageData, string language = null, bool? genderNeutralCaption = null, IEnumerable<float> smartCropsAspectRatios = null, string modelVersion = null, CancellationToken cancellationToken = default)
@@ -202,35 +156,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -269,35 +200,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -322,35 +230,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Performs a single Image Analysis operation. </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
-        /// <param name="imageUrl"> The image to be analyzed. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
+        /// <param name="imageUrl"> The <see cref="ImageUrl"/> to use. </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="imageUrl"/> is null. </exception>
         internal virtual async Task<Response<ImageAnalysisResult>> AnalyzeFromUrlAsync(IEnumerable<VisualFeaturesImpl> visualFeatures, ImageUrl imageUrl, string language = null, bool? genderNeutralCaption = null, IEnumerable<float> smartCropsAspectRatios = null, string modelVersion = null, CancellationToken cancellationToken = default)
@@ -365,35 +250,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Performs a single Image Analysis operation. </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
-        /// <param name="imageUrl"> The image to be analyzed. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
+        /// <param name="imageUrl"> The <see cref="ImageUrl"/> to use. </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="imageUrl"/> is null. </exception>
         internal virtual Response<ImageAnalysisResult> AnalyzeFromUrl(IEnumerable<VisualFeaturesImpl> visualFeatures, ImageUrl imageUrl, string language = null, bool? genderNeutralCaption = null, IEnumerable<float> smartCropsAspectRatios = null, string modelVersion = null, CancellationToken cancellationToken = default)
@@ -422,35 +284,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -489,35 +328,12 @@ namespace Azure.AI.Vision.ImageAnalysis
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="visualFeatures">
-        /// A list of visual features to analyze.
-        /// Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
-        /// At least one visual feature must be specified.
-        /// </param>
+        /// <param name="visualFeatures"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="VisualFeaturesImpl"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="language">
-        /// The desired language for result generation (a two-letter language code).
-        /// If this option is not specified, the default value 'en' is used (English).
-        /// See https://aka.ms/cv-languages for a list of supported languages.
-        /// </param>
-        /// <param name="genderNeutralCaption">
-        /// Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions features.
-        /// By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
-        /// If you set this to "true", those will be replaced with gender-neutral terms (for example: 'person' or 'child').
-        /// </param>
-        /// <param name="smartCropsAspectRatios">
-        /// A list of aspect ratios to use for smart cropping.
-        /// Aspect ratios are calculated by dividing the target crop width in pixels by the height in pixels.
-        /// Supported values are between 0.75 and 1.8 (inclusive).
-        /// If this parameter is not specified, the service will return one crop region with an aspect
-        /// ratio it sees fit between 0.5 and 2.0 (inclusive).
-        /// </param>
-        /// <param name="modelVersion">
-        /// The version of cloud AI-model used for analysis.
-        /// The format is the following: 'latest' (default value) or 'YYYY-MM-DD' or 'YYYY-MM-DD-preview', where 'YYYY', 'MM', 'DD' are the year, month and day associated with the model.
-        /// This is not commonly set, as the default always gives the latest AI model with recent improvements.
-        /// If however you would like to make sure analysis results do not change over time, set this value to a specific model version.
-        /// </param>
+        /// <param name="language"> The <see cref="string"/> to use. </param>
+        /// <param name="genderNeutralCaption"> The <see cref="bool"/>? to use. </param>
+        /// <param name="smartCropsAspectRatios"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="float"/> to use. </param>
+        /// <param name="modelVersion"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="visualFeatures"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>

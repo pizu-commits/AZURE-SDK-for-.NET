@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Item containing break sentence result. </summary>
+    /// <summary> The BreakSentenceItem. </summary>
     public partial class BreakSentenceItem
     {
         /// <summary>
@@ -47,10 +47,7 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BreakSentenceItem"/>. </summary>
-        /// <param name="sentencesLengths">
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
+        /// <param name="sentencesLengths"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sentencesLengths"/> is null. </exception>
         internal BreakSentenceItem(IEnumerable<int> sentencesLengths)
         {
@@ -60,11 +57,8 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="BreakSentenceItem"/>. </summary>
-        /// <param name="detectedLanguage"> The detectedLanguage property is only present in the result object when language auto-detection is requested. </param>
-        /// <param name="sentencesLengths">
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </param>
+        /// <param name="detectedLanguage"></param>
+        /// <param name="sentencesLengths"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BreakSentenceItem(DetectedLanguage detectedLanguage, IReadOnlyList<int> sentencesLengths, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,12 +72,9 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> The detectedLanguage property is only present in the result object when language auto-detection is requested. </summary>
+        /// <summary> Gets the detected language. </summary>
         public DetectedLanguage DetectedLanguage { get; }
-        /// <summary>
-        /// An integer array representing the lengths of the sentences in the input text.
-        /// The length of the array is the number of sentences, and the values are the length of each sentence.
-        /// </summary>
+        /// <summary> Gets the sentences lengths. </summary>
         public IReadOnlyList<int> SentencesLengths { get; }
     }
 }

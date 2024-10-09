@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Document Translate Request Content. </summary>
+    /// <summary> The DocumentTranslateContent. </summary>
     public partial class DocumentTranslateContent
     {
         /// <summary>

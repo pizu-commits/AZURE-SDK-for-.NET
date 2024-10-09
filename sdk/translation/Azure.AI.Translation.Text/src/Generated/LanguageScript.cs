@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Common properties of language script. </summary>
+    /// <summary> The LanguageScript. </summary>
     public partial class LanguageScript
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Translation.Text
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LanguageScript"/>. </summary>
-        /// <param name="code"> Code identifying the script. </param>
-        /// <param name="name"> Display name of the script in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for the language. </param>
-        /// <param name="directionality"> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </param>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="directionality"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/>, <paramref name="name"/> or <paramref name="nativeName"/> is null. </exception>
         internal LanguageScript(string code, string name, string nativeName, LanguageDirectionality directionality)
         {
@@ -64,10 +64,10 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="LanguageScript"/>. </summary>
-        /// <param name="code"> Code identifying the script. </param>
-        /// <param name="name"> Display name of the script in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for the language. </param>
-        /// <param name="directionality"> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </param>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="directionality"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LanguageScript(string code, string name, string nativeName, LanguageDirectionality directionality, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,13 +83,13 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> Code identifying the script. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> Display name of the script in the locale requested via Accept-Language header. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Display name of the language in the locale native for the language. </summary>
+        /// <summary> Gets the native name. </summary>
         public string NativeName { get; }
-        /// <summary> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </summary>
+        /// <summary> Gets the directionality. </summary>
         public LanguageDirectionality Directionality { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Response for the languages API. </summary>
+    /// <summary> The GetSupportedLanguagesResult. </summary>
     public partial class GetSupportedLanguagesResult
     {
         /// <summary>
@@ -54,9 +54,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="GetSupportedLanguagesResult"/>. </summary>
-        /// <param name="translation"> Languages that support translate API. </param>
-        /// <param name="transliteration"> Languages that support transliteration API. </param>
-        /// <param name="dictionary"> Languages that support dictionary API. </param>
+        /// <param name="translation"></param>
+        /// <param name="transliteration"></param>
+        /// <param name="dictionary"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GetSupportedLanguagesResult(IReadOnlyDictionary<string, TranslationLanguage> translation, IReadOnlyDictionary<string, TransliterationLanguage> transliteration, IReadOnlyDictionary<string, SourceDictionaryLanguage> dictionary, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,11 +66,11 @@ namespace Azure.AI.Translation.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Languages that support translate API. </summary>
+        /// <summary> Gets the translation. </summary>
         public IReadOnlyDictionary<string, TranslationLanguage> Translation { get; }
-        /// <summary> Languages that support transliteration API. </summary>
+        /// <summary> Gets the transliteration. </summary>
         public IReadOnlyDictionary<string, TransliterationLanguage> Transliteration { get; }
-        /// <summary> Languages that support dictionary API. </summary>
+        /// <summary> Gets the dictionary. </summary>
         public IReadOnlyDictionary<string, SourceDictionaryLanguage> Dictionary { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Status Summary. </summary>
+    /// <summary> The StatusSummary. </summary>
     internal partial class StatusSummary
     {
         /// <summary>
@@ -46,13 +46,13 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StatusSummary"/>. </summary>
-        /// <param name="total"> Total count. </param>
-        /// <param name="failed"> Failed count. </param>
-        /// <param name="success"> Number of Success. </param>
-        /// <param name="inProgress"> Number of in progress. </param>
-        /// <param name="notYetStarted"> Count of not yet started. </param>
-        /// <param name="cancelled"> Number of cancelled. </param>
-        /// <param name="totalCharacterCharged"> Total characters charged by the API. </param>
+        /// <param name="total"></param>
+        /// <param name="failed"></param>
+        /// <param name="success"></param>
+        /// <param name="inProgress"></param>
+        /// <param name="notYetStarted"></param>
+        /// <param name="cancelled"></param>
+        /// <param name="totalCharacterCharged"></param>
         internal StatusSummary(int total, int failed, int success, int inProgress, int notYetStarted, int cancelled, long totalCharacterCharged)
         {
             Total = total;
@@ -65,13 +65,13 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="StatusSummary"/>. </summary>
-        /// <param name="total"> Total count. </param>
-        /// <param name="failed"> Failed count. </param>
-        /// <param name="success"> Number of Success. </param>
-        /// <param name="inProgress"> Number of in progress. </param>
-        /// <param name="notYetStarted"> Count of not yet started. </param>
-        /// <param name="cancelled"> Number of cancelled. </param>
-        /// <param name="totalCharacterCharged"> Total characters charged by the API. </param>
+        /// <param name="total"></param>
+        /// <param name="failed"></param>
+        /// <param name="success"></param>
+        /// <param name="inProgress"></param>
+        /// <param name="notYetStarted"></param>
+        /// <param name="cancelled"></param>
+        /// <param name="totalCharacterCharged"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StatusSummary(int total, int failed, int success, int inProgress, int notYetStarted, int cancelled, long totalCharacterCharged, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,19 +90,19 @@ namespace Azure.AI.Translation.Document
         {
         }
 
-        /// <summary> Total count. </summary>
+        /// <summary> Gets the total. </summary>
         public int Total { get; }
-        /// <summary> Failed count. </summary>
+        /// <summary> Gets the failed. </summary>
         public int Failed { get; }
-        /// <summary> Number of Success. </summary>
+        /// <summary> Gets the success. </summary>
         public int Success { get; }
-        /// <summary> Number of in progress. </summary>
+        /// <summary> Gets the in progress. </summary>
         public int InProgress { get; }
-        /// <summary> Count of not yet started. </summary>
+        /// <summary> Gets the not yet started. </summary>
         public int NotYetStarted { get; }
-        /// <summary> Number of cancelled. </summary>
+        /// <summary> Gets the cancelled. </summary>
         public int Cancelled { get; }
-        /// <summary> Total characters charged by the API. </summary>
+        /// <summary> Gets the total character charged. </summary>
         public long TotalCharacterCharged { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> The results of a Read (OCR) operation. </summary>
+    /// <summary> The ReadResult. </summary>
     public partial class ReadResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ReadResult"/>. </summary>
-        /// <param name="blocks"> A list of text blocks in the image. At the moment only one block is returned, containing all the text detected in the image. </param>
+        /// <param name="blocks"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="blocks"/> is null. </exception>
         internal ReadResult(IEnumerable<DetectedTextBlock> blocks)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="ReadResult"/>. </summary>
-        /// <param name="blocks"> A list of text blocks in the image. At the moment only one block is returned, containing all the text detected in the image. </param>
+        /// <param name="blocks"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReadResult(IReadOnlyList<DetectedTextBlock> blocks, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A list of text blocks in the image. At the moment only one block is returned, containing all the text detected in the image. </summary>
+        /// <summary> Gets the blocks. </summary>
         public IReadOnlyList<DetectedTextBlock> Blocks { get; }
     }
 }

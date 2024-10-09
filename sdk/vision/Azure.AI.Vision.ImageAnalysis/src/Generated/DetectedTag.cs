@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary>
-    /// A content entity observation in the image. A tag can be a physical object, living being, scenery, or action
-    /// that appear in the image.
-    /// </summary>
+    /// <summary> The DetectedTag. </summary>
     public partial class DetectedTag
     {
         /// <summary>
@@ -49,11 +46,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedTag"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this entity was observed.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="name"> Name of the entity. </param>
+        /// <param name="confidence"></param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal DetectedTag(float confidence, string name)
         {
@@ -64,11 +58,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedTag"/>. </summary>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this entity was observed.
-        /// Higher values indicating higher confidence.
-        /// </param>
-        /// <param name="name"> Name of the entity. </param>
+        /// <param name="confidence"></param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedTag(float confidence, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,12 +73,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary>
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this entity was observed.
-        /// Higher values indicating higher confidence.
-        /// </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
-        /// <summary> Name of the entity. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

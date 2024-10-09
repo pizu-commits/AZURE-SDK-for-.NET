@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Dictionary Example element. </summary>
+    /// <summary> The DictionaryExampleItem. </summary>
     public partial class DictionaryExampleItem
     {
         /// <summary>
@@ -47,15 +47,9 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DictionaryExampleItem"/>. </summary>
-        /// <param name="normalizedSource">
-        /// A string giving the normalized form of the source term. Generally, this should be identical
-        /// to the value of the Text field at the matching list index in the body of the request.
-        /// </param>
-        /// <param name="normalizedTarget">
-        /// A string giving the normalized form of the target term. Generally, this should be identical
-        /// to the value of the Translation field at the matching list index in the body of the request.
-        /// </param>
-        /// <param name="examples"> A list of examples for the (source term, target term) pair. </param>
+        /// <param name="normalizedSource"></param>
+        /// <param name="normalizedTarget"></param>
+        /// <param name="examples"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="normalizedSource"/>, <paramref name="normalizedTarget"/> or <paramref name="examples"/> is null. </exception>
         internal DictionaryExampleItem(string normalizedSource, string normalizedTarget, IEnumerable<DictionaryExample> examples)
         {
@@ -69,15 +63,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DictionaryExampleItem"/>. </summary>
-        /// <param name="normalizedSource">
-        /// A string giving the normalized form of the source term. Generally, this should be identical
-        /// to the value of the Text field at the matching list index in the body of the request.
-        /// </param>
-        /// <param name="normalizedTarget">
-        /// A string giving the normalized form of the target term. Generally, this should be identical
-        /// to the value of the Translation field at the matching list index in the body of the request.
-        /// </param>
-        /// <param name="examples"> A list of examples for the (source term, target term) pair. </param>
+        /// <param name="normalizedSource"></param>
+        /// <param name="normalizedTarget"></param>
+        /// <param name="examples"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DictionaryExampleItem(string normalizedSource, string normalizedTarget, IReadOnlyList<DictionaryExample> examples, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -92,17 +80,11 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// A string giving the normalized form of the source term. Generally, this should be identical
-        /// to the value of the Text field at the matching list index in the body of the request.
-        /// </summary>
+        /// <summary> Gets the normalized source. </summary>
         public string NormalizedSource { get; }
-        /// <summary>
-        /// A string giving the normalized form of the target term. Generally, this should be identical
-        /// to the value of the Translation field at the matching list index in the body of the request.
-        /// </summary>
+        /// <summary> Gets the normalized target. </summary>
         public string NormalizedTarget { get; }
-        /// <summary> A list of examples for the (source term, target term) pair. </summary>
+        /// <summary> Gets the examples. </summary>
         public IReadOnlyList<DictionaryExample> Examples { get; }
     }
 }

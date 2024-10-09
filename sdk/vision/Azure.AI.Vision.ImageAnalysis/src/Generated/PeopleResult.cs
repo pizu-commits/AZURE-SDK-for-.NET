@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a list of people detected in an image and their location. </summary>
+    /// <summary> The PeopleResult. </summary>
     public partial class PeopleResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PeopleResult"/>. </summary>
-        /// <param name="values"> A list of people detected in an image and their location. </param>
+        /// <param name="values"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="values"/> is null. </exception>
         internal PeopleResult(IEnumerable<DetectedPerson> values)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="PeopleResult"/>. </summary>
-        /// <param name="values"> A list of people detected in an image and their location. </param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PeopleResult(IReadOnlyList<DetectedPerson> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A list of people detected in an image and their location. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<DetectedPerson> Values { get; }
     }
 }

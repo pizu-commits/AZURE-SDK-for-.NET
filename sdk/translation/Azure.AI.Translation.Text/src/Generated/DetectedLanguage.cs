@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> An object describing the detected language. </summary>
+    /// <summary> The DetectedLanguage. </summary>
     public partial class DetectedLanguage
     {
         /// <summary>
@@ -46,11 +46,8 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedLanguage"/>. </summary>
-        /// <param name="language"> A string representing the code of the detected language. </param>
-        /// <param name="confidence">
-        /// A float value indicating the confidence in the result.
-        /// The score is between zero and one and a low score indicates a low confidence.
-        /// </param>
+        /// <param name="language"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="language"/> is null. </exception>
         internal DetectedLanguage(string language, float confidence)
         {
@@ -61,11 +58,8 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedLanguage"/>. </summary>
-        /// <param name="language"> A string representing the code of the detected language. </param>
-        /// <param name="confidence">
-        /// A float value indicating the confidence in the result.
-        /// The score is between zero and one and a low score indicates a low confidence.
-        /// </param>
+        /// <param name="language"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedLanguage(string language, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,12 +73,9 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> A string representing the code of the detected language. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
-        /// <summary>
-        /// A float value indicating the confidence in the result.
-        /// The score is between zero and one and a low score indicates a low confidence.
-        /// </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

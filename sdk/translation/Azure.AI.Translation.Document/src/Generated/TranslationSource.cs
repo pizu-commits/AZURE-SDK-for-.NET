@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Source of the input documents. </summary>
+    /// <summary> The SourceInput. </summary>
     public partial class TranslationSource
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranslationSource"/>. </summary>
-        /// <param name="sourceUri"> Location of the folder / container or single file with your documents. </param>
+        /// <param name="sourceUri"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceUri"/> is null. </exception>
         public TranslationSource(Uri sourceUri)
         {
@@ -56,13 +56,10 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="TranslationSource"/>. </summary>
-        /// <param name="sourceUri"> Location of the folder / container or single file with your documents. </param>
-        /// <param name="filter"> Document filter. </param>
-        /// <param name="languageCode">
-        /// Language code
-        /// If none is specified, we will perform auto detect on the document
-        /// </param>
-        /// <param name="storageSource"> Storage Source. </param>
+        /// <param name="sourceUri"></param>
+        /// <param name="filter"></param>
+        /// <param name="languageCode"></param>
+        /// <param name="storageSource"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranslationSource(Uri sourceUri, DocumentFilter filter, string languageCode, string storageSource, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

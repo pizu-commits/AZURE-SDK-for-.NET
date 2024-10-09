@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Element containing the translated text. </summary>
+    /// <summary> The TranslatedTextItem. </summary>
     public partial class TranslatedTextItem
     {
         /// <summary>
@@ -47,10 +47,7 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranslatedTextItem"/>. </summary>
-        /// <param name="translations">
-        /// An array of translation results. The size of the array matches the number of target
-        /// languages specified through the to query parameter.
-        /// </param>
+        /// <param name="translations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="translations"/> is null. </exception>
         internal TranslatedTextItem(IEnumerable<TranslationText> translations)
         {
@@ -60,17 +57,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TranslatedTextItem"/>. </summary>
-        /// <param name="detectedLanguage"> The detectedLanguage property is only present in the result object when language auto-detection is requested. </param>
-        /// <param name="translations">
-        /// An array of translation results. The size of the array matches the number of target
-        /// languages specified through the to query parameter.
-        /// </param>
-        /// <param name="sourceText">
-        /// Input text in the default script of the source language. sourceText property is present only when
-        /// the input is expressed in a script that's not the usual script for the language. For example,
-        /// if the input were Arabic written in Latin script, then sourceText.text would be the same Arabic text
-        /// converted into Arab script.
-        /// </param>
+        /// <param name="detectedLanguage"></param>
+        /// <param name="translations"></param>
+        /// <param name="sourceText"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranslatedTextItem(DetectedLanguage detectedLanguage, IReadOnlyList<TranslationText> translations, SourceText sourceText, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,19 +74,11 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> The detectedLanguage property is only present in the result object when language auto-detection is requested. </summary>
+        /// <summary> Gets the detected language. </summary>
         public DetectedLanguage DetectedLanguage { get; }
-        /// <summary>
-        /// An array of translation results. The size of the array matches the number of target
-        /// languages specified through the to query parameter.
-        /// </summary>
+        /// <summary> Gets the translations. </summary>
         public IReadOnlyList<TranslationText> Translations { get; }
-        /// <summary>
-        /// Input text in the default script of the source language. sourceText property is present only when
-        /// the input is expressed in a script that's not the usual script for the language. For example,
-        /// if the input were Arabic written in Latin script, then sourceText.text would be the same Arabic text
-        /// converted into Arab script.
-        /// </summary>
+        /// <summary> Gets the source text. </summary>
         public SourceText SourceText { get; }
     }
 }

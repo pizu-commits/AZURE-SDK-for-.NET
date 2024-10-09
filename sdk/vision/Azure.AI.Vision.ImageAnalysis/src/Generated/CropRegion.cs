@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary>
-    /// A region at the desired aspect ratio that can be used as image thumbnail.
-    /// The region preserves as much content as possible from the analyzed image, with priority given to detected faces.
-    /// </summary>
+    /// <summary> The CropRegion. </summary>
     public partial class CropRegion
     {
         /// <summary>
@@ -49,13 +46,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CropRegion"/>. </summary>
-        /// <param name="aspectRatio">
-        /// The aspect ratio of the crop region.
-        /// Aspect ratio is calculated by dividing the width of the region in pixels by its height in pixels.
-        /// The aspect ratio will be in the range 0.75 to 1.8 (inclusive) if provided by the developer during the analyze call.
-        /// Otherwise, it will be in the range 0.5 to 2.0 (inclusive).
-        /// </param>
-        /// <param name="boundingBox"> The bounding box of the region. </param>
+        /// <param name="aspectRatio"></param>
+        /// <param name="boundingBox"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="boundingBox"/> is null. </exception>
         internal CropRegion(float aspectRatio, ImageBoundingBox boundingBox)
         {
@@ -66,13 +58,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="CropRegion"/>. </summary>
-        /// <param name="aspectRatio">
-        /// The aspect ratio of the crop region.
-        /// Aspect ratio is calculated by dividing the width of the region in pixels by its height in pixels.
-        /// The aspect ratio will be in the range 0.75 to 1.8 (inclusive) if provided by the developer during the analyze call.
-        /// Otherwise, it will be in the range 0.5 to 2.0 (inclusive).
-        /// </param>
-        /// <param name="boundingBox"> The bounding box of the region. </param>
+        /// <param name="aspectRatio"></param>
+        /// <param name="boundingBox"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CropRegion(float aspectRatio, ImageBoundingBox boundingBox, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,14 +73,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary>
-        /// The aspect ratio of the crop region.
-        /// Aspect ratio is calculated by dividing the width of the region in pixels by its height in pixels.
-        /// The aspect ratio will be in the range 0.75 to 1.8 (inclusive) if provided by the developer during the analyze call.
-        /// Otherwise, it will be in the range 0.5 to 2.0 (inclusive).
-        /// </summary>
+        /// <summary> Gets the aspect ratio. </summary>
         public float AspectRatio { get; }
-        /// <summary> The bounding box of the region. </summary>
+        /// <summary> Gets the bounding box. </summary>
         public ImageBoundingBox BoundingBox { get; }
     }
 }

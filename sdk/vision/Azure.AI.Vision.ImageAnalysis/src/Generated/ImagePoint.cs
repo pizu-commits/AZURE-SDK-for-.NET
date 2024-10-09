@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents the coordinates of a single pixel in the image. </summary>
+    /// <summary> The ImagePoint. </summary>
     public partial class ImagePoint
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ImagePoint"/>. </summary>
-        /// <param name="x"> The horizontal x-coordinate of this point, in pixels. Zero values corresponds to the left-most pixels in the image. </param>
-        /// <param name="y"> The vertical y-coordinate of this point, in pixels. Zero values corresponds to the top-most pixels in the image. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         internal ImagePoint(int x, int y)
         {
             X = x;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="ImagePoint"/>. </summary>
-        /// <param name="x"> The horizontal x-coordinate of this point, in pixels. Zero values corresponds to the left-most pixels in the image. </param>
-        /// <param name="y"> The vertical y-coordinate of this point, in pixels. Zero values corresponds to the top-most pixels in the image. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImagePoint(int x, int y, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> The horizontal x-coordinate of this point, in pixels. Zero values corresponds to the left-most pixels in the image. </summary>
+        /// <summary> Gets the x. </summary>
         public int X { get; }
-        /// <summary> The vertical y-coordinate of this point, in pixels. Zero values corresponds to the top-most pixels in the image. </summary>
+        /// <summary> Gets the y. </summary>
         public int Y { get; }
     }
 }

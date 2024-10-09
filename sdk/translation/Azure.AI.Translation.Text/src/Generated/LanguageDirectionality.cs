@@ -7,12 +7,12 @@
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Language Directionality. </summary>
+    /// <summary> The LanguageDirectionality. </summary>
     public enum LanguageDirectionality
     {
-        /// <summary> Language is written left to right. </summary>
+        /// <summary> ltr. </summary>
         LeftToRight,
-        /// <summary> Language is written right to left. </summary>
+        /// <summary> rtl. </summary>
         RightToLeft
     }
 }

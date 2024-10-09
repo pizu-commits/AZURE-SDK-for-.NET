@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary>
-    /// The value of the translation property is a dictionary of (key, value) pairs. Each key is a BCP 47 language tag.
-    /// A key identifies a language for which text can be translated to or translated from.
-    /// </summary>
+    /// <summary> The TranslationLanguage. </summary>
     public partial class TranslationLanguage
     {
         /// <summary>
@@ -49,9 +46,9 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranslationLanguage"/>. </summary>
-        /// <param name="name"> Display name of the language in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for this language. </param>
-        /// <param name="directionality"> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="directionality"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="nativeName"/> is null. </exception>
         internal TranslationLanguage(string name, string nativeName, LanguageDirectionality directionality)
         {
@@ -64,9 +61,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TranslationLanguage"/>. </summary>
-        /// <param name="name"> Display name of the language in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for this language. </param>
-        /// <param name="directionality"> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="directionality"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranslationLanguage(string name, string nativeName, LanguageDirectionality directionality, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,11 +78,11 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> Display name of the language in the locale requested via Accept-Language header. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Display name of the language in the locale native for this language. </summary>
+        /// <summary> Gets the native name. </summary>
         public string NativeName { get; }
-        /// <summary> Directionality, which is rtl for right-to-left languages or ltr for left-to-right languages. </summary>
+        /// <summary> Gets the directionality. </summary>
         public LanguageDirectionality Directionality { get; }
     }
 }
