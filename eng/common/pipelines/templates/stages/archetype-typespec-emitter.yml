@@ -293,16 +293,15 @@ stages:
       artifact: publish_artifacts
       displayName: Download pubish artifacts
 
-    - ${{ if ne(parameters.EmitterPackageJsonPath, 'not-specified') }}:
-      - pwsh: |
-          Write-Host "Copying emitter-package.json to /eng"
-          Copy-Item $(buildArtifactsPath)/emitter-package.json /eng -Force
+    - pwsh: |
+        Write-Host "Copying emitter-package.json to /eng"
+        Copy-Item $(buildArtifactsPath)/emitter-package.json /eng -Force
 
-          Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
-          Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
-        displayName: Copy emitter-package json files
+        Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
+        Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
+      displayName: Copy emitter-package json files
 
-    - ${{ parameters.SdkInitializationSteps }}
+    - ${{ parameters.InitializationSteps }}
 
     - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
       parameters:
